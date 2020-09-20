@@ -14,15 +14,15 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Team Lead
 * Responsibilities: Database
 
-### Jane Doe
+### Yu Ming
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yuming.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/yu-ming-chen)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Code quality + Integration
 
 ### Ek Chin Hui
 
