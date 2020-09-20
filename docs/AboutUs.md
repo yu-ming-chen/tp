@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chew Song Yu
 
-<img src="images/songyu.jpeg" width="200px">
+<img src="images/songyu.jpeg" width="200px" height="235px">
 
 [[github](http://github.com/sogggy)]
 [[portfolio](team/johndoe.md)]
