@@ -50,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### David
 
-<img src="images/Davidliew.png" width="200px">
+<img src="images/davidL.png" width="200px">
 
 [[github](https://github.com/davidliew9)]
 [[portfolio](team/johndoe.md)]
