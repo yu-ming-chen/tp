@@ -8,6 +8,7 @@ NUSave is a **desktop app for managing expenditures, optimized for use via a Com
     * [Creating a budget book: `create`](#creating-a-budget-book-create)
     * [Opening a budget book: `open`](#opening-a-budget-book-open)
     * [Closing a budget book: `close`](#closing-a-budget-book-close)
+    * [Adding an expenditure: `add`](#adding-an-expenditure-add)
     * [Listing all budget books or expenditures: `list`](#listing-all-budget-books-or-expenditures-list)
     * [Locating expenditures by name: `find`](#locating-expenditures-by-name-find)
     * [Deleting a budget book or expenditure: `del`](#deleting-a-budget-book-or-expenditure-del)
@@ -60,8 +61,8 @@ Format: `create NAME`
 - Creates a budget book with the given `NAME`.  
      
 Examples:  
-- `create Tembusu College`  
-- `create Temasek Hall`  
+- `create Daily Expenses`  
+- `create School Related Expenses`  
     
     
 ### Opening a budget book: `open`
@@ -84,6 +85,18 @@ Closes the budget book that is open in NUSave.
 Format: `close`  
 - This command is only available when a budget book is open.  
    
+### Adding an expenditure: `add`
+Adds an expenditure to the budget that is open.
+
+Format: `add NAME PRICE`
+- This command is only available when a budget is open.
+- Adds an expenditure with the given NAME and PRICE to the budget that is open.
+- The price must be a positive integer or double with a maximum of  2 decimal places e.g. 8, 2.55, 3.4, ...
+
+Example:
+- add school fees 5000
+- add lunch at food court 4 
+
 ### Listing all budget books or expenditures: `list`
 
 Shows a list of budget books or expenditures in NUSave.  
