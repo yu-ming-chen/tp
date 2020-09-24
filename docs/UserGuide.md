@@ -5,13 +5,13 @@ NUSave is a **desktop app for managing expenditures, optimized for use via a Com
 ## Table of Contents  
 - [Quick Start](#quick-start)   
 - [Features](#features)  
-    * [Creating a budget book: `create`](#creating-a-budget-book-create)
-    * [Opening a budget book: `open`](#opening-a-budget-book-open)
-    * [Closing a budget book: `close`](#closing-a-budget-book-close)
+    * [Creating a budget: `create`](#creating-a-budget-create)
+    * [Opening a budget: `open`](#opening-a-budget-open)
+    * [Closing a budget: `close`](#closing-a-budget-close)
     * [Adding an expenditure: `add`](#adding-an-expenditure-add)
-    * [Listing all budget books or expenditures: `list`](#listing-all-budget-books-or-expenditures-list)
+    * [Listing all budgets or expenditures: `list`](#listing-all-budgets-or-expenditures-list)
     * [Locating expenditures by name: `find`](#locating-expenditures-by-name-find)
-    * [Deleting a budget book or expenditure: `del`](#deleting-a-budget-book-or-expenditure-del)
+    * [Deleting a budget or expenditure: `del`](#deleting-a-budget-or-expenditure-del)
     * [Listing available commands: `help`](#listing-available-commands-help)
     * [Exiting the program: `exit`](#exiting-the-program-exit)
 - [Command Summary](#command-summary)  
@@ -28,19 +28,19 @@ NUSave is a **desktop app for managing expenditures, optimized for use via a Com
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.  
       
 5. Type the command in the command box and press enter to execute it. Some example commands you can try:  
-    - `list`: Lists all budget books.  
+    - `list`: Lists all budgets.  
       
-   - `create Temasek Hall`: Adds a budget book named Temasek Hall to NUSave.  
+   - `create School Related Expenses`: Adds a budget named School Related Expenses to NUSave.  
       
-   - `open 1`: Opens the 3rd budget book (Temasek Hall) shown in the current list.  
+   - `open 1`: Opens the 1st budget (School Related Expenses) shown in the current list.  
       
-   - `add  Hall Fees 2600`: Adds an expenditure named `Hall Fees` of price $2600 to the budget book (Temasek Hall) that is open.  
+   - `add  Hall Fees 2600`: Adds an expenditure named `Hall Fees` of price $2600 to the budget (School Related Expenses) that is open.  
       
    - `del 1`: Deletes the 1st expenditure (Hall Fees) in the list of expenditures.  
       
-   - `close`: Closes the budget book (Temasek Hall) that is open.  
+   - `close`: Closes the budget (School Related Expenses) that is open.  
       
-   - `del 1`: Deletes the 1st budget book (Temasek Hall) in the list of budget books.  
+   - `del 1`: Deletes the 1st budget (School Related Expenses) in the list of budgets.  
       
    - `help`: Shows the list of commands available for NUSave.  
       
@@ -51,39 +51,39 @@ NUSave is a **desktop app for managing expenditures, optimized for use via a Com
 ---  
 ## Features  
   
-### Creating a budget book: `create`
+### Creating a budget: `create`
   
-Creates a budget book in NUSave.  
+Creates a budget in NUSave.  
   
 Format: `create NAME`  
   
-- This command is only available when no budget book is open.  
-- Creates a budget book with the given `NAME`.  
+- This command is only available when no budget is open.  
+- Creates a budget with the given `NAME`.  
      
 Examples:  
 - `create Daily Expenses`  
 - `create School Related Expenses`  
     
     
-### Opening a budget book: `open`
+### Opening a budget: `open`
   
-Opens a budget book in NUSave.  
+Opens a budget in NUSave.  
   
 Format: `open INDEX`  
-- This command is only available when no budget book is open.  
-- Opens the budget book at the specific `INDEX`.      
-- `INDEX` refers to the index number shown in the displayed budget book list.  
-- The index must be a positive integer e.g. 1, 2, 3, ...  
+- This command is only available when no budget is open.  
+- Opens the budget at the specific `INDEX`.      
+- `INDEX` refers to the index number shown in the displayed budgets list.  
+- The index **must be a positive integer** e.g. 1, 2, 3, ...  
   
 Examples:  
 - `open 1`  
   
-### Closing a budget book: `close`
+### Closing a budget: `close`
 
-Closes the budget book that is open in NUSave.  
+Closes the budget currently open in NUSave.  
   
 Format: `close`  
-- This command is only available when a budget book is open.  
+- This command is only available when a budget is open.  
    
 ### Adding an expenditure: `add`
 Adds an expenditure to the budget that is open.
@@ -91,41 +91,41 @@ Adds an expenditure to the budget that is open.
 Format: `add NAME PRICE`
 - This command is only available when a budget is open.
 - Adds an expenditure with the given NAME and PRICE to the budget that is open.
-- The price must be a positive integer or double with a maximum of  2 decimal places e.g. 8, 2.55, 3.4, ...
+- The price **must be a positive integer or double with a maximum of 2 decimal places** e.g. 8, 2.55, 3.4, ...
 
 Example:
-- add school fees 5000
-- add lunch at food court 4 
+- add School Fees 5000
+- add Lunch at Food Court 4 
 
-### Listing all budget books or expenditures: `list`
+### Listing all budgets or expenditures: `list`
 
-Shows a list of budget books or expenditures in NUSave.  
+Shows a list of budgets or expenditures in NUSave.  
   
 Format:  `list`  
-- If a budget book is open, shows a list of all expenditures within the budget book.  
-- Otherwise, shows a list of all budget books in NUSave.    
+- If a budget is open, shows a list of all expenditures within the budget.  
+- Otherwise, shows a list of all budgets in NUSave.    
   
 ### Locating expenditures by name: `find`
   
 Finds expenditures whose names contain any of the given keywords.  
   
 Format:  `find KEYWORD`  
-- This command is only available when a budget book is open.  
-- Searches expenditures within the budget book that is open.  
+- This command is only available when a budget is open.  
+- Searches expenditures within the budget that is open.  
       
 Examples:  
 - `find Breakfast`  
 - `find Grab`  
   
-### Deleting a budget book or expenditure: `del`  
+### Deleting a budget or expenditure: `del`  
   
-Deletes the specific budget book or expenditure from NUSave.  
+Deletes the specific budget or expenditure from NUSave.  
   
 Format: `del INDEX`  
-- If a budget book is open, deletes the expenditure at the specific `INDEX`.  
-- Otherwise, deletes the budget book at the specific `INDEX`.  
-- `INDEX` refers to the index number shown in the displayed expenditure/budget book list.  
-- The index must be a positive integer e.g. 1, 2, 3, ...  
+- If a budget is open, deletes the expenditure at the specific `INDEX`.  
+- Otherwise, deletes the budget at the specific `INDEX`.  
+- `INDEX` refers to the index number shown in the displayed expenditure/budget list.  
+- The index **must be a positive integer** e.g. 1, 2, 3, ...  
   
 Examples:  
 - `del 1`  
@@ -147,12 +147,12 @@ Format:  `exit`
   
 | **Action** | **Format, Examples** |  
 |--------|------------------|  
-|Create (Budget Book)|`create NAME` <br>e.g. `create Temasek Hall`|  
-|Open (Budget Book)  |`open INDEX`<br>e.g. `open 1`|  
-|Close (Budget Book) |`close`|  
-|Add (Expenditure)   |`add NAME PRICE`<br>e.g. `add Breakfast 100`|  
+|Create (Budget)|`create NAME` <br>e.g. `create Daily Expenses`|  
+|Open (Budget)  |`open INDEX`<br>e.g. `open 1`|  
+|Close (Budget) |`close`|  
+|Add (Expenditure)   |`add NAME PRICE`<br>e.g. `add Breakfast 10`|  
 |Delete              |`del INDEX`<br>e.g. `del 1`|  
 |List                |`list`|  
-|Find                |`find KEYWORD`<br>e.g. `find Temasek Hall`<br>     `find Grab`|  
+|Find                |`find KEYWORD`<br>e.g. `find Breakfast`|  
 |Help                |`help`|  
 |Exit                |`exit`|
