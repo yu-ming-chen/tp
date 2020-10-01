@@ -1,4 +1,4 @@
-[![CI Status](https://github.com/AY2021S1-CS2103-T11-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103-T11-4/tp/actions)
+[![CI Status](https://github.com/AY2021S1-CS2103T-T11-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103-T11-4/tp/actions)
 
 ## Introduction
 **NUSave** is a brown-field software engineering team project based on the architecture of
