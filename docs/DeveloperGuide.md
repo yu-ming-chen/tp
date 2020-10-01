@@ -1,6 +1,6 @@
-#Developer Guide
+# Developer Guide
 
-##Table of Contents
+## Table of Contents
 - [1. Introduction](#1-introduction)
 - [2. Setting Up](#2-setting-up)
 - [3. Design](#3-design)
