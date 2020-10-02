@@ -1,15 +1,18 @@
-package seedu.address.logic.parser;
-
-import seedu.address.logic.commands.budget.CloseBudgetCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
+package seedu.address.logic.parser.budgetpageparser;
 
 import java.util.stream.Stream;
+
+import seedu.address.logic.commands.budget.CloseBudgetCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 public class CloseBudgetCommandParser implements Parser<CloseBudgetCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the CloseBudgetCommand
+     * and returns an CloseBudgetCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public CloseBudgetCommand parse(String args) {

@@ -1,13 +1,18 @@
 package seedu.address.state;
 
-import seedu.address.state.budgetindex.BudgetIndex;
-
 import java.util.Optional;
 
-public class StateManager implements State {
-    BudgetIndex budgetIndex;
-    Page currentPage;
+import seedu.address.state.budgetindex.BudgetIndex;
 
+public class StateManager implements State {
+    private BudgetIndex budgetIndex;
+    private Page currentPage;
+
+    /**
+     * Constructs a {@code StateManager} with the given {@code BudgetIndex} and {@code Page}.
+     * @param budgetIndex current budget index NUSave is accessed in.
+     * @param currentPage current page NUSave is accessed in.
+     */
     public StateManager(BudgetIndex budgetIndex, Page currentPage) {
         this.budgetIndex = budgetIndex;
         this.currentPage = currentPage;

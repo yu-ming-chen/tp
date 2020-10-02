@@ -1,8 +1,8 @@
 package seedu.address.state;
 
-import seedu.address.state.budgetindex.BudgetIndex;
-
 import java.util.Optional;
+
+import seedu.address.state.budgetindex.BudgetIndex;
 
 public interface State {
 
