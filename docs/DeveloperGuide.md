@@ -66,7 +66,7 @@ For each of the five components:
 * Its functionality is exposed using a concrete `{Component Name} Manager` class which implements the corresponding API
 `interface` mentioned in the previous point.
     - For example, the `Logic` component defines its API in the `Logic.java` interface and exposes its functionality
-    using the`LogicManager.java` class which implements the `Logic` interface.
+    using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
