@@ -147,7 +147,7 @@ _{To Be Added}_
 * [Testing guide](Testing.md)
 
 ## 7. Dev Ops
-* [DevOps guide](DevOps.md)
+* [Dev Ops guide](DevOps.md)
 
 ## Appendix
 **Target User Profile:**
