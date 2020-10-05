@@ -22,7 +22,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Code quality + Integration
+* Responsibilities: Code Quality + Integration
 
 ### Ek Chin Hui
 
@@ -31,7 +31,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/EkChinHui)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Database
 
 ### Chew Song Yu
 
