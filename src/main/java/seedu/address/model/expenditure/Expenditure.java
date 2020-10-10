@@ -1,13 +1,12 @@
 package seedu.address.model.expenditure;
 
-import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.tag.Tag;
 
 public class Expenditure {
     private final String title;
@@ -15,6 +14,13 @@ public class Expenditure {
     private final Date createdOn;
     private final Set<Tag> tags = new HashSet<>();
 
+    /**
+     *
+     * @param title
+     * @param price
+     * @param createdOn
+     * @param tags
+     */
     public Expenditure(String title, int price, Date createdOn, Set<Tag> tags) {
         requireAllNonNull(title, price, createdOn, tags);
         this.title = title;
@@ -51,9 +57,5 @@ public class Expenditure {
 
         Expenditure otherExpenditure = (Expenditure) other;
         return otherExpenditure.getTitle().equals(getTitle());
-//                && otherExpenditure.getPrice().equals(getPhone())
-//                && otherPerson.getEmail().equals(getEmail())
-//                && otherPerson.getAddress().equals(getAddress())
-//                && otherPerson.getTags().equals(getTags());
     }
 }

@@ -1,14 +1,11 @@
 package seedu.address.model.budget;
 
-import seedu.address.model.expenditure.Expenditure;
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.expenditure.Expenditure;
 
 public class Budget {
     private final String title;
@@ -16,6 +13,13 @@ public class Budget {
     private final Date createdOn;
     private final List<Expenditure> expenditures;
 
+    /**
+     *
+     * @param title
+     * @param limit
+     * @param createdOn
+     * @param expenditures
+     */
     public Budget(String title, int limit, Date createdOn, List<Expenditure> expenditures) {
         requireAllNonNull(title, expenditures, limit, createdOn);
         this.title = title;
