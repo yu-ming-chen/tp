@@ -2,38 +2,38 @@ package seedu.address.model.expenditure;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
 public class Expenditure {
-    private final String title;
-    private final int price;
+    private final Name name;
+    private final Price price;
     private final Date createdOn;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      *
-     * @param title
+     * @param name
      * @param price
      * @param createdOn
      * @param tags
      */
-    public Expenditure(String title, int price, Date createdOn, Set<Tag> tags) {
-        requireAllNonNull(title, price, createdOn, tags);
-        this.title = title;
+    public Expenditure(Name name, Price price, Date createdOn, Set<Tag> tags) {
+        requireAllNonNull(name, price, createdOn, tags);
+        this.name = name;
         this.price = price;
         this.createdOn = createdOn;
         this.tags.addAll(tags);
     }
 
-    public String getTitle() {
-        return title;
+    public Name getName() {
+        return name;
     }
 
-    public int getPrice() {
+    public Price getPrice() {
         return price;
     }
 
@@ -56,6 +56,6 @@ public class Expenditure {
         }
 
         Expenditure otherExpenditure = (Expenditure) other;
-        return otherExpenditure.getTitle().equals(getTitle());
+        return otherExpenditure.getName().equals(getName());
     }
 }
