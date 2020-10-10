@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.state.Page;
+import seedu.address.state.budgetindex.BudgetIndex;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -135,6 +138,36 @@ public class AddCommandTest {
 
         @Override
         public void setPerson(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Page getPage() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Integer> getBudgetIndex() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPage(Page page) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setBudgetIndex(BudgetIndex index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isMain() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isBudget() {
             throw new AssertionError("This method should not be called.");
         }
 

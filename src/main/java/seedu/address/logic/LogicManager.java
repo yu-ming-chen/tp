@@ -10,11 +10,14 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.PageParser;
+import seedu.address.logic.parser.budgetpageparser.BudgetPageParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.mainpageparser.MainPageParser;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.state.Page;
 import seedu.address.storage.Storage;
 
 /**
@@ -22,11 +25,13 @@ import seedu.address.storage.Storage;
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
+    public static final String UNKNOWN_PAGE_ERROR_MESSAGE = "Could not identify current page.";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final PageParser mainPageParser;
+    private final PageParser budgetPageParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,16 +39,30 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        this.mainPageParser = new MainPageParser();
+        this.budgetPageParser = new BudgetPageParser();
     }
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
+        Command command;
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+
+        Page currentPage = this.model.getPage();
+        switch (currentPage) {
+        case MAIN:
+            command = mainPageParser.parseCommand(commandText);
+            commandResult = command.execute(model);
+            break;
+        case BUDGET:
+            command = budgetPageParser.parseCommand(commandText);
+            commandResult = command.execute(model);
+            break;
+        default:
+            throw new CommandException(UNKNOWN_PAGE_ERROR_MESSAGE);
+        }
 
         try {
             storage.saveAddressBook(model.getAddressBook());

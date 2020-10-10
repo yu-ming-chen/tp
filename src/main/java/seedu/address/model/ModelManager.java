@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +13,10 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.state.Page;
+import seedu.address.state.StateManager;
+import seedu.address.state.budgetindex.BudgetIndex;
+import seedu.address.state.budgetindex.EmptyBudgetIndex;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +27,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final StateManager stateManager;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +41,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.stateManager = new StateManager(new EmptyBudgetIndex(), Page.MAIN);
     }
 
     public ModelManager() {
@@ -110,6 +117,38 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+    //=========== StateManager ================================================================================
+
+
+    @Override
+    public boolean isMain() {
+        return this.stateManager.isMain();
+    }
+
+    @Override
+    public boolean isBudget() {
+        return this.stateManager.isBudget();
+    }
+
+    @Override
+    public Optional<Integer> getBudgetIndex() {
+        return this.stateManager.getBudgetIndex();
+    }
+
+    @Override
+    public Page getPage() {
+        return this.stateManager.getPage();
+    }
+
+    @Override
+    public void setBudgetIndex(BudgetIndex index) {
+        this.stateManager.setBudgetIndex(index);
+    }
+
+    @Override
+    public void setPage(Page page) {
+        this.stateManager.setPage(page);
     }
 
     //=========== Filtered Person List Accessors =============================================================
