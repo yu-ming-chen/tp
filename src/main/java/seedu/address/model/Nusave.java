@@ -4,9 +4,12 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.budget.Budget;
+
+import javax.swing.text.html.Option;
 
 public class Nusave implements ReadOnlyNusave {
     private final List<Budget> budgets;
@@ -38,6 +41,16 @@ public class Nusave implements ReadOnlyNusave {
 
     public void addBudget(Budget budget) {
         this.budgets.add(budget);
+    }
+
+    public void deleteBudget(int budget) {
+        this.budgets.remove(budget);
+    }
+
+    public void deleteExpenditure(int expenditure, Optional<Integer> budgetIndexOpt) {
+        Integer budgetIndex = budgetIndexOpt.orElse(-1);
+        assert budgetIndex >= 0;
+        this.budgets.get(budgetIndex).deleteExpenditure(expenditure);
     }
 
     @Override

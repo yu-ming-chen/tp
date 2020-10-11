@@ -32,4 +32,8 @@ public class Budget {
     public void addExpenditure(Expenditure expenditure) {
         expenditures.add(expenditure);
     }
+
+    public void deleteExpenditure(int expenditure) {
+        expenditures.remove(expenditure);
+    }
 }

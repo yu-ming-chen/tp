@@ -35,6 +35,18 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    public static int parseExpenditureIndex(String expenditureIndex) {
+        requireNonNull(expenditureIndex);
+        String trimmedIndex = expenditureIndex.trim();
+        return Integer.parseInt(trimmedIndex);
+    }
+
+    public static int parseBudgetIndex(String budgetIndex) {
+        requireNonNull(budgetIndex);
+        String trimmedIndex = budgetIndex.trim();
+        return Integer.parseInt(trimmedIndex);
+    }
+
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
