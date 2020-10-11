@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.main.CreateBudgetCommand;
 import seedu.address.logic.commands.main.OpenBudgetCommand;
 import seedu.address.logic.parser.PageParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -38,6 +39,9 @@ public class MainPageParser implements PageParser {
         switch (commandWord) {
         case OpenBudgetCommand.COMMAND_WORD: {
             return new OpenBudgetCommandParser().parse(arguments);
+        }
+        case CreateBudgetCommand.COMMAND_WORD: {
+            return new CreateBudgetCommandParser().parse(arguments);
         }
         default: {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
