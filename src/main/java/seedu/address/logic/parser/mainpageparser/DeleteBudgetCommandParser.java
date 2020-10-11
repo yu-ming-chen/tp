@@ -8,20 +8,20 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import java.util.stream.Stream;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+
 
 public class DeleteBudgetCommandParser implements Parser<DeleteBudgetCommand> {
     @Override
     public DeleteBudgetCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_INDEX);
+                ArgumentTokenizer.tokenize(args);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_INDEX)
+        if (!arePrefixesPresent(argMultimap)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteBudgetCommand.MESSAGE_USAGE));
         }
 
-        Index budgetIndex = ParserUtil.parseBudgetIndex(argMultimap.getValue(PREFIX_INDEX).get());
+        Index budgetIndex = ParserUtil.parseBudgetIndex(argMultimap.getPreamble());
         return new DeleteBudgetCommand(budgetIndex);
     }
 

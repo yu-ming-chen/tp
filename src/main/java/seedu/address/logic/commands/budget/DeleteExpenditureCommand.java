@@ -8,14 +8,14 @@ import seedu.address.model.Model;
 import seedu.address.model.expenditure.Expenditure;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+
 
 public class DeleteExpenditureCommand extends Command {
     public static final String COMMAND_WORD = "del";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an Expenditure. "
             + "Parameters: "
-            + PREFIX_INDEX + "INDEX ";
+            + "INDEX ";
 
 
     public static final String MESSAGE_DELETE_EXPENDITURE_SUCCESS = "Deleted Expenditure: %1$s";
