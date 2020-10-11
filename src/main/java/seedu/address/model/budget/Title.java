@@ -1,5 +1,7 @@
 package seedu.address.model.budget;
 
+import seedu.address.model.expenditure.ExpenditureName;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -42,8 +44,8 @@ public class Title {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.expenditure.Name // instanceof handles nulls
-                && value.equals(((seedu.address.model.expenditure.Name) other).value)); // state check
+                || (other instanceof ExpenditureName // instanceof handles nulls
+                && value.equals(((ExpenditureName) other).value)); // state check
     }
 
     @Override

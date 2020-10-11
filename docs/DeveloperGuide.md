@@ -62,7 +62,7 @@ The rest of the application consists of five components:
 
 For each of the five components:
 
-* Its API is defined in an `interface` with the same name as the Component.
+* Its API is defined in an `interface` with the same expenditureName as the Component.
 * Its functionality is exposed using a concrete `{Component Name} Manager` class which implements the corresponding API
 `interface` mentioned in the previous point.
     - For example, the `Logic` component defines its API in the `Logic.java` interface and exposes its functionality
@@ -179,7 +179,7 @@ Priorities:
 | `* * *`  | user                                       | close a budget                 | return to the main window                                              |
 | `* * *`  | user                                       | add an expenditure             | add a new expenditure to a budget                                      |
 | `* * *`  | user                                       | delete an expenditure          | remove an expenditure that I no longer need                            |
-| `* *`    | user                                       | find an expenditure by name    | locate an expenditure easily                                           |
+| `* *`    | user                                       | find an expenditure by expenditureName    | locate an expenditure easily                                           |
 
 ### Non-Functional Requirements
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.

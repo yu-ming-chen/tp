@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.budget.Budget;
+import seedu.address.model.expenditure.Expenditure;
 import seedu.address.model.person.Person;
 import seedu.address.state.Page;
 import seedu.address.state.StateManager;
@@ -134,6 +135,12 @@ public class ModelManager implements Model {
         requireNonNull(budget);
 
         nusave.addBudget(budget);
+    }
+
+    public void addExpenditure(Expenditure expenditure) {
+        requireNonNull(expenditure);
+
+        nusave.addExpenditure(expenditure, this.stateManager.getBudgetIndex());
     }
 
 

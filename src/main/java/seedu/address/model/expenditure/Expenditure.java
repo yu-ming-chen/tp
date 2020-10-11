@@ -8,28 +8,28 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 public class Expenditure {
-    private final Name name;
+    private final ExpenditureName expenditureName;
     private final Price price;
     private final Date createdOn;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      *
-     * @param name
+     * @param expenditureName
      * @param price
      * @param createdOn
      * @param tags
      */
-    public Expenditure(Name name, Price price, Date createdOn, Set<Tag> tags) {
-        requireAllNonNull(name, price, createdOn, tags);
-        this.name = name;
+    public Expenditure(ExpenditureName expenditureName, Price price, Date createdOn, Set<Tag> tags) {
+        requireAllNonNull(expenditureName, price, createdOn, tags);
+        this.expenditureName = expenditureName;
         this.price = price;
         this.createdOn = createdOn;
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
-        return name;
+    public ExpenditureName getExpenditureName() {
+        return expenditureName;
     }
 
     public Price getPrice() {
@@ -55,6 +55,6 @@ public class Expenditure {
         }
 
         Expenditure otherExpenditure = (Expenditure) other;
-        return otherExpenditure.getName().equals(getName());
+        return otherExpenditure.getExpenditureName().equals(getExpenditureName());
     }
 }
