@@ -19,8 +19,8 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Budget[] getSampleBudgets() {
         return new Budget[] {
-            new Budget("Test Title 1", Arrays.asList(getSampleExpenditures())),
-            new Budget("Test Title 2", Arrays.asList(getSampleExpenditures()))
+            new Budget("Test BudgetName 1", Arrays.asList(getSampleExpenditures())),
+            new Budget("Test BudgetName 2", Arrays.asList(getSampleExpenditures()))
         };
     }
 
