@@ -1,13 +1,15 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.expenditure.Expenditure;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class JsonAdaptedBudget {
 
@@ -18,9 +20,20 @@ public class JsonAdaptedBudget {
      * Constructs a {@code JsonSerializableBudget} with the given expenditures.
      */
     @JsonCreator
-    public JsonAdaptedBudget(@JsonProperty("title") String title, @JsonProperty("expenditures") List<JsonAdaptedExpenditure> expenditures) {
+    public JsonAdaptedBudget(@JsonProperty("title") String title,
+                             @JsonProperty("expenditures") List<JsonAdaptedExpenditure> expenditures) {
         this.title = title;
         this.expenditures.addAll(expenditures);
+    }
+
+    /**
+     * Converts a given {@code Budget} into this class for Jackson use.
+     */
+    public JsonAdaptedBudget(Budget source) {
+        title = source.getTitle();
+        expenditures.addAll(source.getExpenditures().stream()
+                .map(JsonAdaptedExpenditure::new)
+                .collect(Collectors.toList()));
     }
 
     /**

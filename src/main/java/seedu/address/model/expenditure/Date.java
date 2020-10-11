@@ -1,14 +1,13 @@
 package seedu.address.model.expenditure;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 public class Date {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Dates should be able to be parsed by LocalDate";
+    public static final String MESSAGE_CONSTRAINTS = "Dates should be able to be parsed by LocalDate.";
 
     public final String value;
 
@@ -29,12 +28,11 @@ public class Date {
     public static boolean isValidDate(String test) {
         try {
             LocalDate.parse(test);
-        } catch(DateTimeParseException e) {
+        } catch (DateTimeParseException e) {
             return false;
         }
         return true;
     }
-
 
     @Override
     public String toString() {

@@ -2,7 +2,6 @@ package seedu.address.model.expenditure;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
