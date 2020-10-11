@@ -7,22 +7,22 @@ import java.util.List;
 import seedu.address.model.expenditure.Expenditure;
 
 public class Budget {
-    private final String title;
+    private final BudgetName budgetName;
     private final List<Expenditure> expenditures;
 
     /**
      *
-     * @param title
+     * @param budgetName
      * @param expenditures
      */
-    public Budget(String title, List<Expenditure> expenditures) {
-        requireAllNonNull(title, expenditures);
-        this.title = title;
+    public Budget(BudgetName budgetName, List<Expenditure> expenditures) {
+        requireAllNonNull(budgetName, expenditures);
+        this.budgetName = budgetName;
         this.expenditures = expenditures;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return budgetName.value;
     }
 
     public List<Expenditure> getExpenditures() {

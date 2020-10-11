@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import seedu.address.model.Nusave;
 import seedu.address.model.ReadOnlyNusave;
 import seedu.address.model.budget.Budget;
+import seedu.address.model.budget.BudgetName;
 import seedu.address.model.expenditure.Date;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.model.expenditure.Name;
@@ -19,8 +20,8 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Budget[] getSampleBudgets() {
         return new Budget[] {
-            new Budget("Test Title 1", Arrays.asList(getSampleExpenditures())),
-            new Budget("Test Title 2", Arrays.asList(getSampleExpenditures()))
+            new Budget(new BudgetName("Test BudgetName 1"), Arrays.asList(getSampleExpenditures())),
+            new Budget(new BudgetName("Test BudgetName 2"), Arrays.asList(getSampleExpenditures()))
         };
     }
 

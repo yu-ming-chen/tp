@@ -3,7 +3,7 @@ package seedu.address.model.budget;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-public class Title {
+public class BudgetName {
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank.";
 
@@ -16,20 +16,20 @@ public class Title {
     public final String value;
 
     /**
-     * Constructs a {@code Title}.
+     * Constructs a {@code BudgetName}.
      *
      * @param value A valid title.
      */
-    public Title(String value) {
+    public BudgetName(String value) {
         requireNonNull(value);
-        checkArgument(isValidTitle(value), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidBudgetName(value), MESSAGE_CONSTRAINTS);
         this.value = value;
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidTitle(String test) {
+    public static boolean isValidBudgetName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
