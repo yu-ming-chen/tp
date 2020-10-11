@@ -1,17 +1,12 @@
 package seedu.address.logic.commands.main;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.MainPageCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.budget.Budget;
-import seedu.address.model.budget.BudgetName;
-import seedu.address.state.Page;
-import seedu.address.state.budgetindex.BudgetIndex;
-import seedu.address.state.budgetindex.BudgetIndexManager;
-
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 public class CreateBudgetCommand extends MainPageCommand {
     public static final String COMMAND_WORD = "create";

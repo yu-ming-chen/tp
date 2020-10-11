@@ -37,15 +37,15 @@ public class MainPageParser implements PageParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-            case OpenBudgetCommand.COMMAND_WORD: {
-                return new OpenBudgetCommandParser().parse(arguments);
-            }
-            case CreateBudgetCommand.COMMAND_WORD: {
-                return new CreateBudgetCommandParser().parse(arguments);
-            }
-            default: {
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
-            }
+        case OpenBudgetCommand.COMMAND_WORD: {
+            return new OpenBudgetCommandParser().parse(arguments);
+        }
+        case CreateBudgetCommand.COMMAND_WORD: {
+            return new CreateBudgetCommandParser().parse(arguments);
+        }
+        default: {
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
         }
     }
 }
