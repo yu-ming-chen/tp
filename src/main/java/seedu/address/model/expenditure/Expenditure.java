@@ -1,33 +1,38 @@
 package seedu.address.model.expenditure;
 
-import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.tag.Tag;
 
 public class Expenditure {
-    private final String title;
-    private final int price;
+    private final Name name;
+    private final Price price;
     private final Date createdOn;
     private final Set<Tag> tags = new HashSet<>();
 
-    public Expenditure(String title, int price, Date createdOn, Set<Tag> tags) {
-        requireAllNonNull(title, price, createdOn, tags);
-        this.title = title;
+    /**
+     *
+     * @param name
+     * @param price
+     * @param createdOn
+     * @param tags
+     */
+    public Expenditure(Name name, Price price, Date createdOn, Set<Tag> tags) {
+        requireAllNonNull(name, price, createdOn, tags);
+        this.name = name;
         this.price = price;
         this.createdOn = createdOn;
         this.tags.addAll(tags);
     }
 
-    public String getTitle() {
-        return title;
+    public Name getName() {
+        return name;
     }
 
-    public int getPrice() {
+    public Price getPrice() {
         return price;
     }
 
@@ -50,10 +55,6 @@ public class Expenditure {
         }
 
         Expenditure otherExpenditure = (Expenditure) other;
-        return otherExpenditure.getTitle().equals(getTitle());
-//                && otherExpenditure.getPrice().equals(getPhone())
-//                && otherPerson.getEmail().equals(getEmail())
-//                && otherPerson.getAddress().equals(getAddress())
-//                && otherPerson.getTags().equals(getTags());
+        return otherExpenditure.getName().equals(getName());
     }
 }
