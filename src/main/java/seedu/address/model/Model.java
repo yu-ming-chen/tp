@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.model.person.Person;
@@ -85,9 +86,9 @@ public interface Model {
 
     void addBudget(Budget budget);
 
-    void deleteBudget(int budget);
+    void deleteBudget(Index budget);
 
-    void deleteExpenditure(int expenditure);
+    void deleteExpenditure(Index expenditure);
 
     Page getPage();
 

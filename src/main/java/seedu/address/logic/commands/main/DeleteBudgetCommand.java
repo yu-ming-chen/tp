@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.main;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -17,11 +18,11 @@ public class DeleteBudgetCommand extends Command {
             + PREFIX_INDEX + "INDEX ";
 
 
-    public static final String MESSAGE_DELETE_BUDGET_SUCCESS = "Deleted Budget: %1$s";
+    public static final String MESSAGE_DELETE_BUDGET_SUCCESS = "Deleted Budget";
 
-    private final int toDel;
+    private final Index toDel;
 
-    public DeleteBudgetCommand(int budget) {
+    public DeleteBudgetCommand(Index budget) {
         requireNonNull(budget);
         this.toDel = budget;
     }

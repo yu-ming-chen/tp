@@ -35,16 +35,16 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
-    public static int parseExpenditureIndex(String expenditureIndex) {
+    public static Index parseExpenditureIndex(String expenditureIndex) {
         requireNonNull(expenditureIndex);
-        String trimmedIndex = expenditureIndex.trim();
-        return Integer.parseInt(trimmedIndex);
+        Index trimmedIndex = Index.fromOneBased(Integer.parseInt(expenditureIndex.trim()));
+        return trimmedIndex;
     }
 
-    public static int parseBudgetIndex(String budgetIndex) {
+    public static Index parseBudgetIndex(String budgetIndex) {
         requireNonNull(budgetIndex);
-        String trimmedIndex = budgetIndex.trim();
-        return Integer.parseInt(trimmedIndex);
+        Index trimmedIndex = Index.fromOneBased(Integer.parseInt(budgetIndex.trim()));
+        return trimmedIndex;
     }
 
     /**

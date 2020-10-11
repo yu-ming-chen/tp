@@ -1,5 +1,6 @@
 package seedu.address.logic.parser.mainpageparser;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.main.DeleteBudgetCommand;
 import seedu.address.logic.parser.*;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -20,7 +21,7 @@ public class DeleteBudgetCommandParser implements Parser<DeleteBudgetCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteBudgetCommand.MESSAGE_USAGE));
         }
 
-        int budgetIndex = ParserUtil.parseBudgetIndex(argMultimap.getValue(PREFIX_INDEX).get());
+        Index budgetIndex = ParserUtil.parseBudgetIndex(argMultimap.getValue(PREFIX_INDEX).get());
         return new DeleteBudgetCommand(budgetIndex);
     }
 

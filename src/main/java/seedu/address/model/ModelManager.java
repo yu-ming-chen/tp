@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.model.person.Person;
@@ -138,17 +139,17 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteBudget(int budget) {
+    public void deleteBudget(Index budget) {
         requireNonNull(budget);
 
-        nusave.deleteBudget(budget);
+        nusave.deleteBudget(budget.getZeroBased());
     }
 
     @Override
-    public void deleteExpenditure(int expenditure) {
+    public void deleteExpenditure(Index expenditure) {
         requireNonNull(expenditure);
 
-        nusave.deleteExpenditure(expenditure, this.stateManager.getBudgetIndex());
+        nusave.deleteExpenditure(expenditure.getZeroBased(), this.stateManager.getBudgetIndex());
     }
 
     //=========== StateManager ================================================================================
