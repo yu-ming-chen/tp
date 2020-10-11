@@ -6,7 +6,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Wen Hao
 
-<img src="images/wenhao.jpg" width="200px">
+<img src="images/wenhaogoh.png" width="200px">
 
 [[github](https://github.com/wenhaogoh)]
 [[portfolio](team/johndoe.md)]
@@ -16,26 +16,26 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Yu Ming
 
-<img src="images/yuming.png" width="200px">
+<img src="images/yu-ming-chen.png" width="200px">
 
 [[github](http://github.com/yu-ming-chen)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Code quality + Integration
+* Responsibilities: Code Quality + Integration
 
 ### Ek Chin Hui
 
-<img src="images/EkChinHui.png" width="200px">
+<img src="images/ekchinhui.png" width="200px">
 
 [[github](http://github.com/EkChinHui)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Database
 
 ### Chew Song Yu
 
-<img src="images/songyu.jpg" width="200px" height="235px">
+<img src="images/sogggy.png" width="200px">
 
 [[github](http://github.com/sogggy)]
 [[portfolio](team/johndoe.md)]
@@ -45,7 +45,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### David
 
-<img src="images/davidL.png" width="200px">
+<img src="images/davidliew9.png" width="200px">
 
 [[github](https://github.com/davidliew9)]
 [[portfolio](team/johndoe.md)]

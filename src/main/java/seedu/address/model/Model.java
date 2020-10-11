@@ -1,11 +1,15 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.budget.Budget;
 import seedu.address.model.person.Person;
+import seedu.address.state.Page;
+import seedu.address.state.budgetindex.BudgetIndex;
 
 /**
  * The API of the Model component.
@@ -52,6 +56,8 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+    ReadOnlyNusave getNusave();
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -75,6 +81,20 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    void addBudget(Budget budget);
+
+    Page getPage();
+
+    Optional<Integer> getBudgetIndex();
+
+    void setPage(Page page);
+
+    void setBudgetIndex(BudgetIndex index);
+
+    boolean isMain();
+
+    boolean isBudget();
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
