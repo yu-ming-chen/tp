@@ -10,11 +10,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.budget.BudgetName;
-import seedu.address.model.expenditure.ExpenditureName;
+import seedu.address.model.expenditure.Name;
 import seedu.address.model.expenditure.Price;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -39,33 +38,33 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code ExpenditureName}.
+     * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static seedu.address.model.person.Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!seedu.address.model.person.Name.isValidName(trimmedName)) {
+            throw new ParseException(seedu.address.model.person.Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new seedu.address.model.person.Name(trimmedName);
     }
 
     /**
-     * Parses a {@code String name} into a {@code ExpenditureName}.
+     * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static ExpenditureName parseExpenditureName(String expenditureName) throws ParseException {
+    public static Name parseExpenditureName(String expenditureName) throws ParseException {
         requireNonNull(expenditureName);
         String trimmedName = expenditureName.trim();
-        if (!ExpenditureName.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(seedu.address.model.person.Name.MESSAGE_CONSTRAINTS);
         }
-        return new ExpenditureName(trimmedName);
+        return new Name(trimmedName);
     }
 
     /**
@@ -93,7 +92,7 @@ public class ParserUtil {
         requireNonNull(budgetName);
         String trimmedName = budgetName.trim();
         if (!BudgetName.isValidBudgetName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(seedu.address.model.person.Name.MESSAGE_CONSTRAINTS);
         }
         return new BudgetName(trimmedName);
     }

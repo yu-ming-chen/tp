@@ -17,7 +17,7 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.expenditure.Date;
 import seedu.address.model.expenditure.Expenditure;
-import seedu.address.model.expenditure.ExpenditureName;
+import seedu.address.model.expenditure.Name;
 import seedu.address.model.expenditure.Price;
 import seedu.address.model.tag.Tag;
 
@@ -38,7 +38,7 @@ public class AddExpenditureCommandParser implements Parser<AddExpenditureCommand
                                                 AddExpenditureCommand.MESSAGE_USAGE));
         }
 
-        ExpenditureName name = ParserUtil.parseExpenditureName(argMultimap.getValue(PREFIX_NAME).get());
+        Name name = ParserUtil.parseExpenditureName(argMultimap.getValue(PREFIX_NAME).get());
         Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
         Date date = new Date(LocalDate.now().toString());
         Expenditure expenditure = new Expenditure(name, price, date, new HashSet<Tag>());

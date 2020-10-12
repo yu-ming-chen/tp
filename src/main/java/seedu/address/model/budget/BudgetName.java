@@ -3,7 +3,7 @@ package seedu.address.model.budget;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.expenditure.ExpenditureName;
+import seedu.address.model.expenditure.Name;
 
 public class BudgetName {
     public static final String MESSAGE_CONSTRAINTS =
@@ -44,8 +44,8 @@ public class BudgetName {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ExpenditureName // instanceof handles nulls
-                && value.equals(((ExpenditureName) other).value)); // state check
+                || (other instanceof Name // instanceof handles nulls
+                && value.equals(((Name) other).value)); // state check
     }
 
     @Override

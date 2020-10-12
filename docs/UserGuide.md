@@ -10,7 +10,7 @@ NUSave is a **desktop app for managing expenditures, optimized for use via a Com
     * [Closing a budget: `close`](#closing-a-budget-close)
     * [Adding an expenditure: `add`](#adding-an-expenditure-add)
     * [Listing all budgets or expenditures: `list`](#listing-all-budgets-or-expenditures-list)
-    * [Locating expenditures by expenditureName: `find`](#locating-expenditures-by-expenditureName-find)
+    * [Locating expenditures by name: `find`](#locating-expenditures-by-name-find)
     * [Deleting a budget or expenditure: `del`](#deleting-a-budget-or-expenditure-del)
     * [Listing available commands: `help`](#listing-available-commands-help)
     * [Exiting the program: `exit`](#exiting-the-program-exit)
@@ -105,7 +105,7 @@ Format:  `list`
 - If a budget is open, shows a list of all expenditures within the budget.  
 - Otherwise, shows a list of all budgets in NUSave.    
   
-### Locating expenditures by expenditureName: `find`
+### Locating expenditures by name: `find`
   
 Finds expenditures whose names contain any of the given keywords.  
   
