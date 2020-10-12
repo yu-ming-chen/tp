@@ -3,8 +3,6 @@ package seedu.address.model.budget;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.expenditure.ExpenditureName;
-
 public class BudgetName {
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank.";
@@ -44,8 +42,8 @@ public class BudgetName {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ExpenditureName // instanceof handles nulls
-                && value.equals(((ExpenditureName) other).value)); // state check
+                || (other instanceof BudgetName // instanceof handles nulls
+                && value.equals(((BudgetName) other).value)); // state check
     }
 
     @Override
