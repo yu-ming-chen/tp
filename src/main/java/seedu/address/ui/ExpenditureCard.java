@@ -26,8 +26,6 @@ public class ExpenditureCard extends UiPart<Region> {
     @FXML
     private Label id;
 
-    //  @FXML
-    //  private FlowPane tags;
 
     /**
      * Creates a {@code Expenditure} with the given {@code Expenditure} and index to display.
@@ -36,7 +34,7 @@ public class ExpenditureCard extends UiPart<Region> {
         super(FXML);
         this.expenditure = expenditure;
         id.setText(displayedIndex + ". ");
-        name.setText(expenditure.getExpenditureName().value);
+        name.setText(expenditure.getName().value);
         //budget.getTags().stream()
         //        .sorted(Comparator.comparing(tag -> tag.tagName))
         //        .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

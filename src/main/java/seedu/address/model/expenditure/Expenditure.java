@@ -9,28 +9,28 @@ import seedu.address.model.Renderable;
 import seedu.address.model.tag.Tag;
 
 public class Expenditure implements Renderable {
-    private final ExpenditureName expenditureName;
+    private final Name name;
     private final Price price;
     private final Date createdOn;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      *
-     * @param expenditureName
+     * @param name
      * @param price
      * @param createdOn
      * @param tags
      */
-    public Expenditure(ExpenditureName expenditureName, Price price, Date createdOn, Set<Tag> tags) {
-        requireAllNonNull(expenditureName, price, createdOn, tags);
-        this.expenditureName = expenditureName;
+    public Expenditure(Name name, Price price, Date createdOn, Set<Tag> tags) {
+        requireAllNonNull(name, price, createdOn, tags);
+        this.name = name;
         this.price = price;
         this.createdOn = createdOn;
         this.tags.addAll(tags);
     }
 
-    public ExpenditureName getExpenditureName() {
-        return expenditureName;
+    public Name getName() {
+        return name;
     }
 
     public Price getPrice() {
@@ -56,6 +56,6 @@ public class Expenditure implements Renderable {
         }
 
         Expenditure otherExpenditure = (Expenditure) other;
-        return otherExpenditure.getExpenditureName().equals(getExpenditureName());
+        return otherExpenditure.getName().equals(getName());
     }
 }
