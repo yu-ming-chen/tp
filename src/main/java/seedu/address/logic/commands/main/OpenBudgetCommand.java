@@ -6,7 +6,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.state.Page;
 import seedu.address.state.budgetindex.BudgetIndex;
-import seedu.address.state.budgetindex.BudgetIndexManager;
 
 public class OpenBudgetCommand extends MainPageCommand {
 
@@ -26,9 +25,9 @@ public class OpenBudgetCommand extends MainPageCommand {
     public CommandResult execute(Model model) throws CommandException {
         //stub
         //generate budget book index
-        int index = 0;
         model.setPage(Page.BUDGET);
-        model.setBudgetIndex(new BudgetIndexManager(index));
+        model.setBudgetIndex(budgetIndex);
+        model.repopulateObservableList();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

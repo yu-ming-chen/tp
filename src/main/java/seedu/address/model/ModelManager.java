@@ -12,7 +12,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.model.person.Person;
@@ -20,6 +19,7 @@ import seedu.address.state.Page;
 import seedu.address.state.StateManager;
 import seedu.address.state.budgetindex.BudgetIndex;
 import seedu.address.state.budgetindex.EmptyBudgetIndex;
+import seedu.address.state.expenditureindex.ExpenditureIndex;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -31,6 +31,8 @@ public class ModelManager implements Model {
     private final Nusave nusave;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Budget> filteredBudgets;
+    private final FilteredList<Renderable> filteredRenderables;
     private final StateManager stateManager;
 
     /**
@@ -46,6 +48,8 @@ public class ModelManager implements Model {
         this.nusave = new Nusave(nusave);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.filteredBudgets = new FilteredList<>(this.nusave.getBudgetList());
+        this.filteredRenderables = new FilteredList<>(this.nusave.getInternalList());
         this.stateManager = new StateManager(new EmptyBudgetIndex(), Page.MAIN);
     }
 
@@ -134,22 +138,41 @@ public class ModelManager implements Model {
     @Override
     public void addBudget(Budget budget) {
         requireNonNull(budget);
-
         nusave.addBudget(budget);
+        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
     @Override
-    public void deleteBudget(Index budget) {
+    public void deleteBudget(BudgetIndex budget) {
         requireNonNull(budget);
-
-        nusave.deleteBudget(budget.getZeroBased());
+        int budgetIndex = budget.getBudgetIndex().orElse(-1);
+        Budget deleteBudget = this.filteredBudgets.get(budgetIndex);
+        nusave.deleteBudget(deleteBudget);
+        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
     @Override
-    public void deleteExpenditure(Index expenditure) {
+    public void deleteExpenditure(ExpenditureIndex expenditure) {
         requireNonNull(expenditure);
+        int expenditureIndex = expenditure.getExpenditureIndex().orElse(-1);
+        nusave.deleteExpenditure(expenditureIndex, this.stateManager.getBudgetIndex());
+        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+    }
 
-        nusave.deleteExpenditure(expenditure.getZeroBased(), this.stateManager.getBudgetIndex());
+    /**
+     * Adds an expenditure to the specified budget and updates the list
+     * @param expenditure
+     */
+    public void addExpenditure(Expenditure expenditure) {
+        requireNonNull(expenditure);
+        nusave.addExpenditure(expenditure, this.stateManager.getBudgetIndex());
+        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+    }
+
+    @Override
+    public void repopulateObservableList() {
+        nusave.repopulateObservableList(stateManager);
+
     }
 
     //=========== StateManager ================================================================================
@@ -202,6 +225,34 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Renderable> getFilteredRenderableList() {
+        return filteredRenderables;
+    }
+
+    @Override
+    public void updateFilteredRenderableList(Predicate<Renderable> predicate) {
+        requireNonNull(predicate);
+        filteredRenderables.setPredicate(predicate);
+    }
+
+    //=========== Filtered Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Budget} backed by the internal list of
+     * {@code versionedNusave}
+     */
+    @Override
+    public ObservableList<Budget> getFilteredBudgetList() {
+        return filteredBudgets;
+    }
+
+    @Override
+    public void updateFilteredBudgetList(Predicate<Budget> predicate) {
+        requireNonNull(predicate);
+        filteredBudgets.setPredicate(predicate);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -215,9 +266,8 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return nusave.equals(other.nusave)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredBudgets.equals(other.filteredBudgets);
     }
-
 }

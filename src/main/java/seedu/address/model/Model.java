@@ -6,12 +6,12 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.model.person.Person;
 import seedu.address.state.Page;
 import seedu.address.state.budgetindex.BudgetIndex;
+import seedu.address.state.expenditureindex.ExpenditureIndex;
 
 /**
  * The API of the Model component.
@@ -19,6 +19,7 @@ import seedu.address.state.budgetindex.BudgetIndex;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Renderable> PREDICATE_SHOW_ALL_RENDERABLES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -86,9 +87,13 @@ public interface Model {
 
     void addBudget(Budget budget);
 
-    void deleteBudget(Index budget);
 
-    void deleteExpenditure(Index expenditure);
+    void deleteBudget(BudgetIndex budget);
+
+    void deleteExpenditure(ExpenditureIndex expenditure);
+
+    void addExpenditure(Expenditure expenditure);
+
 
     Page getPage();
 
@@ -105,9 +110,25 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the filtered budget list */
+    ObservableList<Budget> getFilteredBudgetList();
+
+    /** Returns an unmodifiable view of the filtered renderable list */
+    ObservableList<Renderable> getFilteredRenderableList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Updates the filter of the filtered budget list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredBudgetList(Predicate<Budget> predicate);
+
+    void updateFilteredRenderableList(Predicate<Renderable> predicate);
+
+    void repopulateObservableList();
 }

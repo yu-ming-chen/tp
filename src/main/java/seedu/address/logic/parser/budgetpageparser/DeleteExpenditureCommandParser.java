@@ -1,11 +1,14 @@
 package seedu.address.logic.parser.budgetpageparser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.budget.DeleteExpenditureCommand;
-import seedu.address.logic.parser.*;
-import seedu.address.logic.parser.exceptions.ParseException;
-
 import java.util.stream.Stream;
+
+import seedu.address.logic.commands.budget.DeleteExpenditureCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.state.expenditureindex.ExpenditureIndex;
 
 
 public class DeleteExpenditureCommandParser implements Parser<DeleteExpenditureCommand> {
@@ -17,8 +20,8 @@ public class DeleteExpenditureCommandParser implements Parser<DeleteExpenditureC
      * @return the command based on the user input
      */
     @Override
-    public DeleteExpenditureCommand parse(String userInput) {
-        Index expenditureIndex = ParserUtil.parseExpenditureIndex(userInput);
+    public DeleteExpenditureCommand parse(String userInput) throws ParseException {
+        ExpenditureIndex expenditureIndex = ParserUtil.parseExpenditureIndex(userInput);
         return new DeleteExpenditureCommand(expenditureIndex);
     }
 

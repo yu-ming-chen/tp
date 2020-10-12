@@ -8,11 +8,12 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.budget.AddExpenditureCommand;
 import seedu.address.logic.commands.budget.CloseBudgetCommand;
 import seedu.address.logic.commands.budget.DeleteExpenditureCommand;
 import seedu.address.logic.parser.PageParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.mainpageparser.DeleteBudgetCommandParser;
+
 
 public class BudgetPageParser implements PageParser {
     /**
@@ -42,6 +43,10 @@ public class BudgetPageParser implements PageParser {
         }
         case DeleteExpenditureCommand.COMMAND_WORD: {
             return new DeleteExpenditureCommandParser().parse(arguments);
+        }
+        case AddExpenditureCommand.COMMAND_WORD: {
+            return new AddExpenditureCommandParser().parse(arguments);
+
         }
         default: {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
