@@ -9,8 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.budget.BudgetName;
-import seedu.address.model.expenditure.Name;
+import seedu.address.model.budget.Name;
 import seedu.address.model.expenditure.Price;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -58,13 +57,14 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseExpenditureName(String expenditureName) throws ParseException {
+    public static seedu.address.model.expenditure.Name parseExpenditureName(String expenditureName)
+            throws ParseException {
         requireNonNull(expenditureName);
         String trimmedName = expenditureName.trim();
-        if (!Name.isValidName(trimmedName)) {
+        if (!seedu.address.model.expenditure.Name.isValidName(trimmedName)) {
             throw new ParseException(seedu.address.model.person.Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new seedu.address.model.expenditure.Name(trimmedName);
     }
 
     /**
@@ -88,13 +88,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static BudgetName parseBudgetName(String budgetName) throws ParseException {
+    public static Name parseBudgetName(String budgetName) throws ParseException {
         requireNonNull(budgetName);
         String trimmedName = budgetName.trim();
-        if (!BudgetName.isValidBudgetName(trimmedName)) {
+        if (!Name.isValidBudgetName(trimmedName)) {
             throw new ParseException(seedu.address.model.person.Name.MESSAGE_CONSTRAINTS);
         }
-        return new BudgetName(trimmedName);
+        return new Name(trimmedName);
     }
 
     /**

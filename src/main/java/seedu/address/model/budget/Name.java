@@ -3,9 +3,7 @@ package seedu.address.model.budget;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.expenditure.Name;
-
-public class BudgetName {
+public class Name {
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank.";
 
@@ -18,11 +16,11 @@ public class BudgetName {
     public final String value;
 
     /**
-     * Constructs a {@code BudgetName}.
+     * Constructs a {@code Name}.
      *
      * @param value A valid title.
      */
-    public BudgetName(String value) {
+    public Name(String value) {
         requireNonNull(value);
         checkArgument(isValidBudgetName(value), MESSAGE_CONSTRAINTS);
         this.value = value;
@@ -44,8 +42,8 @@ public class BudgetName {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Name // instanceof handles nulls
-                && value.equals(((Name) other).value)); // state check
+                || (other instanceof seedu.address.model.expenditure.Name // instanceof handles nulls
+                && value.equals(((seedu.address.model.expenditure.Name) other).value)); // state check
     }
 
     @Override

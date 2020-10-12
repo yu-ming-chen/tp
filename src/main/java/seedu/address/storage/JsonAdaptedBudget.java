@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.budget.Budget;
-import seedu.address.model.budget.BudgetName;
+import seedu.address.model.budget.Name;
 import seedu.address.model.expenditure.Expenditure;
 
 public class JsonAdaptedBudget {
@@ -43,7 +43,7 @@ public class JsonAdaptedBudget {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public Budget toModelType() throws IllegalValueException {
-        Budget budget = new Budget(new BudgetName(budgetName), new ArrayList<Expenditure>());
+        Budget budget = new Budget(new Name(budgetName), new ArrayList<Expenditure>());
         for (JsonAdaptedExpenditure jsonAdaptedExpenditure : expenditures) {
             Expenditure expenditure = jsonAdaptedExpenditure.toModelType();
             budget.addExpenditure(expenditure);
