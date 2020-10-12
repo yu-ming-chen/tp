@@ -70,6 +70,13 @@ public class BudgetList implements Iterable<Budget> {
         return budgets;
     }
 
+    public int getSize() {
+        return budgets.size();
+    }
+
+    public boolean hasBudget(Budget budget) {
+        return budgets.contains(budget);
+    }
 
     /**
      * Replaces the contents of this list with {@code budgets}.

@@ -12,9 +12,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.expenditure.Expenditure;
-import seedu.address.model.person.Person;
 import seedu.address.state.Page;
 import seedu.address.state.StateManager;
 import seedu.address.state.budgetindex.BudgetIndex;
@@ -27,11 +28,8 @@ import seedu.address.state.expenditureindex.ExpenditureIndex;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
     private final Nusave nusave;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Budget> filteredBudgets;
     private final FilteredList<Renderable> filteredRenderables;
     private final StateManager stateManager;
 
@@ -44,11 +42,8 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + nusave + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook();
         this.nusave = new Nusave(nusave);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        this.filteredBudgets = new FilteredList<>(this.nusave.getBudgetList());
         this.filteredRenderables = new FilteredList<>(this.nusave.getInternalList());
         this.stateManager = new StateManager(new EmptyBudgetIndex(), Page.MAIN);
     }
@@ -82,50 +77,18 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getNusaveFilePath() {
+        return null;
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
-    }
+    public void setNusavePath(Path nusaveFilePath) {
 
-    //=========== AddressBook ================================================================================
-
-    @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
-    }
+    public void setNusave(ReadOnlyNusave nusave) {
 
-    @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
     }
 
     //=========== Nusave =======
@@ -139,22 +102,27 @@ public class ModelManager implements Model {
     public void addBudget(Budget budget) {
         requireNonNull(budget);
         nusave.addBudget(budget);
+        // might not be necessary, only for filter feature
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
     @Override
-    public void deleteBudget(BudgetIndex budget) {
-        requireNonNull(budget);
-        int budgetIndex = budget.getBudgetIndex().orElse(-1);
-        Budget deleteBudget = this.filteredBudgets.get(budgetIndex);
-        nusave.deleteBudget(deleteBudget);
+    public void deleteBudget(BudgetIndex budgetIndex) throws CommandException {
+        requireNonNull(budgetIndex);
+        int index = budgetIndex.getBudgetIndex().orElse(-1);
+        if (filteredRenderables.size() <= index) {
+            throw new CommandException(Messages.MESSAGE_INDEX_OUT_OF_BOUNDS);
+        }
+        Budget budget = (Budget) filteredRenderables.get(index);
+        nusave.deleteBudget(budget);
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
     @Override
-    public void deleteExpenditure(ExpenditureIndex expenditure) {
+    public void deleteExpenditure(ExpenditureIndex expenditure) throws CommandException {
         requireNonNull(expenditure);
         int expenditureIndex = expenditure.getExpenditureIndex().orElse(-1);
+        assert expenditureIndex >= 0;
         nusave.deleteExpenditure(expenditureIndex, this.stateManager.getBudgetIndex());
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
@@ -170,7 +138,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void repopulateObservableList() {
+    public void repopulateObservableList() throws CommandException {
         nusave.repopulateObservableList(stateManager);
 
     }
@@ -207,22 +175,7 @@ public class ModelManager implements Model {
         this.stateManager.setPage(page);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
-    }
+    //=========== Filtered Renderable List Accessors =============================================================
 
     @Override
     public ObservableList<Renderable> getFilteredRenderableList() {
@@ -233,41 +186,5 @@ public class ModelManager implements Model {
     public void updateFilteredRenderableList(Predicate<Renderable> predicate) {
         requireNonNull(predicate);
         filteredRenderables.setPredicate(predicate);
-    }
-
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Budget} backed by the internal list of
-     * {@code versionedNusave}
-     */
-    @Override
-    public ObservableList<Budget> getFilteredBudgetList() {
-        return filteredBudgets;
-    }
-
-    @Override
-    public void updateFilteredBudgetList(Predicate<Budget> predicate) {
-        requireNonNull(predicate);
-        filteredBudgets.setPredicate(predicate);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
-
-        // state check
-        ModelManager other = (ModelManager) obj;
-        return nusave.equals(other.nusave)
-                && userPrefs.equals(other.userPrefs)
-                && filteredBudgets.equals(other.filteredBudgets);
     }
 }
