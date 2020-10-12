@@ -39,7 +39,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code ExpenditureName}.
+     * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
