@@ -15,10 +15,8 @@ public class CreateBudgetCommand extends MainPageCommand {
             + "Parameters: "
             + PREFIX_NAME + "NAME ";
 
-    //add budget index for success message (to do String.format)
     public static final String MESSAGE_SUCCESS = "Created Budget";
 
-    //need attribute index in constructor
     private final Budget budget;
 
     public CreateBudgetCommand(Budget budget) {
@@ -27,8 +25,6 @@ public class CreateBudgetCommand extends MainPageCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        //stub
-        //generate budget book index
         model.addBudget(budget);
         return new CommandResult(MESSAGE_SUCCESS);
     }

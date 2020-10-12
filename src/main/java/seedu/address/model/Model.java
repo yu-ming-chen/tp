@@ -9,7 +9,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.expenditure.Expenditure;
-import seedu.address.model.person.Person;
 import seedu.address.state.Page;
 import seedu.address.state.budgetindex.BudgetIndex;
 import seedu.address.state.expenditureindex.ExpenditureIndex;
@@ -19,7 +18,6 @@ import seedu.address.state.expenditureindex.ExpenditureIndex;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Renderable> PREDICATE_SHOW_ALL_RENDERABLES = unused -> true;
 
     /**
@@ -45,56 +43,27 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getNusaveFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setNusavePath(Path nusaveFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
-
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    void setNusave(ReadOnlyNusave nusave);
 
     ReadOnlyNusave getNusave();
 
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    boolean hasPerson(Person person);
-
-    /**
-     * Deletes the given person.
-     * The person must exist in the address book.
-     */
-    void deletePerson(Person target);
-
-    /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
-     */
-    void addPerson(Person person);
-
-    /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    void setPerson(Person target, Person editedPerson);
-
     void addBudget(Budget budget);
-
 
     void deleteBudget(BudgetIndex budget) throws CommandException;
 
     void deleteExpenditure(ExpenditureIndex expenditure) throws CommandException;
 
     void addExpenditure(Expenditure expenditure);
-
 
     Page getPage();
 
@@ -108,26 +77,8 @@ public interface Model {
 
     boolean isBudget();
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
-
-    /** Returns an unmodifiable view of the filtered budget list */
-    ObservableList<Budget> getFilteredBudgetList();
-
     /** Returns an unmodifiable view of the filtered renderable list */
     ObservableList<Renderable> getFilteredRenderableList();
-
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredPersonList(Predicate<Person> predicate);
-
-    /**
-     * Updates the filter of the filtered budget list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredBudgetList(Predicate<Budget> predicate);
 
     void updateFilteredRenderableList(Predicate<Renderable> predicate);
 

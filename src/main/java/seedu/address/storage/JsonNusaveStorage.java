@@ -16,7 +16,7 @@ import seedu.address.model.ReadOnlyNusave;
 
 public class JsonNusaveStorage implements NusaveStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonNusaveStorage.class);
 
     private Path filePath;
 

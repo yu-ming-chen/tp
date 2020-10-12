@@ -96,10 +96,7 @@ public class Nusave implements ReadOnlyNusave {
     /**
      * Deletes a budget from NUSave.
      */
-    public void deleteBudget(int toRemove) throws CommandException {
-        if (toRemove >= budgetList.getSize()) {
-            throw new CommandException(Messages.MESSAGE_INDEX_OUT_OF_BOUNDS);
-        }
+    public void deleteBudget(Budget toRemove) {
         this.budgetList.remove(toRemove);
         this.internalList.remove(toRemove);
     }

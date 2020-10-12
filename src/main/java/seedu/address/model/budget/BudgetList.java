@@ -56,7 +56,7 @@ public class BudgetList implements Iterable<Budget> {
      * Removes the equivalent budget from the list.
      * The budget must exist in the list.
      */
-    public void remove(int toRemove) {
+    public void remove(Budget toRemove) {
         requireNonNull(toRemove);
         budgets.remove(toRemove);
     }
