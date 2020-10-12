@@ -30,7 +30,7 @@ public class JsonSerializableNusave {
      */
     public JsonSerializableNusave(ReadOnlyNusave source) {
         //budgets.addAll(source.getBudgetList().stream().map(JsonAdaptedBudget::new).collect(Collectors.toList()));
-        budgets.addAll(source.getBudgets().stream().map(JsonAdaptedBudget::new).collect(Collectors.toList()));
+        budgets.addAll(source.getBudgetList().stream().map(JsonAdaptedBudget::new).collect(Collectors.toList()));
     }
 
     /**

@@ -10,7 +10,7 @@ import seedu.address.model.budget.Budget;
 import seedu.address.model.budget.BudgetName;
 import seedu.address.model.expenditure.Date;
 import seedu.address.model.expenditure.Expenditure;
-import seedu.address.model.expenditure.Name;
+import seedu.address.model.expenditure.ExpenditureName;
 import seedu.address.model.expenditure.Price;
 import seedu.address.model.tag.Tag;
 
@@ -27,9 +27,9 @@ public class SampleDataUtil {
 
     public static Expenditure[] getSampleExpenditures() {
         return new Expenditure[]{
-            new Expenditure(new Name("Shirt"), new Price("85.50"), new Date("2020-10-10"),
+            new Expenditure(new ExpenditureName("Shirt"), new Price("85.50"), new Date("2020-10-10"),
                             getTagSet("Apparel", "White")),
-            new Expenditure(new Name("Pants"), new Price("100.50"), new Date("2020-10-10"),
+            new Expenditure(new ExpenditureName("Pants"), new Price("100.50"), new Date("2020-10-10"),
                             getTagSet("Apparel", "Black"))
         };
     }

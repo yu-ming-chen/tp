@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.budget.Budget;
+import seedu.address.model.expenditure.Expenditure;
 import seedu.address.model.person.Person;
 import seedu.address.state.Page;
 import seedu.address.state.budgetindex.BudgetIndex;
@@ -84,6 +85,8 @@ public interface Model {
 
     void addBudget(Budget budget);
 
+    void addExpenditure(Expenditure expenditure);
+
     Page getPage();
 
     Optional<Integer> getBudgetIndex();
@@ -99,9 +102,18 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the filtered budget list */
+    ObservableList<Budget> getFilteredBudgetList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Updates the filter of the filtered budget list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredBudgetList(Predicate<Budget> predicate);
 }

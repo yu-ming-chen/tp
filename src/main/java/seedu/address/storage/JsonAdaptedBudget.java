@@ -21,7 +21,7 @@ public class JsonAdaptedBudget {
      * Constructs a {@code JsonSerializableBudget} with the given expenditures.
      */
     @JsonCreator
-    public JsonAdaptedBudget(@JsonProperty("bedgetName") String budgetName,
+    public JsonAdaptedBudget(@JsonProperty("budgetName") String budgetName,
                              @JsonProperty("expenditures") List<JsonAdaptedExpenditure> expenditures) {
         this.budgetName = budgetName;
         this.expenditures.addAll(expenditures);
