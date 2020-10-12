@@ -78,7 +78,7 @@ public class MainApp extends Application {
         ReadOnlyNusave initialData;
         try {
             nusaveOptional = storage.readNusave();
-            if (!nusaveOptional.isPresent()) {
+            if (nusaveOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample NUSave.");
             }
             initialData = nusaveOptional.orElseGet(SampleDataUtil::getSampleNusave);

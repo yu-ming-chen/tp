@@ -16,6 +16,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.mainpageparser.MainPageParser;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.Renderable;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.person.Person;
 import seedu.address.state.Page;
@@ -46,10 +47,12 @@ public class LogicManager implements Logic {
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
+        //Logging, safe to ignore
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         Command command;
         CommandResult commandResult;
+
 
         Page currentPage = this.model.getPage();
         switch (currentPage) {
@@ -67,6 +70,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveNusave(model.getNusave());
+
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -87,6 +91,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Budget> getFilteredBudgetList() {
         return model.getFilteredBudgetList();
+    }
+
+    @Override
+    public ObservableList<Renderable> getFilteredRenderableList() {
+        return model.getFilteredRenderableList();
     }
 
     @Override
