@@ -50,7 +50,7 @@ public class ExpenditureCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof ExpenditureCard)) {
             return false;
         }
 

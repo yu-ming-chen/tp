@@ -39,7 +39,8 @@ public class BudgetList implements Iterable<Budget> {
     }
 
     public void add(Expenditure toAdd, int index) {
-        budgets.get(index).addExpenditure(toAdd);
+        Budget budget = budgets.get(index);
+        budget.addExpenditure(toAdd);
     }
 
     /**
@@ -55,7 +56,8 @@ public class BudgetList implements Iterable<Budget> {
     }
 
     public List<Expenditure> getExpenditure(int index) {
-        return budgets.get(index).getExpenditures();
+        Budget budget = budgets.get(index);
+        return budget.getExpenditures();
     }
 
     public List<Budget> getBudgets() {
