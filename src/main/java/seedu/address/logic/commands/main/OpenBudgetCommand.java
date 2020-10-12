@@ -26,9 +26,8 @@ public class OpenBudgetCommand extends MainPageCommand {
     public CommandResult execute(Model model) throws CommandException {
         //stub
         //generate budget book index
-        int index = 0;
         model.setPage(Page.BUDGET);
-        model.setBudgetIndex(new BudgetIndexManager(index));
+        model.setBudgetIndex(budgetIndex);
         model.repopulateObservableList();
         return new CommandResult(MESSAGE_SUCCESS);
     }
