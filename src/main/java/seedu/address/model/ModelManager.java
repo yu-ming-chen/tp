@@ -12,6 +12,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.model.person.Person;
@@ -139,22 +142,23 @@ public class ModelManager implements Model {
     public void addBudget(Budget budget) {
         requireNonNull(budget);
         nusave.addBudget(budget);
+        // might not be necessary, only for filter feature
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
     @Override
-    public void deleteBudget(BudgetIndex budget) {
+    public void deleteBudget(BudgetIndex budget) throws CommandException {
         requireNonNull(budget);
         int budgetIndex = budget.getBudgetIndex().orElse(-1);
-        Budget deleteBudget = this.filteredBudgets.get(budgetIndex);
-        nusave.deleteBudget(deleteBudget);
+        nusave.deleteBudget(budgetIndex);
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
     @Override
-    public void deleteExpenditure(ExpenditureIndex expenditure) {
+    public void deleteExpenditure(ExpenditureIndex expenditure) throws CommandException {
         requireNonNull(expenditure);
         int expenditureIndex = expenditure.getExpenditureIndex().orElse(-1);
+        assert expenditureIndex >= 0;
         nusave.deleteExpenditure(expenditureIndex, this.stateManager.getBudgetIndex());
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
@@ -170,7 +174,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void repopulateObservableList() {
+    public void repopulateObservableList() throws CommandException {
         nusave.repopulateObservableList(stateManager);
 
     }
