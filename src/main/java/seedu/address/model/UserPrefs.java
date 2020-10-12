@@ -46,7 +46,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(guiSettings);
         this.guiSettings = guiSettings;
     }
-    
+
     public void setNusaveFilePath(Path nusaveFilePath) {
         requireNonNull(nusaveFilePath);
         this.nusaveFilePath = nusaveFilePath;
