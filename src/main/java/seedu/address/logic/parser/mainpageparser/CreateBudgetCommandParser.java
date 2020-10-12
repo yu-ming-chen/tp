@@ -14,7 +14,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.budget.Budget;
-import seedu.address.model.budget.BudgetName;
+import seedu.address.model.budget.Name;
 import seedu.address.model.expenditure.Expenditure;
 
 public class CreateBudgetCommandParser implements Parser<CreateBudgetCommand> {
@@ -32,8 +32,8 @@ public class CreateBudgetCommandParser implements Parser<CreateBudgetCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateBudgetCommand.MESSAGE_USAGE));
         }
 
-        BudgetName budgetName = ParserUtil.parseBudgetName(argMultimap.getValue(PREFIX_NAME).get());
-        Budget budget = new Budget(budgetName, new ArrayList<Expenditure>());
+        Name name = ParserUtil.parseBudgetName(argMultimap.getValue(PREFIX_NAME).get());
+        Budget budget = new Budget(name, new ArrayList<Expenditure>());
         return new CreateBudgetCommand(budget);
     }
 

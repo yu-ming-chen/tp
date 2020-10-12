@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.expenditure.Date;
 import seedu.address.model.expenditure.Expenditure;
-import seedu.address.model.expenditure.ExpenditureName;
+import seedu.address.model.expenditure.Name;
 import seedu.address.model.expenditure.Price;
 import seedu.address.model.tag.Tag;
 
@@ -42,7 +42,7 @@ public class JsonAdaptedExpenditure {
      * Converts a given {@code Expenditure} into this class for Jackson use.
      */
     public JsonAdaptedExpenditure(Expenditure expenditure) {
-        name = expenditure.getExpenditureName().value;
+        name = expenditure.getName().value;
         price = expenditure.getPrice().value;
         createdOn = expenditure.getCreatedOn().toString();
         tags.addAll(expenditure.getTags().stream()
@@ -63,12 +63,12 @@ public class JsonAdaptedExpenditure {
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ExpenditureName.class.getSimpleName()));
+                    Name.class.getSimpleName()));
         }
-        if (!ExpenditureName.isValidName(name)) {
-            throw new IllegalValueException(ExpenditureName.MESSAGE_CONSTRAINTS);
+        if (!Name.isValidName(name)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final ExpenditureName modelExpenditureName = new ExpenditureName(name);
+        final Name modelName = new Name(name);
 
         if (price == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName()));
@@ -88,6 +88,6 @@ public class JsonAdaptedExpenditure {
 
         final Set<Tag> modelTags = new HashSet<>(expenditureTags);
 
-        return new Expenditure(modelExpenditureName, modelPrice, modelCreatedOn, modelTags);
+        return new Expenditure(modelName, modelPrice, modelCreatedOn, modelTags);
     }
 }
