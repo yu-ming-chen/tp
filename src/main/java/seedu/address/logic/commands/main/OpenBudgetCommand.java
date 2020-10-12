@@ -6,7 +6,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.state.Page;
 import seedu.address.state.budgetindex.BudgetIndex;
-import seedu.address.state.budgetindex.BudgetIndexManager;
 
 public class OpenBudgetCommand extends MainPageCommand {
 
