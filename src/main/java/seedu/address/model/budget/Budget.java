@@ -33,4 +33,8 @@ public class Budget implements Renderable {
     public void addExpenditure(Expenditure expenditure) {
         expenditures.add(expenditure);
     }
+
+    public void deleteExpenditure(int expenditure) {
+        expenditures.remove(expenditure);
+    }
 }

@@ -19,6 +19,7 @@ import seedu.address.state.Page;
 import seedu.address.state.StateManager;
 import seedu.address.state.budgetindex.BudgetIndex;
 import seedu.address.state.budgetindex.EmptyBudgetIndex;
+import seedu.address.state.expenditureindex.ExpenditureIndex;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -142,6 +143,26 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteBudget(BudgetIndex budget) {
+        requireNonNull(budget);
+        int budgetIndex = budget.getBudgetIndex().orElse(-1);
+        Budget deleteBudget = this.filteredBudgets.get(budgetIndex);
+        nusave.deleteBudget(deleteBudget);
+        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+    }
+
+    @Override
+    public void deleteExpenditure(ExpenditureIndex expenditure) {
+        requireNonNull(expenditure);
+        int expenditureIndex = expenditure.getExpenditureIndex().orElse(-1);
+        nusave.deleteExpenditure(expenditureIndex, this.stateManager.getBudgetIndex());
+        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+    }
+
+    /**
+     * Adds an expenditure to the specified budget and updates the list
+     * @param expenditure
+     */
     public void addExpenditure(Expenditure expenditure) {
         requireNonNull(expenditure);
         nusave.addExpenditure(expenditure, this.stateManager.getBudgetIndex());
@@ -151,6 +172,7 @@ public class ModelManager implements Model {
     @Override
     public void repopulateObservableList() {
         nusave.repopulateObservableList(stateManager);
+
     }
 
     //=========== StateManager ================================================================================

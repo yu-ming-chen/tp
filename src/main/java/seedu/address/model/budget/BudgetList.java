@@ -9,7 +9,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.budget.exceptions.BudgetNotFoundException;
 import seedu.address.model.expenditure.Expenditure;
 
 /**
@@ -24,16 +23,12 @@ import seedu.address.model.expenditure.Expenditure;
  */
 public class BudgetList implements Iterable<Budget> {
     private final List<Budget> budgets = new ArrayList<>();
-    private final ObservableList<Budget> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Budget> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Adds a budget to the list of budgets.
      */
     public void add(Budget toAdd) {
         requireNonNull(toAdd);
-        internalList.add(toAdd);
         budgets.add(toAdd);
     }
 
@@ -48,14 +43,21 @@ public class BudgetList implements Iterable<Budget> {
     }
 
     /**
+     * Deletes an expenditure from the budget at index index in budgets.
+     * @param toDelete the Expenditure object to be deleted.
+     * @param index the index of the budget which the expenditure will be added into.
+     */
+    public void deleteExpenditure(int toDelete, int index) {
+        Budget budget = budgets.get(index);
+        budget.deleteExpenditure(toDelete);
+    }
+
+    /**
      * Removes the equivalent budget from the list.
      * The budget must exist in the list.
      */
     public void remove(Budget toRemove) {
         requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
-            throw new BudgetNotFoundException();
-        }
         budgets.remove(toRemove);
     }
 
@@ -68,10 +70,6 @@ public class BudgetList implements Iterable<Budget> {
         return budgets;
     }
 
-    public void setBudgets(BudgetList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
 
     /**
      * Replaces the contents of this list with {@code budgets}.
@@ -95,18 +93,18 @@ public class BudgetList implements Iterable<Budget> {
 
     @Override
     public Iterator<Budget> iterator() {
-        return internalList.iterator();
+        return budgets.iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof BudgetList // instanceof handles nulls
-                && internalList.equals(((BudgetList) other).internalList));
+                && budgets.equals(((BudgetList) other).budgets));
     }
 
     @Override
     public int hashCode() {
-        return internalList.hashCode();
+        return budgets.hashCode();
     }
 }

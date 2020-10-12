@@ -47,10 +47,12 @@ public class LogicManager implements Logic {
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
+        //Logging, safe to ignore
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         Command command;
         CommandResult commandResult;
+
 
         Page currentPage = this.model.getPage();
         switch (currentPage) {
@@ -68,6 +70,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveNusave(model.getNusave());
+
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }

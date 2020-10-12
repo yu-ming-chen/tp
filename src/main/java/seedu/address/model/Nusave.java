@@ -12,6 +12,7 @@ import seedu.address.model.budget.BudgetList;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.state.State;
 
+
 public class Nusave implements ReadOnlyNusave {
     private final BudgetList budgetList;
     private final ObservableList<Renderable> internalList = FXCollections.observableArrayList();
@@ -83,6 +84,25 @@ public class Nusave implements ReadOnlyNusave {
         } else if (state.isMain()) {
             this.internalList.setAll(budgetList.getBudgets());
         }
+    }
+
+    /**
+     * Deletes a budget from NUSave.
+     */
+    public void deleteBudget(Budget budget) {
+        //todo: check if deletion of budget from budgetList is successful before deleting from internalList
+        this.budgetList.remove(budget);
+        this.internalList.remove(budget);
+    }
+
+    /**
+     * Deletes an expenditure from the NUSave budget according to its index.
+     */
+    public void deleteExpenditure(int expenditure, Optional<Integer> budgetIndexOpt) {
+        //todo: check if deletion of budget from budgetList is successful before deleting from internalList
+        Integer budgetIndex = budgetIndexOpt.orElse(-1);
+        this.budgetList.deleteExpenditure(expenditure, budgetIndex);
+        this.internalList.remove(expenditure);
     }
 
     @Override

@@ -11,6 +11,7 @@ import seedu.address.model.expenditure.Expenditure;
 import seedu.address.model.person.Person;
 import seedu.address.state.Page;
 import seedu.address.state.budgetindex.BudgetIndex;
+import seedu.address.state.expenditureindex.ExpenditureIndex;
 
 /**
  * The API of the Model component.
@@ -86,7 +87,13 @@ public interface Model {
 
     void addBudget(Budget budget);
 
+
+    void deleteBudget(BudgetIndex budget);
+
+    void deleteExpenditure(ExpenditureIndex expenditure);
+
     void addExpenditure(Expenditure expenditure);
+
 
     Page getPage();
 
