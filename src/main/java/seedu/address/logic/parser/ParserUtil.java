@@ -10,9 +10,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.expenditure.Price;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.state.budgetindex.BudgetIndex;
 import seedu.address.state.budgetindex.BudgetIndexManager;
@@ -72,27 +69,12 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static seedu.address.model.person.Name parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!seedu.address.model.person.Name.isValidName(trimmedName)) {
-            throw new ParseException(seedu.address.model.person.Name.MESSAGE_CONSTRAINTS);
-        }
-        return new seedu.address.model.person.Name(trimmedName);
-    }
-
-    /**
-     * Parses a {@code String name} into a {@code Name}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code name} is invalid.
-     */
     public static seedu.address.model.expenditure.Name parseExpenditureName(String expenditureName)
             throws ParseException {
         requireNonNull(expenditureName);
         String trimmedName = expenditureName.trim();
         if (!seedu.address.model.expenditure.Name.isValidName(trimmedName)) {
-            throw new ParseException(seedu.address.model.person.Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(seedu.address.model.expenditure.Name.MESSAGE_CONSTRAINTS);
         }
         return new seedu.address.model.expenditure.Name(trimmedName);
     }
@@ -106,7 +88,7 @@ public class ParserUtil {
     public static Price parsePrice(String price) throws ParseException {
         requireNonNull(price);
         String trimmedPrice = price.trim();
-        if (!Price.isValidPrice(trimmedPrice)) {
+        if (!Price.isValid(trimmedPrice)) {
             throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }
         return new Price(trimmedPrice);
@@ -121,55 +103,10 @@ public class ParserUtil {
     public static seedu.address.model.budget.Name parseBudgetName(String budgetName) throws ParseException {
         requireNonNull(budgetName);
         String trimmedName = budgetName.trim();
-        if (!seedu.address.model.budget.Name.isValidName(trimmedName)) {
-            throw new ParseException(seedu.address.model.person.Name.MESSAGE_CONSTRAINTS);
+        if (!seedu.address.model.budget.Name.isValid(trimmedName)) {
+            throw new ParseException(seedu.address.model.budget.Name.MESSAGE_CONSTRAINTS);
         }
         return new seedu.address.model.budget.Name(trimmedName);
-    }
-
-    /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code phone} is invalid.
-     */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        return new Phone(trimmedPhone);
-    }
-
-    /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
-
-    /**
-     * Parses a {@code String email} into an {@code Email}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code email} is invalid.
-     */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-        }
-        return new Email(trimmedEmail);
     }
 
     /**
@@ -181,7 +118,7 @@ public class ParserUtil {
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
+        if (!Tag.isValid(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);

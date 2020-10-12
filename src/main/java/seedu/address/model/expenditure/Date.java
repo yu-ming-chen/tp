@@ -18,14 +18,14 @@ public class Date {
      */
     public Date(String value) {
         requireNonNull(value);
-        checkArgument(isValidDate(value), MESSAGE_CONSTRAINTS);
+        checkArgument(isValid(value), MESSAGE_CONSTRAINTS);
         this.value = value;
     }
 
     /**
      * Returns true if a given string is a valid date.
      */
-    public static boolean isValidDate(String test) {
+    public static boolean isValid(String test) {
         try {
             LocalDate.parse(test);
         } catch (DateTimeParseException e) {
