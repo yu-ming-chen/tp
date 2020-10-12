@@ -29,8 +29,7 @@ public class BudgetList implements Iterable<Budget> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a budget to the list of budgets.
      */
     public void add(Budget toAdd) {
         requireNonNull(toAdd);
@@ -38,14 +37,19 @@ public class BudgetList implements Iterable<Budget> {
         budgets.add(toAdd);
     }
 
-    public void add(Expenditure toAdd, int index) {
+    /**
+     * Adds an expenditure to a the budget at index index in budgets.
+     * @param toAdd the Expenditure object to be added.
+     * @param index the index of the budget which the expenditure will be added into.
+     */
+    public void addExpenditure(Expenditure toAdd, int index) {
         Budget budget = budgets.get(index);
         budget.addExpenditure(toAdd);
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent budget from the list.
+     * The budget must exist in the list.
      */
     public void remove(Budget toRemove) {
         requireNonNull(toRemove);
