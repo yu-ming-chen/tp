@@ -30,6 +30,7 @@ public class ModelManager implements Model {
     private final Nusave nusave;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Budget> filteredBudgets;
     private final StateManager stateManager;
 
     /**
@@ -45,6 +46,7 @@ public class ModelManager implements Model {
         this.nusave = new Nusave(nusave);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.filteredBudgets = new FilteredList<>(this.nusave.getBudgetList());
         this.stateManager = new StateManager(new EmptyBudgetIndex(), Page.MAIN);
     }
 
@@ -137,6 +139,7 @@ public class ModelManager implements Model {
         nusave.addBudget(budget);
     }
 
+    @Override
     public void addExpenditure(Expenditure expenditure) {
         requireNonNull(expenditure);
 
@@ -193,6 +196,23 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Filtered Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Budget} backed by the internal list of
+     * {@code versionedNusave}
+     */
+    @Override
+    public ObservableList<Budget> getFilteredBudgetList() {
+        return filteredBudgets;
+    }
+
+    @Override
+    public void updateFilteredBudgetList(Predicate<Budget> predicate) {
+        requireNonNull(predicate);
+        filteredBudgets.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -207,9 +227,8 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return nusave.equals(other.nusave)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredBudgets.equals(other.filteredBudgets);
     }
-
 }

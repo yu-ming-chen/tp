@@ -1,16 +1,14 @@
 package seedu.address.logic.commands.budget;
 
-import seedu.address.logic.commands.AddCommand;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.expenditure.Expenditure;
-import seedu.address.model.person.Person;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 public class AddExpenditureCommand extends Command {
     public static final String COMMAND_WORD = "add";

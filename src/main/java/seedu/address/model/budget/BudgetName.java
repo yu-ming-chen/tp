@@ -1,9 +1,9 @@
 package seedu.address.model.budget;
 
-import seedu.address.model.expenditure.ExpenditureName;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import seedu.address.model.expenditure.ExpenditureName;
 
 public class BudgetName {
     public static final String MESSAGE_CONSTRAINTS =

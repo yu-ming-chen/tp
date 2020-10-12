@@ -62,7 +62,8 @@ public class JsonAdaptedExpenditure {
         }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ExpenditureName.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ExpenditureName.class.getSimpleName()));
         }
         if (!ExpenditureName.isValidName(name)) {
             throw new IllegalValueException(ExpenditureName.MESSAGE_CONSTRAINTS);

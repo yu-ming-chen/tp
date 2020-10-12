@@ -1,25 +1,25 @@
 package seedu.address.logic.parser.budgetpageparser;
 
-import seedu.address.logic.commands.AddCommand;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.budget.AddExpenditureCommand;
-import seedu.address.logic.commands.budget.CloseBudgetCommand;
-import seedu.address.logic.parser.*;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.expenditure.Date;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.model.expenditure.ExpenditureName;
 import seedu.address.model.expenditure.Price;
-import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
-
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Stream;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 public class AddExpenditureCommandParser implements Parser<AddExpenditureCommand> {
 
@@ -34,7 +34,8 @@ public class AddExpenditureCommandParser implements Parser<AddExpenditureCommand
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PRICE)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddExpenditureCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                                                AddExpenditureCommand.MESSAGE_USAGE));
         }
 
         ExpenditureName name = ParserUtil.parseExpenditureName(argMultimap.getValue(PREFIX_NAME).get());
