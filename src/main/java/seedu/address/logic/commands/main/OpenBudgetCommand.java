@@ -29,6 +29,7 @@ public class OpenBudgetCommand extends MainPageCommand {
         int index = 0;
         model.setPage(Page.BUDGET);
         model.setBudgetIndex(new BudgetIndexManager(index));
+        model.repopulateObservableList();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
