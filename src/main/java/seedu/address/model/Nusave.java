@@ -7,6 +7,8 @@ import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.budget.BudgetList;
 import seedu.address.model.expenditure.Expenditure;
@@ -76,12 +78,17 @@ public class Nusave implements ReadOnlyNusave {
      * @param state State containing the current page and
      *              budget index.
      */
-    public void repopulateObservableList(State state) {
+    public void repopulateObservableList(State state) throws CommandException {
         if (state.isBudget()) {
+            // repopulate observable list with Expenditures
             int index = state.getBudgetIndex().orElse(-1);
             assert index >= 0;
+            if (index >= budgetList.getSize()) {
+                throw new CommandException(Messages.MESSAGE_INDEX_OUT_OF_BOUNDS);
+            }
             this.internalList.setAll(budgetList.getExpenditure(index));
         } else if (state.isMain()) {
+            // repopulate observable list with Budgets
             this.internalList.setAll(budgetList.getBudgets());
         }
     }
@@ -89,18 +96,22 @@ public class Nusave implements ReadOnlyNusave {
     /**
      * Deletes a budget from NUSave.
      */
-    public void deleteBudget(Budget budget) {
-        //todo: check if deletion of budget from budgetList is successful before deleting from internalList
-        this.budgetList.remove(budget);
-        this.internalList.remove(budget);
+    public void deleteBudget(Budget toRemove) {
+        this.budgetList.remove(toRemove);
+        this.internalList.remove(toRemove);
     }
 
     /**
      * Deletes an expenditure from the NUSave budget according to its index.
      */
-    public void deleteExpenditure(int expenditure, Optional<Integer> budgetIndexOpt) {
-        //todo: check if deletion of budget from budgetList is successful before deleting from internalList
-        Integer budgetIndex = budgetIndexOpt.orElse(-1);
+    public void deleteExpenditure(int expenditure, Optional<Integer> budgetIndexOpt) throws CommandException {
+        assert expenditure >= 0;
+        int budgetIndex = budgetIndexOpt.orElse(-1);
+        List<Expenditure> expenditureList = budgetList.getExpenditure(budgetIndex);
+        int expenditureListSize = expenditureList.size();
+        if (expenditure >= expenditureListSize) {
+            throw new CommandException(Messages.MESSAGE_INDEX_OUT_OF_BOUNDS);
+        }
         this.budgetList.deleteExpenditure(expenditure, budgetIndex);
         this.internalList.remove(expenditure);
     }

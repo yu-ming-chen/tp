@@ -12,6 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.state.Page;
@@ -100,22 +102,27 @@ public class ModelManager implements Model {
     public void addBudget(Budget budget) {
         requireNonNull(budget);
         nusave.addBudget(budget);
+        // might not be necessary, only for filter feature
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
     @Override
-    public void deleteBudget(BudgetIndex budget) {
-        requireNonNull(budget);
-        int budgetIndex = budget.getBudgetIndex().orElse(-1);
-        Budget deleteBudget = (Budget) this.filteredRenderables.get(budgetIndex);
-        nusave.deleteBudget(deleteBudget);
+    public void deleteBudget(BudgetIndex budgetIndex) throws CommandException {
+        requireNonNull(budgetIndex);
+        int index = budgetIndex.getBudgetIndex().orElse(-1);
+        if (filteredRenderables.size() <= index) {
+            throw new CommandException(Messages.MESSAGE_INDEX_OUT_OF_BOUNDS);
+        }
+        Budget budget = (Budget) filteredRenderables.get(index);
+        nusave.deleteBudget(budget);
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
     @Override
-    public void deleteExpenditure(ExpenditureIndex expenditure) {
+    public void deleteExpenditure(ExpenditureIndex expenditure) throws CommandException {
         requireNonNull(expenditure);
         int expenditureIndex = expenditure.getExpenditureIndex().orElse(-1);
+        assert expenditureIndex >= 0;
         nusave.deleteExpenditure(expenditureIndex, this.stateManager.getBudgetIndex());
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
@@ -131,7 +138,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void repopulateObservableList() {
+    public void repopulateObservableList() throws CommandException {
         nusave.repopulateObservableList(stateManager);
 
     }

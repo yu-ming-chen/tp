@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.main;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.MainPageCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -23,7 +24,13 @@ public class OpenBudgetCommand extends MainPageCommand {
     public CommandResult execute(Model model) throws CommandException {
         model.setPage(Page.BUDGET);
         model.setBudgetIndex(budgetIndex);
-        model.repopulateObservableList();
+        try {
+            model.repopulateObservableList();
+        } catch (CommandException e) {
+            // resets the page back to MAIN since the open command did not go through
+            model.setPage(Page.MAIN);
+            throw new CommandException(Messages.MESSAGE_INDEX_OUT_OF_BOUNDS);
+        }
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
