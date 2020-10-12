@@ -88,7 +88,7 @@ public class ParserUtil {
     public static Price parsePrice(String price) throws ParseException {
         requireNonNull(price);
         String trimmedPrice = price.trim();
-        if (!Price.isValidPrice(trimmedPrice)) {
+        if (!Price.isValid(trimmedPrice)) {
             throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }
         return new Price(trimmedPrice);
@@ -103,7 +103,7 @@ public class ParserUtil {
     public static seedu.address.model.budget.Name parseBudgetName(String budgetName) throws ParseException {
         requireNonNull(budgetName);
         String trimmedName = budgetName.trim();
-        if (!seedu.address.model.budget.Name.isValidName(trimmedName)) {
+        if (!seedu.address.model.budget.Name.isValid(trimmedName)) {
             throw new ParseException(seedu.address.model.budget.Name.MESSAGE_CONSTRAINTS);
         }
         return new seedu.address.model.budget.Name(trimmedName);
@@ -118,7 +118,7 @@ public class ParserUtil {
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
+        if (!Tag.isValid(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);

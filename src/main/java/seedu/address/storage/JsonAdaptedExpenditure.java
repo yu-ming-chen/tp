@@ -73,7 +73,7 @@ public class JsonAdaptedExpenditure {
         if (price == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName()));
         }
-        if (!Price.isValidPrice(price)) {
+        if (!Price.isValid(price)) {
             throw new IllegalValueException(Price.MESSAGE_CONSTRAINTS);
         }
         final Price modelPrice = new Price(price);
@@ -81,7 +81,7 @@ public class JsonAdaptedExpenditure {
         if (createdOn == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
         }
-        if (!Date.isValidDate(createdOn)) {
+        if (!Date.isValid(createdOn)) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
         final Date modelCreatedOn = new Date(createdOn);

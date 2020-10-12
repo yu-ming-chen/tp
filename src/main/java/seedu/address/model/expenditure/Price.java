@@ -16,14 +16,14 @@ public class Price {
      */
     public Price(String price) {
         requireNonNull(price);
-        checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
+        checkArgument(isValid(price), MESSAGE_CONSTRAINTS);
         value = price;
     }
 
     /**
      * Returns true if a given string is a valid price.
      */
-    public static boolean isValidPrice(String test) {
+    public static boolean isValid(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
