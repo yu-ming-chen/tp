@@ -50,7 +50,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code ExpenditureName} of the {@code Person} that we are building.
+     * Sets the {@code name} of the {@code Person} that we are building.
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
