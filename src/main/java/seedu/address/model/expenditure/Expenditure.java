@@ -5,9 +5,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.Renderable;
 import seedu.address.model.tag.Tag;
 
-public class Expenditure {
+public class Expenditure implements Renderable {
     private final Name name;
     private final Price price;
     private final Date createdOn;

@@ -4,9 +4,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
+import seedu.address.model.Renderable;
 import seedu.address.model.expenditure.Expenditure;
 
-public class Budget {
+public class Budget implements Renderable {
     private final Name name;
     private final List<Expenditure> expenditures;
 
@@ -31,5 +32,9 @@ public class Budget {
 
     public void addExpenditure(Expenditure expenditure) {
         expenditures.add(expenditure);
+    }
+
+    public void deleteExpenditure(int expenditure) {
+        expenditures.remove(expenditure);
     }
 }

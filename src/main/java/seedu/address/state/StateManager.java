@@ -30,12 +30,12 @@ public class StateManager implements State {
 
     @Override
     public boolean isMain() {
-        return false;
+        return this.currentPage == Page.MAIN;
     }
 
     @Override
     public boolean isBudget() {
-        return false;
+        return this.currentPage == Page.BUDGET;
     }
 
     @Override

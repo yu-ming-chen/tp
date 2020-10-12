@@ -3,12 +3,13 @@ package seedu.address.model.budget;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.budget.exceptions.BudgetNotFoundException;
+import seedu.address.model.expenditure.Expenditure;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -21,66 +22,89 @@ import seedu.address.model.budget.exceptions.BudgetNotFoundException;
  *
  */
 public class BudgetList implements Iterable<Budget> {
-
-    private final ObservableList<Budget> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Budget> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+    private final List<Budget> budgets = new ArrayList<>();
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a budget to the list of budgets.
      */
     public void add(Budget toAdd) {
         requireNonNull(toAdd);
-        internalList.add(toAdd);
+        budgets.add(toAdd);
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Adds an expenditure to a the budget at index index in budgets.
+     * @param toAdd the Expenditure object to be added.
+     * @param index the index of the budget which the expenditure will be added into.
+     */
+    public void addExpenditure(Expenditure toAdd, int index) {
+        Budget budget = budgets.get(index);
+        budget.addExpenditure(toAdd);
+    }
+
+    /**
+     * Deletes an expenditure from the budget at index index in budgets.
+     * @param toDelete the Expenditure object to be deleted.
+     * @param index the index of the budget which the expenditure will be added into.
+     */
+    public void deleteExpenditure(int toDelete, int index) {
+        Budget budget = budgets.get(index);
+        budget.deleteExpenditure(toDelete);
+    }
+
+    /**
+     * Removes the equivalent budget from the list.
+     * The budget must exist in the list.
      */
     public void remove(Budget toRemove) {
         requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
-            throw new BudgetNotFoundException();
-        }
+        budgets.remove(toRemove);
     }
 
-    public void setBudgets(BudgetList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
+    public List<Expenditure> getExpenditure(int index) {
+        Budget budget = budgets.get(index);
+        return budget.getExpenditures();
     }
+
+    public List<Budget> getBudgets() {
+        return budgets;
+    }
+
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code budgets}.
      */
     public void setBudgets(List<Budget> budgets) {
         requireAllNonNull(budgets);
-        internalList.setAll(budgets);
+        // internalList.setAll(budgets);
+        this.budgets.clear();
+        this.budgets.addAll(budgets);
     }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Budget> asUnmodifiableObservableList() {
+        ObservableList<Budget> internalBudgetList = FXCollections.observableArrayList();
+        internalBudgetList.setAll(budgets);
+        ObservableList<Budget> internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalBudgetList);
         return internalUnmodifiableList;
     }
 
     @Override
     public Iterator<Budget> iterator() {
-        return internalList.iterator();
+        return budgets.iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof BudgetList // instanceof handles nulls
-                && internalList.equals(((BudgetList) other).internalList));
+                && budgets.equals(((BudgetList) other).budgets));
     }
 
     @Override
     public int hashCode() {
-        return internalList.hashCode();
+        return budgets.hashCode();
     }
 }
