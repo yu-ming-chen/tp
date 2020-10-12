@@ -9,7 +9,6 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.budget.Name;
 import seedu.address.model.expenditure.Price;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -119,13 +118,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseBudgetName(String budgetName) throws ParseException {
+    public static seedu.address.model.budget.Name parseBudgetName(String budgetName) throws ParseException {
         requireNonNull(budgetName);
         String trimmedName = budgetName.trim();
-        if (!Name.isValidBudgetName(trimmedName)) {
+        if (!seedu.address.model.budget.Name.isValidName(trimmedName)) {
             throw new ParseException(seedu.address.model.person.Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new seedu.address.model.budget.Name(trimmedName);
     }
 
     /**

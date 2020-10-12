@@ -22,14 +22,14 @@ public class Name {
      */
     public Name(String value) {
         requireNonNull(value);
-        checkArgument(isValidBudgetName(value), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidName(value), MESSAGE_CONSTRAINTS);
         this.value = value;
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidBudgetName(String test) {
+    public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
