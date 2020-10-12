@@ -41,7 +41,7 @@ public class BudgetPageParser implements PageParser {
             return new CloseBudgetCommandParser().parse(arguments);
         }
         case DeleteExpenditureCommand.COMMAND_WORD: {
-            return new DeleteBudgetCommandParser().parse(arguments);
+            return new DeleteExpenditureCommandParser().parse(arguments);
         }
         default: {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

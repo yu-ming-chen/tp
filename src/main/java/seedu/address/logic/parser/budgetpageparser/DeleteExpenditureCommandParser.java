@@ -9,10 +9,16 @@ import java.util.stream.Stream;
 
 
 public class DeleteExpenditureCommandParser implements Parser<DeleteExpenditureCommand> {
+
+    /**
+     * Parses user input into command for execution.
+     *
+     * @param userInput full user input string
+     * @return the command based on the user input
+     */
     @Override
-    public DeleteExpenditureCommand parse(String args) throws ParseException {
-        String[] splitter = args.split("del");
-        Index expenditureIndex = ParserUtil.parseExpenditureIndex(splitter[1]);
+    public DeleteExpenditureCommand parse(String userInput) {
+        Index expenditureIndex = ParserUtil.parseExpenditureIndex(userInput);
         return new DeleteExpenditureCommand(expenditureIndex);
     }
 
