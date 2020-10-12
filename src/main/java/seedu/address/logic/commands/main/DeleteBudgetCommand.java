@@ -15,7 +15,6 @@ public class DeleteBudgetCommand extends Command {
             + "Parameters: "
             + "INDEX ";
 
-
     public static final String MESSAGE_DELETE_BUDGET_SUCCESS = "Deleted Budget";
 
     private final BudgetIndex toDelete;
@@ -27,7 +26,6 @@ public class DeleteBudgetCommand extends Command {
         requireNonNull(budget);
         this.toDelete = budget;
     }
-
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

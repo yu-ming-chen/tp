@@ -11,10 +11,8 @@ public class OpenBudgetCommand extends MainPageCommand {
 
     public static final String COMMAND_WORD = "open";
 
-    //add budget index for success message (to do String.format)
     public static final String MESSAGE_SUCCESS = "Opened Budget";
 
-    //need attribute index in constructor
     private final BudgetIndex budgetIndex;
 
     public OpenBudgetCommand(BudgetIndex budgetIndex) {
@@ -23,8 +21,6 @@ public class OpenBudgetCommand extends MainPageCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        //stub
-        //generate budget book index
         model.setPage(Page.BUDGET);
         model.setBudgetIndex(budgetIndex);
         model.repopulateObservableList();

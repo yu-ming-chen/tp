@@ -16,7 +16,6 @@ public class DeleteExpenditureCommand extends Command {
             + "Parameters: "
             + "INDEX ";
 
-
     public static final String MESSAGE_DELETE_EXPENDITURE_SUCCESS = "Deleted Expenditure";
 
     private final ExpenditureIndex toDelete;
@@ -28,7 +27,6 @@ public class DeleteExpenditureCommand extends Command {
         requireNonNull(expenditure);
         this.toDelete = expenditure;
     }
-
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
