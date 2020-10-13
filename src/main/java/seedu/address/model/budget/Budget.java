@@ -8,22 +8,22 @@ import seedu.address.model.Renderable;
 import seedu.address.model.expenditure.Expenditure;
 
 public class Budget implements Renderable {
-    private final BudgetName budgetName;
+    private final Name name;
     private final List<Expenditure> expenditures;
 
     /**
      *
-     * @param budgetName
+     * @param name
      * @param expenditures
      */
-    public Budget(BudgetName budgetName, List<Expenditure> expenditures) {
-        requireAllNonNull(budgetName, expenditures);
-        this.budgetName = budgetName;
+    public Budget(Name name, List<Expenditure> expenditures) {
+        requireAllNonNull(name, expenditures);
+        this.name = name;
         this.expenditures = expenditures;
     }
 
     public String getName() {
-        return budgetName.value;
+        return name.value;
     }
 
     public List<Expenditure> getExpenditures() {
