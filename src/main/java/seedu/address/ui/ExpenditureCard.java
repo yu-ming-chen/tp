@@ -25,6 +25,9 @@ public class ExpenditureCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
+    @FXML
+    private Label price;
+
 
 
     /**
@@ -35,6 +38,7 @@ public class ExpenditureCard extends UiPart<Region> {
         this.expenditure = expenditure;
         id.setText(displayedIndex + ". ");
         name.setText(expenditure.getName().value);
+        price.setText("$" + expenditure.getPrice().value);
         //budget.getTags().stream()
         //        .sorted(Comparator.comparing(tag -> tag.tagName))
         //        .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
