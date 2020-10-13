@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.budget.AddExpenditureCommand;
 import seedu.address.logic.commands.budget.CloseBudgetCommand;
@@ -47,6 +48,9 @@ public class BudgetPageParser implements PageParser {
         case AddExpenditureCommand.COMMAND_WORD: {
             return new AddExpenditureCommandParser().parse(arguments);
 
+        }
+        case ExitCommand.COMMAND_WORD: {
+            return new ExitCommand();
         }
         default: {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
