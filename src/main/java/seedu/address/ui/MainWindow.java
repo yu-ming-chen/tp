@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -128,14 +129,20 @@ public class MainWindow extends UiPart<Stage> {
         mainPageInfoBoxPlaceholder.getChildren().add(mainPageInfoBox.getRoot());
 
         title = new Title();
+        bindTitleToState();
         titlePlaceholder.getChildren().add(title.getRoot());
-
 
         //StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         //statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    void bindTitleToState() {
+        title.getTitle().textProperty().bind(Bindings.createStringBinding(
+                //() -> (logic.getModel().getPageTitle()), title.getIsExpenditureProp()));
+                () -> "0"));
     }
 
     /**
