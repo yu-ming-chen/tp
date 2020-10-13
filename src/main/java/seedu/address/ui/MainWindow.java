@@ -140,9 +140,13 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     void bindTitleToState() {
-        title.getTitle().textProperty().bind(Bindings.createStringBinding(
-                //() -> (logic.getModel().getPageTitle()), title.getIsExpenditureProp()));
-                () -> "0"));
+        title.getTitle().textProperty().bind(Bindings.createStringBinding(() -> {
+            if (logic.getIsExpenditure()) {
+                return logic.getPageTitle();
+            } else {
+                return logic.getPageTitle();
+            }
+        }, logic.getIsExpenditureProp()));
     }
 
     /**

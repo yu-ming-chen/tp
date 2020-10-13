@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -67,11 +68,23 @@ public interface Model {
 
     Page getPage();
 
+    String getPageName(BudgetIndex index);
+
+    String getPageTitle();
+
+    boolean getIsExpenditure();
+
     Optional<Integer> getBudgetIndex();
+
+    BooleanProperty getIsExpenditureProp();
+
+    void setIsExpenditurePage(boolean isExpenditurePage);
 
     void setPage(Page page);
 
     void setBudgetIndex(BudgetIndex index);
+
+    void setPageName(String page);
 
     boolean isMain();
 

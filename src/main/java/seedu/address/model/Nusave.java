@@ -13,6 +13,7 @@ import seedu.address.model.budget.Budget;
 import seedu.address.model.budget.BudgetList;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.state.State;
+import seedu.address.state.budgetindex.BudgetIndex;
 
 
 public class Nusave implements ReadOnlyNusave {
@@ -40,6 +41,10 @@ public class Nusave implements ReadOnlyNusave {
     public Nusave(ReadOnlyNusave toBeCopied) {
         this();
         resetData(toBeCopied);
+    }
+
+    public String getPageName(BudgetIndex index) {
+        return this.budgetList.getBudgetName(index);
     }
 
     private void setBudgets(List<Budget> budgets) {

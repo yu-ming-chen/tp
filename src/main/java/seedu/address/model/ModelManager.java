@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -17,6 +18,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.state.Page;
+import seedu.address.state.PageTitle;
 import seedu.address.state.StateManager;
 import seedu.address.state.budgetindex.BudgetIndex;
 import seedu.address.state.budgetindex.EmptyBudgetIndex;
@@ -45,7 +47,7 @@ public class ModelManager implements Model {
         this.nusave = new Nusave(nusave);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredRenderables = new FilteredList<>(this.nusave.getInternalList());
-        this.stateManager = new StateManager(new EmptyBudgetIndex(), Page.MAIN);
+        this.stateManager = new StateManager(new EmptyBudgetIndex(), Page.MAIN, PageTitle.BUDGETS.toString());
     }
 
     public ModelManager() {
@@ -166,6 +168,31 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public BooleanProperty getIsExpenditureProp() {
+        return this.stateManager.getIsExpenditureProp();
+    }
+
+    @Override
+    public String getPageName(BudgetIndex index) {
+        return this.nusave.getPageName(index);
+    }
+
+    @Override
+    public String getPageTitle() {
+        return this.stateManager.getPageTitle();
+    }
+
+    @Override
+    public boolean getIsExpenditure() {
+        return this.stateManager.getIsExpenditure();
+    }
+
+    @Override
+    public void setIsExpenditurePage(boolean isExpenditurePage) {
+        this.stateManager.setIsExpenditurePage(isExpenditurePage);
+    }
+
+    @Override
     public void setBudgetIndex(BudgetIndex index) {
         this.stateManager.setBudgetIndex(index);
     }
@@ -173,6 +200,11 @@ public class ModelManager implements Model {
     @Override
     public void setPage(Page page) {
         this.stateManager.setPage(page);
+    }
+
+    @Override
+    public void setPageName(String page) {
+        this.stateManager.setPageName(page);
     }
 
     //=========== Filtered Renderable List Accessors =============================================================

@@ -10,6 +10,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.expenditure.Expenditure;
+import seedu.address.state.budgetindex.BudgetIndex;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -68,6 +69,13 @@ public class BudgetList implements Iterable<Budget> {
 
     public List<Budget> getBudgets() {
         return budgets;
+    }
+
+    public String getBudgetName(BudgetIndex budgetIndex) {
+        requireNonNull(budgetIndex);
+        int index = budgetIndex.getBudgetIndex().orElse(-1);
+        assert index >= 0;
+        return this.budgets.get(index).getName();
     }
 
     public int getSize() {
