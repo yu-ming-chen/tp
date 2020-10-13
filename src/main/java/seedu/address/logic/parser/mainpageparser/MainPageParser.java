@@ -50,6 +50,9 @@ public class MainPageParser implements PageParser {
             return new CreateBudgetCommandParser().parse(arguments);
 
         }
+        case HelpCommand.COMMAND_WORD: {
+            return new HelpCommand();
+        }
         case ExitCommand.COMMAND_WORD: {
             return new ExitCommand();
         }

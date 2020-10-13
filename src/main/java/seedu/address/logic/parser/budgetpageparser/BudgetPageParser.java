@@ -49,6 +49,9 @@ public class BudgetPageParser implements PageParser {
             return new AddExpenditureCommandParser().parse(arguments);
 
         }
+        case HelpCommand.COMMAND_WORD: {
+            return new HelpCommand();
+        }
         case ExitCommand.COMMAND_WORD: {
             return new ExitCommand();
         }
