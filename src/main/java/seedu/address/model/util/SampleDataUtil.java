@@ -1,5 +1,6 @@
 package seedu.address.model.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -19,8 +20,8 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Budget[] getSampleBudgets() {
         return new Budget[] {
-            new Budget(new Name("Test Name 1"), Arrays.asList(getSampleExpenditures())),
-            new Budget(new Name("Test Name 2"), Arrays.asList(getSampleExpenditures()))
+            new Budget(new Name("Test Name 1"), new ArrayList<>(Arrays.asList(getSampleExpenditures()))),
+            new Budget(new Name("Test Name 2"), new ArrayList<>(Arrays.asList(getSampleExpenditures())))
         };
     }
 
