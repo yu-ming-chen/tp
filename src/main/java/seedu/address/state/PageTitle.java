@@ -1,5 +1,5 @@
 package seedu.address.state;
 
-public enum PageTitle {
-    BUDGETS
+public class PageTitle {
+    public static final String MAIN_PAGE_TITLE = "NUSave";
 }

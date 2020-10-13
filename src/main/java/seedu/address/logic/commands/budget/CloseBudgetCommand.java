@@ -19,7 +19,7 @@ public class CloseBudgetCommand extends BudgetPageCommand {
         //stub
         model.setPage(Page.MAIN);
         model.setBudgetIndex(new EmptyBudgetIndex());
-        model.setPageName(PageTitle.BUDGETS.toString());
+        model.setPageName(PageTitle.MAIN_PAGE_TITLE);
         model.setIsExpenditurePage(false);
         model.repopulateObservableList();
         return new CommandResult(MESSAGE_SUCCESS);
