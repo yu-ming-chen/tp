@@ -45,16 +45,16 @@
           </padding>
         </StackPane>
 
-        <HBox prefHeight="100.0" prefWidth="200.0">
-           <children>
-             <StackPane fx:id="mainPageInfoBoxPlaceholder" prefHeight="150.0" prefWidth="200.0">
-
-             </StackPane>
-             <StackPane fx:id="titlePlaceholder" prefHeight="150.0" prefWidth="200.0">
-
-             </StackPane>
-           </children>
-        </HBox>
+        <StackPane fx:id="infoBoxPlaceholder" styleClass="pane-with-border">
+          <HBox prefHeight="100.0" prefWidth="200.0">
+             <children>
+               <StackPane fx:id="mainPageInfoBoxPlaceholder" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.77" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #808080; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-width: 1; -fx-border-color: #FFFFFF;" HBox.hgrow="ALWAYS">
+               </StackPane>
+               <StackPane fx:id="titlePlaceholder" alignment="BOTTOM_RIGHT" prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               </StackPane>
+             </children>
+          </HBox>
+        </StackPane>
 
         <VBox fx:id="budgetList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>

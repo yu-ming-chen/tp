@@ -157,6 +157,23 @@
     -fx-text-fill: black !important;
 }
 
+.title {
+    -fx-background-color: transparent;
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 38pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-text-alignment: right;
+}
+
+.title *.text {
+    -fx-text-alignment: right;
+}
+
+.title .label {
+    -fx-text-fill: black !important;
+}
+
 .status-bar .label {
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
