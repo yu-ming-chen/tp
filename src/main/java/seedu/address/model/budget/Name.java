@@ -1,4 +1,4 @@
-package seedu.address.model.expenditure;
+package seedu.address.model.budget;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -18,18 +18,18 @@ public class Name {
     /**
      * Constructs a {@code Name}.
      *
-     * @param value A valid name.
+     * @param value A valid title.
      */
     public Name(String value) {
         requireNonNull(value);
-        checkArgument(isValidName(value), MESSAGE_CONSTRAINTS);
+        checkArgument(isValid(value), MESSAGE_CONSTRAINTS);
         this.value = value;
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValid(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -42,8 +42,8 @@ public class Name {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Name // instanceof handles nulls
-                && value.equals(((Name) other).value)); // state check
+                || (other instanceof seedu.address.model.expenditure.Name // instanceof handles nulls
+                && value.equals(((seedu.address.model.expenditure.Name) other).value)); // state check
     }
 
     @Override

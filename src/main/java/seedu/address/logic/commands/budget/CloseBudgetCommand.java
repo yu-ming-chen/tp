@@ -11,7 +11,6 @@ public class CloseBudgetCommand extends BudgetPageCommand {
 
     public static final String COMMAND_WORD = "close";
 
-    //add budget index for success message (to do String.format)
     public static final String MESSAGE_SUCCESS = "Closed Budget";
 
     @Override
@@ -19,6 +18,7 @@ public class CloseBudgetCommand extends BudgetPageCommand {
         //stub
         model.setPage(Page.MAIN);
         model.setBudgetIndex(new EmptyBudgetIndex());
+        model.repopulateObservableList();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

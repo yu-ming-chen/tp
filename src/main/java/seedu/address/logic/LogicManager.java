@@ -15,8 +15,7 @@ import seedu.address.logic.parser.budgetpageparser.BudgetPageParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.mainpageparser.MainPageParser;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.Renderable;
 import seedu.address.state.Page;
 import seedu.address.storage.Storage;
 
@@ -77,18 +76,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ObservableList<Renderable> getFilteredRenderableList() {
+        return model.getFilteredRenderableList();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
-    }
-
-    @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getNusaveFilePath() {
+        return model.getNusaveFilePath();
     }
 
     @Override

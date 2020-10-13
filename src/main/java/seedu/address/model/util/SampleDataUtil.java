@@ -7,10 +7,9 @@ import java.util.stream.Collectors;
 import seedu.address.model.Nusave;
 import seedu.address.model.ReadOnlyNusave;
 import seedu.address.model.budget.Budget;
-import seedu.address.model.budget.BudgetName;
+import seedu.address.model.budget.Name;
 import seedu.address.model.expenditure.Date;
 import seedu.address.model.expenditure.Expenditure;
-import seedu.address.model.expenditure.Name;
 import seedu.address.model.expenditure.Price;
 import seedu.address.model.tag.Tag;
 
@@ -20,17 +19,17 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Budget[] getSampleBudgets() {
         return new Budget[] {
-            new Budget(new BudgetName("Test BudgetName 1"), Arrays.asList(getSampleExpenditures())),
-            new Budget(new BudgetName("Test BudgetName 2"), Arrays.asList(getSampleExpenditures()))
+            new Budget(new Name("Test Name 1"), Arrays.asList(getSampleExpenditures())),
+            new Budget(new Name("Test Name 2"), Arrays.asList(getSampleExpenditures()))
         };
     }
 
     public static Expenditure[] getSampleExpenditures() {
         return new Expenditure[]{
-            new Expenditure(new Name("Shirt"), new Price("85.50"), new Date("2020-10-10"),
-                            getTagSet("Apparel", "White")),
-            new Expenditure(new Name("Pants"), new Price("100.50"), new Date("2020-10-10"),
-                            getTagSet("Apparel", "Black"))
+            new Expenditure(new seedu.address.model.expenditure.Name("Shirt"),
+                    new Price("85.50"), new Date("2020-10-10"), getTagSet("Apparel", "White")),
+            new Expenditure(new seedu.address.model.expenditure.Name("Pants"),
+                    new Price("100.50"), new Date("2020-10-10"), getTagSet("Apparel", "Black"))
         };
     }
 
