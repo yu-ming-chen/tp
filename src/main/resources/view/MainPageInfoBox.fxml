@@ -10,7 +10,7 @@
    <children>
       <StackPane prefHeight="150.0" prefWidth="200.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
+            <Text fx:id="dateText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
                <font>
                   <Font size="16.0" />
                </font>
@@ -19,16 +19,16 @@
       </StackPane>
       <StackPane prefHeight="150.0" prefWidth="200.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
+            <Text fx:id="timeText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
                <font>
-                  <Font size="26.0" />
+                  <Font size="16.0" />
                </font>
             </Text>
          </children>
       </StackPane>
-      <StackPane prefHeight="113.0" prefWidth="598.0">
+      <StackPane prefHeight="150.0" prefWidth="200.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Good Evening">
+            <Text fx:id="greetingText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Good Evening">
                <font>
                   <Font size="16.0" />
                </font>
