@@ -14,12 +14,19 @@ import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyNusave;
 
+/**
+ * A class to access Nusave stored in the hard disk as a json file
+ */
 public class JsonNusaveStorage implements NusaveStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonNusaveStorage.class);
 
     private Path filePath;
 
+    /**
+     * Constructs a {@code JsonNusaveStorage} with the given {@code filePath}.
+     * @param filePath {@code Path} containing the Nusave data file.
+     */
     public JsonNusaveStorage(Path filePath) {
         this.filePath = filePath;
     }
