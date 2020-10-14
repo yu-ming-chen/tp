@@ -8,11 +8,14 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Represents a Parser that is able to parse user inputs regarding closing a budget.
+ */
 public class CloseBudgetCommandParser implements Parser<CloseBudgetCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the CloseBudgetCommand
-     * and returns an CloseBudgetCommand object for execution.
+     * and returns a CloseBudgetCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public CloseBudgetCommand parse(String args) {

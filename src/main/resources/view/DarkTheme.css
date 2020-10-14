@@ -5,10 +5,12 @@
 #command-text-field {
     -fx-font-family: "American Typewriter";
     -fx-text-fill: #636363;
+    -fx-font-size: 18px;
     -fx-background-radius: 20px;
 }
 
 #result-display-text-area {
+    -fx-font-size: 18px;
     -fx-background-radius: 20px;
     -fx-border-radius: 20px;
 }

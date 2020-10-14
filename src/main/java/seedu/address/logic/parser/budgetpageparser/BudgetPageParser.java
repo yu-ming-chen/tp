@@ -15,15 +15,15 @@ import seedu.address.logic.commands.budget.DeleteExpenditureCommand;
 import seedu.address.logic.parser.PageParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-
+/**
+ * Represents a Parser that is able to parse inputs occuring in the Budget Page.
+ */
 public class BudgetPageParser implements PageParser {
-    /**
-     * Used for initial separation of command word and args.
-     */
+    /** Used for initial separation of command word and args. */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
-     * Parses user input into command for execution.
+     * Parses a user input occuring in the Budget Page into a command for execution.
      *
      * @param userInput full user input string
      * @return the command based on the user input

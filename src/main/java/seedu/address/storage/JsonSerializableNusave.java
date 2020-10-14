@@ -12,11 +12,14 @@ import seedu.address.model.Nusave;
 import seedu.address.model.ReadOnlyNusave;
 import seedu.address.model.budget.Budget;
 
+/**
+ * Jackson-friendly version of {@link Nusave}.
+ */
 public class JsonSerializableNusave {
     private final List<JsonAdaptedBudget> budgets = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableNusave} with the given budgets.
      */
     @JsonCreator
     public JsonSerializableNusave(@JsonProperty("budgets") List<JsonAdaptedBudget> budgets) {
@@ -25,17 +28,15 @@ public class JsonSerializableNusave {
 
     /**
      * Converts a given {@code ReadOnlyNusave} into this class for Jackson use.
-     *
      * @param source future changes to this will not affect the created {@code JsonSerializableNusave}.
      */
     public JsonSerializableNusave(ReadOnlyNusave source) {
-        //budgets.addAll(source.getBudgetList().stream().map(JsonAdaptedBudget::new).collect(Collectors.toList()));
         budgets.addAll(source.getBudgetList().stream().map(JsonAdaptedBudget::new).collect(Collectors.toList()));
     }
 
     /**
      * Converts this Nusave into the model's {@code Nusave} object.
-     *
+     * @return the Nusave object converted from Json format.
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public Nusave toModelType() throws IllegalValueException {
