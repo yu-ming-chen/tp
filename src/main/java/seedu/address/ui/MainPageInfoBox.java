@@ -57,7 +57,8 @@ public class MainPageInfoBox extends UiPart<Region> {
                     second = cal.get(Calendar.SECOND);
                     minute = cal.get(Calendar.MINUTE);
                     hour = cal.get(Calendar.HOUR_OF_DAY);
-                    timeText.setText(hour + ":" + (minute) + ":" + second);
+                    timeText.setText(String.format("%02d", hour) + ":" + String.format("%02d", minute) + ":"
+                            + String.format("%02d", second));
                     dateText.setText(String.format("%d / %d / %d", date, month, year));
                     if (hour < 12) {
                         greeting = "Good Morning!";
