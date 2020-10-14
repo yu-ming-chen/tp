@@ -28,11 +28,12 @@
 }
 
 .list-view {
-    -fx-background-color: grey;
+    -fx-background-color: transparent;
 }
 
 .list-cell {
     -fx-background-color: transparent;
+    -fx-padding: 0em 0.583em 0.8em 0em;
 }
 
 .scroll-bar {
@@ -59,11 +60,6 @@
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 8 1 8 1;
-}
-
-#card-pane {
-    -fx-background-color: transparent;
-    -fx-border-width: 0;
 }
 
 .card-box {
