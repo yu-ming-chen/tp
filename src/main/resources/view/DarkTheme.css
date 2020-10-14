@@ -1,6 +1,6 @@
-.background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+.root {
+    -fx-background-image: url("../images/nusave-background.jpg");
+    -fx-background-color: #cec1e7;
 }
 
 .label {
@@ -90,7 +90,7 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
 }
 
 .list-cell {
@@ -133,12 +133,12 @@
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: transparent;
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
+     -fx-background-color: transparent;
+     -fx-border-color: transparent;
      -fx-border-top-width: 1px;
 }
 
@@ -146,11 +146,23 @@
     -fx-background-color: derive(#1d1d1d, 30%);
 }
 
-.result-display {
+#result-display-text-area {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
+}
+
+#result-display-text-area .content {
+    -fx-background-radius: 0;
+
+}
+
+#result-display-nusave {
+    -fx-border-radius: 20;
+    -fx-background-color: #FFFFFF;
+    -fx-border-width: 1 1 1 1;
+    -fx-border-color: #000000;
 }
 
 .result-display .label {
@@ -198,7 +210,7 @@
 }
 
 .grid-pane .stack-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: transparent;
 }
 
 .context-menu {
@@ -210,13 +222,13 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
 }
 
 .menu-bar .label {
     -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-opacity: 0.9;
 }
 
@@ -324,7 +336,12 @@
     -fx-padding: 8 1 8 1;
 }
 
-#cardPane {
+#card-pane {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+#title-placeholder {
     -fx-background-color: transparent;
     -fx-border-width: 0;
 }
@@ -350,7 +367,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: transparent, #cec1e7, transparent, #cec1e7;
     -fx-background-radius: 0;
 }
 
