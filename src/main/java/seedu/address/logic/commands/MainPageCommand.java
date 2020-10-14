@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 public abstract class MainPageCommand extends Command {
 
     /**
-     * Execution of a command that occurs in the budget page.
+     * Executes a command that occurs in the budget page.
      * @param model {@code Model} which the command should operate on.
      * @return the result executing the command
      * @throws CommandException If an error occurs during command execution.
