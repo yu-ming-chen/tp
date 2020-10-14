@@ -72,9 +72,7 @@ public interface Model {
 
     String getPageTitle();
 
-    boolean getIsExpenditure();
-
-    Optional<Integer> getBudgetIndex();
+    boolean isExpenditure();
 
     BooleanProperty getIsExpenditureProp();
 

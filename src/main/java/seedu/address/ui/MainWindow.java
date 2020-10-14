@@ -141,7 +141,7 @@ public class MainWindow extends UiPart<Stage> {
 
     void bindTitleToState() {
         title.getTitle().textProperty().bind(Bindings.createStringBinding(() -> {
-            if (logic.getIsExpenditure()) {
+            if (logic.isExpenditure()) {
                 return logic.getPageTitle();
             } else {
                 return logic.getPageTitle();

@@ -40,7 +40,7 @@ public interface Logic {
 
     String getPageTitle();
 
-    boolean getIsExpenditure();
+    boolean isExpenditure();
 
     /**
      * Set the user prefs' GUI settings.

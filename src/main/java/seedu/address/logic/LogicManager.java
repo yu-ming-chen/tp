@@ -107,7 +107,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public boolean getIsExpenditure() {
-        return this.model.getIsExpenditure();
+    public boolean isExpenditure() {
+        return this.model.isExpenditure();
     }
 }

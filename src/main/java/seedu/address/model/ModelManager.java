@@ -158,11 +158,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Optional<Integer> getBudgetIndex() {
-        return this.stateManager.getBudgetIndex();
-    }
-
-    @Override
     public Page getPage() {
         return this.stateManager.getPage();
     }
@@ -183,8 +178,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean getIsExpenditure() {
-        return this.stateManager.getIsExpenditure();
+    public boolean isExpenditure() {
+        return this.stateManager.isExpenditure();
     }
 
     @Override

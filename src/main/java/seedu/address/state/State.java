@@ -13,7 +13,7 @@ public interface State {
 
     BooleanProperty getIsExpenditureProp();
 
-    boolean getIsExpenditure();
+    boolean isExpenditure();
 
     String getPageTitle();
 

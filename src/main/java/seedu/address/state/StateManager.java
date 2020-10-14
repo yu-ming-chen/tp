@@ -39,7 +39,7 @@ public class StateManager implements State {
     }
 
     @Override
-    public boolean getIsExpenditure() {
+    public boolean isExpenditure() {
         return this.isExpenditureProp.getValue();
     }
 
