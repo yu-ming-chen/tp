@@ -30,7 +30,7 @@ public class BudgetCard extends UiPart<Region> {
     //  private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code BudgetCard} with the given {@code Budget} and index to display.
      */
     public BudgetCard(Budget budget, int displayedIndex) {
         super(FXML);

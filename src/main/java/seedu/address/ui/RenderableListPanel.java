@@ -15,20 +15,20 @@ import seedu.address.model.expenditure.Expenditure;
 /**
  * Panel containing the list of persons.
  */
-public class BudgetListPanel extends UiPart<Region> {
-    private static final String FXML = "BudgetListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(BudgetListPanel.class);
+public class RenderableListPanel extends UiPart<Region> {
+    private static final String FXML = "RenderableListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(RenderableListPanel.class);
 
     @FXML
-    private ListView<Renderable> budgetListView;
+    private ListView<Renderable> renderableListView;
 
     /**
-     * Creates a {@code BudgetListPanel} with the given {@code ObservableList}.
+     * Creates a {@code RenderableListPanel} with the given {@code ObservableList}.
      */
-    public BudgetListPanel(ObservableList<Renderable> renderableList) {
+    public RenderableListPanel(ObservableList<Renderable> renderableList) {
         super(FXML);
-        budgetListView.setItems(renderableList);
-        budgetListView.setCellFactory(listView -> new RenderableListViewCell());
+        renderableListView.setItems(renderableList);
+        renderableListView.setCellFactory(listView -> new RenderableListViewCell());
     }
 
     class RenderableListViewCell extends ListCell<Renderable> {
@@ -46,22 +46,4 @@ public class BudgetListPanel extends UiPart<Region> {
             }
         }
     }
-
-    /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
-     */
-    class BudgetListViewCell extends ListCell<Budget> {
-        @Override
-        protected void updateItem(Budget budget, boolean empty) {
-            super.updateItem(budget, empty);
-
-            if (empty || budget == null) {
-                setGraphic(null);
-                setText(null);
-            } else {
-                setGraphic(new BudgetCard(budget, getIndex() + 1).getRoot());
-            }
-        }
-    }
-
 }
