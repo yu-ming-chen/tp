@@ -11,9 +11,11 @@ import seedu.address.model.budget.Budget;
 public class CreateBudgetCommand extends MainPageCommand {
     public static final String COMMAND_WORD = "create";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Create a Budget. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a Budget \n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME ";
+            + PREFIX_NAME + "NAME \n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "Daily Expenses ";
 
     public static final String MESSAGE_SUCCESS = "Created Budget";
 

@@ -12,6 +12,10 @@ public class OpenBudgetCommand extends MainPageCommand {
 
     public static final String COMMAND_WORD = "open";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Opens a Budget \n"
+            + "Parameters: INDEX\n"
+            + "Example: " + COMMAND_WORD + " 1";
+
     public static final String MESSAGE_SUCCESS = "Opened Budget";
 
     private final BudgetIndex budgetIndex;
