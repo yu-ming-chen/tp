@@ -8,6 +8,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.budget.Budget;
 
+/**
+ * Creates a new Budget.
+ */
 public class CreateBudgetCommand extends MainPageCommand {
     public static final String COMMAND_WORD = "create";
 
@@ -21,10 +24,20 @@ public class CreateBudgetCommand extends MainPageCommand {
 
     private final Budget budget;
 
+    /**
+     * Creates a new CreateBudgetCommand to create the spcified {@code budget}
+     * @param budget the budget to be created
+     */
     public CreateBudgetCommand(Budget budget) {
         this.budget = budget;
     }
 
+    /**
+     * Executes the create budget command.
+     * @param model {@code Model} which the command should operate on.
+     * @return the commmand result along with a success message
+     * @throws CommandException If an error occurs during command execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.addBudget(budget);

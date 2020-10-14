@@ -21,12 +21,19 @@ public class DeleteBudgetCommand extends Command {
 
     /**
      * Creates a DeleteBudgetCommand to delete the specified {@code budget}
+     * @param budget the budget to be deleted
      */
     public DeleteBudgetCommand(BudgetIndex budget) {
         requireNonNull(budget);
         this.toDelete = budget;
     }
 
+    /**
+     * Executes the delete budget command.
+     * @param model {@code Model} which the command should operate on.
+     * @return the commmand result along with a success message
+     * @throws CommandException If an error occurs during command execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
