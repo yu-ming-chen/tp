@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -91,7 +92,22 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public BooleanProperty getIsExpenditureProp() {
+        return model.getIsExpenditureProp();
+    }
+
+    @Override
+    public String getPageTitle() {
+        return this.model.getPageTitle();
+    }
+
+    @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public boolean isExpenditure() {
+        return this.model.isExpenditure();
     }
 }

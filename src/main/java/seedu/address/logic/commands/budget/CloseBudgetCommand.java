@@ -5,6 +5,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.state.Page;
+import seedu.address.state.PageTitle;
 import seedu.address.state.budgetindex.EmptyBudgetIndex;
 
 public class CloseBudgetCommand extends BudgetPageCommand {
@@ -18,6 +19,8 @@ public class CloseBudgetCommand extends BudgetPageCommand {
         //stub
         model.setPage(Page.MAIN);
         model.setBudgetIndex(new EmptyBudgetIndex());
+        model.setPageName(PageTitle.MAIN_PAGE_TITLE);
+        model.setIsExpenditurePage(false);
         model.repopulateObservableList();
         return new CommandResult(MESSAGE_SUCCESS);
     }

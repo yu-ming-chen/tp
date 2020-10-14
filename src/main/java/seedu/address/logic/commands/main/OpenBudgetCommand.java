@@ -30,6 +30,9 @@ public class OpenBudgetCommand extends MainPageCommand {
         model.setBudgetIndex(budgetIndex);
         try {
             model.repopulateObservableList();
+            String pageName = model.getPageName(budgetIndex);
+            model.setPageName(pageName);
+            model.setIsExpenditurePage(true);
         } catch (CommandException e) {
             // resets the page back to MAIN since the open command did not go through
             model.setPage(Page.MAIN);
