@@ -38,10 +38,11 @@ public class ExpenditureCard extends UiPart<Region> {
         this.expenditure = expenditure;
         id.setText(displayedIndex + ". ");
         name.setText(expenditure.getName().value);
-        price.setText("$" + expenditure.getPrice().value);
-        //budget.getTags().stream()
-        //        .sorted(Comparator.comparing(tag -> tag.tagName))
-        //        .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        price.setText("$" + formatPrice(expenditure.getPrice().value));
+    }
+
+    public String formatPrice(String string) {
+        return String.format("%.2f", Double.valueOf(string));
     }
 
     @Override
