@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="NUSave" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+<!--    <Image url="@/images/address_book_32.png" />-->
   </icons>
   <scene>
     <Scene>
@@ -33,32 +33,35 @@
           </Menu>
         </MenuBar>
 
-        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="commandBoxPlaceholder" VBox.vgrow="NEVER">
           <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
+            <Insets bottom="5" left="30" right="30" top="5" />
           </padding>
         </StackPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="resultDisplayPlaceholder" minHeight="100" prefHeight="150" VBox.vgrow="SOMETIMES">
           <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
+            <Insets bottom="5" left="30" right="30" top="5" />
           </padding>
         </StackPane>
 
-        <StackPane fx:id="infoBoxPlaceholder" styleClass="pane-with-border">
+        <StackPane fx:id="infoBoxPlaceholder">
+          <padding>
+            <Insets bottom="5" left="30" right="30" top="5" />
+          </padding>
           <HBox prefHeight="100.0" prefWidth="200.0">
              <children>
-               <StackPane fx:id="mainPageInfoBoxPlaceholder" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.77" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #808080; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-width: 1; -fx-border-color: #FFFFFF;" HBox.hgrow="ALWAYS">
+               <StackPane fx:id="mainPageInfoBoxPlaceholder" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.77" prefHeight="150.0" prefWidth="200.0" styleClass="info-box" HBox.hgrow="ALWAYS">
                </StackPane>
-               <StackPane fx:id="titlePlaceholder" alignment="BOTTOM_RIGHT" prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <StackPane fx:id="titlePlaceholder" id="title-placeholder" styleClass="pane-with-border" alignment="BOTTOM_RIGHT" prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                </StackPane>
              </children>
           </HBox>
         </StackPane>
 
-        <VBox fx:id="renderableList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+        <VBox fx:id="renderableList" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
           <padding>
-            <Insets bottom="10" left="10" right="10" top="10" />
+            <Insets bottom="5" left="30" right="30" top="5" />
           </padding>
           <StackPane fx:id="renderableListPanelPlaceholder" VBox.vgrow="ALWAYS" />
         </VBox>
