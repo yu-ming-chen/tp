@@ -381,4 +381,10 @@
 .card .cell_big_label {
     -fx-font-family: "American Typewriter";
     -fx-text-fill: black;
+    -fx-font-size: 24px;
+}
+
+.card #price {
+    -fx-font-size: 36px;
+    -fx-text-fill: #6F47C2;
 }
