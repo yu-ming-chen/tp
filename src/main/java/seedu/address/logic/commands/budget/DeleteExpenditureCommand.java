@@ -12,9 +12,9 @@ import seedu.address.state.expenditureindex.ExpenditureIndex;
 public class DeleteExpenditureCommand extends Command {
     public static final String COMMAND_WORD = "del";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an Expenditure. "
-            + "Parameters: "
-            + "INDEX ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an Expenditure \n"
+            + "Parameters: INDEX \n"
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_EXPENDITURE_SUCCESS = "Deleted Expenditure";
 
