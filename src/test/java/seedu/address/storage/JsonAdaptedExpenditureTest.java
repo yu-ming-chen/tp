@@ -1,12 +1,13 @@
 package seedu.address.storage;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.exceptions.IllegalValueException;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.exceptions.IllegalValueException;
 
 class JsonAdaptedExpenditureTest {
     public static final String INVALID_NAME = "#shirt";
@@ -27,42 +28,47 @@ class JsonAdaptedExpenditureTest {
 
     /*@Test
     void toModelType_validExpenditureDetails_returnsExpenditure() {
-        
     }*/
 
     @Test
     void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(INVALID_NAME, VALID_PRICE, VALID_DATE, VALID_TAGS);
+        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(INVALID_NAME,
+                VALID_PRICE, VALID_DATE, VALID_TAGS);
         assertThrows(IllegalValueException.class, expenditure::toModelType);
     }
 
     @Test
     void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(null, VALID_PRICE, VALID_DATE, VALID_TAGS);
+        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(null,
+                VALID_PRICE, VALID_DATE, VALID_TAGS);
         assertThrows(IllegalValueException.class, expenditure::toModelType);
     }
 
     @Test
     void toModelType_invalidPrice_throwsIllegalValueException() {
-        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(VALID_NAME, INVALID_PRICE, VALID_DATE, VALID_TAGS);
+        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(VALID_NAME,
+                INVALID_PRICE, VALID_DATE, VALID_TAGS);
         assertThrows(IllegalValueException.class, expenditure::toModelType);
     }
 
     @Test
     void toModelType_nullPrice_throwsIllegalValueException() {
-        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(VALID_NAME, null, VALID_DATE, VALID_TAGS);
+        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(VALID_NAME,
+                null, VALID_DATE, VALID_TAGS);
         assertThrows(IllegalValueException.class, expenditure::toModelType);
     }
 
     @Test
     void toModelType_invalidDate_throwsIllegalValueException() {
-        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(VALID_NAME, VALID_PRICE, INVALID_DATE, VALID_TAGS);
+        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(VALID_NAME,
+                VALID_PRICE, INVALID_DATE, VALID_TAGS);
         assertThrows(IllegalValueException.class, expenditure::toModelType);
     }
 
     @Test
     void toModelType_nullDate_throwsIllegalValueException() {
-        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(VALID_NAME, VALID_PRICE, null, VALID_TAGS);
+        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(VALID_NAME,
+                VALID_PRICE, null, VALID_TAGS);
         assertThrows(IllegalValueException.class, expenditure::toModelType);
     }
 
