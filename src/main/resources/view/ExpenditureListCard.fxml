@@ -10,12 +10,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="expenditure-card" styleClass="card" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="expenditure-card" fx:id="cardPane" styleClass="card" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane id="expenditure-card-box" styleClass="card-box" HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="70.0" prefHeight="70.0" prefWidth="150.0" GridPane.columnIndex="0" >
+        <VBox alignment="CENTER_LEFT" minHeight="70.0" prefHeight="70.0" prefWidth="150.0" GridPane.columnIndex="0">
             <padding>
                 <Insets bottom="5" left="15" right="15" top="5" />
             </padding>
@@ -27,7 +27,7 @@
                     </minWidth>
                 </Label>
                 <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
-                <Region prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                <Region prefWidth="0.0" HBox.hgrow="ALWAYS" />
                 <Label id="price" fx:id="price" styleClass="cell_big_label" text="price" />
             </HBox>
             <FlowPane fx:id="tags" />
