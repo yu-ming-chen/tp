@@ -56,11 +56,11 @@
           </HBox>
         </StackPane>
 
-        <VBox fx:id="budgetList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+        <VBox fx:id="renderableList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
-          <StackPane fx:id="budgetListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+          <StackPane fx:id="renderableListPanelPlaceholder" VBox.vgrow="ALWAYS" />
         </VBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
