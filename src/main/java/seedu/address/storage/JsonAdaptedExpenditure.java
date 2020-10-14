@@ -16,6 +16,9 @@ import seedu.address.model.expenditure.Name;
 import seedu.address.model.expenditure.Price;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Jackson-friendly version of {@link Expenditure}.
+ */
 public class JsonAdaptedExpenditure {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Expenditure's %s field is missing!";
     private final String name;
@@ -52,7 +55,7 @@ public class JsonAdaptedExpenditure {
 
     /**
      * Converts this Jackson-friendly adapted expenditure object into the model's {@code Expenditure} object.
-     *
+     * @return the Expenditure object converted from Json format.
      * @throws IllegalValueException if there were any data constraints violated in the adapted expenditure.
      */
     public Expenditure toModelType() throws IllegalValueException {

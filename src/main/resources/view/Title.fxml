@@ -5,9 +5,5 @@
 
 <?import javafx.scene.control.Label?>
 <StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-      <Label fx:id="title" styleClass="result-display">
-         <font>
-            <Font name="System Bold" size="37.0" />
-         </font>
-      </Label>
+      <Label id="title" fx:id="title" />
 </StackPane>

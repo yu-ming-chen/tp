@@ -21,11 +21,14 @@ import seedu.address.model.expenditure.Name;
 import seedu.address.model.expenditure.Price;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Represents a Parser that is able to parse user inputs regarding adding expenditures.
+ */
 public class AddExpenditureCommandParser implements Parser<AddExpenditureCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the CloseBudgetCommand
-     * and returns an CloseBudgetCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddBudgetCommand
+     * and returns an AddBudgetCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddExpenditureCommand parse(String args) throws ParseException {

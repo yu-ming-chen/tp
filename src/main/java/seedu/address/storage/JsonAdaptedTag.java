@@ -35,7 +35,7 @@ class JsonAdaptedTag {
 
     /**
      * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
-     *
+     * @return the Tag object converted from Json format.
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Tag toModelType() throws IllegalValueException {

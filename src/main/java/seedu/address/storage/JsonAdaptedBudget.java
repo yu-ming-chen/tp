@@ -12,6 +12,9 @@ import seedu.address.model.budget.Budget;
 import seedu.address.model.budget.Name;
 import seedu.address.model.expenditure.Expenditure;
 
+/**
+ * Jackson-friendly version of {@link Budget}.
+ */
 public class JsonAdaptedBudget {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Budget's %s field is missing!";
@@ -42,8 +45,8 @@ public class JsonAdaptedBudget {
     }
 
     /**
-     * Converts this budget into the model's {@code Budget} object.
-     *
+     * Converts this Jackson-friendly adapted budget object into the model's {@code Budget} object.
+     * @return the Budget object converted from Json format.
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public Budget toModelType() throws IllegalValueException {
@@ -57,6 +60,9 @@ public class JsonAdaptedBudget {
 
         final Name name = new Name(budgetName);
         Budget budget = new Budget(name, new ArrayList<Expenditure>());
+
+        // converts each jsonAdaptedExpenditure into an Expenditure and adds them into the budget
+
         for (JsonAdaptedExpenditure jsonAdaptedExpenditure : expenditures) {
             Expenditure expenditure = jsonAdaptedExpenditure.toModelType();
             budget.addExpenditure(expenditure);
