@@ -15,7 +15,7 @@
 }
 
 .root {
-    -fx-background-color: linear-gradient(from 25px 25px to 500px 500px, #965CC9, #BA8CFF);
+    -fx-background-color: linear-gradient(from 25% 25% to 70% 70% , #918fdb, #D6A3DC);
 }
 
 #command-text-field {
@@ -43,7 +43,7 @@
 
 .info-box {
     -fx-background-color: #B3AADC;
-    -fx-opacity: 45%;
+    -fx-opacity: 60%;
     -fx-background-radius: 20;
 }
 
@@ -73,12 +73,14 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #E7E7E7;
+    -fx-background-radius: 10px;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
-    -fx-background-insets: 3;
+    -fx-background-color: #561179;
+    -fx-background-insets: 0;
+    -fx-background-radius: 10px;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
@@ -91,7 +93,7 @@
 }
 
 .scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
-    -fx-padding: 1 8 1 8;
+    -fx-padding: 1 4 1 4;
 }
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
