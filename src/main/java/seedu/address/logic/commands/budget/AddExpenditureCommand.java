@@ -10,6 +10,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.expenditure.Expenditure;
 
+/**
+ * Adds an expenditure to a specific Budget.
+ */
 public class AddExpenditureCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
@@ -26,17 +29,23 @@ public class AddExpenditureCommand extends Command {
     private final Expenditure toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddExpenditureCommand to add the specified {@code expenditure}
+     * @param expenditure the expenditure to be added.
      */
     public AddExpenditureCommand(Expenditure expenditure) {
         requireNonNull(expenditure);
         toAdd = expenditure;
     }
 
+    /**
+     * Executes the add expenditure command.
+     * @param model {@code Model} which the command should operate on.
+     * @return the result of the command with the success message.
+     * @throws CommandException If an error occurs during command execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         model.addExpenditure(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

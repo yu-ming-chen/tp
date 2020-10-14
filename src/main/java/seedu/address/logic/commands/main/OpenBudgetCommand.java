@@ -8,6 +8,9 @@ import seedu.address.model.Model;
 import seedu.address.state.Page;
 import seedu.address.state.budgetindex.BudgetIndex;
 
+/**
+ * Opens a budget to view and modify expenditures contained within the budget.
+ */
 public class OpenBudgetCommand extends MainPageCommand {
 
     public static final String COMMAND_WORD = "open";
@@ -20,10 +23,20 @@ public class OpenBudgetCommand extends MainPageCommand {
 
     private final BudgetIndex budgetIndex;
 
+    /**
+     * Creates an OpenBudgetCommand to open the specified {@code budget}
+     * @param budgetIndex the Index of the specific budget
+     */
     public OpenBudgetCommand(BudgetIndex budgetIndex) {
         this.budgetIndex = budgetIndex;
     }
 
+    /**
+     * Executes the open budget command, sets the current page to the budget page.
+     * @param model {@code Model} which the command should operate on.
+     * @return the commmand result along with a success message
+     * @throws CommandException If an error occurs during command execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.setPage(Page.BUDGET);

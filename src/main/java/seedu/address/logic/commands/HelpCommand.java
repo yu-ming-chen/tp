@@ -14,6 +14,11 @@ public class HelpCommand extends Command {
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
+    /**
+     * Executes the help command.
+     * @param model {@code Model} which the command should operate on.
+     * @return the commmand result along with a success message
+     */
     @Override
     public CommandResult execute(Model model) {
         return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
