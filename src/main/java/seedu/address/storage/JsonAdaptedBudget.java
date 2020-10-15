@@ -17,6 +17,8 @@ import seedu.address.model.expenditure.Expenditure;
  */
 public class JsonAdaptedBudget {
 
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Budget's %s field is missing!";
+
     private final String budgetName;
     private final List<JsonAdaptedExpenditure> expenditures = new ArrayList<>();
 
@@ -27,7 +29,9 @@ public class JsonAdaptedBudget {
     public JsonAdaptedBudget(@JsonProperty("budgetName") String budgetName,
                              @JsonProperty("expenditures") List<JsonAdaptedExpenditure> expenditures) {
         this.budgetName = budgetName;
-        this.expenditures.addAll(expenditures);
+        if (expenditures != null) {
+            this.expenditures.addAll(expenditures);
+        }
     }
 
     /**
@@ -46,8 +50,19 @@ public class JsonAdaptedBudget {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public Budget toModelType() throws IllegalValueException {
-        Budget budget = new Budget(new Name(budgetName), new ArrayList<>());
+        if (budgetName == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        }
+
+        if (!Name.isValid(budgetName)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+
+        final Name name = new Name(budgetName);
+        Budget budget = new Budget(name, new ArrayList<Expenditure>());
+
         // converts each jsonAdaptedExpenditure into an Expenditure and adds them into the budget
+
         for (JsonAdaptedExpenditure jsonAdaptedExpenditure : expenditures) {
             Expenditure expenditure = jsonAdaptedExpenditure.toModelType();
             budget.addExpenditure(expenditure);
