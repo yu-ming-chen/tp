@@ -26,7 +26,7 @@ public class AddExpenditureCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New expenditure added: %1$s";
 
-    private final Expenditure toAdd;
+    private final Expenditure expenditure;
 
     /**
      * Creates an AddExpenditureCommand to add the specified {@code expenditure}
@@ -34,7 +34,7 @@ public class AddExpenditureCommand extends Command {
      */
     public AddExpenditureCommand(Expenditure expenditure) {
         requireNonNull(expenditure);
-        toAdd = expenditure;
+        this.expenditure = expenditure;
     }
 
     /**
@@ -46,14 +46,14 @@ public class AddExpenditureCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.addExpenditure(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        model.addExpenditure(expenditure);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, expenditure));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddExpenditureCommand // instanceof handles nulls
-                && toAdd.equals(((AddExpenditureCommand) other).toAdd));
+                && expenditure.equals(((AddExpenditureCommand) other).expenditure));
     }
 }

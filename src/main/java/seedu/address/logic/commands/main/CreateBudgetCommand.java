@@ -20,7 +20,7 @@ public class CreateBudgetCommand extends MainPageCommand {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Daily Expenses ";
 
-    public static final String MESSAGE_SUCCESS = "Created Budget";
+    public static final String MESSAGE_SUCCESS = "New budget created: %1$s";
 
     private final Budget budget;
 
@@ -41,6 +41,6 @@ public class CreateBudgetCommand extends MainPageCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.addBudget(budget);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, budget));
     }
 }
