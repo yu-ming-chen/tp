@@ -37,4 +37,9 @@ public class Budget implements Renderable {
     public void deleteExpenditure(int expenditure) {
         expenditures.remove(expenditure);
     }
+
+    @Override
+    public String toString() {
+        return name.toString();
+    }
 }

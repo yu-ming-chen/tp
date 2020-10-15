@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -112,7 +113,7 @@ public class ModelManager implements Model {
         requireNonNull(budgetIndex);
         int index = budgetIndex.getBudgetIndex().orElse(-1);
         if (filteredRenderables.size() <= index) {
-            throw new CommandException(Messages.MESSAGE_INDEX_OUT_OF_BOUNDS);
+            throw new CommandException(Messages.BUDGET_MESSAGE_INDEX_OUT_OF_BOUNDS);
         }
         Budget budget = (Budget) filteredRenderables.get(index);
         nusave.deleteBudget(budget);
@@ -120,11 +121,15 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteExpenditure(ExpenditureIndex expenditure) throws CommandException {
-        requireNonNull(expenditure);
-        int expenditureIndex = expenditure.getExpenditureIndex().orElse(-1);
-        assert expenditureIndex >= 0;
-        nusave.deleteExpenditure(expenditureIndex, this.stateManager.getBudgetIndex());
+    public void deleteExpenditure(ExpenditureIndex expenditureIndex) throws CommandException {
+        requireNonNull(expenditureIndex);
+        int index = expenditureIndex.getExpenditureIndex().orElse(-1);
+        if (filteredRenderables.size() <= index) {
+            throw new CommandException(Messages.EXPENDITURE_MESSAGE_INDEX_OUT_OF_BOUNDS);
+        }
+        Expenditure expenditure = (Expenditure) filteredRenderables.get(index);
+        Optional<Integer> budgetIndex = stateManager.getBudgetIndex();
+        nusave.deleteExpenditure(expenditure, budgetIndex);
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 

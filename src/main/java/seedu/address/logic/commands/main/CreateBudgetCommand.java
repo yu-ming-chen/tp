@@ -20,16 +20,16 @@ public class CreateBudgetCommand extends MainPageCommand {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Daily Expenses ";
 
-    public static final String MESSAGE_SUCCESS = "Created Budget";
+    public static final String MESSAGE_SUCCESS = "New budget created: %1$s";
 
-    private final Budget budget;
+    private final Budget toCreate;
 
     /**
      * Creates a new CreateBudgetCommand to create the spcified {@code budget}
-     * @param budget the budget to be created
+     * @param toCreate the budget to be created
      */
-    public CreateBudgetCommand(Budget budget) {
-        this.budget = budget;
+    public CreateBudgetCommand(Budget toCreate) {
+        this.toCreate = toCreate;
     }
 
     /**
@@ -40,7 +40,7 @@ public class CreateBudgetCommand extends MainPageCommand {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        model.addBudget(budget);
-        return new CommandResult(MESSAGE_SUCCESS);
+        model.addBudget(toCreate);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toCreate));
     }
 }

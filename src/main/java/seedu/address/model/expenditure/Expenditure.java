@@ -58,4 +58,9 @@ public class Expenditure implements Renderable {
         Expenditure otherExpenditure = (Expenditure) other;
         return otherExpenditure.getName().equals(getName());
     }
+
+    @Override
+    public String toString() {
+        return name.toString();
+    }
 }

@@ -30,11 +30,11 @@ public class AddExpenditureCommand extends Command {
 
     /**
      * Creates an AddExpenditureCommand to add the specified {@code expenditure}
-     * @param expenditure the expenditure to be added.
+     * @param toAdd the expenditure to be added.
      */
-    public AddExpenditureCommand(Expenditure expenditure) {
-        requireNonNull(expenditure);
-        toAdd = expenditure;
+    public AddExpenditureCommand(Expenditure toAdd) {
+        requireNonNull(toAdd);
+        this.toAdd = toAdd;
     }
 
     /**

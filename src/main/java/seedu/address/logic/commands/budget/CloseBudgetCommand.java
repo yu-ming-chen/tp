@@ -15,7 +15,7 @@ public class CloseBudgetCommand extends BudgetPageCommand {
 
     public static final String COMMAND_WORD = "close";
 
-    public static final String MESSAGE_SUCCESS = "Closed Budget";
+    public static final String MESSAGE_SUCCESS = "Closed budget.";
 
     /**
      * Executes the close budget command and sets the current page to be the Main Page.

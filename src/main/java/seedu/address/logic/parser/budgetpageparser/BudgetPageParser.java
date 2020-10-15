@@ -56,7 +56,7 @@ public class BudgetPageParser implements PageParser {
             return new ExitCommand();
         }
         default: {
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            throw new ParseException(String.format(MESSAGE_UNKNOWN_COMMAND, HelpCommand.MESSAGE_USAGE));
         }
         }
     }
