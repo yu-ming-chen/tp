@@ -15,7 +15,7 @@ public class DeleteBudgetCommand extends Command {
             + "Parameters: INDEX\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_BUDGET_SUCCESS = "Deleted Budget";
+    public static final String MESSAGE_DELETE_BUDGET_SUCCESS = "Deleted budget.";
 
     private final BudgetIndex toDelete;
 

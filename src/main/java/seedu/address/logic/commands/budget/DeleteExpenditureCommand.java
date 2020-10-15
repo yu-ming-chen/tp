@@ -18,7 +18,7 @@ public class DeleteExpenditureCommand extends Command {
             + "Parameters: INDEX \n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_EXPENDITURE_SUCCESS = "Deleted Expenditure";
+    public static final String MESSAGE_DELETE_EXPENDITURE_SUCCESS = "Deleted expenditure.";
 
     private final ExpenditureIndex toDelete;
 
@@ -41,6 +41,6 @@ public class DeleteExpenditureCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.deleteExpenditure(toDelete);
-        return new CommandResult(MESSAGE_DELETE_EXPENDITURE_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_DELETE_EXPENDITURE_SUCCESS));
     }
 }

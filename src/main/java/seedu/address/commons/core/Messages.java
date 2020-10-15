@@ -8,5 +8,6 @@ public class Messages {
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command! \n%1$s";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INDEX_OUT_OF_BOUNDS = "The index provided is out of bounds.";
-
+    public static final String EXPENDITURE_MESSAGE_INDEX_OUT_OF_BOUNDS = "The expenditure does not exist!";
+    public static final String BUDGET_MESSAGE_INDEX_OUT_OF_BOUNDS = "The budget does not exist!";
 }

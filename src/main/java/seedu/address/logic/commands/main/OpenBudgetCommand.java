@@ -19,16 +19,16 @@ public class OpenBudgetCommand extends MainPageCommand {
             + "Parameters: INDEX\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Opened Budget";
+    public static final String MESSAGE_SUCCESS = "Opened budget.";
 
-    private final BudgetIndex budgetIndex;
+    private final BudgetIndex toOpen;
 
     /**
      * Creates an OpenBudgetCommand to open the specified {@code budget}
-     * @param budgetIndex the Index of the specific budget
+     * @param toOpen the Index of the specific budget
      */
-    public OpenBudgetCommand(BudgetIndex budgetIndex) {
-        this.budgetIndex = budgetIndex;
+    public OpenBudgetCommand(BudgetIndex toOpen) {
+        this.toOpen = toOpen;
     }
 
     /**
@@ -40,10 +40,10 @@ public class OpenBudgetCommand extends MainPageCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.setPage(Page.BUDGET);
-        model.setBudgetIndex(budgetIndex);
+        model.setBudgetIndex(toOpen);
         try {
             model.repopulateObservableList();
-            String pageName = model.getPageName(budgetIndex);
+            String pageName = model.getPageName(toOpen);
             model.setPageName(pageName);
             model.setIsExpenditurePage(true);
         } catch (CommandException e) {
@@ -51,6 +51,6 @@ public class OpenBudgetCommand extends MainPageCommand {
             model.setPage(Page.MAIN);
             throw new CommandException(Messages.MESSAGE_INDEX_OUT_OF_BOUNDS);
         }
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 }

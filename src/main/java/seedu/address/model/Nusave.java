@@ -109,15 +109,10 @@ public class Nusave implements ReadOnlyNusave {
     /**
      * Deletes an expenditure from the NUSave budget according to its index.
      */
-    public void deleteExpenditure(int expenditure, Optional<Integer> budgetIndexOpt) throws CommandException {
-        assert expenditure >= 0;
+    public void deleteExpenditure(Expenditure expenditure, Optional<Integer> budgetIndexOpt) throws CommandException {
         int budgetIndex = budgetIndexOpt.orElse(-1);
         List<Expenditure> expenditureList = budgetList.getExpenditure(budgetIndex);
-        int expenditureListSize = expenditureList.size();
-        if (expenditure >= expenditureListSize) {
-            throw new CommandException(Messages.MESSAGE_INDEX_OUT_OF_BOUNDS);
-        }
-        this.budgetList.deleteExpenditure(expenditure, budgetIndex);
+        expenditureList.remove(expenditure);
         this.internalList.remove(expenditure);
     }
 
