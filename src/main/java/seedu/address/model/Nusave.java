@@ -109,7 +109,7 @@ public class Nusave implements ReadOnlyNusave {
     /**
      * Deletes an expenditure from the NUSave budget according to its index.
      */
-    public void deleteExpenditure(Expenditure expenditure, Optional<Integer> budgetIndexOpt) throws CommandException {
+    public void deleteExpenditure(Expenditure expenditure, Optional<Integer> budgetIndexOpt) {
         int budgetIndex = budgetIndexOpt.orElse(-1);
         List<Expenditure> expenditureList = budgetList.getExpenditure(budgetIndex);
         expenditureList.remove(expenditure);
