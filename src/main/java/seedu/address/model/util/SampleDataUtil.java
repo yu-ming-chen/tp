@@ -20,8 +20,14 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Budget[] getSampleBudgets() {
         return new Budget[] {
-            new Budget(new Name("Test Name 1"), new ArrayList<>(Arrays.asList(getSampleExpenditures()))),
-            new Budget(new Name("Test Name 2"), new ArrayList<>(Arrays.asList(getSampleExpenditures())))
+            new Budget(new Name("Temasek Hall Basketball"), new ArrayList<>(Arrays.asList(getSampleExpenditures()))),
+            new Budget(new Name("Temasek Hall Marketing"), new ArrayList<>(Arrays.asList(getSampleExpenditures()))),
+            new Budget(new Name("October Budget"), new ArrayList<>(Arrays.asList(getSampleExpenditures()))),
+            new Budget(new Name("Monthly Bills"), new ArrayList<>(Arrays.asList(getSampleExpenditures()))),
+            new Budget(new Name("NUS Hackers Monthly Budget"), new ArrayList<>(Arrays.asList(getSampleExpenditures()))),
+            new Budget(new Name("NUS Fintech Society Monthly Budget"), new ArrayList<>(Arrays.asList(getSampleExpenditures()))),
+            new Budget(new Name("Tembusu College Annual DnD Fund"), new ArrayList<>(Arrays.asList(getSampleExpenditures()))),
+            new Budget(new Name("Personal Expenditure"), new ArrayList<>(Arrays.asList(getSampleExpenditures())))
         };
     }
 
@@ -30,7 +36,17 @@ public class SampleDataUtil {
             new Expenditure(new seedu.address.model.expenditure.Name("Shirt"),
                     new Price("85.50"), new Date("2020-10-10"), getTagSet("Apparel", "White")),
             new Expenditure(new seedu.address.model.expenditure.Name("Pants"),
-                    new Price("100.50"), new Date("2020-10-10"), getTagSet("Apparel", "Black"))
+                    new Price("100.50"), new Date("2020-10-10"), getTagSet("Apparel", "Black")),
+            new Expenditure(new seedu.address.model.expenditure.Name("Belt"),
+                new Price("50.90"), new Date("2020-10-10"), getTagSet("Apparel", "Brown")),
+            new Expenditure(new seedu.address.model.expenditure.Name("Shoes"),
+                    new Price("89.90"), new Date("2020-10-10"), getTagSet("Apparel", "Black")),
+            new Expenditure(new seedu.address.model.expenditure.Name("Gloves"),
+                    new Price("10.90"), new Date("2020-10-10"), getTagSet("Apparel", "Black")),
+            new Expenditure(new seedu.address.model.expenditure.Name("Watch"),
+                    new Price("369.90"), new Date("2020-10-10"), getTagSet("Apparel", "Black")),
+            new Expenditure(new seedu.address.model.expenditure.Name("Socks"),
+                    new Price("3.00"), new Date("2020-10-10"), getTagSet("Apparel", "Black")),
         };
     }
 
