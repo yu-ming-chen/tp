@@ -23,7 +23,7 @@ public class BudgetPageParser implements PageParser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
-     * Parses a user input occuring in the Budget Page into a command for execution.
+     * Parses a user input occurring in the Budget Page into a command for execution.
      *
      * @param userInput full user input string
      * @return the command based on the user input

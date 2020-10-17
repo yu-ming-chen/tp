@@ -82,7 +82,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String price} into a {@code Price}.
      * Leading and trailing whitespaces will be trimmed.
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code Price} is invalid.
      */
     public static Price parsePrice(String price) throws ParseException {
         requireNonNull(price);
