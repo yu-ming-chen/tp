@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,26 +48,39 @@ public class Nusave implements ReadOnlyNusave {
         return this.budgetList.getBudgetName(index);
     }
 
+    private void resetData(ReadOnlyNusave newData) {
+        requireNonNull(newData);
+
+        setBudgets(newData.getBudgetList());
+    }
+
+    //=========== Budget ==================================================================================
+    /**
+     * Adds a budget to the NUSave.
+     */
+    public void addBudget(Budget budget) {
+        this.budgetList.add(budget);
+        this.internalList.add(budget);
+    }
+
+    /**
+     * Deletes a budget from NUSave.
+     */
+    public void deleteBudget(Budget toRemove) {
+        this.budgetList.remove(toRemove);
+        this.internalList.remove(toRemove);
+    }
+
     private void setBudgets(List<Budget> budgets) {
         this.budgetList.setBudgets(budgets);
         this.internalList.setAll(budgets);
     }
 
-    private void resetData(ReadOnlyNusave newData) {
-        requireNonNull(newData);
-
-        setBudgets(newData.getBudgetList()); // todo: change to getBudgetsList()
+    public void deleteAllBudgets() {
+        setBudgets(new ArrayList<>());
     }
 
-    /**
-     * Adds a budget to the NUSave.
-     */
-    public void addBudget(Budget budget) {
-        // todo: fix this
-        this.budgetList.add(budget);
-        this.internalList.add(budget);
-    }
-
+    //=========== Expenditure ==================================================================================
     /**
      * Adds a expenditure to the NUSave budget according to its index.
      */
@@ -77,6 +91,17 @@ public class Nusave implements ReadOnlyNusave {
         this.budgetList.addExpenditure(expenditure, budgetIndex);
     }
 
+    /**
+     * Deletes an expenditure from the NUSave budget according to its index.
+     */
+    public void deleteExpenditure(Expenditure expenditure, Optional<Integer> budgetIndexOpt) {
+        int budgetIndex = budgetIndexOpt.orElse(-1);
+        List<Expenditure> expenditureList = budgetList.getExpenditure(budgetIndex);
+        expenditureList.remove(expenditure);
+        this.internalList.remove(expenditure);
+    }
+
+    //=========== ObservableList ==================================================================================
     /**
      * Sets the observable list displayed in UI based on the
      * current state.
@@ -96,24 +121,6 @@ public class Nusave implements ReadOnlyNusave {
             // repopulate observable list with Budgets
             this.internalList.setAll(budgetList.getBudgets());
         }
-    }
-
-    /**
-     * Deletes a budget from NUSave.
-     */
-    public void deleteBudget(Budget toRemove) {
-        this.budgetList.remove(toRemove);
-        this.internalList.remove(toRemove);
-    }
-
-    /**
-     * Deletes an expenditure from the NUSave budget according to its index.
-     */
-    public void deleteExpenditure(Expenditure expenditure, Optional<Integer> budgetIndexOpt) {
-        int budgetIndex = budgetIndexOpt.orElse(-1);
-        List<Expenditure> expenditureList = budgetList.getExpenditure(budgetIndex);
-        expenditureList.remove(expenditure);
-        this.internalList.remove(expenditure);
     }
 
     @Override
