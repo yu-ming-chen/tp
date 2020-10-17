@@ -61,6 +61,8 @@ public interface Model {
 
     void deleteBudget(BudgetIndex budget) throws CommandException;
 
+    void deleteAllBudgets();
+
     void deleteExpenditure(ExpenditureIndex expenditure) throws CommandException;
 
     void addExpenditure(Expenditure expenditure);

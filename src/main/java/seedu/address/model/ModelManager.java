@@ -121,6 +121,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteAllBudgets() {
+        nusave.deleteAllBudgets();
+        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+    }
+
+    @Override
     public void deleteExpenditure(ExpenditureIndex expenditureIndex) throws CommandException {
         requireNonNull(expenditureIndex);
         int index = expenditureIndex.getExpenditureIndex().orElse(-1);

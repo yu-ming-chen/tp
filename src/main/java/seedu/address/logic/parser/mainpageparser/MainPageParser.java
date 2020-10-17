@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.main.ClearBudgetsCommand;
 import seedu.address.logic.commands.main.CreateBudgetCommand;
 import seedu.address.logic.commands.main.DeleteBudgetCommand;
 import seedu.address.logic.commands.main.OpenBudgetCommand;
@@ -42,7 +43,9 @@ public class MainPageParser implements PageParser {
         case OpenBudgetCommand.COMMAND_WORD: {
             return new OpenBudgetCommandParser().parse(arguments);
         }
-
+        case ClearBudgetsCommand.COMMAND_WORD: {
+            return new ClearBudgetsCommand();
+        }
         case DeleteBudgetCommand.COMMAND_WORD: {
             return new DeleteBudgetCommandParser().parse(arguments);
         }
