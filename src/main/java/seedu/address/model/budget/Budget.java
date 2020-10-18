@@ -42,4 +42,9 @@ public class Budget implements Renderable {
     public String toString() {
         return name.toString();
     }
+
+    @Override
+    public boolean contains(String str) {
+        return name.value.contains(str);
+    }
 }
