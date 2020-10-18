@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Threshold {
     public static final String MESSAGE_CONSTRAINTS =
             "Thresholds can be empty or contain only numbers, and it can have at most 2 decimal places.";
-    public static final String VALIDATION_REGEX = "^$|[0-9]+(\\.[0-9][0-9])?$";
+    public static final String VALIDATION_REGEX = "^$|[0-9]+(\\.[0-9]?[0-9])?$";
     public final String value;
 
     /**
