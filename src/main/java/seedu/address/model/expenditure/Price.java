@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Price {
     public static final String MESSAGE_CONSTRAINTS =
             "Prices should only contain numbers, and it can have at most 2 decimal places.";
-    public static final String VALIDATION_REGEX = "[0-9]+(\\.[0-9][0-9])?$";
+    public static final String VALIDATION_REGEX = "[0-9]+(\\.[0-9]?[0-9])?$";
     public final String value;
 
     /**
