@@ -14,8 +14,10 @@ import seedu.address.model.expenditure.Name;
 public class FindExpenditureCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
+
+
     public static final String MESSAGE_SUCCESS =
-            "Expenditure list updated to show expenditures that contain %1$s";
+            "Expenditure list updated to show entries that contain \'%1$s\'";
 
     private final Name name;
 
@@ -39,7 +41,11 @@ public class FindExpenditureCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         String searchTerm = name.value;
-        model.updateFilteredRenderableList(renderable -> renderable.contains(searchTerm));
+        try {
+            model.updateFilteredRenderableList(renderable -> renderable.contains(searchTerm));
+        } catch (CommandException e) {
+            return new CommandResult(e.getMessage());
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, name));
     }
 

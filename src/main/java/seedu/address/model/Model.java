@@ -92,7 +92,7 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered renderable list */
     ObservableList<Renderable> getFilteredRenderableList();
 
-    void updateFilteredRenderableList(Predicate<Renderable> predicate);
+    void updateFilteredRenderableList(Predicate<Renderable> predicate) throws CommandException;
 
     void repopulateObservableList() throws CommandException;
 }

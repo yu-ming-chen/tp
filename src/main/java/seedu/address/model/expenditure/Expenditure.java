@@ -66,6 +66,7 @@ public class Expenditure implements Renderable {
 
     @Override
     public boolean contains(String str) {
-        return name.value.contains(str);
+        String nameLowerCase = name.value.toLowerCase();
+        return nameLowerCase.contains(str.toLowerCase());
     }
 }
