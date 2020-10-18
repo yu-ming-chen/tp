@@ -133,21 +133,23 @@ public class ModelManager implements Model {
         Expenditure expenditure = (Expenditure) filteredRenderables.get(index);
         Optional<Integer> budgetIndex = stateManager.getBudgetIndex();
         nusave.deleteExpenditure(expenditure, budgetIndex);
+        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
     /**
      * Adds an expenditure to the specified budget and updates the list
      * @param expenditure
      */
-    public void addExpenditure(Expenditure expenditure) {
+    public void addExpenditure(Expenditure expenditure) throws CommandException {
         requireNonNull(expenditure);
         nusave.addExpenditure(expenditure, this.stateManager.getBudgetIndex());
+        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
     @Override
     public void repopulateObservableList() throws CommandException {
         nusave.repopulateObservableList(stateManager);
-
+        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
     //=========== StateManager ================================================================================

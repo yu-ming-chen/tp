@@ -65,7 +65,7 @@ public interface Model {
 
     void deleteExpenditure(ExpenditureIndex expenditure) throws CommandException;
 
-    void addExpenditure(Expenditure expenditure);
+    void addExpenditure(Expenditure expenditure) throws CommandException;
 
     Page getPage();
 
