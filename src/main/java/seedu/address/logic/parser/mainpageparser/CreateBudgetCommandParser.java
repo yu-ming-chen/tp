@@ -2,6 +2,7 @@ package seedu.address.logic.parser.mainpageparser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 
 import java.util.ArrayList;
 import java.util.stream.Stream;
@@ -15,6 +16,7 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.budget.Name;
+import seedu.address.model.budget.Threshold;
 
 public class CreateBudgetCommandParser implements Parser<CreateBudgetCommand> {
     /**
@@ -24,7 +26,7 @@ public class CreateBudgetCommandParser implements Parser<CreateBudgetCommand> {
      */
     public CreateBudgetCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRICE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -32,7 +34,8 @@ public class CreateBudgetCommandParser implements Parser<CreateBudgetCommand> {
         }
 
         Name name = ParserUtil.parseBudgetName(argMultimap.getValue(PREFIX_NAME).get());
-        Budget budget = new Budget(name, new ArrayList<>());
+        Threshold threshold = ParserUtil.parseBudgetThreshold(argMultimap.getValue(PREFIX_PRICE).orElse(""));
+        Budget budget = new Budget(name, threshold, new ArrayList<>());
         return new CreateBudgetCommand(budget);
     }
 
