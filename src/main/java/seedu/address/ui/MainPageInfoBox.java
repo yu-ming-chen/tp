@@ -49,17 +49,13 @@ public class MainPageInfoBox extends UiPart<Region> {
         Thread clock = new Thread() {
             public void run() {
                 for (;;) {
-                    DateFormat dateFormat = new SimpleDateFormat("hh:mm a");
                     Calendar cal = Calendar.getInstance();
-                    second = cal.get(Calendar.SECOND);
-                    minute = cal.get(Calendar.MINUTE);
                     hour = cal.get(Calendar.HOUR_OF_DAY);
-                    timeText.setText(String.format("%02d", hour) + ":" + String.format("%02d", minute) + ":"
-                            + String.format("%02d", second));
+                    timeText.setText(new SimpleDateFormat("hh:mm a").format(cal.getTime()));
                     dateText.setText(new SimpleDateFormat("EEE, dd MMM").format(cal.getTime()));
                     if (hour < 12) {
                         greeting = "Good Morning!";
-                    } else if (hour >= 12 && hour < 17) {
+                    } else if (hour < 17) {
                         greeting = "Good Afternoon!";
                     } else {
                         greeting = "Good Evening!";
