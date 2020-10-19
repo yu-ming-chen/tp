@@ -75,6 +75,10 @@
     -fx-padding: 0em 0.583em 0.8em 0em;
 }
 
+.list-cell:selected .created-on{
+    -fx-text-fill: #000000;
+}
+
 .scroll-bar {
     -fx-background-color: #E7E7E7;
     -fx-background-radius: 10px;

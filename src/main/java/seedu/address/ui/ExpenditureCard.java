@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
 import java.text.SimpleDateFormat;
-
 import java.util.Comparator;
 
 import javafx.fxml.FXML;

@@ -28,9 +28,17 @@
                         </minWidth>
                     </Label>
                     <VBox>
-                        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+                        <Label fx:id="name" styleClass="cell_big_label" />
                         <HBox>
-                            <Label fx:id="createdOn"/>
+                            <Label fx:id="createdOn" styleClass="created-on">
+                                <padding>
+                                    <Insets bottom="0" left="0" right="7" top="0" />
+                                </padding>
+                                <minWidth>
+                                    <!-- Ensures that the label text is never truncated -->
+                                    <Region fx:constant="USE_PREF_SIZE" />
+                                </minWidth>
+                            </Label>
                             <FlowPane fx:id="tags"/>
                         </HBox>
                     </VBox>
