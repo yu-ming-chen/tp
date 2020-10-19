@@ -35,10 +35,9 @@ public class FindExpenditureCommand extends Command {
      * Executes the find expenditure command.
      * @param model {@code Model} which the command should operate on.
      * @return the result of the command with the success message.
-     * @throws CommandException If an error occurs during command execution.
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         String searchTerm = name.value;
         try {
