@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_EXPENDITURES_FOUND;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
@@ -104,8 +105,6 @@ public class ModelManager implements Model {
     public void addBudget(Budget budget) {
         requireNonNull(budget);
         nusave.addBudget(budget);
-        // might not be necessary, only for filter feature
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
     @Override
@@ -117,13 +116,11 @@ public class ModelManager implements Model {
         }
         Budget budget = (Budget) filteredRenderables.get(index);
         nusave.deleteBudget(budget);
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
     @Override
     public void deleteAllBudgets() {
         nusave.deleteAllBudgets();
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
     @Override
@@ -143,7 +140,7 @@ public class ModelManager implements Model {
      * Adds an expenditure to the specified budget and updates the list
      * @param expenditure
      */
-    public void addExpenditure(Expenditure expenditure) {
+    public void addExpenditure(Expenditure expenditure) throws CommandException {
         requireNonNull(expenditure);
         nusave.addExpenditure(expenditure, this.stateManager.getBudgetIndex());
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
@@ -152,7 +149,7 @@ public class ModelManager implements Model {
     @Override
     public void repopulateObservableList() throws CommandException {
         nusave.repopulateObservableList(stateManager);
-
+        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
     //=========== StateManager ================================================================================
@@ -220,8 +217,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredRenderableList(Predicate<Renderable> predicate) {
+    public void updateFilteredRenderableList(Predicate<Renderable> predicate) throws CommandException {
         requireNonNull(predicate);
         filteredRenderables.setPredicate(predicate);
+        if (filteredRenderables.size() == 0) {
+            throw new CommandException(MESSAGE_NO_EXPENDITURES_FOUND);
+        }
     }
 }

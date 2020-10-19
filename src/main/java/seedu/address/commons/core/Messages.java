@@ -10,4 +10,5 @@ public class Messages {
     public static final String MESSAGE_INDEX_OUT_OF_BOUNDS = "The index provided is out of bounds.";
     public static final String EXPENDITURE_MESSAGE_INDEX_OUT_OF_BOUNDS = "The expenditure does not exist!";
     public static final String BUDGET_MESSAGE_INDEX_OUT_OF_BOUNDS = "The budget does not exist!";
+    public static final String MESSAGE_NO_EXPENDITURES_FOUND = "No expenditures matched the search term.";
 }
