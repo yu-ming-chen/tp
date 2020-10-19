@@ -4,16 +4,19 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.address.model.budget.Budget;
+import seedu.address.model.budget.Date;
 import seedu.address.model.budget.Name;
 import seedu.address.model.budget.Threshold;
 import seedu.address.model.expenditure.Expenditure;
 
 public class BudgetBuilder {
     public static final String DEFAULT_NAME = "BREAKFAST";
+    public static final String DEFAULT_CREATED_ON = "2020-10-10";
     public static final Optional<Threshold> DEFAULT_THRESHOLD = Optional.of(new Threshold("100"));
     public static final List<Expenditure> DEFAULT_EXPENDITURES = TypicalExpenditures.getTypicalExpenditures();
 
     private Name name;
+    private Date createdOn;
     private Optional<Threshold> threshold;
     private List<Expenditure> expenditures;
 
@@ -22,6 +25,7 @@ public class BudgetBuilder {
      */
     public BudgetBuilder() {
         name = new Name(DEFAULT_NAME);
+        createdOn = new Date(DEFAULT_CREATED_ON);
         threshold = DEFAULT_THRESHOLD;
         expenditures = DEFAULT_EXPENDITURES;
     }
@@ -31,6 +35,7 @@ public class BudgetBuilder {
      */
     public BudgetBuilder(Budget budgetToCopy) {
         name = budgetToCopy.getName();
+        createdOn = budgetToCopy.getCreatedOn();
         threshold = budgetToCopy.getThreshold();
         expenditures = budgetToCopy.getExpenditures();
     }
@@ -51,6 +56,14 @@ public class BudgetBuilder {
     }
 
     /**
+     * Sets the {@code createdOn} of the {@code Budget} that we are building.
+     */
+    public BudgetBuilder withCreatedOn(String createdOn) {
+        this.createdOn = new Date(createdOn);
+        return this;
+    }
+
+    /**
      * Sets the {@code threshold} of the {@code Budget} that we are building.
      */
     public BudgetBuilder withThreshold(Optional<Threshold> threshold) {
@@ -67,6 +80,6 @@ public class BudgetBuilder {
     }
 
     public Budget build() {
-        return new Budget(name, threshold, expenditures);
+        return new Budget(name, createdOn, threshold, expenditures);
     }
 }

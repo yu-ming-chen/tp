@@ -47,9 +47,9 @@ public class ModelManager implements Model {
 
         this.nusave = new Nusave(nusave);
         this.userPrefs = new UserPrefs(userPrefs);
-        sortAllBudgetByCreatedDate();
         this.filteredRenderables = new FilteredList<>(this.nusave.getInternalList());
         this.stateManager = new StateManager(new EmptyBudgetIndex(), Page.MAIN, PageTitle.MAIN_PAGE_TITLE);
+        sortAllBudgetByCreatedDate();
     }
     /**
      * Initializes a new ModelManager.
