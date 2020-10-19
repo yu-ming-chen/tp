@@ -51,7 +51,6 @@ public class LogicManager implements Logic {
         Command command;
         CommandResult commandResult;
 
-
         Page currentPage = this.model.getPage();
         switch (currentPage) {
         case MAIN:
