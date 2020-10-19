@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.budget;
+package seedu.address.logic.commands.main;
 
 import static java.util.Objects.requireNonNull;
 
@@ -6,16 +6,13 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.expenditure.Name;
+import seedu.address.model.budget.Name;
 
-/**
- * Filters a budget book to find specific expenditures matching a search term.
- */
-public class FindExpenditureCommand extends Command {
+public class FindBudgetCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_SUCCESS =
-            "Expenditure list updated to show entries that contain \'%1$s\'";
+            "List of Budgets updated to show entries that contain \'%1$s\'";
 
     private final Name name;
 
@@ -24,7 +21,7 @@ public class FindExpenditureCommand extends Command {
      * the specified {@code name}.
      * @param name the name of the expenditure to be searched.
      */
-    public FindExpenditureCommand(Name name) {
+    public FindBudgetCommand(Name name) {
         requireNonNull(name);
         this.name = name;
     }
@@ -49,7 +46,7 @@ public class FindExpenditureCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindExpenditureCommand // instanceof handles nulls
-                && name.equals(((FindExpenditureCommand) other).name));
+                || (other instanceof FindBudgetCommand // instanceof handles nulls
+                && name.equals(((FindBudgetCommand) other).name));
     }
 }

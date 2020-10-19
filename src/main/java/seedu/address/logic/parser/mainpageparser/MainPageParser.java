@@ -12,6 +12,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.main.ClearBudgetsCommand;
 import seedu.address.logic.commands.main.CreateBudgetCommand;
 import seedu.address.logic.commands.main.DeleteBudgetCommand;
+import seedu.address.logic.commands.main.FindBudgetCommand;
+import seedu.address.logic.commands.main.ListBudgetCommand;
 import seedu.address.logic.commands.main.OpenBudgetCommand;
 import seedu.address.logic.parser.PageParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -51,7 +53,12 @@ public class MainPageParser implements PageParser {
         }
         case CreateBudgetCommand.COMMAND_WORD: {
             return new CreateBudgetCommandParser().parse(arguments);
-
+        }
+        case FindBudgetCommand.COMMAND_WORD: {
+            return new FindBudgetCommandParser().parse(arguments);
+        }
+        case ListBudgetCommand.COMMAND_WORD: {
+            return new ListBudgetCommand();
         }
         case HelpCommand.COMMAND_WORD: {
             return new HelpCommand();

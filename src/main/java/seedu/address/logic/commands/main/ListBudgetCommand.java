@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.budget;
+package seedu.address.logic.commands.main;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RENDERABLES;
@@ -8,10 +8,10 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
-public class ListExpenditureCommand extends Command {
+public class ListBudgetCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "All expenditures are listed.";
+    public static final String MESSAGE_SUCCESS = "All budgets are listed.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
