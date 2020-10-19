@@ -1,7 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_NO_EXPENDITURES_FOUND;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_ENTRIES_FOUND;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
@@ -221,7 +221,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredRenderables.setPredicate(predicate);
         if (filteredRenderables.size() == 0) {
-            throw new CommandException(MESSAGE_NO_EXPENDITURES_FOUND);
+            throw new CommandException(MESSAGE_NO_ENTRIES_FOUND);
         }
     }
 }
