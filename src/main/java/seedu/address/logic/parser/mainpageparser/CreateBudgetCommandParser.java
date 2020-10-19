@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.main.CreateBudgetCommand;
@@ -34,7 +35,8 @@ public class CreateBudgetCommandParser implements Parser<CreateBudgetCommand> {
         }
 
         Name name = ParserUtil.parseBudgetName(argMultimap.getValue(PREFIX_NAME).get());
-        Threshold threshold = ParserUtil.parseBudgetThreshold(argMultimap.getValue(PREFIX_PRICE).orElse(""));
+        Optional<Threshold> threshold = ParserUtil.parseBudgetThreshold(argMultimap.getValue(PREFIX_PRICE)
+                .orElse(""));
         Budget budget = new Budget(name, threshold, new ArrayList<>());
         return new CreateBudgetCommand(budget);
     }

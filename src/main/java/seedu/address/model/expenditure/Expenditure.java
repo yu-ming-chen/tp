@@ -56,7 +56,10 @@ public class Expenditure implements Renderable {
         }
 
         Expenditure otherExpenditure = (Expenditure) other;
-        return otherExpenditure.getName().equals(getName());
+        return otherExpenditure.getName().equals(getName())
+                && otherExpenditure.getPrice().equals(getPrice())
+                && otherExpenditure.getCreatedOn().equals(getCreatedOn())
+                && otherExpenditure.getTags().equals(getTags());
     }
 
     @Override

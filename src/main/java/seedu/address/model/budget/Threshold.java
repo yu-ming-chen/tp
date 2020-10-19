@@ -3,6 +3,8 @@ package seedu.address.model.budget;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Optional;
+
 public class Threshold {
     public static final String MESSAGE_CONSTRAINTS =
             "Thresholds can be empty or contain only numbers, and it can have at most 2 decimal places.";
@@ -11,8 +13,6 @@ public class Threshold {
 
     /**
      * Constructs a {@code Threshold}.
-     *
-     * @param threshold A valid threshold.
      */
     public Threshold(String threshold) {
         requireNonNull(threshold);
@@ -25,6 +25,17 @@ public class Threshold {
      */
     public static boolean isValid(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Converts {@code Threshold} into an {@code Optional<Threshold>}.
+     */
+    public Optional<Threshold> toOptional() {
+        if (value.isBlank()) {
+            return Optional.empty();
+        } else {
+            return Optional.of(this);
+        }
     }
 
     @Override

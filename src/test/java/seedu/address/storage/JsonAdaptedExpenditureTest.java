@@ -1,24 +1,32 @@
 package seedu.address.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.address.testutil.TypicalExpenditures.MC_MUFFIN;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 
 class JsonAdaptedExpenditureTest {
-    public static final String INVALID_NAME = "#shirt";
-    public static final String INVALID_PRICE = "0.100";
-    public static final String INVALID_DATE = "08-10-2020";
-    public static final List<JsonAdaptedTag> INVALID_TAGS = new ArrayList<>();
+    public static final String INVALID_NAME_BLANK = "";
+    public static final String INVALID_NAME_NON_ALPHANUMERIC = "@pple Pie";
+    public static final String INVALID_PRICE_BLANK = "";
+    public static final String INVALID_PRICE_MORE_THAN_TWO_DECIMAL_PLACES = "2.000";
+    public static final String INVALID_PRICE_NON_NUMERIC = "abc";
+    public static final String INVALID_DATE_BLANK = "";
+    public static final String INVALID_DATE_WRONG_FORMAT = "08-10-2020";
+    public static final String INVALID_TAG = "#Snacks";
 
-    public static final String VALID_NAME = "shirt";
-    public static final String VALID_PRICE = "10.10";
-    public static final String VALID_DATE = "2020-10-08";
-    public static final List<JsonAdaptedTag> VALID_TAGS = new ArrayList<>();
+    public static final String VALID_NAME = MC_MUFFIN.getName().value;
+    public static final String VALID_PRICE = MC_MUFFIN.getPrice().value;
+    public static final String VALID_DATE = MC_MUFFIN.getCreatedOn().value;
+    public static final List<JsonAdaptedTag> VALID_TAGS = MC_MUFFIN.getTags().stream().map(JsonAdaptedTag::new)
+            .collect(Collectors.toList());
 
     /*
     Todo:
@@ -26,15 +34,10 @@ class JsonAdaptedExpenditureTest {
     - toModelType_invalidTags_throwsIllegalValueException()
      */
 
-    /*@Test
-    void toModelType_validExpenditureDetails_returnsExpenditure() {
-    }*/
-
     @Test
-    void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(INVALID_NAME,
-                VALID_PRICE, VALID_DATE, VALID_TAGS);
-        assertThrows(IllegalValueException.class, expenditure::toModelType);
+    void toModelType_validExpenditureDetails_returnsExpenditure() throws IllegalValueException {
+        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(MC_MUFFIN);
+        assertEquals(MC_MUFFIN, expenditure.toModelType());
     }
 
     @Test
@@ -45,9 +48,16 @@ class JsonAdaptedExpenditureTest {
     }
 
     @Test
-    void toModelType_invalidPrice_throwsIllegalValueException() {
-        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(VALID_NAME,
-                INVALID_PRICE, VALID_DATE, VALID_TAGS);
+    void toModelType_invalidNameBlank_throwsIllegalValueException() {
+        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(INVALID_NAME_BLANK,
+                VALID_PRICE, VALID_DATE, VALID_TAGS);
+        assertThrows(IllegalValueException.class, expenditure::toModelType);
+    }
+
+    @Test
+    void toModelType_invalidNameNonNumeric_throwsIllegalValueException() {
+        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(INVALID_NAME_NON_ALPHANUMERIC,
+                VALID_PRICE, VALID_DATE, VALID_TAGS);
         assertThrows(IllegalValueException.class, expenditure::toModelType);
     }
 
@@ -59,9 +69,23 @@ class JsonAdaptedExpenditureTest {
     }
 
     @Test
-    void toModelType_invalidDate_throwsIllegalValueException() {
+    void toModelType_invalidPriceBlank_throwsIllegalValueException() {
         JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(VALID_NAME,
-                VALID_PRICE, INVALID_DATE, VALID_TAGS);
+                INVALID_PRICE_BLANK, VALID_DATE, VALID_TAGS);
+        assertThrows(IllegalValueException.class, expenditure::toModelType);
+    }
+
+    @Test
+    void toModelType_invalidPriceMoreThanTwoDecimalPlaces_throwsIllegalValueException() {
+        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(VALID_NAME,
+                INVALID_PRICE_MORE_THAN_TWO_DECIMAL_PLACES, VALID_DATE, VALID_TAGS);
+        assertThrows(IllegalValueException.class, expenditure::toModelType);
+    }
+
+    @Test
+    void toModelType_invalidPriceNonNumeric_throwsIllegalValueException() {
+        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(VALID_NAME,
+                INVALID_PRICE_NON_NUMERIC, VALID_DATE, VALID_TAGS);
         assertThrows(IllegalValueException.class, expenditure::toModelType);
     }
 
@@ -72,4 +96,26 @@ class JsonAdaptedExpenditureTest {
         assertThrows(IllegalValueException.class, expenditure::toModelType);
     }
 
+    @Test
+    void toModelType_invalidDateBlank_throwsIllegalValueException() {
+        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(VALID_NAME,
+                VALID_PRICE, INVALID_DATE_BLANK, VALID_TAGS);
+        assertThrows(IllegalValueException.class, expenditure::toModelType);
+    }
+
+    @Test
+    void toModelType_invalidDateWrongFormat_throwsIllegalValueException() {
+        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(VALID_NAME,
+                VALID_PRICE, INVALID_DATE_WRONG_FORMAT, VALID_TAGS);
+        assertThrows(IllegalValueException.class, expenditure::toModelType);
+    }
+
+    @Test
+    void toModelType_invalidTags_throwsIllegalValueException() {
+        List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
+        invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
+        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(VALID_NAME,
+                VALID_PRICE, VALID_DATE, invalidTags);
+        assertThrows(IllegalValueException.class, expenditure::toModelType);
+    }
 }

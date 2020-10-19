@@ -36,7 +36,7 @@ public class BudgetCard extends UiPart<Region> {
         super(FXML);
         this.budget = budget;
         id.setText(displayedIndex + ". ");
-        name.setText(budget.getName());
+        name.setText(budget.getName().value);
         //budget.getTags().stream()
         //        .sorted(Comparator.comparing(tag -> tag.tagName))
         //        .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

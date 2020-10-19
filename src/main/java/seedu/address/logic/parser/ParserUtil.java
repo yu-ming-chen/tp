@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -114,13 +115,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code budgetThreshold} is invalid.
      */
-    public static Threshold parseBudgetThreshold(String budgetThreshold) throws ParseException {
+    public static Optional<Threshold> parseBudgetThreshold(String budgetThreshold) throws ParseException {
         requireNonNull(budgetThreshold);
         String trimmedThreshold = budgetThreshold.trim();
         if (!Threshold.isValid(trimmedThreshold)) {
             throw new ParseException(Threshold.MESSAGE_CONSTRAINTS);
         }
-        return new Threshold(trimmedThreshold);
+        return new Threshold(trimmedThreshold).toOptional();
     }
 
     /**

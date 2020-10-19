@@ -75,7 +75,7 @@ public class BudgetList implements Iterable<Budget> {
         requireNonNull(budgetIndex);
         int index = budgetIndex.getBudgetIndex().orElse(-1);
         assert index >= 0;
-        return this.budgets.get(index).getName();
+        return this.budgets.get(index).getName().value;
     }
 
     public int getSize() {
