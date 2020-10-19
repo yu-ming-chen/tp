@@ -12,7 +12,7 @@ import seedu.address.state.expenditureindex.ExpenditureIndex;
  * Deletes an expenditure from a specific Budget.
  */
 public class DeleteExpenditureCommand extends Command {
-    public static final String COMMAND_WORD = "del";
+    public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an Expenditure \n"
             + "Parameters: INDEX \n"

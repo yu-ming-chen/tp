@@ -78,4 +78,9 @@ public class Budget implements Renderable {
                 && otherBudget.getThreshold().equals(getThreshold())
                 && otherBudget.getExpenditures().equals(getExpenditures());
     }
+
+    public boolean contains(String str) {
+        String nameLowerCase = name.value.toLowerCase();
+        return nameLowerCase.contains(str.toLowerCase());
+    }
 }
