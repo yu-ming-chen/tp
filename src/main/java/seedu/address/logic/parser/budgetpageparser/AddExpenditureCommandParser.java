@@ -3,9 +3,10 @@ package seedu.address.logic.parser.budgetpageparser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.time.LocalDate;
-import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.budget.AddExpenditureCommand;
@@ -33,7 +34,7 @@ public class AddExpenditureCommandParser implements Parser<AddExpenditureCommand
      */
     public AddExpenditureCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRICE);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRICE, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PRICE)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -44,7 +45,8 @@ public class AddExpenditureCommandParser implements Parser<AddExpenditureCommand
         Name name = ParserUtil.parseExpenditureName(argMultimap.getValue(PREFIX_NAME).get());
         Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
         Date date = new Date(LocalDate.now().toString());
-        Expenditure expenditure = new Expenditure(name, price, date, new HashSet<Tag>());
+        Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Expenditure expenditure = new Expenditure(name, price, date, tags);
 
         return new AddExpenditureCommand(expenditure);
     }
