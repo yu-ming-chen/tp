@@ -41,6 +41,10 @@ public class Expenditure implements Renderable {
         return createdOn;
     }
 
+    public java.util.Date getFormattedCreatedOn() {
+        return createdOn.getFormattedCreatedOn();
+    }
+
     public Set<Tag> getTags() {
         return tags;
     }

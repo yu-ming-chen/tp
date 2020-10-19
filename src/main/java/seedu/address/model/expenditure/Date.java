@@ -34,6 +34,10 @@ public class Date {
         return true;
     }
 
+    public java.util.Date getFormattedCreatedOn() {
+        return java.sql.Date.valueOf(LocalDate.parse(value));
+    }
+
     @Override
     public String toString() {
         return value;

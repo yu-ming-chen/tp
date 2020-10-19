@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.text.SimpleDateFormat;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -26,6 +28,8 @@ public class ExpenditureCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label createdOn;
+    @FXML
     private Label price;
 
 
@@ -38,7 +42,12 @@ public class ExpenditureCard extends UiPart<Region> {
         this.expenditure = expenditure;
         id.setText(displayedIndex + ". ");
         name.setText(expenditure.getName().value);
+        createdOn.setText(getFormattedCreatedOn());
         price.setText("$" + formatPrice(expenditure.getPrice().value));
+    }
+
+    private String getFormattedCreatedOn() {
+        return new SimpleDateFormat("EEE, dd MMM").format(expenditure.getFormattedCreatedOn());
     }
 
     public String formatPrice(String string) {
