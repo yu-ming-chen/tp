@@ -65,7 +65,7 @@ public interface Model {
 
     void deleteExpenditure(ExpenditureIndex expenditure) throws CommandException;
 
-    void addExpenditure(Expenditure expenditure);
+    void addExpenditure(Expenditure expenditure) throws CommandException;
 
     Page getPage();
 
@@ -92,7 +92,7 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered renderable list */
     ObservableList<Renderable> getFilteredRenderableList();
 
-    void updateFilteredRenderableList(Predicate<Renderable> predicate);
+    void updateFilteredRenderableList(Predicate<Renderable> predicate) throws CommandException;
 
     void repopulateObservableList() throws CommandException;
 }

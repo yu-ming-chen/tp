@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.budget.Threshold;
 import seedu.address.model.expenditure.Price;
 import seedu.address.model.tag.Tag;
 import seedu.address.state.budgetindex.BudgetIndex;
@@ -97,7 +99,7 @@ public class ParserUtil {
      * Parses a {@code String budgetName} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code budgetName} is invalid.
      */
     public static seedu.address.model.budget.Name parseBudgetName(String budgetName) throws ParseException {
         requireNonNull(budgetName);
@@ -106,6 +108,20 @@ public class ParserUtil {
             throw new ParseException(seedu.address.model.budget.Name.MESSAGE_CONSTRAINTS);
         }
         return new seedu.address.model.budget.Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String budgetThreshold} into a {@code Threshold}
+     *
+     * @throws ParseException if the given {@code budgetThreshold} is invalid.
+     */
+    public static Optional<Threshold> parseBudgetThreshold(String budgetThreshold) throws ParseException {
+        requireNonNull(budgetThreshold);
+        String trimmedThreshold = budgetThreshold.trim();
+        if (!Threshold.isValid(trimmedThreshold)) {
+            throw new ParseException(Threshold.MESSAGE_CONSTRAINTS);
+        }
+        return new Threshold(trimmedThreshold).toOptional();
     }
 
     /**

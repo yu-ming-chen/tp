@@ -56,11 +56,20 @@ public class Expenditure implements Renderable {
         }
 
         Expenditure otherExpenditure = (Expenditure) other;
-        return otherExpenditure.getName().equals(getName());
+        return otherExpenditure.getName().equals(getName())
+                && otherExpenditure.getPrice().equals(getPrice())
+                && otherExpenditure.getCreatedOn().equals(getCreatedOn())
+                && otherExpenditure.getTags().equals(getTags());
     }
 
     @Override
     public String toString() {
         return name.toString();
+    }
+
+    @Override
+    public boolean contains(String str) {
+        String nameLowerCase = name.value.toLowerCase();
+        return nameLowerCase.contains(str.toLowerCase());
     }
 }
