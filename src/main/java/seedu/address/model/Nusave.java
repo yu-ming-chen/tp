@@ -132,8 +132,12 @@ public class Nusave implements ReadOnlyNusave {
         return internalUnmodifiableList;
     }
 
-    public void sortBudgetList() {
-        budgetList.sortBudgetList();
+    public void sortBudgetListByName() {
+        budgetList.sortBudgetListByName();
+    }
+
+    public void sortBudgetListByCreatedDate() {
+        budgetList.sortBudgetListByCreateDate();
     }
 
 }

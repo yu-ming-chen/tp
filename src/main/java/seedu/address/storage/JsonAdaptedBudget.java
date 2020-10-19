@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.budget.Budget;
+import seedu.address.model.budget.Date;
 import seedu.address.model.budget.Name;
 import seedu.address.model.budget.Threshold;
 import seedu.address.model.expenditure.Expenditure;
@@ -23,16 +25,19 @@ public class JsonAdaptedBudget {
 
     private final String name;
     private final String threshold;
+    private final String createdOn;
     private final List<JsonAdaptedExpenditure> expenditures = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableBudget} with the given expenditures.
      */
     @JsonCreator
-    public JsonAdaptedBudget(@JsonProperty("name") String name, @JsonProperty("threshold") String threshold,
+    public JsonAdaptedBudget(@JsonProperty("name") String name, @JsonProperty("createdOn") String createdOn,
+                             @JsonProperty("threshold") String threshold,
                              @JsonProperty("expenditures") List<JsonAdaptedExpenditure> expenditures) {
         this.name = name;
         this.threshold = threshold;
+        this.createdOn = createdOn;
         this.expenditures.addAll(expenditures);
     }
 
@@ -42,6 +47,7 @@ public class JsonAdaptedBudget {
     public JsonAdaptedBudget(Budget source) {
         name = source.getName().value;
         threshold = source.getThreshold().orElse(new Threshold("")).value;
+        createdOn = source.getCreatedOn().value;
         expenditures.addAll(source.getExpenditures().stream()
                 .map(JsonAdaptedExpenditure::new)
                 .collect(Collectors.toList()));
@@ -71,7 +77,16 @@ public class JsonAdaptedBudget {
         }
         final Optional<Threshold> budgetThreshold = Optional.of(new Threshold(threshold));
 
-        Budget budget = new Budget(budgetName, budgetThreshold, new ArrayList<Expenditure>());
+        if (createdOn == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
+        }
+
+        if (!Date.isValid(createdOn)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+        final Date date = new Date(createdOn);
+
+        Budget budget = new Budget(budgetName, date, budgetThreshold, new ArrayList<Expenditure>());
 
         // converts each jsonAdaptedExpenditure into an Expenditure and adds them into the budget
 
