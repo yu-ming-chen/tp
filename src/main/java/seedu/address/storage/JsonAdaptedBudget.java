@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -32,17 +33,15 @@ public class JsonAdaptedBudget {
                              @JsonProperty("expenditures") List<JsonAdaptedExpenditure> expenditures) {
         this.name = name;
         this.threshold = threshold;
-        if (expenditures != null) {
-            this.expenditures.addAll(expenditures);
-        }
+        this.expenditures.addAll(expenditures);
     }
 
     /**
      * Converts a given {@code Budget} into this class for Jackson use.
      */
     public JsonAdaptedBudget(Budget source) {
-        name = source.getName();
-        threshold = source.getThreshold();
+        name = source.getName().value;
+        threshold = source.getThreshold().orElse(new Threshold("")).value;
         expenditures.addAll(source.getExpenditures().stream()
                 .map(JsonAdaptedExpenditure::new)
                 .collect(Collectors.toList()));
@@ -63,10 +62,14 @@ public class JsonAdaptedBudget {
         }
         final Name budgetName = new Name(name);
 
+        if (threshold == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Threshold.class.getSimpleName()));
+        }
         if (!Threshold.isValid(threshold)) {
             throw new IllegalValueException(Threshold.MESSAGE_CONSTRAINTS);
         }
-        final Threshold budgetThreshold = new Threshold(threshold);
+        final Optional<Threshold> budgetThreshold = Optional.of(new Threshold(threshold));
 
         Budget budget = new Budget(budgetName, budgetThreshold, new ArrayList<Expenditure>());
 
@@ -76,6 +79,7 @@ public class JsonAdaptedBudget {
             Expenditure expenditure = jsonAdaptedExpenditure.toModelType();
             budget.addExpenditure(expenditure);
         }
+
         return budget;
     }
 }

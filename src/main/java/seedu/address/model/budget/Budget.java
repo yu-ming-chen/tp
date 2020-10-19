@@ -31,19 +31,19 @@ public class Budget implements Renderable {
      * @param threshold
      * @param expenditures
      */
-    public Budget(Name name, Threshold threshold, List<Expenditure> expenditures) {
+    public Budget(Name name, Optional<Threshold> threshold, List<Expenditure> expenditures) {
         requireAllNonNull(name, expenditures, threshold);
         this.name = name;
-        this.threshold = Optional.of(threshold);
+        this.threshold = threshold;
         this.expenditures = expenditures;
     }
 
-    public String getName() {
-        return name.value;
+    public Name getName() {
+        return name;
     }
 
-    public String getThreshold() {
-        return threshold.orElse(new Threshold("")).value;
+    public Optional<Threshold> getThreshold() {
+        return threshold;
     }
 
     public List<Expenditure> getExpenditures() {
@@ -61,5 +61,21 @@ public class Budget implements Renderable {
     @Override
     public String toString() {
         return name.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Budget)) {
+            return false;
+        }
+
+        Budget otherBudget = (Budget) other;
+        return otherBudget.getName().equals(getName())
+                && otherBudget.getThreshold().equals(getThreshold())
+                && otherBudget.getExpenditures().equals(getExpenditures());
     }
 }
