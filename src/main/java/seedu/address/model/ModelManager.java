@@ -124,6 +124,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void sortAllBudget() {
+        nusave.sortBudgetList();
+    }
+
+    @Override
     public void deleteExpenditure(ExpenditureIndex expenditureIndex) throws CommandException {
         requireNonNull(expenditureIndex);
         int index = expenditureIndex.getExpenditureIndex().orElse(-1);
