@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.text.SimpleDateFormat;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -8,7 +9,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.expenditure.Expenditure;
-
 
 public class ExpenditureCard extends UiPart<Region> {
     private static final String FXML = "ExpenditureListCard.fxml";
@@ -30,6 +30,8 @@ public class ExpenditureCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label createdOn;
+    @FXML
     private Label price;
     @FXML
     private FlowPane tags;
@@ -44,10 +46,15 @@ public class ExpenditureCard extends UiPart<Region> {
         this.expenditure = expenditure;
         id.setText(displayedIndex + ". ");
         name.setText(expenditure.getName().value);
+        createdOn.setText(getFormattedCreatedOn());
         price.setText("$" + formatPrice(expenditure.getPrice().value));
         expenditure.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    private String getFormattedCreatedOn() {
+        return new SimpleDateFormat("EEE, dd MMM").format(expenditure.getFormattedCreatedOn());
     }
 
     public String formatPrice(String string) {
