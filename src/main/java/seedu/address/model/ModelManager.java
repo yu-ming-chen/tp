@@ -49,10 +49,14 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredRenderables = new FilteredList<>(this.nusave.getInternalList());
         this.stateManager = new StateManager(new EmptyBudgetIndex(), Page.MAIN, PageTitle.MAIN_PAGE_TITLE);
+        sortAllBudgetByCreatedDate();
     }
-
+    /**
+     * Initializes a new ModelManager.
+     */
     public ModelManager() {
         this(new Nusave(), new UserPrefs());
+        sortAllBudgetByCreatedDate();
     }
 
     //=========== UserPrefs ==================================================================================
@@ -124,8 +128,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortAllBudget() {
-        nusave.sortBudgetList();
+    public void sortAllBudgetByName() {
+        nusave.sortBudgetListByName();
+    }
+
+    @Override
+    public void sortAllBudgetByCreatedDate() {
+        nusave.sortBudgetListByCreatedDate();
     }
 
     @Override

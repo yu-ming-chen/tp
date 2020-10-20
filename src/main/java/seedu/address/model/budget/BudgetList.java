@@ -9,6 +9,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.SortBudgetByCreateDate;
 import seedu.address.model.SortBudgetByName;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.state.budgetindex.BudgetIndex;
@@ -107,8 +108,12 @@ public class BudgetList implements Iterable<Budget> {
         return internalUnmodifiableList;
     }
 
-    public void sortBudgetList() {
+    public void sortBudgetListByName() {
         budgets.sort(new SortBudgetByName());
+    }
+
+    public void sortBudgetListByCreateDate() {
+        budgets.sort(new SortBudgetByCreateDate());
     }
 
     @Override

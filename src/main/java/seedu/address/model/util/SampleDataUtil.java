@@ -21,20 +21,28 @@ public class SampleDataUtil {
     public static Budget[] getSampleBudgets() {
         return new Budget[] {
             new Budget(new Name("Temasek Hall Basketball"),
+                    new seedu.address.model.budget.Date("2020-10-10"),
                     new ArrayList<>(Arrays.asList(getSampleExpenditures()))),
             new Budget(new Name("Temasek Hall Marketing"),
+                    new seedu.address.model.budget.Date("2020-10-11"),
                     new ArrayList<>(Arrays.asList(getSampleExpenditures()))),
             new Budget(new Name("October Budget"),
+                    new seedu.address.model.budget.Date("2020-10-10"),
                     new ArrayList<>(Arrays.asList(getSampleExpenditures()))),
             new Budget(new Name("Monthly Bills"),
+                    new seedu.address.model.budget.Date("2020-10-12"),
                     new ArrayList<>(Arrays.asList(getSampleExpenditures()))),
             new Budget(new Name("NUS Hackers Monthly Budget"),
+                    new seedu.address.model.budget.Date("2020-10-18"),
                     new ArrayList<>(Arrays.asList(getSampleExpenditures()))),
             new Budget(new Name("NUS Fintech Society Monthly Budget"),
+                    new seedu.address.model.budget.Date("2020-10-15"),
                     new ArrayList<>(Arrays.asList(getSampleExpenditures()))),
             new Budget(new Name("Tembusu College Annual DnD Fund"),
+                    new seedu.address.model.budget.Date("2020-10-11"),
                     new ArrayList<>(Arrays.asList(getSampleExpenditures()))),
             new Budget(new Name("Personal Expenditure"),
+                    new seedu.address.model.budget.Date("2020-10-01"),
                     new ArrayList<>(Arrays.asList(getSampleExpenditures())))
         };
     }

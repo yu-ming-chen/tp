@@ -23,7 +23,7 @@ public class SortBudgetCommand extends MainPageCommand {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        model.sortAllBudget();
+        model.sortAllBudgetByName();
         model.repopulateObservableList();
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
