@@ -42,6 +42,10 @@
     -fx-background-color: transparent;
 }
 
+#result-display-text-area .scroll-bar, #result-display-text-area .scroll-bar .thumb {
+    -fx-background-color: transparent;
+}
+
 .info-box {
     -fx-background-color: #B3AADC;
     -fx-opacity: 60%;
@@ -76,7 +80,7 @@
 }
 
 .list-cell:selected .created-on{
-    -fx-text-fill: #000000;
+    -fx-text-fill: black;
 }
 
 .scroll-bar {
@@ -125,15 +129,20 @@
     -fx-text-fill: #6F47C2;
 }
 
+.created-on {
+    -fx-font-family: "Lato-Light";
+}
+
 #tags {
     -fx-hgap: 5;
     -fx-vgap: 3;
 }
 
 #tags .label {
+    -fx-font-family: "Lato-Light";
     -fx-text-fill: white;
     -fx-background-color: #AF8FF1;
     -fx-padding: 2 4 2 4;
     -fx-background-radius: 30px;
-    -fx-font-size: 9;
+    -fx-font-size: 10;
 }
