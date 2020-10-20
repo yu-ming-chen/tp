@@ -39,7 +39,7 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyNusave nusave, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyNusave nusave, ReadOnlyUserPrefs userPrefs) throws CommandException {
         super();
         requireAllNonNull(nusave, userPrefs);
 
@@ -54,9 +54,8 @@ public class ModelManager implements Model {
     /**
      * Initializes a new ModelManager.
      */
-    public ModelManager() {
+    public ModelManager() throws CommandException {
         this(new Nusave(), new UserPrefs());
-        sortAllBudgetByCreatedDate();
     }
 
     //=========== UserPrefs ==================================================================================
@@ -133,8 +132,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortAllBudgetByCreatedDate() {
+    public void sortAllBudgetByCreatedDate() throws CommandException {
         nusave.sortBudgetListByCreatedDate();
+        nusave.repopulateObservableList(stateManager);
     }
 
     @Override
