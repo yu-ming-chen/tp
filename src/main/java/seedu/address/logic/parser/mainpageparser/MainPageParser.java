@@ -8,11 +8,11 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.main.ClearBudgetsCommand;
 import seedu.address.logic.commands.main.CreateBudgetCommand;
 import seedu.address.logic.commands.main.DeleteBudgetCommand;
 import seedu.address.logic.commands.main.FindBudgetCommand;
+import seedu.address.logic.commands.main.HelpBudgetCommand;
 import seedu.address.logic.commands.main.ListBudgetCommand;
 import seedu.address.logic.commands.main.OpenBudgetCommand;
 import seedu.address.logic.commands.main.SortBudgetCommand;
@@ -37,7 +37,7 @@ public class MainPageParser implements PageParser {
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpBudgetCommand.MESSAGE_USAGE));
         }
 
         final String commandWord = matcher.group("commandWord");
@@ -64,14 +64,14 @@ public class MainPageParser implements PageParser {
         case SortBudgetCommand.COMMAND_WORD: {
             return new SortBudgetCommand();
         }
-        case HelpCommand.COMMAND_WORD: {
-            return new HelpCommand();
+        case HelpBudgetCommand.COMMAND_WORD: {
+            return new HelpBudgetCommand();
         }
         case ExitCommand.COMMAND_WORD: {
             return new ExitCommand();
         }
         default: {
-            throw new ParseException(String.format(MESSAGE_UNKNOWN_COMMAND, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_UNKNOWN_COMMAND, HelpBudgetCommand.MESSAGE_USAGE));
         }
         }
     }

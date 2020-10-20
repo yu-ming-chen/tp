@@ -1,4 +1,4 @@
-package seedu.address.model.expenditure;
+package seedu.address.model.budget;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -6,7 +6,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-public class Date {
+
+
+public class Date implements Comparable<Date> {
     public static final String MESSAGE_CONSTRAINTS = "Dates should be able to be parsed by LocalDate.";
 
     public final String value;
@@ -34,10 +36,6 @@ public class Date {
         return true;
     }
 
-    public java.util.Date getFormattedCreatedOn() {
-        return java.sql.Date.valueOf(LocalDate.parse(value));
-    }
-
     @Override
     public String toString() {
         return value;
@@ -53,5 +51,10 @@ public class Date {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    @Override
+    public int compareTo(Date date) {
+        return LocalDate.parse(value).compareTo(LocalDate.parse(date.value));
     }
 }
