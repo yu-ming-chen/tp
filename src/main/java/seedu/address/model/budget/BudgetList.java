@@ -101,6 +101,12 @@ public class BudgetList implements Iterable<Budget> {
     public int getIndexOfBudget(Budget budget) {
         return this.budgets.indexOf(budget);
     }
+
+    /**
+     * Edit a budget from NUSave.
+     * @param oldBudget the budget to be edited
+     * @param editedBudget edited budget to replace the old budget
+     */
     public void editBudget(Budget oldBudget, Budget editedBudget) {
         int index = this.budgets.indexOf(oldBudget);
         this.budgets.set(index, editedBudget);

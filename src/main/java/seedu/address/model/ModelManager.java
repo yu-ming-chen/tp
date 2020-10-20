@@ -120,6 +120,11 @@ public class ModelManager implements Model {
         nusave.deleteBudget(budget);
     }
 
+    /**
+     * Edit a budget from NUSave.
+     * @param oldBudget the budget to be edited
+     * @param editedBudget edited budget to replace the old budget
+     */
     @Override
     public void editBudget(Budget oldBudget, Budget editedBudget) {
         requireAllNonNull(oldBudget, editedBudget);

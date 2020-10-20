@@ -71,6 +71,11 @@ public class Nusave implements ReadOnlyNusave {
         this.internalList.remove(toRemove);
     }
 
+    /**
+     * Edit a budget from NUSave.
+     * @param oldBudget the budget to be edited
+     * @param editedBudget edited budget to replace the old budget
+     */
     public void editBudget(Budget oldBudget, Budget editedBudget) {
         int index = budgetList.getIndexOfBudget(oldBudget);
         this.budgetList.editBudget(oldBudget, editedBudget);
