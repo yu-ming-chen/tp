@@ -71,6 +71,17 @@ public class Nusave implements ReadOnlyNusave {
         this.internalList.remove(toRemove);
     }
 
+    /**
+     * Edit a budget from NUSave.
+     * @param oldBudget the budget to be edited
+     * @param editedBudget edited budget to replace the old budget
+     */
+    public void editBudget(Budget oldBudget, Budget editedBudget) {
+        int index = budgetList.getIndexOfBudget(oldBudget);
+        this.budgetList.editBudget(oldBudget, editedBudget);
+        this.internalList.set(index, editedBudget);
+    }
+
     private void setBudgets(List<Budget> budgets) {
         this.budgetList.setBudgets(budgets);
         this.internalList.setAll(budgets);
@@ -137,7 +148,7 @@ public class Nusave implements ReadOnlyNusave {
     }
 
     public void sortBudgetListByCreatedDate() {
-        budgetList.sortBudgetListByCreateDate();
+        this.budgetList.sortBudgetListByCreateDate();
     }
 
     /**

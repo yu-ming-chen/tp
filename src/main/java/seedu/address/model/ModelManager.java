@@ -42,10 +42,9 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyNusave nusave, ReadOnlyUserPrefs userPrefs) throws CommandException {
         super();
         requireAllNonNull(nusave, userPrefs);
-
-        logger.fine("Initializing with address book: " + nusave + " and user prefs " + userPrefs);
-
+        logger.fine("Initializing with NUSave: " + nusave + " and user prefs " + userPrefs);
         this.nusave = new Nusave(nusave);
+
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredRenderables = new FilteredList<>(this.nusave.getInternalList());
         this.stateManager = new StateManager(new EmptyBudgetIndex(), Page.MAIN, PageTitle.MAIN_PAGE_TITLE);
@@ -119,6 +118,17 @@ public class ModelManager implements Model {
         }
         Budget budget = (Budget) filteredRenderables.get(index);
         nusave.deleteBudget(budget);
+    }
+
+    /**
+     * Edit a budget from NUSave.
+     * @param oldBudget the budget to be edited
+     * @param editedBudget edited budget to replace the old budget
+     */
+    @Override
+    public void editBudget(Budget oldBudget, Budget editedBudget) {
+        requireAllNonNull(oldBudget, editedBudget);
+        nusave.editBudget(oldBudget, editedBudget);
     }
 
     @Override
