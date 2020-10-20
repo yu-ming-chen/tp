@@ -71,6 +71,8 @@ public interface Model {
 
     void addExpenditure(Expenditure expenditure) throws CommandException;
 
+    void sortExpenditure();
+
     Page getPage();
 
     String getPageName(BudgetIndex index);

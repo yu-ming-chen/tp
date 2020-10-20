@@ -140,4 +140,13 @@ public class Nusave implements ReadOnlyNusave {
         budgetList.sortBudgetListByCreateDate();
     }
 
+    /**
+     * sort current ExpenditureList
+     * @param state current state
+     */
+    public void sortExpenditureList(State state) {
+        int index = state.getBudgetIndex().orElse(-1);
+        budgetList.getExpenditure(index).sort(new SortExpendituresByName());
+    }
+
 }
