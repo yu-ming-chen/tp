@@ -254,9 +254,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredRenderableList(Predicate<Renderable> predicate) throws CommandException {
+    public void updateFilteredRenderableList(Predicate<Renderable> predicate) {
         requireNonNull(predicate);
         filteredRenderables.setPredicate(predicate);
+    }
+
+    @Override
+    public void findRenderable(Predicate<Renderable> predicate) throws CommandException {
+        updateFilteredRenderableList(predicate);
         if (filteredRenderables.size() == 0) {
             throw new CommandException(MESSAGE_NO_ENTRIES_FOUND);
         }
