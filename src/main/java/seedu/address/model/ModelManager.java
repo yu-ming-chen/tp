@@ -159,6 +159,13 @@ public class ModelManager implements Model {
         nusave.addExpenditure(expenditure, this.stateManager.getBudgetIndex());
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
+
+    @Override
+    public void editExpenditure(Expenditure oldExpenditure, Expenditure editedExpenditure) {
+        requireAllNonNull(oldExpenditure, editedExpenditure);
+        nusave.editExpenditure(oldExpenditure, editedExpenditure, this.stateManager.getBudgetIndex());
+    }
+
     @Override
     public void sortExpenditure() {
         nusave.sortExpenditureList(stateManager);
@@ -169,6 +176,8 @@ public class ModelManager implements Model {
         nusave.repopulateObservableList(stateManager);
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
+
+
 
     //=========== StateManager ================================================================================
 

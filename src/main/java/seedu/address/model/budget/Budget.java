@@ -61,6 +61,11 @@ public class Budget implements Renderable {
         expenditures.add(expenditure);
     }
 
+    public void editExpenditure(Expenditure oldExpenditure, Expenditure editedExpenditure) {
+        int index = expenditures.indexOf(oldExpenditure);
+        expenditures.set(index, editedExpenditure);
+    }
+
     public void deleteExpenditure(int expenditure) {
         expenditures.remove(expenditure);
     }

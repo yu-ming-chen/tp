@@ -91,6 +91,14 @@ public class Nusave implements ReadOnlyNusave {
         this.budgetList.addExpenditure(expenditure, budgetIndex);
     }
 
+    public void editExpenditure(Expenditure oldExpenditure, Expenditure editedExpenditure, Optional<Integer> budgetIndexOpt) {
+        int budgetIndex = budgetIndexOpt.orElse(-1);
+        assert budgetIndex >= 0;
+        int expenditureIndex = this.internalList.indexOf(oldExpenditure);
+        this.internalList.set(expenditureIndex, editedExpenditure);
+        this.budgetList.editExpenditure(oldExpenditure, editedExpenditure, budgetIndex);
+    }
+
     /**
      * Deletes an expenditure from the NUSave budget according to its index.
      */

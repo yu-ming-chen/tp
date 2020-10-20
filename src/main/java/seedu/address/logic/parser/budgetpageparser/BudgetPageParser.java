@@ -15,6 +15,7 @@ import seedu.address.logic.commands.budget.FindExpenditureCommand;
 import seedu.address.logic.commands.budget.HelpExpenditureCommand;
 import seedu.address.logic.commands.budget.ListExpenditureCommand;
 import seedu.address.logic.commands.budget.SortExpenditureCommand;
+import seedu.address.logic.commands.budget.*;
 import seedu.address.logic.parser.PageParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -54,6 +55,9 @@ public class BudgetPageParser implements PageParser {
         }
         case FindExpenditureCommand.COMMAND_WORD: {
             return new FindExpenditureCommandParser().parse(arguments);
+        }
+        case EditExpenditureCommand.COMMAND_WORD: {
+            return new EditExpenditureCommandParser().parse(arguments);
         }
         case ListExpenditureCommand.COMMAND_WORD: {
             return new ListExpenditureCommand();

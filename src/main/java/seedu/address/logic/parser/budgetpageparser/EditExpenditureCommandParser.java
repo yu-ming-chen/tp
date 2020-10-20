@@ -1,0 +1,56 @@
+package seedu.address.logic.parser.budgetpageparser;
+
+import seedu.address.logic.commands.budget.EditExpenditureCommand;
+import seedu.address.logic.commands.budget.EditExpenditureCommand.EditExpenditureDescriptor;
+import seedu.address.logic.parser.*;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.state.expenditureindex.ExpenditureIndex;
+
+
+import java.util.stream.Stream;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+
+public class EditExpenditureCommandParser implements Parser<EditExpenditureCommand> {
+
+    @Override
+    public EditExpenditureCommand parse(String args) throws ParseException {
+        requireNonNull(args);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRICE);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
+                && !arePrefixesPresent(argMultimap, PREFIX_PRICE)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditExpenditureCommand.MESSAGE_USAGE));
+        }
+
+        ExpenditureIndex index;
+        try {
+            index = ParserUtil.parseExpenditureIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,EditExpenditureCommand.MESSAGE_USAGE));
+        }
+
+        EditExpenditureDescriptor editExpenditureDescriptor = new EditExpenditureDescriptor();
+        if(argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            editExpenditureDescriptor.setName(ParserUtil.parseExpenditureName(argMultimap.getValue(PREFIX_NAME).get()));
+        }
+        if(argMultimap.getValue(PREFIX_PRICE).isPresent()) {
+            editExpenditureDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get()));
+        }
+
+        return new EditExpenditureCommand(index, editExpenditureDescriptor);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+}
