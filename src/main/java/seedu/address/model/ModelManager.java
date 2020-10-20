@@ -145,7 +145,6 @@ public class ModelManager implements Model {
     public void sortAllBudgetByCreatedDate() throws CommandException {
         nusave.sortBudgetListByCreatedDate();
         nusave.repopulateObservableList(stateManager);
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
     @Override
