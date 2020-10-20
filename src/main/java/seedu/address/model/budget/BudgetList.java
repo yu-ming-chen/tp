@@ -46,6 +46,17 @@ public class BudgetList implements Iterable<Budget> {
     }
 
     /**
+     * Edits an expenditure to a budget at {code: index} in budgets.
+     * @param oldExpenditure
+     * @param newExpenditure
+     * @param index
+     */
+    public void editExpenditure(Expenditure oldExpenditure, Expenditure newExpenditure, int index) {
+        Budget budget = budgets.get(index);
+        budget.editExpenditure(oldExpenditure, newExpenditure);
+    }
+
+    /**
      * Deletes an expenditure from the budget at index index in budgets.
      * @param toDelete the Expenditure object to be deleted.
      * @param index the index of the budget which the expenditure will be added into.

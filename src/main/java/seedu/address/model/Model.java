@@ -73,7 +73,10 @@ public interface Model {
 
     void addExpenditure(Expenditure expenditure) throws CommandException;
 
+
     void sortExpenditure();
+
+    void editExpenditure(Expenditure oldExpenditure, Expenditure editedExpenditure);
 
     Page getPage();
 
