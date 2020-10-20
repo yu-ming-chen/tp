@@ -8,11 +8,11 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.budget.AddExpenditureCommand;
 import seedu.address.logic.commands.budget.CloseBudgetCommand;
 import seedu.address.logic.commands.budget.DeleteExpenditureCommand;
 import seedu.address.logic.commands.budget.FindExpenditureCommand;
+import seedu.address.logic.commands.budget.HelpExpenditureCommand;
 import seedu.address.logic.commands.budget.ListExpenditureCommand;
 import seedu.address.logic.parser.PageParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -35,7 +35,8 @@ public class BudgetPageParser implements PageParser {
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    HelpExpenditureCommand.MESSAGE_USAGE));
         }
 
         final String commandWord = matcher.group("commandWord");
@@ -56,14 +57,14 @@ public class BudgetPageParser implements PageParser {
         case ListExpenditureCommand.COMMAND_WORD: {
             return new ListExpenditureCommand();
         }
-        case HelpCommand.COMMAND_WORD: {
-            return new HelpCommand();
+        case HelpExpenditureCommand.COMMAND_WORD: {
+            return new HelpExpenditureCommand();
         }
         case ExitCommand.COMMAND_WORD: {
             return new ExitCommand();
         }
         default: {
-            throw new ParseException(String.format(MESSAGE_UNKNOWN_COMMAND, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_UNKNOWN_COMMAND, HelpExpenditureCommand.MESSAGE_USAGE));
         }
         }
     }
