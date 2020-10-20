@@ -15,6 +15,7 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.Nusave;
@@ -73,7 +74,7 @@ public class MainApp extends Application {
      * The data from the sample NUSave will be used instead if {@code storage}'s NUSave is not found,
      * or an empty NUSave will be used instead if errors occur when reading {@code storage}'s NUSave.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) throws CommandException {
         Optional<ReadOnlyNusave> nusaveOptional;
         ReadOnlyNusave initialData;
         try {

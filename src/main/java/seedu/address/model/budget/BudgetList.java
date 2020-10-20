@@ -98,6 +98,14 @@ public class BudgetList implements Iterable<Budget> {
         this.budgets.addAll(budgets);
     }
 
+    public int getIndexOfBudget(Budget budget) {
+        return this.budgets.indexOf(budget);
+    }
+    public void editBudget(Budget oldBudget, Budget editedBudget) {
+        int index = this.budgets.indexOf(oldBudget);
+        this.budgets.set(index, editedBudget);
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
@@ -113,7 +121,7 @@ public class BudgetList implements Iterable<Budget> {
     }
 
     public void sortBudgetListByCreateDate() {
-        budgets.sort(new SortBudgetByCreateDate());
+        this.budgets.sort(new SortBudgetByCreateDate());
     }
 
     @Override
