@@ -61,6 +61,12 @@ public class Budget implements Renderable {
         expenditures.add(expenditure);
     }
 
+    /**
+     * Edits an expenditure within the expenditures by replacing the {code: oldExpenditure}
+     * with a {code: newExpenditure}.
+     * @param oldExpenditure
+     * @param editedExpenditure
+     */
     public void editExpenditure(Expenditure oldExpenditure, Expenditure editedExpenditure) {
         int index = expenditures.indexOf(oldExpenditure);
         expenditures.set(index, editedExpenditure);

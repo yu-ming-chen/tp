@@ -1,5 +1,16 @@
 package seedu.address.logic.commands.budget;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INDEX_OUT_OF_BOUNDS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RENDERABLES;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
@@ -14,21 +25,10 @@ import seedu.address.model.expenditure.Price;
 import seedu.address.model.tag.Tag;
 import seedu.address.state.expenditureindex.ExpenditureIndex;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INDEX_OUT_OF_BOUNDS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RENDERABLES;
-
 public class EditExpenditureCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD +":Edits a Budget \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ":Edits a Budget \n"
             + "parameters: INDEX "
             + PREFIX_NAME + "NAME "
             + PREFIX_PRICE + "PRICE \n"
@@ -40,6 +40,11 @@ public class EditExpenditureCommand extends Command {
     private final ExpenditureIndex expenditureIndex;
     private final EditExpenditureDescriptor editExpenditureDescriptor;
 
+    /**
+     * Create an EditExpenditureCommand to edit the specified expenditure at {code: index}
+     * @param index
+     * @param editExpenditureDescriptor
+     */
     public EditExpenditureCommand(ExpenditureIndex index, EditExpenditureDescriptor editExpenditureDescriptor) {
         requireNonNull(index);
         requireNonNull(editExpenditureDescriptor);
@@ -53,7 +58,7 @@ public class EditExpenditureCommand extends Command {
         requireNonNull(model);
         ObservableList<Renderable> currentList = model.getFilteredRenderableList();
 
-        if(expenditureIndex.getExpenditureIndex().get() >= currentList.size()) {
+        if (expenditureIndex.getExpenditureIndex().get() >= currentList.size()) {
             throw new CommandException(MESSAGE_INDEX_OUT_OF_BOUNDS);
         }
 
@@ -65,13 +70,14 @@ public class EditExpenditureCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 
-    private static Expenditure createEditedExpenditure(Expenditure expenditureToEdit, EditExpenditureDescriptor editExpenditureDescriptor) {
+    private static Expenditure createEditedExpenditure(Expenditure expenditureToEdit,
+                                                       EditExpenditureDescriptor editExpenditureDescriptor) {
         Name name = editExpenditureDescriptor.getName().orElse(expenditureToEdit.getName());
         Price price = editExpenditureDescriptor.getPrice().orElse(expenditureToEdit.getPrice());
         Date date = editExpenditureDescriptor.getDate().orElse(expenditureToEdit.getCreatedOn());
         Set<Tag> tags = editExpenditureDescriptor.getTags().orElse(expenditureToEdit.getTags());
 
-        return new Expenditure(name,price, date, tags);
+        return new Expenditure(name, price, date, tags);
     }
 
     public static class EditExpenditureDescriptor {

@@ -1,18 +1,21 @@
 package seedu.address.logic.parser.budgetpageparser;
 
-import seedu.address.logic.commands.budget.EditExpenditureCommand;
-import seedu.address.logic.commands.budget.EditExpenditureCommand.EditExpenditureDescriptor;
-import seedu.address.logic.parser.*;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.state.expenditureindex.ExpenditureIndex;
-
-
-import java.util.stream.Stream;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+
+import java.util.stream.Stream;
+
+import seedu.address.logic.commands.budget.EditExpenditureCommand;
+import seedu.address.logic.commands.budget.EditExpenditureCommand.EditExpenditureDescriptor;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.state.expenditureindex.ExpenditureIndex;
 
 public class EditExpenditureCommandParser implements Parser<EditExpenditureCommand> {
 
@@ -32,15 +35,18 @@ public class EditExpenditureCommandParser implements Parser<EditExpenditureComma
         try {
             index = ParserUtil.parseExpenditureIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,EditExpenditureCommand.MESSAGE_USAGE));
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditExpenditureCommand.MESSAGE_USAGE));
         }
 
         EditExpenditureDescriptor editExpenditureDescriptor = new EditExpenditureDescriptor();
-        if(argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editExpenditureDescriptor.setName(ParserUtil.parseExpenditureName(argMultimap.getValue(PREFIX_NAME).get()));
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            editExpenditureDescriptor.setName(
+                    ParserUtil.parseExpenditureName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        if(argMultimap.getValue(PREFIX_PRICE).isPresent()) {
-            editExpenditureDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get()));
+        if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
+            editExpenditureDescriptor.setPrice(
+                    ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get()));
         }
 
         return new EditExpenditureCommand(index, editExpenditureDescriptor);
