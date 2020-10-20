@@ -66,7 +66,14 @@ public class EditExpenditureCommand extends Command {
         Expenditure editedExpenditure = createEditedExpenditure(toEdit, editExpenditureDescriptor);
 
         model.editExpenditure(toEdit, editedExpenditure);
-        model.updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+
+        if (model.getSearchTerm().isPresent()) {
+            String searchTerm = model.getSearchTerm().get();
+            model.updateFilteredRenderableList(renderable -> renderable.contains(searchTerm));
+        } else {
+            model.updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        }
+
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 
