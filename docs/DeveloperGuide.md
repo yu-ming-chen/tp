@@ -126,10 +126,11 @@ that the UI automatically updates when the data in the list change.
 _{To Be Added}_
 
 ### 3.6. Storage Component
+(Contributed by Wen Hao)
+
 **API** : `Storage.java`
 
 The `Storage` component:
-(Contributed by Wen Hao)
 * Can save `UserPref` objects in json format and read it back.
 * Can save all NUSave data in json format and read it back.
 
