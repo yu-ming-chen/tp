@@ -126,13 +126,30 @@ that the UI automatically updates when the data in the list change.
 _{To Be Added}_
 
 ### 3.6. Storage Component
-![Structure of the Storage Component](images/StorageClassDiagram.png)
-
 **API** : `Storage.java`
 
 The `Storage` component:
+(Contributed by Wen Hao)
 * Can save `UserPref` objects in json format and read it back.
-* Can also can save the budget data in json format and read it back.
+* Can save all NUSave data in json format and read it back.
+
+![Structure of the storage component](images/StorageClassDiagram.png)
+
+Figure 3.6.1: Structure of the storage component.
+
+The `Storage` component uses the Jackson API to convert Plain Old Java Objects (POJOs) into JSON files which are then
+stored locally. It uses the same API to read existing JSON files during the launch of the application to load the stored
+data into `NUSave`. As seen in Figure 3.6.1, `JsonUserPrefsStorage` is responsible for the reading and writing of
+`UserPref` objects and contains the file path of its JSON file. `JsonNusaveStorage` is responsible for the
+reading and writing of all NUSave data and contains the file path of its JSON file.
+
+![Structure of the data stored by NUSave](images/PojoClassDiagram.png)
+
+Figure 3.6.2: Structure of the data stored by NUSave.
+
+In order for them to be recognised by the Jackson API, NUSave data objects (such as `Budget` and `Expenditure`) must be
+converted into POJOs. Figure 3.6.2 depicts how the respective POJO classes for each of the data objects interact with
+one another.
 
 ### Common Classes
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
