@@ -10,8 +10,11 @@ import seedu.address.model.Model;
  */
 public class SortBudgetCommand extends MainPageCommand {
     public static final String COMMAND_WORD = "sort";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": sorts budgets by name.";
+    public static final String SYNTAX = COMMAND_WORD;
+    public static final String DESCRIPTION = "Sorts budget by name.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n"
+            + "Usage: " + SYNTAX + "\n"
+            + "Description: " + DESCRIPTION + "\n";
 
     public static final String MESSAGE_SUCCESS = "Sorted budgets by name.";
 

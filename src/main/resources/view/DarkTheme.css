@@ -83,6 +83,10 @@
     -fx-text-fill: black;
 }
 
+.list-cell:selected .expenditure-size{
+    -fx-text-fill: black;
+}
+
 .scroll-bar {
     -fx-background-color: #E7E7E7;
     -fx-background-radius: 10px;

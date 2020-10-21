@@ -13,14 +13,15 @@ import seedu.address.model.budget.Budget;
  */
 public class CreateBudgetCommand extends MainPageCommand {
     public static final String COMMAND_WORD = "create";
-    public static final String SYNTAX = "create " + PREFIX_NAME + "NAME " + "(" + PREFIX_PRICE + "THRESHOLD)";
+    public static final String SYNTAX = COMMAND_WORD + " " + PREFIX_NAME + "NAME " + "(" + PREFIX_PRICE + "THRESHOLD)";
     public static final String DESCRIPTION = "Creates a budget.";
-    public static final String MESSAGE_USAGE = "Usage: " + SYNTAX + "\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n"
+            + "Usage: " + SYNTAX + "\n"
             + "Description: " + DESCRIPTION + "\n"
             + "Parameters: " + PREFIX_NAME + "NAME\n"
             + "                            " + PREFIX_PRICE + "THRESHOLD " + "(Optional)\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Daily Expenses " + PREFIX_PRICE + "200\n"
-            + "                     " + COMMAND_WORD + " " + PREFIX_NAME + "Daily Expenses";
+            + "                     " + COMMAND_WORD + " " + PREFIX_NAME + "Daily Expenses\n";
 
     public static final String MESSAGE_SUCCESS = "Created a new budget: %1$s";
 

@@ -3,6 +3,7 @@ package seedu.address.logic.commands.budget;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -18,15 +19,19 @@ public class AddExpenditureCommand extends Command {
     public static final String DESCRIPTION = "Adds a new expenditure to the budget.";
     public static final String SYNTAX = COMMAND_WORD + " "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PRICE + "PRICE";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "\n"
-            + "Description: " + DESCRIPTION
-            + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PRICE + "PRICE \n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PRICE + "10 ";
+            + PREFIX_PRICE + "PRICE "
+            + "(" + PREFIX_TAG + "TAG)";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n"
+            + "Usage: " + SYNTAX + "\n"
+            + "Description: " + DESCRIPTION + "\n"
+            + "Parameters: " + PREFIX_NAME + "NAME\n"
+            + "                            " + PREFIX_PRICE + "PRICE\n"
+            + "                            " + PREFIX_TAG + "TAG " + "(Optional)\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "White Collared Shirt " + PREFIX_PRICE + "25\n"
+            + "                     " + COMMAND_WORD + " " + PREFIX_NAME + "Navy Blue Tie " + PREFIX_PRICE + "15 "
+            + PREFIX_TAG + "Apparel " + PREFIX_TAG + "Blue" + "\n";
+
 
     public static final String MESSAGE_SUCCESS = "Added a new expenditure: %1$s";
 
