@@ -1,7 +1,6 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_NO_ENTRIES_FOUND;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
@@ -14,7 +13,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.expenditure.Expenditure;
@@ -106,7 +104,6 @@ public class ModelManager implements Model {
 
     //=========== Budgets =======
 
-
     @Override
     public void openBudget(BudgetIndex budgetIndex) {
         requireNonNull(budgetIndex);
@@ -114,6 +111,7 @@ public class ModelManager implements Model {
         setBudgetIndex(actualBudgetIndex);
         setPageName(getPageName(actualBudgetIndex));
         setPage(Page.BUDGET);
+        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
         repopulateObservableList();
     }
 
@@ -122,6 +120,7 @@ public class ModelManager implements Model {
         setBudgetIndex(new EmptyBudgetIndex());
         setPageName(PageTitle.MAIN_PAGE_TITLE);
         setPage(Page.MAIN);
+        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
         repopulateObservableList();
     }
 
@@ -140,14 +139,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteBudget(BudgetIndex budgetIndex) throws CommandException {
+    public void deleteBudget(BudgetIndex budgetIndex) {
         requireNonNull(budgetIndex);
-        int index = budgetIndex.getBudgetIndex().orElse(-1);
-        if (filteredRenderables.size() <= index) {
-            throw new CommandException(Messages.BUDGET_MESSAGE_INDEX_OUT_OF_BOUNDS);
-        }
+        assert budgetIndex.getBudgetIndex().isPresent();
+        int index = budgetIndex.getBudgetIndex().get();
+        assert index < filteredRenderables.size();
         Budget budget = (Budget) filteredRenderables.get(index);
         nusave.deleteBudget(budget);
+        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
     /**
@@ -159,6 +158,7 @@ public class ModelManager implements Model {
     public void editBudget(Budget oldBudget, Budget editedBudget) {
         requireAllNonNull(oldBudget, editedBudget);
         nusave.editBudget(oldBudget, editedBudget);
+        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
     @Override
@@ -181,12 +181,11 @@ public class ModelManager implements Model {
     //=========== Expenditures =======
 
     @Override
-    public void deleteExpenditure(ExpenditureIndex expenditureIndex) throws CommandException {
+    public void deleteExpenditure(ExpenditureIndex expenditureIndex) {
         requireNonNull(expenditureIndex);
-        int index = expenditureIndex.getExpenditureIndex().orElse(-1);
-        if (filteredRenderables.size() <= index) {
-            throw new CommandException(Messages.EXPENDITURE_MESSAGE_INDEX_OUT_OF_BOUNDS);
-        }
+        assert expenditureIndex.getExpenditureIndex().isPresent();
+        int index = expenditureIndex.getExpenditureIndex().get();
+        assert index < filteredRenderables.size();
         Expenditure expenditure = (Expenditure) filteredRenderables.get(index);
         Optional<Integer> budgetIndex = stateManager.getBudgetIndex();
         nusave.deleteExpenditure(expenditure, budgetIndex);
@@ -207,6 +206,7 @@ public class ModelManager implements Model {
     public void editExpenditure(Expenditure oldExpenditure, Expenditure editedExpenditure) {
         requireAllNonNull(oldExpenditure, editedExpenditure);
         nusave.editExpenditure(oldExpenditure, editedExpenditure, this.stateManager.getBudgetIndex());
+        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
     @Override
@@ -222,8 +222,6 @@ public class ModelManager implements Model {
         nusave.repopulateObservableList(stateManager);
     }
 
-
-
     //=========== StateManager ================================================================================
 
     @Override
@@ -237,9 +235,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isValidBudgetIndex(BudgetIndex budgetIndex) {
+    public boolean isWithinRange(BudgetIndex budgetIndex) {
+        assert budgetIndex.getBudgetIndex().isPresent();
         int index = budgetIndex.getBudgetIndex().get();
-        assert index >= 0;
+        return index < filteredRenderables.size();
+    }
+
+    @Override
+    public boolean isWithinRange(ExpenditureIndex expenditureIndex) {
+        assert expenditureIndex.getExpenditureIndex().isPresent();
+        int index = expenditureIndex.getExpenditureIndex().get();
         return index < filteredRenderables.size();
     }
 
@@ -254,11 +259,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Optional<String> getSearchTerm() {
-        return this.stateManager.getSearchTerm();
-    }
-
-    @Override
     public String getPageName(BudgetIndex index) {
         return this.nusave.getPageName(index);
     }
@@ -269,13 +269,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isExpenditure() {
+    public boolean isBudgetPage() {
         return this.stateManager.isBudgetPage();
-    }
-
-    @Override
-    public void setIsExpenditurePage(boolean isExpenditurePage) {
-        this.stateManager.setIsBudgetPage(isExpenditurePage);
     }
 
     @Override
@@ -293,16 +288,6 @@ public class ModelManager implements Model {
         this.stateManager.setPageName(page);
     }
 
-    @Override
-    public void setSearchTerm(String searchTerm) {
-        this.stateManager.setSearchTerm(searchTerm);
-    }
-
-    @Override
-    public void clearSearchTerm() {
-        this.stateManager.clearSearchTerm();
-    }
-
     //=========== Filtered Renderable List Accessors =============================================================
 
     @Override
@@ -314,13 +299,5 @@ public class ModelManager implements Model {
     public void updateFilteredRenderableList(Predicate<Renderable> predicate) {
         requireNonNull(predicate);
         filteredRenderables.setPredicate(predicate);
-    }
-
-    @Override
-    public void findRenderable(Predicate<Renderable> predicate) throws CommandException {
-        updateFilteredRenderableList(predicate);
-        if (filteredRenderables.size() == 0) {
-            throw new CommandException(MESSAGE_NO_ENTRIES_FOUND);
-        }
     }
 }

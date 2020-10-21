@@ -76,10 +76,6 @@ public class Budget implements Renderable {
         expenditures.set(index, editedExpenditure);
     }
 
-    public void deleteExpenditure(int expenditure) {
-        expenditures.remove(expenditure);
-    }
-
     @Override
     public String toString() {
         return name.toString();
