@@ -17,6 +17,7 @@ public class ListBudgetCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n"
             + "Usage: " + SYNTAX + "\n"
             + "Description: " + DESCRIPTION + "\n";
+
     public static final String MESSAGE_SUCCESS = "Updated list of budgets to show all entries.\n";
 
     @Override

@@ -11,6 +11,11 @@ import seedu.address.model.Model;
 public class CloseBudgetCommand extends BudgetPageCommand {
 
     public static final String COMMAND_WORD = "close";
+    public static final String SYNTAX = COMMAND_WORD;
+    public static final String DESCRIPTION = "Closes the current budget.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n"
+            + "Usage: " + SYNTAX + "\n"
+            + "Description: " + DESCRIPTION + "\n";
 
     public static final String MESSAGE_SUCCESS = "Closed budget.";
 

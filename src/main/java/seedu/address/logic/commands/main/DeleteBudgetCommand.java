@@ -11,7 +11,7 @@ import seedu.address.state.budgetindex.BudgetIndex;
 public class DeleteBudgetCommand extends Command {
     public static final String COMMAND_WORD = "delete";
     public static final String SYNTAX = COMMAND_WORD + " INDEX";
-    public static final String DESCRIPTION = "Deletes a budget.";
+    public static final String DESCRIPTION = "Deletes a budget by index.";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n"
             + "Usage: " + SYNTAX + "\n"
             + "Description: " + DESCRIPTION + "\n"

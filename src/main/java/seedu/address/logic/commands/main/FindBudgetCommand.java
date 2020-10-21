@@ -11,7 +11,7 @@ import seedu.address.model.budget.Name;
 public class FindBudgetCommand extends Command {
     public static final String COMMAND_WORD = "find";
     public static final String SYNTAX = COMMAND_WORD + " NAME";
-    public static final String DESCRIPTION = "Finds a budget by NAME.";
+    public static final String DESCRIPTION = "Finds budgets by name.";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n"
             + "Usage: " + SYNTAX + "\n"
             + "Description: " + DESCRIPTION + "\n"

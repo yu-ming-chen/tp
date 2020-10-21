@@ -10,6 +10,11 @@ import seedu.address.model.Model;
 
 public class ListExpenditureCommand extends Command {
     public static final String COMMAND_WORD = "list";
+    public static final String SYNTAX = COMMAND_WORD;
+    public static final String DESCRIPTION = "Lists all expenditures.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n"
+            + "Usage: " + SYNTAX + "\n"
+            + "Description: " + DESCRIPTION + "\n";
 
     public static final String MESSAGE_SUCCESS = "Updated list of expenditures to show all entries.";
 

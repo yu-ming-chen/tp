@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.budget;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -13,6 +14,13 @@ import seedu.address.model.expenditure.Name;
  */
 public class FindExpenditureCommand extends Command {
     public static final String COMMAND_WORD = "find";
+    public static final String SYNTAX = COMMAND_WORD + " NAME";
+    public static final String DESCRIPTION = "Finds expenditures by name.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n"
+            + "Usage: " + SYNTAX + "\n"
+            + "Description: " + DESCRIPTION + "\n"
+            + "Parameters: " + "NAME\n"
+            + "Example: " + COMMAND_WORD + " Shirt\n";
 
     public static final String MESSAGE_SUCCESS =
             "Updated list of expenditures to show entries that contain \'%1$s\'.";

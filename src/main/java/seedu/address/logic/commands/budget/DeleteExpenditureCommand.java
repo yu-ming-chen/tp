@@ -13,10 +13,13 @@ import seedu.address.state.expenditureindex.ExpenditureIndex;
  */
 public class DeleteExpenditureCommand extends Command {
     public static final String COMMAND_WORD = "delete";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an expenditure\n"
-            + "Parameters: INDEX \n"
-            + "Example: " + COMMAND_WORD + " 1";
+    public static final String SYNTAX = COMMAND_WORD + " INDEX";
+    public static final String DESCRIPTION = "Deletes an expenditure by index.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n"
+            + "Usage: " + SYNTAX + "\n"
+            + "Description: " + DESCRIPTION + "\n"
+            + "Parameters: " + "INDEX\n"
+            + "Example: " + COMMAND_WORD + " 1\n";
 
     public static final String MESSAGE_DELETE_EXPENDITURE_SUCCESS = "Deleted expenditure.";
 

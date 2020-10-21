@@ -31,7 +31,7 @@ public class EditBudgetCommand extends Command {
     public static final String DESCRIPTION = "Edits a budget.";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n"
             + "Usage: " + SYNTAX + "\n"
-            + "Description: " + DESCRIPTION
+            + "Description: " + DESCRIPTION + "\n"
             + "Parameters: INDEX\n"
             + "                            " + PREFIX_NAME + "NAME " + "(Optional)\n"
             + "                            " + PREFIX_PRICE + "THRESHOLD " + "(Optional)\n"
