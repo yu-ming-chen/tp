@@ -39,7 +39,7 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyNusave nusave, ReadOnlyUserPrefs userPrefs) throws CommandException {
+    public ModelManager(ReadOnlyNusave nusave, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(nusave, userPrefs);
         logger.fine("Initializing with NUSave: " + nusave + " and user prefs " + userPrefs);
@@ -53,7 +53,7 @@ public class ModelManager implements Model {
     /**
      * Initializes a new ModelManager.
      */
-    public ModelManager() throws CommandException {
+    public ModelManager() {
         this(new Nusave(), new UserPrefs());
     }
 
@@ -91,17 +91,19 @@ public class ModelManager implements Model {
 
     }
 
+    //=========== Nusave =======
+
     @Override
     public void setNusave(ReadOnlyNusave nusave) {
 
     }
 
-    //=========== Nusave =======
-
     @Override
     public ReadOnlyNusave getNusave() {
         return nusave;
     }
+
+    //=========== Budgets =======
 
     @Override
     public void addBudget(Budget budget) {
@@ -142,10 +144,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortAllBudgetByCreatedDate() throws CommandException {
+    public void sortAllBudgetByCreatedDate() {
         nusave.sortBudgetListByCreatedDate();
         nusave.repopulateObservableList(stateManager);
     }
+
+    //=========== Expenditures =======
 
     @Override
     public void deleteExpenditure(ExpenditureIndex expenditureIndex) throws CommandException {
@@ -181,8 +185,10 @@ public class ModelManager implements Model {
         nusave.sortExpenditureList(stateManager);
     }
 
+    //=========== ObservableList =======
+
     @Override
-    public void repopulateObservableList() throws CommandException {
+    public void repopulateObservableList() {
         nusave.repopulateObservableList(stateManager);
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
@@ -199,6 +205,11 @@ public class ModelManager implements Model {
     @Override
     public boolean isBudget() {
         return this.stateManager.isBudget();
+    }
+
+    @Override
+    public boolean isValidBudgetIndex(BudgetIndex budgetIndex) {
+        return this.nusave.isValidBudgetIndex(budgetIndex);
     }
 
     @Override

@@ -107,6 +107,8 @@ public interface Model {
 
     boolean isBudget();
 
+    boolean isValidBudgetIndex(BudgetIndex budgetIndex);
+
     /** Returns an unmodifiable view of the filtered renderable list */
     ObservableList<Renderable> getFilteredRenderableList();
 

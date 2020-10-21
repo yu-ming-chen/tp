@@ -8,14 +8,11 @@ import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.budget.BudgetList;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.state.State;
 import seedu.address.state.budgetindex.BudgetIndex;
-
 
 public class Nusave implements ReadOnlyNusave {
     private final BudgetList budgetList;
@@ -91,6 +88,15 @@ public class Nusave implements ReadOnlyNusave {
         setBudgets(new ArrayList<>());
     }
 
+    /**
+     * Returns true if {@code budgetIndex} within the size of the {@code budgetList}.
+     */
+    public boolean isValidBudgetIndex(BudgetIndex budgetIndex) {
+        int index = budgetIndex.getBudgetIndex().get();
+        assert index >= 0;
+        return index < budgetList.getSize();
+    }
+
     //=========== Expenditure ==================================================================================
     /**
      * Adds a expenditure to the NUSave budget according to its index.
@@ -134,14 +140,12 @@ public class Nusave implements ReadOnlyNusave {
      * @param state State containing the current page and
      *              budget index.
      */
-    public void repopulateObservableList(State state) throws CommandException {
+    public void repopulateObservableList(State state) {
         if (state.isBudget()) {
             // repopulate observable list with Expenditures
             int index = state.getBudgetIndex().orElse(-1);
             assert index >= 0;
-            if (index >= budgetList.getSize()) {
-                throw new CommandException(Messages.MESSAGE_INDEX_OUT_OF_BOUNDS);
-            }
+            assert index < budgetList.getSize();
             this.internalList.setAll(budgetList.getExpenditure(index));
         } else if (state.isMain()) {
             // repopulate observable list with Budgets
