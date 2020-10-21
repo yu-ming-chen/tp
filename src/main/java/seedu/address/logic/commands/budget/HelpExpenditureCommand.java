@@ -11,15 +11,16 @@ public class HelpExpenditureCommand extends Command {
 
     public static final String COMMAND_WORD = "help";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Shows a list of commands that is currently available.\n"
             + "Example: " + COMMAND_WORD;
 
     public static final String SHOWING_HELP_MESSAGE = "Here are the list of available command:\n"
             + "1. help:\n"
-            + "Shows a list of available commands with descriptions in NUSave.\n"
+            + "- Shows a list of available commands with descriptions in NUSave.\n"
             + "2. close:\n"
             + "Closes the budget currently open in NUSave.\n"
-            + "3. add /nNAME /pPRICE:\n"
+            + "3. add n/NAME n/PRICE:\n"
             + "Adds an Expenditure to the Budget with given NAME and given PRICE\n"
             + "4. delete INDEX:\n"
             + "Deletes the specific expenditure at the given INDEX from NUSave.\n"

@@ -49,7 +49,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredRenderables = new FilteredList<>(this.nusave.getInternalList());
         this.stateManager = new StateManager(new EmptyBudgetIndex(), Page.MAIN, PageTitle.MAIN_PAGE_TITLE);
-        sortAllBudgetByCreatedDate();
+        sortBudgetsByCreatedDate();
     }
     /**
      * Initializes a new ModelManager.
@@ -167,14 +167,15 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortAllBudgetByName() {
+    public void sortBudgetsByName() {
         nusave.sortBudgetListByName();
+        repopulateObservableList();
     }
 
     @Override
-    public void sortAllBudgetByCreatedDate() {
+    public void sortBudgetsByCreatedDate() {
         nusave.sortBudgetListByCreatedDate();
-        nusave.repopulateObservableList(stateManager);
+        repopulateObservableList();
     }
 
     //=========== Expenditures =======
@@ -209,8 +210,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortExpenditure() {
-        nusave.sortExpenditureList(stateManager);
+    public void sortExpendituresByName() {
+        nusave.sortExpendituresByName(stateManager);
+        repopulateObservableList();
     }
 
     //=========== ObservableList =======
@@ -218,7 +220,6 @@ public class ModelManager implements Model {
     @Override
     public void repopulateObservableList() {
         nusave.repopulateObservableList(stateManager);
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
 

@@ -70,15 +70,16 @@ public interface Model {
 
     void deleteAllBudgets();
 
-    void sortAllBudgetByName();
+    void sortBudgetsByName();
 
-    void sortAllBudgetByCreatedDate() throws CommandException;
+    void sortBudgetsByCreatedDate() throws CommandException;
 
     void deleteExpenditure(ExpenditureIndex expenditure) throws CommandException;
 
     void addExpenditure(Expenditure expenditure) throws CommandException;
 
-    void sortExpenditure();
+
+    void sortExpendituresByName();
 
     void editExpenditure(Expenditure oldExpenditure, Expenditure editedExpenditure);
 

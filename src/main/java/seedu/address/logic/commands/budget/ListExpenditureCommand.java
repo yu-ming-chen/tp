@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 public class ListExpenditureCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "All expenditures are listed.";
+    public static final String MESSAGE_SUCCESS = "Updated list of expenditures to show all entries.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

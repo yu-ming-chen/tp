@@ -11,8 +11,12 @@ import seedu.address.model.budget.Name;
 public class FindBudgetCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds a budget by name\n"
+            + "parameters: NAME\n"
+            + "Example: " + COMMAND_WORD + " Temasek";
+
     public static final String MESSAGE_SUCCESS =
-            "List of Budgets updated to show entries that contain \'%1$s\'";
+            "Updated list of budgets to show entries that contain \'%1$s\'.";
 
     private final Name name;
 
