@@ -106,4 +106,11 @@ public interface Model {
     void updateFilteredRenderableList(Predicate<Renderable> predicate) throws CommandException;
 
     void repopulateObservableList() throws CommandException;
+
+    /**
+     * Finds renderables within the filtered list based on the predicate given.
+     * @param predicate used by the {@code filtered list} to display select renderables.
+     * @throws CommandException If an error occurs during command execution.
+     */
+    void findRenderable(Predicate<Renderable> predicate) throws CommandException;
 }
