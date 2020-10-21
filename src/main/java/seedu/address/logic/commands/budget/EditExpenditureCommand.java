@@ -28,7 +28,7 @@ import seedu.address.state.expenditureindex.ExpenditureIndex;
 public class EditExpenditureCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ":Edits a Budget \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an Expenditure \n"
             + "parameters: INDEX "
             + PREFIX_NAME + "NAME "
             + PREFIX_PRICE + "PRICE \n"

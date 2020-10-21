@@ -28,11 +28,12 @@ import seedu.address.state.budgetindex.BudgetIndex;
 public class EditBudgetCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ":Edits a Budget \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a Budget \n"
             + "parameters: INDEX "
-            + PREFIX_NAME + "NAME" + "THRESHOLD \n"
+            + PREFIX_NAME + "NAME "
+            + PREFIX_PRICE + "THRESHOLD \n"
             + "Example: " + COMMAND_WORD + " "
-            + "1 " + PREFIX_NAME + "Books" + PREFIX_PRICE + "120";
+            + "1 " + PREFIX_NAME + "Books " + PREFIX_PRICE + "120";
 
     public static final String MESSAGE_SUCCESS = "Budget edited";
 
