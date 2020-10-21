@@ -45,7 +45,7 @@ public class BudgetPageParser implements PageParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
         case CloseBudgetCommand.COMMAND_WORD: {
-            return new CloseBudgetCommandParser().parse(arguments);
+            return new CloseBudgetCommand();
         }
         case DeleteExpenditureCommand.COMMAND_WORD: {
             return new DeleteExpenditureCommandParser().parse(arguments);
