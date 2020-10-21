@@ -18,6 +18,7 @@ public class ListExpenditureCommand extends Command {
         requireNonNull(model);
         // sets predicate to always return true
         model.updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        model.clearSearchTerm();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

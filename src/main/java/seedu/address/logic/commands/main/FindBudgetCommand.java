@@ -37,6 +37,7 @@ public class FindBudgetCommand extends Command {
         String searchTerm = name.value;
         try {
             model.updateFilteredRenderableList(renderable -> renderable.contains(searchTerm));
+            model.setSearchTerm(searchTerm);
         } catch (CommandException e) {
             return new CommandResult(e.getMessage());
         }

@@ -17,6 +17,8 @@ public interface State {
 
     String getPageTitle();
 
+    Optional<String> getSearchTerm();
+
     boolean isMain();
 
     boolean isBudget();
@@ -28,4 +30,8 @@ public interface State {
     void setBudgetIndex(BudgetIndex index);
 
     void setPageName(String pageTitle);
+
+    void setSearchTerm(String searchTerm);
+
+    void clearSearchTerm();
 }

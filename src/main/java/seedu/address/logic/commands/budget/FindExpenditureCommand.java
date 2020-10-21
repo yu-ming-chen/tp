@@ -40,6 +40,7 @@ public class FindExpenditureCommand extends Command {
         String searchTerm = name.value;
         try {
             model.findRenderable(renderable -> renderable.contains(searchTerm));
+            model.setSearchTerm(searchTerm);
         } catch (CommandException e) {
             return new CommandResult(e.getMessage());
         }
