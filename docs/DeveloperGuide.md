@@ -141,7 +141,7 @@ Figure 3.6.1: Structure of the storage component.
 The `Storage` component uses the Jackson API to convert Plain Old Java Objects (POJOs) into JSON files which are then
 stored locally. It uses the same API to read existing JSON files during the launch of the application to load the stored
 data into `NUSave`. As seen in Figure 3.6.1, `JsonUserPrefsStorage` is responsible for the reading and writing of
-`UserPref` objects and contains the file path of its JSON file. `JsonNusaveStorage` is responsible for the
+`UserPref` objects and contains the file path of its JSON file while `JsonNusaveStorage` is responsible for the
 reading and writing of all NUSave data and contains the file path of its JSON file.
 
 ![Structure of the data stored by NUSave](images/PojoClassDiagram.png)
