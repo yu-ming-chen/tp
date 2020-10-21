@@ -131,8 +131,8 @@ _{To Be Added}_
 **API** : `Storage.java`
 
 The `Storage` component:
-* Can save `UserPref` objects in json format and read it back.
-* Can save all NUSave data in json format and read it back.
+* Can save `UserPref` objects in JSON format and read it back.
+* Can save all NUSave data in JSON format and read it back.
 
 ![Structure of the storage component](images/StorageClassDiagram.png)
 
