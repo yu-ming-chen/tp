@@ -15,7 +15,7 @@ public class FindExpenditureCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_SUCCESS =
-            "Expenditure list updated to show entries that contain \'%1$s\'";
+            "Updated list of expenditures to show entries that contain \'%1$s\'.";
 
     private final Name name;
 

@@ -12,9 +12,9 @@ import seedu.address.model.Model;
 public class SortBudgetCommand extends MainPageCommand {
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": sort budget by name.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": sorts budgets by name.";
 
-    public static final String MESSAGE_SUCCESS = "Sorted budget by name.";
+    public static final String MESSAGE_SUCCESS = "Sorted budgets by name.";
 
     /**
      * Executes the create budget command.
@@ -22,9 +22,8 @@ public class SortBudgetCommand extends MainPageCommand {
      * @return the commmand result along with a success message
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        model.sortAllBudgetByName();
-        model.repopulateObservableList();
+    public CommandResult execute(Model model) {
+        model.sortBudgetsByName();
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 }

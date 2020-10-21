@@ -15,8 +15,12 @@ import seedu.address.model.expenditure.Expenditure;
  */
 public class AddExpenditureCommand extends Command {
     public static final String COMMAND_WORD = "add";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an Expenditure to the Budget \n"
+    public static final String DESCRIPTION = "Adds a new expenditure to the budget.";
+    public static final String SYNTAX = COMMAND_WORD + " "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_PRICE + "PRICE";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + "\n"
+            + "Description: " + DESCRIPTION
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PRICE + "PRICE \n"
@@ -24,7 +28,7 @@ public class AddExpenditureCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PRICE + "10 ";
 
-    public static final String MESSAGE_SUCCESS = "New expenditure added: %1$s";
+    public static final String MESSAGE_SUCCESS = "Added a new expenditure: %1$s";
 
     private final Expenditure toAdd;
 

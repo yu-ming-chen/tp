@@ -28,14 +28,14 @@ import seedu.address.state.expenditureindex.ExpenditureIndex;
 public class EditExpenditureCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ":Edits a Budget \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ":Edits an expenditure.\n"
             + "parameters: INDEX "
             + PREFIX_NAME + "NAME "
             + PREFIX_PRICE + "PRICE \n"
             + "Example: " + COMMAND_WORD + " "
             + "1 " + PREFIX_NAME + "Books " + PREFIX_PRICE + "10";
 
-    public static final String MESSAGE_SUCCESS = "Expenditure edited";
+    public static final String MESSAGE_SUCCESS = "Edited expenditure information.";
 
     private final ExpenditureIndex expenditureIndex;
     private final EditExpenditureDescriptor editExpenditureDescriptor;

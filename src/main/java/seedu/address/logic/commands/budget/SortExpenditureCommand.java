@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 public class SortExpenditureCommand extends BudgetPageCommand {
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": sort expenditures by name.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": sorts expenditures by name.";
 
     public static final String MESSAGE_SUCCESS = "Sorted expenditures by name.";
 
@@ -23,8 +23,7 @@ public class SortExpenditureCommand extends BudgetPageCommand {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        model.sortExpenditure();
-        model.repopulateObservableList();
+        model.sortExpendituresByName();
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 }
