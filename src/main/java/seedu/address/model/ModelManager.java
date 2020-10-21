@@ -92,7 +92,7 @@ public class ModelManager implements Model {
     }
 
     //=========== Nusave =======
-    
+
     @Override
     public void setNusave(ReadOnlyNusave nusave) {
 
@@ -104,7 +104,7 @@ public class ModelManager implements Model {
     }
 
     //=========== Budgets =======
-    
+
     @Override
     public void addBudget(Budget budget) {
         requireNonNull(budget);

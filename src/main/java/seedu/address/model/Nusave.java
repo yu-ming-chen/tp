@@ -8,14 +8,11 @@ import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.budget.BudgetList;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.state.State;
 import seedu.address.state.budgetindex.BudgetIndex;
-
 
 public class Nusave implements ReadOnlyNusave {
     private final BudgetList budgetList;
@@ -90,7 +87,10 @@ public class Nusave implements ReadOnlyNusave {
     public void deleteAllBudgets() {
         setBudgets(new ArrayList<>());
     }
-    
+
+    /**
+     * Returns true if {@code budgetIndex} within the size of the {@code budgetList}.
+     */
     public boolean isValidBudgetIndex(BudgetIndex budgetIndex) {
         int index = budgetIndex.getBudgetIndex().get();
         assert index >= 0;
