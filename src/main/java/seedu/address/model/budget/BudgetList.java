@@ -95,16 +95,11 @@ public class BudgetList implements Iterable<Budget> {
         return budgets.size();
     }
 
-    public boolean hasBudget(Budget budget) {
-        return budgets.contains(budget);
-    }
-
     /**
      * Replaces the contents of this list with {@code budgets}.
      */
     public void setBudgets(List<Budget> budgets) {
         requireAllNonNull(budgets);
-        // internalList.setAll(budgets);
         this.budgets.clear();
         this.budgets.addAll(budgets);
     }

@@ -22,6 +22,7 @@ import seedu.address.state.Page;
 import seedu.address.state.PageTitle;
 import seedu.address.state.StateManager;
 import seedu.address.state.budgetindex.BudgetIndex;
+import seedu.address.state.budgetindex.BudgetIndexManager;
 import seedu.address.state.budgetindex.EmptyBudgetIndex;
 import seedu.address.state.expenditureindex.ExpenditureIndex;
 
@@ -104,6 +105,33 @@ public class ModelManager implements Model {
     }
 
     //=========== Budgets =======
+
+
+    @Override
+    public void openBudget(BudgetIndex budgetIndex) {
+        requireNonNull(budgetIndex);
+        BudgetIndex actualBudgetIndex = getActualBudgetIndex(budgetIndex);
+        setBudgetIndex(actualBudgetIndex);
+        setPageName(getPageName(actualBudgetIndex));
+        setPage(Page.BUDGET);
+        repopulateObservableList();
+    }
+
+    @Override
+    public void closeBudget() {
+        setBudgetIndex(new EmptyBudgetIndex());
+        setPageName(PageTitle.MAIN_PAGE_TITLE);
+        setPage(Page.MAIN);
+        repopulateObservableList();
+    }
+
+    private BudgetIndex getActualBudgetIndex(BudgetIndex budgetIndex) {
+        int indexInFilteredList = budgetIndex.getBudgetIndex().get();
+        assert indexInFilteredList > 0 && indexInFilteredList < filteredRenderables.size();
+        Budget budget = (Budget) filteredRenderables.get(indexInFilteredList);
+        int indexInBudgetList = nusave.getIndexOfBudget(budget);
+        return new BudgetIndexManager(indexInBudgetList);
+    }
 
     @Override
     public void addBudget(Budget budget) {
@@ -209,7 +237,9 @@ public class ModelManager implements Model {
 
     @Override
     public boolean isValidBudgetIndex(BudgetIndex budgetIndex) {
-        return this.nusave.isValidBudgetIndex(budgetIndex);
+        int index = budgetIndex.getBudgetIndex().get();
+        assert index >= 0;
+        return index < filteredRenderables.size();
     }
 
     @Override
@@ -218,8 +248,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public BooleanProperty getIsExpenditureProp() {
-        return this.stateManager.getIsExpenditureProp();
+    public BooleanProperty getBudgetPageProp() {
+        return this.stateManager.getIsBudgetPageProp();
     }
 
     @Override
@@ -239,17 +269,17 @@ public class ModelManager implements Model {
 
     @Override
     public boolean isExpenditure() {
-        return this.stateManager.isExpenditure();
+        return this.stateManager.isBudgetPage();
     }
 
     @Override
     public void setIsExpenditurePage(boolean isExpenditurePage) {
-        this.stateManager.setIsExpenditurePage(isExpenditurePage);
+        this.stateManager.setIsBudgetPage(isExpenditurePage);
     }
 
     @Override
-    public void setBudgetIndex(BudgetIndex index) {
-        this.stateManager.setBudgetIndex(index);
+    public void setBudgetIndex(BudgetIndex budgetIndex) {
+        this.stateManager.setBudgetIndex(budgetIndex);
     }
 
     @Override
