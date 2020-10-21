@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.beans.property.BooleanProperty;
@@ -88,6 +89,8 @@ public interface Model {
 
     BooleanProperty getIsExpenditureProp();
 
+    Optional<String> getSearchTerm();
+
     void setIsExpenditurePage(boolean isExpenditurePage);
 
     void setPage(Page page);
@@ -95,6 +98,10 @@ public interface Model {
     void setBudgetIndex(BudgetIndex index);
 
     void setPageName(String page);
+
+    void setSearchTerm(String searchTerm);
+
+    void clearSearchTerm();
 
     boolean isMain();
 

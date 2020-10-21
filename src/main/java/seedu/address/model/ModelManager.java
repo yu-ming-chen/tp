@@ -212,6 +212,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Optional<String> getSearchTerm() {
+        return this.stateManager.getSearchTerm();
+    }
+
+    @Override
     public String getPageName(BudgetIndex index) {
         return this.nusave.getPageName(index);
     }
@@ -244,6 +249,16 @@ public class ModelManager implements Model {
     @Override
     public void setPageName(String page) {
         this.stateManager.setPageName(page);
+    }
+
+    @Override
+    public void setSearchTerm(String searchTerm) {
+        this.stateManager.setSearchTerm(searchTerm);
+    }
+
+    @Override
+    public void clearSearchTerm() {
+        this.stateManager.clearSearchTerm();
     }
 
     //=========== Filtered Renderable List Accessors =============================================================
