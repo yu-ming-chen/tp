@@ -88,13 +88,8 @@ public class Nusave implements ReadOnlyNusave {
         setBudgets(new ArrayList<>());
     }
 
-    /**
-     * Returns true if {@code budgetIndex} within the size of the {@code budgetList}.
-     */
-    public boolean isValidBudgetIndex(BudgetIndex budgetIndex) {
-        int index = budgetIndex.getBudgetIndex().get();
-        assert index >= 0;
-        return index < budgetList.getSize();
+    public int getIndexOfBudget(Budget budget) {
+        return budgetList.getIndexOfBudget(budget);
     }
 
     //=========== Expenditure ==================================================================================

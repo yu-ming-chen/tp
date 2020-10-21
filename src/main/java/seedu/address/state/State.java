@@ -11,9 +11,9 @@ public interface State {
 
     Page getPage();
 
-    BooleanProperty getIsExpenditureProp();
+    BooleanProperty getIsBudgetPageProp();
 
-    boolean isExpenditure();
+    boolean isBudgetPage();
 
     String getPageTitle();
 
@@ -23,7 +23,7 @@ public interface State {
 
     boolean isBudget();
 
-    void setIsExpenditurePage(boolean isExpenditure);
+    void setIsBudgetPage(boolean isExpenditure);
 
     void setPage(Page page);
 

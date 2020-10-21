@@ -58,6 +58,10 @@ public interface Model {
 
     ReadOnlyNusave getNusave();
 
+    void openBudget(BudgetIndex budgetIndex);
+
+    void closeBudget();
+
     void addBudget(Budget budget);
 
     void editBudget(Budget oldBudget, Budget editedBudget);
@@ -87,7 +91,7 @@ public interface Model {
 
     boolean isExpenditure();
 
-    BooleanProperty getIsExpenditureProp();
+    BooleanProperty getBudgetPageProp();
 
     Optional<String> getSearchTerm();
 

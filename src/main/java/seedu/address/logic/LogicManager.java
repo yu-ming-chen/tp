@@ -92,7 +92,7 @@ public class LogicManager implements Logic {
 
     @Override
     public BooleanProperty getIsExpenditureProp() {
-        return model.getIsExpenditureProp();
+        return model.getBudgetPageProp();
     }
 
     @Override

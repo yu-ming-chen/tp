@@ -5,7 +5,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.MainPageCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.state.Page;
 import seedu.address.state.budgetindex.BudgetIndex;
 
 /**
@@ -42,12 +41,7 @@ public class OpenBudgetCommand extends MainPageCommand {
         if (!model.isValidBudgetIndex(toOpen)) {
             throw new CommandException(Messages.MESSAGE_INDEX_OUT_OF_BOUNDS);
         }
-        model.setPage(Page.BUDGET);
-        model.setBudgetIndex(toOpen);
-        model.repopulateObservableList();
-        String pageName = model.getPageName(toOpen);
-        model.setPageName(pageName);
-        model.setIsExpenditurePage(true);
+        model.openBudget(toOpen);
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 }
