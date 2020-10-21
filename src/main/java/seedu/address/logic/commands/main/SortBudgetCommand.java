@@ -3,7 +3,6 @@ package seedu.address.logic.commands.main;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.MainPageCommand;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**

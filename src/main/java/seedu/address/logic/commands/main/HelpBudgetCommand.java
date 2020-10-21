@@ -11,7 +11,8 @@ public class HelpBudgetCommand extends Command {
 
     public static final String COMMAND_WORD = "help";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of commands that is currently available.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Shows a list of commands that is currently available.\n"
             + "Example: " + COMMAND_WORD;
 
     public static final String HELP_MESSAGE = "List of commands available:\n"
