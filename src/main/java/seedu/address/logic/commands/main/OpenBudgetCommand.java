@@ -7,9 +7,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.state.budgetindex.BudgetIndex;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
-
 /**
  * Opens a budget to view and modify expenditures contained within the budget.
  */

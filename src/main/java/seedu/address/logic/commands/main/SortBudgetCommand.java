@@ -5,9 +5,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.MainPageCommand;
 import seedu.address.model.Model;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
-
 /**
  * Creates a new SortBudgetCommand.
  */

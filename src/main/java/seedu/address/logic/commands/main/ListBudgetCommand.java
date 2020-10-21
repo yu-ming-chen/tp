@@ -1,8 +1,6 @@
 package seedu.address.logic.commands.main;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RENDERABLES;
 
 import seedu.address.logic.commands.Command;

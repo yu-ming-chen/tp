@@ -22,12 +22,10 @@ import seedu.address.model.budget.Threshold;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.state.budgetindex.BudgetIndex;
 
-
-
-
 public class EditBudgetCommand extends Command {
     public static final String COMMAND_WORD = "edit";
-    public static final String SYNTAX = COMMAND_WORD + " INDEX " + PREFIX_NAME + "NAME " + "(" + PREFIX_PRICE + "THRESHOLD)";
+    public static final String SYNTAX = COMMAND_WORD + " INDEX "
+            + PREFIX_NAME + "NAME " + "(" + PREFIX_PRICE + "THRESHOLD)";
     public static final String DESCRIPTION = "Edits a budget.";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n"
             + "Usage: " + SYNTAX + "\n"
