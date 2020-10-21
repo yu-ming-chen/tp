@@ -32,7 +32,7 @@ public class BudgetList implements Iterable<Budget> {
      */
     public void add(Budget toAdd) {
         requireNonNull(toAdd);
-        budgets.add(toAdd);
+        budgets.add(0, toAdd);
     }
 
     /**

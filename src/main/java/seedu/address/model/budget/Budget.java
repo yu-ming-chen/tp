@@ -62,7 +62,7 @@ public class Budget implements Renderable {
     }
 
     public void addExpenditure(Expenditure expenditure) {
-        expenditures.add(expenditure);
+        expenditures.add(0, expenditure);
     }
 
     /**

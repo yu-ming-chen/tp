@@ -57,7 +57,7 @@ public class Nusave implements ReadOnlyNusave {
      */
     public void addBudget(Budget budget) {
         this.budgetList.add(budget);
-        this.internalList.add(budget);
+        this.internalList.add(0, budget);
     }
 
     /**
@@ -99,7 +99,7 @@ public class Nusave implements ReadOnlyNusave {
     public void addExpenditure(Expenditure expenditure, Optional<Integer> budgetIndexOpt) {
         assert budgetIndexOpt.isPresent();
         int budgetIndex = budgetIndexOpt.get();
-        this.internalList.add(expenditure);
+        this.internalList.add(0, expenditure);
         this.budgetList.addExpenditure(expenditure, budgetIndex);
     }
 
