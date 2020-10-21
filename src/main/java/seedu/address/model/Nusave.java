@@ -90,6 +90,12 @@ public class Nusave implements ReadOnlyNusave {
     public void deleteAllBudgets() {
         setBudgets(new ArrayList<>());
     }
+    
+    public boolean isValidBudgetIndex(BudgetIndex budgetIndex) {
+        int index = budgetIndex.getBudgetIndex().get();
+        assert index >= 0;
+        return index < budgetList.getSize();
+    }
 
     //=========== Expenditure ==================================================================================
     /**
@@ -134,14 +140,12 @@ public class Nusave implements ReadOnlyNusave {
      * @param state State containing the current page and
      *              budget index.
      */
-    public void repopulateObservableList(State state) throws CommandException {
+    public void repopulateObservableList(State state) {
         if (state.isBudget()) {
             // repopulate observable list with Expenditures
             int index = state.getBudgetIndex().orElse(-1);
             assert index >= 0;
-            if (index >= budgetList.getSize()) {
-                throw new CommandException(Messages.MESSAGE_INDEX_OUT_OF_BOUNDS);
-            }
+            assert index < budgetList.getSize();
             this.internalList.setAll(budgetList.getExpenditure(index));
         } else if (state.isMain()) {
             // repopulate observable list with Budgets

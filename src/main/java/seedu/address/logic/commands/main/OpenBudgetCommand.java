@@ -39,18 +39,15 @@ public class OpenBudgetCommand extends MainPageCommand {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        model.setPage(Page.BUDGET);
-        model.setBudgetIndex(toOpen);
-        try {
-            model.repopulateObservableList();
-            String pageName = model.getPageName(toOpen);
-            model.setPageName(pageName);
-            model.setIsExpenditurePage(true);
-        } catch (CommandException e) {
-            // resets the page back to MAIN since the open command did not go through
-            model.setPage(Page.MAIN);
+        if (!model.isValidBudgetIndex(toOpen)) {
             throw new CommandException(Messages.MESSAGE_INDEX_OUT_OF_BOUNDS);
         }
+        model.setPage(Page.BUDGET);
+        model.setBudgetIndex(toOpen);
+        model.repopulateObservableList();
+        String pageName = model.getPageName(toOpen);
+        model.setPageName(pageName);
+        model.setIsExpenditurePage(true);
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 }
