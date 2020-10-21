@@ -12,6 +12,7 @@
     * [3.6. Storage Component](#36-storage-component)  
 - [4. Implementation](#4-implementation)
     * [4.1. Main Page View](#41-main-page-view)
+        * [4.1.1 Implementation of Create Budget Command](#411-implementation-of-create-budget-command)
 - [5. Documentation](#5-documentation)
 - [6. Testing](#6-testing)
 - [7. Dev Ops](#7-dev-ops)
@@ -105,7 +106,7 @@ executed by the `LogicManager`. The command execution can affect the `Model` (e.
 the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`. In addition, the
 `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteBudgetCommand_sequence_diagram.png)
 
 The ***Sequence Diagram*** given above represents the interactions within the `Logic` component for the
 `execute("delete 1")` API call.
@@ -160,6 +161,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ### 4.1 Main page view
 #### 4.1.1 Implementation of Create Budget Command
 (Contributed by Yu Ming)
+
 The following Sequence Diagram shows the interaction between the `Logic` component and `Model` component of NUSave 
 depicting a scenario when the user wants to create a budget for his Temasek Hall basketball CCA by entering the command
 `create n/Temasek Hall Basketball p/100`.
@@ -169,7 +171,7 @@ depicting a scenario when the user wants to create a budget for his Temasek Hall
 Figure 4.1.1.1: Sequence diagram  for create budget command in main page view.
 
 1. The `LogicManager` uses the `MainPageParser` to parse the given user input.
-2. The `MainPageParser` will identify the command given by the user and passes the user input down to the
+2. The `MainPageParser` will identify the command given by the user and pass the user input down to the
 `CreateBudgetCommandParser`.
 3. The `CreateBudgetCommandParser` will create a `Budget` with the given parameters **name** and **threshold** from the
 user input.
@@ -184,8 +186,31 @@ object created into NUSave.
 With the above sequence, a budget will be successfully created by the user in his NUSave application, and it will be
 reflected on the user interface.
 
+#### 4.1.2 Implementation of Delete Budget Command
+(Contributed by David)
 
+The following sequence diagram shows the interactions between the `Logic`, `State` and `Model` components of NUSave,
+depicting a scenario where the user would like to delete the first budget on his list of budgets.
 
+![DeleteBudgetCommand Sequence Diagram](images/DeleteBudgetComman_sequence_diagram.png) 
+
+Figure 4.1.2.1: Sequence diagram  for delete budget command in main page view.
+
+1. The `LogicManager` uses the `MainPageParser` to parse the given user input.
+2. The `MainPageParser` will identify the command given by the user and pass the user input down to the
+`DeleteBudgetCommandParser`.
+3. The `DeleteBudgetCommandParser` will create a `BudgetIndexManager` with the given parameters **index**  from the
+user input.
+4. The `DeleteBudgetCommandParser` will then create a `DeleteBudgetCommand` object with the created `BudgetIndexManager`
+object as the input parameter.
+5. The `DeleteBudgetCommandParser` will then return a `DeleteBudgetCommand` object back to the `LogicManager`.
+6. `LogicManager` will now call the `execute` method in the `DeleteBudgetCommand` object.
+7. The `DeleteBudgetCommand` `execute` method will now call the `deleteBudget` method of the existing `Model` object and 
+delete the `Budget` object within NUSave.
+8. The `DeleteBudgetCommand` then returns a `CommandResult` indicating the successful deletion of the `Budget` object.
+
+With the above sequence, a budget will be successfully deleted by the user in his NUSave application, and it will be
+reflected on the user interface.
 
 ## 5. Documentation
 * [Documentation guide](Documentation.md)
