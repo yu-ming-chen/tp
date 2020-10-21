@@ -25,9 +25,8 @@ public class BudgetCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
-
-    //  @FXML
-    //  private FlowPane tags;
+    @FXML
+    private Label expenditureSize;
 
     /**
      * Creates a {@code BudgetCard} with the given {@code Budget} and index to display.
@@ -37,9 +36,8 @@ public class BudgetCard extends UiPart<Region> {
         this.budget = budget;
         id.setText(displayedIndex + ". ");
         name.setText(budget.getName().value);
-        //budget.getTags().stream()
-        //        .sorted(Comparator.comparing(tag -> tag.tagName))
-        //        .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        String strExpenditureSize = String.valueOf(budget.getExpenditureSize());
+        expenditureSize.setText(strExpenditureSize + " expenditures");
     }
 
     @Override
