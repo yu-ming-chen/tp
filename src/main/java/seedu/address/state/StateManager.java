@@ -9,7 +9,7 @@ import seedu.address.state.budgetindex.BudgetIndex;
 public class StateManager implements State {
     private BudgetIndex budgetIndex;
     private Page currentPage;
-    private BooleanProperty isExpenditureProp = new SimpleBooleanProperty(false);
+    private BooleanProperty isBudgetPageProp = new SimpleBooleanProperty(false);
     private String pageTitle;
     private Optional<String> searchTerm;
 
@@ -37,13 +37,13 @@ public class StateManager implements State {
     }
 
     @Override
-    public BooleanProperty getIsExpenditureProp() {
-        return this.isExpenditureProp;
+    public BooleanProperty getIsBudgetPageProp() {
+        return this.isBudgetPageProp;
     }
 
     @Override
-    public boolean isExpenditure() {
-        return this.isExpenditureProp.getValue();
+    public boolean isBudgetPage() {
+        return this.isBudgetPageProp.getValue();
     }
 
     @Override
@@ -67,13 +67,18 @@ public class StateManager implements State {
     }
 
     @Override
-    public void setIsExpenditurePage(boolean isExpenditurePage) {
-        this.isExpenditureProp.setValue(isExpenditurePage);
+    public void setIsBudgetPage(boolean isBudgetPage) {
+        this.isBudgetPageProp.setValue(isBudgetPage);
     }
 
     @Override
     public void setPage(Page page) {
         this.currentPage = page;
+        if (page == Page.BUDGET) {
+            setIsBudgetPage(true);
+        } else {
+            setIsBudgetPage(false);
+        }
     }
 
     @Override
