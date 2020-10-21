@@ -1,7 +1,6 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.beans.property.BooleanProperty;
@@ -89,13 +88,9 @@ public interface Model {
 
     String getPageTitle();
 
-    boolean isExpenditure();
+    boolean isBudgetPage();
 
     BooleanProperty getBudgetPageProp();
-
-    Optional<String> getSearchTerm();
-
-    void setIsExpenditurePage(boolean isExpenditurePage);
 
     void setPage(Page page);
 
@@ -103,27 +98,18 @@ public interface Model {
 
     void setPageName(String page);
 
-    void setSearchTerm(String searchTerm);
-
-    void clearSearchTerm();
-
     boolean isMain();
 
     boolean isBudget();
 
-    boolean isValidBudgetIndex(BudgetIndex budgetIndex);
+    boolean isWithinRange(BudgetIndex budgetIndex);
+
+    boolean isWithinRange(ExpenditureIndex expenditureIndex);
 
     /** Returns an unmodifiable view of the filtered renderable list */
     ObservableList<Renderable> getFilteredRenderableList();
 
-    void updateFilteredRenderableList(Predicate<Renderable> predicate) throws CommandException;
+    void updateFilteredRenderableList(Predicate<Renderable> predicate);
 
     void repopulateObservableList() throws CommandException;
-
-    /**
-     * Finds renderables within the filtered list based on the predicate given.
-     * @param predicate used by the {@code filtered list} to display select renderables.
-     * @throws CommandException If an error occurs during command execution.
-     */
-    void findRenderable(Predicate<Renderable> predicate) throws CommandException;
 }

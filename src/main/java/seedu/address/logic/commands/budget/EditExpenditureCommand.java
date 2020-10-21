@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INDEX_OUT_OF_BOUNDS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RENDERABLES;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -66,14 +65,6 @@ public class EditExpenditureCommand extends Command {
         Expenditure editedExpenditure = createEditedExpenditure(toEdit, editExpenditureDescriptor);
 
         model.editExpenditure(toEdit, editedExpenditure);
-
-        if (model.getSearchTerm().isPresent()) {
-            String searchTerm = model.getSearchTerm().get();
-            model.updateFilteredRenderableList(renderable -> renderable.contains(searchTerm));
-        } else {
-            model.updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
-        }
-
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 

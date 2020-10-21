@@ -91,7 +91,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public BooleanProperty getIsExpenditureProp() {
+    public BooleanProperty getIsBudgetPageProp() {
         return model.getBudgetPageProp();
     }
 
@@ -106,7 +106,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public boolean isExpenditure() {
-        return this.model.isExpenditure();
+    public boolean isBudgetPage() {
+        return this.model.isBudgetPage();
     }
 }

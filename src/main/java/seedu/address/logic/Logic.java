@@ -36,11 +36,11 @@ public interface Logic {
      */
     GuiSettings getGuiSettings();
 
-    BooleanProperty getIsExpenditureProp();
+    BooleanProperty getIsBudgetPageProp();
 
     String getPageTitle();
 
-    boolean isExpenditure();
+    boolean isBudgetPage();
 
     /**
      * Set the user prefs' GUI settings.

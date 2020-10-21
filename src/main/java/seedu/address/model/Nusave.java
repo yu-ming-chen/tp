@@ -97,8 +97,8 @@ public class Nusave implements ReadOnlyNusave {
      * Adds a expenditure to the NUSave budget according to its index.
      */
     public void addExpenditure(Expenditure expenditure, Optional<Integer> budgetIndexOpt) {
-        int budgetIndex = budgetIndexOpt.orElse(-1);
-        assert budgetIndex >= 0;
+        assert budgetIndexOpt.isPresent();
+        int budgetIndex = budgetIndexOpt.get();
         this.internalList.add(expenditure);
         this.budgetList.addExpenditure(expenditure, budgetIndex);
     }
@@ -111,8 +111,8 @@ public class Nusave implements ReadOnlyNusave {
      */
     public void editExpenditure(Expenditure oldExpenditure, Expenditure editedExpenditure,
                                 Optional<Integer> budgetIndexOpt) {
-        int budgetIndex = budgetIndexOpt.orElse(-1);
-        assert budgetIndex >= 0;
+        assert budgetIndexOpt.isPresent();
+        int budgetIndex = budgetIndexOpt.get();
         int expenditureIndex = this.internalList.indexOf(oldExpenditure);
         this.internalList.set(expenditureIndex, editedExpenditure);
         this.budgetList.editExpenditure(oldExpenditure, editedExpenditure, budgetIndex);
@@ -122,7 +122,8 @@ public class Nusave implements ReadOnlyNusave {
      * Deletes an expenditure from the NUSave budget according to its index.
      */
     public void deleteExpenditure(Expenditure expenditure, Optional<Integer> budgetIndexOpt) {
-        int budgetIndex = budgetIndexOpt.orElse(-1);
+        assert budgetIndexOpt.isPresent();
+        int budgetIndex = budgetIndexOpt.get();
         List<Expenditure> expenditureList = budgetList.getExpenditure(budgetIndex);
         expenditureList.remove(expenditure);
         this.internalList.remove(expenditure);
@@ -138,8 +139,8 @@ public class Nusave implements ReadOnlyNusave {
     public void repopulateObservableList(State state) {
         if (state.isBudget()) {
             // repopulate observable list with Expenditures
-            int index = state.getBudgetIndex().orElse(-1);
-            assert index >= 0;
+            assert state.getBudgetIndex().isPresent();
+            int index = state.getBudgetIndex().get();
             assert index < budgetList.getSize();
             this.internalList.setAll(budgetList.getExpenditure(index));
         } else if (state.isMain()) {
@@ -170,7 +171,8 @@ public class Nusave implements ReadOnlyNusave {
      * @param state current state
      */
     public void sortExpendituresByName(State state) {
-        int index = state.getBudgetIndex().orElse(-1);
+        assert state.getBudgetIndex().isPresent();
+        int index = state.getBudgetIndex().get();
         budgetList.getExpenditure(index).sort(new SortExpendituresByName());
     }
 

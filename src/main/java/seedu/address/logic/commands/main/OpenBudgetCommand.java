@@ -38,7 +38,7 @@ public class OpenBudgetCommand extends MainPageCommand {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if (!model.isValidBudgetIndex(toOpen)) {
+        if (!model.isWithinRange(toOpen)) {
             throw new CommandException(Messages.MESSAGE_INDEX_OUT_OF_BOUNDS);
         }
         model.openBudget(toOpen);

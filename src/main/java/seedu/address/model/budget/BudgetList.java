@@ -57,16 +57,6 @@ public class BudgetList implements Iterable<Budget> {
     }
 
     /**
-     * Deletes an expenditure from the budget at index index in budgets.
-     * @param toDelete the Expenditure object to be deleted.
-     * @param index the index of the budget which the expenditure will be added into.
-     */
-    public void deleteExpenditure(int toDelete, int index) {
-        Budget budget = budgets.get(index);
-        budget.deleteExpenditure(toDelete);
-    }
-
-    /**
      * Removes the equivalent budget from the list.
      * The budget must exist in the list.
      */
@@ -86,8 +76,8 @@ public class BudgetList implements Iterable<Budget> {
 
     public String getBudgetName(BudgetIndex budgetIndex) {
         requireNonNull(budgetIndex);
-        int index = budgetIndex.getBudgetIndex().orElse(-1);
-        assert index >= 0;
+        assert budgetIndex.getBudgetIndex().isPresent();
+        int index = budgetIndex.getBudgetIndex().get();
         return this.budgets.get(index).getName().value;
     }
 

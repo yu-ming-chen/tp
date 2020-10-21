@@ -2,10 +2,12 @@ package seedu.address.logic.commands.budget;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.Renderable;
 import seedu.address.model.expenditure.Name;
 
 /**
@@ -38,12 +40,8 @@ public class FindExpenditureCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         String searchTerm = name.value;
-        try {
-            model.findRenderable(renderable -> renderable.contains(searchTerm));
-            model.setSearchTerm(searchTerm);
-        } catch (CommandException e) {
-            return new CommandResult(e.getMessage());
-        }
+        Predicate<Renderable> predicate = renderable -> renderable.contains(searchTerm);
+        model.updateFilteredRenderableList(predicate);
         return new CommandResult(String.format(MESSAGE_SUCCESS, name));
     }
 
