@@ -10,10 +10,13 @@ import seedu.address.model.budget.Name;
 
 public class FindBudgetCommand extends Command {
     public static final String COMMAND_WORD = "find";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds a budget by name\n"
-            + "parameters: NAME\n"
-            + "Example: " + COMMAND_WORD + " Temasek";
+    public static final String SYNTAX = COMMAND_WORD + " NAME";
+    public static final String DESCRIPTION = "Finds a budget by NAME.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n"
+            + "Usage: " + SYNTAX + "\n"
+            + "Description: " + DESCRIPTION + "\n"
+            + "Parameters: NAME\n"
+            + "Example: " + COMMAND_WORD + " Temasek\n";
 
     public static final String MESSAGE_SUCCESS =
             "Updated list of budgets to show entries that contain \'%1$s\'.";

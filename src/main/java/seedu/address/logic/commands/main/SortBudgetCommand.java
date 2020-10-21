@@ -5,13 +5,19 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.MainPageCommand;
 import seedu.address.model.Model;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+
 /**
  * Creates a new SortBudgetCommand.
  */
 public class SortBudgetCommand extends MainPageCommand {
     public static final String COMMAND_WORD = "sort";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": sorts budgets by name.";
+    public static final String SYNTAX = COMMAND_WORD;
+    public static final String DESCRIPTION = "Sorts budget by name.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n"
+            + "Usage: " + SYNTAX + "\n"
+            + "Description: " + DESCRIPTION + "\n";
 
     public static final String MESSAGE_SUCCESS = "Sorted budgets by name.";
 

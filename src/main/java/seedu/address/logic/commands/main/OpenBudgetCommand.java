@@ -7,16 +7,22 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.state.budgetindex.BudgetIndex;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+
 /**
  * Opens a budget to view and modify expenditures contained within the budget.
  */
 public class OpenBudgetCommand extends MainPageCommand {
 
     public static final String COMMAND_WORD = "open";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Opens a Budget \n"
-            + "Parameters: INDEX\n"
-            + "Example: " + COMMAND_WORD + " 1";
+    public static final String SYNTAX = COMMAND_WORD + " INDEX";
+    public static final String DESCRIPTION = "Opens a budget.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n"
+            + "Usage: " + SYNTAX + "\n"
+            + "Description: " + DESCRIPTION + "\n"
+            + "Parameters: " + "INDEX\n"
+            + "Example: " + COMMAND_WORD + " 1\n";
 
     public static final String MESSAGE_SUCCESS = "Opened budget.";
 
