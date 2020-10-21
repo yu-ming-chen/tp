@@ -11,7 +11,6 @@ public class StateManager implements State {
     private Page currentPage;
     private BooleanProperty isBudgetPageProp = new SimpleBooleanProperty(false);
     private String pageTitle;
-    private Optional<String> searchTerm;
 
     /**
      * Constructs a {@code StateManager} with the given {@code BudgetIndex} and {@code Page}.
@@ -23,7 +22,6 @@ public class StateManager implements State {
         this.budgetIndex = budgetIndex;
         this.currentPage = currentPage;
         this.pageTitle = pageTitle;
-        this.searchTerm = Optional.empty();
     }
 
     @Override
@@ -49,11 +47,6 @@ public class StateManager implements State {
     @Override
     public String getPageTitle() {
         return this.pageTitle;
-    }
-
-    @Override
-    public Optional<String> getSearchTerm() {
-        return this.searchTerm;
     }
 
     @Override
@@ -90,15 +83,4 @@ public class StateManager implements State {
     public void setPageName(String pageTitle) {
         this.pageTitle = pageTitle;
     }
-
-    @Override
-    public void setSearchTerm(String searchTerm) {
-        this.searchTerm = Optional.of(searchTerm);
-    }
-
-    @Override
-    public void clearSearchTerm() {
-        this.searchTerm = Optional.empty();
-    }
-
 }

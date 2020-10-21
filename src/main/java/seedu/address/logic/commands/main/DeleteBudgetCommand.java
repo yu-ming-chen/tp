@@ -2,6 +2,7 @@ package seedu.address.logic.commands.main;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -40,7 +41,9 @@ public class DeleteBudgetCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
+        if (!model.isWithinRange(toDelete)) {
+            throw new CommandException(Messages.BUDGET_MESSAGE_INDEX_OUT_OF_BOUNDS);
+        }
         model.deleteBudget(toDelete);
         return new CommandResult(MESSAGE_DELETE_BUDGET_SUCCESS);
     }

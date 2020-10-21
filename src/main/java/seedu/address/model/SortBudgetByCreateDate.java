@@ -8,6 +8,6 @@ public class SortBudgetByCreateDate implements Comparator<Budget> {
 
     @Override
     public int compare(Budget a, Budget b) {
-        return a.getCreatedOn().compareTo(b.getCreatedOn());
+        return b.getCreatedOn().compareTo(a.getCreatedOn());
     }
 }

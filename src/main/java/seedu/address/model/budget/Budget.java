@@ -62,7 +62,7 @@ public class Budget implements Renderable {
     }
 
     public void addExpenditure(Expenditure expenditure) {
-        expenditures.add(expenditure);
+        expenditures.add(0, expenditure);
     }
 
     /**
@@ -74,10 +74,6 @@ public class Budget implements Renderable {
     public void editExpenditure(Expenditure oldExpenditure, Expenditure editedExpenditure) {
         int index = expenditures.indexOf(oldExpenditure);
         expenditures.set(index, editedExpenditure);
-    }
-
-    public void deleteExpenditure(int expenditure) {
-        expenditures.remove(expenditure);
     }
 
     @Override
