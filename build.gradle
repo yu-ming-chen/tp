@@ -69,4 +69,8 @@ shadowJar {
     archiveName = 'nusave.jar'
 }
 
+run {
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'test'
