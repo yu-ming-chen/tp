@@ -30,9 +30,10 @@ public class EditBudgetCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a budget \n"
             + "parameters: INDEX "
-            + PREFIX_NAME + "NAME" + "THRESHOLD \n"
+            + PREFIX_NAME + "NAME "
+            + PREFIX_PRICE + "THRESHOLD \n"
             + "Example: " + COMMAND_WORD + " "
-            + "1 " + PREFIX_NAME + "Books" + PREFIX_PRICE + "120";
+            + "1 " + PREFIX_NAME + "Books " + PREFIX_PRICE + "120";
 
     public static final String MESSAGE_SUCCESS = "Edited budget.";
 
