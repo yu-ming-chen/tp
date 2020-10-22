@@ -137,7 +137,7 @@ that the UI automatically updates when the data in the list change.
  *  Stores a `String` value which represents the title of the current page.
  
  `State` is used by `Model` to track the current state of NUSave. When a command that requires a different budget book
- or list of budgets to be displayed, `State` will store information of the new page being displayed. This information
+ or list of budgets to be displayed is called, `State` will store information of the new page being displayed. This information
  will be used when different commands are entered which requires `model` to know the current `state` of NUSave.
  
  Using the current `Page` of NUSave, commands are parsed separately by either `BudgetPageParser` or `MainPageParser`. 
