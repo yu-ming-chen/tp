@@ -101,6 +101,16 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public String getTotalExpenditureValue() {
+        return this.model.getTotalExpenditureValue();
+    }
+
+    @Override
+    public String getThresholdValue() {
+        return this.model.getThresholdValue();
+    }
+
+    @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }

@@ -9,17 +9,17 @@
    <children>
       <StackPane styleClass="main-info" prefHeight="150.0" prefWidth="200.0">
          <children>
-            <Text id="date" fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
+            <Text id="date" fx:id="firstRowText" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
          </children>
       </StackPane>
       <StackPane styleClass="main-info" prefHeight="150.0" prefWidth="200.0">
          <children>
-            <Text id="time" fx:id="timeText" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" />
+            <Text id="time" fx:id="secondRowText" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" />
          </children>
       </StackPane>
       <StackPane styleClass="main-info" prefHeight="150.0" prefWidth="200.0">
          <children>
-            <Text id="greeting" fx:id="greetingText" strokeType="OUTSIDE" strokeWidth="0.0" text="Good Evening" />
+            <Text id="greeting" fx:id="thirdRowText" strokeType="OUTSIDE" strokeWidth="0.0" text="Good Evening" />
          </children>
       </StackPane>
    </children>

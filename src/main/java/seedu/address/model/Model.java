@@ -88,6 +88,10 @@ public interface Model {
 
     String getPageTitle();
 
+    String getTotalExpenditureValue();
+
+    String getThresholdValue();
+
     boolean isBudgetPage();
 
     BooleanProperty getBudgetPageProp();

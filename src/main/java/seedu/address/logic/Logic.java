@@ -40,6 +40,10 @@ public interface Logic {
 
     String getPageTitle();
 
+    String getTotalExpenditureValue();
+
+    String getThresholdValue();
+
     boolean isBudgetPage();
 
     /**

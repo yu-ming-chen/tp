@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.logging.Logger;
 
 import javafx.beans.binding.Bindings;
@@ -82,6 +84,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         mainPageInfoBox = new MainPageInfoBox();
+        bindMainPageInfoBoxToState();
         mainPageInfoBoxPlaceholder.getChildren().add(mainPageInfoBox.getRoot());
 
         title = new Title();
@@ -96,6 +99,33 @@ public class MainWindow extends UiPart<Stage> {
         title.getTitle().textProperty().bind(Bindings.createStringBinding(() -> {
             logic.isBudgetPage(); //this expression must be called to always trigger change in title
             return logic.getPageTitle();
+        }, logic.getIsBudgetPageProp()));
+    }
+
+    void bindMainPageInfoBoxToState() {
+        mainPageInfoBox.getFirstRowText().textProperty().bind(Bindings.createStringBinding(() -> {
+                if (logic.isBudgetPage()) {//this expression must be called to always trigger change in title
+                    return "Total:";
+                } else {
+                    return MainPageInfoBox.getDefaultFirstRowText();
+                }
+        }, logic.getIsBudgetPageProp()));
+
+        mainPageInfoBox.getSecondRowText().textProperty().bind(Bindings.createStringBinding(() -> {
+            if (logic.isBudgetPage()) {
+                return logic.getTotalExpenditureValue();
+            } else {
+                Calendar cal = Calendar.getInstance();
+                return new SimpleDateFormat("hh:mm a").format(cal.getTime());
+            }
+        }, logic.getIsBudgetPageProp()));
+
+        mainPageInfoBox.getThirdRowText().textProperty().bind(Bindings.createStringBinding(() -> {
+            if (logic.isBudgetPage()) {//this expression must be called to always trigger change in title
+                return "/" + logic.getThresholdValue();
+            } else {
+                return MainPageInfoBox.getDefaultThirdRowText();
+            }
         }, logic.getIsBudgetPageProp()));
     }
 

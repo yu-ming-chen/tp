@@ -23,21 +23,19 @@ public class MainPageInfoBox extends UiPart<Region> {
     private StackPane greetingPane;
 
     @javafx.fxml.FXML
-    private Text dateText;
+    private Text firstRowText;
 
     @javafx.fxml.FXML
-    private Text timeText;
+    private Text secondRowText;
 
     @javafx.fxml.FXML
-    private Text greetingText;
+    private Text thirdRowText;
 
-    private int minute;
-    private int hour;
-    private int second;
-    private int date;
-    private int month;
-    private int year;
     private String greeting;
+    private String currentFirstRowText;
+    private String currentSecondRowText;
+    private String currentThirdRowText;
+
 
     /**
      * Creates a new MainPageInfoBox.
@@ -45,21 +43,29 @@ public class MainPageInfoBox extends UiPart<Region> {
      */
     public MainPageInfoBox() {
         super(FXML);
+        setMainPageInfoBoxText();
+        this.currentFirstRowText = getDefaultFirstRowText();
+        this.currentSecondRowText = "";
+        this.currentThirdRowText = getDefaultThirdRowText();
+    }
+
+    private void setMainPageInfoBoxText() {
+        firstRowText.setText(getDefaultFirstRowText());
+        setMainPageSecondRowText();
+        thirdRowText.setText(getDefaultThirdRowText());
+    }
+
+
+    static String getDefaultFirstRowText() {
+        return new SimpleDateFormat("EEE, dd MMM").format(Calendar.getInstance().getTime());
+    }
+
+    public void setMainPageSecondRowText() {
         Thread clock = new Thread() {
             public void run() {
                 for (;;) {
                     Calendar cal = Calendar.getInstance();
-                    hour = cal.get(Calendar.HOUR_OF_DAY);
-                    timeText.setText(new SimpleDateFormat("hh:mm a").format(cal.getTime()));
-                    dateText.setText(new SimpleDateFormat("EEE, dd MMM").format(cal.getTime()));
-                    if (hour < 12) {
-                        greeting = "Good Morning!";
-                    } else if (hour < 17) {
-                        greeting = "Good Afternoon!";
-                    } else {
-                        greeting = "Good Evening!";
-                    }
-                    greetingText.setText(greeting);
+                    secondRowText.setText(new SimpleDateFormat("hh:mm a").format(cal.getTime()));
                     try {
                         sleep(1000);
                     } catch (InterruptedException ex) {
@@ -69,7 +75,43 @@ public class MainPageInfoBox extends UiPart<Region> {
             }
         };
         clock.start();
-
     }
 
+    static String getDefaultThirdRowText() {
+        Calendar cal = Calendar.getInstance();
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+        String greeting = "";
+        if (hour < 12) {
+            greeting = "Good Morning!";
+        } else if (hour < 17) {
+            greeting = "Good Afternoon!";
+        } else {
+            greeting = "Good Evening!";
+        }
+        return greeting;
+    }
+
+    public Text getFirstRowText() {
+        return firstRowText;
+    }
+
+    public Text getSecondRowText() {
+        return secondRowText;
+    }
+
+    public Text getThirdRowText() {
+        return thirdRowText;
+    }
+
+    public String getCurrentFirstRowText() {
+        return currentFirstRowText;
+    }
+
+    public String getCurrentSecondRowText() {
+        return currentSecondRowText;
+    }
+
+    public String getCurrentThirdRowText() {
+        return currentThirdRowText;
+    }
 }

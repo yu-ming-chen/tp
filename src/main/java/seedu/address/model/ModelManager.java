@@ -269,6 +269,19 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public String getTotalExpenditureValue() {
+        Optional<Integer> budgetIndex = stateManager.getBudgetIndex();
+        assert budgetIndex.isPresent();
+        return nusave.getTotalExpenditureValue(budgetIndex);
+    }
+
+    @Override
+    public String getThresholdValue() {
+        Optional<Integer> budgetIndex = stateManager.getBudgetIndex();
+        return nusave.getThresholdValue(budgetIndex);
+    }
+
+    @Override
     public boolean isBudgetPage() {
         return this.stateManager.isBudgetPage();
     }
