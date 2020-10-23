@@ -126,7 +126,7 @@ public class ModelManager implements Model {
 
     private BudgetIndex getActualBudgetIndex(BudgetIndex budgetIndex) {
         int indexInFilteredList = budgetIndex.getBudgetIndex().get();
-        assert indexInFilteredList > 0 && indexInFilteredList < filteredRenderables.size();
+        assert indexInFilteredList >= 0 && indexInFilteredList < filteredRenderables.size();
         Budget budget = (Budget) filteredRenderables.get(indexInFilteredList);
         int indexInBudgetList = nusave.getIndexOfBudget(budget);
         return new BudgetIndexManager(indexInBudgetList);
