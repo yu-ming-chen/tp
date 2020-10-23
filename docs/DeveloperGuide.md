@@ -147,7 +147,30 @@ The `Expenditure`:
 * Contains a `Name`, `Date`, `Price` and `Set<Tag>`.
 
 ### 3.5. State Component
-_{To Be Added}_
+ (Contributed by Song Yu)
+ 
+ ***API***: `State.java`
+ 
+ The `State` component:
+ * Stores a `BudgetIndex` instance that represents the budget that `NUSave` is currently displaying.
+ * Stores a `Page` enumeration that represents the type of `Page` NUSave is currently on. 
+ * Stores a `BooleanProperty` instance that triggers a callback on change of `boolean` value, updating the page title 
+ of the current page.
+ *  Stores a `String` value which represents the title of the current page.
+ 
+ `State` is used by `Model` to track the current state of NUSave. When a command that requires a different budget book
+ or list of budgets to be displayed is called, `State` will store information of the new page being displayed. This information
+ will be used when different commands are entered which requires `model` to know the current `state` of NUSave.
+ 
+ Using the current `Page` of NUSave, commands are parsed separately by either `BudgetPageParser` or `MainPageParser`. 
+ Thus, commands with similar names but belonging to different parsers will have different implementations and classes.
+ For example, a command like `list` will have different implementations, as a `ListExpenditureCommand` 
+ or `ListBudgetCommand.`
+ 
+ ![Structure of the storage component](images/StateClassDiagram.jpg)
+ 
+ Figure 3.5.1: Structure of the state component.
+ 
 
 ### 3.6. Storage Component
 (Contributed by Wen Hao)
