@@ -32,9 +32,6 @@ public class MainPageInfoBox extends UiPart<Region> {
     private Text thirdRowText;
 
     private String greeting;
-    private String currentFirstRowText;
-    private String currentSecondRowText;
-    private String currentThirdRowText;
 
 
     /**
@@ -44,9 +41,6 @@ public class MainPageInfoBox extends UiPart<Region> {
     public MainPageInfoBox() {
         super(FXML);
         setMainPageInfoBoxText();
-        this.currentFirstRowText = getDefaultFirstRowText();
-        this.currentSecondRowText = "";
-        this.currentThirdRowText = getDefaultThirdRowText();
     }
 
     private void setMainPageInfoBoxText() {
@@ -56,7 +50,7 @@ public class MainPageInfoBox extends UiPart<Region> {
     }
 
 
-    static String getDefaultFirstRowText() {
+    public static String getDefaultFirstRowText() {
         return new SimpleDateFormat("EEE, dd MMM").format(Calendar.getInstance().getTime());
     }
 
@@ -77,7 +71,7 @@ public class MainPageInfoBox extends UiPart<Region> {
         clock.start();
     }
 
-    static String getDefaultThirdRowText() {
+    public static String getDefaultThirdRowText() {
         Calendar cal = Calendar.getInstance();
         int hour = cal.get(Calendar.HOUR_OF_DAY);
         String greeting = "";
@@ -101,17 +95,5 @@ public class MainPageInfoBox extends UiPart<Region> {
 
     public Text getThirdRowText() {
         return thirdRowText;
-    }
-
-    public String getCurrentFirstRowText() {
-        return currentFirstRowText;
-    }
-
-    public String getCurrentSecondRowText() {
-        return currentSecondRowText;
-    }
-
-    public String getCurrentThirdRowText() {
-        return currentThirdRowText;
     }
 }

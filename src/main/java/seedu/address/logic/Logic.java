@@ -3,6 +3,7 @@ package seedu.address.logic;
 import java.nio.file.Path;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
@@ -37,6 +38,8 @@ public interface Logic {
     GuiSettings getGuiSettings();
 
     BooleanProperty getIsBudgetPageProp();
+
+    StringProperty getTotalExpenditureStringProp();
 
     String getPageTitle();
 

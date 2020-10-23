@@ -3,6 +3,7 @@ package seedu.address.state;
 import java.util.Optional;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.StringProperty;
 import seedu.address.state.budgetindex.BudgetIndex;
 
 public interface State {
@@ -12,6 +13,8 @@ public interface State {
     Page getPage();
 
     BooleanProperty getIsBudgetPageProp();
+
+    StringProperty getTotalExpenditureStringProp();
 
     boolean isBudgetPage();
 
@@ -24,6 +27,8 @@ public interface State {
     void setIsBudgetPage(boolean isExpenditure);
 
     void setPage(Page page);
+
+    void setTotalExpenditure(String expenditure);
 
     void setBudgetIndex(BudgetIndex index);
 

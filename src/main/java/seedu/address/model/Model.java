@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -77,8 +78,9 @@ public interface Model {
 
     void addExpenditure(Expenditure expenditure) throws CommandException;
 
-
     void sortExpendituresByName();
+
+    String calculateExpenditureValue(BudgetIndex budgetIndex);
 
     void editExpenditure(Expenditure oldExpenditure, Expenditure editedExpenditure);
 
@@ -96,7 +98,11 @@ public interface Model {
 
     BooleanProperty getBudgetPageProp();
 
+    StringProperty getTotalExpenditureStringProp();
+
     void setPage(Page page);
+
+    void setTotalExpenditure(String expenditure);
 
     void setBudgetIndex(BudgetIndex index);
 

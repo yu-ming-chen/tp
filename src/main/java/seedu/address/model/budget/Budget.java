@@ -69,7 +69,7 @@ public class Budget implements Renderable {
             String value = price.value;
             resultFloat += Float.parseFloat(value);
         }
-        return Float.toString(resultFloat);
+        return String.format("%.2f", Float.valueOf(resultFloat));
     }
 
     public void addExpenditure(Expenditure expenditure) {
