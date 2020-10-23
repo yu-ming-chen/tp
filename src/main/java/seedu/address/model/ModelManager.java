@@ -276,7 +276,7 @@ public class ModelManager implements Model {
 
     @Override
     public StringProperty getTotalExpenditureStringProp() {
-        return stateManager.getTotalExpenditureStringProp();
+        return stateManager.getMainPageInfoBoxSecondRowProp();
     }
 
     @Override

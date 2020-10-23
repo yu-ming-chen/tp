@@ -14,7 +14,7 @@ public interface State {
 
     BooleanProperty getIsBudgetPageProp();
 
-    StringProperty getTotalExpenditureStringProp();
+    StringProperty getMainPageInfoBoxSecondRowProp();
 
     boolean isBudgetPage();
 

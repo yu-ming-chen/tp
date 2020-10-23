@@ -15,7 +15,7 @@ public class StateManager implements State {
     private BudgetIndex budgetIndex;
     private Page currentPage;
     private BooleanProperty isBudgetPageProp = new SimpleBooleanProperty(false);
-    private StringProperty totalExpenditureStringProp = new SimpleStringProperty(defaultValueTotalExpenditure());
+    private StringProperty mainPageInfoBoxSecondRowProp = new SimpleStringProperty(defaultValueTotalExpenditure());
     private String pageTitle;
 
     /**
@@ -51,8 +51,8 @@ public class StateManager implements State {
     }
 
     @Override
-    public StringProperty getTotalExpenditureStringProp() {
-        return totalExpenditureStringProp;
+    public StringProperty getMainPageInfoBoxSecondRowProp() {
+        return mainPageInfoBoxSecondRowProp;
     }
 
     @Override
@@ -92,7 +92,7 @@ public class StateManager implements State {
 
     @Override
     public void setTotalExpenditure(String expenditure) {
-        this.totalExpenditureStringProp.setValue(expenditure);
+        this.mainPageInfoBoxSecondRowProp.setValue(expenditure);
     }
 
     @Override
