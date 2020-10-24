@@ -3,7 +3,6 @@ package seedu.address.logic.commands.budget;
 
 import seedu.address.logic.commands.BudgetPageCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.sort.SortType;
 
@@ -37,16 +36,19 @@ public class SortExpenditureCommand extends BudgetPageCommand {
      * @return the commmand result along with a success message
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         switch (sortType) {
-            case TIME: {
-                model.sortExpenditureByCreatedDate();
-                break;
-            }
-            case NAME: {
-                model.sortExpendituresByName();
-                break;
-            }
+        case TIME: {
+            model.sortExpenditureByCreatedDate();
+            break;
+        }
+        case NAME: {
+            model.sortExpendituresByName();
+            break;
+        }
+        default: {
+            break;
+        }
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }

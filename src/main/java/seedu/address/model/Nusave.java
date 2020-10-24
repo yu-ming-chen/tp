@@ -169,7 +169,7 @@ public class Nusave implements ReadOnlyNusave {
     }
 
     /**
-     * sort current ExpenditureList
+     * sort current ExpenditureList by Name
      * @param state current state
      */
     public void sortExpendituresByName(State state) {
@@ -178,6 +178,10 @@ public class Nusave implements ReadOnlyNusave {
         budgetList.getExpenditure(index).sort(new SortExpendituresByName());
     }
 
+    /**
+     * sort current ExpenditureList by CreateDate
+     * @param state current state
+     */
     public void sortExpendituresByCreateDate(State state) {
         assert state.getBudgetIndex().isPresent();
         int index = state.getBudgetIndex().get();

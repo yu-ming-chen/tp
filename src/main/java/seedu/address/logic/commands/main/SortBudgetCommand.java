@@ -1,7 +1,5 @@
 package seedu.address.logic.commands.main;
 
-
-import javafx.scene.control.TableColumn;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.MainPageCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -40,14 +38,17 @@ public class SortBudgetCommand extends MainPageCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         switch (sortType) {
-            case TIME: {
-                model.sortBudgetsByCreatedDate();
-                break;
-            }
-            case NAME: {
-                model.sortBudgetsByName();
-                break;
-            }
+        case TIME: {
+            model.sortBudgetsByCreatedDate();
+            break;
+        }
+        case NAME: {
+            model.sortBudgetsByName();
+            break;
+        }
+        default: {
+            break;
+        }
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }

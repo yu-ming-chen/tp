@@ -62,17 +62,17 @@ public class ParserUtil {
     public static SortType parseSortType(String args) throws ParseException {
         String trimmedStringType = args.trim().toLowerCase();
         switch (trimmedStringType) {
-            case "name": {
-                return SortType.NAME;
-            }
+        case "name": {
+            return SortType.NAME;
+        }
 
-            case "time": {
-                return SortType.TIME;
-            }
-            default: {
-                throw new ParseException(String.format(SortBudgetCommandParser.MESSAGE_INVALID_SORT_TYPE + "\n" +
-                        SortBudgetCommand.MESSAGE_USAGE));
-            }
+        case "time": {
+            return SortType.TIME;
+        }
+        default: {
+            throw new ParseException(String.format(SortBudgetCommandParser.MESSAGE_INVALID_SORT_TYPE + "\n"
+                    + SortBudgetCommand.MESSAGE_USAGE));
+        }
         }
     }
 

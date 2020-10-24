@@ -18,7 +18,6 @@ import seedu.address.logic.commands.budget.ListExpenditureCommand;
 import seedu.address.logic.commands.budget.SortExpenditureCommand;
 import seedu.address.logic.parser.PageParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.mainpageparser.SortExpenditureCommandParser;
 
 /**
  * Represents a Parser that is able to parse inputs occuring in the Budget Page.
