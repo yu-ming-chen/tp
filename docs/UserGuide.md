@@ -66,11 +66,50 @@ tracking and managing your finances.
 
 ## 2 About the user guide
 ### 2.1 Symbols
+(Contributed by Yu Ming)
+
+Symbols | Meaning 
+-------| ------------ 
+⚠️ | This sybmol indicates that there is something important for you to take note of.
+📕 | This symbol indicates that there is additional information you may find useful.
+ ✏️ | This symbol indicates that an example is provided.
+ ❗| This symbol indicates that the parameter is required.
+ ❕| This symbol indicates that the parameter is optional.
 
 ### 2.2 Format
+(Contributed by Yu Ming)
 
+This section shows the format of all the commands in the user guide.
+
+Format | Meaning | Exmaple 
+-------| ------------ | ----
+`lower_case/` | **Prefixes** | `n/` `p/` `t/` <br/> ⚠️ Prefixes **cannot have spaces**: `n /` will be an invalid prefix| 
+`UPPER_CASE` | **Parameters** | `NAME` `THRESHOLD` `PRICE`
+`[UPPER_CASE]` | **Optional parameters** | `[p/THRESHOLD]` in create budget command
+
+📕 Note: Parameters can be in **any order** if they have **prefixes**.
+
+For example, a create budget command can have `n/NAME` and `p/THRESHOLD`, you can specify them in any order:
+ - `create n/Temasek Hall Student Council p/1200`, or
+ - `create p/1200 n/Temasek Hall Student Council`
+ 
+ However, if a given command has any parameter **without prefix**, that given parameter **must** be the **first parameter**.
+
+For exmaple, a edit budget command have an `INDEX`, a `n/NAME` and a `p/THRESHOLD`. In this case, `INDEX` **must** be
+the **first parameter**:
+ - `edit 1 n/NUS Computing Club p/1000` is a valid command, however
+ - `edit n/NUS Computing Club p/1000 1` is an invalid command
 ### 2.3 Parameters
+(Contributed by Yu Ming)
 
+Parameter | Meaning 
+-------| ------------
+`INDEX` | Index to be executed on for any given command 
+`NAME` | This can be either **name of budget** or **name of expenditure** or **name to find** 
+`PRICE` | This is the price of the expenditure 
+`THRESHOLD` | This is the maximum capacity of the budget 
+`TAG` | This is the tag for the expenditure 
+`SORTTYPE` | This is the sorting types 
 ## 3 Quick start
 
 ## 4 Layout
@@ -138,8 +177,6 @@ This will create a new budget called "Temasek Hall Student Council" with a thres
 
 Figure 6.2.1.1: Example of create budget command
 
-
-
 #### 6.2.2 Deleting a budget: `delete`
 (Contributed by David)
 
@@ -166,12 +203,72 @@ This will delete the budget with the index "1".
 
 Figure 6.2.1.1: Example of delete budget command
 #### 6.2.3 Editing a budget: `edit`
+(Contributed by Yu Ming)
+
+You can use this command to **edit an existing budget**.
+
+When a budget is edited the changes will be saved on NUSave, and  will be 
+reflected immediately on the list of budgets.
+
+>⚠️ You can only use this command on existing budgets.  
+
+Format: edit INDEX n/NAME p/THRESHOLD
+
+Prefix | Parameters | Requirement | Comments
+-------| ------------ | ------------- | ------
+  - | INDEX | ❗Required | Index of the budget displayed on NUSave
+ n/ | NAME | ❕Optional | Name of the budget to be edited to
+ p/ | THRESHOLD | ❕Optional | Threshold of the budget to be edited to
+ 
+ >⚠️ Although both NAME and THRESHOLD fields are optional You must have at least one of the Prefix and 
+ > corresponding Parameters present. 
+
+✏️ Example:
+
+Format: `edit 2 n/NUS Computing club`
+
+This will edit a budget at **index 2** to be **renamed "NUS Computing Club"**.
+
+![Example of edit budget command](images/CommandScreenShots/6_2_3_1_editBudget.png)
+
+Figure 6.2.3.1: Example of edit budget command
 
 #### 6.2.4 Finding budgets: `find`
 
 #### 6.2.5 Listing budgets: `list`
 
 #### 6.2.6 Sorting budgets: `sort`
+(Contributed by Yu Ming)
+
+You can use this command to **sort your budgets**.
+
+You can sort your budgets based on two different type of sorts:
+1. Sort by created date (the latest budget created will be at the top of the main page of NUSave)
+
+   
+   ```📕 Note: If budgets are created on the same date. They will be sorted by name within themselves.```
+   
+2. Sort by name of the budget (budgets will be ordered in alphabetical order from a-z, case-insensitive)
+
+>⚠️ If there are **no budgets** or there is **only one budget** in NUSave, the sort command may not show any effect.
+> This is because there needs to be more than one budget for sorting to work. Go ahead and add in more budgets 
+> to see your budgets in NUSave get sorted!
+
+Format: `sort SORTTYPE`
+
+ Parameters | Requirement | Comments
+ ------------ | ------------- | ------
+ SORTYPE | ❗Required | Two different type of sorts available: `time` `name`
+
+✏️ Example:
+
+`sort name`
+
+This will sort all the budgets in NUSave by their name in alphabetic order.
+
+![Example of sort budgets command](images/CommandScreenShots/6_2_6_1_sortBudget.png)
+
+Figure 6.2.6.1: Example of sort budgets command
 
 ### 6.3 Budget page commands
 #### 6.3.1 Adding an expenditure: `add`
@@ -238,6 +335,37 @@ Figure 6.3.3.1: Example of edit expenditure command
 #### 6.3.5 Listing expenditures: `list`
 
 #### 6.3.6 Sorting expenditures: `sort`
+(Contributed by Yu Ming)
+
+You can use this command to **sort your expenditures** within a budget.
+
+You can sort your expenditures within a budget based on two different type of sorts:
+1. Sort by added date (the latest expenditure added will be at the top of that budget page in NUSave)
+
+   
+   ```📕 Note: If expenditures are created on the same date. They will be sorted by name within themselves.```
+   
+2. Sort by name of the expenditure (expenditures will be ordered in alphabetical order from a-z, case-insensitive)
+
+>⚠️ If there are **no expenditures** or there is **only one expenditure** in that budget, the sort command may not 
+> show any effect. This is because there needs to be more than one expenditure for sorting to work. 
+> Go ahead and add in more expenditures to see your expenditures in that budget get sorted!
+
+Format: `sort SORTTYPE`
+
+ Parameters | Requirement | Comments
+ ------------ | ------------- | ------
+ SORTYPE | ❗Required | Two different type of sorts available: `time` `name`
+
+✏️ Example:
+
+`sort time`
+
+This will sort all the expenditures in that budget by their added date with the latest expenditure added at the top.
+
+![Example of sort expenditures command](images/CommandScreenShots/6_3_6_1_sortExpenditure.png)
+
+Figure 6.3.6.1: Example of sort expenditures command
 
 ## 7 Command summary
 ### 7.1 Navigation
