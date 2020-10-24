@@ -101,6 +101,7 @@ Prefix | Parameters | Requirement | Comments
 ✏️ Example:
 
 `create n/Temasek Hall Student Council p/1200`
+
 This will create a new budget called "Temasek Hall Student Council" with a threshold value of $1200.
 
 ![Example of create budget command](images/CommandScreenShots/6_2_1_1_createBudget.png)
