@@ -2,42 +2,42 @@
 ## Table of Contents
 1. [Introduction](#1-introduction)
     - [1.1 Welcome](#11-welcome)
-    - [1.2 Purpose of Document](#12-purpose-of-document)
-    - [1.3 Target Audience](#13-target-audience)
+    - [1.2 Purpose of document](#12-purpose-of-document)
+    - [1.3 Target audience](#13-target-audience)
 2. [About the user guide](#2-about-the-user-guide)
     - [2.1 Symbols](#21-symbols)
     - [2.2 Format](#22-format)
     - [2.3 Parameters](#23-parameters)
-3. [Quick Start](#3-quick-start)
+3. [Quick start](#3-quick-start)
 4. [Layout](#4-layout)
-    - [4.1 Main Page View](#41-main-page-view)
-    - [4.2 Budget Page View](#42-budget-page-view)
+    - [4.1 Main page view](#41-main-page-view)
+    - [4.2 Budget page view](#42-budget-page-view)
 5. [Tips](#5-tips)
-    - [5.1 Syntax Highlighting](#51-syntax-highlighting)
+    - [5.1 Syntax highlighting](#51-syntax-highlighting)
 6. [Commands](#6-commands)
     - [6.1 Navigation](#61-navigation)
         * [6.1.1 Opening a budget: `open`](#611-opening-a-budget-open)
         * [6.1.2 Closing a budget:`close`](#612-closing-a-budget-close)
         * [6.1.3 Exit NUSave: `exit`](#613-exit-nusave-exit)
         * [6.1.4 View help: `help`](#614-view-help-help)   
-    - [6.2 Main Page Commands](#62-main-page-commands)
+    - [6.2 Main page commands](#62-main-page-commands)
         * [6.2.1 Creating a budget: `create`](#621-creating-a-budget-create)
         * [6.2.2 Deleting a budget: `delete`](#622-deleting-a-budget-delete)
         * [6.2.3 Editing a budget: `edit`](#623-editing-a-budget-edit)
         * [6.2.4 Finding budgets: `find`](#624-finding-budgets-find)
         * [6.2.5 Listing budgets: `list`](#625-listing-budgets-list)
         * [6.2.6 Sorting budgets: `sort`](#626-sorting-budgets-sort)
-    - [6.3 Budget Page Commands](#63-budget-page-commands)
+    - [6.3 Budget page commands](#63-budget-page-commands)
         * [6.3.1 Adding an expenditure: `add`](#631-adding-an-expenditure-add)
         * [6.3.2 Deleting an expenditure: `delete`](#632-deleting-an-expenditure-delete)
         * [6.3.3 Editing an expenditure: `edit`](#633-editing-an-expenditure-edit)
         * [6.3.4 Finding expenditures: `find`](#634-finding-expenditures-find)
         * [6.3.5 Listing expenditures: `list`](#635-listing-expenditures-list)
         * [6.3.6 Sorting expenditures: `sort`](#636-sorting-expenditures-sort)
-7. [Command Summary](#7-command-summary)
+7. [Command summary](#7-command-summary)
     - [7.1 Navigation](#71-navigation)
-    - [7.2 Main Page Commands](#72-main-page-commands)
-    - [7.3 Budget Page Commands](#73-budget-page-commands)
+    - [7.2 Main page commands](#72-main-page-commands)
+    - [7.3 Budget page commands](#73-budget-page-commands)
 8. [Glossary](#8-glossary)
 9. [FAQ](#9-faq) 
 
@@ -47,27 +47,27 @@ Hello! Welcome to NUSave! NUSave is a **desktop app for managing expenditures, o
 Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, 
 NUSave can help you manage and track expenses faster than traditional GUI apps.
 
-### 1.2 Purpose of Document
+### 1.2 Purpose of document
 
-### 1.3 Target Audience
+### 1.3 Target audience
 Are you a **NUS student** staying on campus and having difficultes managing you budgets
 
-## 2 About the User Guide
+## 2 About the user guide
 ### 2.1 Symbols
 
 ### 2.2 Format
 
 ### 2.3 Parameters
 
-## 3 Quick Start
+## 3 Quick start
 
 ## 4 Layout
-### 4.1 Main Page View
+### 4.1 Main page view
 
-### 4.2 Budget Page View
+### 4.2 Budget page view
 
 ## 5 Tips
-### 5.1 Syntax Highlighting
+### 5.1 Syntax highlighting
 
 ## 6 Commands
 ### 6.1 Navigation
@@ -79,7 +79,7 @@ Are you a **NUS student** staying on campus and having difficultes managing you 
 
 #### 6.1.4 View help: `help`
 
-### 6.2 Main Page Commands
+### 6.2 Main page commands
 #### 6.2.1 Creating a budget: `create`
 (Contributed by Yu Ming)
 
@@ -120,7 +120,7 @@ Figure 6.2.1.1: Example of create budget command
 
 #### 6.2.6 Sorting budgets: `sort`
 
-### 6.3 Budget Page Commands
+### 6.3 Budget page commands
 #### 6.3.1 Adding an expenditure: `add`
 
 #### 6.3.2 Deleting an expenditure: `delete`
@@ -133,12 +133,12 @@ Figure 6.2.1.1: Example of create budget command
 
 #### 6.3.6 Sorting expenditures: `sort`
 
-## 7 Command Summary
+## 7 Command summary
 ### 7.1 Navigation
 
-### 7.2 Main Page Commands
+### 7.2 Main page commands
 
-### 7.3 Budget Page Commands
+### 7.3 Budget page commands
 
 ## 8 Glossary
 
