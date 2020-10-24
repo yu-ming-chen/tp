@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.budget.BudgetList;
 import seedu.address.model.expenditure.Expenditure;
+import seedu.address.model.sort.SortExpenditureByCreateDate;
+import seedu.address.model.sort.SortExpendituresByName;
 import seedu.address.state.State;
 import seedu.address.state.budgetindex.BudgetIndex;
 
@@ -174,6 +176,12 @@ public class Nusave implements ReadOnlyNusave {
         assert state.getBudgetIndex().isPresent();
         int index = state.getBudgetIndex().get();
         budgetList.getExpenditure(index).sort(new SortExpendituresByName());
+    }
+
+    public void sortExpendituresByCreateDate(State state) {
+        assert state.getBudgetIndex().isPresent();
+        int index = state.getBudgetIndex().get();
+        budgetList.getExpenditure(index).sort(new SortExpenditureByCreateDate());
     }
 
 }

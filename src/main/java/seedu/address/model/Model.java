@@ -80,6 +80,8 @@ public interface Model {
 
     void sortExpendituresByName();
 
+    void sortExpenditureByCreatedDate();
+
     void editExpenditure(Expenditure oldExpenditure, Expenditure editedExpenditure);
 
     Page getPage();

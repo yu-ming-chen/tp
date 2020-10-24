@@ -178,6 +178,8 @@ public class ModelManager implements Model {
         repopulateObservableList();
     }
 
+
+
     //=========== Expenditures =======
 
     @Override
@@ -212,6 +214,12 @@ public class ModelManager implements Model {
     @Override
     public void sortExpendituresByName() {
         nusave.sortExpendituresByName(stateManager);
+        repopulateObservableList();
+    }
+
+    @Override
+    public void sortExpenditureByCreatedDate() {
+        nusave.sortExpendituresByCreateDate(stateManager);
         repopulateObservableList();
     }
 

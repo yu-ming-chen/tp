@@ -9,9 +9,12 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.main.SortBudgetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.mainpageparser.SortBudgetCommandParser;
 import seedu.address.model.budget.Threshold;
 import seedu.address.model.expenditure.Price;
+import seedu.address.model.sort.SortType;
 import seedu.address.model.tag.Tag;
 import seedu.address.state.budgetindex.BudgetIndex;
 import seedu.address.state.budgetindex.BudgetIndexManager;
@@ -49,6 +52,28 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return new ExpenditureIndexManager(Integer.parseInt(trimmedIndex) - 1);
+    }
+
+    /**
+     * Parses {@code args} into a {@code SortTypr} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the specified Sort Type is invalid (unsupported sort types).
+     */
+    public static SortType parseSortType(String args) throws ParseException {
+        String trimmedStringType = args.trim().toLowerCase();
+        switch (trimmedStringType) {
+            case "name": {
+                return SortType.NAME;
+            }
+
+            case "time": {
+                return SortType.TIME;
+            }
+            default: {
+                throw new ParseException(String.format(SortBudgetCommandParser.MESSAGE_INVALID_SORT_TYPE + "\n" +
+                        SortBudgetCommand.MESSAGE_USAGE));
+            }
+        }
     }
 
 
