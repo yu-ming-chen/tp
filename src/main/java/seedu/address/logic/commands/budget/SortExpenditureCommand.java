@@ -3,8 +3,8 @@ package seedu.address.logic.commands.budget;
 
 import seedu.address.logic.commands.BudgetPageCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.sort.SortType;
 
 /**
  * Creates a new SortExpenditureCommand.
@@ -12,12 +12,23 @@ import seedu.address.model.Model;
 public class SortExpenditureCommand extends BudgetPageCommand {
     public static final String COMMAND_WORD = "sort";
     public static final String SYNTAX = COMMAND_WORD;
-    public static final String DESCRIPTION = "Sorts expenditure by name.";
+    public static final String DESCRIPTION = "Sorts expenditure by name or time.";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n"
-            + "Usage: " + SYNTAX + "\n"
-            + "Description: " + DESCRIPTION + "\n";
+            + "Usage: " + SYNTAX + " SORT TYPE\n"
+            + "Description: " + DESCRIPTION + "\n"
+            + "Parameters: TIME or NAME\n"
+            + "Example: " + COMMAND_WORD + " time\n";
 
-    public static final String MESSAGE_SUCCESS = "Sorted expenditures by name.";
+    public static final String MESSAGE_SUCCESS = "Sorted expenditures.";
+
+    private final SortType sortType;
+    /**
+     * Creates a SortBudegetCommand to to sort budgets by {@code sortType}.
+     * @param sortType the type of sort.
+     */
+    public SortExpenditureCommand(SortType sortType) {
+        this.sortType = sortType;
+    }
 
     /**
      * Executes the sort expenditure command.
@@ -25,8 +36,20 @@ public class SortExpenditureCommand extends BudgetPageCommand {
      * @return the commmand result along with a success message
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        model.sortExpendituresByName();
+    public CommandResult execute(Model model) {
+        switch (sortType) {
+        case TIME: {
+            model.sortExpenditureByCreatedDate();
+            break;
+        }
+        case NAME: {
+            model.sortExpendituresByName();
+            break;
+        }
+        default: {
+            break;
+        }
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 }
