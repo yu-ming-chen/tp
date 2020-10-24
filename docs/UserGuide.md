@@ -42,15 +42,27 @@
 9. [FAQ](#9-faq) 
 
 ## 1 Introduction
+
 ### 1.1 Welcome
-Hello! Welcome to NUSave! NUSave is a **desktop app for managing expenditures, optimized for use via a Command Line 
-Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, 
-NUSave can help you manage and track expenses faster than traditional GUI apps.
+Hello, Welcome to NUSave! 
+
+NUSave is a **productivity desktop application for tracking and managing expenditures** across different 
+**budget categories**. NUSave is built using a text-based user interface, also known as a Command Line Interface (CLI), 
+accompanied by a Graphical User Interface (GUI). 
+If you are fast at typing, prefer using your keyboard, and enjoy appealing visuals,
+NUSave is here to help.
 
 ### 1.2 Purpose of document
+The purpose of this document is to aid users with their experience in using NUSave.
+By providing detailed information regarding the different commands and how to use them, it will allow users to smoothly 
+use NUSave to the fullest extent.
 
 ### 1.3 Target audience
-Are you a **NUS student** staying on campus and having difficultes managing you budgets
+Are you a **University student staying on campus** and having difficulties managing your budgets?
+
+If so, NUSave is built just for you. Made by 5 university student residents, we understand the difficulty of 
+having multiple budgets to keep track of in your busy schedule. NUSave aims to alleviate the hassle that comes with 
+tracking and managing your finances. 
 
 ## 2 About the user guide
 ### 2.1 Symbols
@@ -76,6 +88,24 @@ Are you a **NUS student** staying on campus and having difficultes managing you 
 #### 6.1.2 Closing a budget: `close`
 
 #### 6.1.3 Exit NUSave: `exit`
+(Contributed by David)
+
+You can use this command to **exit from the application**.
+
+When exiting NUSave, all changes made to the application will be saved.
+
+```📕 You can use this command at any point of time.```
+
+Format: `exit`
+
+✏️ Example
+`exit`
+
+This will exit the application. When the application is launched again, the change you made will remain.
+
+![Example of exit command](images/CommandScreenShots/6_1_3_1_exit.png)
+
+Figure 6.2.1.1: Example of using the exit command on both the main page and budget page.
 
 #### 6.1.4 View help: `help`
 
@@ -88,8 +118,8 @@ You can use this command to **create a new budget**.
 When a new budget is created it will be stored inside NUSave, and it will be reflected immediately in the list of budget
 on the main page of NUSave.
 
->⚠️ Upon first launch, **you may notice NUSave main page is empty**. This is because there are no budgets created yet. Go
-ahead and create a budget to see NUSave get populated with your entries!
+ > ⚠️ Upon first launch, **you may notice NUSave main page is empty**. This is because there are no budgets created yet. Go
+ > ahead and create a budget to see NUSave get populated with your entries!
 
 Format: `create n/NAME [p/THRESHOLD]`
 
@@ -111,7 +141,30 @@ Figure 6.2.1.1: Example of create budget command
 
 
 #### 6.2.2 Deleting a budget: `delete`
+(Contributed by David)
 
+You can use this command to **delete an existing budget**.
+
+When a budget is deleted it will be removed from NUSave, and the 
+deletion will be reflected immediately in the list of budget on the main page of NUSave.
+
+ > ⚠️ **You cannot use this command if main page is empty**. This is because there are no budgets created yet. 
+ > You can only delete a budget if there are already existing budgets!
+
+Format: `delete INDEX`
+
+ Parameters | Requirement | Comments
+ ------------ | ------------- | ------
+Index | ❗Required | Index of the budget
+
+✏️ Example:
+
+`delete 1`
+This will delete the budget with the index "1".
+
+![Example of delete budget command](images/CommandScreenShots/6_2_2_1_deleteBudget.png)
+
+Figure 6.2.1.1: Example of delete budget command
 #### 6.2.3 Editing a budget: `edit`
 
 #### 6.2.4 Finding budgets: `find`
@@ -124,9 +177,62 @@ Figure 6.2.1.1: Example of create budget command
 #### 6.3.1 Adding an expenditure: `add`
 
 #### 6.3.2 Deleting an expenditure: `delete`
+(Contributed by David)
+
+You can use this command to **delete an existing expenditure**.
+
+When an expenditure is deleted it will be removed from NUSave, and the 
+deletion will be reflected immediately in the list of expenditures on the budget page of NUSave.
+
+ > ⚠️ **You cannot use this command if budget page is empty**. This is because there are no expenditures created yet. 
+ > You can only delete an expenditure if there are already existing budgets!
+
+Format: `delete INDEX`
+
+ Parameters | Requirement | Comments
+ ------------ | ------------- | ------
+Index | ❗Required | Index of the expenditure
+
+✏️ Example:
+
+`delete 2`
+
+This will delete the expenditure with the index "2".
+
+![Example of delete expenditure command](images/CommandScreenShots/6_3_2_1_deleteExpenditure.png)
+
+Figure 6.3.2.1: Example of delete expenditure command
 
 #### 6.3.3 Editing an expenditure: `edit`
+(Contributed by David)
 
+You can use this command to **edit an existing expenditure**.
+
+When an expenditure is edited the changes will be saved on NUSave, and  will be 
+reflected immediately on the list of expenditures.
+
+ > ⚠️ **You can only use this command on existing expenditures**.  
+
+Format: `edit INDEX n/NAME p/PRICE`
+
+Prefix | Parameters | Requirement | Comments
+-------| ------------ | ------------- | ------
+- | INDEX | ❗Required | Index of the expenditure displayed on NUSave
+ n/ | NAME | ❕Optional | Name of the expenditure to be edited to
+ p/ | PRICE | ❕Optional | Price of the expenditure to be edited to
+ 
+ > ⚠️ Although both NAME and PRICE fields are optional **You must have at least one of the Prefix and 
+ >  corresponding Parameters present**. 
+
+✏️ Example:
+
+Format: `edit 1 n/Long-Sleeve p/20`
+
+This will edit an expenditure at **index 1** to be **renamed** "Long-Sleeve" with an edited **price** of $20.
+
+![Example of edit expenditure command](images/CommandScreenShots/6_3_3_1_editExpenditure.png)
+
+Figure 6.3.3.1: Example of edit expenditure command
 #### 6.3.4 Finding expenditures: `find`
 
 #### 6.3.5 Listing expenditures: `list`
