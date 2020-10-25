@@ -27,6 +27,7 @@
         * [6.2.4 Finding budgets: `find`](#624-finding-budgets-find)
         * [6.2.5 Listing budgets: `list`](#625-listing-budgets-list)
         * [6.2.6 Sorting budgets: `sort`](#626-sorting-budgets-sort)
+        * [6.2.7 Clear expenditure: `clear`](#627-clear-budgets-clear)
     - [6.3 Budget page commands](#63-budget-page-commands)
         * [6.3.1 Adding an expenditure: `add`](#631-adding-an-expenditure-add)
         * [6.3.2 Deleting an expenditure: `delete`](#632-deleting-an-expenditure-delete)
@@ -34,6 +35,7 @@
         * [6.3.4 Finding expenditures: `find`](#634-finding-expenditures-find)
         * [6.3.5 Listing expenditures: `list`](#635-listing-expenditures-list)
         * [6.3.6 Sorting expenditures: `sort`](#636-sorting-expenditures-sort)
+        * [6.3.7 Clear expenditures: `clear`](#637-clear-expenditures-clear)
 7. [Command summary](#7-command-summary)
     - [7.1 Navigation](#71-navigation)
     - [7.2 Main page commands](#72-main-page-commands)
@@ -44,7 +46,7 @@
 ## 1 Introduction
 
 ### 1.1 Welcome
-Hello, Welcome to NUSave! 
+Hello, welcome to NUSave! 
 
 NUSave is a **productivity desktop application for tracking and managing expenditures** across different 
 **budget categories**. NUSave is built using a text-based user interface, also known as a Command Line Interface (CLI), 
@@ -95,7 +97,7 @@ For example, a create budget command can have `n/NAME` and `p/THRESHOLD`, you ca
  
  However, if a given command has any parameter **without prefix**, that given parameter **must** be the **first parameter**.
 
-For exmaple, a edit budget command have an `INDEX`, a `n/NAME` and a `p/THRESHOLD`. In this case, `INDEX` **must** be
+For example, a edit budget command have an `INDEX`, a `n/NAME` and a `p/THRESHOLD`. In this case, `INDEX` **must** be
 the **first parameter**:
  - `edit 1 n/NUS Computing Club p/1000` is a valid command, however
  - `edit n/NUS Computing Club p/1000 1` is an invalid command
@@ -111,7 +113,25 @@ Parameter | Meaning
 `TAG` | This is the tag for the expenditure 
 `SORTTYPE` | This is the sorting types 
 ## 3 Quick start
+1. Ensure you have Java `11` or above installed in your Computer.
 
+2. Download the latest `NUSave.jar` from [here](https://github.com/AY2021S1-CS2103T-T11-4/tp/releases).
+
+3. Copy the file to the folder you want to use as the *home folder* for NUSave.
+
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
+
+5. Type the command in the command box and press enter to execute it. Below is a series of commands that you can try:
+    - `create n/Test`: Creates a new budget with the name "Test".
+    - `find test`: Finds budgets whose names match the keyword "test". The GUI should reflect a list that contains only
+    the "test" budget that has just been created.
+    - `open 1`: Opens the budget at index 1. The GUI should reflect an empty list as you have yet to add any expenditure
+    to the "test" budget.
+    - `add n/Bread p/2.5`: Adds an expenditure with the name "Bread" that has a price of $2.50 to the "test" budget.
+    - `help`: Shows the list of commands available for NUSave.
+    - `exit`: Exits the app.
+
+6. Refer to the [commands](#6-commands) below for details of each command.
 ## 4 Layout
 ### 4.1 Main page view
 
@@ -147,6 +167,24 @@ This will exit the application. When the application is launched again, the chan
 Figure 6.2.1.1: Example of using the exit command on both the main page and budget page.
 
 #### 6.1.4 View help: `help`
+(Contributed by Yu Ming)
+
+You can use this command to **view a list of available commands**.
+
+The help will be displayed in the results window, and it will contain a list of all available commands and their
+required syntax.
+
+```📕 You can use this command at any point of time.```
+
+✏️ Example:
+
+`help`
+
+This will display the help instructions in the results window.
+
+![Example of help command](images/CommandScreenShots/6_1_4_1_help.png)
+
+Figure 6.1.4.1: Example of help command
 
 ### 6.2 Main page commands
 #### 6.2.1 Creating a budget: `create`
@@ -155,7 +193,7 @@ Figure 6.2.1.1: Example of using the exit command on both the main page and budg
 You can use this command to **create a new budget**.
 
 When a new budget is created it will be stored inside NUSave, and it will be reflected immediately in the list of budget
-on the main page of NUSave.
+on the main page of NUSave. This command is only available when no budget is open.
 
  > ⚠️ Upon first launch, **you may notice NUSave main page is empty**. This is because there are no budgets created yet. Go
  > ahead and create a budget to see NUSave get populated with your entries!
@@ -269,7 +307,7 @@ This will sort all the budgets in NUSave by their name in alphabetic order.
 ![Example of sort budgets command](images/CommandScreenShots/6_2_6_1_sortBudget.png)
 
 Figure 6.2.6.1: Example of sort budgets command
-
+#### 6.2.7 Clear budgets: `clear`
 ### 6.3 Budget page commands
 #### 6.3.1 Adding an expenditure: `add`
 
@@ -367,12 +405,32 @@ This will sort all the expenditures in that budget by their added date with the 
 
 Figure 6.3.6.1: Example of sort expenditures command
 
+#### 6.3.7 Clear expenditures: `clear`
+
 ## 7 Command summary
 ### 7.1 Navigation
-
+| **Action** | **Format, Examples** |
+|--------|--------------------------|
+|Open (Budget)       |`open INDEX`<br>e.g. `open 1`|
+|Close (Budget)      |`close`|
+|Help                |`help`|
+|Exit                |`exit`|
 ### 7.2 Main page commands
+| **Action** | **Format, Examples** |
+|--------|--------------------------|
+|Create (Budget)     |`create n/NAME`, `create n/NAME p/THRESHOLD` <br>e.g. `create n/Daily Expenses`, `create n/Project Work p/100`|
+|Delete (Budget)     |`delete INDEX`<br>e.g. `delete 1`|
+|List                |`list`|
+|Find                |`find KEYWORD`<br>e.g. `find Breakfast`|
+
 
 ### 7.3 Budget page commands
+| **Action** | **Format, Examples** |
+|--------|--------------------------|
+|Add (Expenditure)   |`add n/NAME p/PRICE` <br>e.g. `add n/Breakfast p/10`|
+|Delete (Expenditure)|`delete INDEX`<br>e.g. `delete 1`|
+|List                |`list`|
+|Find                |`find KEYWORD`<br>e.g. `find Breakfast`|
 
 ## 8 Glossary
 
@@ -381,41 +439,8 @@ Figure 6.3.6.1: Example of sort expenditures command
 
 
 
-1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `NUSave.jar` from [here](https://github.com/AY2021S1-CS2103T-T11-4/tp/releases).
 
-3. Copy the file to the folder you want to use as the *home folder* for NUSave.
-
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
-
-5. Type the command in the command box and press enter to execute it. Below is a series of commands that you can try:
-    - `create n/Test`: Creates a new budget with the name "Test".
-    - `find test`: Finds budgets whose names match the keyword "test". The GUI should reflect a list that contains only
-    the "test" budget that has just been created.
-    - `open 1`: Opens the budget at index 1. The GUI should reflect an empty list as you have yet to add any expenditure
-    to the "test" budget.
-    - `add n/Bread p/2.5`: Adds an expenditure with the name "Bread" that has a price of $2.50 to the "test" budget.
-    - `help`: Shows the list of commands available for NUSave.
-    - `exit`: Exits the app.
-
-6. Refer to the [features](#features) below for details of each command.
-
-## Features
-
-### Creating a budget: `create`
-
-Creates a budget in NUSave.
-
-Format: `create n/NAME`, `create n/NAME p/THRESHOLD`
-
-- This command is only available when no budget is open.
-- Creates a budget with the given `NAME` and `THRESHOLD`.
-- The `THRESHOLD` parameter optional.
-
-Examples:
-- `create n/Daily Expenses`
-- `create n/School Related Expenses p/100`
 
 ### Opening a budget: `open`
 
@@ -494,27 +519,4 @@ Exits the program.
 
 Format:  `exit`
 
-## Command Summary
-Commands available on the main page:
 
-| **Action** | **Format, Examples** |
-|--------|--------------------------|
-|Create (Budget)     |`create n/NAME`, `create n/NAME p/THRESHOLD` <br>e.g. `create n/Daily Expenses`, `create n/Project Work p/100`|
-|Open (Budget)       |`open INDEX`<br>e.g. `open 1`|
-|Delete (Budget)     |`delete INDEX`<br>e.g. `delete 1`|
-|List                |`list`|
-|Find                |`find KEYWORD`<br>e.g. `find Breakfast`|
-|Help                |`help`|
-|Exit                |`exit`|
-
-Commands available on a budget page:
-
-| **Action** | **Format, Examples** |
-|--------|--------------------------|
-|Add (Expenditure)   |`add n/NAME p/PRICE` <br>e.g. `add n/Breakfast p/10`|
-|Close (Budget)      |`close`|
-|Delete (Expenditure)|`delete INDEX`<br>e.g. `delete 1`|
-|List                |`list`|
-|Find                |`find KEYWORD`<br>e.g. `find Breakfast`|
-|Help                |`help`|
-|Exit                |`exit`|
