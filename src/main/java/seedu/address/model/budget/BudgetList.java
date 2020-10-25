@@ -10,9 +10,9 @@ import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.SortBudgetByCreateDate;
-import seedu.address.model.SortBudgetByName;
 import seedu.address.model.expenditure.Expenditure;
+import seedu.address.model.sort.SortBudgetByCreateDate;
+import seedu.address.model.sort.SortBudgetByName;
 import seedu.address.state.budgetindex.BudgetIndex;
 
 /**

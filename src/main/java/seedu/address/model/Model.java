@@ -82,6 +82,8 @@ public interface Model {
 
     String calculateExpenditureValue(BudgetIndex budgetIndex);
 
+    void sortExpenditureByCreatedDate();
+
     void editExpenditure(Expenditure oldExpenditure, Expenditure editedExpenditure);
 
     Page getPage();

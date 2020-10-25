@@ -226,6 +226,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void sortExpenditureByCreatedDate() {
+        nusave.sortExpendituresByCreateDate(stateManager);
+        repopulateObservableList();
+    }
+
+    @Override
     public String calculateExpenditureValue(BudgetIndex budgetIndex) {
         Optional<Integer> indexOpt = budgetIndex.getBudgetIndex();
         return nusave.getTotalExpenditureValue(indexOpt);
