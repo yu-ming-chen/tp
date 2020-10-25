@@ -254,7 +254,7 @@ Format: edit INDEX n/NAME p/THRESHOLD
 
 Prefix | Parameters | Requirement | Comments
 -------| ------------ | ------------- | ------
-  - | INDEX | ❗Required | Index of the budget displayed on NUSave
+ \- | INDEX | ❗Required | Index of the budget displayed on NUSave
  n/ | NAME | ❕Optional | Name of the budget to be edited to
  p/ | THRESHOLD | ❕Optional | Threshold of the budget to be edited to
  
