@@ -27,6 +27,7 @@
         * [6.2.4 Finding budgets: `find`](#624-finding-budgets-find)
         * [6.2.5 Listing budgets: `list`](#625-listing-budgets-list)
         * [6.2.6 Sorting budgets: `sort`](#626-sorting-budgets-sort)
+        * [6.2.7 Clear expenditure: `clear`](#627-clear-budgets-clear)
     - [6.3 Budget page commands](#63-budget-page-commands)
         * [6.3.1 Adding an expenditure: `add`](#631-adding-an-expenditure-add)
         * [6.3.2 Deleting an expenditure: `delete`](#632-deleting-an-expenditure-delete)
@@ -34,6 +35,7 @@
         * [6.3.4 Finding expenditures: `find`](#634-finding-expenditures-find)
         * [6.3.5 Listing expenditures: `list`](#635-listing-expenditures-list)
         * [6.3.6 Sorting expenditures: `sort`](#636-sorting-expenditures-sort)
+        * [6.3.7 Clear expenditures: `clear`](#637-clear-expenditures-clear)
 7. [Command summary](#7-command-summary)
     - [7.1 Navigation](#71-navigation)
     - [7.2 Main page commands](#72-main-page-commands)
@@ -44,7 +46,7 @@
 ## 1 Introduction
 
 ### 1.1 Welcome
-Hello, Welcome to NUSave! 
+Hello, welcome to NUSave! 
 
 NUSave is a **productivity desktop application for tracking and managing expenditures** across different 
 **budget categories**. NUSave is built using a text-based user interface, also known as a Command Line Interface (CLI), 
@@ -95,7 +97,7 @@ For example, a create budget command can have `n/NAME` and `p/THRESHOLD`, you ca
  
  However, if a given command has any parameter **without prefix**, that given parameter **must** be the **first parameter**.
 
-For exmaple, a edit budget command have an `INDEX`, a `n/NAME` and a `p/THRESHOLD`. In this case, `INDEX` **must** be
+For example, a edit budget command have an `INDEX`, a `n/NAME` and a `p/THRESHOLD`. In this case, `INDEX` **must** be
 the **first parameter**:
  - `edit 1 n/NUS Computing Club p/1000` is a valid command, however
  - `edit n/NUS Computing Club p/1000 1` is an invalid command
@@ -305,7 +307,7 @@ This will sort all the budgets in NUSave by their name in alphabetic order.
 ![Example of sort budgets command](images/CommandScreenShots/6_2_6_1_sortBudget.png)
 
 Figure 6.2.6.1: Example of sort budgets command
-
+#### 6.2.7 Clear budgets: `clear`
 ### 6.3 Budget page commands
 #### 6.3.1 Adding an expenditure: `add`
 
@@ -402,6 +404,8 @@ This will sort all the expenditures in that budget by their added date with the 
 ![Example of sort expenditures command](images/CommandScreenShots/6_3_6_1_sortExpenditure.png)
 
 Figure 6.3.6.1: Example of sort expenditures command
+
+#### 6.3.7 Clear expenditures: `clear`
 
 ## 7 Command summary
 ### 7.1 Navigation
