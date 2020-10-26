@@ -126,6 +126,7 @@ Parameter | Meaning
 4. Double-click the file to start the application. A GUI similar to Figure 3.1 should appear in a few seconds.
 
 ![Example of NUSave's GUI](images/QuickStartScreenShots/3_1_quickStart.png)
+
 Figure 3.1. Example of how NUSave's GUI looks like.
 
 > 📕 If the application does not start after double-clicking the file, you can troubleshoot by doing the following:
@@ -135,6 +136,7 @@ Figure 3.1. Example of how NUSave's GUI looks like.
 > 2. Enter the following command: `java -jar nusave.java`
 >
 > ![Example of launching NUSave using command prompt](images/QuickStartScreenShots/3_2_commandPrompt.png)
+>
 > Figure 3.2. Example of launching NUSave using command prompt.
 >
 > For MacOS users:
@@ -142,11 +144,12 @@ Figure 3.1. Example of how NUSave's GUI looks like.
 > 2. Enter the following command: `java -jar nusave.java`
 >
 > ![Example of launching NUSave using terminal](images/QuickStartScreenShots/3_2_terminal.png)
+>
 > Figure 3.3. Example of launching NUSave using terminal.
 
 5. Congratulations, you have successfully launched NUSave!
 > 📕 If you are launching the application for the first time, a set of sample data will be created for you.
-> Use the [clear command](#627-clearing-budgets) to purge the existing sample data.
+> Use the [clear command](#627-clearing-budgets-clear) to purge the existing sample data.
 
 6. Type the command in the command box and press enter to execute it. Below is a series of commands that you can try:
     - `help`: Shows the list of commands currently available.
