@@ -7,19 +7,22 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" opacity="0.66" prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <StackPane styleClass="main-info" prefHeight="150.0" prefWidth="200.0">
+      <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="main-info">
          <children>
-            <Text id="date" fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
+            <Text id="date" fx:id="firstRowText" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" textAlignment="CENTER" wrappingWidth="160.0" />
          </children>
       </StackPane>
-      <StackPane styleClass="main-info" prefHeight="150.0" prefWidth="200.0">
+      <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="main-info">
          <children>
-            <Text id="time" fx:id="timeText" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" />
+            <Text id="time" fx:id="secondRowText" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" textAlignment="CENTER" wrappingWidth="160.0" />
          </children>
       </StackPane>
-      <StackPane styleClass="main-info" prefHeight="150.0" prefWidth="200.0">
+      <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="main-info">
          <children>
-            <Text id="greeting" fx:id="greetingText" strokeType="OUTSIDE" strokeWidth="0.0" text="Good Evening" />
+            <Text id="greeting" fx:id="thirdRowText" strokeType="OUTSIDE" strokeWidth="0.0" text="Good Evening" textAlignment="CENTER" wrappingWidth="160.0">
+               <StackPane.margin>
+                  <Insets bottom="5.0" />
+               </StackPane.margin></Text>
          </children>
       </StackPane>
    </children>

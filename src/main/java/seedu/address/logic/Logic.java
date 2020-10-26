@@ -1,14 +1,17 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.util.Optional;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Renderable;
+import seedu.address.model.budget.Threshold;
 
 /**
  * API of the Logic component
@@ -38,7 +41,13 @@ public interface Logic {
 
     BooleanProperty getIsBudgetPageProp();
 
+    StringProperty getTotalExpenditureStringProp();
+
     String getPageTitle();
+
+    String getTotalExpenditureValue();
+
+    Optional<Threshold> getThreshold();
 
     boolean isBudgetPage();
 

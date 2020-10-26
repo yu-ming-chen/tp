@@ -1,15 +1,21 @@
 package seedu.address.state;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Optional;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import seedu.address.state.budgetindex.BudgetIndex;
 
 public class StateManager implements State {
+
     private BudgetIndex budgetIndex;
     private Page currentPage;
     private BooleanProperty isBudgetPageProp = new SimpleBooleanProperty(false);
+    private StringProperty mainPageInfoBoxSecondRowProp = new SimpleStringProperty(defaultValueTotalExpenditure());
     private String pageTitle;
 
     /**
@@ -22,6 +28,11 @@ public class StateManager implements State {
         this.budgetIndex = budgetIndex;
         this.currentPage = currentPage;
         this.pageTitle = pageTitle;
+    }
+
+    //Clock timing on Budgets Page
+    public static String defaultValueTotalExpenditure() {
+        return new SimpleDateFormat("hh:mm a").format(Calendar.getInstance().getTime());
     }
 
     @Override
@@ -37,6 +48,11 @@ public class StateManager implements State {
     @Override
     public BooleanProperty getIsBudgetPageProp() {
         return this.isBudgetPageProp;
+    }
+
+    @Override
+    public StringProperty getMainPageInfoBoxSecondRowProp() {
+        return mainPageInfoBoxSecondRowProp;
     }
 
     @Override
@@ -72,6 +88,11 @@ public class StateManager implements State {
         } else {
             setIsBudgetPage(false);
         }
+    }
+
+    @Override
+    public void setTotalExpenditure(String expenditure) {
+        this.mainPageInfoBoxSecondRowProp.setValue(expenditure);
     }
 
     @Override

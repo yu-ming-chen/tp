@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.budget.BudgetList;
+import seedu.address.model.budget.Threshold;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.model.sort.SortExpenditureByCreateDate;
 import seedu.address.model.sort.SortExpendituresByName;
@@ -86,6 +87,12 @@ public class Nusave implements ReadOnlyNusave {
         this.internalList.setAll(budgets);
     }
 
+    public Optional<Threshold> getThreshold(Optional<Integer> budgetIndexOpt) {
+        assert budgetIndexOpt.isPresent();
+        int budgetIndex = budgetIndexOpt.get();
+        return this.budgetList.getBudgetThreshold(budgetIndex);
+    }
+
     public void deleteAllBudgets() {
         setBudgets(new ArrayList<>());
     }
@@ -129,6 +136,12 @@ public class Nusave implements ReadOnlyNusave {
         List<Expenditure> expenditureList = budgetList.getExpenditure(budgetIndex);
         expenditureList.remove(expenditure);
         this.internalList.remove(expenditure);
+    }
+
+    public String getTotalExpenditureValue(Optional<Integer> budgetIndexOpt) {
+        assert budgetIndexOpt.isPresent();
+        int budgetIndex = budgetIndexOpt.get();
+        return this.budgetList.getTotalExpenditureValue(budgetIndex);
     }
 
     //=========== ObservableList ==================================================================================

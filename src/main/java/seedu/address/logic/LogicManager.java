@@ -2,9 +2,11 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -17,6 +19,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.mainpageparser.MainPageParser;
 import seedu.address.model.Model;
 import seedu.address.model.Renderable;
+import seedu.address.model.budget.Threshold;
 import seedu.address.state.Page;
 import seedu.address.storage.Storage;
 
@@ -96,8 +99,23 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public StringProperty getTotalExpenditureStringProp() {
+        return model.getTotalExpenditureStringProp();
+    }
+
+    @Override
     public String getPageTitle() {
         return this.model.getPageTitle();
+    }
+
+    @Override
+    public String getTotalExpenditureValue() {
+        return this.model.getTotalExpenditureValue();
+    }
+
+    @Override
+    public Optional<Threshold> getThreshold() {
+        return this.model.getThreshold();
     }
 
     @Override

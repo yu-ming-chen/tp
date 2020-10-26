@@ -1,13 +1,16 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.budget.Budget;
+import seedu.address.model.budget.Threshold;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.state.Page;
 import seedu.address.state.budgetindex.BudgetIndex;
@@ -77,8 +80,9 @@ public interface Model {
 
     void addExpenditure(Expenditure expenditure) throws CommandException;
 
-
     void sortExpendituresByName();
+
+    String calculateExpenditureValue(BudgetIndex budgetIndex);
 
     void sortExpenditureByCreatedDate();
 
@@ -90,11 +94,19 @@ public interface Model {
 
     String getPageTitle();
 
+    String getTotalExpenditureValue();
+
+    Optional<Threshold> getThreshold();
+
     boolean isBudgetPage();
 
     BooleanProperty getBudgetPageProp();
 
+    StringProperty getTotalExpenditureStringProp();
+
     void setPage(Page page);
+
+    void setTotalExpenditure(String expenditure);
 
     void setBudgetIndex(BudgetIndex index);
 
