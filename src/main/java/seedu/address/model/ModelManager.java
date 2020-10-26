@@ -125,6 +125,7 @@ public class ModelManager implements Model {
     }
 
     private BudgetIndex getActualBudgetIndex(BudgetIndex budgetIndex) {
+        assert budgetIndex.getBudgetIndex().isPresent();
         int indexInFilteredList = budgetIndex.getBudgetIndex().get();
         assert indexInFilteredList > 0 && indexInFilteredList < filteredRenderables.size();
         Budget budget = (Budget) filteredRenderables.get(indexInFilteredList);
