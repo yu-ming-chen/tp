@@ -42,25 +42,28 @@
 9. [FAQ](#9-faq) 
 
 ## 1. Introduction
-Welcome to NUSave! 
+(Contributed by Wen Hao)
 
-NUSave is a **productivity desktop application for tracking and managing expenditures** across different 
-**budget categories**. NUSave is built using a text-based user interface, also known as a Command Line Interface (CLI), 
-accompanied by a Graphical User Interface (GUI). 
-If you are fast at typing, prefer using your keyboard, and enjoy appealing visuals,
-NUSave is here to help.
+Are you a **university student who stays on campus** and has difficulty managing your expenses?
+
+Are you tired of having to look through countless spreadsheets and memos just to figure out how much you spent this month?
+
+Do you wish there exists a desktop application that can help you organise, track and manage all of your expenses?
+
+Look no further because NUSave is just the tool for you!
+
+Built by 5 university students staying on campus, we understand the difficulties of having to manage multiple budgets,
+be it for your daily expenses, school projects or club activities, amidst your busy schedule. NUSave aims to help alleviate
+the hassle that comes along with managing multiple budgets by providing a **one-stop solution** to all your problems. It has
+features that will help streamline the process of organising your **budgets** and **expenditures**, as well as generate
+statistics that can offer you useful insights regarding your spending habits.
+
+What's more, NUSave has:
+- a **Command Line Interface (CLI)** catered to those who can type fast and prefer to use a keyboard.
+- a **Graphical User Interface (GUI)** to provide you with a visually appealing and aesthetic user experience.
 
 ### 1.1. Purpose of document
-The purpose of this document is to aid users with their experience in using NUSave.
-By providing detailed information regarding the different commands and how to use them, it will allow users to smoothly 
-use NUSave to the fullest extent.
-
-### 1.2. Target audience
-Are you a **University student staying on campus** and having difficulties managing your budgets?
-
-If so, NUSave is built just for you. Made by 5 university student residents, we understand the difficulty of 
-having multiple budgets to keep track of in your busy schedule. NUSave aims to alleviate the hassle that comes with 
-tracking and managing your finances. 
+The purpose of this document is to provide a detailed reference for you to learn how to use NUSave to its fullest potential.
 
 ## 2. About the user guide
 ### 2.1. Symbols
