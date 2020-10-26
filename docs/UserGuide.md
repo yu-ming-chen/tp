@@ -340,7 +340,7 @@ You can use this command to **delete all existing budgets** in NUSave.
 
 This command is usually used to purge the sample data that is created when you launch the application for the first time.
 
-> ⚠️ Exercise caution when using the clear command as it is irreversible! <br>
+> ⚠️ Exercise caution when using the clear command as it is **irreversible**! <br>
 > ⚠️ If there are **no budgets** in NUSave, the clear command will not have any visible effect.
 
 Format: `clear`
