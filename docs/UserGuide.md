@@ -2,7 +2,6 @@
 ## Table of Contents
 1. [Introduction](#1-introduction)
     - [1.1. Purpose of document](#11-purpose-of-document)
-    - [1.2. Target audience](#12-target-audience)
 2. [About the user guide](#2-about-the-user-guide)
     - [2.1. Symbols](#21-symbols)
     - [2.2. Format](#22-format)
