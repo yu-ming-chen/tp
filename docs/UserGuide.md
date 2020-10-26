@@ -1,9 +1,7 @@
 # User Guide
 ## Table of Contents
 1. [Introduction](#1-introduction)
-    - [1.1. Welcome](#11-welcome)
-    - [1.2. Purpose of document](#12-purpose-of-document)
-    - [1.3. Target audience](#13-target-audience)
+    - [1.1. Purpose of document](#11-purpose-of-document)
 2. [About the user guide](#2-about-the-user-guide)
     - [2.1. Symbols](#21-symbols)
     - [2.2. Format](#22-format)
@@ -43,26 +41,28 @@
 9. [FAQ](#9-faq) 
 
 ## 1. Introduction
-### 1.1. Welcome
-Hello, welcome to NUSave! 
+(Contributed by Wen Hao)
 
-NUSave is a **productivity desktop application for tracking and managing expenditures** across different 
-**budget categories**. NUSave is built using a text-based user interface, also known as a Command Line Interface (CLI), 
-accompanied by a Graphical User Interface (GUI). 
-If you are fast at typing, prefer using your keyboard, and enjoy appealing visuals,
-NUSave is here to help.
+Are you a **university student who stays on campus** and has difficulty managing your expenses?
 
-### 1.2. Purpose of document
-The purpose of this document is to aid users with their experience in using NUSave.
-By providing detailed information regarding the different commands and how to use them, it will allow users to smoothly 
-use NUSave to the fullest extent.
+Are you tired of having to look through countless spreadsheets and memos just to figure out how much you have spent this month?
 
-### 1.3. Target audience
-Are you a **University student staying on campus** and having difficulties managing your budgets?
+Do you wish there exists a desktop application that can help you organise, track and manage all of your expenses?
 
-If so, NUSave is built just for you. Made by 5 university student residents, we understand the difficulty of 
-having multiple budgets to keep track of in your busy schedule. NUSave aims to alleviate the hassle that comes with 
-tracking and managing your finances. 
+Look no further because NUSave is just the tool for you!
+
+Built by 5 university students staying on campus, we understand the difficulties of having to manage multiple budgets,
+be it for your daily expenses, school projects or club activities, amidst your busy schedule. NUSave aims to help alleviate
+the hassle that comes along with managing multiple budgets by providing a **one-stop solution** to all your problems. It has
+features that will help streamline the process of organising your **budgets** and **expenditures**, as well as generate
+statistics that can offer you useful insights regarding your spending habits.
+
+What's more, NUSave has:
+- a **Command Line Interface (CLI)** catered to those who can type fast and prefer to use a keyboard.
+- a **Graphical User Interface (GUI)** to provide you with a visually appealing and aesthetic user experience.
+
+### 1.1. Purpose of document
+The purpose of this document is to provide a detailed reference for you to learn how to use NUSave to its fullest potential.
 
 ## 2. About the user guide
 ### 2.1. Symbols
@@ -371,6 +371,24 @@ This will find all budgets with the keyphrase 'Temasek Hall' in the title of the
 ![Example of delete budget command](images/CommandScreenShots/6_2_4_findBudget2.png)
 
 #### 6.2.5. Listing budgets: `list`
+(Contributed by Chin Hui)
+You can use this command to **list all budgets** in NUSave.
+
+This command is usually used to display all budgets after searching for specific budgets using the `find` command.
+
+>⚠️ If the `find` command has not been used, the `list` command may not have any visible effect. This is because all budgets have already been displayed.
+
+Format: list
+
+✏️ Example:
+
+list
+
+This will display all existing budgets in NUSave.
+
+![Example of list budgets command](images/CommandScreenShots/6_2_5_1_listBudget.png)
+
+Figure 6.2.5.1. Example of list budgets command
 
 #### 6.2.6. Sorting budgets: `sort`
 (Contributed by Yu Ming)
@@ -486,8 +504,49 @@ This will edit an expenditure at **index 1** to be **renamed** "Long-Sleeve" wit
 
 Figure 6.3.3.1. Example of edit expenditure command
 #### 6.3.4. Finding expenditures: `find`
+(Contributed by Chin Hui)
+You can use this command to **filter expenditures by name**.
 
+   ```📕 Note: Expenditures will be filtered as long as they contain the search term. The filter is case-insensitive, using upper-case or lower-case will not make a difference in the search result.```
+
+> ⚠️ **You can only use this command if there are existing expenditures**.
+
+> ⚠️ **If no expenditures are displayed, it means that none of the expenditures matched your search term. You can use the `list` command to display all expenditures again**.
+
+Format: `find NAME`
+
+Prefix | Parameters | Requirement | Comments
+-------| ------------ | ------------- | ------
+\- | NAME | ❗Required | Name of the expenditure to be searched
+
+✏️ Example:
+
+find sock
+
+This will display all existing expenditures with names that contain 'sock' in the current budget.
+
+![Example of find expenditures command](images/CommandScreenShots/6_3_4_1_findExpenditure.png)
+
+Figure 6.3.5.1. Example of find expenditures command
 #### 6.3.5. Listing expenditures: `list`
+(Contributed by Chin Hui)
+You can use this command to **list all expenditures** in the current budget.
+
+This command is usually used to display all expenditures after searching for specific expenditures using the `find` command.
+
+>⚠️ If the `find` command has not been used, the `list` command may not have any visible effect. This is because all expenditures have already been displayed.
+
+Format: list
+
+✏️ Example:
+
+list
+
+This will display all existing expenditures in the current budget.
+
+![Example of list expenditures command](images/CommandScreenShots/6_3_5_1_listExpenditure.png)
+
+Figure 6.3.5.1. Example of list expenditures command
 
 #### 6.3.6. Sorting expenditures: `sort`
 (Contributed by Yu Ming)
@@ -550,4 +609,21 @@ Figure 6.3.6.1. Example of sort expenditures command
 ## 8. Glossary
 
 ## 9. FAQ
+**Q**: How do I transfer my data to another computer?
+**A**: Install the application on another computer and overwrite the empty data file it creates with the .json file that contains the data of your previous NUSave folder.
+
+**Q**: Where is my save data stored?
+**A**: They are stored in the `data` folder where the NUSave application is found.
+
+**Q**: How do I make backups of my data in NUSave?
+**A**: You can copy and paste the `data` folder located in the NUSave home folder to somewhere safe and easy to remember. To restore the backup, copy the entire folder back into the same home folder and overwrite the existing folder.
+
+**Q**: How do I delete all my data in NUSave?
+**A**: You can delete the `data` folder in the NUSave home folder.
+
+**Q**: Will my data be compromised?
+**A**: Don't worry! All data in NUSave is stored on your local device and will not be transferred over the web.
+
+**Q**: Does this application require an internet connection to run?
+**A**: NUSave does not access any web services and can be run completely offline.
 
