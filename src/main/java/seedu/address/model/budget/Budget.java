@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import seedu.address.model.Renderable;
 import seedu.address.model.expenditure.Expenditure;
+import seedu.address.model.expenditure.Price;
 
 public class Budget implements Renderable {
     private final Name name;
@@ -59,6 +60,16 @@ public class Budget implements Renderable {
 
     public int getExpenditureSize() {
         return expenditures.size();
+    }
+
+    public String getTotalExpenditure() {
+        float resultFloat = 0;
+        for (Expenditure e : expenditures) {
+            Price price = e.getPrice();
+            String value = price.value;
+            resultFloat += Float.parseFloat(value);
+        }
+        return String.format("%.2f", Float.valueOf(resultFloat));
     }
 
     public void addExpenditure(Expenditure expenditure) {

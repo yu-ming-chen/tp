@@ -82,6 +82,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         mainPageInfoBox = new MainPageInfoBox();
+        bindMainPageInfoBoxToState();
         mainPageInfoBoxPlaceholder.getChildren().add(mainPageInfoBox.getRoot());
 
         title = new Title();
@@ -92,10 +93,63 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
-    void bindTitleToState() {
+    private void bindTitleToState() {
         title.getTitle().textProperty().bind(Bindings.createStringBinding(() -> {
             logic.isBudgetPage(); //this expression must be called to always trigger change in title
             return logic.getPageTitle();
+        }, logic.getIsBudgetPageProp()));
+    }
+
+    private void bindMainPageInfoBoxToState() {
+        bindMainPageInfoBoxToPageState();
+        bindMainPageInfoBoxToExpenditureState();
+    }
+
+    private void bindMainPageInfoBoxToPageState() {
+        bindFirstRowTextToPageState();
+        bindThirdRowTextToPageState();
+    }
+
+    private void bindMainPageInfoBoxToExpenditureState() {
+        bindSecondRowTextToTotalExpenditure();
+    }
+
+    private void bindFirstRowTextToPageState() {
+        mainPageInfoBox.getFirstRowText().textProperty().bind(Bindings.createStringBinding(() -> {
+            if (logic.isBudgetPage()) { //this expression must be called to always trigger change in title
+                return "Total:";
+            } else {
+                return MainPageInfoBox.getDefaultFirstRowText();
+            }
+        }, logic.getIsBudgetPageProp()));
+    }
+
+    private void bindSecondRowTextToTotalExpenditure() {
+        mainPageInfoBox.getSecondRowText().textProperty().bind(Bindings.createStringBinding(() -> {
+            String newValue = logic.getTotalExpenditureStringProp().getValue();
+            if (isFloat(newValue)) {
+                newValue = "$ " + newValue;
+            }
+            return newValue;
+        }, logic.getTotalExpenditureStringProp()));
+    }
+
+    private boolean isFloat(String value) {
+        try {
+            Float.parseFloat(value);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    void bindThirdRowTextToPageState() {
+        mainPageInfoBox.getThirdRowText().textProperty().bind(Bindings.createStringBinding(() -> {
+            if (logic.isBudgetPage()) { //this expression must be called to always trigger change in title
+                return "/" + logic.getThresholdValue();
+            } else {
+                return MainPageInfoBox.getDefaultThirdRowText();
+            }
         }, logic.getIsBudgetPageProp()));
     }
 
