@@ -127,7 +127,7 @@ public class ModelManager implements Model {
     private BudgetIndex getActualBudgetIndex(BudgetIndex budgetIndex) {
         assert budgetIndex.getBudgetIndex().isPresent();
         int indexInFilteredList = budgetIndex.getBudgetIndex().get();
-        assert indexInFilteredList > 0 && indexInFilteredList < filteredRenderables.size();
+        assert indexInFilteredList >= 0 && indexInFilteredList < filteredRenderables.size();
         Budget budget = (Budget) filteredRenderables.get(indexInFilteredList);
         int indexInBudgetList = nusave.getIndexOfBudget(budget);
         return new BudgetIndexManager(indexInBudgetList);
@@ -179,6 +179,8 @@ public class ModelManager implements Model {
         repopulateObservableList();
     }
 
+
+
     //=========== Expenditures =======
 
     @Override
@@ -213,6 +215,12 @@ public class ModelManager implements Model {
     @Override
     public void sortExpendituresByName() {
         nusave.sortExpendituresByName(stateManager);
+        repopulateObservableList();
+    }
+
+    @Override
+    public void sortExpenditureByCreatedDate() {
+        nusave.sortExpendituresByCreateDate(stateManager);
         repopulateObservableList();
     }
 

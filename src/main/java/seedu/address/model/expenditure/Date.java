@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-public class Date {
+public class Date implements Comparable<Date> {
     public static final String MESSAGE_CONSTRAINTS = "Dates should be able to be parsed by LocalDate.";
 
     public final String value;
@@ -53,5 +53,10 @@ public class Date {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    @Override
+    public int compareTo(Date date) {
+        return LocalDate.parse(value).compareTo(LocalDate.parse(date.value));
     }
 }

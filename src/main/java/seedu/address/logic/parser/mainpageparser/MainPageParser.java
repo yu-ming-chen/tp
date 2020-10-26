@@ -66,7 +66,7 @@ public class MainPageParser implements PageParser {
             return new ListBudgetCommand();
         }
         case SortBudgetCommand.COMMAND_WORD: {
-            return new SortBudgetCommand();
+            return new SortBudgetCommandParser().parse(arguments);
         }
         case HelpBudgetCommand.COMMAND_WORD: {
             return new HelpBudgetCommand();
