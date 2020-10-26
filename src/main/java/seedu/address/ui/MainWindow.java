@@ -177,9 +177,9 @@ public class MainWindow extends UiPart<Stage> {
         Float thresholdValueFloat = Float.parseFloat(thresholdValue);
 
         if (newValueFloat > thresholdValueFloat) {
-            mainPageInfoBox.getSecondRowText().setFill(Color.TOMATO);
+            mainPageInfoBox.getSecondRowText().setFill(Color.RED);
         } else {
-            mainPageInfoBox.getSecondRowText().setFill(Color.LIME);
+            mainPageInfoBox.getSecondRowText().setFill(Color.DARKGREEN);
         }
     }
 
