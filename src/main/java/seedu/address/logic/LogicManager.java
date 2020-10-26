@@ -50,7 +50,6 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         //Logging, safe to ignore
         logger.info("----------------[USER COMMAND][" + commandText + "]");
-
         Command command;
         CommandResult commandResult;
 
