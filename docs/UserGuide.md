@@ -8,10 +8,10 @@
     - [2.1. Symbols](#21-symbols)
     - [2.2. Format](#22-format)
     - [2.3. Parameters](#23-parameters)
-3. [Quick start](#3-quick-start)
-4. [Layout](#4-layout)
-    - [4.1. Main page view](#41-main-page-view)
-    - [4.2. Budget page view](#42-budget-page-view)
+3. [Layout](#3-layout)
+    - [3.1. Main page view](#31-main-page-view)
+    - [3.2. Budget page view](#32-budget-page-view)
+4. [Quick start](#4-quick-start)
 5. [Tips](#5-tips)
     - [5.1. Syntax highlighting](#51-syntax-highlighting)
 6. [Commands](#6-commands)
@@ -114,7 +114,13 @@ Parameter | Meaning
 `TAG` | This is the tag for the expenditure.
 `TYPE` | This is the sorting types.
 
-## 3. Quick start
+## 3. Layout
+(Contributed by Wen Hao)
+### 3.1. Main page view
+
+### 3.2. Budget page view
+
+## 4. Quick start
 (Contributed by Wen Hao)
 
 1. Ensure that you have Java `11` or above installed in your Computer.
@@ -125,9 +131,9 @@ Parameter | Meaning
 
 4. Double-click the file to start the application. A GUI similar to Figure 3.1 should appear in a few seconds.
 
-![Example of NUSave's GUI](images/QuickStartScreenShots/3_1_quickStart.png)
+![Example of NUSave's GUI](images/QuickStartScreenShots/4_1_quickStart.png)
 
-Figure 3.1. Example of how NUSave's GUI looks like.
+Figure 4.1. Example of how NUSave's GUI looks like.
 
 > 📕 If the application does not start after double-clicking the file, you can troubleshoot by doing the following:
 >
@@ -135,32 +141,27 @@ Figure 3.1. Example of how NUSave's GUI looks like.
 > 1. Launch command prompt and navigate to the path of the home folder for NUSave.
 > 2. Enter the following command: `java -jar nusave.java`
 >
-> ![Example of launching NUSave using command prompt](images/QuickStartScreenShots/3_2_commandPrompt.png)
+> ![Example of launching NUSave using command prompt](images/QuickStartScreenShots/4_2_commandPrompt.png)
 >
-> Figure 3.2. Example of launching NUSave using command prompt.
+> Figure 4.2. Example of launching NUSave using command prompt.
 >
 > For MacOS users:
 > 1. Launch terminal and navigate to the path of the home folder for NUSave.
 > 2. Enter the following command: `java -jar nusave.java`
 >
-> ![Example of launching NUSave using terminal](images/QuickStartScreenShots/3_2_terminal.png)
+> ![Example of launching NUSave using terminal](images/QuickStartScreenShots/4_2_terminal.png)
 >
-> Figure 3.3. Example of launching NUSave using terminal.
+> Figure 4.3. Example of launching NUSave using terminal.
 
 5. Congratulations, you have successfully launched NUSave!
 > 📕 If you are launching the application for the first time, a set of sample data will be created for you.
 > Use the [clear command](#627-clearing-budgets-clear) to purge the existing sample data.
 
-6. Type the command in the command box and press enter to execute it. Below is a series of commands that you can try:
+6. Type your desired command in the command box and press enter to execute it. Below is a series of commands that you can try:
     - `help`: Shows the list of commands currently available.
     - `exit`: Exits the app.
 
 7. Refer to the [commands](#6-commands) below for details of each command.
-
-## 4. Layout
-### 4.1. Main page view
-
-### 4.2. Budget page view
 
 ## 5. Tips
 ### 5.1. Syntax highlighting
