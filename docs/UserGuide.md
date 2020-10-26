@@ -183,14 +183,14 @@ You can use this command to **open a budget.**
 
 By opening a budget, the application will display the list of expenditures belonging to that budget.
 
-Once a budget is opened, the commands that are applicable to adding, deleting or editing an expenditure will now be 
+Once a budget is open, the commands that are applicable to adding, deleting or editing an expenditure will now be 
 recognised as a command.
 
 Format: `open INDEX`
 
  Parameters | Requirement | Comments
  ------------ | ------------- | ------
-Index | ❗Required | Index of the budget
+Index | ❗Required | Index of the budget to be opened
 
 ✏️ Example:
 
@@ -205,7 +205,7 @@ This will open the budget with the index "1", based on the index as shown beside
 
 You can use this command to **close a budget.**
 
-By closing a budget, the application will display all budgets in NUSave.
+By closing a budget, the application switches from displaying expenditures to displaying all budgets in NUSave.
 
 Once a budget is closed, the commands that are applicable to adding, deleting or editing a budget will now be 
 recognised as a command.
@@ -356,7 +356,7 @@ the entered keyword/key phrase.
  > ⚠ **You should not use this command if main page is empty**. This is because there are no budgets created yet. 
  > You can only find a budget if there are already existing budgets!
 
-Format: `find WORD`
+Format: `find NAME`
 
  Parameters | Requirement | Comments
  ------------ | ------------- | ------
