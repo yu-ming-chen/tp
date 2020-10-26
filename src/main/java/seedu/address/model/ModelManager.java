@@ -16,6 +16,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.budget.Budget;
+import seedu.address.model.budget.Threshold;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.state.Page;
 import seedu.address.state.PageTitle;
@@ -121,10 +122,9 @@ public class ModelManager implements Model {
     @Override
     public void closeBudget() {
         setBudgetIndex(new EmptyBudgetIndex());
-        //change value before changing page so that text updates to clock
-        setTotalExpenditure(StateManager.defaultValueTotalExpenditure());
         setPageName(PageTitle.MAIN_PAGE_TITLE);
         setPage(Page.MAIN);
+        setTotalExpenditure(StateManager.defaultValueTotalExpenditure());
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
         repopulateObservableList();
     }
@@ -303,9 +303,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String getThresholdValue() {
+    public Optional<Threshold> getThreshold() {
         Optional<Integer> budgetIndex = stateManager.getBudgetIndex();
-        return nusave.getThresholdValue(budgetIndex);
+        return nusave.getThreshold(budgetIndex);
     }
 
     @Override

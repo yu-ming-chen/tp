@@ -82,11 +82,10 @@ public class BudgetList implements Iterable<Budget> {
         return this.budgets.get(index).getName().value;
     }
 
-    public String getBudgetThreshold(int index) {
+    public Optional<Threshold> getBudgetThreshold(int index) {
         requireNonNull(index);
         Optional<Threshold> threshold = this.budgets.get(index).getThreshold();
-        assert threshold.isPresent();
-        return threshold.get().value;
+        return threshold;
     }
 
     public int getSize() {

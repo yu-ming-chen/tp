@@ -75,7 +75,7 @@ public class JsonAdaptedBudget {
         if (!Threshold.isValid(threshold)) {
             throw new IllegalValueException(Threshold.MESSAGE_CONSTRAINTS);
         }
-        final Optional<Threshold> budgetThreshold = Optional.of(new Threshold(threshold));
+        final Optional<Threshold> budgetThreshold = new Threshold(threshold).toOptional();
 
         if (createdOn == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
