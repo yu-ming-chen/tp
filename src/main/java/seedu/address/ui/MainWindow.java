@@ -122,32 +122,36 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void bindFirstRowTextToPageState() {
-        mainPageInfoBox.getFirstRowText().textProperty().bind(Bindings.createStringBinding(() ->
-                setFirstRowText(), logic.getIsBudgetPageProp()));
+        mainPageInfoBox.getFirstRowText().textProperty().bind(Bindings.createStringBinding(() -> {
+            if (logic.isBudgetPage()) {
+                return handleFirstRowTextIsBudgetPage();
+            }
+            return handleFirstRowTextIsMainPage();
+        }, logic.getIsBudgetPageProp()));
     }
 
-    private String setFirstRowText() {
-        if (logic.isBudgetPage()) { //this expression must be called to always trigger change in title
-            mainPageInfoBox.getFirstRowText().setTextAlignment(TextAlignment.LEFT);
-            return "Total:";
-        } else {
-            mainPageInfoBox.getFirstRowText().setTextAlignment(TextAlignment.CENTER);
-            return MainPageInfoBox.getDefaultFirstRowText();
-        }
+    private String handleFirstRowTextIsBudgetPage() {
+        mainPageInfoBox.getFirstRowText().setTextAlignment(TextAlignment.LEFT);
+        return "Total:";
+    }
+
+    private String handleFirstRowTextIsMainPage() {
+        mainPageInfoBox.getFirstRowText().setTextAlignment(TextAlignment.CENTER);
+        return MainPageInfoBox.getDefaultFirstRowText();
     }
 
     private void bindSecondRowTextToTotalExpenditure() {
         mainPageInfoBox.getSecondRowText().textProperty().bind(Bindings.createStringBinding(() -> {
             String newValue = logic.getTotalExpenditureStringProp().getValue();
             if (logic.isBudgetPage()) {
-                return parseExpenditureText(newValue);
+                return handleSecondRowTextIsBudgetPage(newValue);
             }
-            setClockColor();
-            return newValue;
+            //is main page
+            return handleSecondRowTextIsMainPage(newValue);
         }, logic.getTotalExpenditureStringProp()));
     }
 
-    private String parseExpenditureText(String value) {
+    private String handleSecondRowTextIsBudgetPage(String value) {
         Optional<Threshold> threshold = logic.getThreshold();
         assert isFloat(value);
         String outputValue = "$ " + value;
@@ -156,6 +160,11 @@ public class MainWindow extends UiPart<Stage> {
             setExpenditureColor(secondRowText, threshold, outputValue, value);
         }
         return outputValue;
+    }
+
+    private String handleSecondRowTextIsMainPage(String value) {
+        setClockColor();
+        return value;
     }
 
     private void setExpenditureColor(Text text, Optional<Threshold> threshold, String outputValue, String newValue) {
@@ -168,9 +177,9 @@ public class MainWindow extends UiPart<Stage> {
         Float thresholdValueFloat = Float.parseFloat(thresholdValue);
 
         if (newValueFloat > thresholdValueFloat) {
-            mainPageInfoBox.getSecondRowText().setFill(Color.TOMATO);
+            mainPageInfoBox.getSecondRowText().setFill(Color.RED);
         } else {
-            mainPageInfoBox.getSecondRowText().setFill(Color.LIME);
+            mainPageInfoBox.getSecondRowText().setFill(Color.DARKGREEN);
         }
     }
 
@@ -189,18 +198,26 @@ public class MainWindow extends UiPart<Stage> {
 
     void bindThirdRowTextToPageState() {
         mainPageInfoBox.getThirdRowText().textProperty().bind(Bindings.createStringBinding(() -> {
-            if (logic.isBudgetPage()) { //this expression must be called to always trigger change in title
-                mainPageInfoBox.getThirdRowText().setTextAlignment(TextAlignment.RIGHT);
-                Optional<Threshold> thresholdOptional = logic.getThreshold();
-                if (thresholdOptional.isPresent()) {
-                    return "/" + thresholdOptional.get();
-                }
-                return NO_THRESHOLD_MESSAGE;
+            if (logic.isBudgetPage()) {
+                return handleThirdRowTextIsBudgetPage();
             } else {
-                mainPageInfoBox.getThirdRowText().setTextAlignment(TextAlignment.CENTER);
-                return MainPageInfoBox.getDefaultThirdRowText();
+                return handleThirdRowTextIsMainPage();
             }
         }, logic.getIsBudgetPageProp()));
+    }
+
+    private String handleThirdRowTextIsBudgetPage() {
+        mainPageInfoBox.getThirdRowText().setTextAlignment(TextAlignment.RIGHT);
+        Optional<Threshold> thresholdOptional = logic.getThreshold();
+        if (thresholdOptional.isEmpty()) {
+            return NO_THRESHOLD_MESSAGE;
+        }
+        return "/" + thresholdOptional.get();
+    }
+
+    private String handleThirdRowTextIsMainPage() {
+        mainPageInfoBox.getThirdRowText().setTextAlignment(TextAlignment.CENTER);
+        return MainPageInfoBox.getDefaultThirdRowText();
     }
 
     /**
