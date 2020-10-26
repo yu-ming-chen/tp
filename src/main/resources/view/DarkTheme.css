@@ -54,12 +54,12 @@
 
 .main-info {
     -fx-font-family: "Lato Regular";
-    -fx-font-size: 14px;
+    -fx-font-size: 20px;
 }
 
 #time {
     -fx-font-family: "Doppio One Regular";
-    -fx-font-size: 35px;
+    -fx-font-size: 30px;
 }
 
 #title {

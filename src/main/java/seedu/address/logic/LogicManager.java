@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -95,8 +96,23 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public StringProperty getTotalExpenditureStringProp() {
+        return model.getTotalExpenditureStringProp();
+    }
+
+    @Override
     public String getPageTitle() {
         return this.model.getPageTitle();
+    }
+
+    @Override
+    public String getTotalExpenditureValue() {
+        return this.model.getTotalExpenditureValue();
+    }
+
+    @Override
+    public String getThresholdValue() {
+        return this.model.getThresholdValue();
     }
 
     @Override

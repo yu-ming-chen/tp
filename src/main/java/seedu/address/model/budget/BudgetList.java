@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -81,8 +82,20 @@ public class BudgetList implements Iterable<Budget> {
         return this.budgets.get(index).getName().value;
     }
 
+    public String getBudgetThreshold(int index) {
+        requireNonNull(index);
+        Optional<Threshold> threshold = this.budgets.get(index).getThreshold();
+        assert threshold.isPresent();
+        return threshold.get().value;
+    }
+
     public int getSize() {
         return budgets.size();
+    }
+
+    public String getTotalExpenditureValue(int index) {
+        Budget budget = budgets.get(index);
+        return budget.getTotalExpenditure();
     }
 
     /**

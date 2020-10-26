@@ -86,6 +86,12 @@ public class Nusave implements ReadOnlyNusave {
         this.internalList.setAll(budgets);
     }
 
+    public String getThresholdValue(Optional<Integer> budgetIndexOpt) {
+        assert budgetIndexOpt.isPresent();
+        int budgetIndex = budgetIndexOpt.get();
+        return this.budgetList.getBudgetThreshold(budgetIndex);
+    }
+
     public void deleteAllBudgets() {
         setBudgets(new ArrayList<>());
     }
@@ -129,6 +135,12 @@ public class Nusave implements ReadOnlyNusave {
         List<Expenditure> expenditureList = budgetList.getExpenditure(budgetIndex);
         expenditureList.remove(expenditure);
         this.internalList.remove(expenditure);
+    }
+
+    public String getTotalExpenditureValue(Optional<Integer> budgetIndexOpt) {
+        assert budgetIndexOpt.isPresent();
+        int budgetIndex = budgetIndexOpt.get();
+        return this.budgetList.getTotalExpenditureValue(budgetIndex);
     }
 
     //=========== ObservableList ==================================================================================

@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -111,6 +112,8 @@ public class ModelManager implements Model {
         setBudgetIndex(actualBudgetIndex);
         setPageName(getPageName(actualBudgetIndex));
         setPage(Page.BUDGET);
+        String newExpenditureValue = calculateExpenditureValue(actualBudgetIndex);
+        setTotalExpenditure(newExpenditureValue);
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
         repopulateObservableList();
     }
@@ -118,6 +121,8 @@ public class ModelManager implements Model {
     @Override
     public void closeBudget() {
         setBudgetIndex(new EmptyBudgetIndex());
+        //change value before changing page so that text updates to clock
+        setTotalExpenditure(StateManager.defaultValueTotalExpenditure());
         setPageName(PageTitle.MAIN_PAGE_TITLE);
         setPage(Page.MAIN);
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
@@ -179,8 +184,6 @@ public class ModelManager implements Model {
         repopulateObservableList();
     }
 
-
-
     //=========== Expenditures =======
 
     @Override
@@ -192,6 +195,7 @@ public class ModelManager implements Model {
         Expenditure expenditure = (Expenditure) filteredRenderables.get(index);
         Optional<Integer> budgetIndex = stateManager.getBudgetIndex();
         nusave.deleteExpenditure(expenditure, budgetIndex);
+        setTotalExpenditure(nusave.getTotalExpenditureValue(budgetIndex));
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
@@ -201,14 +205,18 @@ public class ModelManager implements Model {
      */
     public void addExpenditure(Expenditure expenditure) throws CommandException {
         requireNonNull(expenditure);
+        Optional<Integer> budgetIndex = this.stateManager.getBudgetIndex();
         nusave.addExpenditure(expenditure, this.stateManager.getBudgetIndex());
+        setTotalExpenditure(nusave.getTotalExpenditureValue(budgetIndex));
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
     @Override
     public void editExpenditure(Expenditure oldExpenditure, Expenditure editedExpenditure) {
         requireAllNonNull(oldExpenditure, editedExpenditure);
-        nusave.editExpenditure(oldExpenditure, editedExpenditure, this.stateManager.getBudgetIndex());
+        Optional<Integer> budgetIndex = this.stateManager.getBudgetIndex();
+        nusave.editExpenditure(oldExpenditure, editedExpenditure, budgetIndex);
+        setTotalExpenditure(nusave.getTotalExpenditureValue(budgetIndex));
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
@@ -222,6 +230,12 @@ public class ModelManager implements Model {
     public void sortExpenditureByCreatedDate() {
         nusave.sortExpendituresByCreateDate(stateManager);
         repopulateObservableList();
+    }
+
+    @Override
+    public String calculateExpenditureValue(BudgetIndex budgetIndex) {
+        Optional<Integer> indexOpt = budgetIndex.getBudgetIndex();
+        return nusave.getTotalExpenditureValue(indexOpt);
     }
 
     //=========== ObservableList =======
@@ -268,6 +282,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public StringProperty getTotalExpenditureStringProp() {
+        return stateManager.getMainPageInfoBoxSecondRowProp();
+    }
+
+    @Override
     public String getPageName(BudgetIndex index) {
         return this.nusave.getPageName(index);
     }
@@ -275,6 +294,19 @@ public class ModelManager implements Model {
     @Override
     public String getPageTitle() {
         return this.stateManager.getPageTitle();
+    }
+
+    @Override
+    public String getTotalExpenditureValue() {
+        Optional<Integer> budgetIndex = stateManager.getBudgetIndex();
+        assert budgetIndex.isPresent();
+        return nusave.getTotalExpenditureValue(budgetIndex);
+    }
+
+    @Override
+    public String getThresholdValue() {
+        Optional<Integer> budgetIndex = stateManager.getBudgetIndex();
+        return nusave.getThresholdValue(budgetIndex);
     }
 
     @Override
@@ -290,6 +322,11 @@ public class ModelManager implements Model {
     @Override
     public void setPage(Page page) {
         this.stateManager.setPage(page);
+    }
+
+    @Override
+    public void setTotalExpenditure(String expenditure) {
+        this.stateManager.setTotalExpenditure(expenditure);
     }
 
     @Override
