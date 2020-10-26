@@ -27,7 +27,7 @@
         * [6.2.4 Finding budgets: `find`](#624-finding-budgets-find)
         * [6.2.5 Listing budgets: `list`](#625-listing-budgets-list)
         * [6.2.6 Sorting budgets: `sort`](#626-sorting-budgets-sort)
-        * [6.2.7 Clear expenditure: `clear`](#627-clear-budgets-clear)
+        * [6.2.7 Clearing budgets: `clear`](#627-clearing-budgets-clear)
     - [6.3 Budget page commands](#63-budget-page-commands)
         * [6.3.1 Adding an expenditure: `add`](#631-adding-an-expenditure-add)
         * [6.3.2 Deleting an expenditure: `delete`](#632-deleting-an-expenditure-delete)
@@ -35,7 +35,6 @@
         * [6.3.4 Finding expenditures: `find`](#634-finding-expenditures-find)
         * [6.3.5 Listing expenditures: `list`](#635-listing-expenditures-list)
         * [6.3.6 Sorting expenditures: `sort`](#636-sorting-expenditures-sort)
-        * [6.3.7 Clear expenditures: `clear`](#637-clear-expenditures-clear)
 7. [Command summary](#7-command-summary)
     - [7.1 Navigation](#71-navigation)
     - [7.2 Main page commands](#72-main-page-commands)
@@ -288,7 +287,7 @@ You can sort your budgets based on two different type of sorts:
    
 2. Sort by name of the budget (budgets will be ordered in alphabetical order from a-z, case-insensitive)
 
->⚠️ If there are **no budgets** or there is **only one budget** in NUSave, the sort command may not show any effect.
+>⚠️ If there are **no budgets** or there is **only one budget** in NUSave, the sort command may not have any visible effect.
 > This is because there needs to be more than one budget for sorting to work. Go ahead and add in more budgets 
 > to see your budgets in NUSave get sorted!
 
@@ -307,7 +306,27 @@ This will sort all the budgets in NUSave by their name in alphabetic order.
 ![Example of sort budgets command](images/CommandScreenShots/6_2_6_1_sortBudget.png)
 
 Figure 6.2.6.1: Example of sort budgets command
-#### 6.2.7 Clear budgets: `clear`
+#### 6.2.7 Clearing budgets: `clear`
+(Contributed by Wen Hao)
+
+You can use this command to **delete all existing budgets** in NUSave.
+
+This command is usually used to purge the sample data that is created when you launch the application for the first time.
+
+> ⚠️ Exercise caution when using the clear command as it is irreversible! <br>
+> ⚠️ If there are **no budgets** in NUSave, the clear command will not have any visible effect.
+
+Format: `clear`
+
+✏️ Example:
+
+`clear`
+
+This will delete all existing budgets in NUSave.
+
+![Example of clear budgets command](images/CommandScreenShots/6_2_7_1_clearBudget.png)
+Figure 6.2.7.1 Example of clear budgets command
+
 ### 6.3 Budget page commands
 #### 6.3.1 Adding an expenditure: `add`
 
@@ -404,8 +423,6 @@ This will sort all the expenditures in that budget by their added date with the 
 ![Example of sort expenditures command](images/CommandScreenShots/6_3_6_1_sortExpenditure.png)
 
 Figure 6.3.6.1: Example of sort expenditures command
-
-#### 6.3.7 Clear expenditures: `clear`
 
 ## 7 Command summary
 ### 7.1 Navigation
