@@ -1,9 +1,8 @@
 # User Guide
 ## Table of Contents
 1. [Introduction](#1-introduction)
-    - [1.1. Welcome](#11-welcome)
-    - [1.2. Purpose of document](#12-purpose-of-document)
-    - [1.3. Target audience](#13-target-audience)
+    - [1.1. Purpose of document](#11-purpose-of-document)
+    - [1.2. Target audience](#12-target-audience)
 2. [About the user guide](#2-about-the-user-guide)
     - [2.1. Symbols](#21-symbols)
     - [2.2. Format](#22-format)
@@ -43,8 +42,7 @@
 9. [FAQ](#9-faq) 
 
 ## 1. Introduction
-### 1.1. Welcome
-Hello, welcome to NUSave! 
+Welcome to NUSave! 
 
 NUSave is a **productivity desktop application for tracking and managing expenditures** across different 
 **budget categories**. NUSave is built using a text-based user interface, also known as a Command Line Interface (CLI), 
@@ -52,12 +50,12 @@ accompanied by a Graphical User Interface (GUI).
 If you are fast at typing, prefer using your keyboard, and enjoy appealing visuals,
 NUSave is here to help.
 
-### 1.2. Purpose of document
+### 1.1. Purpose of document
 The purpose of this document is to aid users with their experience in using NUSave.
 By providing detailed information regarding the different commands and how to use them, it will allow users to smoothly 
 use NUSave to the fullest extent.
 
-### 1.3. Target audience
+### 1.2. Target audience
 Are you a **University student staying on campus** and having difficulties managing your budgets?
 
 If so, NUSave is built just for you. Made by 5 university student residents, we understand the difficulty of 
