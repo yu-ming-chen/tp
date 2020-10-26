@@ -45,7 +45,7 @@
 
 Are you a **university student who stays on campus** and has difficulty managing your expenses?
 
-Are you tired of having to look through countless spreadsheets and memos just to figure out how much you spent this month?
+Are you tired of having to look through countless spreadsheets and memos just to figure out how much you have spent this month?
 
 Do you wish there exists a desktop application that can help you organise, track and manage all of your expenses?
 
