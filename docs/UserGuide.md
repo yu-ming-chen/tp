@@ -142,9 +142,49 @@ Parameter | Meaning
 
 ## 6 Commands
 ### 6.1 Navigation
-#### 6.1.1 Opening a budget: `open`
+#### 6.1.1 Opening a budget: `open` 
+(Contributed by Song Yu)
+
+You can use this command to **open a budget.**
+
+By opening a budget, the application will display the list of expenditures belonging to that budget.
+
+Once a budget is opened, the commands that are applicable to adding, deleting or editing an expenditure will now be 
+recognised as a command.
+
+Format: `open INDEX`
+
+ Parameters | Requirement | Comments
+ ------------ | ------------- | ------
+Index | ❗Required | Index of the budget
+
+✏️ Example:
+
+`open 1`
+
+This will open the budget with the index "1", based on the index as shown beside the name of the budget.
+
+![Example of open budget command](images/CommandScreenShots/6_2_1_1_createBudget.png)
 
 #### 6.1.2 Closing a budget: `close`
+(Contributed by Song Yu)
+
+You can use this command to **close a budget.**
+
+By closing a budget, the application will display all budgets in NUSave.
+
+Once a budget is closed, the commands that are applicable to adding, deleting or editing a budget will now be 
+recognised as a command.
+
+Format: `close`
+
+✏️ Example:
+
+`close`
+
+This will close the current budget. The list of budgets in NUSave will now be displayed.
+
+![Example of close budget command](images/CommandScreenShots/6_2_1_1_createBudget.png)
 
 #### 6.1.3 Exit NUSave: `exit`
 (Contributed by David)
