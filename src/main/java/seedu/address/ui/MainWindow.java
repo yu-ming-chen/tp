@@ -1,10 +1,16 @@
 package seedu.address.ui;
 
+import static seedu.address.model.budget.Threshold.NO_THRESHOLD_MESSAGE;
+
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -12,6 +18,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.budget.Threshold;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -115,23 +122,60 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void bindFirstRowTextToPageState() {
-        mainPageInfoBox.getFirstRowText().textProperty().bind(Bindings.createStringBinding(() -> {
-            if (logic.isBudgetPage()) { //this expression must be called to always trigger change in title
-                return "Total:";
-            } else {
-                return MainPageInfoBox.getDefaultFirstRowText();
-            }
-        }, logic.getIsBudgetPageProp()));
+        mainPageInfoBox.getFirstRowText().textProperty().bind(Bindings.createStringBinding(() ->
+                setFirstRowText(), logic.getIsBudgetPageProp()));
+    }
+
+    private String setFirstRowText() {
+        if (logic.isBudgetPage()) { //this expression must be called to always trigger change in title
+            mainPageInfoBox.getFirstRowText().setTextAlignment(TextAlignment.LEFT);
+            return "Total:";
+        } else {
+            mainPageInfoBox.getFirstRowText().setTextAlignment(TextAlignment.CENTER);
+            return MainPageInfoBox.getDefaultFirstRowText();
+        }
     }
 
     private void bindSecondRowTextToTotalExpenditure() {
         mainPageInfoBox.getSecondRowText().textProperty().bind(Bindings.createStringBinding(() -> {
             String newValue = logic.getTotalExpenditureStringProp().getValue();
-            if (isFloat(newValue)) {
-                newValue = "$ " + newValue;
+            if (logic.isBudgetPage()) {
+                return parseExpenditureText(newValue);
             }
+            setClockColor();
             return newValue;
         }, logic.getTotalExpenditureStringProp()));
+    }
+
+    private String parseExpenditureText(String value) {
+        Optional<Threshold> threshold = logic.getThreshold();
+        assert isFloat(value);
+        String outputValue = "$ " + value;
+        if (threshold.isPresent()) {
+            Text secondRowText = mainPageInfoBox.getSecondRowText();
+            setExpenditureColor(secondRowText, threshold, outputValue, value);
+        }
+        return outputValue;
+    }
+
+    private void setExpenditureColor(Text text, Optional<Threshold> threshold, String outputValue, String newValue) {
+        assert threshold.isPresent();
+        String thresholdValue = threshold.get().value;
+        assert isFloat(newValue);
+        assert isFloat(thresholdValue);
+
+        Float newValueFloat = Float.parseFloat(newValue);
+        Float thresholdValueFloat = Float.parseFloat(thresholdValue);
+
+        if (newValueFloat > thresholdValueFloat) {
+            mainPageInfoBox.getSecondRowText().setFill(Color.TOMATO);
+        } else {
+            mainPageInfoBox.getSecondRowText().setFill(Color.LIME);
+        }
+    }
+
+    private void setClockColor() {
+        mainPageInfoBox.getSecondRowText().setFill(Color.rgb(0, 0, 0));
     }
 
     private boolean isFloat(String value) {
@@ -146,8 +190,14 @@ public class MainWindow extends UiPart<Stage> {
     void bindThirdRowTextToPageState() {
         mainPageInfoBox.getThirdRowText().textProperty().bind(Bindings.createStringBinding(() -> {
             if (logic.isBudgetPage()) { //this expression must be called to always trigger change in title
-                return "/" + logic.getThresholdValue();
+                mainPageInfoBox.getThirdRowText().setTextAlignment(TextAlignment.RIGHT);
+                Optional<Threshold> thresholdOptional = logic.getThreshold();
+                if (thresholdOptional.isPresent()) {
+                    return "/" + thresholdOptional.get();
+                }
+                return NO_THRESHOLD_MESSAGE;
             } else {
+                mainPageInfoBox.getThirdRowText().setTextAlignment(TextAlignment.CENTER);
                 return MainPageInfoBox.getDefaultThirdRowText();
             }
         }, logic.getIsBudgetPageProp()));
