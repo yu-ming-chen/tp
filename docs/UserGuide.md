@@ -1,7 +1,8 @@
 # User Guide
 ## Table of Contents
-1. [Introduction](#1-introduction)
-    - [1.1. Purpose of document](#11-purpose-of-document)
+1. [Overview](#1-overview)
+    - [1.1. Introduction](#11-introduction)
+    - [1.2. Purpose](#12-purpose)
 2. [About the user guide](#2-about-the-user-guide)
     - [2.1. Symbols](#21-symbols)
     - [2.2. Format](#22-format)
@@ -40,16 +41,18 @@
 8. [Glossary](#8-glossary)
 9. [FAQ](#9-faq) 
 
-## 1. Introduction
+## 1. Overview
 (Contributed by Wen Hao)
 
+Welcome to the NUSave User Guide! In this section, you will be given an overview of what NUSave is about
+and what you can get out of reading this document.
+
+### 1.1. Introduction
 Are you a **university student who stays on campus** and has difficulty managing your expenses?
-
 Are you tired of having to look through countless spreadsheets and memos just to figure out how much you have spent this month?
-
 Do you wish there exists a desktop application that can help you organise, track and manage all of your expenses?
 
-Look no further because NUSave is just the tool for you!
+Look no further, NUSave is just the tool for you!
 
 Built by 5 university students staying on campus, we understand the difficulties of having to manage multiple budgets,
 be it for your daily expenses, school projects or club activities, amidst your busy schedule. NUSave aims to help alleviate
@@ -58,11 +61,15 @@ features that will help streamline the process of organising your **budgets** an
 statistics that can offer you useful insights regarding your spending habits.
 
 What's more, NUSave has:
-- a **Command Line Interface (CLI)** catered to those who can type fast and prefer to use a keyboard.
-- a **Graphical User Interface (GUI)** to provide you with a visually appealing and aesthetic user experience.
+- a **Command Line Interface (CLI)** catered to those who can type fast and prefer to use a keyboard. In other words, you
+navigate the application by keying in text-based commands into a command box that is provided. More information regarding
+how the command book looks like can be found in the layout section [here](#3-layout).
+- a **Graphical User Interface (GUI)** to provide you with a visually appealing and aesthetic user experience. What you see
+on screen is what you get.
 
-### 1.1. Purpose of document
-The purpose of this document is to provide a detailed reference for you to learn how to use NUSave to its fullest potential.
+### 1.2. Purpose
+The purpose of this document is to serve as a guide for new users on how to get started in NUSave as well as
+to provide a detailed reference for veteren users on how to use the different commands that are available in NUSave.
 
 ## 2. About the user guide
 ### 2.1. Symbols
