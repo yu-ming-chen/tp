@@ -631,20 +631,26 @@ You can find the meanings of some special keywords applicable to NUSave over her
 
 ## 9. FAQ
 **Q**: How do I transfer my data to another computer?
+
 **A**: Install the application on another computer and overwrite the empty data file it creates with the .json file that contains the data of your previous NUSave folder.
 
 **Q**: Where is my save data stored?
+
 **A**: They are stored in the `data` folder where the NUSave application is found.
 
 **Q**: How do I make backups of my data in NUSave?
+
 **A**: You can copy and paste the `data` folder located in the NUSave home folder to somewhere safe and easy to remember. To restore the backup, copy the entire folder back into the same home folder and overwrite the existing folder.
 
 **Q**: How do I delete all my data in NUSave?
+
 **A**: You can delete the `data` folder in the NUSave home folder.
 
 **Q**: Will my data be compromised?
+
 **A**: Don't worry! All data in NUSave is stored on your local device and will not be transferred over the web.
 
 **Q**: Does this application require an internet connection to run?
+
 **A**: NUSave does not access any web services and can be run completely offline.
 
