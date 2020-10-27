@@ -48,6 +48,7 @@ Welcome to the NUSave User Guide! In this section, you will be given an overview
 and what you can get out of reading this document.
 
 ### 1.1. Introduction
+(Contributed by Wen Hao)
 Are you a **university student who stays on campus** and has difficulty managing your expenses?
 Are you tired of having to look through countless spreadsheets and memos just to figure out how much you have spent this month?
 Do you wish there exists a desktop application that can help you organise, track and manage all of your expenses?
@@ -69,6 +70,7 @@ how the command box looks like can be found in [here](#3-layout).
 the status of the application is reflected on-screen so what you see is what you get!
 
 ### 1.2. Purpose
+(Contributed by Wen Hao)
 The purpose of this document is to serve as a guide for new users on how to get started with using NUSave as well as
 to provide a detailed reference for veteren users on how to use the different commands that are available within NUSave.
 
@@ -133,13 +135,37 @@ There are a total of two pages that you can navigate to when using NUSave:
 - Budget page
 
 ### 3.1. Main page view
+(Contributed by Wen Hao)
+
+You will be greeted by the main page upon launching NUSave. On this page, you will be able to see a list of
+budgets that are currently stored in NUSave.
+
+Here is how the main page should look like:
+
+![Example of main page view](images/GUILayoutScreenShots/3_1_1_commandPrompt.png)
+
+Figure 3.1.1. Example of the main page view.
+
+Below is a table containing all the components that can be found in the main page accompanied by their respective purposes:
+
+Component | Purpose
+--------- | -------
+Command Box | A text field for you to enter your desired commands.
+Result Display | A **scrollable** panel that displays the response messages of a command after it has been executed.
+Info Box | A panel that displays the current date and time.
+Title | A text field that displays the name of the application.
+Budget Card | A card that represents a budget stored in NUSave. It contains the name of the budget as well as the total number of expenditures the budget contains.
+List View | A **scrollable** panel that can hold multiple budget cards.
 
 ### 3.2. Budget page view
+(Contributed by Wen Hao)
+
+
 
 ## 4. Quick start
 (Contributed by Wen Hao)
 
-If this is your first time using NUSave, follow the few simple steps below to jump straight into action:
+If this is your first time using NUSave, follow these few simple steps to jump straight into action:
 
 1. Ensure that you have Java `11` or above installed in your Computer.
 
@@ -147,29 +173,25 @@ If this is your first time using NUSave, follow the few simple steps below to ju
 
 3. Copy the file to the folder you want to use as the *home folder* for NUSave.
 
-4. Double-click the file to start the application. A GUI similar to Figure 3.1 should appear in a few seconds.
-
-![Example of NUSave's GUI](images/QuickStartScreenShots/4_1_quickStart.png)
-
-Figure 4.1. Example of how NUSave's GUI looks like.
+4. Double-click the file to start the application. A GUI similar to [Figure 3.1.1](#31-main-page-view) should appear in a few seconds.
 
 > 📕 If the application does not start after double-clicking the file, you can troubleshoot by doing the following:
 >
 > For Windows OS users:
 > 1. Launch command prompt and navigate to the path of the home folder for NUSave.
-> 2. Enter the following command: `java -jar nusave.java`
+> 2. Enter the following command: `java -jar nusave.java` as seeen in Figure 4.1 below.
 >
-> ![Example of launching NUSave using command prompt](images/QuickStartScreenShots/4_2_commandPrompt.png)
+> ![Example of launching NUSave using command prompt](images/QuickStartScreenShots/4_1_commandPrompt.png)
 >
-> Figure 4.2. Example of launching NUSave using command prompt.
+> Figure 4.1. Example of launching NUSave using command prompt.
 >
 > For Mac OS users:
 > 1. Launch terminal and navigate to the path of the home folder for NUSave.
-> 2. Enter the following command: `java -jar nusave.java`
+> 2. Enter the following command: `java -jar nusave.java` as seen in Figure 4.2 below.
 >
 > ![Example of launching NUSave using terminal](images/QuickStartScreenShots/4_2_terminal.png)
 >
-> Figure 4.3. Example of launching NUSave using terminal.
+> Figure 4.2. Example of launching NUSave using terminal.
 
 5. Congratulations, you have successfully launched NUSave!
 > 📕 If you are launching the application for the first time, a set of sample data will be created for you.
