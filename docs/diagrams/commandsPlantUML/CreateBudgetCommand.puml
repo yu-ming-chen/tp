@@ -26,8 +26,8 @@ MPP -> CBCP : parse("create n/Temasek Hall Basketball p/100")
 activate CBCP
 
 ref over CBCP
-    Create Name, 
-    Optional<Threshold>, 
+    Create Name,
+    Optional<Threshold>,
     Date and
     Expenditures
 end ref
