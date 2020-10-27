@@ -165,12 +165,61 @@ Figure 4.1. Example of how NUSave's GUI looks like.
 
 ## 5. Tips
 ### 5.1. Syntax highlighting
+(Contributed by Song Yu)
+
+When you type an invalid command into the `command box`, your input will be highlighted.
+
+Color | Description | Examples
+------------ | ------------- | ------
+Red | Invalid input | <ul><li>An unknown command <br/> e.g. test, hello </li>  <li>Invalid command parameter(s) <br/> e.g. pt/test m/hello</li></ul>
+Grey |  The default font color, or when the command is valid |
 
 ## 6. Commands
 ### 6.1. Navigation
 #### 6.1.1. Opening a budget: `open`
+(Contributed by Song Yu)
 
+You can use this command to **open a budget.**
+
+By opening a budget, the application will display the list of expenditures belonging to that budget.
+
+Once a budget is open, the commands that are applicable to adding, deleting or editing an expenditure will now be 
+recognised as a command.
+
+Format: `open INDEX`
+
+ Parameters | Requirement | Comments
+ ------------ | ------------- | ------
+Index | ❗Required | Index of the budget to be opened
+
+✏️ Example:
+
+`open 1`
+
+This will open the budget with the index "1", based on the index as shown beside the name of the budget.
+
+![Example of open budget command](images/CommandScreenShots/6_1_1_openBudget.png)
+![Example of open budget command](images/CommandScreenShots/6_1_1_openBudget2.png)
 #### 6.1.2. Closing a budget: `close`
+(Contributed by Song Yu)
+
+You can use this command to **close a budget.**
+
+By closing a budget, the application switches from displaying expenditures to displaying all budgets in NUSave.
+
+Once a budget is closed, the commands that are applicable to adding, deleting or editing a budget will now be 
+recognised as a command.
+
+Format: `close`
+
+✏️ Example:
+
+`close`
+
+This will close the current budget. The list of budgets in NUSave will now be displayed.
+
+![Example of close budget command](images/CommandScreenShots/6_1_2_closeBudget.png)
+![Example of close budget command](images/CommandScreenShots/6_1_2_closeBudget2.png)
 
 #### 6.1.3. Exit NUSave: `exit`
 (Contributed by David)
@@ -298,6 +347,28 @@ This will edit a budget at **index 2** to be **renamed "NUS Computing Club"**.
 Figure 6.2.3.1. Example of edit budget command
 
 #### 6.2.4. Finding budgets: `find`
+
+You can use this command to **quickly find your budgets**.
+
+Use this command to filter through your budgets by using keywords. NUSave will display all budgets whose title matches 
+the entered keyword/key phrase. 
+
+ > ⚠ **You should not use this command if main page is empty**. This is because there are no budgets created yet. 
+ > You can only find a budget if there are already existing budgets!
+
+Format: `find NAME`
+
+ Parameters | Requirement | Comments
+ ------------ | ------------- | ------
+Word | ❗Required | Keyword / Keyphrase to be searched
+
+✏️ Example:
+
+`find Temasek Hall`
+This will find all budgets with the keyphrase 'Temasek Hall' in the title of the budget.
+
+![Example of delete budget command](images/CommandScreenShots/6_2_4_findBudget.png)
+![Example of delete budget command](images/CommandScreenShots/6_2_4_findBudget2.png)
 
 #### 6.2.5. Listing budgets: `list`
 (Contributed by Chin Hui)
