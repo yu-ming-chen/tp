@@ -1,7 +1,8 @@
 # User Guide
 ## Table of Contents
-1. [Introduction](#1-introduction)
-    - [1.1. Purpose of document](#11-purpose-of-document)
+1. [Overview](#1-overview)
+    - [1.1. Introduction](#11-introduction)
+    - [1.2. Purpose](#12-purpose)
 2. [About the user guide](#2-about-the-user-guide)
     - [2.1. Symbols](#21-symbols)
     - [2.2. Format](#22-format)
@@ -40,29 +41,39 @@
 8. [Glossary](#8-glossary)
 9. [FAQ](#9-faq) 
 
-## 1. Introduction
+## 1. Overview
+(Contributed by Wen Hao)
+
+Welcome to the NUSave User Guide! In this section, you will be given an overview of what NUSave is about
+and what you can get out of reading this document.
+
+### 1.1. Introduction
 (Contributed by Wen Hao)
 
 Are you a **university student who stays on campus** and has difficulty managing your expenses?
-
 Are you tired of having to look through countless spreadsheets and memos just to figure out how much you have spent this month?
-
 Do you wish there exists a desktop application that can help you organise, track and manage all of your expenses?
 
-Look no further because NUSave is just the tool for you!
+Look no further, NUSave is just the tool for you!
 
-Built by 5 university students staying on campus, we understand the difficulties of having to manage multiple budgets,
+Built by 5 university students staying on campus, we understand **the difficulties of having to manage multiple budgets**,
 be it for your daily expenses, school projects or club activities, amidst your busy schedule. NUSave aims to help alleviate
-the hassle that comes along with managing multiple budgets by providing a **one-stop solution** to all your problems. It has
-features that will help streamline the process of organising your **budgets** and **expenditures**, as well as generate
-statistics that can offer you useful insights regarding your spending habits.
+the hassle that comes along with managing multiple budgets by providing a **one-stop solution** to all your problems.
+
+With NUSave, you can **create, edit and delete budgets and expenditures**, as well as **generate statistics
+based on the items you have entered** to gain useful insights regarding your spending habits.
 
 What's more, NUSave has:
-- a **Command Line Interface (CLI)** catered to those who can type fast and prefer to use a keyboard.
-- a **Graphical User Interface (GUI)** to provide you with a visually appealing and aesthetic user experience.
+- a **Command Line Interface (CLI)** catered to those who can type fast and prefer to use a keyboard. In other words, you
+navigate the application and execute instructions by keying in text-based commands into the [command box](#3-gui-layout) provided.
+- a **Graphical User Interface (GUI)** to provide you with a visually appealing and aesthetic user experience. Essentially,
+the current status of the application is reflected live on-screen so what you see is what you get!
 
-### 1.1. Purpose of document
-The purpose of this document is to provide a detailed reference for you to learn how to use NUSave to its fullest potential.
+### 1.2. Purpose
+(Contributed by Wen Hao)
+
+The purpose of this document is to serve as a guide for new users on how to get started with using NUSave as well as
+to provide a detailed reference for veteren users on how to use the different commands that are available within NUSave.
 
 ## 2. About the user guide
 ### 2.1. Symbols
@@ -114,14 +125,63 @@ Parameter | Meaning
 `TAG` | This is the tag for the expenditure.
 `TYPE` | This is the sorting types.
 
-## 3. Layout
+## 3. GUI Layout
 (Contributed by Wen Hao)
+
+In this section, you will be given an introduction to the layout of NUSave's Graphical User Interface (GUI)
+which will help you better understand what each component that you observe on-screen represents.
+
+There are a total of two pages that you can navigate to when using NUSave:
+- Main page
+- Budget page
+
 ### 3.1. Main page view
+(Contributed by Wen Hao)
+
+You will be greeted by the main page upon launching NUSave. On this page, you can see a list of
+budgets that are currently stored in NUSave. Here is how the main page should look like:
+
+![Example of main page view](images/GUILayoutScreenShots/3_1_1_mainPage.png)
+
+Figure 3.1.1. Example of the main page view.
+
+Below is a table containing all the components that can be found on the main page accompanied by their respective purposes:
+
+Component | Purpose
+--------- | -------
+Command Box | A text field for you to enter your desired commands.
+Result Display | A **scrollable** panel that displays the response messages of a command after it has been executed.
+Info Box | A panel that displays the current date and time.
+Title | A text field that displays the name of the application.
+Budget Card | A card that represents a budget stored in NUSave. It contains the name of the budget as well as the total number of expenditures the budget contains.
+List View | A **scrollable** panel that can hold multiple budget cards.
 
 ### 3.2. Budget page view
+(Contributed by Wen Hao)
+
+You will be directed to a budget page when you use the [open budget command](#611-opening-a-budget-open).
+On this page, you can see a list of expenditures that are currently stored in the budget you have opened.
+Here is how a budget page should look like:
+
+![Example of budget page view](images/GUILayoutScreenShots/3_1_2_budgetPage.png)
+
+Figure 3.1.2. Example of a budget page view.
+
+Below is a table containing all the components that can be found on a budget page accompanied by their respective purposes:
+
+Component | Purpose
+--------- | -------
+Command Box | A text field for you to enter your desired commands.
+Result Display | A **scrollable** panel that displays the response messages of a command after it has been executed.
+Info Box | A panel that displays the total amount you have spent so far based on the expenditures added to the budget. It will also display the threshold of the budget if it has one.
+Title | A text field that displays the name of budget that is open.
+Expenditure Card | A card that represents an expenditure stored in a budget. It contains the name, tags as well as cost of the expenditure.
+List View | A **scrollable** panel that can hold multiple expenditure cards.
 
 ## 4. Quick start
 (Contributed by Wen Hao)
+
+If this is your first time using NUSave, follow these simple steps to jump straight into the action:
 
 1. Ensure that you have Java `11` or above installed in your Computer.
 
@@ -129,39 +189,38 @@ Parameter | Meaning
 
 3. Copy the file to the folder you want to use as the *home folder* for NUSave.
 
-4. Double-click the file to start the application. A GUI similar to Figure 3.1 should appear in a few seconds.
-
-![Example of NUSave's GUI](images/QuickStartScreenShots/4_1_quickStart.png)
-
-Figure 4.1. Example of how NUSave's GUI looks like.
+4. Double-click the file to start the application. A GUI similar to [Figure 3.1.1](#31-main-page-view) should appear in a few seconds.
 
 > 📕 If the application does not start after double-clicking the file, you can troubleshoot by doing the following:
 >
 > For Windows OS users:
 > 1. Launch command prompt and navigate to the path of the home folder for NUSave.
-> 2. Enter the following command: `java -jar nusave.java`
+> 2. Enter the following command: `java -jar nusave.java` as seeen in Figure 4.1 below.
 >
-> ![Example of launching NUSave using command prompt](images/QuickStartScreenShots/4_2_commandPrompt.png)
+> ![Example of launching NUSave using command prompt](images/QuickStartScreenShots/4_1_commandPrompt.png)
 >
-> Figure 4.2. Example of launching NUSave using command prompt.
+> Figure 4.1. Example of launching NUSave using command prompt.
 >
 > For Mac OS users:
 > 1. Launch terminal and navigate to the path of the home folder for NUSave.
-> 2. Enter the following command: `java -jar nusave.java`
+> 2. Enter the following command: `java -jar nusave.java` as seen in Figure 4.2 below.
 >
 > ![Example of launching NUSave using terminal](images/QuickStartScreenShots/4_2_terminal.png)
 >
-> Figure 4.3. Example of launching NUSave using terminal.
+> Figure 4.2. Example of launching NUSave using terminal.
 
 5. Congratulations, you have successfully launched NUSave!
 > 📕 If you are launching the application for the first time, a set of sample data will be created for you.
-> Use the [clear command](#627-clearing-budgets-clear) to purge the existing sample data.
+> Use the [clear command](#627-clearing-budgets-clear) to purge any existing sample data.
 
-6. Type your desired command in the command box and press enter to execute it. Below is a series of commands that you can try:
+6. Type your desired command into the command box and press the enter button to execute it. Below is a series of commands that you can try:
+    - `create n/Daily Expenses`: Creates a budget with the name "Daily Expenses".
+    - `open 1`: Opens the budget located at index 1.
+    - `close`: Closes the budget that is open and return to the main page.
     - `help`: Shows the list of commands currently available.
     - `exit`: Exits the app.
 
-7. Refer to the [commands](#6-commands) below for details of each command.
+7. Refer to the [commands section](#6-commands) below for details of each command.
 
 ## 5. Tips
 ### 5.1. Syntax highlighting
