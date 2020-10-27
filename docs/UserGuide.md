@@ -415,7 +415,7 @@ You can use this command to **quickly find your budgets**.
 Use this command to filter through your budgets by using keywords. NUSave will display all budgets whose title matches 
 the entered keyword/key phrase. 
 
- > ⚠ **You should not use this command if main page is empty**. This is because there are no budgets created yet. 
+ > ⚠ You should not use this command if main page is empty. This is because there are no budgets created yet. 
  > You can only find a budget if there are already existing budgets!
 
 Format: `find WORD`
@@ -576,11 +576,11 @@ NUSave will display all expenditures whose title contains the entered keyword/ke
 
    ```📕 Note: Expenditures will be filtered as long as they contain the search term. The filter is case-insensitive, using upper-case or lower-case will not make a difference in the search result.```
 
-> ⚠️ **You should not use this command if budget page is empty**. 
+> ⚠️ You should not use this command if budget page is empty. 
 >This is because there are no expenditures created yet.
 
-> ⚠️ **If no expenditures are displayed, it means that none of the expenditures matched your search term. 
->You can use the `list` command to display all expenditures again**.
+> ⚠️ If no expenditures are displayed, it means that none of the expenditures matched your search term. 
+>You can use the `list` command to display all expenditures again.
 
 Format: `find WORD`
 
