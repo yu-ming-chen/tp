@@ -60,7 +60,7 @@ Built by 5 university students staying on campus, we understand **the difficulti
 be it for your daily expenses, school projects or club activities, amidst your busy schedule. NUSave aims to help alleviate
 the hassle that comes along with managing multiple budgets by providing a **one-stop solution** to all your problems.
 
-With NUSave, you can **create, edit and delete budgets and **expenditures**, as well as **generate statistics
+With NUSave, you can **create, edit and delete budgets and expenditures**, as well as **generate statistics
 based on the items you have entered** to gain useful insights regarding your spending habits.
 
 What's more, NUSave has:
