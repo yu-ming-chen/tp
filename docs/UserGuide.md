@@ -138,15 +138,13 @@ There are a total of two pages that you can navigate to when using NUSave:
 (Contributed by Wen Hao)
 
 You will be greeted by the main page upon launching NUSave. On this page, you will be able to see a list of
-budgets that are currently stored in NUSave.
+budgets that are currently stored in NUSave. Here is how the main page should look like:
 
-Here is how the main page should look like:
-
-![Example of main page view](images/GUILayoutScreenShots/3_1_1_commandPrompt.png)
+![Example of main page view](images/GUILayoutScreenShots/3_1_1_mainPage.png)
 
 Figure 3.1.1. Example of the main page view.
 
-Below is a table containing all the components that can be found in the main page accompanied by their respective purposes:
+Below is a table containing all the components that can be found on the main page accompanied by their respective purposes:
 
 Component | Purpose
 --------- | -------
@@ -160,7 +158,24 @@ List View | A **scrollable** panel that can hold multiple budget cards.
 ### 3.2. Budget page view
 (Contributed by Wen Hao)
 
+You will be directed to a budget page when you use the [open budget command](##611-opening-a-budget-open).
+On this page, you will be able to see a list of expenditures that are currently within the budget you have opened.
+Here is how the budget page should look like:
 
+![Example of budget page view](images/GUILayoutScreenShots/3_1_2_budgetPage.png)
+
+Figure 3.1.2. Example of the budget page view.
+
+Below is a table containing all the components that can be found on the budget page accompanied by their respective purposes:
+
+Component | Purpose
+--------- | -------
+Command Box | A text field for you to enter your desired commands.
+Result Display | A **scrollable** panel that displays the response messages of a command after it has been executed.
+Info Box | A panel that displays the total amount you have spent so far based on the expenditures added to the budget. It will also display the threshold of the budget if it has one.
+Title | A text field that displays the name of budget that is open.
+Expenditure Card | A card that represents an expenditure stored in a budget. It contains the name as well as the cost of the expenditure.
+List View | A **scrollable** panel that can hold multiple expenditure cards.
 
 ## 4. Quick start
 (Contributed by Wen Hao)
