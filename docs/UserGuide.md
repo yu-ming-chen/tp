@@ -58,19 +58,19 @@ Built by 5 university students staying on campus, we understand **the difficulti
 be it for your daily expenses, school projects or club activities, amidst your busy schedule. NUSave aims to help alleviate
 the hassle that comes along with managing multiple budgets by providing a **one-stop solution** to all your problems.
 
-With NUSave, you can create, edit and delete **budgets** and **expenditures**, as well as generate statistics
-based on the items you have entered to gain useful insights regarding your spending habits.
+With NUSave, you can **create, edit and delete budgets and **expenditures**, as well as **generate statistics
+based on the items you have entered** to gain useful insights regarding your spending habits.
 
 What's more, NUSave has:
 - a **Command Line Interface (CLI)** catered to those who can type fast and prefer to use a keyboard. In other words, you
 navigate the application by keying in text-based commands into a command box that is provided. More information regarding
-how the command box looks like can be found in the layout section [here](#3-layout).
+how the command box looks like can be found in [here](#3-layout).
 - a **Graphical User Interface (GUI)** to provide you with a visually appealing and aesthetic user experience. Essentially,
 the status of the application is reflected on-screen so what you see is what you get!
 
 ### 1.2. Purpose
-The purpose of this document is to serve as a guide for new users on how to get started in NUSave as well as
-to provide a detailed reference for veteren users on how to use the different commands that are available in NUSave.
+The purpose of this document is to serve as a guide for new users on how to get started with using NUSave as well as
+to provide a detailed reference for veteren users on how to use the different commands that are available within NUSave.
 
 ## 2. About the user guide
 ### 2.1. Symbols
@@ -122,14 +122,24 @@ Parameter | Meaning
 `TAG` | This is the tag for the expenditure.
 `TYPE` | This is the sorting types.
 
-## 3. Layout
+## 3. GUI Layout
 (Contributed by Wen Hao)
+
+In this section, you will be given an introduction to the layout of NUSave's Graphical User Interface (GUI)
+which will help you better understand what each component that you observe on-screen represents.
+
+There are a total of two pages that you can navigate to when using NUSave:
+- Main page
+- Budget page
+
 ### 3.1. Main page view
 
 ### 3.2. Budget page view
 
 ## 4. Quick start
 (Contributed by Wen Hao)
+
+If this is your first time using NUSave, follow the few simple steps below to jump straight into action:
 
 1. Ensure that you have Java `11` or above installed in your Computer.
 
