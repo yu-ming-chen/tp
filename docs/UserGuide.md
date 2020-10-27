@@ -583,28 +583,33 @@ Figure 6.3.6.1. Example of sort expenditures command
 
 ## 7. Command summary
 ### 7.1. Navigation
-| **Action** | **Format, Examples** |
-|--------|--------------------------|
-|Open (Budget)       |`open INDEX`<br>e.g. `open 1`|
-|Close (Budget)      |`close`|
-|Help                |`help`|
-|Exit                |`exit`|
+| **Action** | **Format** | **Examples** |
+|------------|------------|--------------|
+Open a budget       |`open INDEX`| `open 1`|
+Close a budget      |`close`|-|
+Exit NUSave       |`exit`|-|
+Help              |`help`|-|
 ### 7.2. Main page commands
-| **Action** | **Format, Examples** |
-|--------|--------------------------|
-|Create (Budget)     |`create n/NAME`, `create n/NAME p/THRESHOLD` <br>e.g. `create n/Daily Expenses`, `create n/Project Work p/100`|
-|Delete (Budget)     |`delete INDEX`<br>e.g. `delete 1`|
-|List                |`list`|
-|Find                |`find KEYWORD`<br>e.g. `find Breakfast`|
+| **Action** | **Format** | **Examples** |
+|------------|------------|--------------|
+Create a budget     |`create n/NAME [p/THRESHOLD]` |`create n/Daily Expenses`, <br>`create n/Project Work p/100`|
+Delete a budget     |`delete INDEX`|`delete 1`|
+Edit a budget     |`edit INDEX [n/NAME] [p/THRESHOLD]`|`edit 1 n/Hall Council`, <br>`edit 2 n/NUS Computing Club p/1000`|
+Find budgets     |`find KEYWORD`|`find Temasek`|
+List all budgets  |`list`|-|
+Sort all budgets  |`sort SORTTYPE`|`sort time`, <br>`sort name`|
+Clear all budgets |`clear`|-|
 
 
 ### 7.3. Budget page commands
-| **Action** | **Format, Examples** |
-|--------|--------------------------|
-|Add (Expenditure)   |`add n/NAME p/PRICE` <br>e.g. `add n/Breakfast p/10`|
-|Delete (Expenditure)|`delete INDEX`<br>e.g. `delete 1`|
-|List                |`list`|
-|Find                |`find KEYWORD`<br>e.g. `find Breakfast`|
+| **Action** | **Format** | **Examples** |
+|------------|------------|--------------|
+Add an expenditure   |`add n/NAME p/PRICE [t/TAG]`|`add n/TShirt p/20`, <br>`add n/Breakfast p/10 t/food`|
+Delete an expenditure|`delete INDEX`|`delete 1`|
+Edit an expenditure|`edit INDEX [n/NAME] [p/PRICE]`|`edit 2 n/NikeShirt`, <br> `edit 2 p/28`|
+Find expenditures|`find KEYWORD`|`find shirt`|
+List all expenditures |`list`|-|
+Sort all expenditures|`sort SORTTYPE`|`sort time`, <br>`sort name`|
 
 ## 8. Glossary  
 (Contributed by Song Yu)
