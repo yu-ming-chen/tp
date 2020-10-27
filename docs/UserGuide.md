@@ -54,18 +54,19 @@ Do you wish there exists a desktop application that can help you organise, track
 
 Look no further, NUSave is just the tool for you!
 
-Built by 5 university students staying on campus, we understand the difficulties of having to manage multiple budgets,
+Built by 5 university students staying on campus, we understand **the difficulties of having to manage multiple budgets**,
 be it for your daily expenses, school projects or club activities, amidst your busy schedule. NUSave aims to help alleviate
-the hassle that comes along with managing multiple budgets by providing a **one-stop solution** to all your problems. It has
-features that will help streamline the process of organising your **budgets** and **expenditures**, as well as generate
-statistics that can offer you useful insights regarding your spending habits.
+the hassle that comes along with managing multiple budgets by providing a **one-stop solution** to all your problems.
+
+With NUSave, you can create, edit and delete **budgets** and **expenditures**, as well as generate statistics
+based on the items you have entered to gain useful insights regarding your spending habits.
 
 What's more, NUSave has:
 - a **Command Line Interface (CLI)** catered to those who can type fast and prefer to use a keyboard. In other words, you
 navigate the application by keying in text-based commands into a command box that is provided. More information regarding
-how the command book looks like can be found in the layout section [here](#3-layout).
-- a **Graphical User Interface (GUI)** to provide you with a visually appealing and aesthetic user experience. What you see
-on screen is what you get.
+how the command box looks like can be found in the layout section [here](#3-layout).
+- a **Graphical User Interface (GUI)** to provide you with a visually appealing and aesthetic user experience. Essentially,
+the status of the application is reflected on-screen so what you see is what you get!
 
 ### 1.2. Purpose
 The purpose of this document is to serve as a guide for new users on how to get started in NUSave as well as
