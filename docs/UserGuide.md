@@ -70,7 +70,7 @@ The purpose of this document is to provide a detailed reference for you to learn
 
 Symbols | Meaning 
 -------| ------------ 
-⚠️ | This sybmol indicates that there is something important for you to take note of.
+⚠️ | This symbol indicates that there is something important for you to take note of.
 📕 | This symbol indicates that there is additional information you may find useful.
 ✏️ | This symbol indicates that an example is provided.
 ❗| This symbol indicates that the parameter is required.
@@ -81,7 +81,7 @@ Symbols | Meaning
 
 This section shows the format of all the commands in the user guide.
 
-Format | Meaning | Exmaple 
+Format | Meaning | Example 
 -------| ------------ | ----
 `lower_case/` | **Prefixes** | `n/` `p/` `t/`
 `UPPER_CASE` | **Parameters** | `NAME` `THRESHOLD` `PRICE`
@@ -137,7 +137,7 @@ Figure 4.1. Example of how NUSave's GUI looks like.
 
 > 📕 If the application does not start after double-clicking the file, you can troubleshoot by doing the following:
 >
-> For Windows users:
+> For Windows OS users:
 > 1. Launch command prompt and navigate to the path of the home folder for NUSave.
 > 2. Enter the following command: `java -jar nusave.java`
 >
@@ -145,7 +145,7 @@ Figure 4.1. Example of how NUSave's GUI looks like.
 >
 > Figure 4.2. Example of launching NUSave using command prompt.
 >
-> For MacOS users:
+> For Mac OS users:
 > 1. Launch terminal and navigate to the path of the home folder for NUSave.
 > 2. Enter the following command: `java -jar nusave.java`
 >
@@ -606,7 +606,23 @@ Figure 6.3.6.1. Example of sort expenditures command
 |List                |`list`|
 |Find                |`find KEYWORD`<br>e.g. `find Breakfast`|
 
-## 8. Glossary
+## 8. Glossary  
+(Contributed by Song Yu)
+
+You can find the meanings of some special keywords applicable to NUSave over here.
+
+| Term | Explanation |
+|---|---|
+| CLI | Short for **Command Line Interface**. CLI-based Applications (i.e. NUSave) focuses on processing commands in the form of text entered from the keyboard. |
+| GUI | Short for **Graphical User Interface**. GUIs work as the communication channel between the program and the user. Users interact with NUSave through the GUI, on their devices. |
+| OS | The underlying computer program that allows users to interact with a computer. It manages the hardware components and software resources of a computer for the user.|
+| Command Prompt (Windows OS) | A CLI application proprietary to Windows OS devices, where users can run commands on a Windows device by entering typed commands. |
+| Terminal (Mac OS) | A CLI application proprietary to Mac OS devices, where users can run commands on a Mac device by entering typed commands. |
+| Expenditure | Refers to a single item to be recorded in NUSave.|
+| Budget | Refers to how NUSave stores related expenditures under one group. A budget can also hold additional information about this list of expenditures, such as the target limit of what is to be spent (i.e. threshold).  |
+| Main Page | Refers to the page that displays the list of budgets that is stored in NUSave.|
+| Budget Page | Refers to the page that displays the list of expenditures belonging in a specific budget that is stored in NUSave.|
+| Threshold | Refers to the target limit that can be spent in that budget. |
 
 ## 9. FAQ
 **Q**: How do I transfer my data to another computer?
