@@ -175,13 +175,13 @@ Command Box | A text field for you to enter your desired commands.
 Result Display | A **scrollable** panel that displays the response messages of a command after it has been executed.
 Info Box | A panel that displays the total amount you have spent so far based on the expenditures added to the budget. It will also display the threshold of the budget if it has one.
 Title | A text field that displays the name of budget that is open.
-Expenditure Card | A card that represents an expenditure stored in a budget. It contains the name as well as the cost of the expenditure.
+Expenditure Card | A card that represents an expenditure stored in a budget. It contains the name, tags as well as cost of the expenditure.
 List View | A **scrollable** panel that can hold multiple expenditure cards.
 
 ## 4. Quick start
 (Contributed by Wen Hao)
 
-If this is your first time using NUSave, follow these simple steps to jump straight into action:
+If this is your first time using NUSave, follow these simple steps to jump straight into the action:
 
 1. Ensure that you have Java `11` or above installed in your Computer.
 
