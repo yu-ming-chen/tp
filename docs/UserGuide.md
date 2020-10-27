@@ -65,10 +65,9 @@ based on the items you have entered** to gain useful insights regarding your spe
 
 What's more, NUSave has:
 - a **Command Line Interface (CLI)** catered to those who can type fast and prefer to use a keyboard. In other words, you
-navigate the application by keying in text-based commands into a command box that is provided. More information regarding
-how the command box looks like can be found in [here](#3-layout).
+navigate the application and execute instructions by keying in text-based commands into the [command box](#3-layout) provided.
 - a **Graphical User Interface (GUI)** to provide you with a visually appealing and aesthetic user experience. Essentially,
-the status of the application is reflected on-screen so what you see is what you get!
+the current status of the application is reflected live on-screen so what you see is what you get!
 
 ### 1.2. Purpose
 (Contributed by Wen Hao)
