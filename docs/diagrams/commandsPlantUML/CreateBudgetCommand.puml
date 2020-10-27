@@ -1,0 +1,73 @@
+@startuml
+box "Logic" #LightBlue
+participant ":LogicManager" as LM
+participant ":MainPageParser" as MPP
+participant ":CreateBudgetCommandParser" as CBCP
+participant ":CreateBudgetCommand" as CBC
+participant ":result:CommandResult" as CR
+end box
+
+box "Model" #LightYellow
+participant "b:Budget" as Budget
+participant ":Model" as M
+end box
+
+[-> LM : excute("create n/Temasek Hall Basketball p/100")
+activate LM
+LM -> MPP : parseCommand("create n/Temasek Hall Basketball p/100")
+activate MPP
+
+create CBCP
+MPP -> CBCP
+activate CBCP
+MPP <-- CBCP
+deactivate CBCP
+MPP -> CBCP : parse("create n/Temasek Hall Basketball p/100")
+activate CBCP
+
+ref over CBCP
+    Create Name, 
+    Optional<Threshold>, 
+    Date and
+    Expenditures
+end ref
+
+
+create Budget
+CBCP -> Budget : Budget(name, date threshold, expenditure)
+activate Budget
+CBCP <-- Budget
+deactivate Budget
+
+create CBC
+CBCP -> CBC : createBudgetCommand(b)
+activate CBC
+CBCP <-- CBC
+deactivate CBC
+destroy CBCP
+MPP <-- CBCP : c
+deactivate CBCP
+LM <-- MPP : c
+destroy MPP
+
+LM -> CBC: excute()
+
+activate CBC
+CBC -> M : addBudget(b)
+activate M
+CBC <-- M
+deactivate M
+
+create CR
+CBC -> CR
+activate CR
+CBC <-- CR
+deactivate CR
+
+LM <-- CBC: result
+deactivate CBC
+[<-- LM
+deactivate LM
+
+
+@enduml
