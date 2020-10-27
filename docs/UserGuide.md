@@ -251,6 +251,8 @@ required syntax.
 
 >📕 You can use this command at any point of time.
 
+Format: `help`
+
 ✏️ Example:
 
 `help`
@@ -347,6 +349,7 @@ This will edit a budget at **index 2** to be **renamed "NUS Computing Club"**.
 Figure 6.2.3.1. Example of edit budget command
 
 #### 6.2.4. Finding budgets: `find`
+(Contributed by Chin Hui)
 
 You can use this command to **quickly find your budgets**.
 
@@ -356,7 +359,7 @@ the entered keyword/key phrase.
  > ⚠ **You should not use this command if main page is empty**. This is because there are no budgets created yet. 
  > You can only find a budget if there are already existing budgets!
 
-Format: `find NAME`
+Format: `find WORD`
 
  Parameters | Requirement | Comments
  ------------ | ------------- | ------
@@ -372,17 +375,18 @@ This will find all budgets with the keyphrase 'Temasek Hall' in the title of the
 
 #### 6.2.5. Listing budgets: `list`
 (Contributed by Chin Hui)
+
 You can use this command to **list all budgets** in NUSave.
 
 This command is usually used to display all budgets after searching for specific budgets using the `find` command.
 
 >⚠️ If the `find` command has not been used, the `list` command may not have any visible effect. This is because all budgets have already been displayed.
 
-Format: list
+Format: `list`
 
 ✏️ Example:
 
-list
+`list`
 
 This will display all existing budgets in NUSave.
 
@@ -505,31 +509,39 @@ This will edit an expenditure at **index 1** to be **renamed** "Long-Sleeve" wit
 Figure 6.3.3.1. Example of edit expenditure command
 #### 6.3.4. Finding expenditures: `find`
 (Contributed by Chin Hui)
-You can use this command to **filter expenditures by name**.
+
+You can use this command to **quickly find your expenditures**.
+
+Use this command to filter through your expenditures by keywords.
+NUSave will display all expenditures whose title contains the entered keyword/key phrase.
 
    ```📕 Note: Expenditures will be filtered as long as they contain the search term. The filter is case-insensitive, using upper-case or lower-case will not make a difference in the search result.```
 
-> ⚠️ **You can only use this command if there are existing expenditures**.
+> ⚠️ **You should not use this command if budget page is empty**. 
+>This is because there are no expenditures created yet.
 
-> ⚠️ **If no expenditures are displayed, it means that none of the expenditures matched your search term. You can use the `list` command to display all expenditures again**.
+> ⚠️ **If no expenditures are displayed, it means that none of the expenditures matched your search term. 
+>You can use the `list` command to display all expenditures again**.
 
-Format: `find NAME`
+Format: `find WORD`
 
 Prefix | Parameters | Requirement | Comments
 -------| ------------ | ------------- | ------
-\- | NAME | ❗Required | Name of the expenditure to be searched
+\- | Word | ❗Required | Keyword / Keyphrase to be searched
 
 ✏️ Example:
 
-find sock
+`find sock`
 
-This will display all existing expenditures with names that contain 'sock' in the current budget.
+This will find all expenditures containing the keyword 'sock' in the current budget.
 
 ![Example of find expenditures command](images/CommandScreenShots/6_3_4_1_findExpenditure.png)
 
 Figure 6.3.5.1. Example of find expenditures command
+
 #### 6.3.5. Listing expenditures: `list`
 (Contributed by Chin Hui)
+
 You can use this command to **list all expenditures** in the current budget.
 
 This command is usually used to display all expenditures after searching for specific expenditures using the `find` command.
