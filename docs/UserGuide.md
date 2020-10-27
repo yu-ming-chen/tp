@@ -160,7 +160,7 @@ List View | A **scrollable** panel that can hold multiple budget cards.
 (Contributed by Wen Hao)
 
 You will be directed to a budget page when you use the [open budget command](#611-opening-a-budget-open).
-On this page, you can see a list of expenditures that are stored under the budget you have opened.
+On this page, you can see a list of expenditures that are currently stored in the budget you have opened.
 Here is how the budget page should look like:
 
 ![Example of budget page view](images/GUILayoutScreenShots/3_1_2_budgetPage.png)
