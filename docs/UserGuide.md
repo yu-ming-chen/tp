@@ -654,28 +654,33 @@ Figure 6.3.6.1. Example of sort expenditures command
 
 ## 7. Command summary
 ### 7.1. Navigation
-| **Action** | **Format, Examples** |
-|--------|--------------------------|
-|Open (Budget)       |`open INDEX`<br>e.g. `open 1`|
-|Close (Budget)      |`close`|
-|Help                |`help`|
-|Exit                |`exit`|
+| **Action** | **Format** | **Examples** |
+|------------|------------|--------------|
+Open a budget       |`open INDEX`| `open 1`|
+Close a budget      |`close`|-|
+Exit NUSave       |`exit`|-|
+Help              |`help`|-|
 ### 7.2. Main page commands
-| **Action** | **Format, Examples** |
-|--------|--------------------------|
-|Create (Budget)     |`create n/NAME`, `create n/NAME p/THRESHOLD` <br>e.g. `create n/Daily Expenses`, `create n/Project Work p/100`|
-|Delete (Budget)     |`delete INDEX`<br>e.g. `delete 1`|
-|List                |`list`|
-|Find                |`find KEYWORD`<br>e.g. `find Breakfast`|
+| **Action** | **Format** | **Examples** |
+|------------|------------|--------------|
+Create a budget     |`create n/NAME [p/THRESHOLD]` |`create n/Daily Expenses`, <br>`create n/Project Work p/100`|
+Delete a budget     |`delete INDEX`|`delete 1`|
+Edit a budget     |`edit INDEX [n/NAME] [p/THRESHOLD]`|`edit 1 n/Hall Council`, <br>`edit 2 n/NUS Computing Club p/1000`|
+Find budgets     |`find KEYWORD`|`find Temasek`|
+List all budgets  |`list`|-|
+Sort all budgets  |`sort SORTTYPE`|`sort time`, <br>`sort name`|
+Clear all budgets |`clear`|-|
 
 
 ### 7.3. Budget page commands
-| **Action** | **Format, Examples** |
-|--------|--------------------------|
-|Add (Expenditure)   |`add n/NAME p/PRICE` <br>e.g. `add n/Breakfast p/10`|
-|Delete (Expenditure)|`delete INDEX`<br>e.g. `delete 1`|
-|List                |`list`|
-|Find                |`find KEYWORD`<br>e.g. `find Breakfast`|
+| **Action** | **Format** | **Examples** |
+|------------|------------|--------------|
+Add an expenditure   |`add n/NAME p/PRICE [t/TAG]`|`add n/TShirt p/20`, <br>`add n/Breakfast p/10 t/food`|
+Delete an expenditure|`delete INDEX`|`delete 1`|
+Edit an expenditure|`edit INDEX [n/NAME] [p/PRICE]`|`edit 2 n/NikeShirt`, <br> `edit 2 p/28`|
+Find expenditures|`find KEYWORD`|`find shirt`|
+List all expenditures |`list`|-|
+Sort all expenditures|`sort SORTTYPE`|`sort time`, <br>`sort name`|
 
 ## 8. Glossary  
 (Contributed by Song Yu)
@@ -697,20 +702,26 @@ You can find the meanings of some special keywords applicable to NUSave over her
 
 ## 9. FAQ
 **Q**: How do I transfer my data to another computer?
+
 **A**: Install the application on another computer and overwrite the empty data file it creates with the .json file that contains the data of your previous NUSave folder.
 
 **Q**: Where is my save data stored?
+
 **A**: They are stored in the `data` folder where the NUSave application is found.
 
 **Q**: How do I make backups of my data in NUSave?
+
 **A**: You can copy and paste the `data` folder located in the NUSave home folder to somewhere safe and easy to remember. To restore the backup, copy the entire folder back into the same home folder and overwrite the existing folder.
 
 **Q**: How do I delete all my data in NUSave?
+
 **A**: You can delete the `data` folder in the NUSave home folder.
 
 **Q**: Will my data be compromised?
+
 **A**: Don't worry! All data in NUSave is stored on your local device and will not be transferred over the web.
 
 **Q**: Does this application require an internet connection to run?
+
 **A**: NUSave does not access any web services and can be run completely offline.
 
