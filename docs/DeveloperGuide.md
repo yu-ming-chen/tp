@@ -211,7 +211,7 @@ The following Sequence Diagram shows the interaction between the `Logic` compone
 depicting a scenario when the user wants to create a budget for his Temasek Hall basketball CCA by entering the command
 `create n/Temasek Hall Basketball p/100`.
 
-![CreateBudgetCommand Sequence Diagram](images/CreateBudgetCommand_sequence_diagram.png) 
+![CreateBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/CreateBudgetCommand.png) 
 
 Figure 4.1.1.1: Sequence diagram  for create budget command in main page view.
 
