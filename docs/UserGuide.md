@@ -49,6 +49,7 @@ and what you can get out of reading this document.
 
 ### 1.1. Introduction
 (Contributed by Wen Hao)
+
 Are you a **university student who stays on campus** and has difficulty managing your expenses?
 Are you tired of having to look through countless spreadsheets and memos just to figure out how much you have spent this month?
 Do you wish there exists a desktop application that can help you organise, track and manage all of your expenses?
@@ -71,6 +72,7 @@ the status of the application is reflected on-screen so what you see is what you
 
 ### 1.2. Purpose
 (Contributed by Wen Hao)
+
 The purpose of this document is to serve as a guide for new users on how to get started with using NUSave as well as
 to provide a detailed reference for veteren users on how to use the different commands that are available within NUSave.
 
@@ -137,7 +139,7 @@ There are a total of two pages that you can navigate to when using NUSave:
 ### 3.1. Main page view
 (Contributed by Wen Hao)
 
-You will be greeted by the main page upon launching NUSave. On this page, you will be able to see a list of
+You will be greeted by the main page upon launching NUSave. On this page, you can see a list of
 budgets that are currently stored in NUSave. Here is how the main page should look like:
 
 ![Example of main page view](images/GUILayoutScreenShots/3_1_1_mainPage.png)
@@ -159,7 +161,7 @@ List View | A **scrollable** panel that can hold multiple budget cards.
 (Contributed by Wen Hao)
 
 You will be directed to a budget page when you use the [open budget command](##611-opening-a-budget-open).
-On this page, you will be able to see a list of expenditures that are currently within the budget you have opened.
+On this page, you can see a list of expenditures that are stored under the budget you have opened.
 Here is how the budget page should look like:
 
 ![Example of budget page view](images/GUILayoutScreenShots/3_1_2_budgetPage.png)
@@ -180,7 +182,7 @@ List View | A **scrollable** panel that can hold multiple expenditure cards.
 ## 4. Quick start
 (Contributed by Wen Hao)
 
-If this is your first time using NUSave, follow these few simple steps to jump straight into action:
+If this is your first time using NUSave, follow these simple steps to jump straight into action:
 
 1. Ensure that you have Java `11` or above installed in your Computer.
 
@@ -210,13 +212,16 @@ If this is your first time using NUSave, follow these few simple steps to jump s
 
 5. Congratulations, you have successfully launched NUSave!
 > 📕 If you are launching the application for the first time, a set of sample data will be created for you.
-> Use the [clear command](#627-clearing-budgets-clear) to purge the existing sample data.
+> Use the [clear command](#627-clearing-budgets-clear) to purge any existing sample data.
 
-6. Type your desired command in the command box and press enter to execute it. Below is a series of commands that you can try:
+6. Type your desired command into the command box and press the enter button to execute it. Below is a series of commands that you can try:
+    - `create n/Daily Expenses`: Creates a budget with the name "Daily Expenses".
+    - `open 1`: Opens the budget located at index 1.
+    - `close`: Closes the budget that is open and return to the main page.
     - `help`: Shows the list of commands currently available.
     - `exit`: Exits the app.
 
-7. Refer to the [commands](#6-commands) below for details of each command.
+7. Refer to the [commands section](#6-commands) below for details of each command.
 
 ## 5. Tips
 ### 5.1. Syntax highlighting
