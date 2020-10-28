@@ -208,7 +208,7 @@ If this is your first time using NUSave, follow these simple steps to jump strai
 >
 > <ins>For Windows <a href="#7-glossary">OS</a> users:</ins>
 > 1. Launch [command prompt](#7-glossary) and navigate to the path of the home folder for NUSave.
-> 2. Enter the following command: `java -jar nusave.java` as seeen in Figure 4.1 below.
+> 2. Enter the following command: `java -jar nusave.java` as seen in Figure 4.1 below:
 >
 > ![Example of launching NUSave using command prompt](images/QuickStartScreenShots/4_1_commandPrompt.png)
 >
@@ -216,7 +216,7 @@ If this is your first time using NUSave, follow these simple steps to jump strai
 >
 > <ins>For Mac OS users:</ins>
 > 1. Launch [terminal](#7-glossary) and navigate to the path of the home folder for NUSave.
-> 2. Enter the following command: `java -jar nusave.java` as seen in Figure 4.2 below.
+> 2. Enter the following command: `java -jar nusave.java` as seen in Figure 4.2 below:
 >
 > ![Example of launching NUSave using terminal](images/QuickStartScreenShots/4_2_terminal.png)
 >
@@ -479,8 +479,8 @@ When you add a new expenditure, it will be displayed as an expenditure card in t
  
 ✏ Example: `add n/Graphic Calculator p/199.90 t/Math`
 
-This will add a new expenditure called "Graphic Calculator" with a price of $199.90 and a tag of "Math" as seen in 
-Figure 5.3.1.1. below.
+This will add a new expenditure called "Graphic Calculator" with a price of $199.90 and a "Math" tag as seen in 
+Figure 5.3.1.1. below:
 
 ![Example of add expenditure command](images/CommandScreenShots/5_3_1_1_addExpenditure.png)
 
@@ -516,9 +516,9 @@ Format: `edit INDEX [n/NAME] [p/PRICE]`
 
 Prefix | Parameters | Requirement | Comments
 -------| -----------| ------------| ------
-\-     | INDEX      | Required    | Index of the expenditure displayed on NUSave
- n/    | NAME       | Optional    | Name of the expenditure to be edited to
- p/    | PRICE      | Optional    | Price of the expenditure to be edited to
+\-     | `INDEX`    | Required    | Index of the expenditure displayed on NUSave
+ n/    | `NAME`     | Optional    | Name of the expenditure to be edited to
+ p/    | `PRICE`    | Optional    | Price of the expenditure to be edited to
 
 You can use this command to edit the expenditure at the given `INDEX`.
 
