@@ -328,11 +328,13 @@ Figure 6.1.4.1. Example of help command
 
 You can use this command to **create a new budget**.
 
-When a new budget is created it will be stored inside NUSave, and it will be reflected immediately in the list of budget
-on the main page of NUSave. This command is only available when no budget is open.
+When a new budget is added, you will see the new budget displayed as an entry on the current page.
 
- > ⚠️ Upon first launch, **you may notice NUSave main page is empty**. This is because there are no budgets created yet. Go
- > ahead and create a budget to see NUSave get populated with your entries!
+ > ⚠ This command is only available on the main page of NUSave.
+
+ > ⚠ When you open NUSave for the first time, **the ListView will be populated with sample data**. 
+ > Use the `clear` command to remove all sample data in NUSave.
+ > You can create a budget after to see NUSave get populated with your entries!
 
 Format: `create n/NAME [p/THRESHOLD]`
 
@@ -508,6 +510,36 @@ Figure 6.2.7.1. Example of clear budgets command
 
 ### 6.3. Budget page commands
 #### 6.3.1. Adding an expenditure: `add`
+
+(Contributed by Song Yu)
+
+You can use this command to **add a new expenditure**.
+
+You can add a new expenditure within a budget.
+When a new expenditure is added, you will see the new expenditure displayed as an entry on your current page.
+
+ > ⚠ This command is only available when you are looking at a specific budget.
+
+ > ⚠ When you open a budget for the first time, **the ListView will be populated with sample data**. Use the `delete` command
+ > to delete expenditure entries. 
+
+Format: `add n/NAME [p/PRICE] [t/TAG]`
+
+Prefix | Parameters | Requirement | Comments
+-------| ------------ | ------------- | ------
+ n/ | NAME | ❗Required | Name of the expenditure
+ p/ | PRICE | ❕Optional | Price of the expenditure
+ t/ | TAG | ❕Optional | Additional information about the expenditure
+
+✏️ Example:
+
+`add n/Graphic Calculator p/199.90 t/Math`
+
+This will create a new expenditure called "Graphic Calculator" with a price of $199.90 and a tag of "Math".
+
+![Example of create budget command](images/CommandScreenShots/6_2_1_1_createBudget.png)
+
+Figure 6.3.1.1. Example of create budget command
 
 #### 6.3.2. Deleting an expenditure: `delete`
 (Contributed by David)
