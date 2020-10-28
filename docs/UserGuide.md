@@ -121,9 +121,11 @@ There are a total of two pages that you can navigate to when using NUSave:
 (Contributed by Wen Hao)
 
 You will be directed to the main page upon launching NUSave. On this page, you can see the list of
-budgets that are currently stored in NUSave. Here is how the main page should look like:
+budgets that are currently stored in NUSave.
 
-![Example of main page view](images/GUILayoutScreenShots/3_1_1_mainPage.png)
+Here is how the main page should look like:
+
+![Example of main page view](images/GuiLayoutScreenShots/3_1_1_mainPage.png)
 
 Figure 3.1.1. Example of the main page view.
 
@@ -138,6 +140,20 @@ Title          | A text field that displays the name of the application.
 Budget Card    | A card that represents a budget stored in NUSave. It contains the index and name of the budget as well as the total number of expenditures it contains.
 List View      | A **scrollable** panel that can hold multiple budget cards.
 
+Here is the breakdown of an individual budget card:
+
+![Example of budget card](images/GuiLayoutScreenShots/3_1_2_budgetCard.png)
+
+Figure 3.1.2. Example of a budget card.
+
+Below is a table containing all the components that can be found in a budget card accompanied by their respective purposes:
+
+Component | Purpose
+--------- | -------
+Index | The index used to reference this budget.
+Name | The name of this budget.
+Expenditure Count | The total number of expenditures stored in this budget.
+
 ### 3.2. Budget Page View
 (Contributed by Wen Hao)
 
@@ -145,20 +161,35 @@ You will be directed to a budget page when you use the [open budget command](#52
 On this page, you can see the list of expenditures that are currently stored in the budget that you have opened.
 Here is how a budget page should look like:
 
-![Example of budget page view](images/GUILayoutScreenShots/3_1_2_budgetPage.png)
+![Example of budget page view](images/GUILayoutScreenShots/3_2_1_budgetPage.png)
 
 Figure 3.2.1. Example of a budget page view.
 
 Below is a table containing all the components that can be found on a budget page accompanied by their respective purposes:
 
-Component        | Purpose
---------------   | -------
-Command Box      | A text field for you to enter your desired commands.
-Result Display   | A **scrollable** panel that displays the response messages of a command after it has been executed.
-Info Box         | A panel that displays the total amount you have spent so far based on the expenditures added to the budget. It will also display the threshold of the budget if it has one.
-Title            | A text field that displays the name of the budget that is currently open.
-Expenditure Card | A card that represents an expenditure stored in the budget that is currently open. It contains the index, name, tags and cost of the expenditure.
-List View        | A **scrollable** panel that can hold multiple expenditure cards.
+Component | Purpose
+--------- | -------
+Command Box | A text field for you to enter your desired commands.
+Result Display | A **scrollable** panel that displays the response messages of a command after it has been executed.
+Info Box | A panel that displays the total amount you have spent so far based on the expenditures added to the budget. It will also display the threshold of the budget if it has one.
+Title | A text field that displays the name of the budget that is currently open.
+Expenditure Card | A card that represents an expenditure stored in the budget that is currently open. It contains the index, name, tags and price of the expenditure.
+List View | A **scrollable** panel that can hold multiple expenditure cards.
+
+Here is the breakdown of an individual expenditure card:
+
+![Example of expenditure card](images/GUILayoutScreenShots/3_2_2_expenditureCard.png)
+
+Figure 3.2.2. Example of an expenditure card.
+
+Below is a table containing all the components that can be found in an expenditure card accompanied by their respective purposes:
+
+Component | Purpose
+--------- | -------
+Index | The index used to reference this expenditure.
+Name | The name of this expenditure.
+Creation Date | The date at which this expenditure is added.
+Price | The price of this expenditure.
 
 ## 4. Quick Start
 (Contributed by Wen Hao)
@@ -401,7 +432,7 @@ You can use this command to delete all existing budgets.
 
 This will delete all budgets that are currently stored in NUSave as seen in Figure 5.2.7.1 below:
 
-![Example of clear budgets command](images/CommandScreenShots/5_2_7_1_clearBudget.png)
+![Example of clear budgets command](images/CommandScreenShots/5_2_7_1_clearBudgets.png)
 
 Figure 5.2.7.1. Example of using the clear budgets command.
 
@@ -451,7 +482,7 @@ When you add a new expenditure, it will be displayed as an expenditure card in t
 This will add a new expenditure called "Graphic Calculator" with a price of $199.90 and a tag of "Math" as seen in 
 Figure 5.3.1.1. below.
 
-![Example of add expenditure command](images/CommandScreenShots/5_3_1_1_createBudget.png)
+![Example of add expenditure command](images/CommandScreenShots/5_3_1_1_addExpenditure.png)
 
 Figure 5.3.1.1. Example of using the add expenditure command.
 
@@ -545,7 +576,7 @@ When you list expenditures, the list view will display all expenditures belongin
 
 This will display all existing expenditures in the current budget as seen in Figure 5.3.5.1 below:
 
-![Example of list expenditures command](images/CommandScreenShots/5_3_5_1_listExpenditure.png)
+![Example of list expenditures command](images/CommandScreenShots/5_3_5_1_listExpenditures.png)
 
 Figure 5.3.5.1. Example of using the list expenditures command.
 
@@ -572,7 +603,7 @@ There are a two ways you can sort your expenditures:
 
 This will sort the expenditures in that budget (that are currently displayed) by their name in alphabetical order as seen in Figure 5.3.6.1 below:
 
-![Example of sort expenditures command](images/CommandScreenShots/5_3_6_1_sortExpenditure.png)
+![Example of sort expenditures command](images/CommandScreenShots/5_3_6_1_sortExpenditures.png)
 
 Figure 5.3.6.1. Example of using the sort expenditures command.
 
@@ -591,7 +622,7 @@ This will close the current budget as seen in Figure 5.3.7.1 below:
 
 ![Example of close budget command](images/CommandScreenShots/5_3_7_1_closeBudget.png)
 
-Figure 5.3.7.1 Example of using the close budget command.
+Figure 5.3.7.1. Example of using the close budget command.
 
 ## 6. Command Summary
 
