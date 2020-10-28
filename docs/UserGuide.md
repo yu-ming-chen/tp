@@ -644,7 +644,7 @@ Delete a budget     |`delete INDEX`|`delete 1`|
 Edit a budget     |`edit INDEX [n/NAME] [p/THRESHOLD]`|`edit 1 n/Hall Council`, <br>`edit 2 n/NUS Computing Club p/1000`|
 Find budgets     |`find KEYWORD`|`find Temasek`|
 List all budgets  |`list`|\-|
-Sort all budgets  |`sort SORTTYPE`|`sort time`, <br>`sort name`|
+Sort all budgets  |`sort TYPE`|`sort time`, <br>`sort name`|
 Clear all budgets |`clear`|\-|
 Open a budget       |`open INDEX`| `open 1`|
 
@@ -657,7 +657,7 @@ Delete an expenditure|`delete INDEX`|`delete 1`|
 Edit an expenditure|`edit INDEX [n/NAME] [p/PRICE]`|`edit 2 n/NikeShirt`, <br> `edit 2 p/28`|
 Find expenditures|`find KEYWORD`|`find shirt`|
 List all expenditures |`list`|\-|
-Sort all expenditures|`sort SORTTYPE`|`sort time`, <br>`sort name`|
+Sort all expenditures|`sort TYPE`|`sort time`, <br>`sort name`|
 Close a budget      |`close`|\-|
 
 ## 7. Glossary  
