@@ -1,4 +1,3 @@
-# User Guide
 ## Table of Contents
 1. [Overview](#1-overview)
     - [1.1. Introduction](#11-introduction)
@@ -161,7 +160,7 @@ You will be directed to a budget page when you use the [open budget command](#52
 On this page, you can see the list of expenditures that are currently stored in the budget that you have opened.
 Here is how a budget page should look like:
 
-![Example of budget page view](images/GUILayoutScreenShots/3_2_1_budgetPage.png)
+![Example of budget page view](images/GuiLayoutScreenShots/3_2_1_budgetPage.png)
 
 Figure 3.2.1. Example of a budget page view.
 
@@ -178,7 +177,7 @@ List View | A **scrollable** panel that can hold multiple expenditure cards.
 
 Here is the breakdown of an individual expenditure card:
 
-![Example of expenditure card](images/GUILayoutScreenShots/3_2_2_expenditureCard.png)
+![Example of expenditure card](images/GuiLayoutScreenShots/3_2_2_expenditureCard.png)
 
 Figure 3.2.2. Example of an expenditure card.
 
