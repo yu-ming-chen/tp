@@ -49,7 +49,7 @@ and what you can get out of reading this document.
 
 Are you a **university student who stays on campus** and has difficulty managing your expenses?
 Are you tired of having to look through countless spreadsheets and memos just to figure out how much you have spent this month?
-Do you wish there exists a desktop application that can help you organise, track and manage all of your expenses?
+Do you wish there exists a desktop application that can help you organise, track and manage all your expenses?
 
 Look no further, NUSave is just the tool for you!
 
@@ -58,7 +58,7 @@ be it for your daily expenses, school projects or club activities, amidst your b
 the hassle that comes along with managing multiple budgets by providing a **one-stop solution** to all your problems.
 
 With NUSave, you can **create, edit and delete budgets and expenditures**, as well as **generate statistics
-based on the items you have entered** to gain useful insights regarding your spending habits.
+based on your entries** to gain useful insights regarding your spending habits.
 
 What's more, NUSave has:
 - a **Command Line Interface (CLI)** catered to those who can type fast and prefer to use a keyboard. In other words, you
@@ -69,15 +69,18 @@ the current status of the application is reflected live on-screen so what you se
 ### 1.2. Purpose
 (Contributed by Wen Hao)
 
-The purpose of this document is to serve as a guide for new users on how to get started with using NUSave as well as
+The purpose of this document is to serve as a guide for new users on how to get started with NUSave as well as
 to provide a detailed reference for veteren users on how to use the different commands that are available within NUSave.
 
 ## 2. About the User Guide
+
+In this section, you will learn what the different symbols and notations that can be found this user guide mean.
+
 ### 2.1. Symbols
 (Contributed by Yu Ming)
 
-When reading this user guide, symbols may appear occassionally to draw your attention to important information.
-The meanings for each symbol are as follows:
+When reading this user guide, various symbols may appear occassionally to draw your attention to important information.
+The meaning for each symbol is as follows:
 
 Symbol | Meaning 
 -------| ------------ 
@@ -90,10 +93,10 @@ Symbol | Meaning
 
 The syntax of the commands in this user guide are to be interpreted in the following manner:
 
-Format | Meaning | Example 
+Format | Meaning | Examples 
 -------| ------------ | ----
-`lower_case/` | **Prefix** | `n/` `p/` `t/`
-`UPPER_CASE` | **Parameter** | `NAME` `THRESHOLD` `PRICE`
+`lower_case/` | **Prefix** | `n/`, `p/`, `t/`
+`UPPER_CASE` | **Parameter** | `NAME`, `THRESHOLD`, `PRICE`
 `[UPPER_CASE]` | **Optional parameter** | `[p/THRESHOLD]`
 
 > ⚠️ There **cannot be any spaces** within a prefix. For example, `n /` is an invalid prefix.
@@ -107,8 +110,8 @@ Format | Meaning | Example
 ## 3. GUI Layout
 (Contributed by Wen Hao)
 
-In this section, you will be given an introduction to the layout of NUSave's Graphical User Interface (GUI)
-which will help you better understand what each component that you observe on-screen represents.
+In this section, you will be given an introduction to the layout of NUSave's Graphical User Interface (GUI).
+This will help you better understand what each component that you observe on-screen represents.
 
 There are a total of two pages that you can navigate to when using NUSave:
 - Main page
@@ -117,7 +120,7 @@ There are a total of two pages that you can navigate to when using NUSave:
 ### 3.1. Main Page View
 (Contributed by Wen Hao)
 
-You will be greeted by the main page upon launching NUSave. On this page, you can see a list of
+You will be directed to the main page upon launching NUSave. On this page, you can see the list of
 budgets that are currently stored in NUSave. Here is how the main page should look like:
 
 ![Example of main page view](images/GUILayoutScreenShots/3_1_1_mainPage.png)
@@ -132,14 +135,14 @@ Command Box | A text field for you to enter your desired commands.
 Result Display | A **scrollable** panel that displays the response messages of a command after it has been executed.
 Info Box | A panel that displays the current date and time.
 Title | A text field that displays the name of the application.
-Budget Card | A card that represents a budget stored in NUSave. It contains the name of the budget as well as the total number of expenditures the budget contains.
+Budget Card | A card that represents a budget stored in NUSave. It contains the name of the budget as well as the total number of expenditures it contains.
 List View | A **scrollable** panel that can hold multiple budget cards.
 
 ### 3.2. Budget Page View
 (Contributed by Wen Hao)
 
-You will be directed to a budget page when you use the [open budget command](#611-opening-a-budget-open).
-On this page, you can see a list of expenditures that are currently stored in the budget you have opened.
+You will be directed to a budget page when you use the [open budget command](#528-opening-a-budget-open).
+On this page, you can see the list of expenditures that are currently stored in the budget that you have opened.
 Here is how a budget page should look like:
 
 ![Example of budget page view](images/GUILayoutScreenShots/3_1_2_budgetPage.png)
@@ -153,8 +156,8 @@ Component | Purpose
 Command Box | A text field for you to enter your desired commands.
 Result Display | A **scrollable** panel that displays the response messages of a command after it has been executed.
 Info Box | A panel that displays the total amount you have spent so far based on the expenditures added to the budget. It will also display the threshold of the budget if it has one.
-Title | A text field that displays the name of budget that is open.
-Expenditure Card | A card that represents an expenditure stored in a budget. It contains the name, tags as well as cost of the expenditure.
+Title | A text field that displays the name of the budget that is currently open.
+Expenditure Card | A card that represents an expenditure stored in the budget that is currently open. It contains the name, tags and cost of the expenditure.
 List View | A **scrollable** panel that can hold multiple expenditure cards.
 
 ## 4. Quick Start
@@ -162,7 +165,7 @@ List View | A **scrollable** panel that can hold multiple expenditure cards.
 
 If this is your first time using NUSave, follow these simple steps to jump straight into the action:
 
-1. Ensure that you have Java `11` or above installed in your Computer.
+1. Ensure that you have Java `11` or above installed in your computer.
 
 2. Download the latest `NUSave.jar` from [here](https://github.com/AY2021S1-CS2103T-T11-4/tp/releases).
 
@@ -172,7 +175,7 @@ If this is your first time using NUSave, follow these simple steps to jump strai
 
 > 📕 If the application does not start after double-clicking the file, you can troubleshoot by doing the following:
 >
-> For Windows OS users:
+> <ins>For Windows OS users:</ins>
 > 1. Launch command prompt and navigate to the path of the home folder for NUSave.
 > 2. Enter the following command: `java -jar nusave.java` as seeen in Figure 4.1 below.
 >
@@ -180,7 +183,7 @@ If this is your first time using NUSave, follow these simple steps to jump strai
 >
 > Figure 4.1. Example of launching NUSave using command prompt.
 >
-> For Mac OS users:
+> <ins>For Mac OS users:</ins>
 > 1. Launch terminal and navigate to the path of the home folder for NUSave.
 > 2. Enter the following command: `java -jar nusave.java` as seen in Figure 4.2 below.
 >
@@ -199,11 +202,15 @@ If this is your first time using NUSave, follow these simple steps to jump strai
     - `help`: Shows the list of commands currently available.
     - `exit`: Exits the app.
 
-7. Refer to the [commands section](#5-commands) below for details of each command.
+7. Refer to the [commands section](#5-commands) below for the details of each command.
 
 ## 5. Commands
 
+In this section, you will learn about the commands that are available in NUSave and how to use them.
+
 ### 5.1. Universal commands
+
+The following commands in this subsection are available on any pages.
 
 #### 5.1.1. View help: `help`
 (Contributed by Yu Ming)
@@ -245,7 +252,8 @@ This will exit the application. When the application is launched again, the chan
 Figure 5.1.2.1. Example of using the exit command on both the main page and budget page.
 
 ### 5.2. Main page commands
-In this section, you will find the commands that are available on the main page.
+
+The following commands in this subsection are only available on the main page.
 
 #### 5.2.1. Creating a budget: `create`
 (Contributed by Yu Ming)
@@ -452,6 +460,8 @@ This will open the budget with the index "1", based on the index as shown beside
 
 ### 5.3. Budget page commands
 
+The following commands in this subsection are only available on the budget page.
+
 #### 5.3.1. Adding an expenditure: `add`
 
 (Contributed by Song Yu)
@@ -643,7 +653,7 @@ This will close the current budget. The list of budgets in NUSave will now be di
 ### 6.1. Universal commands
 | **Action** | **Format** | **Examples** |
 |------------|------------|--------------|
-Help              |`help`|\-|
+View Help              |`help`|\-|
 Exit NUSave       |`exit`|\-|
 ### 6.2. Main page commands
 | **Action** | **Format** | **Examples** |
