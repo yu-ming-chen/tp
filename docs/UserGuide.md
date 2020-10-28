@@ -161,7 +161,7 @@ Here is how a budget page should look like:
 
 ![Example of budget page view](images/GUILayoutScreenShots/3_1_2_budgetPage.png)
 
-Figure 3.1.2. Example of a budget page view.
+Figure 3.2.1. Example of a budget page view.
 
 Below is a table containing all the components that can be found on a budget page accompanied by their respective purposes:
 
@@ -315,7 +315,8 @@ This will delete the budget with the index "1".
 
 ![Example of delete budget command](images/CommandScreenShots/5_2_2_1_deleteBudget.png)
 
-Figure 5.2.1.1. Example of delete budget command
+Figure 5.2.2.1. Example of delete budget command
+
 #### 5.2.3. Editing a budget: `edit`
 (Contributed by Yu Ming)
 
@@ -368,6 +369,7 @@ Word | ❗Required | Keyword / Keyphrase to be searched
 This will find all budgets with the keyphrase 'Temasek Hall' in the title of the budget.
 
 ![Example of edit budget command](images/CommandScreenShots/5_2_4_findBudget.png)
+
 ![Example of edit budget command](images/CommandScreenShots/5_2_4_findBudget2.png)
 
 #### 5.2.5. Listing budgets: `list`
@@ -468,41 +470,13 @@ Index | ❗Required | Index of the budget to be opened
 This will open the budget with the index "1", based on the index as shown beside the name of the budget.
 
 ![Example of open budget command](images/CommandScreenShots/5_2_8_openBudget.png)
+
 ![Example of open budget command](images/CommandScreenShots/5_2_8_openBudget2.png)
 
 ### 5.3. Budget page commands
 #### 5.3.1. Adding an expenditure: `add`
 
 #### 5.3.2. Deleting an expenditure: `delete`
-(Contributed by Song Yu)
-
-You can use this command to **add a new expenditure**.
-
-You can add a new expenditure within a budget.
-When a new expenditure is added, you will see the new expenditure displayed as an entry on your current page.
-
- > ⚠ When you open a budget for the first time, **the ListView will be populated with sample data**. Use the `delete` command
- > to delete expenditure entries. 
-
-Format: `add n/NAME [p/PRICE] [t/TAG]`
-
-Prefix | Parameters | Requirement | Comments
--------| ------------ | ------------- | ------
- n/ | NAME | ❗Required | Name of the expenditure
- p/ | PRICE | ❕Optional | Price of the expenditure
- t/ | TAG | ❕Optional | Additional information about the expenditure
-
-✏️ Example:
-
-`add n/Graphic Calculator p/199.90 t/Math`
-
-This will create a new expenditure called "Graphic Calculator" with a price of $199.90 and a tag of "Math".
-
-![Example of create budget command](images/CommandScreenShots/6_2_1_1_createBudget.png)
-
-Figure 6.3.1.1. Example of create budget command
-
-#### 6.3.2. Deleting an expenditure: `delete`
 (Contributed by David)
 
 You can use this command to **delete an existing expenditure**.
@@ -559,6 +533,7 @@ This will edit an expenditure at **index 1** to be **renamed** "Long-Sleeve" wit
 ![Example of edit expenditure command](images/CommandScreenShots/5_3_3_1_editExpenditure.png)
 
 Figure 5.3.3.1. Example of edit expenditure command
+
 #### 5.3.4. Finding expenditures: `find`
 (Contributed by Chin Hui)
 
@@ -664,6 +639,7 @@ Format: `close`
 This will close the current budget. The list of budgets in NUSave will now be displayed.
 
 ![Example of close budget command](images/CommandScreenShots/5_3_7_closeBudget.png)
+
 ![Example of close budget command](images/CommandScreenShots/5_3_7_closeBudget2.png)
 
 ## 6. Command summary
