@@ -156,13 +156,14 @@ Component         | Purpose
 ----------------- | -------
 Index             | The index used to reference this budget.
 Name              | The name of this budget.
-Expenditure Count | The total number of expenditures stored in this budget.
+Expenditures Count | The total number of expenditures stored in this budget.
 
 ### 3.2. Budget Page View
 (Contributed by Wen Hao)
 
 You will be directed to a budget page when you use the [open budget command](#528-opening-a-budget-open).
 On this page, you can see the list of expenditures that are currently stored in the budget that you have opened.
+
 Here is how a budget page should look like:
 
 ![Example of budget page view](images/GuiLayoutScreenShots/3_2_1_budgetPage.png)
