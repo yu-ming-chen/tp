@@ -48,7 +48,11 @@ public class Nusave implements ReadOnlyNusave {
         return this.budgetList.getBudgetName(index);
     }
 
-    private void resetData(ReadOnlyNusave newData) {
+    /**
+     * Resets the data with the new NUsave
+     * @param newData
+     */
+    public void resetData(ReadOnlyNusave newData) {
         requireNonNull(newData);
 
         setBudgets(newData.getBudgetList());
