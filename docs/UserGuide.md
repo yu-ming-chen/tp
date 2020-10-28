@@ -230,8 +230,6 @@ You can use this command to **view a list of available commands**.
 The help will be displayed in the results window, and it will contain a list of all available commands and their
 required syntax.
 
->📕 You can use this command at any point of time.
-
 Format: `help`
 
 ✏️ Example:
@@ -250,8 +248,6 @@ Figure 5.1.1.1. Example of help command
 You can use this command to **exit from the application**.
 
 When exiting NUSave, all changes made to the application will be saved.
-
->📕 You can use this command at any point of time.
 
 Format: `exit`
 
@@ -273,8 +269,6 @@ In this section, you will find the commands that are available on the main page.
 You can use this command to **create a new budget**.
 
 When a new budget is created, you will see the new budget displayed as an entry on the current page.
-
- > ⚠ This command is only available on the main page of NUSave.
 
  > ⚠ When you open NUSave for the first time, **the ListView will be populated with sample data**. 
  > Use the `clear` command to remove all sample data in NUSave.
@@ -330,8 +324,6 @@ You can use this command to **edit an existing budget**.
 When a budget is edited the changes will be saved on NUSave, and  will be 
 reflected immediately on the list of budgets.
 
->⚠️ You can only use this command on existing budgets.  
-
 Format: edit INDEX n/NAME p/THRESHOLD
 
 Prefix | Parameters | Requirement | Comments
@@ -362,7 +354,7 @@ Use this command to filter through your budgets by using keywords. NUSave will d
 the entered keyword/key phrase. 
 
  > ⚠ You should not use this command if main page is empty. This is because there are no budgets created yet. 
- > You can only find a budget if there are already existing budgets!
+ > You can only find a budget if there are existing budgets!
 
 Format: `find WORD`
 
@@ -375,8 +367,8 @@ Word | ❗Required | Keyword / Keyphrase to be searched
 `find Temasek Hall`
 This will find all budgets with the keyphrase 'Temasek Hall' in the title of the budget.
 
-![Example of delete budget command](images/CommandScreenShots/5_2_4_findBudget.png)
-![Example of delete budget command](images/CommandScreenShots/5_2_4_findBudget2.png)
+![Example of edit budget command](images/CommandScreenShots/5_2_4_findBudget.png)
+![Example of edit budget command](images/CommandScreenShots/5_2_4_findBudget2.png)
 
 #### 5.2.5. Listing budgets: `list`
 (Contributed by Chin Hui)
@@ -385,7 +377,8 @@ You can use this command to **list all budgets** in NUSave.
 
 This command is usually used to display all budgets after searching for specific budgets using the `find` command.
 
->⚠️ If the `find` command has not been used, the `list` command may not have any visible effect. This is because all budgets have already been displayed.
+>⚠️ If the `find` command has not been used, the `list` command may not have any visible effect. 
+> This is because all budgets have already been displayed.
 
 Format: `list`
 
@@ -488,8 +481,6 @@ You can use this command to **add a new expenditure**.
 You can add a new expenditure within a budget.
 When a new expenditure is added, you will see the new expenditure displayed as an entry on your current page.
 
- > ⚠ This command is only available when you are looking at a specific budget.
-
  > ⚠ When you open a budget for the first time, **the ListView will be populated with sample data**. Use the `delete` command
  > to delete expenditure entries. 
 
@@ -519,7 +510,7 @@ You can use this command to **delete an existing expenditure**.
 When an expenditure is deleted it will be removed from NUSave, and the 
 deletion will be reflected immediately in the list of expenditures on the budget page of NUSave.
 
- > ⚠️ **You cannot use this command if budget page is empty**. This is because there are no expenditures created yet. 
+ > ⚠ **You cannot use this command if the budget page is empty**. This is because there are no expenditures created yet. 
  > You can only delete an expenditure if there are already existing budgets!
 
 Format: `delete INDEX`
