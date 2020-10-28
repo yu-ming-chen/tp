@@ -125,7 +125,7 @@ budgets that are currently stored in NUSave.
 
 Here is how the main page should look like:
 
-![Example of main page view](images/GUILayoutScreenShots/3_1_1_mainPage.png)
+![Example of main page view](images/GuiLayoutScreenShots/3_1_1_mainPage.png)
 
 Figure 3.1.1. Example of the main page view.
 
@@ -142,7 +142,7 @@ List View | A **scrollable** panel that can hold multiple budget cards.
 
 Here is the breakdown of an individual budget card:
 
-![Example of budget card](images/GUILayoutScreenShots/3_1_2_budgetCard.png)
+![Example of budget card](images/GuiLayoutScreenShots/3_1_2_budgetCard.png)
 
 Figure 3.1.2. Example of a budget card.
 
@@ -430,7 +430,7 @@ You can use this command to delete all existing budgets.
 
 This will delete all budgets that are currently stored in NUSave as seen in Figure 5.2.7.1 below:
 
-![Example of clear budgets command](images/CommandScreenShots/5_2_7_1_clearBudget.png)
+![Example of clear budgets command](images/CommandScreenShots/5_2_7_1_clearBudgets.png)
 
 Figure 5.2.7.1. Example of using the clear budgets command.
 
@@ -485,7 +485,7 @@ Prefix | Parameters | Requirement | Comments
 
 This will add a new expenditure called "Graphic Calculator" with a price of $199.90 and a tag of "Math".
 
-![Example of add expenditure command](images/CommandScreenShots/6_2_1_1_createBudget.png)
+![Example of add expenditure command](images/CommandScreenShots/5_3_1_1_addExpenditure.png)
 
 Figure 5.3.1.1. Example of add expenditure command
 
@@ -571,7 +571,7 @@ Prefix | Parameters | Requirement | Comments
 
 This will find all expenditures containing the keyword 'sock' in the current budget.
 
-![Example of find expenditures command](images/CommandScreenShots/5_3_4_1_findExpenditure.png)
+![Example of find expenditures command](images/CommandScreenShots/5_3_4_1_findExpenditures.png)
 
 Figure 5.3.5.1. Example of find expenditures command
 
@@ -592,7 +592,7 @@ Format: list
 
 This will display all existing expenditures in the current budget.
 
-![Example of list expenditures command](images/CommandScreenShots/5_3_5_1_listExpenditure.png)
+![Example of list expenditures command](images/CommandScreenShots/5_3_5_1_listExpenditures.png)
 
 Figure 5.3.5.1. Example of list expenditures command
 
@@ -623,7 +623,7 @@ Format: `sort TYPE`
 
 This will sort all the expenditures in that budget by their added date with the latest expenditure added at the top.
 
-![Example of sort expenditures command](images/CommandScreenShots/5_3_6_1_sortExpenditure.png)
+![Example of sort expenditures command](images/CommandScreenShots/5_3_6_1_sortExpenditures.png)
 
 Figure 5.3.6.1. Example of sort expenditures command
 
@@ -642,9 +642,9 @@ Format: `close`
 
 This will close the current budget. The list of budgets in NUSave will now be displayed.
 
-![Example of close budget command](images/CommandScreenShots/5_3_7_closeBudget.png)
+![Example of close budget command](images/CommandScreenShots/5_3_7_1_closeBudget.png)
 
-![Example of close budget command](images/CommandScreenShots/5_3_7_closeBudget2.png)
+Figure 5.3.7.1. Example of using the close budget command.
 
 ## 6. Command Summary
 
