@@ -135,7 +135,7 @@ Command Box | A text field for you to enter your desired commands.
 Result Display | A **scrollable** panel that displays the response messages of a command after it has been executed.
 Info Box | A panel that displays the current date and time.
 Title | A text field that displays the name of the application.
-Budget Card | A card that represents a budget stored in NUSave. It contains the name of the budget as well as the total number of expenditures it contains.
+Budget Card | A card that represents a budget stored in NUSave. It contains the index and name of the budget as well as the total number of expenditures it contains.
 List View | A **scrollable** panel that can hold multiple budget cards.
 
 ### 3.2. Budget Page View
@@ -157,7 +157,7 @@ Command Box | A text field for you to enter your desired commands.
 Result Display | A **scrollable** panel that displays the response messages of a command after it has been executed.
 Info Box | A panel that displays the total amount you have spent so far based on the expenditures added to the budget. It will also display the threshold of the budget if it has one.
 Title | A text field that displays the name of the budget that is currently open.
-Expenditure Card | A card that represents an expenditure stored in the budget that is currently open. It contains the name, tags and cost of the expenditure.
+Expenditure Card | A card that represents an expenditure stored in the budget that is currently open. It contains the index, name, tags and cost of the expenditure.
 List View | A **scrollable** panel that can hold multiple expenditure cards.
 
 ## 4. Quick Start
@@ -215,41 +215,29 @@ The following commands in this subsection are available on any pages.
 #### 5.1.1. View help: `help`
 (Contributed by Yu Ming)
 
-You can use this command to **view a list of available commands**.
-
-The help will be displayed in the results window, and it will contain a list of all available commands and their
-required syntax.
-
 Format: `help`
 
-✏ Example:
+You can use this command to view a list of commands that are currently available.
 
-`help`
+✏ Example: `help`
 
-This will display the help instructions in the results window.
+This will cause the details of each available command along with its syntax to appear on the result display
+as seen in Figure 5.1.1.1 below:
 
 ![Example of help command](images/CommandScreenShots/5_1_1_1_help.png)
 
-Figure 5.1.1.1. Example of help command
+Figure 5.1.1.1. Example of using the help command on the main page.
 
 #### 5.1.2. Exit NUSave: `exit`
 (Contributed by David)
 
-You can use this command to **exit from the application**.
-
-When exiting NUSave, all changes made to the application will be saved.
-
 Format: `exit`
 
-✏ Example:
+You can use this command to exit from the application.
 
-`exit`
+✏ Example: `exit`
 
-This will exit the application. When the application is launched again, the change you made will remain.
-
-![Example of exit command](images/CommandScreenShots/5_1_2_1_exit.png)
-
-Figure 5.1.2.1. Example of using the exit command on both the main page and budget page.
+This will exit the application.
 
 ### 5.2. Main page commands
 
@@ -258,62 +246,51 @@ The following commands in this subsection are only available on the main page.
 #### 5.2.1. Creating a budget: `create`
 (Contributed by Yu Ming)
 
-You can use this command to **create a new budget**.
-
-When you create a new budget, it will be displayed as a budget card in the list view.
-
- > ⚠ When you open NUSave for the first time, **the list view will be populated with sample data**. 
- > Use the `clear` command to remove all sample data in NUSave.
- > You can create a budget after to see NUSave get populated with your entries!
-
 Format: `create n/NAME [p/THRESHOLD]`
 
 Prefix | Parameters | Requirement | Comments
 -------| ------------ | ------------- | ------
  n/ | NAME | Required | Name of the budget
- p/ | THRESHOLD | Optional | Target maximum capacity of the budget
+ p/ | THRESHOLD | Optional | Target threshold of the budget
 
-✏ Example:
+You can use this command to create a new budget with the given `NAME` and `THRESHOLD`.
 
-`create n/Temasek Hall Student Council p/1200`
+When you create a new budget, it will be displayed as a budget card in the list view.
 
-This will create a new budget called "Temasek Hall Student Council" with a threshold value of $1200.
+✏ Example: `create n/Temasek Hall Student Council p/1200`
+
+This will create a new budget called "Temasek Hall Student Council" with a threshold value of $1200
+as seen in Figure 5.2.1.1 below:
 
 ![Example of create budget command](images/CommandScreenShots/5_2_1_1_createBudget.png)
 
-Figure 5.2.1.1. Example of create budget command
+Figure 5.2.1.1. Example of using the create budget command.
 
 #### 5.2.2. Deleting a budget: `delete`
 (Contributed by David)
 
-You can use this command to **delete an existing budget**.
- 
- > ⚠ Exercise caution when using the delete command as it is **irreversible**! <br>
-
 Format: `delete INDEX`
 
- Parameters | Requirement | Comments
- ------------ | ------------- | ------
+Parameters | Requirement | Comments
+------------ | ------------- | ------
 Index | Required | Index of the budget
 
-✏ Example:
+You can use this command to delete the budget at the given `INDEX`.
 
-`delete 1`
+When you delete a budget, its budget card will be removed from the list view.
+ 
+ > ⚠ Exercise caution when using the delete command as it is irreversible!
 
-This will delete the budget with the index "1".
+✏ Example: `delete 1`
 
-When you delete a budget, the budget is removed immediately from the current page.
+This will delete the budget at index 1 as seen in Figure 5.2.2.1 below:
 
 ![Example of delete budget command](images/CommandScreenShots/5_2_2_1_deleteBudget.png)
 
-Figure 5.2.2.1. Example of delete budget command
+Figure 5.2.2.1. Example of using the delete budget command.
 
 #### 5.2.3. Editing a budget: `edit`
 (Contributed by Yu Ming)
-
-You can use this command to **edit an existing budget**.
-
-When you edit a budget, the information of the budget updates immediately on the current page.
 
 Format: `edit INDEX [n/NAME] [p/THRESHOLD]`
 
@@ -322,15 +299,14 @@ Prefix | Parameters | Requirement | Comments
  \- | INDEX | Required | Index of the budget displayed on NUSave
  n/ | NAME | Optional | Name of the budget to be edited to
  p/ | THRESHOLD | Optional | Threshold of the budget to be edited to
- 
- >⚠ Although both NAME and THRESHOLD fields are optional, you must have at least one of the prefix and 
- > corresponding parameters present. 
 
-✏ Example:
+You can use this command to edit the budget at the given `INDEX`.
 
-Format: `edit 2 n/NUS Computing club`
+When you edit a budget, the information on its budget card will be updated immediately.
 
-This will edit a budget at **index 2** to be **renamed "NUS Computing Club"**.
+✏ Example: `edit 2 n/NUS Computing Club`
+
+This will rename the budget at index 2 to "NUS Computing Club" as seen in Figure 5.2.3.1 below:
 
 ![Example of edit budget command](images/CommandScreenShots/5_2_3_1_editBudget.png)
 
@@ -339,112 +315,94 @@ Figure 5.2.3.1. Example of edit budget command
 #### 5.2.4. Finding budgets: `find`
 (Contributed by Chin Hui)
 
-You can use this command to **quickly find your budgets**.
-
-Use this command to filter through your budgets by using keywords. NUSave will display all budgets whose title matches 
-the entered keyword/key phrase. 
-
- > 📕 Budgets will be filtered as long as they contain the search term. The filter is case-insensitive.
- 
- > ⚠ You should not use this command if main page is empty. 
- 
- > ⚠ If no budgets are displayed, it means that none of the budgets matched your search term. 
- > You can use the `list` command to display all budgets again.
-
 Format: `find KEYWORD`
 
  Parameters | Requirement | Comments
  ------------ | ------------- | ------
 Word | Required | Keyword / Keyphrase to be searched
 
-✏ Example:
+You can use this command to find budgets whose names contain the given `KEYWORD`.
 
-`find Temasek Hall`
+When you find budgets, the list view will be filtered to only display budgets whose names contains the given `KEYWORD`.
 
-This will find all budgets with the keyphrase 'Temasek Hall' in the title of the budget.
+ > 📕 The filter is case-insensitive.
+ > 📕 If no budgets are displayed, it means that none of the budgets matches your search term. 
+ > 📕 You can use the [list budgets command](#525-listing-budgets-list) to display all budgets again.
 
-![Example of edit budget command](images/CommandScreenShots/5_2_4_findBudget.png)
+✏ Example: `find Temasek Hall`
 
-![Example of edit budget command](images/CommandScreenShots/5_2_4_findBudget2.png)
+This will find all budgets with the keyword 'Temasek Hall' in the name of the budget as seen in Figure 5.2.4.1 below:
+
+![Example of find budgets command](images/CommandScreenShots/5_2_4_1_findBudgets.png)
+
+Figure 5.2.4.1. Example of using the find budgets command.
 
 #### 5.2.5. Listing budgets: `list`
 (Contributed by Chin Hui)
 
-You can use this command to **list all budgets** in NUSave.
-
-This command is usually used to display all budgets after searching for specific budgets using the `find` command.
-
-> 📕️ If the `find` command has not been used, the `list` command may not have any visible effect.
-
 Format: `list`
 
-✏ Example:
+You can use this command to display all budgets.
 
-`list`
+When you list budgets, the list view will display all budgets that are stored in NUSave.
 
-This will display all existing budgets in NUSave.
+ > 📕 This command is usually used after using the [find budgets command](#524-finding-budgets-find).
 
-![Example of list budgets command](images/CommandScreenShots/6_2_5_1_listBudget.png)
+✏ Example: `list`
 
-Figure 5.2.5.1. Example of list budgets command
+This will display all budgets that are currently stored in NUSave as seen in Figure 5.2.5.1 below:
+
+![Example of list budgets command](images/CommandScreenShots/5_2_5_1_listBudgets.png)
+
+Figure 5.2.5.1. Example of using the list budgets command.
 
 #### 5.2.6. Sorting budgets: `sort`
 (Contributed by Yu Ming)
-
-You can use this command to **sort your budgets**.
-
-You can sort your budgets based on two different type of sorts:
-1. Sort by created date (Ordered from most recently created to least recently created)
-
-    > 📕 If more than one budget is created on the same date, these budgets will be sorted in alphabetical order.
-    
-2. Sort by name of the budget (Ordered in alphabetical order (case-insensitive))
-
-> 📕 If there is **one budget or no budgets** in NUSave, the sort command has no visible effect.
 
 Format: `sort TYPE`
 
  Parameters | Requirement | Comments
  ------------ | ------------- | ------
- TYPE | Required | Types of sort: `time`, `name`
+ TYPE | Required | Types available: `time`, `name`
 
-✏️ Example:
+You can use this command to sort your budgets by the given `TYPE`.
 
-`sort name`
+There are a total of two ways you can sort your budgets:
 
-This will sort all the budgets in NUSave by their name in alphabetic order.
+- By their creation date with the most recently created budget at the top.
 
-![Example of sort budgets command](images/CommandScreenShots/5_2_6_1_sortBudget.png)
+> 📕 Budgets that are created on the same date will be sorted in alphabetical order.
+    
+- By their name in alphabetical order.
 
-Figure 5.2.6.1. Example of sort budgets command
+✏️ Example: `sort name`
+
+This will sort the budgets that are currently displayed by their name in alphabetical order as seen in Figure 5.2.6.1 below:
+
+![Example of sort budgets command](images/CommandScreenShots/5_2_6_1_sortBudgets.png)
+
+Figure 5.2.6.1. Example of using the sort budgets command.
 
 #### 5.2.7. Clearing budgets: `clear`
 (Contributed by Wen Hao)
 
-You can use this command to **delete all existing budgets** in NUSave.
-
-This command is usually used to purge the sample data that is created when you launch the application for the first time.
-
-> ⚠️ Exercise caution when using the clear command as it is **irreversible**! <br>
-> 📕️ If there are **no budgets** in NUSave, the clear command has no visible effect.
-
 Format: `clear`
 
-✏️ Example:
+You can use this command to delete all existing budgets.
 
-`clear`
+> 📕 This command is usually used to purge the sample data that is created when you launch the application for the first time.
+> ⚠️ Exercise caution when using the clear command as it is irreversible!
 
-This will delete all existing budgets in NUSave.
+✏️ Example: `clear`
+
+This will delete all budgets that are currently stored in NUSave as seen in Figure 5.2.7.1 below:
 
 ![Example of clear budgets command](images/CommandScreenShots/5_2_7_1_clearBudget.png)
-Figure 5.2.7.1. Example of clear budgets command
+
+Figure 5.2.7.1. Example of using the clear budgets command.
 
 #### 5.2.8. Opening a budget: `open`
 (Contributed by Song Yu)
-
-You can use this command to **open a budget.**
-
-By opening a budget, you will now be directed to a budget page view.
 
 Format: `open INDEX`
 
@@ -452,15 +410,17 @@ Format: `open INDEX`
  ------------ | ------------- | ------
 Index | Required | Index of the budget to be opened
 
-✏️ Example:
+You can use this command to open the budget at the given `INDEX`.
 
-`open 1`
+When you open a budget, you will be directed to its budget page.
 
-This will open the budget with the index "1", based on the index as shown beside the name of the budget.
+✏️ Example: `open 1`
 
-![Example of open budget command](images/CommandScreenShots/5_2_8_openBudget.png)
+This will open the budget at index 1 as seen in Figure 5.2.8.1 below:
 
-![Example of open budget command](images/CommandScreenShots/5_2_8_openBudget2.png)
+![Example of open budget command](images/CommandScreenShots/5_2_8_1_openBudget.png)
+
+Figure 5.2.8.1 Example of using the open budget command.
 
 ### 5.3. Budget page commands
 
@@ -503,7 +463,7 @@ You can use this command to **delete an existing expenditure**.
 
 When you delete an expenditure, the expenditure is removed immediately from the current page.
 
- > ⚠ Exercise caution when using the delete command as it is **irreversible**! <br>
+ > ⚠ Exercise caution when using the delete command as it is **irreversible**!
 
 Format: `delete INDEX`
 
