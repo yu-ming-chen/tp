@@ -6,40 +6,38 @@
 2. [About the user guide](#2-about-the-user-guide)
     - [2.1. Symbols](#21-symbols)
     - [2.2. Format](#22-format)
-    - [2.3. Parameters](#23-parameters)
-3. [Layout](#3-layout)
+    - [2.3. Syntax highlighting](#23-syntax-highlighting)
+3. [GUI Layout](#3-gui-layout)
     - [3.1. Main page view](#31-main-page-view)
     - [3.2. Budget page view](#32-budget-page-view)
 4. [Quick start](#4-quick-start)
-5. [Tips](#5-tips)
-    - [5.1. Syntax highlighting](#51-syntax-highlighting)
-6. [Commands](#6-commands)
-    - [6.1. Navigation](#61-navigation)
-        * [6.1.1. Opening a budget: `open`](#611-opening-a-budget-open)
-        * [6.1.2. Closing a budget:`close`](#612-closing-a-budget-close)
-        * [6.1.3. Exit NUSave: `exit`](#613-exit-nusave-exit)
-        * [6.1.4. View help: `help`](#614-view-help-help)   
+5. [Commands](#5-commands)
+    - [5.1. Universal commands](#51-universal-commands)
+        * [5.1.1. View help: `help`](#511-view-help-help)   
+        * [5.1.2. Exit NUSave: `exit`](#512-exit-nusave-exit)
+    - [5.2. Main page commands](#52-main-page-commands)
+        * [5.2.1. Creating a budget: `create`](#521-creating-a-budget-create)
+        * [5.2.2. Deleting a budget: `delete`](#522-deleting-a-budget-delete)
+        * [5.2.3. Editing a budget: `edit`](#523-editing-a-budget-edit)
+        * [5.2.4. Finding budgets: `find`](#524-finding-budgets-find)
+        * [5.2.5. Listing budgets: `list`](#525-listing-budgets-list)
+        * [5.2.6. Sorting budgets: `sort`](#526-sorting-budgets-sort)
+        * [5.2.7. Clearing budgets: `clear`](#527-clearing-budgets-clear)
+        * [5.2.8. Opening a budget: `open`](#528-opening-a-budget-open)
+    - [5.3. Budget page commands](#53-budget-page-commands)
+        * [5.3.1. Adding an expenditure: `add`](#531-adding-an-expenditure-add)
+        * [5.3.2. Deleting an expenditure: `delete`](#532-deleting-an-expenditure-delete)
+        * [5.3.3. Editing an expenditure: `edit`](#533-editing-an-expenditure-edit)
+        * [5.3.4. Finding expenditures: `find`](#534-finding-expenditures-find)
+        * [5.3.5. Listing expenditures: `list`](#535-listing-expenditures-list)
+        * [5.3.6. Sorting expenditures: `sort`](#536-sorting-expenditures-sort)
+        * [5.3.7. Closing a budget:`close`](#537-closing-a-budget-close)
+6. [Command summary](#6-command-summary)
+    - [6.1. Universal commands](#61-universal-commands)
     - [6.2. Main page commands](#62-main-page-commands)
-        * [6.2.1. Creating a budget: `create`](#621-creating-a-budget-create)
-        * [6.2.2. Deleting a budget: `delete`](#622-deleting-a-budget-delete)
-        * [6.2.3. Editing a budget: `edit`](#623-editing-a-budget-edit)
-        * [6.2.4. Finding budgets: `find`](#624-finding-budgets-find)
-        * [6.2.5. Listing budgets: `list`](#625-listing-budgets-list)
-        * [6.2.6. Sorting budgets: `sort`](#626-sorting-budgets-sort)
-        * [6.2.7. Clearing budgets: `clear`](#627-clearing-budgets-clear)
     - [6.3. Budget page commands](#63-budget-page-commands)
-        * [6.3.1. Adding an expenditure: `add`](#631-adding-an-expenditure-add)
-        * [6.3.2. Deleting an expenditure: `delete`](#632-deleting-an-expenditure-delete)
-        * [6.3.3. Editing an expenditure: `edit`](#633-editing-an-expenditure-edit)
-        * [6.3.4. Finding expenditures: `find`](#634-finding-expenditures-find)
-        * [6.3.5. Listing expenditures: `list`](#635-listing-expenditures-list)
-        * [6.3.6. Sorting expenditures: `sort`](#636-sorting-expenditures-sort)
-7. [Command summary](#7-command-summary)
-    - [7.1. Navigation](#71-navigation)
-    - [7.2. Main page commands](#72-main-page-commands)
-    - [7.3. Budget page commands](#73-budget-page-commands)
-8. [Glossary](#8-glossary)
-9. [FAQ](#9-faq) 
+7. [Glossary](#7-glossary)
+8. [FAQ](#8-faq) 
 
 ## 1. Overview
 (Contributed by Wen Hao)
@@ -113,17 +111,15 @@ the **first parameter**:
  - `edit 1 n/NUS Computing Club p/1000` is a valid command, however
  - `edit n/NUS Computing Club p/1000 1` is an invalid command
 
-### 2.3. Parameters
-(Contributed by Yu Ming)
+### 2.3. Syntax Highlighting
+(Contributed by Song Yu)
 
-Parameter | Meaning 
--------| ------------
-`INDEX` | This is the index to be executed on for any given command.
-`NAME` | This can be either **name of budget** or **name of expenditure** or **name to find**.
-`PRICE` | This is the price of the expenditure.
-`THRESHOLD` | This is the threshold of the budget.
-`TAG` | This is the tag for the expenditure.
-`TYPE` | This is the sorting types.
+When you type an invalid command into the `command box`, your input will be highlighted.
+
+Color | Description | Examples
+------------ | ------------- | ------
+Red | Invalid input | <ul><li>An unknown command <br/> e.g. test, hello </li>  <li>Invalid command parameter(s) <br/> e.g. pt/test m/hello</li></ul>
+Grey |  The default font color, or when the command is valid |
 
 ## 3. GUI Layout
 (Contributed by Wen Hao)
@@ -211,7 +207,7 @@ If this is your first time using NUSave, follow these simple steps to jump strai
 
 5. Congratulations, you have successfully launched NUSave!
 > 📕 If you are launching the application for the first time, a set of sample data will be created for you.
-> Use the [clear command](#627-clearing-budgets-clear) to purge any existing sample data.
+> Use the [clear command](#527-clearing-budgets-clear) to purge any existing sample data.
 
 6. Type your desired command into the command box and press the enter button to execute it. Below is a series of commands that you can try:
     - `create n/Daily Expenses`: Creates a budget with the name "Daily Expenses".
@@ -220,87 +216,13 @@ If this is your first time using NUSave, follow these simple steps to jump strai
     - `help`: Shows the list of commands currently available.
     - `exit`: Exits the app.
 
-7. Refer to the [commands section](#6-commands) below for details of each command.
+7. Refer to the [commands section](#5-commands) below for details of each command.
 
-## 5. Tips
-### 5.1. Syntax highlighting
-(Contributed by Song Yu)
+## 5. Commands
 
-When you type an invalid command into the `command box`, your input will be highlighted.
+### 5.1. Universal commands
 
-Color | Description | Examples
------------- | ------------- | ------
-Red | Invalid input | <ul><li>An unknown command <br/> e.g. test, hello </li>  <li>Invalid command parameter(s) <br/> e.g. pt/test m/hello</li></ul>
-Grey |  The default font color, or when the command is valid |
-
-## 6. Commands
-### 6.1. Navigation
-#### 6.1.1. Opening a budget: `open`
-(Contributed by Song Yu)
-
-You can use this command to **open a budget.**
-
-By opening a budget, the application will display the list of expenditures belonging to that budget.
-
-Once a budget is open, the commands that are applicable to adding, deleting or editing an expenditure will now be 
-recognised as a command.
-
-Format: `open INDEX`
-
- Parameters | Requirement | Comments
- ------------ | ------------- | ------
-Index | ❗Required | Index of the budget to be opened
-
-✏️ Example:
-
-`open 1`
-
-This will open the budget with the index "1", based on the index as shown beside the name of the budget.
-
-![Example of open budget command](images/CommandScreenShots/6_1_1_openBudget.png)
-![Example of open budget command](images/CommandScreenShots/6_1_1_openBudget2.png)
-#### 6.1.2. Closing a budget: `close`
-(Contributed by Song Yu)
-
-You can use this command to **close a budget.**
-
-By closing a budget, the application switches from displaying expenditures to displaying all budgets in NUSave.
-
-Once a budget is closed, the commands that are applicable to adding, deleting or editing a budget will now be 
-recognised as a command.
-
-Format: `close`
-
-✏️ Example:
-
-`close`
-
-This will close the current budget. The list of budgets in NUSave will now be displayed.
-
-![Example of close budget command](images/CommandScreenShots/6_1_2_closeBudget.png)
-![Example of close budget command](images/CommandScreenShots/6_1_2_closeBudget2.png)
-
-#### 6.1.3. Exit NUSave: `exit`
-(Contributed by David)
-
-You can use this command to **exit from the application**.
-
-When exiting NUSave, all changes made to the application will be saved.
-
->📕 You can use this command at any point of time.
-
-Format: `exit`
-
-✏️ Example
-`exit`
-
-This will exit the application. When the application is launched again, the change you made will remain.
-
-![Example of exit command](images/CommandScreenShots/6_1_3_1_exit.png)
-
-Figure 6.2.1.1. Example of using the exit command on both the main page and budget page.
-
-#### 6.1.4. View help: `help`
+#### 5.1.1. View help: `help`
 (Contributed by Yu Ming)
 
 You can use this command to **view a list of available commands**.
@@ -318,17 +240,39 @@ Format: `help`
 
 This will display the help instructions in the results window.
 
-![Example of help command](images/CommandScreenShots/6_1_4_1_help.png)
+![Example of help command](images/CommandScreenShots/5_1_1_1_help.png)
 
-Figure 6.1.4.1. Example of help command
+Figure 5.1.1.1. Example of help command
 
-### 6.2. Main page commands
-#### 6.2.1. Creating a budget: `create`
+#### 5.1.2. Exit NUSave: `exit`
+(Contributed by David)
+
+You can use this command to **exit from the application**.
+
+When exiting NUSave, all changes made to the application will be saved.
+
+>📕 You can use this command at any point of time.
+
+Format: `exit`
+
+✏️ Example
+`exit`
+
+This will exit the application. When the application is launched again, the change you made will remain.
+
+![Example of exit command](images/CommandScreenShots/5_1_2_1_exit.png)
+
+Figure 5.1.2.1. Example of using the exit command on both the main page and budget page.
+
+### 5.2. Main page commands
+In this section, you will find the commands that are available on the main page.
+
+#### 5.2.1. Creating a budget: `create`
 (Contributed by Yu Ming)
 
 You can use this command to **create a new budget**.
 
-When a new budget is created it will be stored inside NUSave, and it will be reflected immediately in the list of budget
+When a new budget is created it will be stored inside NUSave, and it will be reflected immediately in the list of budgets
 on the main page of NUSave. This command is only available when no budget is open.
 
  > ⚠️ Upon first launch, **you may notice NUSave main page is empty**. This is because there are no budgets created yet. Go
@@ -347,11 +291,11 @@ Prefix | Parameters | Requirement | Comments
 
 This will create a new budget called "Temasek Hall Student Council" with a threshold value of $1200.
 
-![Example of create budget command](images/CommandScreenShots/6_2_1_1_createBudget.png)
+![Example of create budget command](images/CommandScreenShots/5_2_1_1_createBudget.png)
 
-Figure 6.2.1.1. Example of create budget command
+Figure 5.2.1.1. Example of create budget command
 
-#### 6.2.2. Deleting a budget: `delete`
+#### 5.2.2. Deleting a budget: `delete`
 (Contributed by David)
 
 You can use this command to **delete an existing budget**.
@@ -373,10 +317,10 @@ Index | ❗Required | Index of the budget
 `delete 1`
 This will delete the budget with the index "1".
 
-![Example of delete budget command](images/CommandScreenShots/6_2_2_1_deleteBudget.png)
+![Example of delete budget command](images/CommandScreenShots/5_2_2_1_deleteBudget.png)
 
-Figure 6.2.1.1. Example of delete budget command
-#### 6.2.3. Editing a budget: `edit`
+Figure 5.2.1.1. Example of delete budget command
+#### 5.2.3. Editing a budget: `edit`
 (Contributed by Yu Ming)
 
 You can use this command to **edit an existing budget**.
@@ -403,11 +347,11 @@ Format: `edit 2 n/NUS Computing club`
 
 This will edit a budget at **index 2** to be **renamed "NUS Computing Club"**.
 
-![Example of edit budget command](images/CommandScreenShots/6_2_3_1_editBudget.png)
+![Example of edit budget command](images/CommandScreenShots/5_2_3_1_editBudget.png)
 
-Figure 6.2.3.1. Example of edit budget command
+Figure 5.2.3.1. Example of edit budget command
 
-#### 6.2.4. Finding budgets: `find`
+#### 5.2.4. Finding budgets: `find`
 (Contributed by Chin Hui)
 
 You can use this command to **quickly find your budgets**.
@@ -429,10 +373,10 @@ Word | ❗Required | Keyword / Keyphrase to be searched
 `find Temasek Hall`
 This will find all budgets with the keyphrase 'Temasek Hall' in the title of the budget.
 
-![Example of delete budget command](images/CommandScreenShots/6_2_4_findBudget.png)
-![Example of delete budget command](images/CommandScreenShots/6_2_4_findBudget2.png)
+![Example of delete budget command](images/CommandScreenShots/5_2_4_findBudget.png)
+![Example of delete budget command](images/CommandScreenShots/5_2_4_findBudget2.png)
 
-#### 6.2.5. Listing budgets: `list`
+#### 5.2.5. Listing budgets: `list`
 (Contributed by Chin Hui)
 
 You can use this command to **list all budgets** in NUSave.
@@ -451,9 +395,9 @@ This will display all existing budgets in NUSave.
 
 ![Example of list budgets command](images/CommandScreenShots/6_2_5_1_listBudget.png)
 
-Figure 6.2.5.1. Example of list budgets command
+Figure 5.2.5.1. Example of list budgets command
 
-#### 6.2.6. Sorting budgets: `sort`
+#### 5.2.6. Sorting budgets: `sort`
 (Contributed by Yu Ming)
 
 You can use this command to **sort your budgets**.
@@ -482,10 +426,10 @@ Format: `sort TYPE`
 
 This will sort all the budgets in NUSave by their name in alphabetic order.
 
-![Example of sort budgets command](images/CommandScreenShots/6_2_6_1_sortBudget.png)
+![Example of sort budgets command](images/CommandScreenShots/5_2_6_1_sortBudget.png)
 
-Figure 6.2.6.1. Example of sort budgets command
-#### 6.2.7. Clearing budgets: `clear`
+Figure 5.2.6.1. Example of sort budgets command
+#### 5.2.7. Clearing budgets: `clear`
 (Contributed by Wen Hao)
 
 You can use this command to **delete all existing budgets** in NUSave.
@@ -503,13 +447,38 @@ Format: `clear`
 
 This will delete all existing budgets in NUSave.
 
-![Example of clear budgets command](images/CommandScreenShots/6_2_7_1_clearBudget.png)
-Figure 6.2.7.1. Example of clear budgets command
+![Example of clear budgets command](images/CommandScreenShots/5_2_7_1_clearBudget.png)
+Figure 5.2.7.1. Example of clear budgets command
 
-### 6.3. Budget page commands
-#### 6.3.1. Adding an expenditure: `add`
+#### 5.2.8. Opening a budget: `open`
+(Contributed by Song Yu)
 
-#### 6.3.2. Deleting an expenditure: `delete`
+You can use this command to **open a budget.**
+
+By opening a budget, the application will display the list of expenditures belonging to that budget.
+
+Once a budget is open, the commands that are applicable to adding, deleting or editing an expenditure will now be 
+recognised as a command.
+
+Format: `open INDEX`
+
+ Parameters | Requirement | Comments
+ ------------ | ------------- | ------
+Index | ❗Required | Index of the budget to be opened
+
+✏️ Example:
+
+`open 1`
+
+This will open the budget with the index "1", based on the index as shown beside the name of the budget.
+
+![Example of open budget command](images/CommandScreenShots/5_2_8_openBudget.png)
+![Example of open budget command](images/CommandScreenShots/5_2_8_openBudget2.png)
+
+### 5.3. Budget page commands
+#### 5.3.1. Adding an expenditure: `add`
+
+#### 5.3.2. Deleting an expenditure: `delete`
 (Contributed by David)
 
 You can use this command to **delete an existing expenditure**.
@@ -532,11 +501,11 @@ Index | ❗Required | Index of the expenditure
 
 This will delete the expenditure with the index "2".
 
-![Example of delete expenditure command](images/CommandScreenShots/6_3_2_1_deleteExpenditure.png)
+![Example of delete expenditure command](images/CommandScreenShots/5_3_2_1_deleteExpenditure.png)
 
-Figure 6.3.2.1. Example of delete expenditure command
+Figure 5.3.2.1. Example of delete expenditure command
 
-#### 6.3.3. Editing an expenditure: `edit`
+#### 5.3.3. Editing an expenditure: `edit`
 (Contributed by David)
 
 You can use this command to **edit an existing expenditure**.
@@ -563,10 +532,10 @@ Format: `edit 1 n/Long-Sleeve p/20`
 
 This will edit an expenditure at **index 1** to be **renamed** "Long-Sleeve" with an edited **price** of $20.
 
-![Example of edit expenditure command](images/CommandScreenShots/6_3_3_1_editExpenditure.png)
+![Example of edit expenditure command](images/CommandScreenShots/5_3_3_1_editExpenditure.png)
 
-Figure 6.3.3.1. Example of edit expenditure command
-#### 6.3.4. Finding expenditures: `find`
+Figure 5.3.3.1. Example of edit expenditure command
+#### 5.3.4. Finding expenditures: `find`
 (Contributed by Chin Hui)
 
 You can use this command to **quickly find your expenditures**.
@@ -594,11 +563,11 @@ Prefix | Parameters | Requirement | Comments
 
 This will find all expenditures containing the keyword 'sock' in the current budget.
 
-![Example of find expenditures command](images/CommandScreenShots/6_3_4_1_findExpenditure.png)
+![Example of find expenditures command](images/CommandScreenShots/5_3_4_1_findExpenditure.png)
 
-Figure 6.3.5.1. Example of find expenditures command
+Figure 5.3.5.1. Example of find expenditures command
 
-#### 6.3.5. Listing expenditures: `list`
+#### 5.3.5. Listing expenditures: `list`
 (Contributed by Chin Hui)
 
 You can use this command to **list all expenditures** in the current budget.
@@ -615,11 +584,11 @@ list
 
 This will display all existing expenditures in the current budget.
 
-![Example of list expenditures command](images/CommandScreenShots/6_3_5_1_listExpenditure.png)
+![Example of list expenditures command](images/CommandScreenShots/5_3_5_1_listExpenditure.png)
 
-Figure 6.3.5.1. Example of list expenditures command
+Figure 5.3.5.1. Example of list expenditures command
 
-#### 6.3.6. Sorting expenditures: `sort`
+#### 5.3.6. Sorting expenditures: `sort`
 (Contributed by Yu Ming)
 
 You can use this command to **sort your expenditures** within a budget.
@@ -648,41 +617,62 @@ Format: `sort TYPE`
 
 This will sort all the expenditures in that budget by their added date with the latest expenditure added at the top.
 
-![Example of sort expenditures command](images/CommandScreenShots/6_3_6_1_sortExpenditure.png)
+![Example of sort expenditures command](images/CommandScreenShots/5_3_6_1_sortExpenditure.png)
 
-Figure 6.3.6.1. Example of sort expenditures command
+Figure 5.3.6.1. Example of sort expenditures command
 
-## 7. Command summary
-### 7.1. Navigation
+#### 5.3.7. Closing a budget: `close`
+(Contributed by Song Yu)
+
+You can use this command to **close a budget.**
+
+By closing a budget, the application switches from displaying expenditures to displaying all budgets in NUSave.
+
+Once a budget is closed, the commands that are applicable to adding, deleting or editing a budget will now be 
+recognised as a command.
+
+Format: `close`
+
+✏️ Example:
+
+`close`
+
+This will close the current budget. The list of budgets in NUSave will now be displayed.
+
+![Example of close budget command](images/CommandScreenShots/5_3_7_closeBudget.png)
+![Example of close budget command](images/CommandScreenShots/5_3_7_closeBudget2.png)
+
+## 6. Command summary
+### 6.1. Universal commands
 | **Action** | **Format** | **Examples** |
 |------------|------------|--------------|
-Open a budget       |`open INDEX`| `open 1`|
-Close a budget      |`close`|-|
-Exit NUSave       |`exit`|-|
-Help              |`help`|-|
-### 7.2. Main page commands
+Help              |`help`|\-|
+Exit NUSave       |`exit`|\-|
+### 6.2. Main page commands
 | **Action** | **Format** | **Examples** |
 |------------|------------|--------------|
 Create a budget     |`create n/NAME [p/THRESHOLD]` |`create n/Daily Expenses`, <br>`create n/Project Work p/100`|
 Delete a budget     |`delete INDEX`|`delete 1`|
 Edit a budget     |`edit INDEX [n/NAME] [p/THRESHOLD]`|`edit 1 n/Hall Council`, <br>`edit 2 n/NUS Computing Club p/1000`|
 Find budgets     |`find KEYWORD`|`find Temasek`|
-List all budgets  |`list`|-|
+List all budgets  |`list`|\-|
 Sort all budgets  |`sort SORTTYPE`|`sort time`, <br>`sort name`|
-Clear all budgets |`clear`|-|
+Clear all budgets |`clear`|\-|
+Open a budget       |`open INDEX`| `open 1`|
 
 
-### 7.3. Budget page commands
+### 6.3. Budget page commands
 | **Action** | **Format** | **Examples** |
 |------------|------------|--------------|
 Add an expenditure   |`add n/NAME p/PRICE [t/TAG]`|`add n/TShirt p/20`, <br>`add n/Breakfast p/10 t/food`|
 Delete an expenditure|`delete INDEX`|`delete 1`|
 Edit an expenditure|`edit INDEX [n/NAME] [p/PRICE]`|`edit 2 n/NikeShirt`, <br> `edit 2 p/28`|
 Find expenditures|`find KEYWORD`|`find shirt`|
-List all expenditures |`list`|-|
+List all expenditures |`list`|\-|
 Sort all expenditures|`sort SORTTYPE`|`sort time`, <br>`sort name`|
+Close a budget      |`close`|\-|
 
-## 8. Glossary  
+## 7. Glossary  
 (Contributed by Song Yu)
 
 You can find the meanings of some special keywords applicable to NUSave over here.
@@ -700,7 +690,7 @@ You can find the meanings of some special keywords applicable to NUSave over her
 | Budget Page | Refers to the page that displays the list of expenditures belonging in a specific budget that is stored in NUSave.|
 | Threshold | Refers to the target limit that can be spent in that budget. |
 
-## 9. FAQ
+## 8. FAQ
 **Q**: How do I transfer my data to another computer?
 
 **A**: Install the application on another computer and overwrite the empty data file it creates with the .json file that contains the data of your previous NUSave folder.
