@@ -4,7 +4,8 @@ import java.util.Optional;
 
 public class EmptyBudgetIndex implements BudgetIndex {
     @Override
-    public void setIndex(int index) {
+    public void setIndex(int index) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException();
     }
 
     @Override
