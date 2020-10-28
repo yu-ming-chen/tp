@@ -213,7 +213,7 @@ If this is your first time using NUSave, follow these simple steps to jump strai
 >
 > <ins>For Windows <a href="#7-glossary">OS</a> users:</ins>
 > 1. Launch [command prompt](#7-glossary) and navigate to the path of the home folder for NUSave.
-> 2. Enter the following command: `java -jar nusave.java` as seen in Figure 4.1 below:
+> 2. Enter the following command: `java -jar nusave.jar` as seen in Figure 4.1 below:
 >
 > ![Example of launching NUSave using command prompt](images/QuickStartScreenShots/4_1_commandPrompt.png)
 >
@@ -221,7 +221,7 @@ If this is your first time using NUSave, follow these simple steps to jump strai
 >
 > <ins>For Mac OS users:</ins>
 > 1. Launch [terminal](#7-glossary) and navigate to the path of the home folder for NUSave.
-> 2. Enter the following command: `java -jar nusave.java` as seen in Figure 4.2 below:
+> 2. Enter the following command: `java -jar nusave.jar` as seen in Figure 4.2 below:
 >
 > ![Example of launching NUSave using terminal](images/QuickStartScreenShots/4_2_terminal.png)
 >
