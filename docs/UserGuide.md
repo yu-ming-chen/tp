@@ -148,10 +148,10 @@ Figure 3.1.2. Example of a budget card.
 
 Below is a table containing all the components that can be found in a budget card accompanied by their respective purposes:
 
-Component | Purpose
---------- | -------
-Index | The index used to reference this budget.
-Name | The name of this budget.
+Component         | Purpose
+----------------- | -------
+Index             | The index used to reference this budget.
+Name              | The name of this budget.
 Expenditure Count | The total number of expenditures stored in this budget.
 
 ### 3.2. Budget Page View
@@ -184,12 +184,12 @@ Figure 3.2.2. Example of an expenditure card.
 
 Below is a table containing all the components that can be found in an expenditure card accompanied by their respective purposes:
 
-Component | Purpose
---------- | -------
-Index | The index used to reference this expenditure.
-Name | The name of this expenditure.
+Component     | Purpose
+------------- | -------
+Index         | The index used to reference this expenditure.
+Name          | The name of this expenditure.
 Creation Date | The date at which this expenditure is added.
-Price | The price of this expenditure.
+Price         | The price of this expenditure.
 
 ## 4. Quick Start
 (Contributed by Wen Hao)
