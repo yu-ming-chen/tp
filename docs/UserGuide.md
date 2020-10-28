@@ -400,7 +400,7 @@ Figure 5.2.5.1. Example of list budgets command
 You can use this command to **sort your budgets**.
 
 You can sort your budgets based on two different type of sorts:
-1. Sort by created date (from most recently created to least recently created)
+1. Sort by created date (Ordered from most recently created to least recently created)
 
     > 📕 If more than one budget is created on the same date, these budgets will be sorted in alphabetical order.
     
@@ -585,7 +585,7 @@ Figure 5.3.5.1. Example of list expenditures command
 You can use this command to **sort your expenditures** within a budget.
 
 You can sort your expenditures within a budget based on two different type of sorts:
-1. Sort by added date (the latest expenditure added will be at the top of that budget page in NUSave)
+1. Sort by added date (Ordered from most recently created to least recently created)
 
     ```📕 Note: If expenditures are created on the same date. They will be sorted by name within themselves.```
    
