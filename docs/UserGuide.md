@@ -344,8 +344,12 @@ You can use this command to **quickly find your budgets**.
 Use this command to filter through your budgets by using keywords. NUSave will display all budgets whose title matches 
 the entered keyword/key phrase. 
 
- > ⚠ You should not use this command if main page is empty. This is because there are no budgets created yet. 
- > You can only find a budget if there are existing budgets!
+ > 📕 Budgets will be filtered as long as they contain the search term. The filter is case-insensitive.
+ 
+ > ⚠ You should not use this command if main page is empty. 
+ 
+ > ⚠ If no budgets are displayed, it means that none of the budgets matched your search term. 
+ > You can use the `list` command to display all budgets again.
 
 Format: `find KEYWORD`
 
