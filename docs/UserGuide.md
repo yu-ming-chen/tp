@@ -215,7 +215,7 @@ required syntax.
 
 Format: `help`
 
-✏️ Example:
+✏ Example:
 
 `help`
 
@@ -234,7 +234,8 @@ When exiting NUSave, all changes made to the application will be saved.
 
 Format: `exit`
 
-✏️ Example
+✏ Example:
+
 `exit`
 
 This will exit the application. When the application is launched again, the change you made will remain.
@@ -261,10 +262,10 @@ Format: `create n/NAME [p/THRESHOLD]`
 
 Prefix | Parameters | Requirement | Comments
 -------| ------------ | ------------- | ------
- n/ | NAME | ❗Required | Name of the budget
- p/ | THRESHOLD | ❕Optional | Target maximum capacity of the budget
+ n/ | NAME | Required | Name of the budget
+ p/ | THRESHOLD | Optional | Target maximum capacity of the budget
 
-✏️ Example:
+✏ Example:
 
 `create n/Temasek Hall Student Council p/1200`
 
@@ -285,11 +286,12 @@ Format: `delete INDEX`
 
  Parameters | Requirement | Comments
  ------------ | ------------- | ------
-Index | ❗Required | Index of the budget
+Index | Required | Index of the budget
 
-✏️ Example:
+✏ Example:
 
 `delete 1`
+
 This will delete the budget with the index "1".
 
 When you delete a budget, the budget is removed immediately from the current page.
@@ -305,18 +307,18 @@ You can use this command to **edit an existing budget**.
 
 When you edit a budget, the information of the budget updates immediately on the current page.
 
-Format: edit INDEX n/NAME p/THRESHOLD
+Format: `edit INDEX [n/NAME] [p/THRESHOLD]`
 
 Prefix | Parameters | Requirement | Comments
 -------| ------------ | ------------- | ------
- \- | INDEX | ❗Required | Index of the budget displayed on NUSave
- n/ | NAME | ❕Optional | Name of the budget to be edited to
- p/ | THRESHOLD | ❕Optional | Threshold of the budget to be edited to
+ \- | INDEX | Required | Index of the budget displayed on NUSave
+ n/ | NAME | Optional | Name of the budget to be edited to
+ p/ | THRESHOLD | Optional | Threshold of the budget to be edited to
  
- >⚠️ Although both NAME and THRESHOLD fields are optional, you must have at least one of the prefix and 
+ >⚠ Although both NAME and THRESHOLD fields are optional, you must have at least one of the prefix and 
  > corresponding parameters present. 
 
-✏️ Example:
+✏ Example:
 
 Format: `edit 2 n/NUS Computing club`
 
@@ -341,11 +343,12 @@ Format: `find KEYWORD`
 
  Parameters | Requirement | Comments
  ------------ | ------------- | ------
-Word | ❗Required | Keyword / Keyphrase to be searched
+Word | Required | Keyword / Keyphrase to be searched
 
-✏️ Example:
+✏ Example:
 
 `find Temasek Hall`
+
 This will find all budgets with the keyphrase 'Temasek Hall' in the title of the budget.
 
 ![Example of edit budget command](images/CommandScreenShots/5_2_4_findBudget.png)
@@ -363,7 +366,7 @@ This command is usually used to display all budgets after searching for specific
 
 Format: `list`
 
-✏️ Example:
+✏ Example:
 
 `list`
 
@@ -391,7 +394,7 @@ Format: `sort TYPE`
 
  Parameters | Requirement | Comments
  ------------ | ------------- | ------
- TYPE | ❗Required | Two different type of sorts available: `time` `name`
+ TYPE | Required | Types of sort: `time`, `name`
 
 ✏️ Example:
 
@@ -402,6 +405,7 @@ This will sort all the budgets in NUSave by their name in alphabetic order.
 ![Example of sort budgets command](images/CommandScreenShots/5_2_6_1_sortBudget.png)
 
 Figure 5.2.6.1. Example of sort budgets command
+
 #### 5.2.7. Clearing budgets: `clear`
 (Contributed by Wen Hao)
 
@@ -434,7 +438,7 @@ Format: `open INDEX`
 
  Parameters | Requirement | Comments
  ------------ | ------------- | ------
-Index | ❗Required | Index of the budget to be opened
+Index | Required | Index of the budget to be opened
 
 ✏️ Example:
 
@@ -464,11 +468,12 @@ Format: `add n/NAME [p/PRICE] [t/TAG]`
 
 Prefix | Parameters | Requirement | Comments
 -------| ------------ | ------------- | ------
- n/ | NAME | ❗Required | Name of the expenditure
- p/ | PRICE | ❕Optional | Price of the expenditure
- t/ | TAG | ❕Optional | Additional information about the expenditure
+ n/ | NAME | Required | Name of the expenditure
+ p/ | PRICE | Optional | Price of the expenditure
+ t/ | TAG | Optional | Additional information about the expenditure
  
-✏️ Example:
+✏ Example:
+
 `add n/Graphic Calculator p/199.90 t/Math`
 
 This will add a new expenditure called "Graphic Calculator" with a price of $199.90 and a tag of "Math".
@@ -490,9 +495,9 @@ Format: `delete INDEX`
 
  Parameters | Requirement | Comments
  ------------ | ------------- | ------
-Index | ❗Required | Index of the expenditure
+Index | Required | Index of the expenditure
 
-✏️ Example:
+✏ Example:
 
 `delete 2`
 
@@ -511,22 +516,22 @@ When you edit an expenditure, the information of the expenditure updates immedia
 
  > ⚠ You can only use this command on existing expenditures.  
 
-Format: `edit INDEX n/NAME p/PRICE`
+Format: `edit INDEX [n/NAME] [p/PRICE]`
 
 Prefix | Parameters | Requirement | Comments
 -------| ------------ | ------------- | ------
-\- | INDEX | ❗Required | Index of the expenditure displayed on NUSave
- n/ | NAME | ❕Optional | Name of the expenditure to be edited to
- p/ | PRICE | ❕Optional | Price of the expenditure to be edited to
+\- | INDEX | Required | Index of the expenditure displayed on NUSave
+ n/ | NAME | Optional | Name of the expenditure to be edited to
+ p/ | PRICE | Optional | Price of the expenditure to be edited to
  
  > ⚠ Although both NAME and PRICE fields are optional, **you must have at least one prefix and 
  > corresponding parameter present.** 
 
 ✏ Example:
 
-Format: `edit 1 n/Long-Sleeve p/20`
+`edit 1 n/Long-Sleeve p/20`
 
-This will edit an expenditure at `index` 1 to a new `name` of "Long-Sleeve" with a new `price` of $20.
+This will edit an expenditure at index 1 to a new name of "Long-Sleeve" with a new price of $20.
 
 ![Example of edit expenditure command](images/CommandScreenShots/5_3_3_1_editExpenditure.png)
 
@@ -540,19 +545,18 @@ You can use this command to **quickly find your expenditures**.
 Use this command to filter through your expenditures by keywords.
 NUSave will display all expenditures whose title contains the entered keyword/key phrase.
 
-    ```📕 Note: Expenditures will be filtered as long as they contain the search term. The filter is case-insensitive, using upper-case or lower-case will not make a difference in the search result.```
+> 📕 Expenditures will be filtered as long as they contain the search term. The filter is case-insensitive.
 
 > ⚠ You should not use this command if budget page is empty. 
->This is because there are no expenditures created yet.
 
 > ⚠ If no expenditures are displayed, it means that none of the expenditures matched your search term. 
->You can use the `list` command to display all expenditures again.
+> You can use the `list` command to display all expenditures again.
 
 Format: `find KEYWORD`
 
 Prefix | Parameters | Requirement | Comments
 -------| ------------ | ------------- | ------
-\- | Word | ❗Required | Keyword / Keyphrase to be searched
+\- | Word | Required | Keyword / Keyphrase to be searched
 
 ✏ Example:
 
@@ -575,9 +579,9 @@ This command is usually used to display all expenditures after searching for spe
 
 Format: list
 
-✏️ Example:
+✏ Example:
 
-list
+`list`
 
 This will display all existing expenditures in the current budget.
 
@@ -593,21 +597,20 @@ You can use this command to **sort your expenditures** within a budget.
 You can sort your expenditures within a budget based on two different type of sorts:
 1. Sort by added date (Ordered from most recently created to least recently created)
 
-    ```📕 Note: If expenditures are created on the same date. They will be sorted by name within themselves.```
+    > 📕 Note: If expenditures are created on the same date. They will be sorted by name within themselves.
    
 2. Sort by name of the expenditure (Ordered in alphabetical order (case-insensitive))
 
->⚠️ If there are **no expenditures** or there is **only one expenditure** in that budget, the sort command may not 
-> show any effect. This is because there needs to be more than one expenditure for sorting to work. 
-> Go ahead and add in more expenditures to see your expenditures in that budget get sorted!
+    > ⚠ If there are no expenditures or only one expenditure in the budget, the sort command will not have 
+    any effect. 
 
 Format: `sort TYPE`
 
  Parameters | Requirement | Comments
  ------------ | ------------- | ------
- TYPE | ❗Required | Two different type of sorts available: `time` `name`
+ TYPE | Required | Types of sort: `time`, `name`
 
-✏️ Example:
+✏ Example:
 
 `sort time`
 
