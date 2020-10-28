@@ -573,7 +573,7 @@ You can use this command to **sort your expenditures** within a budget.
 You can sort your expenditures within a budget based on two different type of sorts:
 1. Sort by added date (Ordered from most recently created to least recently created)
 
-    > 📕 Note: If expenditures are created on the same date. They will be sorted by name within themselves.
+    > 📕 If expenditures are created on the same date. They will be sorted by name within themselves.
    
 2. Sort by name of the expenditure (Ordered in alphabetical order (case-insensitive))
 
