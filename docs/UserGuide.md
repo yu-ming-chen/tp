@@ -404,7 +404,7 @@ You can sort your budgets based on two different type of sorts:
 
     > 📕 If more than one budget is created on the same date, these budgets will be sorted in alphabetical order.
     
-2. Sort by name of the budget (budgets will be ordered in alphabetical order (case-insensitive)
+2. Sort by name of the budget (Ordered in alphabetical order (case-insensitive))
 
 > ⚠ If there is **one budget or no budgets** in NUSave, the sort command has no visible effect.
 
@@ -587,10 +587,9 @@ You can use this command to **sort your expenditures** within a budget.
 You can sort your expenditures within a budget based on two different type of sorts:
 1. Sort by added date (the latest expenditure added will be at the top of that budget page in NUSave)
 
-   
     ```📕 Note: If expenditures are created on the same date. They will be sorted by name within themselves.```
    
-2. Sort by name of the expenditure (expenditures will be ordered in alphabetical order from a-z, case-insensitive)
+2. Sort by name of the expenditure (Ordered in alphabetical order (case-insensitive))
 
 >⚠️ If there are **no expenditures** or there is **only one expenditure** in that budget, the sort command may not 
 > show any effect. This is because there needs to be more than one expenditure for sorting to work. 
