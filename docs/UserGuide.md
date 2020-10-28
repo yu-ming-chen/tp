@@ -451,7 +451,7 @@ When you add a new expenditure, it will be displayed as an expenditure card in t
 This will add a new expenditure called "Graphic Calculator" with a price of $199.90 and a tag of "Math" as seen in 
 Figure 5.3.1.1. below.
 
-![Example of add expenditure command](images/CommandScreenShots/6_2_1_1_createBudget.png)
+![Example of add expenditure command](images/CommandScreenShots/5_3_1_1_createBudget.png)
 
 Figure 5.3.1.1. Example of using the add expenditure command.
 
@@ -591,9 +591,7 @@ This will close the current budget as seen in Figure 5.3.7.1 below:
 
 ![Example of close budget command](images/CommandScreenShots/5_3_7_closeBudget.png)
 
-![Example of close budget command](images/CommandScreenShots/5_3_7_closeBudget2.png)
-
-Figure 5.2.8.1 Example of using the close budget command.
+Figure 5.3.7.1 Example of using the close budget command.
 
 ## 6. Command Summary
 
