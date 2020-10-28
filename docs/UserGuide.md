@@ -402,7 +402,7 @@ Format: `sort TYPE`
 
 You can use this command to sort your budgets by the given `TYPE`.
 
-There are a two ways you can sort your budgets:
+There are two ways you can sort your budgets:
 
 - By their creation date with the most recently created budget at the top.
 
@@ -447,7 +447,7 @@ Format: `open INDEX`
 
 You can use this command to open the budget at the given `INDEX`.
 
-When you open a budget, you will be directed to its budget page view.
+When you open a budget, you will be directed to its budget page.
 
 ✏ Example: `open 1`
 
@@ -568,7 +568,7 @@ Format: `list`
 
 You can use this command to list all expenditures in the current budget.
 
-When you list expenditures, the list view will display all expenditures belonging to the current budget.
+When you list expenditures, the list view will display all expenditures belonging to the budget that is currently open.
 
  > 📕 This command is usually used after using the [find expenditure command](#534-finding-expenditures-find).
 
@@ -587,11 +587,11 @@ Format: `sort TYPE`
 
  Parameters | Requirement | Comments
  ---------- | ----------- | ------
- TYPE       | Required    | Types of sort: `time`, `name`
+ `TYPE`     | Required    | Types of sort: `time`, `name`
 
 You can use this command to sort your expenditures (within a budget) by the given `TYPE`.
 
-There are a two ways you can sort your expenditures:
+There are two ways you can sort your expenditures:
 
 - By their creation date with the most recently created budget at the top.
 
@@ -601,7 +601,7 @@ There are a two ways you can sort your expenditures:
 
 ✏ Example: `sort name`
 
-This will sort the expenditures in that budget (that are currently displayed) by their name in alphabetical order as seen in Figure 5.3.6.1 below:
+This will sort the expenditures (that are currently displayed) by their name in alphabetical order as seen in Figure 5.3.6.1 below:
 
 ![Example of sort expenditures command](images/CommandScreenShots/5_3_6_1_sortExpenditures.png)
 
@@ -614,7 +614,7 @@ Format: `close`
 
 You can use this command to close a budget.
 
-By closing a budget, you will now be directed to the main page view.
+By closing a budget, you will now be directed to the main page.
 
 ✏ Example: `close`
 
