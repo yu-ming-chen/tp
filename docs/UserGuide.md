@@ -431,6 +431,7 @@ Format: `clear`
 You can use this command to delete all existing budgets.
 
 > 📕 This command is usually used to purge the sample data that is created when you launch the application for the first time.
+>
 > ⚠ Exercise caution when using the clear command as it is irreversible!
 
 ✏ Example: `clear`
