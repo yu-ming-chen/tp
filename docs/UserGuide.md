@@ -249,9 +249,9 @@ The following commands in this subsection are only available on the main page.
 Format: `create n/NAME [p/THRESHOLD]`
 
 Prefix | Parameters | Requirement | Comments
--------| ------------ | ------------- | ------
- n/ | NAME | Required | Name of the budget
- p/ | THRESHOLD | Optional | Target threshold of the budget
+------ | ---------- | ----------- | --------
+ n/    | `NAME`     | Required    | Name of the budget
+ p/    | `THRESHOLD`| Optional    | Target threshold of the budget
 
 You can use this command to create a new budget with the given `NAME` and `THRESHOLD`.
 
@@ -271,9 +271,9 @@ Figure 5.2.1.1. Example of using the create budget command.
 
 Format: `delete INDEX`
 
-Parameters | Requirement | Comments
------------- | ------------- | ------
-Index | Required | Index of the budget
+Prefix | Parameters | Requirement | Comments
+------ | ---------- | ----------- | ------
+\-     | `INDEX`    | Required    | Index of the budget to be deleted
 
 You can use this command to delete the budget at the given `INDEX`.
 
@@ -295,10 +295,10 @@ Figure 5.2.2.1. Example of using the delete budget command.
 Format: `edit INDEX [n/NAME] [p/THRESHOLD]`
 
 Prefix | Parameters | Requirement | Comments
--------| ------------ | ------------- | ------
- \- | INDEX | Required | Index of the budget displayed on NUSave
- n/ | NAME | Optional | Name of the budget to be edited to
- p/ | THRESHOLD | Optional | Threshold of the budget to be edited to
+-------| ---------- | ----------- | ------
+ \-    | `INDEX`    | Required    | Index of the budget to be edited
+ n/    | `NAME`     | Optional    | Name of the budget to be edited to
+ p/    | `THRESHOLD`| Optional    | Threshold of the budget to be edited to
 
 You can use this command to edit the budget at the given `INDEX`.
 
@@ -317,9 +317,9 @@ Figure 5.2.3.1. Example of edit budget command
 
 Format: `find KEYWORD`
 
- Parameters | Requirement | Comments
- ------------ | ------------- | ------
-Word | Required | Keyword / Keyphrase to be searched
+ Prefix | Parameters | Requirement | Comments
+ ------ | ---------- | ----------- | --------
+ \-     |  `KEYWORD` | Required    | Keyword to be used for searching
 
 You can use this command to find budgets whose names contain the given `KEYWORD`.
 
@@ -361,9 +361,9 @@ Figure 5.2.5.1. Example of using the list budgets command.
 
 Format: `sort TYPE`
 
- Parameters | Requirement | Comments
- ------------ | ------------- | ------
- TYPE | Required | Types available: `time`, `name`
+ Prefix | Parameters | Requirement | Comments
+ ------ |----------- | ----------- | ------
+ \-     | `TYPE`     |   Required  | Can be either `time` or `name`
 
 You can use this command to sort your budgets by the given `TYPE`.
 
@@ -406,9 +406,9 @@ Figure 5.2.7.1. Example of using the clear budgets command.
 
 Format: `open INDEX`
 
- Parameters | Requirement | Comments
- ------------ | ------------- | ------
-Index | Required | Index of the budget to be opened
+ Prefix | Parameters | Requirement | Comments
+ ------ | ---------- | ----------- | ------
+ \-     | `INDEX`    | Required    | Index of the budget to be opened
 
 You can use this command to open the budget at the given `INDEX`.
 
