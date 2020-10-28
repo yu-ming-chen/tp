@@ -95,6 +95,17 @@ public class EditExpenditureCommand extends Command {
 
         public EditExpenditureDescriptor() {}
 
+        /**
+         * Constructor with given EditExpenditureDescriptor to copy from.
+         * @param toCopy
+         */
+        public EditExpenditureDescriptor(EditExpenditureDescriptor toCopy) {
+            setName(toCopy.name);
+            setPrice(toCopy.price);
+            setDate(toCopy.date);
+            setTags(toCopy.tags);
+        }
+
         public Boolean isAnyFieldNull() {
             return CollectionUtil.isAnyNonNull(name, price, date, tags);
         }
