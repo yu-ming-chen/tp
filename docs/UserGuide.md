@@ -326,7 +326,9 @@ You can use this command to find budgets whose names contain the given `KEYWORD`
 When you find budgets, the list view will be filtered to only display budgets whose names contains the given `KEYWORD`.
 
  > 📕 The filter is case-insensitive.
+ >
  > 📕 If no budgets are displayed, it means that none of the budgets matches your search term. 
+ > 
  > 📕 You can use the [list budgets command](#525-listing-budgets-list) to display all budgets again.
 
 ✏ Example: `find Temasek Hall`
@@ -614,34 +616,38 @@ This will close the current budget. The list of budgets in NUSave will now be di
 ![Example of close budget command](images/CommandScreenShots/5_3_7_closeBudget2.png)
 
 ## 6. Command Summary
-### 6.1. Universal commands
-| **Action** | **Format** | **Examples** |
-|------------|------------|--------------|
-View Help              |`help`|\-|
-Exit NUSave       |`exit`|\-|
-### 6.2. Main page commands
-| **Action** | **Format** | **Examples** |
-|------------|------------|--------------|
-Create a budget     |`create n/NAME [p/THRESHOLD]` |`create n/Daily Expenses`, <br>`create n/Project Work p/100`|
-Delete a budget     |`delete INDEX`|`delete 1`|
-Edit a budget     |`edit INDEX [n/NAME] [p/THRESHOLD]`|`edit 1 n/Hall Council`, <br>`edit 2 n/NUS Computing Club p/1000`|
-Find budgets     |`find KEYWORD`|`find Temasek`|
-List all budgets  |`list`|\-|
-Sort all budgets  |`sort TYPE`|`sort time`, <br>`sort name`|
-Clear all budgets |`clear`|\-|
-Open a budget       |`open INDEX`| `open 1`|
 
+### 6.1. Universal commands
+
+| **Action** | **Format** | **Examples** |
+|------------|------------|--------------|
+| View Help              | `help` | \- |
+| Exit NUSave       | `exit` | \- |
+
+### 6.2. Main page commands
+
+| **Action** | **Format** | **Examples** |
+|------------|------------|--------------|
+| Create a budget     | `create n/NAME [p/THRESHOLD]` | `create n/Daily Expenses`, <br>`create n/Project Work p/100` |
+| Delete a budget     | `delete INDEX` | `delete 1` |
+| Edit a budget     | `edit INDEX [n/NAME] [p/THRESHOLD]` | `edit 1 n/Hall Council`, <br>`edit 2 n/NUS Computing Club p/1000` |
+| Find budgets     | `find KEYWORD` | `find Temasek` |
+| List all budgets  | `list` | \- |
+| Sort all budgets  | `sort TYPE` | `sort time`, <br>`sort name` |
+| Clear all budgets | `clear` | \- |
+| Open a budget       | `open INDEX` | `open 1` |
 
 ### 6.3. Budget page commands
+
 | **Action** | **Format** | **Examples** |
 |------------|------------|--------------|
-Add an expenditure   |`add n/NAME p/PRICE [t/TAG]`|`add n/TShirt p/20`, <br>`add n/Breakfast p/10 t/food`|
-Delete an expenditure|`delete INDEX`|`delete 1`|
-Edit an expenditure|`edit INDEX [n/NAME] [p/PRICE]`|`edit 2 n/NikeShirt`, <br> `edit 2 p/28`|
-Find expenditures|`find KEYWORD`|`find shirt`|
-List all expenditures |`list`|\-|
-Sort all expenditures|`sort TYPE`|`sort time`, <br>`sort name`|
-Close a budget      |`close`|\-|
+| Add an expenditure   | `add n/NAME p/PRICE [t/TAG]` | `add n/TShirt p/20`, <br>`add n/Breakfast p/10 t/food` |
+| Delete an expenditure | `delete INDEX` | `delete 1` |
+| Edit an expenditure | `edit INDEX [n/NAME] [p/PRICE]` | `edit 2 n/NikeShirt`, <br> `edit 2 p/28` |
+| Find expenditures | `find KEYWORD` | `find shirt` |
+| List all expenditures | `list` | \- |
+| Sort all expenditures | `sort TYPE` | `sort time`, <br>`sort name` |
+| Close a budget      | `close` | \- |
 
 ## 7. Glossary  
 (Contributed by Song Yu)
