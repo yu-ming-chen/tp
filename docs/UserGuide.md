@@ -342,7 +342,7 @@ This will rename the budget at index 2 to "NUS Computing Club" as seen in Figure
 
 ![Example of edit budget command](images/CommandScreenShots/5_2_3_1_editBudget.png)
 
-Figure 5.2.3.1. Example of edit budget command
+Figure 5.2.3.1. Example of using the edit budget command.
 
 #### 5.2.4. Finding budgets: `find`
 (Contributed by Chin Hui)
