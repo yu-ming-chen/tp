@@ -110,7 +110,7 @@ public class Budget implements Renderable {
     }
 
     /**
-     * Returns true if both budget of the same name have at the created on field that is the same.
+     * Returns true if both budget have the same name and the same created on field.
      * This defines a weaker notion of equality between two budget.
      */
     public boolean isSameBudget(Budget otherBudget) {
