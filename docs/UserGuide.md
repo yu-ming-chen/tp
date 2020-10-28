@@ -1,3 +1,8 @@
+---
+layout: page
+title: User Guide
+---
+
 ## Table of Contents
 1. [Overview](#1-overview)
     - [1.1. Introduction](#11-introduction)
