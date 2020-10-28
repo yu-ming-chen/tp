@@ -34,7 +34,7 @@ title: User Guide
         * [5.3.4. Finding expenditures: `find`](#534-finding-expenditures-find)
         * [5.3.5. Listing expenditures: `list`](#535-listing-expenditures-list)
         * [5.3.6. Sorting expenditures: `sort`](#536-sorting-expenditures-sort)
-        * [5.3.7. Closing a budget:`close`](#537-closing-a-budget-close)
+        * [5.3.7. Closing a budget: `close`](#537-closing-a-budget-close)
 6. [Command Summary](#6-command-summary)
     - [6.1. Universal commands](#61-universal-commands)
     - [6.2. Main page commands](#62-main-page-commands)
