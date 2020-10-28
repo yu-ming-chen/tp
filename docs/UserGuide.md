@@ -3,14 +3,13 @@
 1. [Overview](#1-overview)
     - [1.1. Introduction](#11-introduction)
     - [1.2. Purpose](#12-purpose)
-2. [About the user guide](#2-about-the-user-guide)
+2. [About the User Guide](#2-about-the-user-guide)
     - [2.1. Symbols](#21-symbols)
-    - [2.2. Format](#22-format)
-    - [2.3. Syntax highlighting](#23-syntax-highlighting)
+    - [2.2. Syntax format](#22-syntax-format)
 3. [GUI Layout](#3-gui-layout)
     - [3.1. Main page view](#31-main-page-view)
     - [3.2. Budget page view](#32-budget-page-view)
-4. [Quick start](#4-quick-start)
+4. [Quick Start](#4-quick-start)
 5. [Commands](#5-commands)
     - [5.1. Universal commands](#51-universal-commands)
         * [5.1.1. View help: `help`](#511-view-help-help)   
@@ -32,7 +31,7 @@
         * [5.3.5. Listing expenditures: `list`](#535-listing-expenditures-list)
         * [5.3.6. Sorting expenditures: `sort`](#536-sorting-expenditures-sort)
         * [5.3.7. Closing a budget:`close`](#537-closing-a-budget-close)
-6. [Command summary](#6-command-summary)
+6. [Command Summary](#6-command-summary)
     - [6.1. Universal commands](#61-universal-commands)
     - [6.2. Main page commands](#62-main-page-commands)
     - [6.3. Budget page commands](#63-budget-page-commands)
@@ -73,53 +72,37 @@ the current status of the application is reflected live on-screen so what you se
 The purpose of this document is to serve as a guide for new users on how to get started with using NUSave as well as
 to provide a detailed reference for veteren users on how to use the different commands that are available within NUSave.
 
-## 2. About the user guide
+## 2. About the User Guide
 ### 2.1. Symbols
 (Contributed by Yu Ming)
 
-Symbols | Meaning 
+When reading this user guide, symbols may appear occassionally to draw your attention to important information.
+The meanings for each symbol are as follows:
+
+Symbol | Meaning 
 -------| ------------ 
 ⚠️ | This symbol indicates that there is something important for you to take note of.
 📕 | This symbol indicates that there is additional information you may find useful.
 ✏️ | This symbol indicates that an example is provided.
-❗| This symbol indicates that the parameter is required.
-❕| This symbol indicates that the parameter is optional.
 
-### 2.2. Format
+### 2.2. Syntax format
 (Contributed by Yu Ming)
 
-This section shows the format of all the commands in the user guide.
+The syntax of the commands in this user guide are to be interpreted in the following manner:
 
 Format | Meaning | Example 
 -------| ------------ | ----
-`lower_case/` | **Prefixes** | `n/` `p/` `t/`
-`UPPER_CASE` | **Parameters** | `NAME` `THRESHOLD` `PRICE`
-`[UPPER_CASE]` | **Optional parameters** | `[p/THRESHOLD]` in create budget command
+`lower_case/` | **Prefix** | `n/` `p/` `t/`
+`UPPER_CASE` | **Parameter** | `NAME` `THRESHOLD` `PRICE`
+`[UPPER_CASE]` | **Optional parameter** | `[p/THRESHOLD]`
 
-> ⚠️ Prefixes **cannot have spaces**: `n /` will be an invalid prefix.
+> ⚠️ There **cannot be any spaces** within a prefix. For example, `n /` is an invalid prefix.
 >
-> 📕 Parameters can be in **any order** if they have **prefixes**.
-
-For example, a create budget command can have `n/NAME` and `p/THRESHOLD`, you can specify them in any order:
- - `create n/Temasek Hall Student Council p/1200`, or
- - `create p/1200 n/Temasek Hall Student Council`
- 
-However, if a given command has any parameter **without prefix**, that given parameter **must** be the **first parameter**.
-
-For example, a edit budget command have an `INDEX`, a `n/NAME` and a `p/THRESHOLD`. In this case, `INDEX` **must** be
-the **first parameter**:
- - `edit 1 n/NUS Computing Club p/1000` is a valid command, however
- - `edit n/NUS Computing Club p/1000 1` is an invalid command
-
-### 2.3. Syntax Highlighting
-(Contributed by Song Yu)
-
-When you type an invalid command into the `command box`, your input will be highlighted.
-
-Color | Description | Examples
------------- | ------------- | ------
-Red | Invalid input | <ul><li>An unknown command <br/> e.g. test, hello </li>  <li>Invalid command parameter(s) <br/> e.g. pt/test m/hello</li></ul>
-Grey |  The default font color, or when the command is valid |
+> ⚠️ If a parameter **does not have any prefixes**, it **must** be the **first parameter**.
+> For example, `edit 1 n/NUS Computing Club p/1000` is a valid command but `edit n/NUS Computing Club p/1000 1` is an invalid command.
+>
+> 📕 Parameters with prefixes can be entered in **any order**.
+> For example, `create n/Temasek Hall Student Council p/1200` is equivalent to `create p/1200 n/Temasek Hall Student Council`.
 
 ## 3. GUI Layout
 (Contributed by Wen Hao)
@@ -131,7 +114,7 @@ There are a total of two pages that you can navigate to when using NUSave:
 - Main page
 - Budget page
 
-### 3.1. Main page view
+### 3.1. Main Page View
 (Contributed by Wen Hao)
 
 You will be greeted by the main page upon launching NUSave. On this page, you can see a list of
@@ -152,7 +135,7 @@ Title | A text field that displays the name of the application.
 Budget Card | A card that represents a budget stored in NUSave. It contains the name of the budget as well as the total number of expenditures the budget contains.
 List View | A **scrollable** panel that can hold multiple budget cards.
 
-### 3.2. Budget page view
+### 3.2. Budget Page View
 (Contributed by Wen Hao)
 
 You will be directed to a budget page when you use the [open budget command](#611-opening-a-budget-open).
@@ -174,7 +157,7 @@ Title | A text field that displays the name of budget that is open.
 Expenditure Card | A card that represents an expenditure stored in a budget. It contains the name, tags as well as cost of the expenditure.
 List View | A **scrollable** panel that can hold multiple expenditure cards.
 
-## 4. Quick start
+## 4. Quick Start
 (Contributed by Wen Hao)
 
 If this is your first time using NUSave, follow these simple steps to jump straight into the action:
@@ -630,7 +613,7 @@ This will close the current budget. The list of budgets in NUSave will now be di
 
 ![Example of close budget command](images/CommandScreenShots/5_3_7_closeBudget2.png)
 
-## 6. Command summary
+## 6. Command Summary
 ### 6.1. Universal commands
 | **Action** | **Format** | **Examples** |
 |------------|------------|--------------|
