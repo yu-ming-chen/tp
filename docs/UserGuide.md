@@ -296,10 +296,11 @@ Figure 5.2.1.1. Example of create budget command
 
 You can use this command to **delete an existing budget**.
 
-When a budget is deleted it will be removed from NUSave, and the 
-deletion will be reflected immediately in the list of budget on the main page of NUSave.
+When a budget is deleted, you will see the budget being removed from the current page.
 
- > ⚠️ **You cannot use this command if main page is empty**. This is because there are no budgets created yet. 
+ > ⚠ Exercise caution when using the delete command as it is **irreversible**! <br>
+
+ > ⚠ **You cannot use this command if main page is empty**. This is because there are no budgets created yet. 
  > You can only delete a budget if there are already existing budgets!
 
 Format: `delete INDEX`
@@ -322,8 +323,7 @@ Figure 5.2.2.1. Example of delete budget command
 
 You can use this command to **edit an existing budget**.
 
-When a budget is edited the changes will be saved on NUSave, and  will be 
-reflected immediately on the list of budgets.
+When a budget is edited, you will see the information of the budget update immediately on the current page.
 
 Format: edit INDEX n/NAME p/THRESHOLD
 
@@ -333,7 +333,7 @@ Prefix | Parameters | Requirement | Comments
  n/ | NAME | ❕Optional | Name of the budget to be edited to
  p/ | THRESHOLD | ❕Optional | Threshold of the budget to be edited to
  
- >⚠️ Although both NAME and THRESHOLD fields are optional You must have at least one of the Prefix and 
+ >⚠️ Although both NAME and THRESHOLD fields are optional, you must have at least one of the Prefix and 
  > corresponding Parameters present. 
 
 ✏️ Example:
@@ -357,7 +357,7 @@ the entered keyword/key phrase.
  > ⚠ You should not use this command if main page is empty. This is because there are no budgets created yet. 
  > You can only find a budget if there are existing budgets!
 
-Format: `find WORD`
+Format: `find KEYWORD`
 
  Parameters | Requirement | Comments
  ------------ | ------------- | ------
@@ -400,16 +400,13 @@ Figure 5.2.5.1. Example of list budgets command
 You can use this command to **sort your budgets**.
 
 You can sort your budgets based on two different type of sorts:
-1. Sort by created date (the latest budget created will be at the top of the main page of NUSave)
+1. Sort by created date (from most recently created to least recently created)
 
-   
-   ```📕 Note: If budgets are created on the same date. They will be sorted by name within themselves.```
-   
-2. Sort by name of the budget (budgets will be ordered in alphabetical order from a-z, case-insensitive)
+    > 📕 If more than one budget is created on the same date, these budgets will be sorted in alphabetical order.
+    
+2. Sort by name of the budget (budgets will be ordered in alphabetical order (case-insensitive)
 
->⚠️ If there are **no budgets** or there is **only one budget** in NUSave, the sort command may not have any visible effect.
-> This is because there needs to be more than one budget for sorting to work. Go ahead and add in more budgets 
-> to see your budgets in NUSave get sorted!
+> ⚠ If there is **one budget or no budgets** in NUSave, the sort command has no visible effect.
 
 Format: `sort TYPE`
 
@@ -434,7 +431,7 @@ You can use this command to **delete all existing budgets** in NUSave.
 This command is usually used to purge the sample data that is created when you launch the application for the first time.
 
 > ⚠️ Exercise caution when using the clear command as it is **irreversible**! <br>
-> ⚠️ If there are **no budgets** in NUSave, the clear command will not have any visible effect.
+> ⚠️ If there are **no budgets** in NUSave, the clear command has no visible effect.
 
 Format: `clear`
 
@@ -452,10 +449,7 @@ Figure 5.2.7.1. Example of clear budgets command
 
 You can use this command to **open a budget.**
 
-By opening a budget, the application will display the list of expenditures belonging to that budget.
-
-Once a budget is open, the commands that are applicable to adding, deleting or editing an expenditure will now be 
-recognised as a command.
+By opening a budget, you will now be directed to a budget page view.
 
 Format: `open INDEX`
 
@@ -484,8 +478,7 @@ You can use this command to **delete an existing expenditure**.
 When an expenditure is deleted it will be removed from NUSave, and the 
 deletion will be reflected immediately in the list of expenditures on the budget page of NUSave.
 
- > ⚠ **You cannot use this command if the budget page is empty**. This is because there are no expenditures created yet. 
- > You can only delete an expenditure if there are already existing budgets!
+ > ⚠ You cannot use this command if the budget page is empty. 
 
 Format: `delete INDEX`
 
@@ -508,10 +501,9 @@ Figure 5.3.2.1. Example of delete expenditure command
 
 You can use this command to **edit an existing expenditure**.
 
-When an expenditure is edited the changes will be saved on NUSave, and  will be 
-reflected immediately on the list of expenditures.
+When an expenditure is edited, you will see the information of the expenditure update immediately on the current page.
 
- > ⚠️ **You can only use this command on existing expenditures**.  
+ > ⚠ You can only use this command on existing expenditures.  
 
 Format: `edit INDEX n/NAME p/PRICE`
 
@@ -521,14 +513,14 @@ Prefix | Parameters | Requirement | Comments
  n/ | NAME | ❕Optional | Name of the expenditure to be edited to
  p/ | PRICE | ❕Optional | Price of the expenditure to be edited to
  
- > ⚠️ Although both NAME and PRICE fields are optional **You must have at least one of the Prefix and 
- >  corresponding Parameters present**. 
+ > ⚠ Although both NAME and PRICE fields are optional, **you must have at least one prefix and 
+ > corresponding parameter present.** 
 
-✏️ Example:
+✏ Example:
 
 Format: `edit 1 n/Long-Sleeve p/20`
 
-This will edit an expenditure at **index 1** to be **renamed** "Long-Sleeve" with an edited **price** of $20.
+This will edit an expenditure at `index` 1 to a new `name` of "Long-Sleeve" with a new `price` of $20.
 
 ![Example of edit expenditure command](images/CommandScreenShots/5_3_3_1_editExpenditure.png)
 
@@ -542,21 +534,21 @@ You can use this command to **quickly find your expenditures**.
 Use this command to filter through your expenditures by keywords.
 NUSave will display all expenditures whose title contains the entered keyword/key phrase.
 
-   ```📕 Note: Expenditures will be filtered as long as they contain the search term. The filter is case-insensitive, using upper-case or lower-case will not make a difference in the search result.```
+    ```📕 Note: Expenditures will be filtered as long as they contain the search term. The filter is case-insensitive, using upper-case or lower-case will not make a difference in the search result.```
 
-> ⚠️ You should not use this command if budget page is empty. 
+> ⚠ You should not use this command if budget page is empty. 
 >This is because there are no expenditures created yet.
 
-> ⚠️ If no expenditures are displayed, it means that none of the expenditures matched your search term. 
+> ⚠ If no expenditures are displayed, it means that none of the expenditures matched your search term. 
 >You can use the `list` command to display all expenditures again.
 
-Format: `find WORD`
+Format: `find KEYWORD`
 
 Prefix | Parameters | Requirement | Comments
 -------| ------------ | ------------- | ------
 \- | Word | ❗Required | Keyword / Keyphrase to be searched
 
-✏️ Example:
+✏ Example:
 
 `find sock`
 
@@ -596,7 +588,7 @@ You can sort your expenditures within a budget based on two different type of so
 1. Sort by added date (the latest expenditure added will be at the top of that budget page in NUSave)
 
    
-   ```📕 Note: If expenditures are created on the same date. They will be sorted by name within themselves.```
+    ```📕 Note: If expenditures are created on the same date. They will be sorted by name within themselves.```
    
 2. Sort by name of the expenditure (expenditures will be ordered in alphabetical order from a-z, case-insensitive)
 
@@ -625,14 +617,11 @@ Figure 5.3.6.1. Example of sort expenditures command
 
 You can use this command to **close a budget.**
 
-By closing a budget, the application switches from displaying expenditures to displaying all budgets in NUSave.
-
-Once a budget is closed, the commands that are applicable to adding, deleting or editing a budget will now be 
-recognised as a command.
+By closing a budget, you will now be directed to the main page view.
 
 Format: `close`
 
-✏️ Example:
+✏ Example:
 
 `close`
 
@@ -685,7 +674,7 @@ You can find the meanings of some special keywords applicable to NUSave over her
 | Command Prompt (Windows OS) | A CLI application proprietary to Windows OS devices, where users can run commands on a Windows device by entering typed commands. |
 | Terminal (Mac OS) | A CLI application proprietary to Mac OS devices, where users can run commands on a Mac device by entering typed commands. |
 | Expenditure | Refers to a single item to be recorded in NUSave.|
-| Budget | Refers to how NUSave stores related expenditures under one group. A budget can also hold additional information about this list of expenditures, such as the target limit of what is to be spent (i.e. threshold).  |
+| Budget | Refers to how NUSave stores related expenditures under one group. A budget can also hold additional information about this list of expenditures, such as the target limit of what is to be spent (i.e. threshold). |
 | Main Page | Refers to the page that displays the list of budgets that is stored in NUSave.|
 | Budget Page | Refers to the page that displays the list of expenditures belonging in a specific budget that is stored in NUSave.|
 | Threshold | Refers to the target limit that can be spent in that budget. |
