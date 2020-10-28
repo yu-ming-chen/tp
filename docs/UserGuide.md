@@ -251,9 +251,9 @@ In this section, you will find the commands that are available on the main page.
 
 You can use this command to **create a new budget**.
 
-When a new budget is created, you will see the new budget displayed as an entry on the current page.
+When you create a new budget, it will be displayed as a budget card in the list view.
 
- > ⚠ When you open NUSave for the first time, **the ListView will be populated with sample data**. 
+ > ⚠ When you open NUSave for the first time, **the list view will be populated with sample data**. 
  > Use the `clear` command to remove all sample data in NUSave.
  > You can create a budget after to see NUSave get populated with your entries!
 
@@ -278,13 +278,8 @@ Figure 5.2.1.1. Example of create budget command
 (Contributed by David)
 
 You can use this command to **delete an existing budget**.
-
-When a budget is deleted, you will see the budget being removed from the current page.
-
+ 
  > ⚠ Exercise caution when using the delete command as it is **irreversible**! <br>
-
- > ⚠ **You cannot use this command if main page is empty**. This is because there are no budgets created yet. 
- > You can only delete a budget if there are already existing budgets!
 
 Format: `delete INDEX`
 
@@ -297,6 +292,8 @@ Index | ❗Required | Index of the budget
 `delete 1`
 This will delete the budget with the index "1".
 
+When you delete a budget, the budget is removed immediately from the current page.
+
 ![Example of delete budget command](images/CommandScreenShots/5_2_2_1_deleteBudget.png)
 
 Figure 5.2.2.1. Example of delete budget command
@@ -306,7 +303,7 @@ Figure 5.2.2.1. Example of delete budget command
 
 You can use this command to **edit an existing budget**.
 
-When a budget is edited, you will see the information of the budget update immediately on the current page.
+When you edit a budget, the information of the budget updates immediately on the current page.
 
 Format: edit INDEX n/NAME p/THRESHOLD
 
@@ -316,8 +313,8 @@ Prefix | Parameters | Requirement | Comments
  n/ | NAME | ❕Optional | Name of the budget to be edited to
  p/ | THRESHOLD | ❕Optional | Threshold of the budget to be edited to
  
- >⚠️ Although both NAME and THRESHOLD fields are optional, you must have at least one of the Prefix and 
- > corresponding Parameters present. 
+ >⚠️ Although both NAME and THRESHOLD fields are optional, you must have at least one of the prefix and 
+ > corresponding parameters present. 
 
 ✏️ Example:
 
@@ -362,8 +359,7 @@ You can use this command to **list all budgets** in NUSave.
 
 This command is usually used to display all budgets after searching for specific budgets using the `find` command.
 
->⚠️ If the `find` command has not been used, the `list` command may not have any visible effect. 
-> This is because all budgets have already been displayed.
+> 📕️ If the `find` command has not been used, the `list` command may not have any visible effect.
 
 Format: `list`
 
@@ -389,7 +385,7 @@ You can sort your budgets based on two different type of sorts:
     
 2. Sort by name of the budget (Ordered in alphabetical order (case-insensitive))
 
-> ⚠ If there is **one budget or no budgets** in NUSave, the sort command has no visible effect.
+> 📕 If there is **one budget or no budgets** in NUSave, the sort command has no visible effect.
 
 Format: `sort TYPE`
 
@@ -414,7 +410,7 @@ You can use this command to **delete all existing budgets** in NUSave.
 This command is usually used to purge the sample data that is created when you launch the application for the first time.
 
 > ⚠️ Exercise caution when using the clear command as it is **irreversible**! <br>
-> ⚠️ If there are **no budgets** in NUSave, the clear command has no visible effect.
+> 📕️ If there are **no budgets** in NUSave, the clear command has no visible effect.
 
 Format: `clear`
 
@@ -451,17 +447,44 @@ This will open the budget with the index "1", based on the index as shown beside
 ![Example of open budget command](images/CommandScreenShots/5_2_8_openBudget2.png)
 
 ### 5.3. Budget page commands
+
 #### 5.3.1. Adding an expenditure: `add`
+
+(Contributed by Song Yu)
+
+You can use this command to **add a new expenditure**.
+
+You can add a new expenditure within a budget.
+When you add a new expenditure, it will be displayed as an expenditure card in the list view.
+
+ > ⚠ When you open a budget for the first time, **the list view will be populated with sample data**. Use the `delete` command
+ > to delete expenditure entries. 
+
+Format: `add n/NAME [p/PRICE] [t/TAG]`
+
+Prefix | Parameters | Requirement | Comments
+-------| ------------ | ------------- | ------
+ n/ | NAME | ❗Required | Name of the expenditure
+ p/ | PRICE | ❕Optional | Price of the expenditure
+ t/ | TAG | ❕Optional | Additional information about the expenditure
+ 
+✏️ Example:
+`add n/Graphic Calculator p/199.90 t/Math`
+
+This will add a new expenditure called "Graphic Calculator" with a price of $199.90 and a tag of "Math".
+
+![Example of add expenditure command](images/CommandScreenShots/6_2_1_1_createBudget.png)
+
+Figure 5.3.1.1. Example of add expenditure command
 
 #### 5.3.2. Deleting an expenditure: `delete`
 (Contributed by David)
 
 You can use this command to **delete an existing expenditure**.
 
-When an expenditure is deleted it will be removed from NUSave, and the 
-deletion will be reflected immediately in the list of expenditures on the budget page of NUSave.
+When you delete an expenditure, the expenditure is removed immediately from the current page.
 
- > ⚠ You cannot use this command if the budget page is empty. 
+ > ⚠ Exercise caution when using the delete command as it is **irreversible**! <br>
 
 Format: `delete INDEX`
 
@@ -484,7 +507,7 @@ Figure 5.3.2.1. Example of delete expenditure command
 
 You can use this command to **edit an existing expenditure**.
 
-When an expenditure is edited, you will see the information of the expenditure update immediately on the current page.
+When you edit an expenditure, the information of the expenditure updates immediately on the current page.
 
  > ⚠ You can only use this command on existing expenditures.  
 
@@ -548,7 +571,7 @@ You can use this command to **list all expenditures** in the current budget.
 
 This command is usually used to display all expenditures after searching for specific expenditures using the `find` command.
 
->⚠️ If the `find` command has not been used, the `list` command may not have any visible effect. This is because all expenditures have already been displayed.
+> 📕️ If the `find` command has not been used, the `list` command has no visible effect.
 
 Format: list
 
