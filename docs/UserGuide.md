@@ -194,6 +194,7 @@ Component     | Purpose
 Index         | The index used to reference this expenditure.
 Name          | The name of this expenditure.
 Creation Date | The date at which this expenditure is added.
+Tags          | The tags that this expenditure has been assigned.
 Price         | The price of this expenditure.
 
 ## 4. Quick Start
