@@ -30,7 +30,7 @@ public class AddExpenditureCommand extends Command {
             + "                            " + PREFIX_TAG + "TAG " + "(Optional)\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "White Collared Shirt " + PREFIX_PRICE + "25\n"
             + "                     " + COMMAND_WORD + " " + PREFIX_NAME + "Navy Blue Tie " + PREFIX_PRICE + "15 "
-            + PREFIX_TAG + "Apparel " + PREFIX_TAG + "Blue" + "\n";
+            + PREFIX_TAG + "Apparel " + "\n";
 
 
     public static final String MESSAGE_SUCCESS = "Added a new expenditure: %1$s";

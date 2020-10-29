@@ -2,6 +2,7 @@ package seedu.address.logic.commands.main;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ExitCommand;
 import seedu.address.model.Model;
 
 /**
@@ -16,15 +17,16 @@ public class HelpBudgetCommand extends Command {
             + "Usage: " + SYNTAX + "\n"
             + "Description: " + DESCRIPTION + "\n";
 
-    public static final String HELP_MESSAGE = ClearBudgetsCommand.MESSAGE_USAGE
-            + "\n" + CreateBudgetCommand.MESSAGE_USAGE
+    public static final String HELP_MESSAGE = CreateBudgetCommand.MESSAGE_USAGE
             + "\n" + DeleteBudgetCommand.MESSAGE_USAGE
             + "\n" + EditBudgetCommand.MESSAGE_USAGE
             + "\n" + FindBudgetCommand.MESSAGE_USAGE
-            + "\n" + HelpBudgetCommand.MESSAGE_USAGE
             + "\n" + ListBudgetCommand.MESSAGE_USAGE
+            + "\n" + SortBudgetCommand.MESSAGE_USAGE
+            + "\n" + ClearBudgetsCommand.MESSAGE_USAGE
             + "\n" + OpenBudgetCommand.MESSAGE_USAGE
-            + "\n" + SortBudgetCommand.MESSAGE_USAGE;
+            + "\n" + HelpBudgetCommand.MESSAGE_USAGE
+            + "\n" + ExitCommand.MESSAGE_USAGE;
 
     /**
      * Executes the help command.

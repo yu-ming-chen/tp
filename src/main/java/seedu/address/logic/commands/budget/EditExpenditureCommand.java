@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INDEX_OUT_OF_BOUNDS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -29,8 +28,7 @@ public class EditExpenditureCommand extends Command {
     public static final String COMMAND_WORD = "edit";
     public static final String SYNTAX = COMMAND_WORD + " INDEX "
             + "(" + PREFIX_NAME + "NAME) "
-            + "(" + PREFIX_PRICE + "PRICE) "
-            + "(" + PREFIX_TAG + "TAG)";
+            + "(" + PREFIX_PRICE + "PRICE) ";
     public static final String DESCRIPTION = "Edits an expenditure.";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n"
             + "Usage: " + SYNTAX + "\n"
@@ -38,10 +36,8 @@ public class EditExpenditureCommand extends Command {
             + "Parameters: INDEX\n"
             + "                            " + PREFIX_NAME + "NAME (Optional)\n"
             + "                            " + PREFIX_PRICE + "PRICE (Optional)\n"
-            + "                            " + PREFIX_TAG + "TAG (Optional)\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_NAME + "White Collared Shirt " + PREFIX_PRICE + "25\n"
-            + "                     " + COMMAND_WORD + " 2 " + PREFIX_PRICE + "15 "
-            + PREFIX_TAG + "Apparel " + PREFIX_TAG + "Blue" + "\n";
+            + "                     " + COMMAND_WORD + " 2 " + PREFIX_PRICE + "15 ";
 
     public static final String MESSAGE_SUCCESS = "Edited expenditure information.";
 
