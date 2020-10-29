@@ -78,7 +78,7 @@ to provide a detailed reference for veteran users on how to use the different co
 
 ## 2. About the User Guide
 
-In this section, you will learn what the different symbols and notations that can be found this user guide mean.
+In this section, you will learn what the different symbols and notations (that can be found this in user guide) mean.
 
 ### 2.1. Symbols
 (Contributed by Yu Ming)
