@@ -1,5 +1,10 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalExpenditures.MC_MUFFIN;
+import static seedu.address.testutil.TypicalExpenditures.MC_NUGGETS;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +18,7 @@ public class BudgetBuilder {
     public static final String DEFAULT_NAME = "BREAKFAST";
     public static final String DEFAULT_CREATED_ON = "2020-10-10";
     public static final Optional<Threshold> DEFAULT_THRESHOLD = Optional.of(new Threshold("100"));
-    public static final List<Expenditure> DEFAULT_EXPENDITURES = TypicalExpenditures.getTypicalExpenditures();
+    public static final List<Expenditure> DEFAULT_EXPENDITURES = new ArrayList<>(Arrays.asList(MC_MUFFIN, MC_NUGGETS));
 
     private Name name;
     private Date createdOn;

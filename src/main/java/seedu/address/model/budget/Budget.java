@@ -104,8 +104,25 @@ public class Budget implements Renderable {
 
         Budget otherBudget = (Budget) other;
         return otherBudget.getName().equals(getName())
+                && otherBudget.getCreatedOn().equals(getCreatedOn())
                 && otherBudget.getThreshold().equals(getThreshold())
                 && otherBudget.getExpenditures().equals(getExpenditures());
+    }
+
+    /**
+     * Returns true if both budget have the same name and the same created on field.
+     * This defines a weaker notion of equality between two budget.
+     */
+    public boolean isSameBudget(Budget otherBudget) {
+        if (otherBudget == this) {
+            return true;
+        }
+
+        return otherBudget != null
+                && otherBudget.getName().equals(getName())
+                && otherBudget.getCreatedOn().equals(getCreatedOn())
+                && (otherBudget.getThreshold().equals(getThreshold())
+                || otherBudget.getExpenditures().equals(getExpenditures()));
     }
 
     /**

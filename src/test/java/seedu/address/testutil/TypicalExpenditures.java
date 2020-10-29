@@ -14,9 +14,12 @@ public class TypicalExpenditures {
     public static final Expenditure MC_NUGGETS = new ExpenditureBuilder().withName("McNuggets").withPrice("4.00")
             .withCreatedOn("2020-10-12").build();
 
+    public static final List<Expenditure> EXPENDITURE_LIST =
+            new ArrayList<>(Arrays.asList(MC_MUFFIN, MC_NUGGETS, MC_SPICY));
+
     private TypicalExpenditures() {} // prevents instantiation
 
     public static List<Expenditure> getTypicalExpenditures() {
-        return new ArrayList<>(Arrays.asList(MC_MUFFIN, MC_NUGGETS, MC_SPICY));
+        return EXPENDITURE_LIST;
     }
 }
