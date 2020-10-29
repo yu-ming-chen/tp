@@ -548,7 +548,7 @@ Format: `find KEYWORD`
 
 Prefix | Parameters | Requirement | Comments
 -------| ---------- | ----------- | ------
-\-     | Word       | Required    | Keyword / Keyphrase to be searched
+\-     | `WORD`     | Required    | Keyword / Keyphrase to be searched
 
 You can use this command to find expenditures in the current budget whose names contain the given `KEYWORD`. 
 
