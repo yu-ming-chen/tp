@@ -14,16 +14,16 @@ public class SortExpenditureCommand extends BudgetPageCommand {
     public static final String SYNTAX = COMMAND_WORD;
     public static final String DESCRIPTION = "Sorts expenditure by name or time.";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n"
-            + "Usage: " + SYNTAX + " SORT TYPE\n"
+            + "Usage: " + SYNTAX + " TYPE\n"
             + "Description: " + DESCRIPTION + "\n"
-            + "Parameters: TIME or NAME\n"
+            + "Parameters: TYPE\n"
             + "Example: " + COMMAND_WORD + " time\n";
 
     public static final String MESSAGE_SUCCESS = "Sorted expenditures.";
 
     private final SortType sortType;
     /**
-     * Creates a SortBudegetCommand to to sort budgets by {@code sortType}.
+     * Creates a SortBudgetCommand to to sort budgets by {@code sortType}.
      * @param sortType the type of sort.
      */
     public SortExpenditureCommand(SortType sortType) {
