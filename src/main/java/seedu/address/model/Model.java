@@ -76,17 +76,21 @@ public interface Model {
 
     void sortBudgetsByCreatedDate() throws CommandException;
 
-    void deleteExpenditure(ExpenditureIndex expenditure) throws CommandException;
-
     void addExpenditure(Expenditure expenditure) throws CommandException;
+
+    void listBudgets() throws CommandException;
+
+    void deleteExpenditure(ExpenditureIndex expenditure) throws CommandException;
 
     void sortExpendituresByName();
 
-    String calculateExpenditureValue(BudgetIndex budgetIndex);
-
     void sortExpenditureByCreatedDate();
 
+    void listExpenditures() throws CommandException;
+
     void editExpenditure(Expenditure oldExpenditure, Expenditure editedExpenditure);
+
+    String calculateExpenditureValue(BudgetIndex budgetIndex);
 
     Page getPage();
 

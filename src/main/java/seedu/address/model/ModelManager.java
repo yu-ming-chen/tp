@@ -186,6 +186,14 @@ public class ModelManager implements Model {
         repopulateObservableList();
     }
 
+    @Override
+    public void listBudgets() throws CommandException {
+        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        if (filteredRenderables.size() == 0) {
+            throw new CommandException("You have no budgets recorded, try creating one with the create command!");
+        }
+    }
+
     //=========== Expenditures =======
 
     @Override
@@ -203,10 +211,10 @@ public class ModelManager implements Model {
 
     /**
      * Adds an expenditure to the specified budget and updates the list
-     * @param expenditure
+     * @param expenditure the expenditure to be added
      */
     @Override
-    public void addExpenditure(Expenditure expenditure) throws CommandException {
+    public void addExpenditure(Expenditure expenditure) {
         requireNonNull(expenditure);
         Optional<Integer> budgetIndex = this.stateManager.getBudgetIndex();
         nusave.addExpenditure(expenditure, this.stateManager.getBudgetIndex());
@@ -221,6 +229,14 @@ public class ModelManager implements Model {
         nusave.editExpenditure(oldExpenditure, editedExpenditure, budgetIndex);
         setTotalExpenditure(nusave.getTotalExpenditureValue(budgetIndex));
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+    }
+
+    @Override
+    public void listExpenditures() throws CommandException {
+        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        if (filteredRenderables.size() == 0) {
+            throw new CommandException("You have no expenditures recorded, try creating one with the add command!");
+        }
     }
 
     @Override
