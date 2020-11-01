@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
@@ -143,10 +144,52 @@ public class ParserUtil {
     public static Optional<Threshold> parseBudgetThreshold(String budgetThreshold) throws ParseException {
         requireNonNull(budgetThreshold);
         String trimmedThreshold = budgetThreshold.trim();
-        if (!Threshold.isValid(trimmedThreshold)) {
+        String parsedThreshold = parseToDouble(trimmedThreshold);
+        if (!Threshold.isValid(parsedThreshold)) {
             throw new ParseException(Threshold.MESSAGE_CONSTRAINTS);
         }
-        return new Threshold(trimmedThreshold).toOptional();
+        if (Threshold.isZero(parsedThreshold)) {
+            throw new ParseException(Threshold.NON_ZERO_CONSTRAINTS);
+        }
+        if (Threshold.isExceededValue(parsedThreshold)) {
+            throw new ParseException(Threshold.EXCEEDED_VALUE_ERROR);
+        }
+        return new Threshold(parsedThreshold).toOptional();
+    }
+
+    private static String parseToDouble(String value) {
+        assert ParserUtil.isDouble(value);
+        return Double.toString(Double.parseDouble(value));
+    }
+
+    /**
+     * Checks if input string is a valid double value or not.
+     * Overflowed input values are considered as invalid.
+     * @param input the input string.
+     * @return a boolean on whether the string is a valid double or not.
+     */
+    public static boolean isValidDouble(String input){
+        final BigDecimal MAX_DOUBLE = new BigDecimal(Double.MAX_VALUE);
+        try{
+            BigDecimal bigInput = new BigDecimal(input);
+            return bigInput.compareTo(MAX_DOUBLE) < 1;
+        }catch(NumberFormatException e){
+            return false;
+        }
+    }
+
+    /**
+     * Checks if input string can be parsed to Double.
+     * @param value input string.
+     * @return boolean on whether input string can be parsed to Double or not.
+     */
+    public static boolean isDouble(String value) {
+        try {
+            Double.parseDouble(value);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     /**

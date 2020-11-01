@@ -1,5 +1,6 @@
 package seedu.address.ui.statebinder;
 
+import static seedu.address.logic.parser.ParserUtil.isDouble;
 import static seedu.address.model.budget.Threshold.NO_THRESHOLD_MESSAGE;
 import static seedu.address.ui.InfoBox.DEFAULT_FONT;
 import static seedu.address.ui.InfoBox.PRIMARY_FONT_SIZE;
@@ -72,7 +73,7 @@ public class InfoBoxStateBinder implements StateBinder {
     private String handleSecondRowTextIsBudgetPage(String value, Logic logic) {
         setSecondRowFontSize(value);
         Optional<Threshold> threshold = logic.getThreshold();
-        assert isFloat(value);
+        assert isDouble(value);
         String outputValue = "$ " + value;
         if (threshold.isPresent()) {
             Text secondRowText = infoBox.getSecondRowText();
@@ -99,13 +100,13 @@ public class InfoBoxStateBinder implements StateBinder {
     private void setExpenditureColor(Text text, Optional<Threshold> threshold, String outputValue, String newValue) {
         assert threshold.isPresent();
         String thresholdValue = threshold.get().value;
-        assert isFloat(newValue);
-        assert isFloat(thresholdValue);
+        assert isDouble(newValue);
+        assert isDouble(thresholdValue);
 
-        Float newValueFloat = Float.parseFloat(newValue);
-        Float thresholdValueFloat = Float.parseFloat(thresholdValue);
+        Double newValueDouble = Double.parseDouble(newValue);
+        Double thresholdValueDouble = Double.parseDouble(thresholdValue);
 
-        if (newValueFloat > thresholdValueFloat) {
+        if (newValueDouble > thresholdValueDouble) {
             infoBox.getSecondRowText().setFill(Color.RED);
         } else {
             infoBox.getSecondRowText().setFill(Color.DARKGREEN);
@@ -114,15 +115,6 @@ public class InfoBoxStateBinder implements StateBinder {
 
     private void setClockColor() {
         infoBox.getSecondRowText().setFill(Color.rgb(0, 0, 0));
-    }
-
-    private boolean isFloat(String value) {
-        try {
-            Float.parseFloat(value);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
     }
 
     void bindThirdRowTextToPageState(Logic logic) {

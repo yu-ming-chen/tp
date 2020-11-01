@@ -63,13 +63,13 @@ public class Budget implements Renderable {
     }
 
     public String getTotalExpenditure() {
-        float resultFloat = 0;
+        Double resultDouble = 0.0;
         for (Expenditure e : expenditures) {
             Price price = e.getPrice();
             String value = price.value;
-            resultFloat += Float.parseFloat(value);
+            resultDouble += Double.parseDouble(value);
         }
-        return String.format("%.2f", Float.valueOf(resultFloat));
+        return String.format("%.2f", Double.valueOf(resultDouble));
     }
 
     public void addExpenditure(Expenditure expenditure) {

@@ -2,14 +2,21 @@ package seedu.address.model.budget;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.logic.parser.ParserUtil.isValidDouble;
 
 import java.util.Optional;
 
 public class Threshold {
     public static final String MESSAGE_CONSTRAINTS =
             "Thresholds can be empty or contain only numbers, and it can have at most 2 decimal places.";
+    public static final String NON_ZERO_CONSTRAINTS =
+            "Sorry! Thresholds cannot be 0! It can only exist in the range between 0 and $1,000,000, exclusive.";
+    public static final String EXCEEDED_VALUE_ERROR =
+            "Sorry! Thresholds cannot exceed $1,000,000. "
+                    + "It can only exist in the range between 0 and $1,000,000, exclusive.";
     public static final String VALIDATION_REGEX = "^$|[0-9]+(\\.[0-9]?[0-9])?$";
     public static final String NO_THRESHOLD_MESSAGE = "";
+    public static final double MAX_VALUE = 999999.99;
     public final String value;
 
     /**
@@ -26,6 +33,14 @@ public class Threshold {
      */
     public static boolean isValid(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public static boolean isZero(String test) {
+        return Double.parseDouble(test) == 0;
+    }
+
+    public static boolean isExceededValue(String test) {
+        return Double.parseDouble(test) > Threshold.MAX_VALUE && isValidDouble(test);
     }
 
     /**
