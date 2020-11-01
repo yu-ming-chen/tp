@@ -115,8 +115,15 @@ public class ParserUtil {
     public static Price parsePrice(String price) throws ParseException {
         requireNonNull(price);
         String trimmedPrice = price.trim();
-        if (!Price.isValid(trimmedPrice)) {
+        String parsedPrice = parseToDouble(trimmedPrice);
+        if (!Price.isValid(parsedPrice)) {
             throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+        }
+        if (Price.isZero(parsedPrice)) {
+            throw new ParseException(Price.NON_ZERO_CONSTRAINTS);
+        }
+        if (Price.isExceededValue(parsedPrice)) {
+            throw new ParseException(Price.EXCEEDED_VALUE_ERROR);
         }
         return new Price(trimmedPrice);
     }
