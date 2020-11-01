@@ -168,12 +168,13 @@ public class ParserUtil {
      * @param input the input string.
      * @return a boolean on whether the string is a valid double or not.
      */
-    public static boolean isValidDouble(String input){
-        final BigDecimal MAX_DOUBLE = new BigDecimal(Double.MAX_VALUE);
-        try{
+
+    public static boolean isValidDouble(String input) {
+        final BigDecimal maxDouble = new BigDecimal(Double.MAX_VALUE);
+        try {
             BigDecimal bigInput = new BigDecimal(input);
-            return bigInput.compareTo(MAX_DOUBLE) < 1;
-        }catch(NumberFormatException e){
+            return bigInput.compareTo(maxDouble) < 1;
+        } catch (NumberFormatException e) {
             return false;
         }
     }
