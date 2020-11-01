@@ -78,9 +78,13 @@ public interface Model {
 
     void addExpenditure(Expenditure expenditure) throws CommandException;
 
+    void findBudget(String searchTerm) throws CommandException;
+
     void listBudgets() throws CommandException;
 
     void deleteExpenditure(ExpenditureIndex expenditure) throws CommandException;
+
+    void findExpenditure(String searchTerm) throws CommandException;
 
     void sortExpendituresByName();
 

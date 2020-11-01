@@ -175,6 +175,23 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void findBudget(String searchTerm) throws CommandException {
+        Predicate<Renderable> predicate = renderable -> renderable.contains(searchTerm);
+        updateFilteredRenderableList(predicate);
+        if (filteredRenderables.size() == 0) {
+            throw new CommandException(String.format("No budgets matching '%s' were found.", searchTerm));
+        }
+    }
+
+    @Override
+    public void listBudgets() throws CommandException {
+        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        if (filteredRenderables.size() == 0) {
+            throw new CommandException("You have no budgets recorded, try creating one with the create command!");
+        }
+    }
+
+    @Override
     public void sortBudgetsByName() {
         nusave.sortBudgetListByName();
         repopulateObservableList();
@@ -184,14 +201,6 @@ public class ModelManager implements Model {
     public void sortBudgetsByCreatedDate() {
         nusave.sortBudgetListByCreatedDate();
         repopulateObservableList();
-    }
-
-    @Override
-    public void listBudgets() throws CommandException {
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
-        if (filteredRenderables.size() == 0) {
-            throw new CommandException("You have no budgets recorded, try creating one with the create command!");
-        }
     }
 
     //=========== Expenditures =======
@@ -236,6 +245,15 @@ public class ModelManager implements Model {
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
         if (filteredRenderables.size() == 0) {
             throw new CommandException("You have no expenditures recorded, try creating one with the add command!");
+        }
+    }
+
+    @Override
+    public void findExpenditure(String searchTerm) throws CommandException {
+        Predicate<Renderable> predicate = renderable -> renderable.contains(searchTerm);
+        updateFilteredRenderableList(predicate);
+        if (filteredRenderables.size() == 0) {
+            throw new CommandException(String.format("No expenditures matching '%s' were found.", searchTerm));
         }
     }
 
