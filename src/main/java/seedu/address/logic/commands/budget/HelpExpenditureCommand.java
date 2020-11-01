@@ -2,7 +2,7 @@ package seedu.address.logic.commands.budget;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.main.HelpBudgetCommand;
+import seedu.address.logic.commands.ExitCommand;
 import seedu.address.model.Model;
 
 /**
@@ -18,13 +18,14 @@ public class HelpExpenditureCommand extends Command {
             + "Description: " + DESCRIPTION + "\n";
 
     public static final String HELP_MESSAGE = AddExpenditureCommand.MESSAGE_USAGE
-            + "\n" + CloseBudgetCommand.MESSAGE_USAGE
             + "\n" + DeleteExpenditureCommand.MESSAGE_USAGE
             + "\n" + EditExpenditureCommand.MESSAGE_USAGE
             + "\n" + FindExpenditureCommand.MESSAGE_USAGE
-            + "\n" + HelpBudgetCommand.MESSAGE_USAGE
             + "\n" + ListExpenditureCommand.MESSAGE_USAGE
-            + "\n" + SortExpenditureCommand.MESSAGE_USAGE;
+            + "\n" + SortExpenditureCommand.MESSAGE_USAGE
+            + "\n" + CloseBudgetCommand.MESSAGE_USAGE
+            + "\n" + HelpExpenditureCommand.MESSAGE_USAGE
+            + "\n" + ExitCommand.MESSAGE_USAGE;
 
     /**
      * Executes the help command.
