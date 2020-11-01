@@ -7,6 +7,8 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
+import java.util.concurrent.ConcurrentMap;
+
 public class ListExpenditureCommand extends Command {
     public static final String COMMAND_WORD = "list";
     public static final String SYNTAX = COMMAND_WORD;
@@ -16,12 +18,18 @@ public class ListExpenditureCommand extends Command {
             + "Description: " + DESCRIPTION + "\n";
 
     public static final String MESSAGE_SUCCESS = "Updated list of expenditures to show all entries.";
+    public static final String EMPTY_EXPENDITURE_MESSAGE = "You have no expenditures recorded.";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         // sets predicate to always return true
         model.updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
-        return new CommandResult(MESSAGE_SUCCESS);
+        int expenditureSize = model.getFilteredRenderableList().size();
+        if (expenditureSize == 0) {
+            return new CommandResult(EMPTY_EXPENDITURE_MESSAGE);
+        } else {
+            return new CommandResult(MESSAGE_SUCCESS);
+        }
     }
 }

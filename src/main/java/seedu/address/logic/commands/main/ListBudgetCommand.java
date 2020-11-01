@@ -17,12 +17,18 @@ public class ListBudgetCommand extends Command {
             + "Description: " + DESCRIPTION + "\n";
 
     public static final String MESSAGE_SUCCESS = "Updated list of budgets to show all entries.\n";
+    public static final String EMPTY_BUDGET_MESSAGE = "You have no budgets recorded.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         // sets predicate to always return true
         model.updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
-        return new CommandResult(MESSAGE_SUCCESS);
+        int budgetSize = model.getFilteredRenderableList().size();
+        if (budgetSize == 0) {
+            return new CommandResult(EMPTY_BUDGET_MESSAGE);
+        } else {
+            return new CommandResult(MESSAGE_SUCCESS);
+        }
     }
 }
