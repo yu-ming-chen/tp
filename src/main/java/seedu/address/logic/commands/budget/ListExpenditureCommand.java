@@ -7,8 +7,6 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
-import java.util.concurrent.ConcurrentMap;
-
 public class ListExpenditureCommand extends Command {
     public static final String COMMAND_WORD = "list";
     public static final String SYNTAX = COMMAND_WORD;
