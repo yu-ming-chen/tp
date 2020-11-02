@@ -19,7 +19,7 @@ class JsonAdaptedBudgetTest {
 
     public static final String VALID_NAME = MC_DONALDS.getName().toString();
     public static final String VALID_THRESHOLD = MC_DONALDS.getThreshold().get().toString();
-    public static final List<JsonAdaptedExpenditure> VALID_EXPENDITURES = MC_DONALDS.getExpenditures().stream()
+    public static final List<JsonAdaptedExpenditure> VALID_EXPENDITURES = MC_DONALDS.getExpendituresList().stream()
             .map(JsonAdaptedExpenditure::new).collect(Collectors.toList());
 
     //    @Test

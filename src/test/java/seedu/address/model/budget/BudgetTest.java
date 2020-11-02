@@ -6,12 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.expenditure.Expenditure;
+import seedu.address.model.expenditure.ExpenditureList;
 import seedu.address.testutil.BudgetBuilder;
 import seedu.address.testutil.ExpenditureBuilder;
 import seedu.address.testutil.TypicalExpenditures;
@@ -25,8 +25,8 @@ class BudgetTest {
     private Expenditure mcNuggets = new ExpenditureBuilder().withName("McNuggets").withPrice("4.00")
             .withCreatedOn("2020-10-12").build();
 
-    private List<Expenditure> expenditureList =
-            new ArrayList<>(Arrays.asList(mcMuffin, mcNuggets, mcSpicy));
+    private ExpenditureList expenditureList =
+            new ExpenditureList(new ArrayList<>(Arrays.asList(mcMuffin, mcNuggets, mcSpicy)));
 
     private Budget mcDonalds = new BudgetBuilder().withName("McDonalds").withCreatedOn("2020-10-11")
             .withThreshold(Optional.of(new Threshold("1200")))

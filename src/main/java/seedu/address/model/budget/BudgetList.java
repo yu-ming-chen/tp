@@ -11,6 +11,7 @@ import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.expenditure.Expenditure;
+import seedu.address.model.expenditure.ExpenditureList;
 import seedu.address.model.sort.SortBudgetByCreateDate;
 import seedu.address.model.sort.SortBudgetByName;
 import seedu.address.state.budgetindex.BudgetIndex;
@@ -66,9 +67,14 @@ public class BudgetList implements Iterable<Budget> {
         budgets.remove(toRemove);
     }
 
-    public List<Expenditure> getExpenditure(int index) {
+    public ExpenditureList getExpenditure(int index) {
         Budget budget = budgets.get(index);
         return budget.getExpenditures();
+    }
+
+    public List<Expenditure> getExpenditureList(int index) {
+        Budget budget = budgets.get(index);
+        return budget.getExpendituresList();
     }
 
     public List<Budget> getBudgets() {

@@ -5,7 +5,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INDEX_OUT_OF_BOUNDS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 
-import java.util.List;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
@@ -19,7 +18,7 @@ import seedu.address.model.budget.Budget;
 import seedu.address.model.budget.Date;
 import seedu.address.model.budget.Name;
 import seedu.address.model.budget.Threshold;
-import seedu.address.model.expenditure.Expenditure;
+import seedu.address.model.expenditure.ExpenditureList;
 import seedu.address.state.budgetindex.BudgetIndex;
 
 public class EditBudgetCommand extends Command {
@@ -81,7 +80,7 @@ public class EditBudgetCommand extends Command {
         Name name = editBudgetDescriptor.getName().orElse(budgetToEdit.getName());
         Date createdOn = editBudgetDescriptor.getCreatedOn().orElse(budgetToEdit.getCreatedOn());
         Optional<Threshold> threshold = editBudgetDescriptor.getThreshold().orElse(budgetToEdit.getThreshold());
-        List<Expenditure> expenditures = budgetToEdit.getExpenditures();
+        ExpenditureList expenditures = new ExpenditureList(budgetToEdit.getExpendituresList());
 
         return new Budget(name, createdOn, threshold, expenditures);
     }
@@ -90,7 +89,7 @@ public class EditBudgetCommand extends Command {
         private Name name;
         private Date createdOn;
         private Optional<Threshold> threshold;
-        private List<Expenditure> expenditures;
+        private ExpenditureList expenditures;
 
         public EditBudgetDescriptor() {}
 
