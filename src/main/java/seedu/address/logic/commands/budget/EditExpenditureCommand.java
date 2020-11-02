@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INDEX_OUT_OF_BOUNDS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -36,7 +37,9 @@ public class EditExpenditureCommand extends Command {
             + "Parameters: INDEX\n"
             + "                            " + PREFIX_NAME + "NAME (Optional)\n"
             + "                            " + PREFIX_PRICE + "PRICE (Optional)\n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_NAME + "White Collared Shirt " + PREFIX_PRICE + "25\n"
+            + "                            " + PREFIX_TAG + "TAG (Optional)\n"
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_NAME + "White Collared Shirt " + PREFIX_PRICE + "25"
+            + PREFIX_TAG + "clothes\n"
             + "                     " + COMMAND_WORD + " 2 " + PREFIX_PRICE + "15 ";
 
     public static final String MESSAGE_SUCCESS = "Edited expenditure information.";
@@ -135,7 +138,7 @@ public class EditExpenditureCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+            this.tags = (!tags.isEmpty()) ? new HashSet<>(tags) : new HashSet<>();
         }
 
         /**
