@@ -88,9 +88,9 @@ The meaning for each symbol is as follows:
 
 Symbol | Meaning 
 -------| ------------ 
- ⚠   | This symbol indicates that there is something important for you to take note of.
+ ⚠️    | This symbol indicates that there is something important for you to take note of.
  📕    | This symbol indicates that there is additional information you may find useful.
- ✏   | This symbol indicates that an example is provided.
+ ✏️   | This symbol indicates that an example is provided.
 
 ### 2.2. Syntax format
 (Contributed by Yu Ming)
@@ -256,7 +256,7 @@ Format: `help`
 
 You can use this command to view a list of commands that are currently available.
 
-✏ Example: `help`
+✏️ Example: `help`
 
 This will cause the details of each available command along with its syntax to appear on the result display
 as seen in Figure 5.1.1.1 below:
@@ -272,7 +272,7 @@ Format: `exit`
 
 You can use this command to exit from the application.
 
-✏ Example: `exit`
+✏️ Example: `exit`
 
 This will exit the application.
 
@@ -294,7 +294,7 @@ You can use this command to create a new budget with the given `NAME` and `THRES
 
 When you create a new budget, it will be displayed as a budget card in the list view.
 
-✏ Example: `create n/Temasek Hall Student Council p/1200`
+✏️ Example: `create n/Temasek Hall Student Council p/1200`
 
 This will create a new budget called "Temasek Hall Student Council" with a threshold value of $1200
 as seen in Figure 5.2.1.1 below:
@@ -316,9 +316,9 @@ You can use this command to delete the budget at the given `INDEX`.
 
 When you delete a budget, its budget card will be removed from the list view.
  
- > ⚠ Exercise caution when using the delete command as it is irreversible!
+ > ⚠️ Exercise caution when using the delete command as it is irreversible!
 
-✏ Example: `delete 1`
+✏️ Example: `delete 1`
 
 This will delete the budget at index 1 as seen in Figure 5.2.2.1 below:
 
@@ -341,9 +341,9 @@ You can use this command to edit the budget at the given `INDEX`.
 
 When you edit a budget, the information on its budget card will be updated immediately.
 
- > ⚠ Although both `NAME` and `THRESHOLD` fields are optional, the command must include at least one of these prefixes.
+ > ⚠️ Although both `NAME` and `THRESHOLD` fields are optional, the command must include at least one of these prefixes.
 
-✏ Example: `edit 2 n/NUS Computing Club`
+✏️ Example: `edit 2 n/NUS Computing Club`
 
 This will rename the budget at index 2 to "NUS Computing Club" as seen in Figure 5.2.3.1 below:
 
@@ -370,7 +370,7 @@ When you find budgets, the list view will filter to only display budgets whose n
  > 
  > 📕 You can use the [list budgets command](#525-listing-budgets-list) to display all budgets again.
 
-✏ Example: `find Temasek Hall`
+✏️ Example: `find Temasek Hall`
 
 This will find all budgets with the keyword 'Temasek Hall' in the name of the budget as seen in Figure 5.2.4.1 below:
 
@@ -389,7 +389,7 @@ When you list budgets, the list view will display all budgets that are stored in
 
  > 📕 This command is usually used after using the [find budgets command](#524-finding-budgets-find).
 
-✏ Example: `list`
+✏️ Example: `list`
 
 This will display all budgets that are currently stored in NUSave as seen in Figure 5.2.5.1 below:
 
@@ -415,8 +415,12 @@ There are two ways you can sort your budgets:
 > 📕 Budgets that are created on the same date will be sorted in alphabetical order.
     
 - By their name in alphabetical order.
+> 📕 Newly created budgets will still be added to the top.
+>
+> 📕 Budgets will be resorted by creation date upon reopening of NUSave.
+>
 
-✏ Example: `sort name`
+✏️ Example: `sort name`
 
 This will sort the budgets (that are currently displayed) by their name in alphabetical order as seen in Figure 5.2.6.1 below:
 
@@ -433,9 +437,9 @@ You can use this command to delete all existing budgets.
 
 > 📕 This command is usually used to purge the sample data that is created when you launch the application for the first time.
 >
-> ⚠ Exercise caution when using the clear command as it is irreversible!
+> ⚠️ Exercise caution when using the clear command as it is irreversible!
 
-✏ Example: `clear`
+✏️ Example: `clear`
 
 This will delete all budgets that are currently stored in NUSave as seen in Figure 5.2.7.1 below:
 
@@ -456,7 +460,7 @@ You can use this command to open the budget at the given `INDEX`.
 
 When you open a budget, you will be directed to its budget page.
 
-✏ Example: `open 1`
+✏️ Example: `open 1`
 
 This will open the budget at index 1 as seen in Figure 5.2.8.1 below:
 
@@ -484,7 +488,7 @@ You can use this command to add a new expenditure with the given `PRICE` and opt
 
 When you add a new expenditure, it will be displayed as an expenditure card in the list view.
  
-✏ Example: `add n/Graphic Calculator p/199.90 t/Math`
+✏️ Example: `add n/Graphic Calculator p/199.90 t/Math`
 
 This will add a new expenditure called "Graphic Calculator" with a price of $199.90 and a "Math" tag as seen in 
 Figure 5.3.1.1. below:
@@ -506,9 +510,9 @@ You can use this command to delete the expenditure at the given `INDEX`.
 
 When you delete an expenditure, its expenditure card will be removed from the list view.
 
- > ⚠ Exercise caution when using the delete command as it is irreversible!
+ > ⚠️ Exercise caution when using the delete command as it is irreversible!
 
-✏ Example: `delete 2`
+✏️ Example: `delete 2`
 
 This will delete the budget at index 2 as seen in Figure 5.3.2.1 below:
 
@@ -531,9 +535,9 @@ You can use this command to edit the expenditure at the given `INDEX`.
 
 When you edit a expenditure, the information on its expenditure card will be updated immediately.
 
- > ⚠ Although both `NAME` and `PRICE` fields are optional, the command must include at least one of these prefixes.
+ > ⚠️ Although both `NAME` and `PRICE` fields are optional, the command must include at least one of these prefixes.
 
-✏ Example: `edit 1 n/Long Sleeve Shirt p/20`
+✏️ Example: `edit 1 n/Long Sleeve Shirt p/20`
 
 This will rename the expenditure at index 2 to "Long Sleeve Shirt" with price "$20" as seen in Figure 5.3.3.1 below:
 
@@ -560,7 +564,7 @@ When you find expenditures, the list view will filter to only display expenditur
  >
  > 📕 You can use the [list expenditures command](#535-listing-expenditures-list) to display all expenditures again.
 
-✏ Example: `find sock`
+✏️ Example: `find sock`
 
 This will find all expenditures with the keyword 'sock' in the name of the expenditure as seen in Figure 5.3.4.1 below:
 
@@ -579,7 +583,7 @@ When you list expenditures, the list view will display all expenditures belongin
 
  > 📕 This command is usually used after using the [find expenditure command](#534-finding-expenditures-find).
 
-✏ Example: `list`
+✏️ Example: `list`
 
 This will display all existing expenditures in the current budget as seen in Figure 5.3.5.1 below:
 
@@ -605,8 +609,12 @@ There are two ways you can sort your expenditures:
 > 📕 Budgets that are created on the same date will be sorted in alphabetical order.
     
 - By their name in alphabetical order.
+> 📕 Newly created expenditures will still be added to the top.
+>
+> 📕 Expenditures will be resorted by creation date upon reopening of NUSave.
+>
 
-✏ Example: `sort name`
+✏️ Example: `sort name`
 
 This will sort the expenditures (that are currently displayed) by their name in alphabetical order as seen in Figure 5.3.6.1 below:
 
@@ -623,7 +631,7 @@ You can use this command to close a budget.
 
 By closing a budget, you will now be directed to the main page.
 
-✏ Example: `close`
+✏️ Example: `close`
 
 This will close the current budget as seen in Figure 5.3.7.1 below:
 
@@ -632,6 +640,7 @@ This will close the current budget as seen in Figure 5.3.7.1 below:
 Figure 5.3.7.1. Example of using the close budget command.
 
 ## 6. Command Summary
+(Contributed by Yu Ming)
 
 ### 6.1. Universal commands
 
