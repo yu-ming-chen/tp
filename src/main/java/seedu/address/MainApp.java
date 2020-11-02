@@ -15,7 +15,6 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.Nusave;
@@ -41,11 +40,23 @@ public class MainApp extends Application {
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
+    private static final String GREETING_MESSAGE = "Welcome to NUSave!";
+    private static final String DATA_LOADED_SUCCESS_MESSAGE = "Successfully loaded existing data.\n";
+    private static final String DATA_NOT_FOUND_ERROR_MESSAGE = "Data file not found.\n"
+            + "Will be starting with sample data.\n";
+    private static final String WRONG_DATA_FORMAT_ERROR_MESSAGE = "Data file not in the correct format.\n"
+            + "Will be starting with an empty NUSave.\n";
+    private static final String UNABLE_TO_READ_DATA_ERROR_MESSAGE = "Error reading from data file.\n"
+            + "Will be starting with an empty NUSave.\n";
+
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
     protected Model model;
     protected Config config;
+
+    private String initialMessage = DATA_LOADED_SUCCESS_MESSAGE
+            + GREETING_MESSAGE;
 
     @Override
     public void init() throws Exception {
@@ -66,7 +77,7 @@ public class MainApp extends Application {
 
         logic = new LogicManager(model, storage);
 
-        ui = new UiManager(logic);
+        ui = new UiManager(logic, initialMessage);
     }
 
     /**
@@ -74,21 +85,24 @@ public class MainApp extends Application {
      * The data from the sample NUSave will be used instead if {@code storage}'s NUSave is not found,
      * or an empty NUSave will be used instead if errors occur when reading {@code storage}'s NUSave.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) throws CommandException {
+    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyNusave> nusaveOptional;
         ReadOnlyNusave initialData;
         try {
             nusaveOptional = storage.readNusave();
             if (nusaveOptional.isEmpty()) {
-                logger.info("Data file not found. Will be starting with a sample NUSave.");
+                logger.info(DATA_NOT_FOUND_ERROR_MESSAGE);
+                initialMessage = DATA_NOT_FOUND_ERROR_MESSAGE + GREETING_MESSAGE;
             }
             initialData = nusaveOptional.orElseGet(SampleDataUtil::getSampleNusave);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty NUSave");
+            logger.warning(WRONG_DATA_FORMAT_ERROR_MESSAGE);
             initialData = new Nusave();
+            initialMessage = WRONG_DATA_FORMAT_ERROR_MESSAGE + GREETING_MESSAGE;
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty NUSave");
+            logger.warning(UNABLE_TO_READ_DATA_ERROR_MESSAGE);
             initialData = new Nusave();
+            initialMessage = UNABLE_TO_READ_DATA_ERROR_MESSAGE + GREETING_MESSAGE;
         }
 
         return new ModelManager(initialData, userPrefs);

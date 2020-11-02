@@ -81,7 +81,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
+    public void fillInnerParts() {
         renderableListPanel = new RenderableListPanel(logic.getFilteredRenderableList());
         renderableListPanelPlaceholder.getChildren().add(renderableListPanel.getRoot());
 
@@ -98,6 +98,10 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    public void setResultDisplay(String message) {
+        resultDisplay.setFeedbackToUser(message);
     }
 
     private void bindTitleToState() {
@@ -196,7 +200,7 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    void bindThirdRowTextToPageState() {
+    private void bindThirdRowTextToPageState() {
         mainPageInfoBox.getThirdRowText().textProperty().bind(Bindings.createStringBinding(() -> {
             if (logic.isBudgetPage()) {
                 return handleThirdRowTextIsBudgetPage();
