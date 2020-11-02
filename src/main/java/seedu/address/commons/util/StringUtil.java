@@ -49,9 +49,9 @@ public class StringUtil {
     }
 
     /**
-     *
+     * Returns true is the string {code: s} is a numeric value.
      * @param s
-     * @return
+     * @return a boolean
      */
     public static boolean isNumeric(String s) {
         requireNonNull(s);
@@ -64,9 +64,9 @@ public class StringUtil {
     }
 
     /**
-     *
+     * Returns true if the string {code: s} is within the bounds of the maximum budget index.
      * @param s
-     * @return
+     * @return a boolean
      */
     public static boolean isNonOverFlow(String s) {
         requireNonNull(s);
