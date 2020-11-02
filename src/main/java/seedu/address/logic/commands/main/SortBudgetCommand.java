@@ -14,9 +14,9 @@ public class SortBudgetCommand extends MainPageCommand {
     public static final String SYNTAX = COMMAND_WORD;
     public static final String DESCRIPTION = "Sorts budget by name or time.";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n"
-            + "Usage: " + SYNTAX + " SORT TYPE\n"
+            + "Usage: " + SYNTAX + " TYPE\n"
             + "Description: " + DESCRIPTION + "\n"
-            + "Parameters: TIME or NAME\n"
+            + "Parameters: TYPE\n"
             + "Example: " + COMMAND_WORD + " time\n";
 
     public static final String MESSAGE_SUCCESS = "Sorted budgets.";

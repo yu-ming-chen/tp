@@ -1,4 +1,8 @@
-# User Guide
+---
+layout: page
+title: User Guide
+---
+
 ## Table of Contents
 1. [Overview](#1-overview)
     - [1.1. Introduction](#11-introduction)
@@ -30,7 +34,7 @@
         * [5.3.4. Finding expenditures: `find`](#534-finding-expenditures-find)
         * [5.3.5. Listing expenditures: `list`](#535-listing-expenditures-list)
         * [5.3.6. Sorting expenditures: `sort`](#536-sorting-expenditures-sort)
-        * [5.3.7. Closing a budget:`close`](#537-closing-a-budget-close)
+        * [5.3.7. Closing a budget: `close`](#537-closing-a-budget-close)
 6. [Command Summary](#6-command-summary)
     - [6.1. Universal commands](#61-universal-commands)
     - [6.2. Main page commands](#62-main-page-commands)
@@ -74,7 +78,7 @@ to provide a detailed reference for veteran users on how to use the different co
 
 ## 2. About the User Guide
 
-In this section, you will learn what the different symbols and notations that can be found this user guide mean.
+In this section, you will learn what the different symbols and notations (that can be found this in user guide) mean.
 
 ### 2.1. Symbols
 (Contributed by Yu Ming)
@@ -152,16 +156,17 @@ Component         | Purpose
 ----------------- | -------
 Index             | The index used to reference this budget.
 Name              | The name of this budget.
-Expenditure Count | The total number of expenditures stored in this budget.
+Expenditures Count | The total number of expenditures stored in this budget.
 
 ### 3.2. Budget Page View
 (Contributed by Wen Hao)
 
 You will be directed to a budget page when you use the [open budget command](#528-opening-a-budget-open).
 On this page, you can see the list of expenditures that are currently stored in the budget that you have opened.
+
 Here is how a budget page should look like:
 
-![Example of budget page view](images/GUILayoutScreenShots/3_2_1_budgetPage.png)
+![Example of budget page view](images/GuiLayoutScreenShots/3_2_1_budgetPage.png)
 
 Figure 3.2.1. Example of a budget page view.
 
@@ -178,7 +183,7 @@ List View | A **scrollable** panel that can hold multiple expenditure cards.
 
 Here is the breakdown of an individual expenditure card:
 
-![Example of expenditure card](images/GUILayoutScreenShots/3_2_2_expenditureCard.png)
+![Example of expenditure card](images/GuiLayoutScreenShots/3_2_2_expenditureCard.png)
 
 Figure 3.2.2. Example of an expenditure card.
 
@@ -189,6 +194,7 @@ Component     | Purpose
 Index         | The index used to reference this expenditure.
 Name          | The name of this expenditure.
 Creation Date | The date at which this expenditure is added.
+Tags          | The tags that this expenditure has been assigned.
 Price         | The price of this expenditure.
 
 ## 4. Quick Start
@@ -208,7 +214,7 @@ If this is your first time using NUSave, follow these simple steps to jump strai
 >
 > <ins>For Windows <a href="#7-glossary">OS</a> users:</ins>
 > 1. Launch [command prompt](#7-glossary) and navigate to the path of the home folder for NUSave.
-> 2. Enter the following command: `java -jar nusave.java` as seen in Figure 4.1 below:
+> 2. Enter the following command: `java -jar nusave.jar` as seen in Figure 4.1 below:
 >
 > ![Example of launching NUSave using command prompt](images/QuickStartScreenShots/4_1_commandPrompt.png)
 >
@@ -216,7 +222,7 @@ If this is your first time using NUSave, follow these simple steps to jump strai
 >
 > <ins>For Mac OS users:</ins>
 > 1. Launch [terminal](#7-glossary) and navigate to the path of the home folder for NUSave.
-> 2. Enter the following command: `java -jar nusave.java` as seen in Figure 4.2 below:
+> 2. Enter the following command: `java -jar nusave.jar` as seen in Figure 4.2 below:
 >
 > ![Example of launching NUSave using terminal](images/QuickStartScreenShots/4_2_terminal.png)
 >
@@ -343,7 +349,7 @@ This will rename the budget at index 2 to "NUS Computing Club" as seen in Figure
 
 ![Example of edit budget command](images/CommandScreenShots/5_2_3_1_editBudget.png)
 
-Figure 5.2.3.1. Example of edit budget command
+Figure 5.2.3.1. Example of using the edit budget command.
 
 #### 5.2.4. Finding budgets: `find`
 (Contributed by Chin Hui)
@@ -426,6 +432,7 @@ Format: `clear`
 You can use this command to delete all existing budgets.
 
 > 📕 This command is usually used to purge the sample data that is created when you launch the application for the first time.
+>
 > ⚠ Exercise caution when using the clear command as it is irreversible!
 
 ✏ Example: `clear`
@@ -465,12 +472,12 @@ The following commands in this subsection are only available on the budget page.
 
 (Contributed by Song Yu)
 
-Format: `add n/NAME [p/PRICE] [t/TAG]`
+Format: `add n/NAME p/PRICE [t/TAG]`
 
 Prefix | Parameters | Requirement | Comments
 -------| -----------| ------------| ------
  n/    | NAME       | Required    | Name of the expenditure
- p/    | PRICE      | Optional    | Price of the expenditure
+ p/    | PRICE      | Required    | Price of the expenditure
  t/    | TAG        | Optional    | Additional information about the expenditure
 
 You can use this command to add a new expenditure with the given `PRICE` and optional `TAG` within a budget.
@@ -541,7 +548,7 @@ Format: `find KEYWORD`
 
 Prefix | Parameters | Requirement | Comments
 -------| ---------- | ----------- | ------
-\-     | Word       | Required    | Keyword / Keyphrase to be searched
+\-     | `KEYWORD`     | Required    | Keyword / Keyphrase to be searched
 
 You can use this command to find expenditures in the current budget whose names contain the given `KEYWORD`. 
 
@@ -635,16 +642,16 @@ Figure 5.3.7.1. Example of using the close budget command.
 
 ### 6.2. Main page commands
 
-| **Action**        | **Format**                          | **Examples**                                                      |
-|-------------------|-------------------------------------|------------------------------------------------------------------ |
-| Create a budget   | `create n/NAME [p/THRESHOLD]`       | `create n/Daily Expenses`, <br>`create n/Project Work p/100`      |
-| Delete a budget   | `delete INDEX`                      | `delete 1`                                                        |
-| Edit a budget     | `edit INDEX [n/NAME] [p/THRESHOLD]` | `edit 1 n/Hall Council`, <br>`edit 2 n/NUS Computing Club p/1000` |
-| Find budgets      | `find KEYWORD` | `find Temasek`     |                                                                   |
-| List all budgets  | `list`                              | \-                                                                |
-| Sort all budgets  | `sort TYPE`                         | `sort time`, <br>`sort name`                                      |
-| Clear all budgets | `clear`                             | \-                                                                |
-| Open a budget     | `open INDEX`                        | `open 1`                                                          |
+| **Action**        | **Format**                          | **Examples**                                                     |
+|-------------------|-------------------------------------|------------------------------------------------------------------|
+| Create a budget   | `create n/NAME [p/THRESHOLD]`       | `create n/Daily Expenses`, <br>`create n/Project Work p/100`     |
+| Delete a budget   | `delete INDEX`                      | `delete 1`                                                       |
+| Edit a budget     | `edit INDEX [n/NAME] [p/THRESHOLD]` | `edit 1 n/Hall Council`, <br>`edit 2 n/NUS Computing Club p/1000`|
+| Find budgets      | `find KEYWORD` | `find Temasek`     |                                                                  |
+| List all budgets  | `list`                              | \-                                                               |
+| Sort all budgets  | `sort TYPE`                         | `sort time`, <br>`sort name`                                     |
+| Clear all budgets | `clear`                             | \-                                                               |
+| Open a budget     | `open INDEX`                        | `open 1`                                                         |
 
 ### 6.3. Budget page commands
 

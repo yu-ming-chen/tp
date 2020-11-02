@@ -84,19 +84,21 @@ public class ModelManager implements Model {
 
     @Override
     public Path getNusaveFilePath() {
-        return null;
+        return userPrefs.getNusaveFilePath();
     }
 
     @Override
     public void setNusavePath(Path nusaveFilePath) {
-
+        requireNonNull(nusaveFilePath);
+        userPrefs.setNusaveFilePath(nusaveFilePath);
     }
 
     //=========== Nusave =======
 
     @Override
     public void setNusave(ReadOnlyNusave nusave) {
-
+        requireNonNull(nusave);
+        this.nusave.resetData(nusave);
     }
 
     @Override
@@ -203,6 +205,7 @@ public class ModelManager implements Model {
      * Adds an expenditure to the specified budget and updates the list
      * @param expenditure
      */
+    @Override
     public void addExpenditure(Expenditure expenditure) throws CommandException {
         requireNonNull(expenditure);
         Optional<Integer> budgetIndex = this.stateManager.getBudgetIndex();
@@ -317,6 +320,10 @@ public class ModelManager implements Model {
     @Override
     public void setBudgetIndex(BudgetIndex budgetIndex) {
         this.stateManager.setBudgetIndex(budgetIndex);
+    }
+
+    public Optional<Integer> getBudgetIndex() {
+        return this.stateManager.getBudgetIndex();
     }
 
     @Override

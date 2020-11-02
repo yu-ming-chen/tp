@@ -1,5 +1,8 @@
 package seedu.address.state;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Optional;
@@ -25,6 +28,7 @@ public class StateManager implements State {
      * @param pageTitle Title of the current page.
      */
     public StateManager(BudgetIndex budgetIndex, Page currentPage, String pageTitle) {
+        requireAllNonNull(budgetIndex, currentPage, pageTitle);
         this.budgetIndex = budgetIndex;
         this.currentPage = currentPage;
         this.pageTitle = pageTitle;
@@ -82,6 +86,7 @@ public class StateManager implements State {
 
     @Override
     public void setPage(Page page) {
+        requireNonNull(page);
         this.currentPage = page;
         if (page == Page.BUDGET) {
             setIsBudgetPage(true);
@@ -92,16 +97,19 @@ public class StateManager implements State {
 
     @Override
     public void setTotalExpenditure(String expenditure) {
+        requireNonNull(expenditure);
         this.mainPageInfoBoxSecondRowProp.setValue(expenditure);
     }
 
     @Override
     public void setBudgetIndex(BudgetIndex index) {
+        requireNonNull(index);
         this.budgetIndex = index;
     }
 
     @Override
     public void setPageName(String pageTitle) {
+        requireNonNull(pageTitle);
         this.pageTitle = pageTitle;
     }
 }
