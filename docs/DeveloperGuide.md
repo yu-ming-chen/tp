@@ -8,17 +8,51 @@ title: Developer Guide
 - [2. Setting Up](#2-setting-up)
 - [3. Design](#3-design)
     * [3.1. Architecture](#31-architecture)
-    * [3.2. UI Component](#32-ui-component)
-    * [3.3. Logic Component](#33-logic-component)
-    * [3.4. Model Component](#34-model-component)
-    * [3.5. State Component](#35-state-component)
-    * [3.6. Storage Component](#36-storage-component)  
+    * [3.2. Components](#32-Components)
+        * [3.2.1 UI Component](#321-ui-component)
+        * [3.2.2 Logic Component](#32-logic-component)
+        * [3.2.3 Model Component](#323-model-component)
+        * [3.2.4 State Component](#324-state-component)
+        * [3.2.5 Storage Component](#325-storage-component)
+    * [3.3. Interaction Between Components](#33-interaction-between-components)
+    * [3.4. Commons Classes](#34-commons-classes)
 - [4. Implementation](#4-implementation)
-    * [4.1. Main Page View](#41-main-page-view)
-        * [4.1.1 Implementation of Create Budget Command](#411-implementation-of-create-budget-command)
-- [5. Documentation](#5-documentation)
-- [6. Testing](#6-testing)
-- [7. Dev Ops](#7-dev-ops)
+    * [4.1. State](#41-state)
+    * [4.2. Parsers](#42-Parsers)
+        * [4.2.1. PageParsers](#421-page-parsers)
+        * [4.2.2. CommandParsers](#422-command-parsers)
+        * [4.2.3. Interaction Between Parsers](#423-interaction-between-parsers)
+    * [4.3. Commands](#43-commands)
+        * [4.3.1. Budget Commands](#431-budget-commands)
+            * [4.3.1.1. Create Budget](#4311-create-budget)
+            * [4.3.1.2. Edit Budget](#4312-edit-budget)
+            * [4.3.1.3. Delete Budget](#4313-delete-budget)
+        * [4.3.2. Expenditure Commands](#432-expenditure-commands)
+            * [4.3.2.1. Create Expenditure](#4321-create-expenditure)
+            * [4.3.2.2. Edit Expenditure](#4322-edit-expenditure)
+            * [4.3.2.3. Delete Expenditure](#4323-delete-expenditure)
+        * [4.3.3. Sort Commands](#433-sort-commands)
+        * [4.3.4. Find & List Commands](#434-find--list-commands)
+        * [4.3.5. Universal Commands](#435-universal-commands)
+            * [4.3.5.1. Help](#4351-help)
+            * [4.3.5.2. Exit](#4352-exit)
+    * [4.4. UI](#44-ui)
+        * [4.4.1. ListView Rendering](#441-listview-rendering)
+        * [4.4.2. Dynamic Updating](#442-dynamic-updating)
+            * [4.4.2.1. Title](#4421-title)
+            * [4.4.2.2. Info Box - Between States](#4422-info-box---between-states)
+            * [4.4.2.3. Info Box - Total Expenditure](#4423-info-box---total-expenditure)
+    * [5. Guides](#5-guides)
+        * [5.1. Documentation](#51-documentation)
+        * [5.2. Testing](#52-testing)
+        * [5.3. Logging](#53-logging)
+        * [5.4. Configuration](#54-configuration)
+        * [5.5. DevOps](#55-devops)
+    * [6. Appendix](#6-appendix)
+        * [6.1. Requirements](#61-requirements)
+            * [6.1.1. Product Scope](#611-product-scope)
+            * [6.1.2. User Stories](#612-user-stories)
+            * [6.1.3. Use Cases](#613-use-cases)
 
 ## 1. Introduction
 NUSave is a budgeting tool made for **students staying on campus** who want to be able to track and manage their own
@@ -84,7 +118,9 @@ issues the command `delete 1`.
 
 The sections below give more details of each component:
 
-### 3.2. UI Component
+### 3.2. Components
+
+#### 3.2.1. UI Component
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API**: `Ui.java`
@@ -99,7 +135,7 @@ The `UI` component:
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### 3.3. Logic Component
+#### 3.2.2. Logic Component
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API**: `Logic.java`
@@ -114,7 +150,7 @@ the command execution is encapsulated as a `CommandResult` object which is passe
 The ***Sequence Diagram*** given above represents the interactions within the `Logic` component for the
 `execute("delete 1")` API call.
 
-### 3.4. Model Component
+#### 3.2.3. Model Component
 (Contributed by Chin Hui)
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 Figure 3.4.1: Structure of the model component.
@@ -149,7 +185,7 @@ The `Expenditure`:
 * Implements the Renderable interface and can thus be stored in the FilteredList.
 * Contains a `Name`, `Date`, `Price` and `Set<Tag>`.
 
-### 3.5. State Component
+#### 3.2.4. State Component
  (Contributed by Song Yu)
  
  ***API***: `State.java`
@@ -175,7 +211,7 @@ The `Expenditure`:
  Figure 3.5.1: Structure of the state component.
  
 
-### 3.6. Storage Component
+#### 3.2.5. Storage Component
 (Contributed by Wen Hao)
 
 **API** : `Storage.java`
@@ -202,12 +238,28 @@ In order for them to be recognised by the Jackson API, NUSave data objects (such
 converted into POJOs. Figure 3.6.2 depicts how the respective POJO classes for each of the data objects interact with
 one another.
 
-### Common Classes
+### 3.3. Interaction Between Components
+
+### 3.4. Commons Classes
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 ## 4. Implementation
-### 4.1 Main page view
-#### 4.1.1 Implementation of Create Budget Command
+
+### 4.1. State
+
+### 4.2. Parsers
+
+#### 4.2.1. Page Parsers
+
+#### 4.2.2. Command Parsers
+
+#### 4.2.3. Interaction Between Parsers
+
+### 4.3. Commands
+
+#### 4.3.1. Budget Commands
+
+##### 4.3.1.1. Create Budget
 (Contributed by Yu Ming)
 
 The following Sequence Diagram shows the interaction between the `Logic` component and `Model` component of NUSave 
@@ -234,7 +286,9 @@ object created into NUSave.
 With the above sequence, a budget will be successfully created by the user in his NUSave application, and it will be
 reflected on the user interface.
 
-#### 4.1.2 Implementation of Delete Budget Command
+##### 4.3.1.2. Edit Budget
+
+##### 4.3.1.3. Delete Budget
 (Contributed by David)
 
 The following sequence diagram shows the interactions between the `Logic`, `State` and `Model` components of NUSave,
@@ -260,16 +314,59 @@ delete the `Budget` object within NUSave.
 With the above sequence, a budget will be successfully deleted by the user in his NUSave application, and it will be
 reflected on the user interface.
 
-## 5. Documentation
+#### 4.3.2. Expenditure Commands
+
+##### 4.3.2.1. Create Expenditure
+
+##### 4.3.2.2. Edit Expenditure
+
+##### 4.3.2.3. Delete Expenditure
+
+#### 4.3.3. Sort Commands
+
+#### 4.3.4. Find & List Commands
+
+#### 4.3.5. Universal Commands
+
+##### 4.3.5.1. Help
+
+##### 4.3.5.2. Exit
+
+### 4.4. UI
+
+#### 4.4.1. ListView Rendering
+
+#### 4.4.2. Dynamic Updating
+
+##### 4.4.2.1. Title
+
+##### 4.4.2.2. Info Box - Between States
+
+##### 4.4.2.3. Info Box - Total Expenditure
+
+## 5. Guides
+
+### 5.1. Documentation
 * [Documentation guide](Documentation.md)
 
-## 6. Testing
+### 5.2. Testing
 * [Testing guide](Testing.md)
 
-## 7. Dev Ops
+### 5.3. Logging
+* [Logging guide](Logging.md)
+
+### 5.4. Configuration
+* [Configuration guide](Configuration.md)
+
+### 5.5. DevOps
 * [Dev Ops guide](DevOps.md)
 
-## Appendix
+## 6. Appendix
+
+### 6.1. Requirements
+
+#### 6.1.1. Product Scope
+
 **Target User Profile:**
 
 * students staying on campus
@@ -284,7 +381,7 @@ reflected on the user interface.
 * allows users to keep track of their budgets on a centralised platform
 
 
-### User Stories
+#### 6.1.2. User Stories
 Priorities: 
 * High (must have) - `* * *` 
 * Medium (nice to have) - `* *`
@@ -300,6 +397,8 @@ Priorities:
 | `* * *`  | user                                       | add an expenditure             | add a new expenditure to a budget                                      |
 | `* * *`  | user                                       | delete an expenditure          | remove an expenditure that I no longer need                            |
 | `* *`    | user                                       | find an expenditure by name    | locate an expenditure easily                                           |
+
+#### 6.1.3. Use Cases
 
 ### Non-Functional Requirements
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
