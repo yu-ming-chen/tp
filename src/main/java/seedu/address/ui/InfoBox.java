@@ -5,13 +5,16 @@ import java.util.Calendar;
 
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+public class InfoBox extends UiPart<Region> {
+    public static final int PRIMARY_FONT_SIZE = 30;
+    public static final int SECONDARY_FONT_SIZE = 23;
+    public static final int SECOND_ROW_MAX_LENGTH = 7;
+    public static final Font DEFAULT_FONT = Font.font("Doppio One Regular", PRIMARY_FONT_SIZE);
 
-
-public class MainPageInfoBox extends UiPart<Region> {
-
-    private static final String FXML = "MainPageInfoBox.fxml";
+    private static final String FXML = "InfoBox.fxml";
 
     @javafx.fxml.FXML
     private StackPane datePane;
@@ -35,10 +38,10 @@ public class MainPageInfoBox extends UiPart<Region> {
 
 
     /**
-     * Creates a new MainPageInfoBox.
+     * Creates a new InfoBox.
      *
      */
-    public MainPageInfoBox() {
+    public InfoBox() {
         super(FXML);
         setMainPageInfoBoxText();
     }

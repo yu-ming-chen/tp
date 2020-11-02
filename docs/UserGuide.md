@@ -472,12 +472,12 @@ The following commands in this subsection are only available on the budget page.
 
 (Contributed by Song Yu)
 
-Format: `add n/NAME [p/PRICE] [t/TAG]`
+Format: `add n/NAME p/PRICE [t/TAG]`
 
 Prefix | Parameters | Requirement | Comments
 -------| -----------| ------------| ------
  n/    | NAME       | Required    | Name of the expenditure
- p/    | PRICE      | Optional    | Price of the expenditure
+ p/    | PRICE      | Required    | Price of the expenditure
  t/    | TAG        | Optional    | Additional information about the expenditure
 
 You can use this command to add a new expenditure with the given `PRICE` and optional `TAG` within a budget.
@@ -642,16 +642,16 @@ Figure 5.3.7.1. Example of using the close budget command.
 
 ### 6.2. Main page commands
 
-| **Action**        | **Format**                          | **Examples**                                                      |
-|-------------------|-------------------------------------|------------------------------------------------------------------ |
-| Create a budget   | `create n/NAME [p/THRESHOLD]`       | `create n/Daily Expenses`, <br>`create n/Project Work p/100`      |
-| Delete a budget   | `delete INDEX`                      | `delete 1`                                                        |
-| Edit a budget     | `edit INDEX [n/NAME] [p/THRESHOLD]` | `edit 1 n/Hall Council`, <br>`edit 2 n/NUS Computing Club p/1000` |
-| Find budgets      | `find KEYWORD` | `find Temasek`     |                                                                   |
-| List all budgets  | `list`                              | \-                                                                |
-| Sort all budgets  | `sort TYPE`                         | `sort time`, <br>`sort name`                                      |
-| Clear all budgets | `clear`                             | \-                                                                |
-| Open a budget     | `open INDEX`                        | `open 1`                                                          |
+| **Action**        | **Format**                          | **Examples**                                                     |
+|-------------------|-------------------------------------|------------------------------------------------------------------|
+| Create a budget   | `create n/NAME [p/THRESHOLD]`       | `create n/Daily Expenses`, <br>`create n/Project Work p/100`     |
+| Delete a budget   | `delete INDEX`                      | `delete 1`                                                       |
+| Edit a budget     | `edit INDEX [n/NAME] [p/THRESHOLD]` | `edit 1 n/Hall Council`, <br>`edit 2 n/NUS Computing Club p/1000`|
+| Find budgets      | `find KEYWORD` | `find Temasek`     |                                                                  |
+| List all budgets  | `list`                              | \-                                                               |
+| Sort all budgets  | `sort TYPE`                         | `sort time`, <br>`sort name`                                     |
+| Clear all budgets | `clear`                             | \-                                                               |
+| Open a budget     | `open INDEX`                        | `open 1`                                                         |
 
 ### 6.3. Budget page commands
 
