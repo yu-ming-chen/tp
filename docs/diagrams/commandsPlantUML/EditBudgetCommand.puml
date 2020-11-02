@@ -10,7 +10,6 @@ participant "c:EditBudgetCommand" as EBC
 participant "result:CommandResult" as CR
 participant "e:EditBudgetDescriptor" as EBD
 participant "i:BudgetIndex" as BI
-
 end box
 
 box "Model" #LightYellow
@@ -36,7 +35,7 @@ create BI
 EBCP -> BI
 activate BI
 EBCP <-- BI : i
-deactivate BI 
+deactivate BI
 
 create EBD
 EBCP -> EBD
@@ -49,8 +48,10 @@ EBCP -> EBC : createBudgetCommand(i, e)
 activate EBC
 EBCP <-- EBC : c
 deactivate EBC
-destroy EBCP
 MPP <-- EBCP : c
+
+destroy EBCP
+
 deactivate EBCP
 LM <-- MPP : c
 deactivate MPP
@@ -85,6 +86,5 @@ LM <-- EBC: result
 deactivate EBC
 [<-- LM
 deactivate LM
-
 
 @enduml

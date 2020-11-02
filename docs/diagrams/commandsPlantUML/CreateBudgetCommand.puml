@@ -39,8 +39,10 @@ CBCP -> CBC : createBudgetCommand(b)
 activate CBC
 CBCP <-- CBC : c
 deactivate CBC
-destroy CBCP
 MPP <-- CBCP : c
+
+destroy CBCP
+
 deactivate CBCP
 LM <-- MPP : c
 deactivate MPP
@@ -63,6 +65,5 @@ LM <-- CBC: result
 deactivate CBC
 [<-- LM
 deactivate LM
-
 
 @enduml

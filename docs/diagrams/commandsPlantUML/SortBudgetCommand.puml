@@ -1,0 +1,62 @@
+@startuml
+skinparam Sequence {
+    MessageAlign center
+}
+box "Logic" #LightBlue
+participant ":LogicManager" as LM
+participant ":MainPageParser" as MPP
+participant ":SortBudgetCommandParser" as SBCP
+participant "c:SortBudgetCommand" as SBC
+participant "result:CommandResult" as CR
+
+end box
+
+box "Model" #LightYellow
+participant "m:Model" as M
+end box
+
+[-> LM : excute("sort name")
+activate LM
+LM -> MPP : parseCommand("sort name")
+activate MPP
+
+create SBCP
+MPP -> SBCP
+activate SBCP
+MPP <-- SBCP
+deactivate SBCP
+MPP -> SBCP : parse("sort name")
+activate SBCP
+
+create SBC
+SBCP -> SBC
+activate SBC
+SBCP <-- SBC : c
+deactivate SBC
+MPP <-- SBCP : c
+destroy SBCP
+
+deactivate SBCP
+LM <-- MPP : c
+deactivate MPP
+
+
+LM -> SBC: excute(m)
+activate SBC
+SBC -> M : sortBudgetsByName()
+activate M
+SBC <-- M
+deactivate M
+
+create CR
+SBC -> CR
+activate CR
+SBC <-- CR : result
+deactivate CR
+
+LM <-- SBC: result
+deactivate SBC
+[<-- LM
+deactivate LM
+
+@enduml
