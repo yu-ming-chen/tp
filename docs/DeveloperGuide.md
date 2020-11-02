@@ -206,7 +206,7 @@ The `Expenditure`:
  For example, a command like `list` will have different implementations, as a `ListExpenditureCommand` 
  or `ListBudgetCommand.`
  
- ![Structure of the storage component](images/StateClassDiagram.jpg)
+ ![Structure of the storage component](images/StateClassDiagram.png)
  
  Figure 3.5.1: Structure of the state component.
  
