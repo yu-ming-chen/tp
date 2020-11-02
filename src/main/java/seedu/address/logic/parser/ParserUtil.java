@@ -25,7 +25,8 @@ import seedu.address.state.expenditureindex.ExpenditureIndexManager;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-
+    public static final String MESSAGE_NON_INTEGER = "Index has to be an integer!";
+    public static final String MESSAGE_OVERFLOW = "Index is too large please stay within range of 1 - 100";
     public static final String MESSAGE_INVALID_INDEX = "Index has to be an integer greater than 0!";
 
     /**
@@ -83,10 +84,18 @@ public class ParserUtil {
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static BudgetIndex parseBudgetIndex(String oneBasedIndex) throws ParseException {
+        int MaxBudgetIndex = 100;
         String trimmedIndex = oneBasedIndex.trim();
+        if (!StringUtil.isNumeric(trimmedIndex)) {
+            throw new ParseException(MESSAGE_NON_INTEGER);
+        }
+        if (!StringUtil.isNonOverFlow(trimmedIndex)) {
+            throw new ParseException(MESSAGE_OVERFLOW);
+        }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
+
         return new BudgetIndexManager(Integer.parseInt(trimmedIndex) - 1);
     }
 

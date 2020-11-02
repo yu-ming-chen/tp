@@ -48,6 +48,27 @@ public class StringUtil {
         return t.getMessage() + "\n" + sw.toString();
     }
 
+    public static boolean isNumeric(String s) {
+        requireNonNull(s);
+        try {
+            Double.parseDouble(s);
+            return true;
+        } catch(NumberFormatException e){
+            return false;
+        }
+    }
+
+    public static boolean isNonOverFlow(String s) {
+        requireNonNull(s);
+        double initialInput = Double.parseDouble(s);
+        if (initialInput > 100 || initialInput < 1) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
     /**
      * Returns true if {@code s} represents a non-zero unsigned integer
      * e.g. 1, 2, 3, ..., {@code Integer.MAX_VALUE} <br>
@@ -57,7 +78,6 @@ public class StringUtil {
      */
     public static boolean isNonZeroUnsignedInteger(String s) {
         requireNonNull(s);
-
         try {
             int value = Integer.parseInt(s);
             return value > 0 && !s.startsWith("+"); // "+1" is successfully parsed by Integer#parseInt(String)
