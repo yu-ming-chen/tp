@@ -133,7 +133,9 @@ public class InfoBoxStateBinder implements StateBinder {
         if (thresholdOptional.isEmpty()) {
             return NO_THRESHOLD_MESSAGE;
         }
-        return "/" + thresholdOptional.get();
+        assert thresholdOptional.isPresent();
+        Double thresholdVal = Double.parseDouble(thresholdOptional.get().toString());
+        return "/" + String.format("%.2f", thresholdVal);
     }
 
     private String handleThirdRowTextIsMainPage() {

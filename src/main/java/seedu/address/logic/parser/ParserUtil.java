@@ -169,6 +169,9 @@ public class ParserUtil {
     public static Optional<Threshold> parseBudgetThreshold(String budgetThreshold) throws ParseException {
         requireNonNull(budgetThreshold);
         String trimmedThreshold = budgetThreshold.trim();
+        if (trimmedThreshold == "") {
+            return new Threshold(trimmedThreshold).toOptional();
+        }
         String parsedThreshold = parseToDouble(trimmedThreshold);
         if (!Threshold.isValid(parsedThreshold)) {
             throw new ParseException(Threshold.MESSAGE_CONSTRAINTS);
