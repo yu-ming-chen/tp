@@ -77,7 +77,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
+    public void fillInnerParts() {
         renderableListPanel = new RenderableListPanel(logic.getFilteredRenderableList());
         renderableListPanelPlaceholder.getChildren().add(renderableListPanel.getRoot());
 
@@ -101,6 +101,9 @@ public class MainWindow extends UiPart<Stage> {
         InfoBoxStateBinder infoBoxStateBinder = new InfoBoxStateBinder(infoBox);
         TitleStateBinder titleStateBinder = new TitleStateBinder(title);
         this.stateBinderList = new StateBinderList(infoBoxStateBinder, titleStateBinder);
+
+    public void setResultDisplay(String message) {
+        resultDisplay.setFeedbackToUser(message);
     }
 
     /**
