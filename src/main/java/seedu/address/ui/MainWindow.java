@@ -101,6 +101,7 @@ public class MainWindow extends UiPart<Stage> {
         InfoBoxStateBinder infoBoxStateBinder = new InfoBoxStateBinder(infoBox);
         TitleStateBinder titleStateBinder = new TitleStateBinder(title);
         this.stateBinderList = new StateBinderList(infoBoxStateBinder, titleStateBinder);
+    }
 
     public void setResultDisplay(String message) {
         resultDisplay.setFeedbackToUser(message);
