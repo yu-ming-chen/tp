@@ -9,11 +9,11 @@ title: Developer Guide
 - [3. Design](#3-design)
     * [3.1. Architecture](#31-architecture)
     * [3.2. Components](#32-Components)
-        * [3.2.1 UI Component](#32-ui-component)
-        * [3.2.2 Logic Component](#33-logic-component)
-        * [3.2.3 Model Component](#34-model-component)
-        * [3.2.4 State Component](#35-state-component)
-        * [3.2.5 Storage Component](#36-storage-component)
+        * [3.2.1 UI Component](#321-ui-component)
+        * [3.2.2 Logic Component](#32-logic-component)
+        * [3.2.3 Model Component](#323-model-component)
+        * [3.2.4 State Component](#324-state-component)
+        * [3.2.5 Storage Component](#325-storage-component)
     * [3.3. Interaction Between Components](#33-interaction-between-components)
     * [3.4. Commons Classes](#34-commons-classes)
 - [4. Implementation](#4-implementation)
@@ -25,14 +25,14 @@ title: Developer Guide
     * [4.3. Commands](#43-commands)
         * [4.3.1. Budget Commands](#431-budget-commands)
             * [4.3.1.1. Create Budget](#4311-create-budget)
-            * [4.3.1.2. Edit Budget](#4311-edit-budget)
-            * [4.3.1.3. Delete Budget](#4311-delete-budget)
+            * [4.3.1.2. Edit Budget](#4312-edit-budget)
+            * [4.3.1.3. Delete Budget](#4313-delete-budget)
         * [4.3.2. Expenditure Commands](#432-expenditure-commands)
             * [4.3.2.1. Create Expenditure](#4321-create-expenditure)
             * [4.3.2.2. Edit Expenditure](#4322-edit-expenditure)
             * [4.3.2.3. Delete Expenditure](#4323-delete-expenditure)
         * [4.3.3. Sort Commands](#433-sort-commands)
-        * [4.3.4. Find & List Commands](#434-find-&-list-commands)
+        * [4.3.4. Find & List Commands](#434-find--list-commands)
         * [4.3.5. Universal Commands](#435-universal-commands)
             * [4.3.5.1. Help](#4351-help)
             * [4.3.5.2. Exit](#4352-exit)
@@ -40,8 +40,8 @@ title: Developer Guide
         * [4.4.1. ListView Rendering](#441-listview-rendering)
         * [4.4.2. Dynamic Updating](#442-dynamic-updating)
             * [4.4.2.1. Title](#4421-title)
-            * [4.4.2.2. Info Box - Between States](#4422-info-box-between-states)
-            * [4.4.2.3. Info Box - Total Expenditure](#4423-info-box-total-expenditure)
+            * [4.4.2.2. Info Box - Between States](#4422-info-box---between-states)
+            * [4.4.2.3. Info Box - Total Expenditure](#4423-info-box---total-expenditure)
     * [5. Guides](#5-guides)
         * [5.1. Documentation](#51-documentation)
         * [5.2. Testing](#52-testing)
@@ -340,9 +340,9 @@ reflected on the user interface.
 
 ##### 4.4.2.1. Title
 
-##### 4.4.2.1. Info Box - Between States
+##### 4.4.2.2. Info Box - Between States
 
-##### 4.4.2.1. Info Box - Total Expenditure
+##### 4.4.2.3. Info Box - Total Expenditure
 
 ## 5. Guides
 
