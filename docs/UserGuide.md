@@ -635,53 +635,53 @@ Figure 5.3.7.1. Example of using the close budget command.
 
 ### 6.1. Universal commands
 
-| **Action**  | **Format** | **Examples** |
-|------------ |------------|--------------|
-| View Help   | `help`     | \-           |
-| Exit NUSave | `exit`     | \-           |
+| **Action**  | **Format** | **Examples** 
+|------------ |------------|--------------
+| View Help   | `help`     | \-           
+| Exit NUSave | `exit`     | \-           
 
 ### 6.2. Main page commands
 
-| **Action**        | **Format**                          | **Examples**                                                     |
-|-------------------|-------------------------------------|------------------------------------------------------------------|
-| Create a budget   | `create n/NAME [p/THRESHOLD]`       | `create n/Daily Expenses`, <br>`create n/Project Work p/100`     |
-| Delete a budget   | `delete INDEX`                      | `delete 1`                                                       |
-| Edit a budget     | `edit INDEX [n/NAME] [p/THRESHOLD]` | `edit 1 n/Hall Council`, <br>`edit 2 n/NUS Computing Club p/1000`|
-| Find budgets      | `find KEYWORD` | `find Temasek`     |                                                                  |
-| List all budgets  | `list`                              | \-                                                               |
-| Sort all budgets  | `sort TYPE`                         | `sort time`, <br>`sort name`                                     |
-| Clear all budgets | `clear`                             | \-                                                               |
-| Open a budget     | `open INDEX`                        | `open 1`                                                         |
+| **Action**        | **Format**                          | **Examples**                                                     
+|-------------------|-------------------------------------|------------------------------------------------------------------
+| Create a budget   | `create n/NAME [p/THRESHOLD]`       | `create n/Daily Expenses`, <br>`create n/Project Work p/100`     
+| Delete a budget   | `delete INDEX`                      | `delete 1`                                                       
+| Edit a budget     | `edit INDEX [n/NAME] [p/THRESHOLD]` | `edit 1 n/Hall Council`, <br>`edit 2 n/NUS Computing Club p/1000`
+| Find budgets      | `find KEYWORD` | `find Temasek`     |                                                                  
+| List all budgets  | `list`                              | \-                                                               
+| Sort all budgets  | `sort TYPE`                         | `sort time`, <br>`sort name`                                     
+| Clear all budgets | `clear`                             | \-                                                               
+| Open a budget     | `open INDEX`                        | `open 1`                                                         
 
 ### 6.3. Budget page commands
 
-| **Action**            | **Format**                      | **Examples**                                           |
-|-----------------------|---------------------------------|--------------------------------------------------------|
-| Add an expenditure    | `add n/NAME p/PRICE [t/TAG]`    | `add n/TShirt p/20`, <br>`add n/Breakfast p/10 t/food` |
-| Delete an expenditure | `delete INDEX`                  | `delete 1`                                             |
-| Edit an expenditure   | `edit INDEX [n/NAME] [p/PRICE]` | `edit 2 n/NikeShirt`, <br> `edit 2 p/28`               |
-| Find expenditures     | `find KEYWORD`                  | `find shirt`                                           |
-| List all expenditures | `list`                          | \-                                                     |
-| Sort all expenditures | `sort TYPE`                     | `sort time`, <br>`sort name`                           |
-| Close a budget        | `close`                         | \-                                                     |
+| **Action**            | **Format**                      | **Examples**                                           
+|-----------------------|---------------------------------|--------------------------------------------------------
+| Add an expenditure    | `add n/NAME p/PRICE [t/TAG]`    | `add n/TShirt p/20`, <br>`add n/Breakfast p/10 t/food` 
+| Delete an expenditure | `delete INDEX`                  | `delete 1`                                             
+| Edit an expenditure   | `edit INDEX [n/NAME] [p/PRICE]` | `edit 2 n/NikeShirt`, <br> `edit 2 p/28`               
+| Find expenditures     | `find KEYWORD`                  | `find shirt`                                           
+| List all expenditures | `list`                          | \-                                                     
+| Sort all expenditures | `sort TYPE`                     | `sort time`, <br>`sort name`                           
+| Close a budget        | `close`                         | \-                                                     
 
 ## 7. Glossary  
 (Contributed by Song Yu)
 
 You can find the meanings of some special keywords applicable to NUSave over here.
 
-| Term                        | Explanation                                                                                                                                                                    |
-|---------------------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| CLI                         | Short for **Command Line Interface**. CLI-based Applications (i.e. NUSave) focuses on processing commands in the form of text entered from the keyboard.                       |
-| GUI                         | Short for **Graphical User Interface**. GUIs work as the communication channel between the program and the user. Users interact with NUSave through the GUI, on their devices. |
-| OS                          | Short for **Operating Systems**. The underlying computer program that allows users to interact with a computer. It manages the hardware components and software resources of a computer for the user.           |
-| Command Prompt (Windows OS) | A CLI application proprietary to Windows OS devices, where users can run commands on a Windows device by entering typed commands.                                              |
-| Terminal (Mac OS)           | A CLI application proprietary to Mac OS devices, where users can run commands on a Mac device by entering typed commands.                                                      |
-| Expenditure                 | Refers to a single item to be recorded in NUSave.                                                                                                                              |
-| Budget                      | Refers to how NUSave stores related expenditures under one group. A budget can also hold additional information about this list of expenditures, such as the target limit of what is to be spent (i.e. threshold). |
-| Main Page                   | Refers to the page that displays the list of budgets that is stored in NUSave.                                                                                                 |
-| Budget Page                 | Refers to the page that displays the list of expenditures belonging in a specific budget that is stored in NUSave.                                                             |
-| Threshold                   | Refers to the target limit that can be spent in that budget.                                                                                                                   |
+| Term                        | Explanation                                                                                                                                                                    
+|---------------------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| CLI                         | Short for **Command Line Interface**. CLI-based Applications (i.e. NUSave) focuses on processing commands in the form of text entered from the keyboard.                       
+| GUI                         | Short for **Graphical User Interface**. GUIs work as the communication channel between the program and the user. Users interact with NUSave through the GUI, on their devices. 
+| OS                          | Short for **Operating Systems**. The underlying computer program that allows users to interact with a computer. It manages the hardware components and software resources of a computer for the user.           
+| Command Prompt (Windows OS) | A CLI application proprietary to Windows OS devices, where users can run commands on a Windows device by entering typed commands.                                              
+| Terminal (Mac OS)           | A CLI application proprietary to Mac OS devices, where users can run commands on a Mac device by entering typed commands.                                                      
+| Expenditure                 | Refers to a single item to be recorded in NUSave.                                                                                                                              
+| Budget                      | Refers to how NUSave stores related expenditures under one group. A budget can also hold additional information about this list of expenditures, such as the target limit of what is to be spent (i.e. threshold). 
+| Main Page                   | Refers to the page that displays the list of budgets that is stored in NUSave.                                                                                                 
+| Budget Page                 | Refers to the page that displays the list of expenditures belonging in a specific budget that is stored in NUSave.                                                             
+| Threshold                   | Refers to the target limit that can be spent in that budget.
 
 ## 8. FAQ
 **Q**: How do I transfer my data to another computer?
