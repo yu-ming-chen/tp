@@ -12,6 +12,7 @@ import seedu.address.model.budget.Name;
 import seedu.address.model.budget.Threshold;
 import seedu.address.model.expenditure.Date;
 import seedu.address.model.expenditure.Expenditure;
+import seedu.address.model.expenditure.ExpenditureList;
 import seedu.address.model.expenditure.Price;
 import seedu.address.model.tag.Tag;
 
@@ -24,35 +25,35 @@ public class SampleDataUtil {
             new Budget(new Name("Temasek Hall Basketball"),
                     new seedu.address.model.budget.Date("2020-10-10"),
                     new Threshold("500").toOptional(),
-                    new ArrayList<>(Arrays.asList(getSampleExpenditures()))),
+                    new ExpenditureList(new ArrayList<>(Arrays.asList(getSampleExpenditures())))),
             new Budget(new Name("Temasek Hall Marketing"),
                     new seedu.address.model.budget.Date("2020-10-11"),
                     new Threshold("1000").toOptional(),
-                    new ArrayList<>(Arrays.asList(getSampleExpenditures()))),
+                    new ExpenditureList(new ArrayList<>(Arrays.asList(getSampleExpenditures())))),
             new Budget(new Name("October Budget"),
                     new seedu.address.model.budget.Date("2020-10-10"),
                     new Threshold("300").toOptional(),
-                    new ArrayList<>(Arrays.asList(getSampleExpenditures()))),
+                    new ExpenditureList(new ArrayList<>(Arrays.asList(getSampleExpenditures())))),
             new Budget(new Name("Monthly Bills"),
                     new seedu.address.model.budget.Date("2020-10-12"),
                     new Threshold("200").toOptional(),
-                    new ArrayList<>(Arrays.asList(getSampleExpenditures()))),
+                    new ExpenditureList(new ArrayList<>(Arrays.asList(getSampleExpenditures())))),
             new Budget(new Name("NUS Hackers Monthly Budget"),
                     new seedu.address.model.budget.Date("2020-10-18"),
                     new Threshold("600").toOptional(),
-                    new ArrayList<>(Arrays.asList(getSampleExpenditures()))),
+                    new ExpenditureList(new ArrayList<>(Arrays.asList(getSampleExpenditures())))),
             new Budget(new Name("NUS Fintech Society Monthly Budget"),
                     new seedu.address.model.budget.Date("2020-10-15"),
                     new Threshold("900").toOptional(),
-                    new ArrayList<>(Arrays.asList(getSampleExpenditures()))),
+                    new ExpenditureList(new ArrayList<>(Arrays.asList(getSampleExpenditures())))),
             new Budget(new Name("Tembusu College Annual DnD Fund"),
                     new seedu.address.model.budget.Date("2020-10-11"),
                     new Threshold("400").toOptional(),
-                    new ArrayList<>(Arrays.asList(getSampleExpenditures()))),
+                    new ExpenditureList(new ArrayList<>(Arrays.asList(getSampleExpenditures())))),
             new Budget(new Name("Personal Expenditure"),
                     new seedu.address.model.budget.Date("2020-10-01"),
                     new Threshold("200").toOptional(),
-                    new ArrayList<>(Arrays.asList(getSampleExpenditures())))
+                    new ExpenditureList(new ArrayList<>(Arrays.asList(getSampleExpenditures()))))
         };
     }
 

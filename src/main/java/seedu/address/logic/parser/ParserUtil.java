@@ -26,7 +26,8 @@ import seedu.address.state.expenditureindex.ExpenditureIndexManager;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-
+    public static final String MESSAGE_NON_INTEGER = "Index has to be an integer!";
+    public static final String MESSAGE_OVERFLOW = "Index is too large please stay within range of 1 - 100";
     public static final String MESSAGE_INVALID_INDEX = "Index has to be an integer greater than 0!";
 
     /**
@@ -85,9 +86,16 @@ public class ParserUtil {
      */
     public static BudgetIndex parseBudgetIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
+        if (!StringUtil.isNumeric(trimmedIndex)) {
+            throw new ParseException(MESSAGE_NON_INTEGER);
+        }
+        if (!StringUtil.isNonOverFlow(trimmedIndex)) {
+            throw new ParseException(MESSAGE_OVERFLOW);
+        }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
+
         return new BudgetIndexManager(Integer.parseInt(trimmedIndex) - 1);
     }
 
@@ -103,6 +111,8 @@ public class ParserUtil {
         String trimmedName = expenditureName.trim();
         if (!seedu.address.model.expenditure.Name.isValidName(trimmedName)) {
             throw new ParseException(seedu.address.model.expenditure.Name.MESSAGE_CONSTRAINTS);
+        } else if (trimmedName.length() > 50) {
+            throw new ParseException("Expenditure Name is limited to 50 characters.");
         }
         return new seedu.address.model.expenditure.Name(trimmedName);
     }
@@ -139,6 +149,8 @@ public class ParserUtil {
         String trimmedName = budgetName.trim();
         if (!seedu.address.model.budget.Name.isValid(trimmedName)) {
             throw new ParseException(seedu.address.model.budget.Name.MESSAGE_CONSTRAINTS);
+        } else if (trimmedName.length() > 50) {
+            throw new ParseException("Budget Name is limited to 50 characters.");
         }
         return new seedu.address.model.budget.Name(trimmedName);
     }
@@ -208,11 +220,11 @@ public class ParserUtil {
      */
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValid(trimmedTag)) {
+        String trimmedLowerCaseTag = tag.trim().toLowerCase();
+        if (!Tag.isValid(trimmedLowerCaseTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Tag(trimmedLowerCaseTag);
     }
 
     /**
@@ -222,6 +234,9 @@ public class ParserUtil {
         requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
+            if (tagName.length() > 15) {
+                throw new ParseException("Each tag is limited to 15 characters.");
+            }
             tagSet.add(parseTag(tagName));
         }
         return tagSet;

@@ -48,6 +48,10 @@ public class AddExpenditureCommandParser implements Parser<AddExpenditureCommand
         Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Expenditure expenditure = new Expenditure(name, price, date, tags);
 
+        if (tags.size() > 3) {
+            throw new ParseException("Each expenditure can only have a maximum of 3 tags.");
+        }
+
         return new AddExpenditureCommand(expenditure);
     }
 

@@ -15,6 +15,7 @@ import seedu.address.model.budget.Date;
 import seedu.address.model.budget.Name;
 import seedu.address.model.budget.Threshold;
 import seedu.address.model.expenditure.Expenditure;
+import seedu.address.model.expenditure.ExpenditureList;
 
 /**
  * Jackson-friendly version of {@link Budget}.
@@ -48,7 +49,7 @@ public class JsonAdaptedBudget {
         name = source.getName().value;
         threshold = source.getThreshold().orElse(new Threshold("")).value;
         createdOn = source.getCreatedOn().value;
-        expenditures.addAll(source.getExpenditures().stream()
+        expenditures.addAll(source.getExpendituresList().stream()
                 .map(JsonAdaptedExpenditure::new)
                 .collect(Collectors.toList()));
     }
@@ -86,7 +87,7 @@ public class JsonAdaptedBudget {
         }
         final Date date = new Date(createdOn);
 
-        Budget budget = new Budget(budgetName, date, budgetThreshold, new ArrayList<Expenditure>());
+        Budget budget = new Budget(budgetName, date, budgetThreshold, new ExpenditureList());
 
         // converts each jsonAdaptedExpenditure into an Expenditure and adds them into the budget
 

@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.main;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RENDERABLES;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -21,8 +20,7 @@ public class ListBudgetCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        // sets predicate to always return true
-        model.updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        model.listBudgets();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
