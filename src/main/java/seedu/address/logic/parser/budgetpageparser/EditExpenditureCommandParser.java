@@ -33,12 +33,9 @@ public class EditExpenditureCommandParser implements Parser<EditExpenditureComma
         }
 
         ExpenditureIndex index;
-        try {
-            index = ParserUtil.parseExpenditureIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditExpenditureCommand.MESSAGE_USAGE));
-        }
+
+        index = ParserUtil.parseExpenditureIndex(argMultimap.getPreamble());
+
 
         EditExpenditureDescriptor editExpenditureDescriptor = new EditExpenditureDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
