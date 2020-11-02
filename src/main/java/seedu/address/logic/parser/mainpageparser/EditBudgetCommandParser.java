@@ -38,11 +38,9 @@ public class EditBudgetCommandParser implements Parser<EditBudgetCommand> {
         }
 
         BudgetIndex budgetIndex;
-        try {
-            budgetIndex = ParserUtil.parseBudgetIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditBudgetCommand.MESSAGE_USAGE));
-        }
+
+        budgetIndex = ParserUtil.parseBudgetIndex(argMultimap.getPreamble());
+
 
         EditBudgetDescriptor editBudgetDescriptor = new EditBudgetDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
