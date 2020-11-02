@@ -17,6 +17,7 @@ public class ExpenditureList {
     public ExpenditureList(List<Expenditure> expenditures) {
         this.expenditures = expenditures;
     }
+
     /**
      * Adds a expenditure to the list of budgets.
      */
@@ -25,16 +26,17 @@ public class ExpenditureList {
         expenditures.add(0, toAdd);
     }
 
-    public List<Expenditure> getExpenditures() {
-        return expenditures;
-    }
     public List<Expenditure> getExpendituresList() {
         return expenditures;
     }
+
     public int getExpenditureSize() {
         return expenditures.size();
     }
 
+    /**
+     * Get total value in the expenditure list.
+     */
     public String getTotalExpenditure() {
         Double resultDouble = 0.0;
         for (Expenditure e : expenditures) {
@@ -56,9 +58,16 @@ public class ExpenditureList {
         expenditures.set(index, editedExpenditure);
     }
 
+    /**
+     * Sort the expenditure list by name in alphabetical order.
+     */
     public void sortExpenditureListByName() {
         expenditures.sort(new SortExpendituresByName());
     }
+
+    /**
+     * Sort the expenditure list by Created date with latest on top.
+     */
     public void sortExpenditureListByCreateDate() {
         this.expenditures.sort(new SortExpenditureByCreateDate());
     }
