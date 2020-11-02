@@ -2,7 +2,9 @@ package seedu.address.logic.parser.budgetpageparser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.stream.Stream;
 
@@ -25,7 +27,7 @@ public class EditExpenditureCommandParser implements Parser<EditExpenditureComma
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRICE, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
-                && !arePrefixesPresent(argMultimap, PREFIX_PRICE) && !arePrefixesPresent(argMultimap, PREFIX_TAG)){
+                && !arePrefixesPresent(argMultimap, PREFIX_PRICE) && !arePrefixesPresent(argMultimap, PREFIX_TAG)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditExpenditureCommand.MESSAGE_USAGE));
         }
