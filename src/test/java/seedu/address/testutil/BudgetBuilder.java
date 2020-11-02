@@ -5,25 +5,25 @@ import static seedu.address.testutil.TypicalExpenditures.MC_NUGGETS;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 import seedu.address.model.budget.Budget;
 import seedu.address.model.budget.Date;
 import seedu.address.model.budget.Name;
 import seedu.address.model.budget.Threshold;
-import seedu.address.model.expenditure.Expenditure;
+import seedu.address.model.expenditure.ExpenditureList;
 
 public class BudgetBuilder {
     public static final String DEFAULT_NAME = "BREAKFAST";
     public static final String DEFAULT_CREATED_ON = "2020-10-10";
     public static final Optional<Threshold> DEFAULT_THRESHOLD = Optional.of(new Threshold("100"));
-    public static final List<Expenditure> DEFAULT_EXPENDITURES = new ArrayList<>(Arrays.asList(MC_MUFFIN, MC_NUGGETS));
+    public static final ExpenditureList DEFAULT_EXPENDITURES =
+            new ExpenditureList(new ArrayList<>(Arrays.asList(MC_MUFFIN, MC_NUGGETS)));
 
     private Name name;
     private Date createdOn;
     private Optional<Threshold> threshold;
-    private List<Expenditure> expenditures;
+    private ExpenditureList expenditures;
 
     /**
      * Creates a {@code BudgetBuilder} with a threshold using the default details.
@@ -79,7 +79,7 @@ public class BudgetBuilder {
     /**
      * Sets the {@code expenditures} of the {@code Budget} that we are building.
      */
-    public BudgetBuilder withExpenditures(List<Expenditure> expenditures) {
+    public BudgetBuilder withExpenditures(ExpenditureList expenditures) {
         this.expenditures = expenditures;
         return this;
     }

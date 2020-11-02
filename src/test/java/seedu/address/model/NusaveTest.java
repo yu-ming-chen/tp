@@ -6,12 +6,11 @@ import static seedu.address.testutil.TypicalBudgets.getTypicalNusave;
 import static seedu.address.testutil.TypicalExpenditures.getTypicalExpenditures;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.expenditure.Expenditure;
+import seedu.address.model.expenditure.ExpenditureList;
 import seedu.address.state.budgetindex.BudgetIndexManager;
 
 class NusaveTest {
@@ -44,18 +43,18 @@ class NusaveTest {
     @Test
     void addExpenditure() {
         nusave.resetData(getTypicalNusave());
-        List<Expenditure> list = getTypicalExpenditures();
-        nusave.addExpenditure(list.get(0), Optional.of(0));
-        assertEquals(nusave.getInternalList().get(0), list.get(0));
+        ExpenditureList list = getTypicalExpenditures();
+        nusave.addExpenditure(list.getExpendituresList().get(0), Optional.of(0));
+        assertEquals(nusave.getInternalList().get(0), list.getExpendituresList().get(0));
     }
 
     @Test
     void editExpenditure() {
         nusave.resetData(getTypicalNusave());
-        List<Expenditure> list = getTypicalExpenditures();
-        nusave.addExpenditure(list.get(0), Optional.of(0));
-        nusave.editExpenditure(list.get(0), list.get(1), Optional.of(0));
-        assertEquals(nusave.getInternalList().get(0), list.get(1));
+        ExpenditureList list = getTypicalExpenditures();
+        nusave.addExpenditure(list.getExpendituresList().get(0), Optional.of(0));
+        nusave.editExpenditure(list.getExpendituresList().get(0), list.getExpendituresList().get(1), Optional.of(0));
+        assertEquals(nusave.getInternalList().get(0), list.getExpendituresList().get(1));
     }
 
 

@@ -7,20 +7,20 @@ import java.util.Optional;
 
 import seedu.address.model.Renderable;
 import seedu.address.model.expenditure.Expenditure;
-import seedu.address.model.expenditure.Price;
+import seedu.address.model.expenditure.ExpenditureList;
 
 public class Budget implements Renderable {
     private final Name name;
     private final Date createdOn;
     private final Optional<Threshold> threshold;
-    private final List<Expenditure> expenditures;
+    private final ExpenditureList expenditures;
 
     /**
      *
      * @param name
      * @param expenditures
      */
-    public Budget(Name name, Date date, List<Expenditure> expenditures) {
+    public Budget(Name name, Date date, ExpenditureList expenditures) {
         requireAllNonNull(name, expenditures);
         this.name = name;
         this.createdOn = date;
@@ -34,7 +34,7 @@ public class Budget implements Renderable {
      * @param threshold
      * @param expenditures
      */
-    public Budget(Name name, Date date, Optional<Threshold> threshold, List<Expenditure> expenditures) {
+    public Budget(Name name, Date date, Optional<Threshold> threshold, ExpenditureList expenditures) {
         requireAllNonNull(name, expenditures, threshold);
         this.name = name;
         this.createdOn = date;
@@ -54,26 +54,23 @@ public class Budget implements Renderable {
         return threshold;
     }
 
-    public List<Expenditure> getExpenditures() {
+    public ExpenditureList getExpenditures() {
         return expenditures;
     }
 
+    public List<Expenditure> getExpendituresList() {
+        return expenditures.getExpendituresList();
+    }
     public int getExpenditureSize() {
-        return expenditures.size();
+        return expenditures.getExpenditureSize();
     }
 
     public String getTotalExpenditure() {
-        Double resultDouble = 0.0;
-        for (Expenditure e : expenditures) {
-            Price price = e.getPrice();
-            String value = price.value;
-            resultDouble += Double.parseDouble(value);
-        }
-        return String.format("%.2f", Double.valueOf(resultDouble));
+        return expenditures.getTotalExpenditure();
     }
 
     public void addExpenditure(Expenditure expenditure) {
-        expenditures.add(0, expenditure);
+        expenditures.add(expenditure);
     }
 
     /**
@@ -83,8 +80,7 @@ public class Budget implements Renderable {
      * @param editedExpenditure
      */
     public void editExpenditure(Expenditure oldExpenditure, Expenditure editedExpenditure) {
-        int index = expenditures.indexOf(oldExpenditure);
-        expenditures.set(index, editedExpenditure);
+        expenditures.editExpenditure(oldExpenditure, editedExpenditure);
     }
 
     @Override

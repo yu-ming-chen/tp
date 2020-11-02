@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -20,6 +19,7 @@ import seedu.address.model.budget.Budget;
 import seedu.address.model.budget.Date;
 import seedu.address.model.budget.Name;
 import seedu.address.model.budget.Threshold;
+import seedu.address.model.expenditure.ExpenditureList;
 
 
 public class CreateBudgetCommandParser implements Parser<CreateBudgetCommand> {
@@ -41,7 +41,7 @@ public class CreateBudgetCommandParser implements Parser<CreateBudgetCommand> {
         Date date = new Date(LocalDate.now().toString());
         Optional<Threshold> threshold = ParserUtil.parseBudgetThreshold(argMultimap.getValue(PREFIX_PRICE)
                 .orElse(""));
-        Budget budget = new Budget(name, date, threshold, new ArrayList<>());
+        Budget budget = new Budget(name, date, threshold, new ExpenditureList());
         return new CreateBudgetCommand(budget);
     }
 

@@ -12,8 +12,6 @@ import seedu.address.model.budget.Budget;
 import seedu.address.model.budget.BudgetList;
 import seedu.address.model.budget.Threshold;
 import seedu.address.model.expenditure.Expenditure;
-import seedu.address.model.sort.SortExpenditureByCreateDate;
-import seedu.address.model.sort.SortExpendituresByName;
 import seedu.address.state.State;
 import seedu.address.state.budgetindex.BudgetIndex;
 
@@ -137,7 +135,7 @@ public class Nusave implements ReadOnlyNusave {
     public void deleteExpenditure(Expenditure expenditure, Optional<Integer> budgetIndexOpt) {
         assert budgetIndexOpt.isPresent();
         int budgetIndex = budgetIndexOpt.get();
-        List<Expenditure> expenditureList = budgetList.getExpenditure(budgetIndex);
+        List<Expenditure> expenditureList = budgetList.getExpenditureList(budgetIndex);
         expenditureList.remove(expenditure);
         this.internalList.remove(expenditure);
     }
@@ -161,7 +159,7 @@ public class Nusave implements ReadOnlyNusave {
             assert state.getBudgetIndex().isPresent();
             int index = state.getBudgetIndex().get();
             assert index < budgetList.getSize();
-            this.internalList.setAll(budgetList.getExpenditure(index));
+            this.internalList.setAll(budgetList.getExpenditureList(index));
         } else if (state.isMain()) {
             // repopulate observable list with Budgets
             this.internalList.setAll(budgetList.getBudgets());
@@ -192,7 +190,7 @@ public class Nusave implements ReadOnlyNusave {
     public void sortExpendituresByName(State state) {
         assert state.getBudgetIndex().isPresent();
         int index = state.getBudgetIndex().get();
-        budgetList.getExpenditure(index).sort(new SortExpendituresByName());
+        budgetList.getExpenditure(index).sortExpenditureListByName();
     }
 
     /**
@@ -202,7 +200,7 @@ public class Nusave implements ReadOnlyNusave {
     public void sortExpendituresByCreateDate(State state) {
         assert state.getBudgetIndex().isPresent();
         int index = state.getBudgetIndex().get();
-        budgetList.getExpenditure(index).sort(new SortExpenditureByCreateDate());
+        budgetList.getExpenditure(index).sortExpenditureListByCreateDate();
     }
 
 }
