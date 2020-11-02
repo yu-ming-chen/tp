@@ -84,7 +84,6 @@ public class ParserUtil {
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static BudgetIndex parseBudgetIndex(String oneBasedIndex) throws ParseException {
-        int MaxBudgetIndex = 100;
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNumeric(trimmedIndex)) {
             throw new ParseException(MESSAGE_NON_INTEGER);

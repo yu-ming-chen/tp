@@ -48,16 +48,26 @@ public class StringUtil {
         return t.getMessage() + "\n" + sw.toString();
     }
 
+    /**
+     *
+     * @param s
+     * @return
+     */
     public static boolean isNumeric(String s) {
         requireNonNull(s);
         try {
             Double.parseDouble(s);
             return true;
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
     }
 
+    /**
+     *
+     * @param s
+     * @return
+     */
     public static boolean isNonOverFlow(String s) {
         requireNonNull(s);
         double initialInput = Double.parseDouble(s);
