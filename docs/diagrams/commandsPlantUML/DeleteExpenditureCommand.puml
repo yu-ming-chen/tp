@@ -1,0 +1,64 @@
+@startuml
+skinparam Sequence {
+    MessageAlign center
+}
+box "Logic" #LightBlue
+participant ":LogicManager" as LM
+participant ":BudgetPageParser" as BPP
+participant ":DeleteExpenditureCommandParser" as DECP
+participant "d:DeleteExpenditureCommand" as DEC
+participant ":result:CommandResult" as CR
+participant "i: ExpenditureIndex" as EI
+end box
+
+box "Model" #LightYellow
+participant "m:Model" as M
+end box
+
+[-> LM : execute("delete 1")
+activate LM
+LM -> BPP : parseCommand("delete 1")
+activate BPP
+
+create DECP
+BPP -> DECP
+activate DECP
+BPP <-- DECP
+deactivate DECP
+BPP -> DECP : parse("1")
+activate DECP
+
+create EI
+DECP -> EI
+activate EI
+DECP <-- EI
+deactivate EI
+
+create DEC
+DECP -> DEC : deleteExpenditureCommand(i)
+activate DEC
+DECP <-- DEC : c
+deactivate DEC
+BPP <-- DECP : c
+deactivate DECP
+destroy DECP
+LM <-- BPP : c
+
+LM -> DEC: excute(m)
+activate DEC
+DEC -> M : deleteExpenditure(i)
+activate M
+DEC <-- M
+deactivate M
+
+create CR
+DEC -> CR
+activate CR
+DEC <-- CR
+deactivate CR
+
+LM <-- DEC: result
+deactivate DEC
+[<-- LM
+deactivate LM
+@enduml
