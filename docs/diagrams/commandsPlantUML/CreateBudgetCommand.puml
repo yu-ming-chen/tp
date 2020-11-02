@@ -1,15 +1,18 @@
 @startuml
+skinparam Sequence {
+    MessageAlign center
+}
 box "Logic" #LightBlue
 participant ":LogicManager" as LM
 participant ":MainPageParser" as MPP
 participant ":CreateBudgetCommandParser" as CBCP
-participant ":CreateBudgetCommand" as CBC
-participant ":result:CommandResult" as CR
+participant "c:CreateBudgetCommand" as CBC
+participant "result:CommandResult" as CR
 end box
 
 box "Model" #LightYellow
 participant "b:Budget" as Budget
-participant ":Model" as M
+participant "m:Model" as M
 end box
 
 [-> LM : excute("create n/Temasek Hall Basketball p/100")
@@ -25,32 +28,26 @@ deactivate CBCP
 MPP -> CBCP : parse("create n/Temasek Hall Basketball p/100")
 activate CBCP
 
-ref over CBCP
-    Create Name,
-    Optional<Threshold>,
-    Date and
-    Expenditures
-end ref
-
-
 create Budget
-CBCP -> Budget : Budget(name, date threshold, expenditure)
+CBCP -> Budget
 activate Budget
-CBCP <-- Budget
+CBCP <-- Budget : b
 deactivate Budget
 
 create CBC
 CBCP -> CBC : createBudgetCommand(b)
 activate CBC
-CBCP <-- CBC
+CBCP <-- CBC : c
 deactivate CBC
-destroy CBCP
 MPP <-- CBCP : c
+
+destroy CBCP
+
 deactivate CBCP
 LM <-- MPP : c
-destroy MPP
+deactivate MPP
 
-LM -> CBC: excute()
+LM -> CBC: excute(m)
 
 activate CBC
 CBC -> M : addBudget(b)
@@ -61,13 +58,12 @@ deactivate M
 create CR
 CBC -> CR
 activate CR
-CBC <-- CR
+CBC <-- CR :result
 deactivate CR
 
 LM <-- CBC: result
 deactivate CBC
 [<-- LM
 deactivate LM
-
 
 @enduml

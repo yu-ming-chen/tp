@@ -1,0 +1,90 @@
+@startuml
+skinparam Sequence {
+    MessageAlign center
+}
+box "Logic" #LightBlue
+participant ":LogicManager" as LM
+participant ":MainPageParser" as MPP
+participant ":EditBudgetCommandParser" as EBCP
+participant "c:EditBudgetCommand" as EBC
+participant "result:CommandResult" as CR
+participant "e:EditBudgetDescriptor" as EBD
+participant "i:BudgetIndex" as BI
+end box
+
+box "Model" #LightYellow
+participant "toEdit:Budget" as toEditBudget
+participant "edited:Budget" as editedBudget
+participant "m:Model" as M
+end box
+
+[-> LM : excute("edit 1 n/Temasek Hall Basketball p/1000")
+activate LM
+LM -> MPP : parseCommand("edit 1 n/Temasek Hall Basketball p/1000")
+activate MPP
+
+create EBCP
+MPP -> EBCP
+activate EBCP
+MPP <-- EBCP
+deactivate EBCP
+MPP -> EBCP : parse("edit 1 n/Temasek Hall Basketball p/1000")
+activate EBCP
+
+create BI
+EBCP -> BI
+activate BI
+EBCP <-- BI : i
+deactivate BI
+
+create EBD
+EBCP -> EBD
+activate EBD
+EBCP <-- EBD : e
+deactivate EBD
+
+create EBC
+EBCP -> EBC : createBudgetCommand(i, e)
+activate EBC
+EBCP <-- EBC : c
+deactivate EBC
+MPP <-- EBCP : c
+
+destroy EBCP
+
+deactivate EBCP
+LM <-- MPP : c
+deactivate MPP
+
+LM -> EBC: excute(m)
+
+activate EBC
+create toEditBudget
+EBC -> toEditBudget
+activate toEditBudget
+EBC <-- toEditBudget : toEdit
+deactivate toEditBudget
+
+create editedBudget
+EBC -> editedBudget
+activate editedBudget
+EBC <-- editedBudget : edited
+deactivate editedBudget
+
+EBC -> M : editBudget(toEdit, edited)
+activate M
+EBC <-- M
+deactivate M
+
+create CR
+EBC -> CR
+activate CR
+EBC <-- CR : result
+deactivate CR
+
+LM <-- EBC: result
+deactivate EBC
+[<-- LM
+deactivate LM
+
+@enduml

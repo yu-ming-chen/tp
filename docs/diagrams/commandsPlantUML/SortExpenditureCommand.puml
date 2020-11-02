@@ -1,0 +1,62 @@
+@startuml
+skinparam Sequence {
+    MessageAlign center
+}
+box "Logic" #LightBlue
+participant ":LogicManager" as LM
+participant ":BudgetPageParser" as BPP
+participant ":SortExpenditureCommandParser" as SECP
+participant "c:SortExpenditureCommand" as SEC
+participant "result:CommandResult" as CR
+
+end box
+
+box "Model" #LightYellow
+participant "m:Model" as M
+end box
+
+[-> LM : excute("sort time")
+activate LM
+LM -> BPP : parseCommand("sort time")
+activate BPP
+
+create SECP
+BPP -> SECP
+activate SECP
+BPP <-- SECP
+deactivate SECP
+BPP -> SECP : parse("sort time")
+activate SECP
+
+create SEC
+SECP -> SEC
+activate SEC
+SECP <-- SEC : c
+deactivate SEC
+BPP <-- SECP : c
+destroy SECP
+
+deactivate SECP
+LM <-- BPP : c
+deactivate BPP
+
+
+LM -> SEC: excute(m)
+activate SEC
+SEC -> M : sortExpenditureByCreatedDate()
+activate M
+SEC <-- M
+deactivate M
+
+create CR
+SEC -> CR
+activate CR
+SEC <-- CR : result
+deactivate CR
+
+LM <-- SEC: result
+deactivate SEC
+[<-- LM
+deactivate LM
+
+@enduml
