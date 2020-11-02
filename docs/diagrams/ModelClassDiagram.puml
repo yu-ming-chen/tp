@@ -26,6 +26,7 @@ Class BudgetList
 }
 
 Package Expenditure {
+Class ExpenditureList
 Class Expenditure
 Class "Name" as expenditureName
 Class Price
@@ -62,8 +63,10 @@ BudgetList "1" o--> "*" Budget
 Budget .up.|> Renderable
 Budget *--> budgetName
 Budget *--> budgetDate
-Budget "1" *--> "*" Expenditure
+Budget "1" *--> "1" ExpenditureList
 Budget *--> Threshold : "Optional"
+
+ExpenditureList --> "*" Expenditure
 
 Expenditure .up.|> Renderable
 Expenditure *-down-> expenditureName
