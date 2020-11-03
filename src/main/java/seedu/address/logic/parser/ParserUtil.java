@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.budget.Threshold.NO_THRESHOLD_MESSAGE;
 
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -169,9 +170,10 @@ public class ParserUtil {
     public static Optional<Threshold> parseBudgetThreshold(String budgetThreshold) throws ParseException {
         requireNonNull(budgetThreshold);
         String trimmedThreshold = budgetThreshold.trim();
-        if (trimmedThreshold == "") {
+        if (trimmedThreshold == NO_THRESHOLD_MESSAGE) {
             return new Threshold(trimmedThreshold).toOptional();
         }
+
         String parsedThreshold = parseToDouble(trimmedThreshold);
         if (!Threshold.isValid(parsedThreshold)) {
             throw new ParseException(Threshold.MESSAGE_CONSTRAINTS);
