@@ -3,6 +3,10 @@ package seedu.address.ui;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
@@ -36,6 +40,9 @@ public class InfoBox extends UiPart<Region> {
 
     private String greeting;
 
+    private BooleanProperty isBudgetPage;
+    private StringProperty secondRowString;
+
 
     /**
      * Creates a new InfoBox.
@@ -43,6 +50,8 @@ public class InfoBox extends UiPart<Region> {
      */
     public InfoBox() {
         super(FXML);
+        this.isBudgetPage = new SimpleBooleanProperty(false);
+        this.secondRowString = new SimpleStringProperty(getDefaultSecondRowText());
         setMainPageInfoBoxText();
     }
 
@@ -57,14 +66,23 @@ public class InfoBox extends UiPart<Region> {
         return new SimpleDateFormat("EEE, dd MMM").format(Calendar.getInstance().getTime());
     }
 
+    private String getDefaultSecondRowText() {
+        return new SimpleDateFormat("hh:mm a").format(Calendar.getInstance().getTime());
+    }
+
     public void setMainPageSecondRowText() {
         Thread clock = new Thread() {
+            @Override
             public void run() {
                 for (;;) {
                     Calendar cal = Calendar.getInstance();
-                    secondRowText.setText(new SimpleDateFormat("hh:mm a").format(cal.getTime()));
+                    if (isBudgetPage.get()) {
+                        secondRowText.setText(secondRowString.get());
+                    } else {
+                        secondRowText.setText(getDefaultSecondRowText());
+                    }
                     try {
-                        sleep(1000);
+                        sleep(10);
                     } catch (InterruptedException ex) {
                         //...
                     }
@@ -98,5 +116,13 @@ public class InfoBox extends UiPart<Region> {
 
     public Text getThirdRowText() {
         return thirdRowText;
+    }
+
+    public BooleanProperty getIsBudgetPageProp() {
+        return isBudgetPage;
+    }
+
+    public StringProperty getSecondRowStringProp() {
+        return secondRowString;
     }
 }

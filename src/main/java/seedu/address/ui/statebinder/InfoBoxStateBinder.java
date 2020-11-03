@@ -60,14 +60,8 @@ public class InfoBoxStateBinder implements StateBinder {
     }
 
     private void bindSecondRowTextToTotalExpenditure(Logic logic) {
-        infoBox.getSecondRowText().textProperty().bind(Bindings.createStringBinding(() -> {
-            String newValue = logic.getTotalExpenditureStringProp().getValue();
-            if (logic.isBudgetPage()) {
-                return handleSecondRowTextIsBudgetPage(newValue, logic);
-            }
-            //is main page
-            return handleSecondRowTextIsMainPage(newValue);
-        }, logic.getTotalExpenditureStringProp()));
+        infoBox.getIsBudgetPageProp().bindBidirectional(logic.getIsBudgetPageProp());
+        infoBox.getSecondRowStringProp().bindBidirectional(logic.getTotalExpenditureStringProp());
     }
 
     private String handleSecondRowTextIsBudgetPage(String value, Logic logic) {
@@ -121,9 +115,8 @@ public class InfoBoxStateBinder implements StateBinder {
         infoBox.getThirdRowText().textProperty().bind(Bindings.createStringBinding(() -> {
             if (logic.isBudgetPage()) {
                 return handleThirdRowTextIsBudgetPage(logic);
-            } else {
-                return handleThirdRowTextIsMainPage();
             }
+            return handleThirdRowTextIsMainPage();
         }, logic.getIsBudgetPageProp()));
     }
 
