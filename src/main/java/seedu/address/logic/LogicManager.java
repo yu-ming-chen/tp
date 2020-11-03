@@ -103,6 +103,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public StringProperty getThresholdStringProp() {
+        return model.getThresholdStringProp();
+    }
+
+    @Override
     public String getPageTitle() {
         return this.model.getPageTitle();
     }

@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import static seedu.address.logic.parser.ParserUtil.isDouble;
+import static seedu.address.model.budget.Threshold.NO_THRESHOLD_MESSAGE;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -9,6 +12,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -42,6 +46,7 @@ public class InfoBox extends UiPart<Region> {
 
     private BooleanProperty isBudgetPage;
     private StringProperty secondRowString;
+    private StringProperty thresholdString;
 
 
     /**
@@ -52,6 +57,7 @@ public class InfoBox extends UiPart<Region> {
         super(FXML);
         this.isBudgetPage = new SimpleBooleanProperty(false);
         this.secondRowString = new SimpleStringProperty(getDefaultSecondRowText());
+        this.thresholdString = new SimpleStringProperty(NO_THRESHOLD_MESSAGE);
         setMainPageInfoBoxText();
     }
 
@@ -75,14 +81,15 @@ public class InfoBox extends UiPart<Region> {
             @Override
             public void run() {
                 for (;;) {
-                    Calendar cal = Calendar.getInstance();
                     if (isBudgetPage.get()) {
-                        secondRowText.setText(secondRowString.get());
+                        String value = secondRowString.getValue();
+                        handleSecondRowTextIsBudgetPage(value);
                     } else {
-                        secondRowText.setText(getDefaultSecondRowText());
+                        String value = getDefaultSecondRowText();
+                        handleSecondRowTextIsMainPage(value);
                     }
                     try {
-                        sleep(10);
+                        sleep(200);
                     } catch (InterruptedException ex) {
                         //...
                     }
@@ -90,6 +97,51 @@ public class InfoBox extends UiPart<Region> {
             }
         };
         clock.start();
+    }
+
+    private void handleSecondRowTextIsBudgetPage(String value) {
+        setSecondRowFontSize(value);
+        String threshold = thresholdString.get();
+        assert isDouble(value);
+        String outputValue = "$ " + value;
+        if (threshold != NO_THRESHOLD_MESSAGE) {
+            setExpenditureColor(secondRowText, threshold, outputValue, value);
+        }
+        secondRowText.setText(outputValue);
+    }
+
+    private void setSecondRowFontSize(String value) {
+        if (value.length() > SECOND_ROW_MAX_LENGTH) {
+            secondRowText.setFont(
+                    Font.font(DEFAULT_FONT.getFamily(), SECONDARY_FONT_SIZE));
+        } else {
+            secondRowText.setFont(
+                    Font.font(DEFAULT_FONT.getFamily(), PRIMARY_FONT_SIZE));
+        }
+    }
+
+    private void setExpenditureColor(Text text, String threshold, String outputValue, String newValue) {
+        assert threshold != NO_THRESHOLD_MESSAGE;
+        assert isDouble(newValue);
+        assert isDouble(threshold);
+
+        Double newValueDouble = Double.parseDouble(newValue);
+        Double thresholdValueDouble = Double.parseDouble(threshold);
+
+        if (newValueDouble > thresholdValueDouble) {
+            secondRowText.setFill(Color.RED);
+        } else {
+            secondRowText.setFill(Color.DARKGREEN);
+        }
+    }
+
+    private void handleSecondRowTextIsMainPage(String value) {
+        setClockColor();
+        secondRowText.setText(getDefaultSecondRowText());
+    }
+
+    private void setClockColor() {
+        secondRowText.setFill(Color.rgb(0, 0, 0));
     }
 
     public static String getDefaultThirdRowText() {
@@ -124,5 +176,9 @@ public class InfoBox extends UiPart<Region> {
 
     public StringProperty getSecondRowStringProp() {
         return secondRowString;
+    }
+
+    public StringProperty getThresholdStringProp() {
+        return thresholdString;
     }
 }

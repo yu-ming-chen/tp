@@ -112,7 +112,11 @@ public interface Model {
 
     StringProperty getTotalExpenditureStringProp();
 
+    StringProperty getThresholdStringProp();
+
     void setPage(Page page);
+
+    void setThreshold(Optional<Threshold> threshold);
 
     void setTotalExpenditure(String expenditure);
 
