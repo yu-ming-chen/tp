@@ -26,6 +26,11 @@ public class Price {
         checkArgument(isValid(price), MESSAGE_CONSTRAINTS);
         value = price;
     }
+    
+    public static Price clone(Price toClone) {
+        requireNonNull(toClone);
+        return new Price(toClone.value);
+    }
 
     /**
      * Returns true if a given string is a valid price.

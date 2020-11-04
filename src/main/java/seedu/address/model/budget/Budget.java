@@ -41,6 +41,17 @@ public class Budget implements Renderable {
         this.threshold = threshold;
         this.expenditures = expenditures;
     }
+    
+    public static Budget clone(Budget toClone) {
+        Name nameClone = Name.clone(toClone.name);
+        Date dateClone = Date.clone(toClone.createdOn);
+        Optional<Threshold> thresholdToClone = toClone.threshold;
+        Optional<Threshold> thresholdClone = thresholdToClone.isEmpty()
+                ? Optional.empty()
+                : Threshold.clone(thresholdToClone.get()).toOptional();
+        ExpenditureList expendituresClone = ExpenditureList.clone(toClone.expenditures);
+        return new Budget(nameClone, dateClone, thresholdClone, expendituresClone);
+    }
 
     public Name getName() {
         return name;

@@ -29,6 +29,10 @@ public class Threshold {
         value = threshold;
     }
 
+    public static Threshold clone(Threshold toClone) {
+        return new Threshold(toClone.value);
+    }
+
     /**
      * Returns true if a given string is a valid threshold.
      */

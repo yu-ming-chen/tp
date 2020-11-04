@@ -17,7 +17,13 @@ public class ExpenditureList {
     public ExpenditureList(List<Expenditure> expenditures) {
         this.expenditures = expenditures;
     }
-
+    public static ExpenditureList clone(ExpenditureList toClone) {
+        ExpenditureList clone = new ExpenditureList();
+        for (Expenditure expenditure : toClone.expenditures) {
+            clone.add(Expenditure.clone(expenditure));
+        }
+        return clone;
+    }
     /**
      * Adds a expenditure to the list of budgets.
      */

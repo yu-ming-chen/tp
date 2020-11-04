@@ -24,6 +24,10 @@ public class Tag {
         checkArgument(isValid(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
     }
+    
+    public static Tag clone(Tag toClone) {
+        return new Tag(toClone.tagName);
+    }
 
 
 

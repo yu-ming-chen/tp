@@ -17,6 +17,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.budget.Budget;
+import seedu.address.model.budget.BudgetList;
 import seedu.address.model.budget.Threshold;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.state.Page;
@@ -38,6 +39,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Renderable> filteredRenderables;
     private final State state;
+    private final History<BudgetList> history;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -47,10 +49,10 @@ public class ModelManager implements Model {
         requireAllNonNull(nusave, userPrefs);
         logger.fine("Initializing with NUSave: " + nusave + " and user prefs " + userPrefs);
         this.nusave = new Nusave(nusave);
-
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredRenderables = new FilteredList<>(this.nusave.getInternalList());
         this.state = new StateManager(new EmptyBudgetIndex(), Page.MAIN, PageTitle.MAIN_PAGE_TITLE);
+        this.history = new HistoryManager<>(BudgetList.clone(this.nusave.getBudgetList()));
         sortBudgetsByCreatedDate();
     }
     /**
@@ -149,6 +151,7 @@ public class ModelManager implements Model {
     public void addBudget(Budget budget) {
         requireNonNull(budget);
         nusave.addBudget(budget);
+        saveToHistory();
     }
 
     @Override
@@ -406,5 +409,37 @@ public class ModelManager implements Model {
     public void updateFilteredRenderableList(Predicate<Renderable> predicate) {
         requireNonNull(predicate);
         filteredRenderables.setPredicate(predicate);
+    }
+
+    //=========== Undo Redo =============================================================
+    
+    @Override
+    public boolean canUndo() {
+        return history.hasHistory();
+    }
+
+    @Override
+    public void undo() {
+        BudgetList budgetList = history.getHistory();
+        nusave.setBudgets(budgetList);
+        repopulateObservableList();
+    }
+    
+    @Override
+    public boolean canRedo() {
+        return history.hasFuture();
+    }
+
+    @Override
+    public void redo() {
+        BudgetList budgetList = history.getFuture();
+        nusave.setBudgets(budgetList);
+        repopulateObservableList();
+    }
+    
+    private void saveToHistory() {
+        BudgetList toSave = nusave.getBudgetList();
+        BudgetList clone = BudgetList.clone(toSave);
+        history.save(clone);
     }
 }

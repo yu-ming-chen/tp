@@ -25,6 +25,10 @@ public class Name {
         checkArgument(isValid(value), MESSAGE_CONSTRAINTS);
         this.value = value;
     }
+    
+    public static Name clone(Name toClone) {
+        return new Name(toClone.value);
+    }
 
     /**
      * Returns true if a given string is a valid name.

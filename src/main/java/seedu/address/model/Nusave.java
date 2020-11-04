@@ -53,7 +53,7 @@ public class Nusave implements ReadOnlyNusave {
     public void resetData(ReadOnlyNusave newData) {
         requireNonNull(newData);
 
-        setBudgets(newData.getBudgetList());
+        setBudgets(newData.getBudgetListAsObservableList());
     }
 
     //=========== Budget ==================================================================================
@@ -84,9 +84,18 @@ public class Nusave implements ReadOnlyNusave {
         this.internalList.set(index, editedBudget);
     }
 
-    private void setBudgets(List<Budget> budgets) {
+    public void setBudgets(List<Budget> budgets) {
         this.budgetList.setBudgets(budgets);
         this.internalList.setAll(budgets);
+    }
+    
+    public BudgetList getBudgetList() {
+        return budgetList;
+    }
+    
+    public void setBudgets(BudgetList budgetList) {
+        List<Budget> budgets = budgetList.getBudgets();
+        setBudgets(budgets);
     }
 
     public Optional<Threshold> getThreshold(Optional<Integer> budgetIndexOpt) {
@@ -167,7 +176,7 @@ public class Nusave implements ReadOnlyNusave {
     }
 
     @Override
-    public ObservableList<Budget> getBudgetList() {
+    public ObservableList<Budget> getBudgetListAsObservableList() {
         return budgetList.asUnmodifiableObservableList();
     }
 

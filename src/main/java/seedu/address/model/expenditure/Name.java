@@ -22,14 +22,18 @@ public class Name {
      */
     public Name(String value) {
         requireNonNull(value);
-        checkArgument(isValidName(value), MESSAGE_CONSTRAINTS);
+        checkArgument(isValid(value), MESSAGE_CONSTRAINTS);
         this.value = value;
+    }
+    
+    public static Name clone(Name toClone) {
+        return new Name(toClone.value);
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValid(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

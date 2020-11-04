@@ -116,7 +116,7 @@ public class ParserUtil {
             throws ParseException {
         requireNonNull(expenditureName);
         String trimmedName = expenditureName.trim();
-        if (!seedu.address.model.expenditure.Name.isValidName(trimmedName)) {
+        if (!seedu.address.model.expenditure.Name.isValid(trimmedName)) {
             throw new ParseException(seedu.address.model.expenditure.Name.MESSAGE_CONSTRAINTS);
         } else if (trimmedName.length() > 50) {
             throw new ParseException("Expenditure Name is limited to 50 characters.");

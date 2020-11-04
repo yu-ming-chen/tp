@@ -21,6 +21,10 @@ public class Date implements Comparable<Date> {
         checkArgument(isValid(value), MESSAGE_CONSTRAINTS);
         this.value = value;
     }
+    
+    public static Date clone(Date toClone) {
+        return new Date(toClone.value);
+    }
 
     /**
      * Returns true if a given string is a valid date.

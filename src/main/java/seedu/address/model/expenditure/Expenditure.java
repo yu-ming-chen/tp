@@ -28,6 +28,17 @@ public class Expenditure implements Renderable {
         this.createdOn = createdOn;
         this.tags.addAll(tags);
     }
+    
+    public static Expenditure clone(Expenditure toClone) {
+        Name nameClone = Name.clone(toClone.name);
+        Price priceClone = Price.clone(toClone.price);
+        Date dateClone = Date.clone(toClone.createdOn);
+        Set<Tag> tagsClone = new HashSet<>();
+        for (Tag tag : toClone.tags) {
+            tagsClone.add(Tag.clone(tag));
+        }
+        return new Expenditure(nameClone, priceClone, dateClone, tagsClone);
+    }
 
     public Name getName() {
         return name;

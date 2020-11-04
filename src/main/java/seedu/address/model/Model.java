@@ -137,5 +137,13 @@ public interface Model {
 
     void updateFilteredRenderableList(Predicate<Renderable> predicate);
 
-    void repopulateObservableList() throws CommandException;
+    void repopulateObservableList();
+
+    boolean canUndo();
+
+    void undo();
+    
+    boolean canRedo();
+    
+    void redo();
 }

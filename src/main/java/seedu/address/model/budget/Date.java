@@ -24,6 +24,10 @@ public class Date implements Comparable<Date> {
         this.value = value;
     }
 
+    public static Date clone(Date toClone) {
+        return new Date(toClone.value);
+    }
+
     /**
      * Returns true if a given string is a valid date.
      */
