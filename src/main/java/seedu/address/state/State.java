@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.StringProperty;
+import seedu.address.model.budget.Threshold;
 import seedu.address.state.budgetindex.BudgetIndex;
 
 public interface State {
@@ -37,4 +38,8 @@ public interface State {
     void setBudgetIndex(BudgetIndex index);
 
     void setPageTitle(String pageTitle);
+
+    void setOpenCommandState(String pageName, String newExpenditureValue, Optional<Threshold> newThreshold);
+
+    void setCloseCommandState();
 }

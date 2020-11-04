@@ -110,31 +110,39 @@ public class ModelManager implements Model {
 
     //=========== Budgets =======
 
+    /**
+     * Open a budget from NUSave.
+     * @param budgetIndex the index of the budget to be opened
+     */
     @Override
     public void openBudget(BudgetIndex budgetIndex) {
         requireNonNull(budgetIndex);
-        BudgetIndex actualBudgetIndex = getActualBudgetIndex(budgetIndex);
-        setBudgetIndex(actualBudgetIndex);
-        String pageName = getPageName(actualBudgetIndex);
-        setPageTitle(pageName);
-        setPage(Page.BUDGET);
-        String newExpenditureValue = calculateExpenditureValue(actualBudgetIndex);
-        setTotalExpenditure(newExpenditureValue);
-        Optional<Threshold> newThreshold = getThreshold();
-        setThreshold(newThreshold);
+        setOpenCommandState(budgetIndex);
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
         repopulateObservableList();
     }
 
+    private void setOpenCommandState(BudgetIndex budgetIndex) {
+        BudgetIndex actualBudgetIndex = getActualBudgetIndex(budgetIndex);
+        state.setBudgetIndex(actualBudgetIndex);
+        String pageName = getPageName(actualBudgetIndex);
+        String newExpenditureValue = calculateExpenditureValue(actualBudgetIndex);
+        Optional<Threshold> newThreshold = getThreshold();
+        state.setOpenCommandState(pageName, newExpenditureValue, newThreshold);
+    }
+
+    /**
+     * Closes a budget in NUSave.
+     */
     @Override
     public void closeBudget() {
-        setBudgetIndex(new EmptyBudgetIndex());
-        setPageTitle(PageTitle.MAIN_PAGE_TITLE);
-        setPage(Page.MAIN);
-        setTotalExpenditure(StateManager.defaultValueTotalExpenditure());
-        setThreshold(Optional.empty());
+        setCloseCommandState();
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
         repopulateObservableList();
+    }
+
+    private void setCloseCommandState() {
+        state.setCloseCommandState();
     }
 
     private BudgetIndex getActualBudgetIndex(BudgetIndex budgetIndex) {
@@ -146,12 +154,21 @@ public class ModelManager implements Model {
         return new BudgetIndexManager(indexInBudgetList);
     }
 
+
+    /**
+     * Adds a budget to NUSave.
+     * @param budget the budget to be added
+     */
     @Override
     public void addBudget(Budget budget) {
         requireNonNull(budget);
         nusave.addBudget(budget);
     }
 
+    /**
+     * Deletes a budget in NUSave.
+     * @param budgetIndex the index of the budget to be deleted.
+     */
     @Override
     public void deleteBudget(BudgetIndex budgetIndex) {
         requireNonNull(budgetIndex);
@@ -180,6 +197,10 @@ public class ModelManager implements Model {
         nusave.deleteAllBudgets();
     }
 
+    /**
+     * Searches for budgets in NUSave that contains the search term.
+     * @param searchTerm the search term to be used.
+     */
     @Override
     public void findBudget(String searchTerm) throws CommandException {
         Predicate<Renderable> predicate = renderable -> renderable.contains(searchTerm);
@@ -189,6 +210,9 @@ public class ModelManager implements Model {
         }
     }
 
+    /**
+     * Lists all budgets stored in NUSave.
+     */
     @Override
     public void listBudgets() throws CommandException {
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
@@ -197,12 +221,18 @@ public class ModelManager implements Model {
         }
     }
 
+    /**
+     * Sorts all budgets stored in NUSave by alphanumerical order.
+     */
     @Override
     public void sortBudgetsByName() {
         nusave.sortBudgetListByName();
         repopulateObservableList();
     }
 
+    /**
+     * Sorts all budgets stored in NUSave based on its created date.
+     */
     @Override
     public void sortBudgetsByCreatedDate() {
         nusave.sortBudgetListByCreatedDate();
@@ -211,6 +241,10 @@ public class ModelManager implements Model {
 
     //=========== Expenditures =======
 
+    /**
+     * Deletes an expenditure from the specified budget and updates the list.
+     * @param expenditureIndex the index expenditure to be deleted
+     */
     @Override
     public void deleteExpenditure(ExpenditureIndex expenditureIndex) {
         requireNonNull(expenditureIndex);
@@ -225,7 +259,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Adds an expenditure to the specified budget and updates the list
+     * Adds an expenditure to the specified budget.
      * @param expenditure the expenditure to be added
      */
     @Override
@@ -237,6 +271,11 @@ public class ModelManager implements Model {
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
+    /**
+     * Edit an expenditure in the specified budget.
+     * @param oldExpenditure the expenditure to be edited
+     * @param editedExpenditure edited expenditure to replace the old expenditure
+     */
     @Override
     public void editExpenditure(Expenditure oldExpenditure, Expenditure editedExpenditure) {
         requireAllNonNull(oldExpenditure, editedExpenditure);
@@ -246,6 +285,9 @@ public class ModelManager implements Model {
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
+    /**
+     * Lists all expenditures in the specified budget.
+     */
     @Override
     public void listExpenditures() throws CommandException {
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
@@ -254,6 +296,10 @@ public class ModelManager implements Model {
         }
     }
 
+    /**
+     * Searches for expenditures in the specified budget that contains the search term.
+     * @param searchTerm the search term to be used.
+     */
     @Override
     public void findExpenditure(String searchTerm) throws CommandException {
         Predicate<Renderable> predicate = renderable -> renderable.contains(searchTerm);
@@ -263,12 +309,18 @@ public class ModelManager implements Model {
         }
     }
 
+    /**
+     * Sorts all expenditures stored in the specified budget by alphanumerical order.
+     */
     @Override
     public void sortExpendituresByName() {
         nusave.sortExpendituresByName(state);
         repopulateObservableList();
     }
 
+    /**
+     * Sorts all expenditures stored in the specified budget by created date.
+     */
     @Override
     public void sortExpenditureByCreatedDate() {
         nusave.sortExpendituresByCreateDate(state);
