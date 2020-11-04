@@ -44,6 +44,7 @@ MPP <-- DBCP : c
 deactivate DBCP
 destroy DBCP
 LM <-- MPP : c
+deactivate MPP
 
 LM -> DBC: excute(m)
 activate DBC
