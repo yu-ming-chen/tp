@@ -59,7 +59,7 @@ public class Budget implements Renderable {
     }
 
     public List<Expenditure> getExpendituresList() {
-        return expenditures.getExpendituresList();
+        return expenditures.getExpenditures();
     }
     public int getExpenditureSize() {
         return expenditures.getExpenditureSize();
