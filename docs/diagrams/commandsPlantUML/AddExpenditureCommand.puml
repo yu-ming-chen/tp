@@ -1,0 +1,69 @@
+@startuml
+skinparam Sequence {
+    MessageAlign center
+}
+box "Logic" #LightBlue
+participant ":LogicManager" as LM
+participant ":BudgetPageParser" as BPP
+participant ":AddExpenditureCommandParser" as AECP
+participant "a:AddExpenditureCommand" as AEC
+participant "result:CommandResult" as CR
+end box
+
+box "Model" #LightYellow
+participant "e:Expenditure" as Expenditure
+participant "m:Model" as M
+end box
+
+[-> LM : excute("add n/Basketball p/20 t/Ball")
+activate LM
+LM -> BPP : parseCommand("add n/Basketball p/20 t/Ball")
+activate BPP
+
+create AECP
+BPP -> AECP
+activate AECP
+BPP <-- AECP
+deactivate AECP
+BPP -> AECP : parse("add n/Basketball p/20 t/Ball")
+activate AECP
+
+create Expenditure
+AECP -> Expenditure
+activate Expenditure
+AECP <-- Expenditure : e
+deactivate Expenditure
+
+create AEC
+AECP -> AEC : createBudgetCommand(e)
+activate AEC
+AECP <-- AEC : a
+deactivate AEC
+BPP <-- AECP : a
+
+destroy AECP
+
+deactivate AECP
+LM <-- BPP : a
+deactivate BPP
+
+LM -> AEC: excute(m)
+
+activate AEC
+AEC -> M : addExpenditure(e)
+activate M
+AEC <-- M
+deactivate M
+
+create CR
+AEC -> CR
+activate CR
+AEC <-- CR :result
+deactivate CR
+
+LM <-- AEC: result
+deactivate AEC
+[<-- LM
+deactivate LM
+
+@enduml
