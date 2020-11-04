@@ -1,10 +1,10 @@
 package seedu.address.logic.commands.budget;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RENDERABLES;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 public class ListExpenditureCommand extends Command {
@@ -19,15 +19,10 @@ public class ListExpenditureCommand extends Command {
     public static final String EMPTY_EXPENDITURE_MESSAGE = "You have no expenditures recorded.";
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         // sets predicate to always return true
-        model.updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
-        int expenditureSize = model.getFilteredRenderableList().size();
-        if (expenditureSize == 0) {
-            return new CommandResult(EMPTY_EXPENDITURE_MESSAGE);
-        } else {
-            return new CommandResult(MESSAGE_SUCCESS);
-        }
+        model.listExpenditures();
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }

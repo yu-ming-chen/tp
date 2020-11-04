@@ -1,0 +1,48 @@
+@startuml
+skinparam Sequence {
+    MessageAlign center
+}
+box "Logic" #LightBlue
+participant ":LogicManager" as LM
+participant ":BudgetPageParser" as BPP
+participant "command:ListExpenditureCommand" as LEC
+participant "result:CommandResult" as CR
+end box
+
+box "Model" #LightYellow
+participant "m:Model" as M
+end box
+
+[-> LM : execute("list")
+activate LM
+LM -> BPP : execute("list")
+activate BPP
+
+create LEC
+BPP -> LEC
+activate LEC
+BPP <-- LEC : command
+deactivate LEC
+
+LM <-- BPP : command
+deactivate BPP
+LM -> LEC : execute(m)
+activate LEC
+
+LEC -> M : listExpenditures()
+activate M
+LEC <-- M
+deactivate M
+
+create CR
+LEC -> CR
+activate CR
+LEC <-- CR : result
+deactivate CR
+
+LM <-- LEC : result
+deactivate LEC
+[<-- LM : result
+
+
+@enduml
