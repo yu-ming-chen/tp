@@ -129,12 +129,16 @@ The sections below give more details of each component:
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`,
 `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the `MainWindow` is specified in `MainWindow.fxml`
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the `MainWindow` is specified in `MainWindow.fxml`.
 
-The `UI` component:
+In order to dynamically render data to be displayed to the user, when `fillInnerParts()` in `MainWindow` is called, 
+the method `setStateBinders()` sets Observer objects to observe changes in `State`. For a complete explanation,
+refer to [4.4.2. Dynamic Updating](#442-dynamic-updating).
+
+In summary, the `UI` component:
 
 * Executes user commands using the `Logic` component.
-* Listens for changes to `Model` data so that the UI can be updated with the modified data.
+* Listens for changes to `Model` and `State` data so that the UI can be updated with the modified data.
 
 #### 3.2.2. Logic Component
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
@@ -366,8 +370,23 @@ depicting a scenario where the user would like to edit the first expenditure on 
 #### 4.4.1. ListView Rendering
 
 #### 4.4.2. Dynamic Updating
+(Contributed by Song Yu)
+
+This section talks about how data is dynamically updated on the UI of NUSave.  
+
+To illustrate the point using a specific example, the title displayed to the user updates between the name of the budget page and 'NUSave', depending 
+on which page the user is currently navigating on. 
+
+If a user is currently looking at the list of budgets available, then the title displayed would be 'NUSave'. 
+
+If a user is currently looking into a specific budget, then the title displayed
+would be the name of the budget as given by the user.
+
+As an overview, we use the **Observer Pattern** to dynamically update these modified data. These observers can be found inside 
+the `StateBinder` package.  
 
 ##### 4.4.2.1. Title
+
 
 ##### 4.4.2.2. Info Box - Between States
 
