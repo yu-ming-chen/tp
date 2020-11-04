@@ -2,7 +2,6 @@
 !include style.puml
 
 box Ui UI_COLOR_T1
-participant ":CommandBox" as CommandBox UI_COLOR
 participant ":MainWindow" as MainWindow UI_COLOR
 end box
 
@@ -22,14 +21,8 @@ box State STATE_COLOR_T1
 participant ":StateManager" as StateManager STATE_COLOR
 end box
 
-[-> CommandBox : "open 1"
-activate CommandBox
-
-CommandBox -> CommandBox : HandleCommandEntered()
-
-CommandBox -> MainWindow : "open 1
+[-> MainWindow : "open 1"
 activate MainWindow
-deactivate CommandBox
 
 MainWindow -> LogicManager : execute("open 1")
 activate LogicManager
@@ -62,15 +55,15 @@ destroy OpenBudgetCommandParser
 MainPageParser --> LogicManager
 deactivate MainPageParser
 
-LogicManager -> OpenBudgetCommand : execute()
+LogicManager -> OpenBudgetCommand : execute(model)
 activate OpenBudgetCommand
 
 OpenBudgetCommand -> ModelManager : openBudget(budgetIndex)
 activate ModelManager
 
-ModelManager -> ModelManager : setOpenCommandState(actualBudgetIndex)
+ModelManager -> ModelManager : setOpenCommandState(budgetIndex)
 
-ModelManager -> StateManager : setOpenState(actualBudgetIndex, pageTitle)
+ModelManager -> StateManager : setOpenCommandState(pageName, expenditureValue, threshold)
 activate StateManager
 
 StateManager -> ModelManager

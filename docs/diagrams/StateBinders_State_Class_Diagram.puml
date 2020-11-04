@@ -1,0 +1,55 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR
+skinparam classBackgroundColor UI_COLOR
+
+Package State {
+Interface State <<Interface>>
+Class StateManager {
+    - isBudgetPageProp : BooleanProperty
+    - infoBoxSecondRowProp: StringProperty
+    - thresholdStringProp: StringProperty
+}
+}
+
+Package Model {
+Interface Model <<Interface>>
+Class ModelManager
+}
+
+Package Logic {
+Interface Logic <<Interface>>
+Class LogicManager
+}
+
+Package Ui {
+    Package StateBinder {
+        Interface StateBinder <<Interface>> {
+            + bind()
+        }
+        Class InfoBoxStateBinder
+        Class TitleStateBinder
+        Class StateBinderList {
+            + bindAll()
+        }
+    }
+    Class MainWindow {
+        setStateBinders()
+    }
+}
+
+InfoBoxStateBinder ..|> StateBinder
+TitleStateBinder ..|> StateBinder
+StateBinderList -up-> "*" StateBinder
+MainWindow -right-> StateBinderList
+
+StateBinder -left-> Logic
+LogicManager .up.|> Logic
+
+LogicManager -down-> Model
+ModelManager .up.|> Model
+
+ModelManager -right-> State
+StateManager .left.|> State
+@enduml
