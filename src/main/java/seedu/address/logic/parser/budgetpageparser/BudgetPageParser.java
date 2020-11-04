@@ -8,6 +8,8 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.budget.AddExpenditureCommand;
 import seedu.address.logic.commands.budget.CloseBudgetCommand;
 import seedu.address.logic.commands.budget.DeleteExpenditureCommand;
@@ -67,6 +69,12 @@ public class BudgetPageParser implements PageParser {
         }
         case HelpExpenditureCommand.COMMAND_WORD: {
             return new HelpExpenditureCommand();
+        }
+        case UndoCommand.COMMAND_WORD: {
+            return new UndoCommand();
+        }
+        case RedoCommand.COMMAND_WORD: {
+            return new RedoCommand();
         }
         case ExitCommand.COMMAND_WORD: {
             return new ExitCommand();

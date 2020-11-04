@@ -2,6 +2,7 @@ package seedu.address.model.budget;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.ParserUtil.isValidDouble;
 
 import java.util.Optional;
@@ -29,7 +30,13 @@ public class Threshold {
         value = threshold;
     }
 
+    /**
+     * Creates a deep copy of the given {@code Threshold}.
+     * @param toClone the {@code Threshold} to be copied.
+     * @return the deep copy of the given {@code Threshold}.
+     */
     public static Threshold clone(Threshold toClone) {
+        requireAllNonNull(toClone);
         return new Threshold(toClone.value);
     }
 

@@ -43,6 +43,7 @@ public class CreateBudgetCommand extends MainPageCommand {
     @Override
     public CommandResult execute(Model model) {
         model.addBudget(toCreate);
+        model.saveToHistory();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toCreate));
     }
 }

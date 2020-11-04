@@ -142,8 +142,10 @@ public interface Model {
     boolean canUndo();
 
     void undo();
-    
+
     boolean canRedo();
-    
+
     void redo();
+
+    void saveToHistory();
 }

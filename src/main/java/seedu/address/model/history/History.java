@@ -1,4 +1,4 @@
-package seedu.address.model;
+package seedu.address.model.history;
 
 public interface History<T> {
     boolean hasHistory();

@@ -2,6 +2,7 @@ package seedu.address.model.expenditure;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -21,8 +22,14 @@ public class Date implements Comparable<Date> {
         checkArgument(isValid(value), MESSAGE_CONSTRAINTS);
         this.value = value;
     }
-    
+
+    /**
+     * Creates a deep copy of the given {@code Date}.
+     * @param toClone the {@code Date} to be copied.
+     * @return the deep copy of the given {@code Date}.
+     */
     public static Date clone(Date toClone) {
+        requireAllNonNull(toClone);
         return new Date(toClone.value);
     }
 

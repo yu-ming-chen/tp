@@ -41,8 +41,14 @@ public class Budget implements Renderable {
         this.threshold = threshold;
         this.expenditures = expenditures;
     }
-    
+
+    /**
+     * Creates a deep copy of the given {@code Budget}.
+     * @param toClone the {@code Budget} to be copied.
+     * @return the deep copy of the given {@code Budget}.
+     */
     public static Budget clone(Budget toClone) {
+        requireAllNonNull(toClone);
         Name nameClone = Name.clone(toClone.name);
         Date dateClone = Date.clone(toClone.createdOn);
         Optional<Threshold> thresholdToClone = toClone.threshold;

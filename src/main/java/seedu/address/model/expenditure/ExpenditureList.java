@@ -1,6 +1,7 @@
 package seedu.address.model.expenditure;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,14 +11,20 @@ import seedu.address.model.sort.SortExpendituresByName;
 
 public class ExpenditureList {
     private final List<Expenditure> expenditures;
-
     public ExpenditureList() {
         this.expenditures = new ArrayList<>();
     }
     public ExpenditureList(List<Expenditure> expenditures) {
         this.expenditures = expenditures;
     }
+
+    /**
+     * Creates a deep copy of the given {@code ExpenditureList}.
+     * @param toClone the {@code ExpenditureList} to be copied.
+     * @return the deep copy of the given {@code ExpenditureList}.
+     */
     public static ExpenditureList clone(ExpenditureList toClone) {
+        requireAllNonNull(toClone);
         ExpenditureList clone = new ExpenditureList();
         for (Expenditure expenditure : toClone.expenditures) {
             clone.add(Expenditure.clone(expenditure));
@@ -31,7 +38,11 @@ public class ExpenditureList {
         requireNonNull(toAdd);
         expenditures.add(0, toAdd);
     }
-    
+
+    /**
+     * Adds an {@code Expenditure} to the back of the list.
+     * @param toAdd the {@code Expenditure} to be added.
+     */
     public void add(Expenditure toAdd) {
         requireNonNull(toAdd);
         expenditures.add(toAdd);

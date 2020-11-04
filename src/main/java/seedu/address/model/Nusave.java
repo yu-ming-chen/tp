@@ -84,18 +84,18 @@ public class Nusave implements ReadOnlyNusave {
         this.internalList.set(index, editedBudget);
     }
 
+    public void setBudgets(BudgetList budgetList) {
+        List<Budget> budgets = budgetList.getBudgets();
+        setBudgets(budgets);
+    }
+
     public void setBudgets(List<Budget> budgets) {
         this.budgetList.setBudgets(budgets);
         this.internalList.setAll(budgets);
     }
-    
+
     public BudgetList getBudgetList() {
         return budgetList;
-    }
-    
-    public void setBudgets(BudgetList budgetList) {
-        List<Budget> budgets = budgetList.getBudgets();
-        setBudgets(budgets);
     }
 
     public Optional<Threshold> getThreshold(Optional<Integer> budgetIndexOpt) {

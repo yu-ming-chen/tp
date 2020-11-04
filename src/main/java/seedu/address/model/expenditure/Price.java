@@ -26,7 +26,12 @@ public class Price {
         checkArgument(isValid(price), MESSAGE_CONSTRAINTS);
         value = price;
     }
-    
+
+    /**
+     * Creates a deep copy of the given {@code Price}.
+     * @param toClone the {@code Price} to be copied
+     * @return the deep copy of the given {@code Price}
+     */
     public static Price clone(Price toClone) {
         requireNonNull(toClone);
         return new Price(toClone.value);

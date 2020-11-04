@@ -20,6 +20,9 @@ import seedu.address.model.budget.Budget;
 import seedu.address.model.budget.BudgetList;
 import seedu.address.model.budget.Threshold;
 import seedu.address.model.expenditure.Expenditure;
+import seedu.address.model.history.History;
+import seedu.address.model.history.HistoryManager;
+import seedu.address.model.history.VersionedNusave;
 import seedu.address.state.Page;
 import seedu.address.state.PageTitle;
 import seedu.address.state.State;
@@ -39,7 +42,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Renderable> filteredRenderables;
     private final State state;
-    private final History<BudgetList> history;
+    private final History<VersionedNusave> history;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -52,7 +55,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredRenderables = new FilteredList<>(this.nusave.getInternalList());
         this.state = new StateManager(new EmptyBudgetIndex(), Page.MAIN, PageTitle.MAIN_PAGE_TITLE);
-        this.history = new HistoryManager<>(BudgetList.clone(this.nusave.getBudgetList()));
+        this.history = new HistoryManager<>(new VersionedNusave(this.state, this.nusave));
         sortBudgetsByCreatedDate();
     }
     /**
@@ -127,6 +130,12 @@ public class ModelManager implements Model {
         repopulateObservableList();
     }
 
+    private void openBudget(Integer index) {
+        requireNonNull(index);
+        BudgetIndex budgetIndex = new BudgetIndexManager(index);
+        openBudget(budgetIndex);
+    }
+
     @Override
     public void closeBudget() {
         setBudgetIndex(new EmptyBudgetIndex());
@@ -151,7 +160,6 @@ public class ModelManager implements Model {
     public void addBudget(Budget budget) {
         requireNonNull(budget);
         nusave.addBudget(budget);
-        saveToHistory();
     }
 
     @Override
@@ -163,7 +171,6 @@ public class ModelManager implements Model {
         Budget budget = (Budget) filteredRenderables.get(index);
         nusave.deleteBudget(budget);
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
-        saveToHistory();
     }
 
     /**
@@ -176,13 +183,11 @@ public class ModelManager implements Model {
         requireAllNonNull(oldBudget, editedBudget);
         nusave.editBudget(oldBudget, editedBudget);
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
-        saveToHistory();
     }
 
     @Override
     public void deleteAllBudgets() {
         nusave.deleteAllBudgets();
-        saveToHistory();
     }
 
     @Override
@@ -423,9 +428,9 @@ public class ModelManager implements Model {
 
     @Override
     public void undo() {
-        BudgetList budgetList = history.getHistory();
-        nusave.setBudgets(budgetList);
-        repopulateObservableList();
+        assert canUndo();
+        VersionedNusave previousVersion = history.getHistory();
+        loadVersionedNusave(previousVersion);
     }
 
     @Override
@@ -435,14 +440,29 @@ public class ModelManager implements Model {
 
     @Override
     public void redo() {
-        BudgetList budgetList = history.getFuture();
-        nusave.setBudgets(budgetList);
-        repopulateObservableList();
+        assert canRedo();
+        VersionedNusave futureVersion = history.getFuture();
+        loadVersionedNusave(futureVersion);
     }
 
-    private void saveToHistory() {
-        BudgetList toSave = nusave.getBudgetList();
-        BudgetList clone = BudgetList.clone(toSave);
-        history.save(clone);
+    /**
+     * Saves a deep copy of the current nusave into the history.
+     */
+    public void saveToHistory() {
+        VersionedNusave toSave = new VersionedNusave(state, nusave);
+        history.save(toSave);
+        logger.info("Versioning NUSave...");
+    }
+
+    private void loadVersionedNusave(VersionedNusave versionedNusave) {
+        BudgetList budgetList = versionedNusave.getBudgetList();
+        nusave.setBudgets(budgetList);
+        Optional<Integer> budgetIndex = versionedNusave.getBudgetIndex();
+        if (budgetIndex.isEmpty()) {
+            closeBudget();
+        } else {
+            Integer index = budgetIndex.get();
+            openBudget(index);
+        }
     }
 }

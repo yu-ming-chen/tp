@@ -28,7 +28,12 @@ public class Expenditure implements Renderable {
         this.createdOn = createdOn;
         this.tags.addAll(tags);
     }
-    
+
+    /**
+     * Creates a deep copy of the given {@code Expenditure}.
+     * @param toClone the {@code Expenditure} to be copied.
+     * @return the deep copy of the given {@code Expenditure}.
+     */
     public static Expenditure clone(Expenditure toClone) {
         Name nameClone = Name.clone(toClone.name);
         Price priceClone = Price.clone(toClone.price);
