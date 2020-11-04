@@ -48,6 +48,7 @@ public class DeleteExpenditureCommand extends Command {
             throw new CommandException(Messages.EXPENDITURE_MESSAGE_INDEX_OUT_OF_BOUNDS);
         }
         model.deleteExpenditure(toDelete);
+        model.saveToHistory();
         return new CommandResult(String.format(MESSAGE_DELETE_EXPENDITURE_SUCCESS));
     }
 }

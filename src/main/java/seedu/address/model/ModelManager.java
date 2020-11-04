@@ -17,8 +17,12 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.budget.Budget;
+import seedu.address.model.budget.BudgetList;
 import seedu.address.model.budget.Threshold;
 import seedu.address.model.expenditure.Expenditure;
+import seedu.address.model.history.History;
+import seedu.address.model.history.HistoryManager;
+import seedu.address.model.history.VersionedNusave;
 import seedu.address.state.Page;
 import seedu.address.state.PageTitle;
 import seedu.address.state.State;
@@ -38,6 +42,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Renderable> filteredRenderables;
     private final State state;
+    private final History<VersionedNusave> history;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -47,10 +52,10 @@ public class ModelManager implements Model {
         requireAllNonNull(nusave, userPrefs);
         logger.fine("Initializing with NUSave: " + nusave + " and user prefs " + userPrefs);
         this.nusave = new Nusave(nusave);
-
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredRenderables = new FilteredList<>(this.nusave.getInternalList());
         this.state = new StateManager(new EmptyBudgetIndex(), Page.MAIN, PageTitle.MAIN_PAGE_TITLE);
+        this.history = new HistoryManager<>(new VersionedNusave(this.state, this.nusave));
         sortBudgetsByCreatedDate();
     }
     /**
@@ -123,6 +128,12 @@ public class ModelManager implements Model {
         setThreshold(newThreshold);
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
         repopulateObservableList();
+    }
+
+    private void openBudget(Integer index) {
+        requireNonNull(index);
+        BudgetIndex budgetIndex = new BudgetIndexManager(index);
+        openBudget(budgetIndex);
     }
 
     @Override
@@ -406,5 +417,52 @@ public class ModelManager implements Model {
     public void updateFilteredRenderableList(Predicate<Renderable> predicate) {
         requireNonNull(predicate);
         filteredRenderables.setPredicate(predicate);
+    }
+
+    //=========== Undo Redo =============================================================
+
+    @Override
+    public boolean canUndo() {
+        return history.hasHistory();
+    }
+
+    @Override
+    public void undo() {
+        assert canUndo();
+        VersionedNusave previousVersion = history.getHistory();
+        loadVersionedNusave(previousVersion);
+    }
+
+    @Override
+    public boolean canRedo() {
+        return history.hasFuture();
+    }
+
+    @Override
+    public void redo() {
+        assert canRedo();
+        VersionedNusave futureVersion = history.getFuture();
+        loadVersionedNusave(futureVersion);
+    }
+
+    /**
+     * Saves a deep copy of the current nusave into the history.
+     */
+    public void saveToHistory() {
+        VersionedNusave toSave = new VersionedNusave(state, nusave);
+        history.save(toSave);
+        logger.info("Versioning NUSave...");
+    }
+
+    private void loadVersionedNusave(VersionedNusave versionedNusave) {
+        BudgetList budgetList = versionedNusave.getBudgetList();
+        nusave.setBudgets(budgetList);
+        Optional<Integer> budgetIndex = versionedNusave.getBudgetIndex();
+        if (budgetIndex.isEmpty()) {
+            closeBudget();
+        } else {
+            Integer index = budgetIndex.get();
+            openBudget(index);
+        }
     }
 }

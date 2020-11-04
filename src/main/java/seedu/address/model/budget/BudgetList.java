@@ -27,14 +27,41 @@ import seedu.address.state.budgetindex.BudgetIndex;
  *
  */
 public class BudgetList implements Iterable<Budget> {
-    private final List<Budget> budgets = new ArrayList<>();
+    private final List<Budget> budgets;
+
+    public BudgetList() {
+        this.budgets = new ArrayList<>();
+    }
 
     /**
-     * Adds a budget to the list of budgets.
+     * Creates a deep copy of the given {@code BudgetList}.
+     * @param toClone the {@code BudgetList} to be copied.
+     * @return the deep copy of the given {@code BudgetList}.
+     */
+    public static BudgetList clone(BudgetList toClone) {
+        requireNonNull(toClone);
+        BudgetList clone = new BudgetList();
+        for (Budget budget : toClone.budgets) {
+            clone.add(Budget.clone(budget));
+        }
+        return clone;
+    }
+
+    /**
+     * Adds a budget to the front of the list.
+     */
+    public void addToFront(Budget toAdd) {
+        requireNonNull(toAdd);
+        budgets.add(0, toAdd);
+    }
+
+    /**
+     * Adds a budget to the back of the list.
+     * @param toAdd the {@code Budget} to be added.
      */
     public void add(Budget toAdd) {
         requireNonNull(toAdd);
-        budgets.add(0, toAdd);
+        budgets.add(toAdd);
     }
 
     /**

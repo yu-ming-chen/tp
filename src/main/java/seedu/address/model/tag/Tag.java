@@ -25,7 +25,14 @@ public class Tag {
         this.tagName = tagName;
     }
 
-
+    /**
+     * Creates a deep copy of the given {@code Tag}.
+     * @param toClone the {@code Tag} to be copied.
+     * @return the deep copy of the given {@code Tag}.
+     */
+    public static Tag clone(Tag toClone) {
+        return new Tag(toClone.tagName);
+    }
 
     /**
      * Returns true if a given string is a valid tag name.

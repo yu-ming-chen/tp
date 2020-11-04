@@ -31,7 +31,8 @@ public class JsonSerializableNusave {
      * @param source future changes to this will not affect the created {@code JsonSerializableNusave}.
      */
     public JsonSerializableNusave(ReadOnlyNusave source) {
-        budgets.addAll(source.getBudgetList().stream().map(JsonAdaptedBudget::new).collect(Collectors.toList()));
+        budgets.addAll(source.getBudgetListAsObservableList().stream().map(JsonAdaptedBudget::new)
+                .collect(Collectors.toList()));
     }
 
     /**
