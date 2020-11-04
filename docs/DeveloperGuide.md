@@ -56,8 +56,10 @@ title: Developer Guide
             * [6.1.3. Use Cases](#613-use-cases)
 
 ## 1. Introduction
-NUSave is a budgeting tool made for **students staying on campus** who want to be able to track and manage their own
-expenditures with ease. As students, it is common for them to have limited income during their academic years.
+
+### Overview
+NUSave is a budgeting tool made for **university students staying on campus** who want to be able to track and manage 
+their own expenditures with ease. As students, it is common for them to have limited income during their academic years.
 Therefore, it is especially necessary for those living independently to plan their finances prudently to ensure that
 they do not overspend their tight budget.
 
@@ -72,6 +74,10 @@ conveniently manage all their expenditures under one centralised platform.
 
 NUSave implements both **Command Line Interface (CLI)** and **Graphical User Interface (GUI)**.
 In other words, users interact with the application through the command line and the GUI will reflect their actions.
+
+### Purpose
+This document acts as a guide for developers, testers, and designers describing both the architecture and design 
+of NUSave.
 
 ## 2. Setting Up
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -260,6 +266,10 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 #### 4.3.1. Add Commands
 
+This section describes the details surrounding events at which users would wish to add information into NUSave. 
+Specifically, when a user wishes to create a new budget to the Main Page, or when a user wishes to add an expenditure
+to a budget.
+
 ##### 4.3.1.1. Create Budget
 (Contributed by Yu Ming)
 
@@ -269,7 +279,7 @@ depicting a scenario when the user wants to create a budget for his Temasek Hall
 
 ![CreateBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/CreateBudgetCommand.png) 
 
-Figure 4.1.1.1: Sequence diagram  for create budget command in main page view.
+Figure 4.3.1.1: Sequence diagram  for create budget command in main page view.
 
 1. The `LogicManager` uses the `MainPageParser` to parse the given user input.
 2. The `MainPageParser` will identify the command given by the user and pass the user input down to the
@@ -288,26 +298,60 @@ With the above sequence, a budget will be successfully created by the user in hi
 reflected on the user interface.
 
 ##### 4.3.1.2. Add Expenditure
+(Contributed by David)
+
+This section explains the `Add Expenditure Command`.
+
+Similar to creating a Budget, the add expenditure Command also shows the interaction between the `Logic` component 
+and `Model` component of NUSave. The sequence diagram depicts a scenario when the user wants to add an expenditure for 
+his budget by entering the command `add n/Basketball p/20 t/Ball`.
+
+![AddExpenditureCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/AddExpenditureCommand.png) 
+
+Figure 4.3.2.1: Sequence diagram  for add expenditure command in budget page view.
+
+1. Beginning with the `LogicManager`, the `LogicManager` hands the given user input to the `BudgetPageParser` 
+to be parsed.
+2. The `BudgetPageParser` will identify the command given by the user and pass the user input down to the
+`AddExpenditureCommandParser` to be parsed.
+3. The `AddExpenditureCommandParser` will create an `Expenditure` with the given parameters **name**, **price** and
+optionally **tags** from the user input.
+4. The `AddExpenditureCommandParser` will then create an `AddExpenditureCommand` object with the created `Budget` 
+object as the input parameter.
+5. The `AddExpenditureCommandParser` will then return an `AddExpenditureCommand` object.
+6. `LogicManager` will now call the `execute` method in the `AddExpenditureCommand` object.
+7. The `AddExpenditureCommand` will now call the `addExpenditure` method of the existing `Model` object and add the 
+`Expenditure` object created into NUSave.
+8. The `AddExpenditureCommand` then returns a `CommandResult` indicating the successful addition of the `Expenditure`
+object.
+
+With the above sequence, an expenditure will be successfully created by the user in his NUSave application under 
+the specific budget, and will be immediately reflected on the user interface.
 
 #### 4.3.2. Delete Commands
+(Contributed by David)
+This section describes the details surrounding events at which users would wish to delete information from NUSave. 
+Specifically, deletion can happen in two areas; when a user wishes to delete a budget from the Main Page, or when a 
+user wishes to delete an expenditure from a budget.
 
 ##### 4.3.2.1. Delete Budget
 (Contributed by David)
 
 This section explains the `Delete Budget Command`.
 
-The following command results in the specified budget of the particular index to be removed from NUSave. This command
-therefore requires a compulsory index to specify the particular budget to be removed.
+The following command occurs in the `Main Page` of NUSave, and results in the specified budget of the particular index 
+to be removed from NUSave. This command therefore requires a compulsory index to specify the particular budget to be 
+removed.
 
-Only when the index is valid (within the range of existing budgets), does the command execute successfully.
+Only when the index given by the user is valid (within the range of existing budgets), does the command execute 
+successfully.
 
 The following sequence diagram shows the interactions between the `Logic` and `Model` components of NUSave,
 depicting a scenario where the user would like to delete the first budget on his list.
 
-
 ![DeleteBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/DeleteBudgetCommand.png) 
 
-Figure 4.1.2.1: Sequence diagram  for delete budget command in main page view.
+Figure 4.3.2.1.1: Sequence diagram  for delete budget command in main page view.
 
 1. The `LogicManager` uses the `MainPageParser` to parse the given user input.
 2. The `MainPageParser` will identify the command given by the user and pass the user input down to the
@@ -327,8 +371,50 @@ With the above sequence, a budget will be successfully deleted by the user in hi
 reflected on the user interface through the successful `CommandResult` and updated budget list.
 
 ##### 4.3.2.2. Delete Expenditure
+(Contributed by David)
+
+This section explains the `Delete Expenditure Command`.
+
+The following command occurs in the `Budget Page` of NUSave, and results in the specified expenditure of the particular 
+index to be removed from NUSave. This command therefore requires a compulsory index to specify the particular 
+expenditure to be removed.
+
+Only when the index given by the user is valid (within the range of existing budgets), does the command execute 
+successfully.
+
+The following sequence diagram is similar to `figure 4.3.2.1.1` which shows the interactions between the `Logic` and 
+`Model` components of NUSave, depicting a scenario where the user within a budget would like to delete the first 
+expenditure on his list.
+
+![DeleteExpenditureCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/DeleteExpenditureCommand.png)
+
+Figure 4.3.2.2.1: Sequence diagram  for delete budget command in budget page view.
+
+1. The `LogicManager` uses the `BudgetPageParser` to parse the given user input.
+2. The `BudgetPageParser` will identify the command given by the user and create a `DeleteBudgetCommandParser`.
+3. The `BudgetPageParser` will pass the user input into the newly created`DeleteBudgetCommandParser`.
+3. The `DeleteExpenditureCommandParser` will create a `ExpenditureIndex` with the given parameters **index**  from the
+user input.
+4. The `DeleteExpenditureCommandParser` will then create a `DeleteExpenditureCommand` object with the created 
+`ExpenditureIndex` object as the input parameter.
+5. The `DeleteExpenditureCommandParser` will then return the `DeleteExpenditureCommand` object back to the 
+`LogicManager`.
+6. `LogicManager` will now call the `execute` method in the `DeleteExpenditureCommand` object, with the `Model` as a 
+parameter.
+7. The `DeleteExpenditureCommand`'s `execute` method will now call the `deleteExpenditure` method of the existing 
+`Model` object passed in and delete the `Expenditure` object within NUSave.
+8. The `DeleteExpenditureCommand` then returns a `CommandResult` indicating the successful deletion of the 
+`Expenditure` object.
+
+With the above sequence, a budget will be successfully deleted by the user in his NUSave application, and it will be
+reflected on the user interface through the successful `CommandResult` and updated budget list.
 
 #### 4.3.3. Edit Commands
+(Contributed by David)
+
+This section describes the details surrounding events at which users would wish to edit information from NUSave. 
+Specifically, editing can happen in two areas; when a user wishes to edit a budget from the `Main Page`, or when a 
+user wishes to edit an expenditure from a budget within the `Budget Page`.
 
 ##### 4.3.3.1. Edit Budget
 
@@ -337,18 +423,41 @@ reflected on the user interface through the successful `CommandResult` and updat
 
 This section explains the `Edit Expenditure Command`.
 
-The following command results in the specified expenditure of the particular index to be edited within the Budget. 
-As such, this command requires a compulsory index to specify the particular expenditure, along with a field at which 
-the user would like to edit.
+The following command results in the specified expenditure of the particular index to be edited within the 
+`Budget Page`. As such, this command requires a compulsory index to specify the particular expenditure, along with a
+field at which the user would like to edit (`NAME`, `PRICE`, `TAG`).
 
 Only when the index is valid (within the range of existing expenditures), and the user provides at least one field to 
 be edited, does the command execute successfully.
 
 The following sequence diagram shows the interactions between the `Logic` and `Model` components of NUSave,
-depicting a scenario where the user would like to edit the first expenditure on his/her list, and change the `NAME`,
-`PRICE` and `TAG` to `Basketball`, `50` and `Ball` accordingly.
+depicting a scenario where the user would like to edit the first expenditure on his/her list, and change the previous 
+`NAME`, `PRICE` and `TAG` to `Basketball`, `50` and `Ball` accordingly.
 
 ![EditExpenditureCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/EditExpenditureCommand.png)
+
+Figure 4.3.3.2.1: Sequence diagram  for delete edit command in budget page view.
+
+1. Beginning with the `LogicManager`, the `LogicManager` hands the given user input to the `BudgetPageParser` 
+to be parsed.
+2. The `BudgetPageParser` will identify the command given by the user and create an `EditExpenditureCommandParser`.
+3. The `BudgetPageParser` will pass the user input into the newly created `EditExpenditureCommandParser`.
+4. The `EditExpenditureCommandParser` will create an `ExpenditureIndex` with the given parameters **index**  from the
+user input.
+5. The `EditExpenditureCommandParser` will then create an `EditExpenditureDescriptor` with the given parameters of 
+**name**, **price** and **tags**.
+6. The `EditExpenditureCommandParser` will then create an `EditExpenditureCommand` with the `Expenditure Index` and 
+`EditExpenditureDescriptor`.
+7. The `EditExpenditureCommandParser` will then return the `EditExpenditureCommand` object back to the `LogicManager`.
+8. `LogicManager` will now call the `execute` method in the `EditExpenditureCommand` object, with the `Model` as a 
+parameter.
+7. The `EditExpenditureCommand`'s `execute` method will now call the `editExpenditure` method of the existing 
+`Model` object passed in and update the `Expenditure` with a new `Expenditure` object within NUSave.
+8. The `EditExpenditureCommand` then returns a `CommandResult` indicating the successful editing of the 
+`Expenditure`.
+
+With the above sequence, an expenditure will be successfully edited by the user in his NUSave application, and it will 
+be reflected on the user interface through the successful `CommandResult` and updated budget list.
 
 #### 4.3.4. Sort Commands
 
