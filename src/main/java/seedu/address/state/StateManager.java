@@ -121,7 +121,7 @@ public class StateManager implements State {
     }
 
     @Override
-    public void setPageName(String pageTitle) {
+    public void setPageTitle(String pageTitle) {
         requireNonNull(pageTitle);
         this.pageTitle = pageTitle;
     }

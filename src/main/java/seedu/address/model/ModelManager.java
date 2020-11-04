@@ -114,7 +114,8 @@ public class ModelManager implements Model {
         requireNonNull(budgetIndex);
         BudgetIndex actualBudgetIndex = getActualBudgetIndex(budgetIndex);
         setBudgetIndex(actualBudgetIndex);
-        setPageName(getPageName(actualBudgetIndex));
+        String pageName = getPageName(actualBudgetIndex);
+        setPageTitle(pageName);
         setPage(Page.BUDGET);
         String newExpenditureValue = calculateExpenditureValue(actualBudgetIndex);
         setTotalExpenditure(newExpenditureValue);
@@ -127,7 +128,7 @@ public class ModelManager implements Model {
     @Override
     public void closeBudget() {
         setBudgetIndex(new EmptyBudgetIndex());
-        setPageName(PageTitle.MAIN_PAGE_TITLE);
+        setPageTitle(PageTitle.MAIN_PAGE_TITLE);
         setPage(Page.MAIN);
         setTotalExpenditure(StateManager.defaultValueTotalExpenditure());
         setThreshold(Optional.empty());
@@ -390,8 +391,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPageName(String page) {
-        this.stateManager.setPageName(page);
+    public void setPageTitle(String page) {
+        this.stateManager.setPageTitle(page);
     }
 
     //=========== Filtered Renderable List Accessors =============================================================

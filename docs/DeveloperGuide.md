@@ -374,18 +374,27 @@ depicting a scenario where the user would like to edit the first expenditure on 
 
 This section talks about how data is dynamically updated on the UI of NUSave.  
 
-To illustrate the point using a specific example, the title displayed to the user updates between the name of the budget page and 'NUSave', depending 
-on which page the user is currently navigating on. 
+As an overview, we use the **Observer Pattern** to dynamically update these modified data. We force this communication by 
+using a `StateBinder` interface, where `bind()` is called to bind all `StateBinders` to `StateManager`.
 
-If a user is currently looking at the list of budgets available, then the title displayed would be 'NUSave'. 
+Figure 4.4.2.1. Observer Pattern Illustration
 
-If a user is currently looking into a specific budget, then the title displayed
-would be the name of the budget as given by the user.
-
-As an overview, we use the **Observer Pattern** to dynamically update these modified data. These observers can be found inside 
-the `StateBinder` package.  
+As seen, there is also a combination of the [**Facade Pattern**](https://nus-cs2103-ay2021s1.github.io/website/se-book-adapted/chapters/designPatterns.html#facade-pattern)
+and [**N-tier Architectural Style**](https://nus-cs2103-ay2021s1.github.io/website/se-book-adapted/chapters/architecture.html#n-tier-architectural-style) 
+to link these 2 classes together.
 
 ##### 4.4.2.1. Title
+
+###### 4.4.2.1.1. Description
+The title displayed to the user updates between the name of the budget page and 'NUSave', depending 
+on which page the user is currently navigating on. 
+
+- If a user is currently looking at the list of budgets available, then the title displayed would be 'NUSave'. 
+
+- If a user is currently looking into a specific budget, then the title displayed
+would be the name of the budget as given by the user.
+
+###### 4.4.2.1.2. Implementation
 
 
 ##### 4.4.2.2. Info Box - Between States

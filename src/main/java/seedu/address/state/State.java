@@ -36,5 +36,5 @@ public interface State {
 
     void setBudgetIndex(BudgetIndex index);
 
-    void setPageName(String pageTitle);
+    void setPageTitle(String pageTitle);
 }
