@@ -4,10 +4,10 @@ import java.util.Comparator;
 
 import seedu.address.model.budget.Budget;
 
-public class SortBudgetByCreateDate implements Comparator<Budget> {
+public class SortBudgetsByName implements Comparator<Budget> {
 
     @Override
     public int compare(Budget a, Budget b) {
-        return b.getCreatedOn().compareTo(a.getCreatedOn());
+        return a.getName().value.toLowerCase().compareTo(b.getName().value.toLowerCase());
     }
 }

@@ -44,17 +44,17 @@ class NusaveTest {
     void addExpenditure() {
         nusave.resetData(getTypicalNusave());
         ExpenditureList list = getTypicalExpenditures();
-        nusave.addExpenditure(list.getExpendituresList().get(0), Optional.of(0));
-        assertEquals(nusave.getInternalList().get(0), list.getExpendituresList().get(0));
+        nusave.addExpenditure(list.getExpenditures().get(0), Optional.of(0));
+        assertEquals(nusave.getInternalList().get(0), list.getExpenditures().get(0));
     }
 
     @Test
     void editExpenditure() {
         nusave.resetData(getTypicalNusave());
         ExpenditureList list = getTypicalExpenditures();
-        nusave.addExpenditure(list.getExpendituresList().get(0), Optional.of(0));
-        nusave.editExpenditure(list.getExpendituresList().get(0), list.getExpendituresList().get(1), Optional.of(0));
-        assertEquals(nusave.getInternalList().get(0), list.getExpendituresList().get(1));
+        nusave.addExpenditure(list.getExpenditures().get(0), Optional.of(0));
+        nusave.editExpenditure(list.getExpenditures().get(0), list.getExpenditures().get(1), Optional.of(0));
+        assertEquals(nusave.getInternalList().get(0), list.getExpenditures().get(1));
     }
 
 

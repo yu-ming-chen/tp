@@ -21,6 +21,7 @@ import seedu.address.model.budget.Threshold;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.state.Page;
 import seedu.address.state.PageTitle;
+import seedu.address.state.State;
 import seedu.address.state.StateManager;
 import seedu.address.state.budgetindex.BudgetIndex;
 import seedu.address.state.budgetindex.BudgetIndexManager;
@@ -36,7 +37,7 @@ public class ModelManager implements Model {
     private final Nusave nusave;
     private final UserPrefs userPrefs;
     private final FilteredList<Renderable> filteredRenderables;
-    private final StateManager stateManager;
+    private final State state;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -49,7 +50,7 @@ public class ModelManager implements Model {
 
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredRenderables = new FilteredList<>(this.nusave.getInternalList());
-        this.stateManager = new StateManager(new EmptyBudgetIndex(), Page.MAIN, PageTitle.MAIN_PAGE_TITLE);
+        this.state = new StateManager(new EmptyBudgetIndex(), Page.MAIN, PageTitle.MAIN_PAGE_TITLE);
         sortBudgetsByCreatedDate();
     }
     /**
@@ -217,7 +218,7 @@ public class ModelManager implements Model {
         int index = expenditureIndex.getExpenditureIndex().get();
         assert index < filteredRenderables.size();
         Expenditure expenditure = (Expenditure) filteredRenderables.get(index);
-        Optional<Integer> budgetIndex = stateManager.getBudgetIndex();
+        Optional<Integer> budgetIndex = state.getBudgetIndex();
         nusave.deleteExpenditure(expenditure, budgetIndex);
         setTotalExpenditure(nusave.getTotalExpenditureValue(budgetIndex));
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
@@ -230,8 +231,8 @@ public class ModelManager implements Model {
     @Override
     public void addExpenditure(Expenditure expenditure) {
         requireNonNull(expenditure);
-        Optional<Integer> budgetIndex = this.stateManager.getBudgetIndex();
-        nusave.addExpenditure(expenditure, this.stateManager.getBudgetIndex());
+        Optional<Integer> budgetIndex = this.state.getBudgetIndex();
+        nusave.addExpenditure(expenditure, this.state.getBudgetIndex());
         setTotalExpenditure(nusave.getTotalExpenditureValue(budgetIndex));
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
@@ -239,7 +240,7 @@ public class ModelManager implements Model {
     @Override
     public void editExpenditure(Expenditure oldExpenditure, Expenditure editedExpenditure) {
         requireAllNonNull(oldExpenditure, editedExpenditure);
-        Optional<Integer> budgetIndex = this.stateManager.getBudgetIndex();
+        Optional<Integer> budgetIndex = this.state.getBudgetIndex();
         nusave.editExpenditure(oldExpenditure, editedExpenditure, budgetIndex);
         setTotalExpenditure(nusave.getTotalExpenditureValue(budgetIndex));
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
@@ -264,13 +265,13 @@ public class ModelManager implements Model {
 
     @Override
     public void sortExpendituresByName() {
-        nusave.sortExpendituresByName(stateManager);
+        nusave.sortExpendituresByName(state);
         repopulateObservableList();
     }
 
     @Override
     public void sortExpenditureByCreatedDate() {
-        nusave.sortExpendituresByCreateDate(stateManager);
+        nusave.sortExpendituresByCreateDate(state);
         repopulateObservableList();
     }
 
@@ -284,19 +285,19 @@ public class ModelManager implements Model {
 
     @Override
     public void repopulateObservableList() {
-        nusave.repopulateObservableList(stateManager);
+        nusave.repopulateObservableList(state);
     }
 
     //=========== StateManager ================================================================================
 
     @Override
     public boolean isMain() {
-        return this.stateManager.isMain();
+        return this.state.isMain();
     }
 
     @Override
     public boolean isBudget() {
-        return this.stateManager.isBudget();
+        return this.state.isBudget();
     }
 
     @Override
@@ -315,22 +316,22 @@ public class ModelManager implements Model {
 
     @Override
     public Page getPage() {
-        return this.stateManager.getPage();
+        return this.state.getPage();
     }
 
     @Override
     public BooleanProperty getBudgetPageProp() {
-        return this.stateManager.getIsBudgetPageProp();
+        return this.state.getIsBudgetPageProp();
     }
 
     @Override
     public StringProperty getTotalExpenditureStringProp() {
-        return stateManager.getInfoBoxSecondRowProp();
+        return state.getInfoBoxSecondRowProp();
     }
 
     @Override
     public StringProperty getThresholdStringProp() {
-        return stateManager.getThresholdStringProp();
+        return state.getThresholdStringProp();
     }
 
     @Override
@@ -340,59 +341,59 @@ public class ModelManager implements Model {
 
     @Override
     public String getPageTitle() {
-        return this.stateManager.getPageTitle();
+        return this.state.getPageTitle();
     }
 
     @Override
     public String getTotalExpenditureValue() {
-        Optional<Integer> budgetIndex = stateManager.getBudgetIndex();
+        Optional<Integer> budgetIndex = state.getBudgetIndex();
         assert budgetIndex.isPresent();
         return nusave.getTotalExpenditureValue(budgetIndex);
     }
 
     @Override
     public Optional<Threshold> getThreshold() {
-        Optional<Integer> budgetIndex = stateManager.getBudgetIndex();
+        Optional<Integer> budgetIndex = state.getBudgetIndex();
         return nusave.getThreshold(budgetIndex);
     }
 
     @Override
     public boolean isBudgetPage() {
-        return this.stateManager.isBudgetPage();
+        return this.state.isBudgetPage();
     }
 
     @Override
     public void setBudgetIndex(BudgetIndex budgetIndex) {
-        this.stateManager.setBudgetIndex(budgetIndex);
+        this.state.setBudgetIndex(budgetIndex);
     }
 
     public Optional<Integer> getBudgetIndex() {
-        return this.stateManager.getBudgetIndex();
+        return this.state.getBudgetIndex();
     }
 
     @Override
     public void setPage(Page page) {
-        this.stateManager.setPage(page);
+        this.state.setPage(page);
     }
 
     @Override
     public void setTotalExpenditure(String expenditure) {
-        this.stateManager.setTotalExpenditure(expenditure);
+        this.state.setTotalExpenditure(expenditure);
     }
 
     @Override
     public void setThreshold(Optional<Threshold> threshold) {
         if (threshold.isPresent()) {
             String thresholdStr = threshold.get().toString();
-            this.stateManager.setThresholdStringProp(thresholdStr);
+            this.state.setThresholdStringProp(thresholdStr);
         } else {
-            this.stateManager.setThresholdStringProp(NO_THRESHOLD_MESSAGE);
+            this.state.setThresholdStringProp(NO_THRESHOLD_MESSAGE);
         }
     }
 
     @Override
     public void setPageTitle(String page) {
-        this.stateManager.setPageTitle(page);
+        this.state.setPageTitle(page);
     }
 
     //=========== Filtered Renderable List Accessors =============================================================
