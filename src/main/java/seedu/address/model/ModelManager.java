@@ -163,6 +163,7 @@ public class ModelManager implements Model {
         Budget budget = (Budget) filteredRenderables.get(index);
         nusave.deleteBudget(budget);
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        saveToHistory();
     }
 
     /**
@@ -175,11 +176,13 @@ public class ModelManager implements Model {
         requireAllNonNull(oldBudget, editedBudget);
         nusave.editBudget(oldBudget, editedBudget);
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        saveToHistory();
     }
 
     @Override
     public void deleteAllBudgets() {
         nusave.deleteAllBudgets();
+        saveToHistory();
     }
 
     @Override
@@ -412,7 +415,7 @@ public class ModelManager implements Model {
     }
 
     //=========== Undo Redo =============================================================
-    
+
     @Override
     public boolean canUndo() {
         return history.hasHistory();
@@ -424,7 +427,7 @@ public class ModelManager implements Model {
         nusave.setBudgets(budgetList);
         repopulateObservableList();
     }
-    
+
     @Override
     public boolean canRedo() {
         return history.hasFuture();
@@ -436,7 +439,7 @@ public class ModelManager implements Model {
         nusave.setBudgets(budgetList);
         repopulateObservableList();
     }
-    
+
     private void saveToHistory() {
         BudgetList toSave = nusave.getBudgetList();
         BudgetList clone = BudgetList.clone(toSave);

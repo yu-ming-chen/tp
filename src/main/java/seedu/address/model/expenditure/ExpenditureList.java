@@ -25,11 +25,16 @@ public class ExpenditureList {
         return clone;
     }
     /**
-     * Adds a expenditure to the list of budgets.
+     * Adds a expenditure to the front of the list.
      */
-    public void add(Expenditure toAdd) {
+    public void addToFront(Expenditure toAdd) {
         requireNonNull(toAdd);
         expenditures.add(0, toAdd);
+    }
+    
+    public void add(Expenditure toAdd) {
+        requireNonNull(toAdd);
+        expenditures.add(toAdd);
     }
 
     public List<Expenditure> getExpenditures() {

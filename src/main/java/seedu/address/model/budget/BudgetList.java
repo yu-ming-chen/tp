@@ -43,11 +43,20 @@ public class BudgetList implements Iterable<Budget> {
     }
     
     /**
-     * Adds a budget to the list of budgets.
+     * Adds a budget to the front of the list.
+     */
+    public void addToFront(Budget toAdd) {
+        requireNonNull(toAdd);
+        budgets.add(0, toAdd);
+    }
+
+    /**
+     * Adds a budget to the back of the list.
+     * @param toAdd
      */
     public void add(Budget toAdd) {
         requireNonNull(toAdd);
-        budgets.add(0, toAdd);
+        budgets.add(toAdd);
     }
 
     /**
