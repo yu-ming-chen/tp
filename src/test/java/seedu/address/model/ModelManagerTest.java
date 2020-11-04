@@ -102,7 +102,7 @@ public class ModelManagerTest {
     @Test
     void addBudget_validBudget_addsBudget() {
         modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
-        int size = modelManager.getNusave().getBudgetList().size();
+        int size = modelManager.getNusave().getBudgetListAsObservableList().size();
         assertEquals(size, 1);
     }
 
@@ -115,7 +115,7 @@ public class ModelManagerTest {
     void deleteBudget_validBudget_deletesBudget() {
         modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
         modelManager.deleteBudget(new BudgetIndexManager(0));
-        int size = modelManager.getNusave().getBudgetList().size();
+        int size = modelManager.getNusave().getBudgetListAsObservableList().size();
         assertEquals(size, 0);
     }
 
@@ -135,7 +135,7 @@ public class ModelManagerTest {
     void deleteAllBudgets() {
         modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
         modelManager.deleteAllBudgets();
-        assertEquals(modelManager.getNusave().getBudgetList().size(), 0);
+        assertEquals(modelManager.getNusave().getBudgetListAsObservableList().size(), 0);
     }
 
     @Test
@@ -150,9 +150,9 @@ public class ModelManagerTest {
         modelManager.addBudget(b);
         modelManager.addBudget(a);
         modelManager.sortBudgetsByName();
-        assertEquals(modelManager.getNusave().getBudgetList().get(0), a);
-        assertEquals(modelManager.getNusave().getBudgetList().get(1), b);
-        assertEquals(modelManager.getNusave().getBudgetList().get(2), c);
+        assertEquals(modelManager.getNusave().getBudgetListAsObservableList().get(0), a);
+        assertEquals(modelManager.getNusave().getBudgetListAsObservableList().get(1), b);
+        assertEquals(modelManager.getNusave().getBudgetListAsObservableList().get(2), c);
     }
 
     @Test

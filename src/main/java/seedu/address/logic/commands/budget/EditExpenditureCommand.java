@@ -73,6 +73,7 @@ public class EditExpenditureCommand extends Command {
         Expenditure editedExpenditure = createEditedExpenditure(toEdit, editExpenditureDescriptor);
 
         model.editExpenditure(toEdit, editedExpenditure);
+        model.saveToHistory();
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 

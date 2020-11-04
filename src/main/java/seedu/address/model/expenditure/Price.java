@@ -28,6 +28,16 @@ public class Price {
     }
 
     /**
+     * Creates a deep copy of the given {@code Price}.
+     * @param toClone the {@code Price} to be copied
+     * @return the deep copy of the given {@code Price}
+     */
+    public static Price clone(Price toClone) {
+        requireNonNull(toClone);
+        return new Price(toClone.value);
+    }
+
+    /**
      * Returns true if a given string is a valid price.
      */
     public static boolean isValid(String test) {

@@ -43,6 +43,7 @@ BPP <-- DECP : c
 deactivate DECP
 destroy DECP
 LM <-- BPP : c
+deactivate BPP
 
 LM -> DEC: excute(m)
 activate DEC

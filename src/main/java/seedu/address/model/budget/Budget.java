@@ -42,6 +42,23 @@ public class Budget implements Renderable {
         this.expenditures = expenditures;
     }
 
+    /**
+     * Creates a deep copy of the given {@code Budget}.
+     * @param toClone the {@code Budget} to be copied.
+     * @return the deep copy of the given {@code Budget}.
+     */
+    public static Budget clone(Budget toClone) {
+        requireAllNonNull(toClone);
+        Name nameClone = Name.clone(toClone.name);
+        Date dateClone = Date.clone(toClone.createdOn);
+        Optional<Threshold> thresholdToClone = toClone.threshold;
+        Optional<Threshold> thresholdClone = thresholdToClone.isEmpty()
+                ? Optional.empty()
+                : Threshold.clone(thresholdToClone.get()).toOptional();
+        ExpenditureList expendituresClone = ExpenditureList.clone(toClone.expenditures);
+        return new Budget(nameClone, dateClone, thresholdClone, expendituresClone);
+    }
+
     public Name getName() {
         return name;
     }
@@ -70,7 +87,7 @@ public class Budget implements Renderable {
     }
 
     public void addExpenditure(Expenditure expenditure) {
-        expenditures.add(expenditure);
+        expenditures.addToFront(expenditure);
     }
 
     /**

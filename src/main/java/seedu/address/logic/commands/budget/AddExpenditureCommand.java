@@ -56,6 +56,7 @@ public class AddExpenditureCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.addExpenditure(toAdd);
+        model.saveToHistory();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

@@ -2,6 +2,7 @@ package seedu.address.model.budget;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class Name {
     public static final String MESSAGE_CONSTRAINTS =
@@ -24,6 +25,16 @@ public class Name {
         requireNonNull(value);
         checkArgument(isValid(value), MESSAGE_CONSTRAINTS);
         this.value = value;
+    }
+
+    /**
+     * Creates a deep copy of the given {@code ExpenditureList}.
+     * @param toClone the {@code ExpenditureList} to be copied.
+     * @return the deep copy of the given {@code ExpenditureList}.
+     */
+    public static Name clone(Name toClone) {
+        requireAllNonNull(toClone);
+        return new Name(toClone.value);
     }
 
     /**

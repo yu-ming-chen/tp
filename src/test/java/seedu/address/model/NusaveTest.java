@@ -19,7 +19,7 @@ class NusaveTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), nusave.getBudgetList());
+        assertEquals(Collections.emptyList(), nusave.getBudgetListAsObservableList());
     }
 
     @Test
@@ -37,7 +37,7 @@ class NusaveTest {
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
         Nusave newData = getTypicalNusave();
         nusave.resetData(newData);
-        assertEquals(nusave.getBudgetList(), newData.getBudgetList());
+        assertEquals(nusave.getBudgetListAsObservableList(), newData.getBudgetListAsObservableList());
     }
 
     @Test
