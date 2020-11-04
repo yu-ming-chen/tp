@@ -34,7 +34,7 @@ title: Developer Guide
         * [4.3.3. Sort Commands](#433-sort-commands)
         * [4.3.4. Find & List Commands](#434-find--list-commands)
     * [4.4. UI](#44-ui)
-        * [4.4.1. ListView Rendering](#441-listview-rendering)
+        * [4.4.1. List View Rendering](#441-list-view-rendering)
         * [4.4.2. Dynamic Updating](#442-dynamic-updating)
             * [4.4.2.1. Title](#4421-title)
             * [4.4.2.2. Info Box - Between States](#4422-info-box---between-states)
@@ -329,7 +329,19 @@ reflected on the user interface.
 
 ### 4.4. UI
 
-#### 4.4.1. ListView Rendering
+
+
+#### 4.4.1. List View Rendering
+(Contributed by Wen Hao)
+
+The List View UI component is able to display both budgets and expenditures through the `Renderable` interface.
+Both `Budget` and `Expenditure` classes implements the `Renderable` interface.
+As such, `Budget` and `Expenditure` objects can be added to the `ObservableList` of `Renderable` which the List View is binded to.
+Whenever changes are made to the `ObservableList`, the List View generates either a `BudgetCard` or `ExpenditureCard` depending on the runtime type of the `Renderable` object.
+
+Repopulation of the List View occurs when:
+* the user opens or close a budget.
+* the user makes changes to a budget or an expenditure.
 
 #### 4.4.2. Dynamic Updating
 
