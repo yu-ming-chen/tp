@@ -10,11 +10,12 @@ public class Threshold {
     public static final String MESSAGE_CONSTRAINTS =
             "Thresholds can be empty or contain only numbers, and it can have at most 2 decimal places.";
     public static final String NON_ZERO_CONSTRAINTS =
-            "Sorry! Thresholds cannot be 0! It can only exist in the range between $0.01 and $1,000,000, inclusive.";
+            "Sorry! Thresholds cannot be 0 or less! "
+                    + "It can only exist in the range between $0.01 and $1,000,000, inclusive.";
     public static final String EXCEEDED_VALUE_ERROR =
             "Sorry! Thresholds cannot exceed $1,000,000. "
                     + "It can only exist in the range between $0.01 and $1,000,000, inclusive.";
-    public static final String VALIDATION_REGEX = "^$|[0-9]+(\\.[0-9]?[0-9])?$";
+    public static final String VALIDATION_REGEX = "^$|-?[0-9]+(\\.[0-9]?[0-9])?$";
     public static final String NO_THRESHOLD_MESSAGE = "";
     public static final double MAX_VALUE = 1000000.00;
     public final String value;
@@ -35,8 +36,8 @@ public class Threshold {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public static boolean isZero(String test) {
-        return Double.parseDouble(test) == 0;
+    public static boolean isZeroOrLess(String test) {
+        return Double.parseDouble(test) <= 0;
     }
 
     public static boolean isExceededValue(String test) {

@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.budget.Threshold.NO_THRESHOLD_MESSAGE;
 
 import java.nio.file.Path;
 import java.util.Optional;
@@ -117,6 +118,8 @@ public class ModelManager implements Model {
         setPage(Page.BUDGET);
         String newExpenditureValue = calculateExpenditureValue(actualBudgetIndex);
         setTotalExpenditure(newExpenditureValue);
+        Optional<Threshold> newThreshold = getThreshold();
+        setThreshold(newThreshold);
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
         repopulateObservableList();
     }
@@ -127,6 +130,7 @@ public class ModelManager implements Model {
         setPageName(PageTitle.MAIN_PAGE_TITLE);
         setPage(Page.MAIN);
         setTotalExpenditure(StateManager.defaultValueTotalExpenditure());
+        setThreshold(Optional.empty());
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
         repopulateObservableList();
     }
@@ -320,7 +324,12 @@ public class ModelManager implements Model {
 
     @Override
     public StringProperty getTotalExpenditureStringProp() {
-        return stateManager.getMainPageInfoBoxSecondRowProp();
+        return stateManager.getInfoBoxSecondRowProp();
+    }
+
+    @Override
+    public StringProperty getThresholdStringProp() {
+        return stateManager.getThresholdStringProp();
     }
 
     @Override
@@ -368,6 +377,16 @@ public class ModelManager implements Model {
     @Override
     public void setTotalExpenditure(String expenditure) {
         this.stateManager.setTotalExpenditure(expenditure);
+    }
+
+    @Override
+    public void setThreshold(Optional<Threshold> threshold) {
+        if (threshold.isPresent()) {
+            String thresholdStr = threshold.get().toString();
+            this.stateManager.setThresholdStringProp(thresholdStr);
+        } else {
+            this.stateManager.setThresholdStringProp(NO_THRESHOLD_MESSAGE);
+        }
     }
 
     @Override

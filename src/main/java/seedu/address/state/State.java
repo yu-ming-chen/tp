@@ -14,7 +14,9 @@ public interface State {
 
     BooleanProperty getIsBudgetPageProp();
 
-    StringProperty getMainPageInfoBoxSecondRowProp();
+    StringProperty getInfoBoxSecondRowProp();
+
+    StringProperty getThresholdStringProp();
 
     boolean isBudgetPage();
 
@@ -29,6 +31,8 @@ public interface State {
     void setPage(Page page);
 
     void setTotalExpenditure(String expenditure);
+
+    void setThresholdStringProp(String threshold);
 
     void setBudgetIndex(BudgetIndex index);
 

@@ -2,6 +2,7 @@ package seedu.address.state;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.budget.Threshold.NO_THRESHOLD_MESSAGE;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -18,7 +19,8 @@ public class StateManager implements State {
     private BudgetIndex budgetIndex;
     private Page currentPage;
     private BooleanProperty isBudgetPageProp = new SimpleBooleanProperty(false);
-    private StringProperty mainPageInfoBoxSecondRowProp = new SimpleStringProperty(defaultValueTotalExpenditure());
+    private StringProperty infoBoxSecondRowProp = new SimpleStringProperty(defaultValueTotalExpenditure());
+    private StringProperty thresholdStringProp = new SimpleStringProperty(NO_THRESHOLD_MESSAGE);
     private String pageTitle;
 
     /**
@@ -55,8 +57,13 @@ public class StateManager implements State {
     }
 
     @Override
-    public StringProperty getMainPageInfoBoxSecondRowProp() {
-        return mainPageInfoBoxSecondRowProp;
+    public StringProperty getInfoBoxSecondRowProp() {
+        return infoBoxSecondRowProp;
+    }
+
+    @Override
+    public StringProperty getThresholdStringProp() {
+        return thresholdStringProp;
     }
 
     @Override
@@ -98,7 +105,13 @@ public class StateManager implements State {
     @Override
     public void setTotalExpenditure(String expenditure) {
         requireNonNull(expenditure);
-        this.mainPageInfoBoxSecondRowProp.setValue(expenditure);
+        this.infoBoxSecondRowProp.setValue(expenditure);
+    }
+
+    @Override
+    public void setThresholdStringProp(String threshold) {
+        requireNonNull(threshold);
+        this.thresholdStringProp.setValue(threshold);
     }
 
     @Override
