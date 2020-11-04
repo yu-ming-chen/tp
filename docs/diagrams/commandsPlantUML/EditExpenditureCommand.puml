@@ -1,0 +1,88 @@
+@startuml
+skinparam Sequence {
+    MessageAlign center
+}
+box "Logic" #LightBlue
+participant ":LogicManager" as LM
+participant ":ExpenditurePageParser" as EPP
+participant ":EditExpenditureCommandParser" as EECP
+participant "c:EditExpenditureCommand" as EEC
+participant "result:CommandResult" as CR
+participant "e:EditExpenditureDescriptor" as EED
+participant "i:ExpenditureIndex" as EI
+end box
+
+box "Model" #LightYellow
+participant "toEdit:Expenditure" as toEditExpenditure
+participant "edited:Expenditure" as editedExpenditure
+participant "m:Model" as M
+end box
+
+[-> LM : excute("edit 1 n/Basketball p/50 t/Ball")
+activate LM
+LM -> EPP : parseCommand("edit 1 n/Basketball p/50 t/Ball")
+activate EPP
+
+create EECP
+EPP -> EECP
+activate EECP
+EPP <-- EECP
+deactivate EECP
+EPP -> EECP : parse("edit 1 n/Basketball p/50 t/Ball")
+activate EECP
+
+create EI
+EECP -> EI
+activate EI
+EECP <-- EI : i
+deactivate EI
+
+create EED
+EECP -> EED
+activate EED
+EECP <-- EED : e
+deactivate EED
+
+create EEC
+EECP -> EEC : createExpenditureCommand(i, e)
+activate EEC
+EECP <-- EEC : c
+deactivate EEC
+EPP <-- EECP : c
+destroy EECP
+
+deactivate EECP
+LM <-- EPP : c
+deactivate EPP
+
+LM -> EEC: excute(m)
+activate EEC
+create toEditExpenditure
+EEC -> toEditExpenditure
+activate toEditExpenditure
+EEC <-- toEditExpenditure : toEdit
+deactivate toEditExpenditure
+
+create editedExpenditure
+EEC -> editedExpenditure
+activate editedExpenditure
+EEC <-- editedExpenditure : edited
+deactivate editedExpenditure
+
+EEC -> M : editExpenditure(toEdit, edited)
+activate M
+EEC <-- M
+deactivate M
+
+create CR
+EEC -> CR
+activate CR
+EEC <-- CR : result
+deactivate CR
+
+LM <-- EEC: result
+deactivate EEC
+[<-- LM
+deactivate LM
+
+@enduml

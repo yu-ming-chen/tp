@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 import seedu.address.model.expenditure.Expenditure;
 
-public class SortExpenditureByCreateDate implements Comparator<Expenditure> {
+public class SortExpendituresByCreateDate implements Comparator<Expenditure> {
 
     @Override
     public int compare(Expenditure a, Expenditure b) {
