@@ -55,5 +55,4 @@ LM <-- FBC : result
 deactivate FBC
 [<-- LM : result
 deactivate LM
-
 @enduml
