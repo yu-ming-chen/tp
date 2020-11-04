@@ -23,19 +23,20 @@ title: Developer Guide
         * [4.2.2. CommandParsers](#422-command-parsers)
         * [4.2.3. Interaction Between Parsers](#423-interaction-between-parsers)
     * [4.3. Commands](#43-commands)
-        * [4.3.1. Budget Commands](#431-budget-commands)
+        * [4.3.1. Add Commands](#431-add-commands)
             * [4.3.1.1. Create Budget](#4311-create-budget)
-            * [4.3.1.2. Edit Budget](#4312-edit-budget)
-            * [4.3.1.3. Delete Budget](#4313-delete-budget)
-        * [4.3.2. Expenditure Commands](#432-expenditure-commands)
-            * [4.3.2.1. Create Expenditure](#4321-create-expenditure)
-            * [4.3.2.2. Edit Expenditure](#4322-edit-expenditure)
-            * [4.3.2.3. Delete Expenditure](#4323-delete-expenditure)
-        * [4.3.3. Sort Commands](#433-sort-commands)
-        * [4.3.4. Find & List Commands](#434-find--list-commands)
-        * [4.3.5. Universal Commands](#435-universal-commands)
-            * [4.3.5.1. Help](#4351-help)
-            * [4.3.5.2. Exit](#4352-exit)
+            * [4.3.1.2. Add Expenditure](#4312-add-expenditure)
+        * [4.3.2. Delete Commands](#432-delete-commands)
+            * [4.3.2.1. Delete Budget](#4321-delete-budget)
+            * [4.3.2.2. Delete Expenditure](#4322-delete-expenditure)
+        * [4.3.3. Edit Commands](#433-edit-commands)
+            * [4.3.3.1. Edit Budget](#4331-edit-budget)
+            * [4.3.3.2. Edit Expenditure](#4332-edit-expenditure)
+        * [4.3.4. Sort Commands](#434-sort-commands)
+        * [4.3.5. Find & List Commands](#435-find--list-commands)
+        * [4.3.6. Universal Commands](#436-universal-commands)
+            * [4.3.6.1. Help](#4361-help)
+            * [4.3.6.2. Exit](#4362-exit)
     * [4.4. UI](#44-ui)
         * [4.4.1. ListView Rendering](#441-listview-rendering)
         * [4.4.2. Dynamic Updating](#442-dynamic-updating)
@@ -257,7 +258,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ### 4.3. Commands
 
-#### 4.3.1. Budget Commands
+#### 4.3.1. Add Commands
 
 ##### 4.3.1.1. Create Budget
 (Contributed by Yu Ming)
@@ -286,51 +287,79 @@ object created into NUSave.
 With the above sequence, a budget will be successfully created by the user in his NUSave application, and it will be
 reflected on the user interface.
 
-##### 4.3.1.2. Edit Budget
+##### 4.3.1.2. Add Expenditure
 
-##### 4.3.1.3. Delete Budget
+#### 4.3.2. Delete Commands
+
+##### 4.3.2.1. Delete Budget
 (Contributed by David)
 
-The following sequence diagram shows the interactions between the `Logic`, `State` and `Model` components of NUSave,
-depicting a scenario where the user would like to delete the first budget on his list of budgets.
+This section explains the `Delete Budget Command`.
 
-![DeleteBudgetCommand Sequence Diagram](images/DeleteBudgetComman_sequence_diagram.png) 
+The following command results in the specified budget of the particular index to be removed from NUSave. This command
+therefore requires a compulsory index to specify the particular budget to be removed.
+
+Only when the index is valid (within the range of existing budgets), does the command execute successfully.
+
+The following sequence diagram shows the interactions between the `Logic` and `Model` components of NUSave,
+depicting a scenario where the user would like to delete the first budget on his list.
+
+
+![DeleteBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/DeleteBudgetCommand.png) 
 
 Figure 4.1.2.1: Sequence diagram  for delete budget command in main page view.
 
 1. The `LogicManager` uses the `MainPageParser` to parse the given user input.
 2. The `MainPageParser` will identify the command given by the user and pass the user input down to the
 `DeleteBudgetCommandParser`.
-3. The `DeleteBudgetCommandParser` will create a `BudgetIndexManager` with the given parameters **index**  from the
+3. The `DeleteBudgetCommandParser` will create a `BudgetIndex` with the given parameters **index**  from the
 user input.
-4. The `DeleteBudgetCommandParser` will then create a `DeleteBudgetCommand` object with the created `BudgetIndexManager`
+4. The `DeleteBudgetCommandParser` will then create a `DeleteBudgetCommand` object with the created `BudgetIndex`
 object as the input parameter.
 5. The `DeleteBudgetCommandParser` will then return a `DeleteBudgetCommand` object back to the `LogicManager`.
-6. `LogicManager` will now call the `execute` method in the `DeleteBudgetCommand` object.
-7. The `DeleteBudgetCommand` `execute` method will now call the `deleteBudget` method of the existing `Model` object and 
-delete the `Budget` object within NUSave.
+6. `LogicManager` will now call the `execute` method in the `DeleteBudgetCommand` object, with the `Model` as a 
+parameter.
+7. The `DeleteBudgetCommand`'s `execute` method will now call the `deleteBudget` method of the existing `Model` object
+passed in and delete the `Budget` object within NUSave.
 8. The `DeleteBudgetCommand` then returns a `CommandResult` indicating the successful deletion of the `Budget` object.
 
 With the above sequence, a budget will be successfully deleted by the user in his NUSave application, and it will be
-reflected on the user interface.
+reflected on the user interface through the successful `CommandResult` and updated budget list.
 
-#### 4.3.2. Expenditure Commands
+##### 4.3.2.2. Delete Expenditure
 
-##### 4.3.2.1. Create Expenditure
+#### 4.3.3. Edit Commands
 
-##### 4.3.2.2. Edit Expenditure
+##### 4.3.3.1. Edit Budget
 
-##### 4.3.2.3. Delete Expenditure
+##### 4.3.3.2. Edit Expenditure
+(Contributed by David)
 
-#### 4.3.3. Sort Commands
+This section explains the `Edit Expenditure Command`.
 
-#### 4.3.4. Find & List Commands
+The following command results in the specified expenditure of the particular index to be edited within the Budget. 
+As such, this command requires a compulsory index to specify the particular expenditure, along with a field at which 
+the user would like to edit.
 
-#### 4.3.5. Universal Commands
+Only when the index is valid (within the range of existing expenditures), and the user provides at least one field to 
+be edited, does the command execute successfully.
 
-##### 4.3.5.1. Help
+The following sequence diagram shows the interactions between the `Logic` and `Model` components of NUSave,
+depicting a scenario where the user would like to edit the first expenditure on his/her list, and change the `NAME`,
+`PRICE` and `TAG` to `Basketball`, `50` and `Ball` accordingly.
 
-##### 4.3.5.2. Exit
+![EditExpenditureCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/EditExpenditureCommand.png)
+
+#### 4.3.4. Sort Commands
+
+#### 4.3.5. Find & List Commands
+
+#### 4.3.6. Universal Commands
+
+##### 4.3.6.1. Help
+
+##### 4.3.6.2. Exit
+
 
 ### 4.4. UI
 

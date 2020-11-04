@@ -43,6 +43,8 @@ public interface Logic {
 
     StringProperty getTotalExpenditureStringProp();
 
+    StringProperty getThresholdStringProp();
+
     String getPageTitle();
 
     String getTotalExpenditureValue();

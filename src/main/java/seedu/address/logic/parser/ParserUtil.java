@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.budget.Threshold.NO_THRESHOLD_MESSAGE;
 
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -131,11 +132,13 @@ public class ParserUtil {
     public static Price parsePrice(String price) throws ParseException {
         requireNonNull(price);
         String trimmedPrice = price.trim();
-        String parsedPrice = parseToDouble(trimmedPrice);
-        if (!Price.isValid(parsedPrice)) {
+
+        if (!Price.isValid(trimmedPrice)) {
             throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }
-        if (Price.isZero(parsedPrice)) {
+
+        String parsedPrice = parseToDouble(trimmedPrice);
+        if (Price.isZeroOrLess(parsedPrice)) {
             throw new ParseException(Price.NON_ZERO_CONSTRAINTS);
         }
         if (Price.isExceededValue(parsedPrice)) {
@@ -169,11 +172,15 @@ public class ParserUtil {
     public static Optional<Threshold> parseBudgetThreshold(String budgetThreshold) throws ParseException {
         requireNonNull(budgetThreshold);
         String trimmedThreshold = budgetThreshold.trim();
-        String parsedThreshold = parseToDouble(trimmedThreshold);
-        if (!Threshold.isValid(parsedThreshold)) {
+        if (trimmedThreshold == NO_THRESHOLD_MESSAGE) {
+            return new Threshold(trimmedThreshold).toOptional();
+        }
+        if (!Threshold.isValid(trimmedThreshold)) {
             throw new ParseException(Threshold.MESSAGE_CONSTRAINTS);
         }
-        if (Threshold.isZero(parsedThreshold)) {
+
+        String parsedThreshold = parseToDouble(trimmedThreshold);
+        if (Threshold.isZeroOrLess(parsedThreshold)) {
             throw new ParseException(Threshold.NON_ZERO_CONSTRAINTS);
         }
         if (Threshold.isExceededValue(parsedThreshold)) {
