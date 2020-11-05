@@ -34,6 +34,7 @@ title: Developer Guide
             * [4.3.3.2. Edit Expenditure](#4332-edit-expenditure)
         * [4.3.4. Sort Commands](#434-sort-commands)
         * [4.3.5. Find & List Commands](#435-find--list-commands)
+        * [4.3.6. Undo & Redo Commands](#436-undo--redo-commands)
     * [4.4. UI](#44-ui)
         * [4.4.1. List View Rendering](#441-list-view-rendering)
         * [4.4.2. Dynamic Updating](#442-dynamic-updating)
@@ -259,6 +260,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ### 4.1. State
 
 ### 4.2. Parsers
+(Contributed by Wen Hao)
 
 This section describes the details surrounding the parsers which are responsible for converting user inputs into commands to be executed.
 Due to the existence of multiple states in NUSave, we have added additional parsers to recognise different sets of commands
@@ -274,7 +276,18 @@ These parsers are part of the `Logic` component as seen in Figure 4.2.1 below:
 
 Figure 4.2.1. Class diagram of parsers
 
+**Design Considerations**
+
+* Option A: Use a single parser to parse both main and budget page commands
+   * Pros: Less code to write
+   * Cons: Parser class will messy as it needs to differentiate between main and budget page commands that use the same command word.
+
+* **Option B (Chosen):** Use page parsers to parse commands that are available on a page
+   * Pros: Code is more organised and readable
+   * Cons: More code to write
+
 #### 4.2.1. Page Parsers
+(Contributed by Wen Hao)
 
 Page parsers are responsible for determining the type of `Command` that will be generated from a user input.
 
@@ -295,6 +308,7 @@ User inputs are parsed by the `BudgetPageParser` if it is entered while NUSave i
 More information regarding what page the user is on can be found [here](#41-state).
 
 #### 4.2.2. Command Parsers
+(Contributed by Wen Hao)
 
 Command parsers are responsible for generating different types of `Command`.
 
@@ -605,7 +619,7 @@ apply a filter for expenditures displayed by NUSave.
 With the above sequence, all expenditures containing the search term entered will be filtered 
 and displayed on the user interface.
 
-#### 4.3.6. Universal Commands
+#### 4.3.6. Undo & Redo Commands
 
 ### 4.4. UI
 
