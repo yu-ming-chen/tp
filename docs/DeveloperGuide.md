@@ -297,6 +297,12 @@ to a budget.
 
 This section explains the `Create Budget Command`.
 
+The following activity diagram to shows the events that occur when the user executes the Create Budget Command.
+
+![CreateBudgetCommand Activity Diagram](diagrams/commandsPlantUML/CreateBudgetCommandActivity.png) 
+
+Figure 4.3.1.1: Activity diagram for create budget command.
+
 The following command occurs in the `Main Page` of NUSave, and results in the specified budget being created in
 NUSave. This command therefore requires a compulsory name to specify the name of the budget to be created.
 
@@ -306,7 +312,7 @@ depicting a scenario when the user wants to create a budget for his Temasek Hall
 
 ![CreateBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/CreateBudgetCommand.png) 
 
-Figure 4.3.1.1: Sequence diagram  for create budget command in main page view.
+Figure 4.3.1.2: Sequence diagram for create budget command in main page view.
 >Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
 the lifeline reaches the end of diagram.
 
@@ -450,6 +456,12 @@ user wishes to edit an expenditure from a budget within the `Budget Page`.
 
 This section explains the `Edit Budget Command`.
 
+The following activity diagram to shows the events that occur when the user executes the Edit Budget Command.
+
+![EditBudgetCommand Activity Diagram](diagrams/commandsPlantUML/EditBudgetCommandActivity.png) 
+
+Figure 4.3.3.1.1: Activity diagram for edit budget command.
+
 The following command occurs in the `Main Page` of NUSave, and  results in the specified budget of the particular index 
 to be edited within NUSave. As such, this command requires a compulsory index to specify the particular budget, 
 along with fields at which the user would like to edit.
@@ -463,7 +475,7 @@ depicting a scenario where the user would like to edit the first budget on his/h
 
 ![EditBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/EditBudgetCommand.png)
 
-Figure 4.3.3.1.1: Sequence diagram for edit budget command in main page view.
+Figure 4.3.3.1.2: Sequence diagram for edit budget command in main page view.
 >Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
 the lifeline reaches the end of diagram.
 
@@ -534,6 +546,12 @@ be reflected on the user interface through the successful `CommandResult` and up
 
 This section explains the `Sort Command`.
 
+The following activity diagram to shows the events that occur when the user executes the Sort Budget Command.
+
+![SortBudgetCommand Activity Diagram](diagrams/commandsPlantUML/SortBudgetCommandActivity.png) 
+
+Figure 4.3.4.1: Activity diagram for sort budget command.
+
 The following command can occur either in the `Main Page` or `Budget Page` of NUSave, and results in either the budgets
 or the expenditures to be sorted by name or created date. As such, this command requires a compulsory `SortType` field
 to specify the particular type of sorting required.
@@ -545,7 +563,7 @@ depicting a scenario where the user would like to sort the budgets by thier name
 
 ![SortBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/SortBudgetCommand.png)
 
-Figure 4.3.4.1: Sequence diagram for sort budget command in main page view.
+Figure 4.3.4.2: Sequence diagram for sort budget command in main page view.
 
 >Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
 the lifeline reaches the end of diagram.
@@ -574,7 +592,7 @@ expenditure at the top of list of expenditures.
 
 ![SortExpenditureCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/SortExpenditureCommand.png)
 
-Figure 4.3.4.2: Sequence diagram for sort expenditure command in main page view.
+Figure 4.3.4.3: Sequence diagram for sort expenditure command in main page view.
 >Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
 the lifeline reaches the end of diagram.
 
@@ -680,6 +698,12 @@ and displayed on the user interface.
 
 This section explains the `Help Command`.
 
+The following activity diagram to shows the events that occur when the user executes the Help Command.
+
+![HelpCommand Activity Diagram](diagrams/commandsPlantUML/HelpCommandActivity.png) 
+
+Figure 4.3.6.1.1: Activity diagram for help command.
+
 The following command can occur either in the `Main Page` or `Budget Page` of NUSave, and the help notes will be
 displayed in the result box of the UI Component.
 
@@ -688,7 +712,7 @@ depicting a scenario where the user would like to ask for help to be displayed.
 
 ![HelpCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/HelpCommand.png)
 
-Figure 4.3.4.1: Sequence diagram for help command in main page view.
+Figure 4.3.6.1.2: Sequence diagram for help command in main page view.
 >Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
 the lifeline reaches the end of diagram.
 
