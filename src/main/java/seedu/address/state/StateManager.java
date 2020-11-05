@@ -12,7 +12,9 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import seedu.address.model.budget.Threshold;
 import seedu.address.state.budgetindex.BudgetIndex;
+import seedu.address.state.budgetindex.EmptyBudgetIndex;
 
 public class StateManager implements State {
 
@@ -121,8 +123,28 @@ public class StateManager implements State {
     }
 
     @Override
-    public void setPageName(String pageTitle) {
+    public void setPageTitle(String pageTitle) {
         requireNonNull(pageTitle);
         this.pageTitle = pageTitle;
+    }
+
+    @Override
+    public void setOpenCommandState(String pageTitle,
+                                         String newExpenditureValue, Optional<Threshold> newThreshold) {
+        setPageTitle(pageTitle);
+        setPage(Page.BUDGET);
+        setTotalExpenditure(newExpenditureValue);
+        assert newThreshold.isPresent();
+        String threshold = newThreshold.get().toString();
+        setThresholdStringProp(threshold);
+    }
+
+    @Override
+    public void setCloseCommandState() {
+        setBudgetIndex(new EmptyBudgetIndex());
+        setPageTitle(PageTitle.MAIN_PAGE_TITLE);
+        setPage(Page.MAIN);
+        setTotalExpenditure(StateManager.defaultValueTotalExpenditure());
+        setThresholdStringProp(NO_THRESHOLD_MESSAGE);
     }
 }

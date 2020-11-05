@@ -65,7 +65,7 @@ class StateManagerTest {
 
     @Test
     void setPageName_nullString_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> VALID_STATE_MANAGER.setPageName(null));
+        assertThrows(NullPointerException.class, () -> VALID_STATE_MANAGER.setPageTitle(null));
     }
 
 }

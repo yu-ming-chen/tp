@@ -1,0 +1,90 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MainPageParser" as MainPageParser LOGIC_COLOR
+participant ":OpenBudgetCommandParser" as OpenBudgetCommandParser LOGIC_COLOR
+participant ":OpenBudgetCommand" as OpenBudgetCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+box State STATE_COLOR_T1
+participant ":StateManager" as StateManager STATE_COLOR
+end box
+
+[-> MainWindow : "open 1"
+activate MainWindow
+
+MainWindow -> LogicManager : execute("open 1")
+activate LogicManager
+
+LogicManager -> MainPageParser : parseCommand("open 1")
+activate MainPageParser
+
+create OpenBudgetCommandParser
+MainPageParser -> OpenBudgetCommandParser
+activate OpenBudgetCommandParser
+
+OpenBudgetCommandParser --> MainPageParser
+deactivate OpenBudgetCommandParser
+
+MainPageParser -> OpenBudgetCommandParser : parse(arguments)
+activate OpenBudgetCommandParser
+
+create OpenBudgetCommand
+OpenBudgetCommandParser -> OpenBudgetCommand
+activate OpenBudgetCommand
+
+OpenBudgetCommand --> OpenBudgetCommandParser
+deactivate OpenBudgetCommand
+
+OpenBudgetCommandParser --> MainPageParser
+deactivate OpenBudgetCommandParser
+OpenBudgetCommandParser -[hidden]-> MainPageParser
+destroy OpenBudgetCommandParser
+
+MainPageParser --> LogicManager
+deactivate MainPageParser
+
+LogicManager -> OpenBudgetCommand : execute(model)
+activate OpenBudgetCommand
+
+OpenBudgetCommand -> ModelManager : openBudget(budgetIndex)
+activate ModelManager
+
+ModelManager -> ModelManager : setOpenCommandState(budgetIndex)
+
+ModelManager -> StateManager : setOpenCommandState(pageName, expenditureValue, threshold)
+activate StateManager
+
+StateManager -> ModelManager
+deactivate StateManager
+
+ModelManager --> OpenBudgetCommand
+deactivate ModelManager
+
+create CommandResult
+OpenBudgetCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> OpenBudgetCommand
+deactivate CommandResult
+
+OpenBudgetCommand --> LogicManager : commandResult
+deactivate OpenBudgetCommand
+
+LogicManager --> MainWindow : commandResult
+deactivate LogicManager
+
+[<--MainWindow
+deactivate MainWindow
+@enduml

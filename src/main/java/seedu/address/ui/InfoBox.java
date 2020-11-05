@@ -89,7 +89,7 @@ public class InfoBox extends UiPart<Region> {
                         handleSecondRowTextIsMainPage(value);
                     }
                     try {
-                        sleep(200);
+                        sleep(100);
                     } catch (InterruptedException ex) {
                         //...
                     }

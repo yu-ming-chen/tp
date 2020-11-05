@@ -122,7 +122,7 @@ public interface Model {
 
     void setBudgetIndex(BudgetIndex index);
 
-    void setPageName(String page);
+    void setPageTitle(String page);
 
     boolean isMain();
 

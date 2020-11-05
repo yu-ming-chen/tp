@@ -37,9 +37,8 @@ title: Developer Guide
     * [4.4. UI](#44-ui)
         * [4.4.1. List View Rendering](#441-list-view-rendering)
         * [4.4.2. Dynamic Updating](#442-dynamic-updating)
-            * [4.4.2.1. Title](#4421-title)
-            * [4.4.2.2. Info Box - Between States](#4422-info-box---between-states)
-            * [4.4.2.3. Info Box - Total Expenditure](#4423-info-box---total-expenditure)
+            * [4.4.2.1. Description](#4421-description)
+            * [4.4.2.2. Implementation](#4422-implementation)
     * [5. Guides](#5-guides)
         * [5.1. Documentation](#51-documentation)
         * [5.2. Testing](#52-testing)
@@ -136,12 +135,16 @@ The sections below give more details of each component:
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`,
 `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the `MainWindow` is specified in `MainWindow.fxml`
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the `MainWindow` is specified in `MainWindow.fxml`.
 
-The `UI` component:
+In order to dynamically render data to be displayed to the user, when `fillInnerParts()` in `MainWindow` is called, 
+the method `setStateBinders()` sets Observer objects to observe changes in `State`. For a complete explanation,
+refer to [4.4.2. Dynamic Updating](#442-dynamic-updating).
+
+In summary, the `UI` component:
 
 * Executes user commands using the `Logic` component.
-* Listens for changes to `Model` data so that the UI can be updated with the modified data.
+* Listens for changes to `Model` and `State` data so that the UI can be updated with the modified data.
 
 #### 3.2.2. Logic Component
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
@@ -572,12 +575,66 @@ Repopulation of the List View occurs when:
 * the user makes changes to a budget or an expenditure.
 
 #### 4.4.2. Dynamic Updating
+(Contributed by Song Yu)
 
-##### 4.4.2.1. Title
+This section talks about how data is dynamically updated on the GUI of NUSave.  
 
-##### 4.4.2.2. Info Box - Between States
+As an overview, we use the **Observer Pattern** to dynamically update these modified data. We force this communication by 
+using a `StateBinder` interface, where `bind()` is called to bind all `StateBinders` to `StateManager`.
 
-##### 4.4.2.3. Info Box - Total Expenditure
+![Class Diagram between StateBinders and State](images/StateBinders_State_Class_Diagram.png)
+
+Figure 4.4.2.1. Observer Pattern Illustration
+
+1. On initialisation of NUSave, `MainWindow` calls `this.setStateBinders()`, which calls `StateBinderList.bindAll()`.
+2. `StateBinderList` calls `bind()` on every `StateBinder`. 
+3. `bind()` will connect to `isBudgetPageProp`, `infoBoxSecondRowProp` and `thresholdStringProp` in `State`.
+4. Whenever the attributes in `State` as referenced in step 3 are updated, the `StateBinders` are notified, which in turn
+updates the GUI.
+
+As seen, there is also a combination of the [**Facade Pattern**](https://nus-cs2103-ay2021s1.github.io/website/se-book-adapted/chapters/designPatterns.html#facade-pattern)
+and [**N-tier Architectural Style**](https://nus-cs2103-ay2021s1.github.io/website/se-book-adapted/chapters/architecture.html#n-tier-architectural-style) 
+to link `StateBinder` and `StateManager` together.
+
+##### 4.4.2.1. Description
+When a page switches from the main page to a budget page, information in the `InfoBox` and `Title` UI classes are updated.
+When the `StringProperty` and `BooleanProperty` attributes are updated in `State`, the observers in `InfoBox` and `Title`
+are notified, which updates the data displayed.  
+
+###### 4.4.2.2. Implementation
+The change in information displayed occurs when the user inputs one of the following commands:
+1. Opening a budget: `open`
+2. Closing a budget: `close`
+3. Adding an expenditure: `add`
+4. Editing an expenditure: `edit`
+5. Deleting an expenditure: `delete`
+
+######Sequence Diagram
+
+The following sequence diagram shows the interactions between the `Ui`, `Logic`,`Model` and `State` components of NUSave,
+depicting a scenario where the user opens a budget.
+
+![Update Title Sequence Diagram](images/UpdateTitleSequenceDiagram.png)
+Figure 4.4.2.2.1.1. Sequence Diagram for Open Command
+
+1. `MainWindow` is called with the String `open 1`.
+2. `MainWindow` uses `LogicManager` to execute the given user input.
+1. The `LogicManager` uses the `MainPageParser` to parse the given user input.
+2. The `MainPageParser` identifies the command given by the user and creates an `OpenBudgetCommandParser`.
+3. The `MainPageParser` passes the user input into the newly created`OpenBudgetCommandParser`.
+4. The `OpenBudgetCommandParser` creates a `OpenBudgetCommand` object.
+5. The `OpenBudgetCommandParser` returns the `OpenBudgetCommand` object back to `LogicManager`.
+6. `LogicManager` calls the `execute` method in the `OpenBudgetCommand` object, with the `Model` as a 
+parameter.
+7. The `OpenBudgetCommand`'s `execute` method calls the `openBudget` method of the existing 
+`Model` object passed in.
+8. `ModelManager` calls its own `setOpenCommandState` method, which retrieves relevant data to update `State`.
+9. `ModelManager` calls `State`'s `setOpenCommandState` method, updating state data relevant to opening a budget.
+10. `State`'s `StringProperty` and `BooleanProperty` attributes are updated, which notifies `InfoBox`
+and `Title` to update.
+
+With the above sequence, a budget will successfully be opened, and the `Title` component reflects the name of 
+the budget, while the `InfoBox` component reflects the total expenditure and threshold of the budget.
 
 ## 5. Guides
 
