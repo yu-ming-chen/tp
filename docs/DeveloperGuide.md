@@ -84,6 +84,10 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## 3. Design
 
+(Contributed by Song Yu)
+
+This section elaborates on the higher-level components that work together within NUSave. 
+
 ### 3.1. Architecture
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -128,6 +132,9 @@ The sections below give more details of each component:
 ### 3.2. Components
 
 #### 3.2.1. UI Component
+
+(Contributed by Song Yu)
+
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API**: `Ui.java`
@@ -201,25 +208,17 @@ The `Expenditure`:
  
  ***API***: `State.java`
  
+  ![Structure of the storage component](images/StateClassDiagram.png)
+  
+  Figure 3.5.1: Structure of the state component.
+ 
  The `State` component:
- * Stores a `BudgetIndex` instance that represents the budget that `NUSave` is currently displaying.
- * Stores a `Page` enumeration that represents the type of `Page` NUSave is currently on. 
- * Stores a `BooleanProperty` instance that triggers a callback on change of `boolean` value, updating the page title 
- of the current page.
- *  Stores a `String` value which represents the title of the current page.
+ * Stores data depending on the current state of NUSave. This refers to data such as the current page NUSave is currently on,
+ or the current budget that it is accessing.
  
- `State` is used by `Model` to track the current state of NUSave. When a command that requires a different budget book
- or list of budgets to be displayed is called, `State` will store information of the new page being displayed. This information
- will be used when different commands are entered which requires `model` to know the current `state` of NUSave.
- 
- Using the current `Page` of NUSave, commands are parsed separately by either `BudgetPageParser` or `MainPageParser`. 
- Thus, commands with similar names but belonging to different parsers will have different implementations and classes.
- For example, a command like `list` will have different implementations, as a `ListExpenditureCommand` 
- or `ListBudgetCommand.`
- 
- ![Structure of the storage component](images/StateClassDiagram.png)
- 
- Figure 3.5.1: Structure of the state component.
+ `State` is used by NUSave to track the current state of NUSave. It lives inside `Model`, where `Model` will use `State`
+ to store stateful data, where these data will be used to update information displayed on the GUI, such as the current
+ expenditure of the accessed budget, or list of expenditures belonging to the accessed budget.
  
 
 #### 3.2.5. Storage Component
