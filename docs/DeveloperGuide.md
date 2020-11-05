@@ -620,6 +620,21 @@ With the above sequence, all expenditures containing the search term entered wil
 and displayed on the user interface.
 
 #### 4.3.6. Undo & Redo Commands
+(Contributed by Wen Hao)
+
+This section describes the details of how the undo and redo commands are implemented.
+
+The undo and redo commands are implemented using the following classes:
+
+| Class             | Details            | Purpose |
+| -------- | --------------------------- | -------------- |
+| `VersionedNusave` | Contains a `BudgetList` and `BudgetIndex` | Represents the data in NUSave and view of NUSave at a certain point in time |
+| `Node<T>`         | Contains a value of type `T`, next `Node<T>` and previous `Node<T>` | Represents a doubly linked list data structure |
+| `HistoryManager<T>` | Contains a pointer to a `Node<T>` | Represents an iterator to iterate through a doubly linked list data structure represented by `Node<T>` |
+
+Whenever the user makes a change to NUSave data, a `VersionedNusave` object is instantiated with a deep copy of the `BudgetList` and the `BudgetIndex` at the point in time immediately after the change is made. It is wrapped in a `Node<VersionedNusave>` before being added as the next `Node<VersionNusave>` of the `Node<VersionedNusave>` that `HistoryManager<VersionedNusave>` is pointing to. The pointer in `HistoryManager<VersionedNusave>` is then moved forward.
+
+Hence, the pointer in `HistoryManager<VersionedNusave>` is always pointing to the latest `VersionedNusave`. If an undo command is executed, it will load the previous `VersionedNusave` from the doubly linked list data structure and move the pointer backward. If a redo command is executed, it will load the next `VersionedNusave` from the doubly linked list data structure and move the pointer forward.
 
 ### 4.4. UI
 
