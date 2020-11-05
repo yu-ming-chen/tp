@@ -565,7 +565,7 @@ and displayed on the user interface.
 #### 4.4.1. List View Rendering
 (Contributed by Wen Hao)
 
-This section talks abou how budget and expenditure cards are rendered within the List View UI component on the GUI of NUSave.
+This section talks about how budget and expenditure cards are rendered within the List View UI component on the GUI of NUSave.
 
 As there is a need to constantly re-render the contents within the List View to reflect user changes, we have adopted the **Observer Pattern**
 so that data can be sent from the `Logic` component to the `UI` component efficiently. Using the JavaFX API, the List View is binded to an `ObservableList`
@@ -588,6 +588,7 @@ supplied to the filtered list depending on user needs.
 Option A: Use separate List Views for `Budget` and `Expenditure`
 Pros: Less prone to the error where both `BudgetCard` and `ExpenditureCard` are displayed simultaneously
 Cons: Higher difficulty and more code to write as there is the need to handle the replacement of the entire List View
+
 **Option B (Chosen):** Use a single List View to hold both `Budget` and `Expenditure` with the use of a `Renderable` interface
 Pros: Easier to extent as new classes just need to implement the `Renderable` interface
 Cons: Possibility of displaying both `Budget` and `Expenditure` simultaneously
