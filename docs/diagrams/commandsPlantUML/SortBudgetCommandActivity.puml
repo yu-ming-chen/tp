@@ -1,14 +1,13 @@
 @startuml
 start
-:User executes edit budget command;
+:User executes sort budget by name command;
 
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
 if () then ([is valid command])
-    :Edit the specific budget in NUSave;
-    :Replace existing budget with the newly edited budget in the hard disk;
-    :Display newly edited budget in NUSave;
+    :Sort all budgets in NUSave in alphabetical order;
+    :Display sorted list of budgets in NUSave;
 else ([else])
 :Display invalid command result to the user;
 endif

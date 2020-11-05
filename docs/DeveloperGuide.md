@@ -299,7 +299,7 @@ This section explains the `Create Budget Command`.
 
 The following activity diagram to shows the events that occur when the user executes the Create Budget Command.
 
-![CreateBudgetCommand Activity Diagram](diagrams/commandsPlantUML/CreateBudgetCommandActivity.png) 
+![CreateBudgetCommand Activity Diagram](diagrams/commandsPlantUML/diagram/CreateBudgetCommandActivity.png) 
 
 Figure 4.3.1.1: Activity diagram for create budget command.
 
@@ -458,7 +458,7 @@ This section explains the `Edit Budget Command`.
 
 The following activity diagram to shows the events that occur when the user executes the Edit Budget Command.
 
-![EditBudgetCommand Activity Diagram](diagrams/commandsPlantUML/EditBudgetCommandActivity.png) 
+![EditBudgetCommand Activity Diagram](diagrams/commandsPlantUML/diagram/EditBudgetCommandActivity.png) 
 
 Figure 4.3.3.1.1: Activity diagram for edit budget command.
 
@@ -548,7 +548,7 @@ This section explains the `Sort Command`.
 
 The following activity diagram to shows the events that occur when the user executes the Sort Budget Command.
 
-![SortBudgetCommand Activity Diagram](diagrams/commandsPlantUML/SortBudgetCommandActivity.png) 
+![SortBudgetCommand Activity Diagram](diagrams/commandsPlantUML/diagram/SortBudgetCommandActivity.png) 
 
 Figure 4.3.4.1: Activity diagram for sort budget command.
 

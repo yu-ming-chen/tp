@@ -1,14 +1,12 @@
 @startuml
 start
-:User executes create budget command;
+:User executes help command;
 
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
 if () then ([is valid command])
-    :Add newly created budget into NUSave;
-    :Store newly created budget into the hard disk;
-    :Display newly added budget in NUSave;
+    :Display help message;
 else ([else])
 :Display invalid command result to the user;
 endif
