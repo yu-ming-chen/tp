@@ -116,6 +116,15 @@ public class ModelManager implements Model {
     //=========== Budgets =======
 
     /**
+     * Opens a budget from NUSave.
+     */
+    private void openBudget(Integer index) {
+        requireNonNull(index);
+        BudgetIndex budgetIndex = new BudgetIndexManager(index);
+        openBudget(budgetIndex);
+    }
+
+    /**
      * Open a budget from NUSave.
      * @param budgetIndex the index of the budget to be opened
      */
@@ -134,15 +143,6 @@ public class ModelManager implements Model {
         String newExpenditureValue = calculateExpenditureValue(actualBudgetIndex);
         Optional<Threshold> newThreshold = getThreshold();
         state.setOpenCommandState(pageName, newExpenditureValue, newThreshold);
-    }
-
-    /**
-     * Closes a budget in NUSave.
-     */
-    private void openBudget(Integer index) {
-        requireNonNull(index);
-        BudgetIndex budgetIndex = new BudgetIndexManager(index);
-        openBudget(budgetIndex);
     }
 
     @Override
