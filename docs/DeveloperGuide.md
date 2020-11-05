@@ -565,14 +565,32 @@ and displayed on the user interface.
 #### 4.4.1. List View Rendering
 (Contributed by Wen Hao)
 
-The List View UI component is able to display both budgets and expenditures through the `Renderable` interface.
-Both `Budget` and `Expenditure` classes implements the `Renderable` interface.
+This section talks abou how budget and expenditure cards are rendered within the List View UI component on the GUI of NUSave.
+
+As there is a need to constantly re-render the contents within the List View to reflect user changes, we have adopted the **Observer Pattern**
+so that data can be sent from the `Logic` component to the `UI` component efficiently. Using the JavaFX API, the List View is binded to an `ObservableList`
+such that any changes to the `ObservableList` will trigger an update within the List View accordingly.
+
+![Class Diagram between `Logic` and `UI`](images/List_View_Class_Diagram.png)
+
+Figure 4.4.1.1. Class diagram to illustrate the observer pattern
+
+The List View UI component is able to display both budget and expenditure cards interchangeably through the `Renderable` interface.
+Both `Budget` and `Expenditure` classes implement the `Renderable` interface.
 As such, `Budget` and `Expenditure` objects can be added to the `ObservableList` of `Renderable` which the List View is binded to.
 Whenever changes are made to the `ObservableList`, the List View generates either a `BudgetCard` or `ExpenditureCard` depending on the runtime type of the `Renderable` object.
 
-Repopulation of the List View occurs when:
-* the user opens or close a budget.
-* the user makes changes to a budget or an expenditure.
+To facilitate sort and find commands, an additional layer of filtering is accomplished using the `FilteredList` class. Different types of predicates are
+supplied to the filtered list depending on user needs.
+
+**Design Considerations**
+
+Option A: Use separate List Views for `Budget` and `Expenditure`
+Pros: Less prone to the error where both `BudgetCard` and `ExpenditureCard` are displayed simultaneously
+Cons: Higher difficulty and more code to write as there is the need to handle the replacement of the entire List View
+**Option B (Chosen):** Use a single List View to hold both `Budget` and `Expenditure` with the use of a `Renderable` interface
+Pros: Easier to extent as new classes just need to implement the `Renderable` interface
+Cons: Possibility of displaying both `Budget` and `Expenditure` simultaneously
 
 #### 4.4.2. Dynamic Updating
 (Contributed by Song Yu)
@@ -609,7 +627,7 @@ The change in information displayed occurs when the user inputs one of the follo
 4. Editing an expenditure: `edit`
 5. Deleting an expenditure: `delete`
 
-######Sequence Diagram
+###### Sequence Diagram
 
 The following sequence diagram shows the interactions between the `Ui`, `Logic`,`Model` and `State` components of NUSave,
 depicting a scenario where the user opens a budget.
