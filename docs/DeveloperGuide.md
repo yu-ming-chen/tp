@@ -144,7 +144,7 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the `MainWindow` is specified in `MainWindow.fxml`.
 
-In order to dynamically render data to be displayed to the user, when `fillInnerParts()` in `MainWindow` is called, 
+In order to dynamically render data to be displayed to the user, when `setUpGuiComponents()` in `MainWindow` is called, 
 the method `setStateBinders()` sets Observer objects to observe changes in `State`. For a complete explanation,
 refer to [4.4.2. Dynamic Updating](#442-dynamic-updating).
 
@@ -256,6 +256,23 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## 4. Implementation
 
 ### 4.1. State
+This section describes on the concept of `State` in NUSave. 
+
+Commands are parsed by different types of parsers based on the current state of NUSave.
+
+![Delete Command Activity Diagram](images/DeleteCommandActivityDiagram.png)
+Figure 4.1.1. Figure of Delete Command Activity Diagram
+
+To elaborate further, using Figure 4.1.1. as a reference, when the user executes a delete command, `delete 1`,
+while on the main page:
+
+1. `Logic` executes the command, checking whether the current page is a budget page or main page.
+2. `MainPageParser` takes control of the execution, parsing the command input by the user.
+3. If the command syntax is valid, the delete command is parsed.
+
+    3a. If the syntax is invalid, a `ParseException` is thrown.
+
+4. NUSave deletes the budget based on the index specified by the user, i.e. the 1st budget displayed.
 
 ### 4.2. Parsers
 

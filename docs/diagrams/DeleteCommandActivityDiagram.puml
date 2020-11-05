@@ -1,0 +1,29 @@
+@startuml
+start
+:User executes delete command: delete 1;
+:Logic executes delete command;
+
+if () then ([is the main page])
+    :MainPageParser parses the command;
+
+    if () then ([delete syntax is valid])
+    :parses the delete command : delete 1;
+    :deletes budget based on index specified;
+    else ([syntax is invalid])
+    :throw a parser exception;
+    endif
+
+else ([is a budget page])
+    :BudgetPageParser parses the command;
+
+    if () then ([delete syntax is valid])
+    :parses the delete command : delete 1;
+    :deletes expenditure based on index specified;
+    else ([syntax is invalid])
+    :throw a parser exception;
+    endif
+
+endif
+stop
+
+@enduml
