@@ -585,13 +585,13 @@ supplied to the filtered list depending on user needs.
 
 **Design Considerations**
 
-Option A: Use separate List Views for `Budget` and `Expenditure`
-Pros: Less prone to the error where both `BudgetCard` and `ExpenditureCard` are displayed simultaneously
-Cons: Higher difficulty and more code to write as there is the need to handle the replacement of the entire List View
+* Option A: Use separate List Views for `Budget` and `Expenditure`
+   * Pros: Less prone to the error where both `BudgetCard` and `ExpenditureCard` are displayed simultaneously
+   * Cons: Higher difficulty and more code to write as there is the need to handle the replacement of the entire List View
 
-**Option B (Chosen):** Use a single List View to hold both `Budget` and `Expenditure` with the use of a `Renderable` interface
-Pros: Easier to extent as new classes just need to implement the `Renderable` interface
-Cons: Possibility of displaying both `Budget` and `Expenditure` simultaneously
+* **Option B (Chosen):** Use a single List View to hold both `Budget` and `Expenditure` with the use of a `Renderable` interface
+   * Pros: Easier to extent as new classes just need to implement the `Renderable` interface
+   * Cons: Possibility of displaying both `Budget` and `Expenditure` simultaneously
 
 #### 4.4.2. Dynamic Updating
 (Contributed by Song Yu)
