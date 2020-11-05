@@ -331,13 +331,19 @@ reflected on the user interface.
 
 This section explains the `Add Expenditure Command`.
 
+The following activity diagram to shows the events that occur when the user executes the `Add Expenditure Command`.
+
+![AddExpenditureCommand Activity Diagram](diagrams/commandsPlantUML/diagram/AddExpenditureActivityDiagram.png) 
+
+Figure 4.3.1.2.1: Activity Diagram for add expenditure command.
+
 Similar to creating a Budget, the add expenditure Command also shows the interaction between the `Logic` component 
 and `Model` component of NUSave. The sequence diagram depicts a scenario when the user wants to add an expenditure for 
 his budget by entering the command `add n/Basketball p/20 t/Ball`.
 
 ![AddExpenditureCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/AddExpenditureCommand.png) 
 
-Figure 4.3.2.1: Sequence diagram  for add expenditure command in budget page view.
+Figure 4.3.1.2.2: Sequence diagram for add expenditure command in budget page view.
 
 1. Beginning with the `LogicManager`, the `LogicManager` hands the given user input to the `BudgetPageParser` 
 to be parsed.
@@ -368,6 +374,12 @@ user wishes to delete an expenditure from a budget.
 
 This section explains the `Delete Budget Command`.
 
+The following activity diagram to shows the events that occur when the user executes the `Delete Budget Command`.
+
+![AddExpenditureCommand Activity Diagram](diagrams/commandsPlantUML/diagram/DeleteBudgetActivityDiagram.png) 
+
+Figure 4.3.2.1.1: Activity Diagram for delete budget command.
+
 The following command occurs in the `Main Page` of NUSave, and results in the specified budget of the particular index 
 to be removed from NUSave. This command therefore requires a compulsory index to specify the particular budget to be 
 removed.
@@ -380,7 +392,7 @@ depicting a scenario where the user would like to delete the first budget on his
 
 ![DeleteBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/DeleteBudgetCommand.png) 
 
-Figure 4.3.2.1.1: Sequence diagram  for delete budget command in main page view.
+Figure 4.3.2.1.2: Sequence diagram  for delete budget command in main page view.
 
 1. The `LogicManager` uses the `MainPageParser` to parse the given user input.
 2. The `MainPageParser` will identify the command given by the user and pass the user input down to the
@@ -404,6 +416,12 @@ reflected on the user interface through the successful `CommandResult` and updat
 
 This section explains the `Delete Expenditure Command`.
 
+The following activity diagram to shows the events that occur when the user executes the `Delete Expenditure Command`.
+
+![AddExpenditureCommand Activity Diagram](diagrams/commandsPlantUML/diagram/DeleteExpenditureActivityDiagram.png) 
+
+Figure 4.3.2.2.1: Activity Diagram for delete expenditure command.
+
 The following command occurs in the `Budget Page` of NUSave, and results in the specified expenditure of the particular 
 index to be removed from NUSave. This command therefore requires a compulsory index to specify the particular 
 expenditure to be removed.
@@ -417,7 +435,7 @@ expenditure on his list.
 
 ![DeleteExpenditureCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/DeleteExpenditureCommand.png)
 
-Figure 4.3.2.2.1: Sequence diagram  for delete budget command in budget page view.
+Figure 4.3.2.2.2: Sequence diagram  for delete budget command in budget page view.
 
 1. The `LogicManager` uses the `BudgetPageParser` to parse the given user input.
 2. The `BudgetPageParser` will identify the command given by the user and create a `DeleteBudgetCommandParser`.
@@ -492,6 +510,12 @@ be reflected on the user interface through the successful `CommandResult` and up
 (Contributed by David)
 
 This section explains the `Edit Expenditure Command`.
+
+The following activity diagram to shows the events that occur when the user executes the `Edit Expenditure Command`.
+
+![AddExpenditureCommand Activity Diagram](diagrams/commandsPlantUML/diagram/EditExpenditureActivityDiagram.png) 
+
+Figure 4.3.2.2.1: Activity Diagram for edit expenditure command.
 
 The following command results in the specified expenditure of the particular index to be edited within the 
 `Budget Page`. As such, this command requires a compulsory index to specify the particular expenditure, along with a
