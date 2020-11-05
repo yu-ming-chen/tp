@@ -34,6 +34,8 @@ title: Developer Guide
             * [4.3.3.2. Edit Expenditure](#4332-edit-expenditure)
         * [4.3.4. Sort Commands](#434-sort-commands)
         * [4.3.5. Find & List Commands](#435-find--list-commands)
+        * [4.3.6. Universal Commands](#436-universal-commands)
+        * [4.3.6.1 Help](#4361-help)
     * [4.4. UI](#44-ui)
         * [4.4.1. List View Rendering](#441-list-view-rendering)
         * [4.4.2. Dynamic Updating](#442-dynamic-updating)
@@ -80,6 +82,7 @@ This document acts as a guide for developers, testers, and designers describing 
 of NUSave.
 
 ## 2. Setting Up
+(Contributed by Yu Ming)
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## 3. Design
@@ -147,19 +150,34 @@ In summary, the `UI` component:
 * Listens for changes to `Model` and `State` data so that the UI can be updated with the modified data.
 
 #### 3.2.2. Logic Component
+(Contributed by Yu Ming)
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API**: `Logic.java`
 
-`Logic` uses the `PageParser` class to parse the user command. This results in a `Command` object which is
-executed by the `LogicManager`. The command execution can affect the `Model` (e.g. adding an expenditure). The result of
-the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`. In addition, the
-`CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+`Logic` uses the `MainPageParser` and `BudgetPageParser` class to parse the user command. This results in a
+`Command` object which is executed by the `LogicManager`. The command execution can affect the `Model`
+(e.g. adding an expenditure). The result of the command execution is encapsulated as a `CommandResult` object
+which is passed back to the `Ui`. In addition, the `CommandResult` object can also instruct the `Ui` to perform
+certain actions, such as displaying help to the user.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteBudgetCommand_sequence_diagram.png)
+`MainPageParser`:
+- Parse all the commands that is inputted by the user when the state of the NUSave is on `MAIN`.
+- This includes commands such as `CreateBudgetCommand` and `OpenBudgetCommand` that are unique to execute at the MainPage.
+
+`BudgetPageParser`:
+- Parse all the commands that is inputted by the user when the state of the NUSave is on `BUDGET`.
+- This includes commands such as `AddExpendtureCommand` and `CloseBudgetCommand` that are unique to execute at the BudgetPage.
+
+`Commands`:
+-  The `Logic` component includes all commands that is executable on both Main Page and Budget Page. For a complete
+elaboration on what each command does, refer to [4.3. Commands](#43-commands).
+
+
+![Interactions Inside the Logic Component for the `delete 1` Command](diagrams/commandsPlantUML/diagram/DeleteBudgetCommand.png)
 
 The ***Sequence Diagram*** given above represents the interactions within the `Logic` component for the
-`execute("delete 1")` API call.
+`execute("delete 1")` API call to remove a budget in NUSave.
 
 #### 3.2.3. Model Component
 (Contributed by Chin Hui)
@@ -277,6 +295,11 @@ to a budget.
 ##### 4.3.1.1. Create Budget
 (Contributed by Yu Ming)
 
+This section explains the `Create Budget Command`.
+
+The following command occurs in the `Main Page` of NUSave, and results in the specified budget being created in
+NUSave. This command therefore requires a compulsory name to specify the name of the budget to be created.
+
 The following Sequence Diagram shows the interaction between the `Logic` component and `Model` component of NUSave 
 depicting a scenario when the user wants to create a budget for his Temasek Hall basketball CCA by entering the command
 `create n/Temasek Hall Basketball p/100`.
@@ -284,6 +307,8 @@ depicting a scenario when the user wants to create a budget for his Temasek Hall
 ![CreateBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/CreateBudgetCommand.png) 
 
 Figure 4.3.1.1: Sequence diagram  for create budget command in main page view.
+>Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
+the lifeline reaches the end of diagram.
 
 1. The `LogicManager` uses the `MainPageParser` to parse the given user input.
 2. The `MainPageParser` will identify the command given by the user and pass the user input down to the
@@ -421,6 +446,47 @@ Specifically, editing can happen in two areas; when a user wishes to edit a budg
 user wishes to edit an expenditure from a budget within the `Budget Page`.
 
 ##### 4.3.3.1. Edit Budget
+(Contributed by Yu Ming)
+
+This section explains the `Edit Budget Command`.
+
+The following command occurs in the `Main Page` of NUSave, and  results in the specified budget of the particular index 
+to be edited within NUSave. As such, this command requires a compulsory index to specify the particular budget, 
+along with fields at which the user would like to edit.
+
+Only when the index is valid (within the range of existing budgets), and the user provides at least one field to 
+be edited, does the command execute successfully.
+
+The following sequence diagram shows the interactions between the `Logic` and `Model` components of NUSave,
+depicting a scenario where the user would like to edit the first budget on his/her list, and change the `NAME` and
+`THRESHOLD` of the budget to `Temasek Hall Basketball` and `1000` accordingly.
+
+![EditBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/EditBudgetCommand.png)
+
+Figure 4.3.3.1.1: Sequence diagram for edit budget command in main page view.
+>Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
+the lifeline reaches the end of diagram.
+
+1. Beginning with the `LogicManager`, the `LogicManager` hands the given user input to the `MainPageParser` 
+to be parsed.
+2. The `MainPageParser` will identify the command given by the user and create an `EditBudgetCommandParser`.
+3. The `MainPageParser` will pass the user input into the newly created `EditBudgetCommandParser`.
+4. The `EditBudgetCommandParser` will create an `BudgetIndex` with the given parameters `index` from the
+user input.
+5. The `EditBudgetCommandParser` will then create an `EditBudgetDescriptor` with the given parameters of 
+`name` and `threshold`.
+6. The `EditBudgetCommandParser` will then create an `EditBugetCommand` with the `BudgetIndex` and 
+`EditBudgetDescriptor`.
+7. The `EditBudgetCommandParser` will then return the `EditBudgetCommand` object back to the `LogicManager`.
+8. `LogicManager` will now call the `execute` method in the `EditBudgetCommand` object, with the `Model` as a 
+parameter.
+7. The `EditBudgetCommand`'s `execute` method will now call the `editBudget` method of the existing 
+`Model` object passed in and update the `Budget` with a new edited `Budget` object within NUSave.
+8. The `EditBudgetCommand` then returns a `CommandResult` indicating the successful editing of the 
+`Budget`.
+
+With the above sequence, a budget will be successfully edited by the user in his NUSave application, and it will 
+be reflected on the user interface through the successful `CommandResult` and updated budget list.
 
 ##### 4.3.3.2. Edit Expenditure
 (Contributed by David)
@@ -464,6 +530,56 @@ With the above sequence, an expenditure will be successfully edited by the user 
 be reflected on the user interface through the successful `CommandResult` and updated budget list.
 
 #### 4.3.4. Sort Commands
+(Contributed by Yu Ming)
+
+This section explains the `Sort Command`.
+
+The following command can occur either in the `Main Page` or `Budget Page` of NUSave, and results in either the budgets
+or the expenditures to be sorted by name or created date. As such, this command requires a compulsory `SortType` field
+to specify the particular type of sorting required.
+
+Only when the `SortType` is valid (`NAME` or `TIME`) does the command execute successfully.
+
+The following sequence diagram shows the interactions between the `Logic` and `Model` components of NUSave,
+depicting a scenario where the user would like to sort the budgets by thier name in alphabetical order. 
+
+![SortBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/SortBudgetCommand.png)
+
+Figure 4.3.4.1: Sequence diagram for sort budget command in main page view.
+
+>Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
+the lifeline reaches the end of diagram.
+
+1. Beginning with the `LogicManager`, the `LogicManager` hands the given user input to the `MainPageParser` 
+to be parsed.
+2. The `MainPageParser` will identify the command given by the user and create an `SortBudgetCommandParser`.
+3. The `MainPageParser` will pass the user input into the newly created `SortBudgetCommandParser`.
+4. The `SortBudgetCommandParser` will then create an `SortBugetCommand` with the sort type `NAME`
+5. The `SortBudgetCommandParser` will then return the `SortBudgetCommand` object back to the `LogicManager`.
+6. `LogicManager` will now call the `execute` method in the `SortBudgetCommand` object, with the `Model` as a 
+parameter.
+7. The `SortBudgetCommand`'s `execute` method will now call the `sortBudgetsByName` method of the existing 
+`Model` and this will sort the list of budgets in NUSave according with the given sort type `NAME`.
+8. The `SortBudgetCommand` then returns a `CommandResult` indicating the successful sorting of the 
+`Budget` in NUSave by their name in alphabetical oredr.
+
+With the above sequence, budgets will be successfully sorted by the user in his NUSave application by name in
+alphabetical order, and it will be reflected on the user interface through the successful `CommandResult`
+and updated budget list.
+
+Note that the `sort` command can be executed on `Budget Page` view as well to sort the list of expenditures of a given
+budget. The following sequence diagram shows the interactions between the `Logic` and `Model` components of NUSave,
+depicting a scenario where the user would like to sort the expenditures by their created date with the lastest created
+expenditure at the top of list of expenditures.
+
+![SortExpenditureCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/SortExpenditureCommand.png)
+
+Figure 4.3.4.2: Sequence diagram for sort expenditure command in main page view.
+>Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
+the lifeline reaches the end of diagram.
+
+The details of the flow of `SortExpenditureCommand` will not be elaborate in details as it is similiar to
+`SortBudgetCommand`.
 
 #### 4.3.5. Find & List Commands
 
@@ -559,7 +675,37 @@ With the above sequence, all expenditures containing the search term entered wil
 and displayed on the user interface.
 
 #### 4.3.6. Universal Commands
+#### 4.3.6.1 Help
+(Contributed by Yu Ming)
 
+This section explains the `Help Command`.
+
+The following command can occur either in the `Main Page` or `Budget Page` of NUSave, and the help notes will be
+displayed in the result box of the UI Component.
+
+The following sequence diagram shows the interactions between the `Logic` and `Model` components of NUSave,
+depicting a scenario where the user would like to ask for help to be displayed. 
+
+![HelpCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/HelpCommand.png)
+
+Figure 4.3.4.1: Sequence diagram for help command in main page view.
+>Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
+the lifeline reaches the end of diagram.
+
+1. Beginning with the `LogicManager`, the `LogicManager` hands the given user input to the `MainPageParser` 
+to be parsed.
+2. The `MainPageParser` will identify the command given by the user and create an `HelpBudgetCommand`.
+3. The `MainPageParser` will then return the `HelpBudgetCommand` object back to the `LogicManager`.
+4. `LogicManager` will now call the `execute` method in the `HelpBudgetCommand` object, with the `Model` as a 
+parameter.
+5. The `HelpBudgetCommand`'s `execute` method will return a `CommandResult` indicating the successful calling for the
+help command, and the help information will be displayed in the result box in NUSave. 
+
+With the above sequence, the help information will be successfully shown to the user in NUSave, and it will be reflected 
+on the user interface.
+
+Note that the `help` command can be executed on `Budget Page` view as well, but it will display a different set of help
+message that is unique to the `Budget Page` view with commands that can be executed on the view.
 ### 4.4. UI
 
 #### 4.4.1. List View Rendering
