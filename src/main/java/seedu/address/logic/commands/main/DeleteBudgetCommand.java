@@ -35,7 +35,7 @@ public class DeleteBudgetCommand extends Command {
     /**
      * Executes the delete budget command.
      * @param model {@code Model} which the command should operate on.
-     * @return the commmand result along with a success message
+     * @return the command result along with a success message
      * @throws CommandException If an error occurs during command execution.
      */
     @Override

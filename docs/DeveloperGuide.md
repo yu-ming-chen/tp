@@ -464,6 +464,97 @@ be reflected on the user interface through the successful `CommandResult` and up
 
 #### 4.3.5. Find & List Commands
 
+##### 4.3.4.1 List Budget
+(Contributed by Chin Hui)
+The following sequence diagram shows the interactions between the `Logic` and `Model` components of NUSave,
+depicting a scenario where the user would like to list all budgets.
+
+![ListBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/ListBudgetCommand.png)
+
+Figure 4.3.4.1: Sequence diagram for list budget command in main page view.
+
+1. The `LogicManager` uses the `MainPageParser` to parse the give user input.
+2. The `MainPageParser` will identify the command given by the user and create a `ListBudgetCommand`.
+3. The `MainPageParser` will then return the `ListBudgetCommand` object back to the `LogicManager`.
+4. `LogicManager` will now call the `execute` method in the `ListBudgetCommand` object.
+5. The `ListBudgetCommand` `execute` method will now call the `listBudgets` method of the existing `Model` object and
+list all existing budgets within NUSave.
+6. The `ListBudgetCommand` then returns a `CommandResult` indicating the successful listing of all budgets.
+
+With the above sequence, all budgets will be listed by the user in his NUSave application, and it will be reflected
+on the user interface.
+
+##### 4.3.4.2 Find Budget
+(Contributed by Chin Hui)
+The following sequence diagram shows the interactions between the `Logic` and `Model` components of NUSave,
+depicting a scenario where the user would like to find budgets by a search term/phrase.
+
+![FindBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/FindBudgetCommand.png)
+
+
+Figure 4.3.4.1: Sequence diagram for find budget command in main page view.
+
+1. The `LogicManager` uses the `MainPageParser` to parse the give user input.
+2. The `MainPageParser` will identify the command given by the user and pass the user input down to the 
+`FindBudgetCommandParser`.
+3. The `FindBudgetCommandParser` will then create a `FindBudgetCommand` with the user input as the search term.
+4. `FindBudgetCommandParser` then returns the `FindBudgetCommand` object back to the `LogicManager`.
+5. The `LogicManager` will now call the `execute` method in the `FindBudgetCommand` object.
+6. The `FindBudgetCommand` `execute` method will now call the `findBudget` method of the existing `Model` object and
+apply a filter for budgets displayed by NUSave.
+7. The `FindBudgetCommand` then returns a `CommandResult` indicating that all budgets containing the search term
+has been displayed.
+
+With the above sequence, all budgets containing the search term entered will be filtered 
+and displayed on the user interface.
+
+##### 4.3.4.3 List Expenditure
+(Contributed by Chin Hui)
+
+The following sequence diagram shows the interactions between the `Logic` and `Model` components of NUSave,
+depicting a scenario where the user would like to list all expenditure within the current budget.
+
+![ListBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/ListExpenditureCommand.png)
+
+
+Figure 4.3.4.1: Sequence diagram for list expenditure command in budget page view.
+
+1. The `LogicManager` uses the `BudgetPageParser` to parse the give user input.
+2. The `BudgetPageParser` will identify the command given by the user and create a `ListExpenditureCommand`.
+3. The `BudgetPageParser` will then return the `ListExpenditureCommand` object back to the `LogicManager`.
+4. `LogicManager` will now call the `execute` method in the `ListExpenditureCommand` object.
+5. The `ListExpenditureCommand` `execute` method will now call the `listExpenditure` method of the existing `Model` object and
+list all existing expenditures within the current budget.
+6. The `ListExpenditureCommand` then returns a `CommandResult` indicating the successful listing of all expenditures.
+
+With the above sequence, all expenditures will be listed by the user in his NUSave application, and it will be reflected
+on the user interface.
+
+##### 4.3.4.4 Find Expenditure
+(Contributed by Chin Hui)
+
+The following sequence diagram shows the interactions between the `Logic` and `Model` components of NUSave,
+depicting a scenario where the user would like to find expenditures in a budget by a search term/phrase.
+
+![FindBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/FindExpenditureCommand.png)
+
+
+Figure 4.3.4.1: Sequence diagram for find expenditure command in budget page view.
+
+1. The `LogicManager` uses the `BudgetPageParser` to parse the give user input.
+2. The `BudgetPageParser` will identify the command given by the user and pass the user input down to the 
+`FindExpenditureCommandParser`.
+3. The `FindExpenditureCommandParser` will then create a `FindExpenditureCommand` with the user input as the search term.
+4. `FindExpenditureCommandParser` then returns the `FindExpenditureCommand` object back to the `LogicManager`.
+5. The `LogicManager` will now call the `execute` method in the `FindExpenditureCommand` object.
+6. The `FindExpenditureCommand` `execute` method will now call the `findExpenditures` method of the existing `Model` object and
+apply a filter for expenditures displayed by NUSave.
+7. The `FindExpenditureCommand` then returns a `CommandResult` indicating that all expenditures in the current budget
+ containing the search term has been displayed.
+
+With the above sequence, all expenditures containing the search term entered will be filtered 
+and displayed on the user interface.
+
 #### 4.3.6. Universal Commands
 
 ### 4.4. UI
