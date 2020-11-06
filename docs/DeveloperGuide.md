@@ -229,16 +229,17 @@ The `Expenditure`:
   ![Structure of the storage component](images/StateClassDiagram.png)
   
   Figure 3.5.1: Structure of the state component.
- 
+  
  The `State` component:
- * Stores data depending on the current state of NUSave. This refers to data such as the current page NUSave is currently on,
+ * Represents the current page view NUSave is currently on. Specifically, it represents whether the user is looking at 
+ the main page view or budget page view. The current view is represented by an attribute in `StateManager`, `currentPage`.
+ * Stores data related to the current state of NUSave. This refers to data such as the current page NUSave is currently on,
  or the current budget that it is accessing.
  
- `State` is used by NUSave to track the current state of NUSave. It lives inside `Model`, where `Model` will use `State`
- to store stateful data, where these data will be used to update information displayed on the GUI, such as the current
- expenditure of the accessed budget, or list of expenditures belonging to the accessed budget.
+ `State`  lives inside `Model`, where `Model` will use `State` to store stateful data, where these data will be used to 
+ update information displayed on the GUI, such as the current expenditure of the accessed budget, or list of expenditures 
+ belonging to the accessed budget.
  
-
 #### 3.2.5. Storage Component
 (Contributed by Wen Hao)
 
@@ -274,9 +275,10 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## 4. Implementation
 
 ### 4.1. State
-This section describes on the concept of `State` in NUSave. 
+This section provides context on how `State` affects how commands are parsed by parsers in NUSave.
 
-Commands are parsed by different types of parsers based on the current state of NUSave.
+The `Logic` component in NUSave relies on data stored in `State` to decide which parser in NUSave will take
+control of the execution of commands.
 
 ![Delete Command Activity Diagram](images/DeleteCommandActivityDiagram.png)
 Figure 4.1.1. Figure of Delete Command Activity Diagram
@@ -284,8 +286,9 @@ Figure 4.1.1. Figure of Delete Command Activity Diagram
 To elaborate further, using Figure 4.1.1. as a reference, when the user executes a delete command, `delete 1`,
 while on the main page:
 
-1. `Logic` executes the command, checking whether the current page is a budget page or main page.
-2. `MainPageParser` takes control of the execution, parsing the command input by the user.
+1. `Logic` executes the command, checking whether the current page is a budget page or main page, depending on the 
+current page (represented by `currentPage` attribute in `StateManager`) of NUSave.
+2. Since NUSave's is current on `Page.MAIN`, `MainPageParser` takes control of the execution, parsing the command input by the user.
 3. If the command syntax is valid, the delete command is parsed.
 
     3a. If the syntax is invalid, a `ParseException` is thrown.
@@ -668,7 +671,6 @@ depicting a scenario where the user would like to find budgets by a search term/
 
 ![FindBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/FindBudgetCommand.png)
 
-
 Figure 4.3.4.1: Sequence diagram for find budget command in main page view.
 
 1. The `LogicManager` uses the `MainPageParser` to parse the give user input.
@@ -714,7 +716,6 @@ The following sequence diagram shows the interactions between the `Logic` and `M
 depicting a scenario where the user would like to find expenditures in a budget by a search term/phrase.
 
 ![FindBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/FindExpenditureCommand.png)
-
 
 Figure 4.3.4.1: Sequence diagram for find expenditure command in budget page view.
 
