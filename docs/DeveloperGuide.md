@@ -275,6 +275,9 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## 4. Implementation
 
 ### 4.1. State
+
+(Contributed by Song Yu)
+
 This section provides context on how `State` affects how commands are parsed by parsers in NUSave.
 
 The `Logic` component in NUSave relies on data stored in `State` to decide which parser in NUSave will take
