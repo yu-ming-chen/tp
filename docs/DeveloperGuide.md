@@ -823,7 +823,7 @@ The change in information displayed occurs when the user inputs one of the follo
 4. Editing an expenditure: `edit`
 5. Deleting an expenditure: `delete`
 
-######Sequence Diagram
+###### Sequence Diagram
 
 The following sequence diagram shows the interactions between the `Ui`, `Logic`,`Model` and `State` components of NUSave,
 depicting a scenario where the user opens a budget.
