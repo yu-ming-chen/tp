@@ -304,7 +304,7 @@ All user inputs are parsed by two types of parsers:
 
 These parsers are part of the `Logic` component as seen from the class diagram in Figure 4.2.1 below:
 
-![Parser Class Diagram](diagrams/commandsPlantUML/diagram/ParserClassDiagram.png)
+![Parser Class Diagram](diagrams/ParserClassDiagram.png)
 
 Figure 4.2.1. Class diagram of parsers
 
@@ -356,7 +356,7 @@ A `ParseException` is thrown if the necessary arguments to generate the respecti
 
 The interaction between the parsers is illustrated by the example usage seen in Figure 4.2.3.1 below:
 
-![Parser Sequence Diagram](diagrams/commandsPlantUML/diagram/4_2_3_1_ParserSequence.png) 
+![Parser Sequence Diagram](diagrams/ParserSequenceDiagram.png) 
 
 Figure 4.2.3.1. Sequence diagram of a user input being parsed.
 
