@@ -16,6 +16,7 @@ State2 -left-> State1
 State2 -right-> State3
 State3 -left-> State2
 State3 -right-> State4
+State4 -left-> State3
 
 class Pointer as "Current Pointer" #FFFFF
 Pointer -up-> State4

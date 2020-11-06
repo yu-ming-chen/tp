@@ -815,11 +815,11 @@ Step 1: The user launches NUSave. `HistoryManager<VersionedNusave>` is instantia
 
 ![Undo redo object diagram for step 1](diagrams/UndoRedoState0.png)
 
-Step 2: The user makes changes to NUSave data by creating a `Budget` named "demo". A `VersionedNusave` is instantiated with a deep copy of the `BudgetList` from `Nusave` and `BudgetIndex` from `State` before the change is made. `HistoryManager<VersionedNusave>` adds this `VersionedNusave` to the doubly linked list before moving its pointer forward.
+Step 2: The user makes changes to NUSave data by creating a `Budget` named "demo". Before the change is made, a `VersionedNusave` is instantiated in case the user wants to undo. `HistoryManager<VersionedNusave>` adds this `VersionedNusave` to the doubly linked list.
 
 ![Undo redo object diagram for step 2](diagrams/UndoRedoState1.png)
 
-Step 3: The user executes the undo command. A `VersionedNusave` is instantiated with a deep copy of the current `BudgetList` from `Nusave` and `BudgetIndex` from `State`. `HistoryManager<VersionedNusave>` adds this `VersionedNusave` to the doubly linked list before moving its pointer backward to retrieve the previous `VersionedNusave`. The `BudgetList` from the previous `VersionedNusave` is loaded into `Nusave` while the `BudgetIndex` from the previous `VersionedNusave` is used to set `State`. Once this is done, the GUI should reflect that the "demo" budget is removed from NUSave.
+Step 3: The user executes the undo command. Before reverting the changes, a `VersionedNusave` is instantiated in case the user wants to redo. `HistoryManager<VersionedNusave>` adds this `VersionedNusave` to the doubly linked list before moving its pointer backward to retrieve the previous `VersionedNusave`. The `BudgetList` from the previous `VersionedNusave` is loaded into `Nusave` while the `BudgetIndex` from the previous `VersionedNusave` is used to set `State`. Once this is done, the GUI should reflect that the "demo" budget is removed from NUSave.
 
 ![Undo redo object diagram for step 3](diagrams/UndoRedoState2.png)
 
@@ -827,7 +827,7 @@ Step 4: The user executes the redo command. `HistoryManager<VersionedNusave>` re
 
 ![Undo redo object diagram for step 4](diagrams/UndoRedoState3.png)
 
-Step 5: The user makes changes to NUSave data by creating a `Budget` named "demo2". A `VersionedNusave` is instantiated with a deep copy of the `BudgetList` from `Nusave` and `BudgetIndex` from `State` before the change is made. `HistoryManager<VersionedNusave>` adds this `VersionedNusave` to the doubly linked list before moving its pointer forward.
+Step 5: The user makes changes to NUSave data by creating a `Budget` named "demo2". Before the change is made, a `VersionedNusave` is instantiated in case the user wants to undo. `HistoryManager<VersionedNusave>` adds this `VersionedNusave` to the doubly linked list before moving its pointer forward.
 
 ![Undo redo object diagram for step 5](diagrams/UndoRedoState4.png)
 
