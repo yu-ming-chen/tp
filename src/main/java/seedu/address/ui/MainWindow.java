@@ -75,9 +75,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Fills up all the placeholders of this window.
+     * Fills up all the placeholders of this window and sets stateful binders in NUSave.
      */
-    public void fillInnerParts() {
+    public void setUpGuiComponents() {
+        fillInnerParts();
+        setStateBinders();
+    }
+
+    private void fillInnerParts() {
         renderableListPanel = new RenderableListPanel(logic.getFilteredRenderableList());
         renderableListPanelPlaceholder.getChildren().add(renderableListPanel.getRoot());
 
@@ -90,9 +95,6 @@ public class MainWindow extends UiPart<Stage> {
         title = new Title();
         titlePlaceholder.getChildren().add(title.getRoot());
 
-        setStateBinders();
-        stateBinderList.bindAll(logic);
-
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
@@ -101,6 +103,7 @@ public class MainWindow extends UiPart<Stage> {
         InfoBoxStateBinder infoBoxStateBinder = new InfoBoxStateBinder(infoBox);
         TitleStateBinder titleStateBinder = new TitleStateBinder(title);
         this.stateBinderList = new StateBinderList(infoBoxStateBinder, titleStateBinder);
+        stateBinderList.bindAll(logic);
     }
 
     public void setResultDisplay(String message) {

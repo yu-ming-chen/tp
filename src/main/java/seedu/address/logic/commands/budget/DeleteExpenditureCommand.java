@@ -47,8 +47,8 @@ public class DeleteExpenditureCommand extends Command {
         if (!model.isWithinRange(toDelete)) {
             throw new CommandException(Messages.EXPENDITURE_MESSAGE_INDEX_OUT_OF_BOUNDS);
         }
-        model.deleteExpenditure(toDelete);
         model.saveToHistory();
+        model.deleteExpenditure(toDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_EXPENDITURE_SUCCESS));
     }
 }
