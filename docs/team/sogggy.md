@@ -47,12 +47,12 @@ Given below are my contributions to the project:
 1.1. This section includes an extract of the developer guide, elaborating on dynamic updating of information 
 on NUSave's GUI.
 
-#####Sequence Diagram
+##### Sequence Diagram
 
 The following sequence diagram shows the interactions between the `Ui`, `Logic`,`Model` and `State` components of NUSave,
 depicting a scenario where the user opens a budget.
 
-![Update Title Sequence Diagram](images/UpdateTitleSequenceDiagram.png)
+![Update Title Sequence Diagram](../images/UpdateTitleSequenceDiagram.png)
 Figure 4.4.2.2.1.1. Sequence Diagram for Open Command
 
 1. `MainWindow` is called with the String `open 1`.
@@ -73,26 +73,8 @@ and `Title` to update.
 
 With the above sequence, a budget will successfully be opened, and the `Title` component reflects the name of 
 the budget, while the `InfoBox` component reflects the total expenditure and threshold of the budget.
-
-1.2. This section elaborates about what `State` in NUSave is about.
-
- ***API***: `State.java`
  
-  ![Structure of the storage component](../images/StateClassDiagram.png)
-  
-  Figure 3.5.1: Structure of the state component.
-  
- The `State` component:
- * Represents the current page view NUSave is currently on. Specifically, it represents whether the user is looking at 
- the main page view or budget page view. The current view is represented by an attribute in `StateManager`, `currentPage`.
- * Stores data related to the current state of NUSave. This refers to data such as the current page NUSave is currently on,
- or the current budget that it is accessing.
- 
- `State`  lives inside `Model`, where `Model` will use `State` to store stateful data, where these data will be used to 
- update information displayed on the GUI, such as the current expenditure of the accessed budget, or list of expenditures 
- belonging to the accessed budget.
- 
- 1.3. This section elaborates about what `Ui` in NUSave is about.
+ 1.2. This section elaborates about what `Ui` in NUSave is about.
  
  ![Structure of the UI Component](../images/UiClassDiagram.png)
  
@@ -112,12 +94,13 @@ the budget, while the `InfoBox` component reflects the total expenditure and thr
  * Executes user commands using the `Logic` component.
  * Listens for changes to `Model` and `State` data so that the UI can be updated with the modified data.
  
-1.4. This section provides context on how `State` affects how commands are parsed by parsers in NUSave.
+1.3. This section provides context on how `State` affects how commands are parsed by parsers in NUSave.
 
 The `Logic` component in NUSave relies on data stored in `State` to decide which parser in NUSave will take
 control of the execution of commands.
 
-![Delete Command Activity Diagram](images/DeleteCommandActivityDiagram.png)
+![Delete Command Activity Diagram](../images/DeleteCommandActivityDiagram.png)
+
 Figure 4.1.1. Figure of Delete Command Activity Diagram
 
 To elaborate further, using Figure 4.1.1. as a reference, when the user executes a delete command, `delete 1`,
@@ -157,6 +140,6 @@ When you add a new expenditure, it will be displayed as an expenditure card in t
 This will add a new expenditure called "Graphic Calculator" with a price of $199.90 and a "Math" tag as seen in 
 Figure 5.3.1.1. below:
 
-![Example of add expenditure command](images/CommandScreenShots/5_3_1_1_addExpenditure.png)
+![Example of add expenditure command](../images/CommandScreenShots/5_3_1_1_addExpenditure.png)
 
 Figure 5.3.1.1. Example of using the add expenditure command.
