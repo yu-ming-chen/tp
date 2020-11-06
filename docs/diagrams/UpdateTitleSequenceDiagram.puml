@@ -62,11 +62,14 @@ OpenBudgetCommand -> ModelManager : openBudget(budgetIndex)
 activate ModelManager
 
 ModelManager -> ModelManager : setOpenCommandState(budgetIndex)
+activate ModelManager
+ModelManager --> ModelManager
+deactivate ModelManager
 
 ModelManager -> StateManager : setOpenCommandState(pageName, expenditureValue, threshold)
 activate StateManager
 
-StateManager -> ModelManager
+StateManager --> ModelManager
 deactivate StateManager
 
 ModelManager --> OpenBudgetCommand
