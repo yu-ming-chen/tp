@@ -15,6 +15,7 @@ end box
 
 [-> LM : execute("list")
 activate LM
+create MPP
 LM -> MPP : parseCommand("list")
 activate MPP
 
@@ -24,6 +25,7 @@ activate LBC
 MPP <-- LBC
 deactivate LBC
 LM <-- MPP : command
+destroy MPP
 
 deactivate MPP
 LM -> LBC : execute(m)

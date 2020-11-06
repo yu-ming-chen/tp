@@ -16,6 +16,7 @@ end box
 
 [-> LM : execute("find NUS")
 activate LM
+create MPP
 LM -> MPP : execute("find NUS")
 activate MPP
 
@@ -37,6 +38,7 @@ MPP <-- FBCP : command
 deactivate FBCP
 LM <-- MPP : command
 deactivate MPP
+destroy MPP
 LM -> FBC : execute(m)
 activate FBC
 

@@ -15,7 +15,9 @@ end box
 
 [-> LM : execute("list")
 activate LM
+create BPP
 LM -> BPP : execute("list")
+
 activate BPP
 
 create LEC
@@ -26,6 +28,7 @@ deactivate LEC
 
 LM <-- BPP : command
 deactivate BPP
+destroy BPP
 LM -> LEC : execute(m)
 activate LEC
 
