@@ -5,5 +5,6 @@ public interface History<T> {
     T getHistory();
     boolean hasFuture();
     T getFuture();
-    void save(T history);
+    void saveToHistory(T history);
+    void saveToFuture(T history);
 }

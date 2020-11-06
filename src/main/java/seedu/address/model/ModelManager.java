@@ -55,7 +55,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredRenderables = new FilteredList<>(this.nusave.getInternalList());
         this.state = new StateManager(new EmptyBudgetIndex(), Page.MAIN, PageTitle.MAIN_PAGE_TITLE);
-        this.history = new HistoryManager<>(new VersionedNusave(this.state, this.nusave));
+        this.history = new HistoryManager<>();
         sortBudgetsByCreatedDate();
     }
     /**
@@ -482,6 +482,7 @@ public class ModelManager implements Model {
     @Override
     public void undo() {
         assert canUndo();
+        saveToFuture();
         VersionedNusave previousVersion = history.getHistory();
         loadVersionedNusave(previousVersion);
     }
@@ -501,10 +502,17 @@ public class ModelManager implements Model {
     /**
      * Saves a deep copy of the current nusave into the history.
      */
+    @Override
     public void saveToHistory() {
         VersionedNusave toSave = new VersionedNusave(state, nusave);
-        history.save(toSave);
-        logger.info("Versioning NUSave...");
+        history.saveToHistory(toSave);
+        logger.info("Saving a version of NUSave...");
+    }
+
+    private void saveToFuture() {
+        VersionedNusave toSave = new VersionedNusave(state, nusave);
+        history.saveToFuture(toSave);
+        logger.info("Saving a version of NUSave...");
     }
 
     private void loadVersionedNusave(VersionedNusave versionedNusave) {
