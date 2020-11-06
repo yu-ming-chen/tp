@@ -1,10 +1,11 @@
 package seedu.address.model.history;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class HistoryManager<T> implements History<T> {
     private Node<T> history;
 
-    public HistoryManager(T head) {
-        history = new Node<>(head);
+    public HistoryManager() {
+        history = new Node<>();
     }
 
     @Override
@@ -35,10 +36,31 @@ public class HistoryManager<T> implements History<T> {
     }
 
     @Override
-    public void save(T toSave) {
+    public void saveToHistory(T toSave) {
+        requireAllNonNull(toSave);
         assert history != null;
-        history.add(new Node<>(toSave));
-        rollForward();
+        Node<T> nodeToSave = new Node<>(toSave);
+        Node<T> nullNode = new Node<>();
+        nodeToSave.connectTo(nullNode);
+        if (history.hasPrevious()) {
+            history.getPrevious().connectTo(nodeToSave);
+        }
+        history = nullNode;
+    }
+
+    @Override
+    public void saveToFuture(T toSave) {
+        requireAllNonNull(toSave);
+        assert hasHistory();
+        if (!isNull()) {
+            return;
+        }
+
+        Node<T> nodeToSave = new Node<>(toSave);
+        Node<T> nullNode = new Node<>();
+        nodeToSave.connectTo(nullNode);
+        history.getPrevious().connectTo(nodeToSave);
+        history = nodeToSave;
     }
 
     private void rollBack() {
@@ -49,5 +71,10 @@ public class HistoryManager<T> implements History<T> {
     private void rollForward() {
         assert history.hasNext();
         history = history.getNext();
+    }
+
+    private boolean isNull() {
+        assert history != null;
+        return history.isNull();
     }
 }

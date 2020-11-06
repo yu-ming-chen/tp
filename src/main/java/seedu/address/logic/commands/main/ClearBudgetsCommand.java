@@ -20,8 +20,8 @@ public class ClearBudgetsCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.deleteAllBudgets();
         model.saveToHistory();
+        model.deleteAllBudgets();
         return new CommandResult(MESSAGE_DELETE_BUDGET_SUCCESS);
     }
 }

@@ -1,5 +1,7 @@
 package seedu.address.model.history;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 /**
  * Represents a node in a doubly- inked list.
  * @param <T> the type of the doubly-linked list.
@@ -10,9 +12,19 @@ public class Node<T> {
     private Node<T> previous;
 
     /**
-     * Constructs a {@code Node}
+     * Constructs an empty {@code Node}
+     */
+    public Node() {
+        this.value = null;
+        this.next = null;
+        this.previous = null;
+    }
+
+    /**
+     * Constructs a {@code Node} with the given value
      */
     public Node(T value) {
+        requireAllNonNull(value);
         this.value = value;
         this.next = null;
         this.previous = null;
@@ -20,15 +32,6 @@ public class Node<T> {
 
     public T getValue() {
         return value;
-    }
-
-    /**
-     * Creates a bi-directional forward connection to another {@code Node}.
-     * @param toAdd the {@code Node} to be added.
-     */
-    public void add(Node<T> toAdd) {
-        toAdd.setPrevious(this);
-        setNext(toAdd);
     }
 
     public Node<T> getNext() {
@@ -40,7 +43,7 @@ public class Node<T> {
     }
 
     public boolean hasNext() {
-        return next != null;
+        return !isNull() && !next.isNull();
     }
 
     public boolean hasPrevious() {
@@ -53,5 +56,41 @@ public class Node<T> {
 
     private void setPrevious(Node<T> previous) {
         this.previous = previous;
+    }
+
+    public boolean isNull() {
+        return value == null;
+    }
+
+    public boolean isEmpty() {
+        return isNull() && !hasPrevious();
+    }
+
+    /**
+     * Creates a bi-directional forward connection to another node.
+     * @param toConnect the node to be connected to
+     */
+    public void connectTo(Node<T> toConnect) {
+        requireAllNonNull(toConnect);
+        disconnectNext();
+        setNext(toConnect);
+        toConnect.disconnectPrevious();
+        toConnect.setPrevious(this);
+    }
+
+    private void disconnectPrevious() {
+        if (previous != null) {
+            Node<T> temp = previous;
+            previous = null;
+            temp.disconnectNext();
+        }
+    }
+
+    private void disconnectNext() {
+        if (next != null) {
+            Node<T> temp = next;
+            next = null;
+            temp.disconnectPrevious();
+        }
     }
 }

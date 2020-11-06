@@ -66,8 +66,8 @@ public class EditBudgetCommand extends Command {
         Budget toEdit = (Budget) currentList.get(budgetIndex.getBudgetIndex().get());
         Budget editedBudget = createEditedBudget(toEdit, editBudgetDescriptor);
 
-        model.editBudget(toEdit, editedBudget);
         model.saveToHistory();
+        model.editBudget(toEdit, editedBudget);
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 
