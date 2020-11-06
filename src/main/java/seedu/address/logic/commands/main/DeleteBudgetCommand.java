@@ -44,8 +44,8 @@ public class DeleteBudgetCommand extends Command {
         if (!model.isWithinRange(toDelete)) {
             throw new CommandException(Messages.BUDGET_MESSAGE_INDEX_OUT_OF_BOUNDS);
         }
-        model.deleteBudget(toDelete);
         model.saveToHistory();
+        model.deleteBudget(toDelete);
         return new CommandResult(MESSAGE_DELETE_BUDGET_SUCCESS);
     }
 }

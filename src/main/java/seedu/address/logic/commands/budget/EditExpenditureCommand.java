@@ -72,8 +72,8 @@ public class EditExpenditureCommand extends Command {
         Expenditure toEdit = (Expenditure) currentList.get(expenditureIndex.getExpenditureIndex().get());
         Expenditure editedExpenditure = createEditedExpenditure(toEdit, editExpenditureDescriptor);
 
-        model.editExpenditure(toEdit, editedExpenditure);
         model.saveToHistory();
+        model.editExpenditure(toEdit, editedExpenditure);
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 
