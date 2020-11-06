@@ -134,9 +134,10 @@ public class StateManager implements State {
         setPageTitle(pageTitle);
         setPage(Page.BUDGET);
         setTotalExpenditure(newExpenditureValue);
-        assert newThreshold.isPresent();
-        String threshold = newThreshold.get().toString();
-        setThresholdStringProp(threshold);
+        if (newThreshold.isPresent()) {
+            String threshold = newThreshold.get().toString();
+            setThresholdStringProp(threshold);
+        }
     }
 
     @Override
