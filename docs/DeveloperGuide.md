@@ -803,27 +803,38 @@ The undo and redo commands are implemented using the following classes:
 | `Node<T>`         | Contains a value of type `T`, next `Node<T>` and previous `Node<T>` | Represents a doubly linked list |
 | `HistoryManager<T>` | Contains a pointer to a `Node<T>` | Represents an iterator to iterate through a doubly linked list represented by `Node<T>` |
 
+The following class diagram shows how the classes interact with each other:
+
+![Undo redo class diagram](diagrams/UndoRedoClassDiagram.png)
+
 The pointer in `HistoryManager<VersionedNusave>` is always pointing to the latest `VersionedNusave` in a doubly linked list represented by `Node<T>`. If an undo command is executed, it will load the previous `VersionedNusave` and move the pointer backward. If a redo command is executed, it will load the next `VersionedNusave` and move the pointer forward. Whenever the user makes changes to NUSave data, a `VersionedNusave` is instantiated with a deep copy of the `BudgetList` from `Nusave` and the `BudgetIndex` from `State`. It replaces the next `Node<T>` (if any) of the `Node<T>` that `HistoryManager<VersionedNusave>` is currently pointing to before the pointer is moved forward.
 
-To better illustrate the process, an example usage is given below:
+To better illustrate the process, an example usage shown below:
 
 Step 1: The user launches NUSave. `HistoryManager<VersionedNusave>` is instantiated with an empty doubly linked list.
 
-![Undo redo object diagram for step 1](diagrams/commandsPlantUML/diagram/4_3_6_1_step1.png)
+![Undo redo object diagram for step 1](diagrams/UndoRedoState0.png)
 
-Figure 4.3.6.1. Object diagram when NUSave is launched
+Step 2: The user makes changes to NUSave data by creating a `Budget` named "demo". A `VersionedNusave` is instantiated with a deep copy of the `BudgetList` from `Nusave` and `BudgetIndex` from `State` before the change is made. `HistoryManager<VersionedNusave>` adds this `VersionedNusave` to the doubly linked list before moving its pointer forward.
 
-Step 2: The user makes changes to NUSave data by creating a `Budget`. A `VersionedNusave` is instantiated with a deep copy of the `BudgetList` from `Nusave` and `BudgetIndex` from `State` before the change is made. `HistoryManager<VersionedNusave>` adds this `VersionedNusave` to the doubly linked list before moving its pointer forward.
+![Undo redo object diagram for step 2](diagrams/UndoRedoState1.png)
 
-![Undo redo object diagram for step 2](diagrams/commandsPlantUML/diagram/4_3_6_2_step2.png)
+Step 3: The user executes the undo command. A `VersionedNusave` is instantiated with a deep copy of the current `BudgetList` from `Nusave` and `BudgetIndex` from `State`. `HistoryManager<VersionedNusave>` adds this `VersionedNusave` to the doubly linked list before moving its pointer backward to retrieve the previous `VersionedNusave`. The `BudgetList` from the previous `VersionedNusave` is loaded into `Nusave` while the `BudgetIndex` from the previous `VersionedNusave` is used to set `State`. Once this is done, the GUI should reflect that the "demo" budget is removed from NUSave.
 
-Figure 4.3.6.2. Object diagram when NUSave data is changed
+![Undo redo object diagram for step 3](diagrams/UndoRedoState2.png)
 
-Step 3: The user executes the undo command. A `VersionedNusave` is instantiated with a deep copy of the current `BudgetList` from `Nusave` and `BudgetIndex` from `State`. `HistoryManager<VersionedNusave>` adds this `VersionedNusave` to the doubly linked list before moving its pointer backward to retrieve the previous `VersionedNusave`. The `BudgetList` from the previous `VersionedNusave` is loaded into `Nusave` while the `BudgetIndex` from the previous `VersionedNusave` is used to set `State`. Once this is done, the GUI should reflect the state of NUSave right before the latest change to NUSave data was made.
+Step 4: The user executes the redo command. `HistoryManager<VersionedNusave>` retrieves the next `VersionedNusave` from the pointer and moves its pointer forward. The `BudgetList` from the next `VersionedNusave` is loaded into `Nusave` while the `BudgetIndex` from the next `VersionedNusave` is used to set `State`. Once this is done, the GUI should reflect that the "demo" budget is added back to NUSave.
 
-![Undo redo object diagram for step 3](diagrams/commandsPlantUML/diagram/4_3_6_3_step3.png)
+![Undo redo object diagram for step 4](diagrams/UndoRedoState3.png)
 
-Figure 4.3.6.3. Object diagram when the undo command is used
+Step 5: The user makes changes to NUSave data by creating a `Budget` named "demo2". A `VersionedNusave` is instantiated with a deep copy of the `BudgetList` from `Nusave` and `BudgetIndex` from `State` before the change is made. `HistoryManager<VersionedNusave>` adds this `VersionedNusave` to the doubly linked list before moving its pointer forward.
+
+![Undo redo object diagram for step 5](diagrams/UndoRedoState4.png)
+
+The following sequence diagram shows how the undo command is executed:
+
+![Undo redo sequence diagram](diagrams/UndoSequenceDiagram.png)
+
 #### 4.3.6. Universal Commands
 #### 4.3.6.1 Help
 (Contributed by Yu Ming)
