@@ -108,6 +108,8 @@ Format         | Meaning                | Examples
 > ⚠️ If a parameter **does not have any prefixes**, it **must** be the **first parameter**.
 > For example, `edit 1 n/NUS Computing Club p/1000` is a valid command but `edit n/NUS Computing Club p/1000 1` is an invalid command.
 >
+> ⚠️ If an invalid prefix is entered, it will be treated as content for the previous parameter.
+>
 > 📕 Parameters with prefixes can be entered in **any order**.
 > For example, `create n/Temasek Hall Student Council p/1200` is equivalent to `create p/1200 n/Temasek Hall Student Council`.
 
@@ -293,6 +295,8 @@ Prefix | Parameters | Requirement | Comments
 You can use this command to create a new budget with the given `NAME` and `THRESHOLD`.
 
 When you create a new budget, it will be displayed as a budget card in the list view.
+
+> 📕 You can create a budget with no threshold to simply track your total expenses
 
 ✏️ Example: `create n/Temasek Hall Student Council p/1200`
 
