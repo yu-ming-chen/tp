@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.Renderable;
@@ -15,17 +14,17 @@ import seedu.address.model.expenditure.Expenditure;
 /**
  * Panel containing the list of persons.
  */
-public class RenderableListPanel extends UiPart<Region> {
-    private static final String FXML = "RenderableListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(RenderableListPanel.class);
+public class ListView extends UiPart<Region> {
+    private static final String FXML = "RenderableListView.fxml";
+    private final Logger logger = LogsCenter.getLogger(ListView.class);
 
     @FXML
-    private ListView<Renderable> renderableListView;
+    private javafx.scene.control.ListView renderableListView;
 
     /**
      * Creates a {@code RenderableListPanel} with the given {@code ObservableList}.
      */
-    public RenderableListPanel(ObservableList<Renderable> renderableList) {
+    public ListView(ObservableList<Renderable> renderableList) {
         super(FXML);
         renderableListView.setItems(renderableList);
         renderableListView.setCellFactory(listView -> new RenderableListViewCell());

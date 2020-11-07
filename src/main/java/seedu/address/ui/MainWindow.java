@@ -30,7 +30,7 @@ public class MainWindow extends UiPart<Stage> {
     private StateBinderList stateBinderList;
 
     // Independent Ui parts residing in this Ui container
-    private RenderableListPanel renderableListPanel;
+    private ListView listView;
     private ResultDisplay resultDisplay;
     private InfoBox infoBox;
     private Title title;
@@ -83,8 +83,8 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void fillInnerParts() {
-        renderableListPanel = new RenderableListPanel(logic.getFilteredRenderableList());
-        renderableListPanelPlaceholder.getChildren().add(renderableListPanel.getRoot());
+        listView = new ListView(logic.getFilteredRenderableList());
+        renderableListPanelPlaceholder.getChildren().add(listView.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -150,8 +150,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public RenderableListPanel getRenderableListPanel() {
-        return renderableListPanel;
+    public ListView getRenderableListPanel() {
+        return listView;
     }
 
     /**
