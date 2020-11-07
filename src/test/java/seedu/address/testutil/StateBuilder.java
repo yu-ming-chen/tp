@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import seedu.address.model.budget.Budget;
 import seedu.address.state.Page;
 import seedu.address.state.State;
 import seedu.address.state.StateManager;

@@ -103,7 +103,7 @@ public class ModelManagerTest {
     void addBudget_validBudget_addsBudget() {
         modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
         int size = modelManager.getNusave().getBudgetListAsObservableList().size();
-        assertEquals(size, 1);
+        assertEquals(size, 3);
     }
 
     @Test
@@ -116,7 +116,7 @@ public class ModelManagerTest {
         modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
         modelManager.deleteBudget(new BudgetIndexManager(0));
         int size = modelManager.getNusave().getBudgetListAsObservableList().size();
-        assertEquals(size, 0);
+        assertEquals(size, 2);
     }
 
     //    @Test

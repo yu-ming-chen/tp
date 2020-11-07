@@ -8,7 +8,6 @@ import seedu.address.model.Nusave;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.budget.BudgetList;
 import seedu.address.model.budget.Threshold;
-import seedu.address.model.expenditure.ExpenditureList;
 
 public class TypicalBudgets {
     public static final Budget MC_DONALDS = new BudgetBuilder().withName("McDonalds").withCreatedOn("2020-10-11")
