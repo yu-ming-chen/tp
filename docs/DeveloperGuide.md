@@ -14,8 +14,7 @@ title: Developer Guide
         * [3.2.3 Model Component](#323-model-component)
         * [3.2.4 State Component](#324-state-component)
         * [3.2.5 Storage Component](#325-storage-component)
-    * [3.3. Interaction Between Components](#33-interaction-between-components)
-    * [3.4. Commons Classes](#34-commons-classes)
+    * [3.3. Commons Classes](#33-commons-classes)
 - [4. Implementation](#4-implementation)
     * [4.1. State](#41-state)
     * [4.2. Parsers](#42-parsers)
@@ -134,6 +133,8 @@ issues the command `delete 1`.
 The sections below give more details of each component:
 
 ### 3.2. Components
+
+This section elaborates on the different high-level components in NUSave.
 
 #### 3.2.1. UI Component
 
@@ -268,12 +269,12 @@ In order for them to be recognised by the Jackson API, NUSave data objects (such
 converted into POJOs. Figure 3.6.2 depicts how the respective POJO classes for each of the data objects interact with
 one another.
 
-### 3.3. Interaction Between Components
-
-### 3.4. Commons Classes
+### 3.3. Commons Classes
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 ## 4. Implementation
+
+(to be added)
 
 ### 4.1. State
 
@@ -367,6 +368,8 @@ The interaction between the parsers is illustrated by the example usage seen in 
 Figure 4.2.3.1. Sequence diagram of a user input being parsed.
 
 ### 4.3. Commands
+
+(to be added)
 
 #### 4.3.1. Add Commands
 
@@ -878,6 +881,8 @@ on the user interface.
 Note that the `help` command can be executed on `Budget Page` view as well, but it will display a different set of help
 message that is unique to the `Budget Page` view with commands that can be executed on the view.
 ### 4.4. UI
+
+This section elaborates on the implementations of various `Ui` features.
 
 #### 4.4.1. List View Rendering
 (Contributed by Wen Hao)
