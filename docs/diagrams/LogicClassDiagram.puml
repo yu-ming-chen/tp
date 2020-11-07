@@ -10,8 +10,8 @@ package Parser {
 Interface Parser <<Interface>>
 Interface PageParser <<Interface>>
 Class PageParser
-Class 123PageParser
-Class XYZ123CommandParser
+Class XYZPageParser
+Class XYZCommandParser
 Class CliSyntax
 Class ParserUtil
 Class ArgumentMultimap
@@ -20,7 +20,7 @@ Class Prefix
 }
 
 package Commands {
-Class XYZ123Command
+Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
 }
@@ -37,30 +37,30 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .up.|> Logic
-LogicManager -->"1" PageParser
+LogicManager ..>"1" PageParser
 
-123PageParser .up.|> PageParser
-123PageParser .left.> XYZ123CommandParser: creates >
+XYZPageParser .up.|> PageParser
+XYZPageParser .left.> XYZCommandParser: creates >
 
-XYZ123CommandParser ..> XYZ123Command : creates >
-XYZ123CommandParser ..|> Parser
-XYZ123CommandParser .left.> ArgumentMultimap
-XYZ123CommandParser ..> ArgumentTokenizer
+XYZCommandParser ..> XYZCommand : creates >
+XYZCommandParser ..|> Parser
+XYZCommandParser .left.> ArgumentMultimap
+XYZCommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap
-XYZ123CommandParser ..> CliSyntax
+XYZCommandParser ..> CliSyntax
 CliSyntax ..> Prefix
-XYZ123CommandParser ..> ParserUtil
+XYZCommandParser ..> ParserUtil
 ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
-XYZ123Command -up-|> Command
+XYZCommand -up-|> Command
 LogicManager .left.> Command : executes >
 
 LogicManager -right-> Model
 Command .up.> Model
 
-note right of 123PageParser: 123PageParser =\nBudgetPageParser\nor MainPageParser
-note bottom of XYZ123CommandParser: XYZ123CommandParser =\nCreateBudgetCommandParser,\nAddExpenditureCommandParser, etc
-note bottom of XYZ123Command: XYZ123Command =\nAddExpenditureCommand, \nFindBudgetCommand, etc
+note right of XYZPageParser: XYZPageParser =\nBudgetPageParser\nor MainPageParser
+note bottom of XYZCommandParser: XYZCommandParser =\nCreateBudgetCommandParser,\nAddExpenditureCommandParser, etc
+note bottom of XYZCommand: XYZCommand =\nAddExpenditureCommand, \nFindBudgetCommand, etc
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult

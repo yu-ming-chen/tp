@@ -2,6 +2,7 @@
 skinparam Sequence {
     MessageAlign center
 }
+hide footbox
 box "Logic" #LightBlue
 participant ":LogicManager" as LM
 participant ":BudgetPageParser" as BPP
@@ -39,11 +40,14 @@ activate SEC
 SECP <-- SEC : c
 deactivate SEC
 BPP <-- SECP : c
+deactivate SECP
+BPP <-[hidden]- SECP
 destroy SECP
 
 deactivate SECP
 LM <-- BPP : c
 deactivate BPP
+LM <-[hidden]- BPP
 destroy BPP
 
 

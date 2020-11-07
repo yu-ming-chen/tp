@@ -1,7 +1,9 @@
 @startuml
 skinparam Sequence {
     MessageAlign center
+
 }
+hide footbox
 box "Logic" #LightBlue
 participant ":LogicManager" as LM
 participant ":MainPageParser" as MPP
@@ -45,12 +47,16 @@ activate CBC
 CBCP <-- CBC : c
 deactivate CBC
 MPP <-- CBCP : c
-
+deactivate CBCP
+MPP <-[hidden]- CBCP
 destroy CBCP
 
 deactivate CBCP
 LM <-- MPP : c
 deactivate MPP
+destroy MPP
+
+LM <-[hidden]- MPP
 destroy MPP
 
 LM -> CBC: excute(m)

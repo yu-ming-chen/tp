@@ -2,6 +2,7 @@
 skinparam Sequence {
     MessageAlign center
 }
+hide footbox
 box "Logic" #LightBlue
 participant ":LogicManager" as LM
 participant ":MainPageParser" as MPP
@@ -27,6 +28,7 @@ deactivate HBC
 
 LM <-- MPP : c
 deactivate MPP
+LM <-[hidden]- MPP
 destroy MPP
 
 
