@@ -35,8 +35,8 @@ title: Developer Guide
         * [4.3.4. Sort Commands](#434-sort-commands)
         * [4.3.5. Find & List Commands](#435-find--list-commands)
         * [4.3.6. Undo & Redo Commands](#436-undo--redo-commands)
-        * [4.3.6. Universal Commands](#436-universal-commands)
-        * [4.3.6.1 Help](#4361-help)
+        * [4.3.7. Universal Commands](#437-universal-commands)
+            * [4.3.7.1 Help](#4371-help)
     * [4.4. UI](#44-ui)
         * [4.4.1. List View Rendering](#441-list-view-rendering)
         * [4.4.2. Dynamic Updating](#442-dynamic-updating)
@@ -48,15 +48,14 @@ title: Developer Guide
         * [5.3. Logging](#53-logging)
         * [5.4. Configuration](#54-configuration)
         * [5.5. DevOps](#55-devops)
-    * [6. Appendix](#6-appendix)
-        * [6.1. Requirements](#61-requirements)
-            * [6.1.1. Product Scope](#611-product-scope)
-            * [6.1.2. User Stories](#612-user-stories)
-            * [6.1.3. Use Cases](#613-use-cases)
-            * [6.1.4. Non-Functional Requirements](#614-non-functional-requirements)
-        * [6.2. Glossary](#62-glossary)
-        * [6.3. Instructions for Manual Testing](#63-instructions-for-manual-testing)
-        * [6.4. Effort](#64-effort)
+    * [Appendix](#appendix)
+        * [Product Scope](#product-scope)
+        * [User Stories](#user-stories)
+        * [Use Cases](#use-cases)
+        * [Non-Functional Requirements](#non-functional-requirements)
+        * [Glossary](#glossary)
+        * [Instructions for Manual Testing](#instructions-for-manual-testing)
+        * [Effort](#effort)
 
 ## 1. Introduction
 
@@ -108,11 +107,11 @@ It has two primary responsibilities:
 
 The rest of the application consists of five components:
 
-1. [**`UI`**](#ui-component): Handles the UI of the application.
-1. [**`Logic`**](#logic-component): Executes the commands.
-1. [**`Model`**](#model-component): Holds the data of the application in memory.
-1. [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-1. [**`State`**](#state-componenet): Remembers the current state of the application.
+1. [**`UI`**](#321-ui-component): Handles the UI of the application.
+1. [**`Logic`**](#322-logic-component): Executes the commands.
+1. [**`Model`**](#323-model-component): Holds the data of the application in memory.
+1. [**`Storage`**](#324-storage-component): Reads data from, and writes data to, the hard disk.
+1. [**`State`**](#325-state-componenet): Remembers the current state of the application.
 
 For each of the five components:
 
@@ -835,8 +834,8 @@ The following sequence diagram shows how the undo command is executed:
 
 ![Undo redo sequence diagram](diagrams/UndoSequenceDiagram.png)
 
-#### 4.3.6. Universal Commands
-#### 4.3.6.1 Help
+#### 4.3.7. Universal Commands
+#### 4.3.7.1 Help
 (Contributed by Yu Ming)
 
 This section explains the `Help Command`.
@@ -845,7 +844,7 @@ The following activity diagram to shows the events that occur when the user exec
 
 ![HelpCommand Activity Diagram](diagrams/commandsPlantUML/HelpCommandActivity.png) 
 
-Figure 4.3.6.1.1: Activity diagram for help command.
+Figure 4.3.7.1.1: Activity diagram for help command.
 
 The following command can occur either in the `Main Page` or `Budget Page` of NUSave, and the help notes will be
 displayed in the result box of the UI Component.
@@ -855,7 +854,7 @@ depicting a scenario where the user would like to ask for help to be displayed.
 
 ![HelpCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/HelpCommand.png)
 
-Figure 4.3.6.1.2: Sequence diagram for help command in main page view.
+Figure 4.3.7.1.2: Sequence diagram for help command in main page view.
 >Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
 the lifeline reaches the end of diagram.
 
@@ -881,10 +880,10 @@ message that is unique to the `Budget Page` view with commands that can be execu
 This section talks about how budget and expenditure cards are rendered within the List View UI component on the GUI of NUSave.
 
 As there is a need to constantly re-render the contents within the List View to reflect user changes, we have adopted the **Observer Pattern**
-so that data can be sent from the `Logic` component to the `UI` component efficiently. Using the JavaFX API, the List View is binded to an `ObservableList`
+so that data can be sent from the `Model` component to the `UI` component efficiently. Using the JavaFX API, the List View is binded to an `ObservableList`
 such that any changes to the `ObservableList` will trigger an update within the List View accordingly.
 
-![Class Diagram between `Logic` and `UI`](images/List_View_Class_Diagram.png)
+![Class Diagram between `Model` and `UI`](diagrams/ListViewClassDiagram.png)
 
 Figure 4.4.1.1. Class diagram to illustrate the observer pattern
 
@@ -985,11 +984,9 @@ the budget, while the `InfoBox` component reflects the total expenditure and thr
 ### 5.5. DevOps
 * [Dev Ops guide](DevOps.md)
 
-## 6. Appendix
+## Appendix
 
-### 6.1. Requirements
-
-#### 6.1.1. Product Scope
+### Product Scope
 
 **Target User Profile:**
 
@@ -1005,7 +1002,7 @@ the budget, while the `InfoBox` component reflects the total expenditure and thr
 * allows users to keep track of their budgets on a centralised platform
 
 
-#### 6.1.2. User Stories
+### User Stories
 Priorities: 
 * High (must have) - `* * *` 
 * Medium (nice to have) - `* *`
@@ -1022,18 +1019,52 @@ Priorities:
 | `* * *`  | user                                       | delete an expenditure          | remove an expenditure that I no longer need                            |
 | `* *`    | user                                       | find an expenditure by name    | locate an expenditure easily                                           |
 
-#### 6.1.3. Use Cases
+### Use Cases
 
-#### 6.1.4. Non-Functional Requirements
+#### Use Case: UC01 - Viewing the help menu
+
+#### Use Case: UC02 - Creating a budget
+
+#### Use Case: UC03 - Editing a budget
+
+#### Use Case: UC04 - Deleting a budget
+
+#### Use Case: UC05 - Opening a budget
+
+#### Use Case: UC06 - Closing a budget
+
+#### Use Case: UC07 - Sorting budgets
+
+#### Use Case: UC08 - Finding budgets
+
+#### Use Case: UC09 - Listing budgets
+
+#### Use Case: UC10 - Creating an expenditure
+
+#### Use Case: UC11 - Editing an expenditure
+
+#### Use Case: UC12 - Deleting an expenditure
+
+#### Use Case: UC15 - Sorting expenditures
+
+#### Use Case: UC16 - Finding expenditures
+
+#### Use Case: UC17 - Listing expenditures
+
+#### Use Case: UC18 - Undoing an action
+
+#### Use Case: UC19 - Redoing an action
+
+### Non-Functional Requirements
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 budgets and expenditures without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks at a fast speed.
 
-### 6.2. Glossary
+### Glossary
 * **API**: Application Programming Interface
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 
-### 6.3. Instructions for Manual Testing
+### Instructions for Manual Testing
 Given below are instructions to test the application manually:
 
 #### Launch and Shutdown
@@ -1066,4 +1097,4 @@ Given below are instructions to test the application manually:
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-### 6.4. Effort
+### Effort

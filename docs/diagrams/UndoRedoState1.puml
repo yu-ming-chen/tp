@@ -6,7 +6,7 @@ skinparam ClassBorderColor #000000
 title After "create n/demo"
 
 package HistoryManager {
-    class State1 as "__vn0:Node<VersionedNusave>__"
+    class State1 as "__vn1:Node<VersionedNusave>__"
     class State2 as "__empty:Node<VersionedNusave>__"
     class State3 as "__empty:Node<VersionedNusave>__"
     class State4 as "__empty:Node<VersionedNusave>__"
