@@ -56,10 +56,11 @@ includes the threshold of the budget, and the current total expenditure of that 
 
 - **Contributions to Documentation**
 	- User Guide:
-		- Added documentation for the commands `open`, `add`, `close`
-		- Added documentation for Glossary
+		- Added documentation for `open`, `add` and `close` commands.
+		- Added documentation for Glossary section.
 	- Developer Guide:
-		- Added description for architectural component, `Ui` and `State`.
+		- Added preface for section 3, Design.
+		- Added description for `Ui` and `State` architectural components.
 		- Added implementation details for `State` component.
 		- Added implementation details for Dynamic Updating of GUI of NUSave. 
 
@@ -170,3 +171,4 @@ Figure 5.3.1.1. below:
 ![Example of add expenditure command](../images/CommandScreenShots/5_3_1_1_addExpenditure.png)
 
 Figure 5.3.1.1. Example of using the add expenditure command.
+~~~~~~~~~~~~
