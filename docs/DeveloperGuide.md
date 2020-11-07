@@ -1207,7 +1207,7 @@ System: NUSave
 System: NUSave
 <br/>Use Case: UC07 - Sorting budgets
 <br/>Actor: User
-<br/>Preconditions: User is on the main page
+<br/>Preconditions: User is on the main page, NUSave contains at least 2 or more budgets
 <br/>MSS:
 1. User enters the command to sort budgets in NUSave.
 2. NUSave sorts all budgets and displays the updated list of budgets to user.
@@ -1218,10 +1218,6 @@ System: NUSave
     - 1a1. NUSave shows an error message.
     - 1a2. User enters new command.
     <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
-    <br/> Use case resumes at step 2.
-- 1b. NUSave detects that there are no budgets in NUSave.
-    - 1b1. User <ins>create budgets (UC02)</ins> before sorting.
-    <br/> Steps 1b1 is repeated until 2 or more budgets are available in NUSave for sorting.
     <br/> Use case resumes at step 2.
 
 
@@ -1291,7 +1287,7 @@ MSS (Contributed by David)
 System: NUSave
 <br/>Use Case: UC15 - Sorting expenditures
 <br/>Actor: User
-<br/>Preconditions: User is on the budget page
+<br/>Preconditions: User is on the budget page, the given budget contains at least 2 or more expenditures
 <br/>MSS:
 1. User requests to <ins>open a budget (UC05)</ins> to view the list of expenditures in the budget page view.
 2. NUSave opens the budget and displays the list of expenditures belonging to that budget.
@@ -1304,10 +1300,6 @@ System: NUSave
     - 3a1. NUSave shows an error message.
     - 3a2. User enters new command.
     <br/> Steps 3a1-3a2 are repeated until the command entered is correct.
-    <br/> Use case resumes at step 4.
-- 3b. NUSave detects that there are no expenditures in given budget.
-    - 3b1. User <ins>add expenditures (UC10)</ins> before sorting.
-    <br/> Steps 3b1 is repeated until 2 or more expenditure are available in budget for sorting.
     <br/> Use case resumes at step 4.
 
 
