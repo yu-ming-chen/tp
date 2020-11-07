@@ -32,6 +32,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/ekchinhui.png" width="200px">
 
 [[github](http://github.com/EkChinHui)]
+[[portfolio](team/EkChinHui.md)]
 
 * Role: Developer
 * Responsibilities: Database
@@ -41,7 +42,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/sogggy.png" width="200px">
 
 [[github](http://github.com/sogggy)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/sogggy.md)]
 
 * Role: Developer
 * Responsibilities: Testing
