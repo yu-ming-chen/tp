@@ -2,6 +2,7 @@
 skinparam Sequence {
     MessageAlign center
 }
+hide footbox
 box "Logic" #LightBlue
 participant ":LogicManager" as LM
 participant ":BudgetPageParser" as BPP
@@ -17,6 +18,11 @@ end box
 
 [-> LM : excute("sort time")
 activate LM
+create BPP
+LM -> BPP
+activate BPP
+LM <-- BPP
+deactivate BPP
 LM -> BPP : parseCommand("sort time")
 activate BPP
 
@@ -25,7 +31,7 @@ BPP -> SECP
 activate SECP
 BPP <-- SECP
 deactivate SECP
-BPP -> SECP : parse("sort time")
+BPP -> SECP : parse("time")
 activate SECP
 
 create SEC
@@ -34,11 +40,15 @@ activate SEC
 SECP <-- SEC : c
 deactivate SEC
 BPP <-- SECP : c
+deactivate SECP
+BPP <-[hidden]- SECP
 destroy SECP
 
 deactivate SECP
 LM <-- BPP : c
 deactivate BPP
+LM <-[hidden]- BPP
+destroy BPP
 
 
 LM -> SEC: excute(m)
@@ -56,7 +66,7 @@ deactivate CR
 
 LM <-- SEC: result
 deactivate SEC
-[<-- LM
+[<-- LM: result
 deactivate LM
 
 @enduml
