@@ -70,10 +70,7 @@ Given below are my contributions to the project:
 	- Developer Guide:
 		- Added documentation for `Setting up`.
 		- Added documentation for `Logic component` in Design Architecture.
-		- Added implementation details for `Create Budget` command.
-		- Added implementation details for `Edit Budget` command.
-		- Added implementation details for `Sort` command.
-		- Added implementation details for `Help` command.
+		- Added implementation details for `Create Budget`, `Edit Budget`, `Sort` and `Help` command.
 
 - **Community**:
 	- Reported bugs and suggestions for other team (T) in the class during PE dry run (examples [T09-2 issues 116-141](https://github.com/yu-ming-chen/ped/issues)
