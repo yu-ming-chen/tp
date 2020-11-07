@@ -1040,7 +1040,32 @@ Priorities:
 
 #### Use Case: UC05 - Opening a budget
 
+MSS (Contributed by Song Yu)
+
+1. User requests to open a budget to view the list of expenditures in the budget page view.
+2. NUSave opens the budget.
+<br/> Use case ends.
+
+**Extensions**
+
+- 1a. User provides invalid command format to open a budget.
+    - 1a1. NUSave shows an error message.
+- 1b. The given budget does not exist.
+    - 1b1. NUSave shows an error message.
+        <br/> Use case resumes at step 2.
+
 #### Use Case: UC06 - Closing a budget
+
+MSS (Contributed by Song Yu)
+
+1. User requests to close a budget to view the list of budgets in the main page view.
+2. NUSave closes the budget.
+<br/> User case ends.
+
+**Extensions**
+
+- 1a. User provides invalid command format to close a budget.
+    - 1a1. NUSave shows an error message.
 
 #### Use Case: UC07 - Sorting budgets
 
@@ -1048,7 +1073,21 @@ Priorities:
 
 #### Use Case: UC09 - Listing budgets
 
-#### Use Case: UC10 - Creating an expenditure
+#### Use Case: UC10 - Adding an expenditure
+
+MSS (Contributed by Song Yu)
+
+1. User requests to open a budget (UC05) to view the list of expenditures in the budget page view.
+2. NUSave opens the budget.
+3. User requests to add a new expenditure to the budget
+4. NUSave adds the new expenditure.
+<br/> Use case ends.
+
+**Extensions**
+- 3a. User provides invalid expenditure details (for example, an invalid price).
+    - 3a1. NUSave shows an error message.
+    <br/> Use case resumes at step 3.
+
 
 #### Use Case: UC11 - Editing an expenditure
 
