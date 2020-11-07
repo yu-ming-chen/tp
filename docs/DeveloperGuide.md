@@ -1163,7 +1163,7 @@ System: NUSave
 (Contributed by David)
 
 System: NUSave
-<br/>Use Case: UC12 - Deleting a budget
+<br/>Use Case: UC04 - Deleting a budget
 <br/>Actor: User
 <br/>Preconditions: User is on the Main page, there must be an existing budget
 <br/>MSS:
@@ -1242,11 +1242,23 @@ System: NUSave
 
 #### Use Case: UC09 - Listing budgets
 
-#### Use Case: UC10 - Adding an expenditure
+#### Use Case: UC10 - Clearing budgets
+(Contributed by Wen Hao)
+
+System: NUSave
+<br/>Use Case: UC10 - Clearing budgets
+<br/>Actor: User
+<br/>Preconditions: User is on the main page.
+<br/>MSS:
+1. User enters the command to clear all budgets in NUSave.
+2. NUSave deletes all existing budgets, displays an empty list view and shows the success message.
+<br/> Use case ends.
+
+#### Use Case: UC11 - Adding an expenditure
 (Contributed by Song Yu)
 
 System: NUSave
-<br/>Use Case: UC10 - Adding an expenditure
+<br/>Use Case: UC11 - Adding an expenditure
 <br/>Actor: User
 <br/>Preconditions: User is on the budget page
 <br/>MSS:
@@ -1261,11 +1273,11 @@ System: NUSave
     <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
     <br/> Use case resumes at step 2.
 
-#### Use Case: UC11 - Editing an expenditure
+#### Use Case: UC12 - Editing an expenditure
 (Contributed by David)
 
 System: NUSave
-<br/>Use Case: UC11 - Editing an expenditure
+<br/>Use Case: UC12 - Editing an expenditure
 <br/>Actor: User
 <br/>Preconditions: User is on the Budget page, there must be an existing expenditure
 <br/>MSS:
@@ -1282,11 +1294,11 @@ System: NUSave
     <br/> Steps 3a1-3a2 are repeated until the command entered is correct.
     <br/> Use case resumes at step 4.
 
-#### Use Case: UC12 - Deleting an expenditure
+#### Use Case: UC13 - Deleting an expenditure
 (Contributed by David)
 
 System: NUSave
-<br/>Use Case: UC12 - Deleting an expenditure
+<br/>Use Case: UC13 - Deleting an expenditure
 <br/>Actor: User
 <br/>Preconditions: User is on the Budget page, there must be an existing expenditure
 <br/>MSS:
@@ -1303,11 +1315,11 @@ System: NUSave
     <br/> Steps 3a1-3a2 are repeated until the command entered is correct.
     <br/> Use case resumes at step 4.
 
-#### Use Case: UC15 - Sorting expenditures
+#### Use Case: UC14 - Sorting expenditures
 (Contributed by Yu Ming)
 
 System: NUSave
-<br/>Use Case: UC15 - Sorting expenditures
+<br/>Use Case: UC14 - Sorting expenditures
 <br/>Actor: User
 <br/>Preconditions: User is on the budget page, the given budget contains at least 2 or more expenditures
 <br/>MSS:
@@ -1325,13 +1337,48 @@ System: NUSave
     <br/> Use case resumes at step 4.
 
 
-#### Use Case: UC16 - Finding expenditures
+#### Use Case: UC15 - Finding expenditures
 
-#### Use Case: UC17 - Listing expenditures
+#### Use Case: UC16 - Listing expenditures
 
-#### Use Case: UC18 - Undoing an action
+#### Use Case: UC17 - Undoing an action
+(Contributed by Wen Hao)
 
-#### Use Case: UC19 - Redoing an action
+System: NUSave
+<br/>Use Case: UC17 - Undoing an action
+<br/>Actor: User
+<br/>Preconditions: User has just launched NUSave that contains a budget named "demo".
+<br/>MSS:
+1. User <ins>deletes the "demo" budget (UC04)</ins>.
+2. NUSave deletes the "demo" budget and removes it from the list view.
+3. User enters the undo command.
+4. NUSave loads the state before the previous command and adds the "demo" budget into the list view.
+<br/> Use case ends.
+
+**Extensions**
+- 1a. User enters the undo command without deleting the "demo" budget.
+    - 1a1. NUSave shows "no action to undo" error message.
+    - 1a2. Use case resumes at step 1.
+
+#### Use Case: UC18 - Redoing an action
+(Contributed by Wen Hao)
+
+System: NUSave
+<br/>Use Case: UC18 - Redoing an action
+<br/>Actor: User
+<br/>Preconditions: User has just launched NUSave that contains a budget named "demo".
+<br/>MSS:
+1. User <ins>undoes the deletion of the "demo" budget (UC17)</ins>.
+2. NUSave loads the state before using the delete command and removes the "demo" budget from the list view.
+<br/> Use case ends.
+3. User enters the redo command.
+4. NUSave loads the state before using the undo command and adds the "demo" budget into the list view.
+<br/> Use case ends.
+
+**Extensions**
+- 1a. User enters the redo command without undoing any actions.
+    - 1a1. NUSave shows "no action to redo" error message.
+    - 1a2. Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
