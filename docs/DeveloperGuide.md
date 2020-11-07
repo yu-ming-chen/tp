@@ -82,6 +82,7 @@ of NUSave.
 
 ## 2. Setting Up
 (Contributed by Yu Ming)
+
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## 3. Design
@@ -873,7 +874,7 @@ This section explains the `Help Command`.
 
 The following activity diagram to shows the events that occur when the user executes the Help Command.
 
-![HelpCommand Activity Diagram](diagrams/commandsPlantUML/HelpCommandActivity.png) 
+![HelpCommand Activity Diagram](diagrams/commandsPlantUML/diagram/HelpCommandActivity.png) 
 
 Figure 4.3.7.1.1: Activity diagram for help command.
 
@@ -1077,6 +1078,19 @@ Priorities:
 
 #### Use Case: UC04 - Deleting a budget
 
+MSS (Contributed by David)
+
+1. User request to delete a budget in the main page view.
+2. NUSave deletes the budget.
+<br/> Use case ends.
+
+**Extensions**
+
+- 1a. User provides invalid command format to delete a budget.
+    - 1a1. NUSave shows an error message.
+- 1b. The given index does not exist.
+    - 1b1. NUSave shows an index out of range message.
+
 #### Use Case: UC05 - Opening a budget
 
 MSS (Contributed by Song Yu)
@@ -1130,7 +1144,39 @@ MSS (Contributed by Song Yu)
 
 #### Use Case: UC11 - Editing an expenditure
 
+MSS (Contributed by David)
+
+1. User requests to open a budget (UC05) to view the list of expenditures in the budget page view.
+2. NUSave opens the budget.
+3. User requests to edit an existing expenditure within the budget.
+4. NUSave edits the expenditure.
+<br/> Use case ends.
+
+**Extensions**
+
+- 3a. User provides invalid expenditure details (for example, an invalid price).
+    - 3a1. NUSave shows an error message.
+- 3b. The given budget does not exist.
+    - 3b1. NUSave shows an error message.
+    <br/> Use case resumes at step 3.
+
 #### Use Case: UC12 - Deleting an expenditure
+
+MSS (Contributed by David)
+
+1. User requests to open a budget (UC05) to view the list of expenditures in the budget page view.
+2. NUSave opens the budget.
+3. User request to delete an expenditure within the budget.
+4. NUSave deletes the expenditure.
+<br/> Use case ends.
+
+**Extensions**
+
+- 3a. User provides invalid command format to delete an expenditure.
+    - 1a1. NUSave shows an error message.
+- 3b. The given index does not exist.
+    - 1b1. NUSave shows an error message.
+    <br/> Use case resumes at step 3.
 
 #### Use Case: UC15 - Sorting expenditures
 

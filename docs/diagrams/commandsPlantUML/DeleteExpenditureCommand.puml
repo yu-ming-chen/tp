@@ -17,6 +17,12 @@ end box
 
 [-> LM : execute("delete 1")
 activate LM
+create BPP
+LM -> BPP
+activate BPP
+LM <-- BPP
+
+deactivate BPP
 LM -> BPP : parseCommand("delete 1")
 activate BPP
 
@@ -44,8 +50,9 @@ deactivate DECP
 destroy DECP
 LM <-- BPP : c
 deactivate BPP
+destroy BPP
 
-LM -> DEC: excute(m)
+LM -> DEC : excute(m)
 activate DEC
 DEC -> M : deleteExpenditure(i)
 activate M
@@ -58,8 +65,8 @@ activate CR
 DEC <-- CR
 deactivate CR
 
-LM <-- DEC: result
+LM <-- DEC : result
 deactivate DEC
-[<-- LM
+[<-- LM : result
 deactivate LM
 @enduml

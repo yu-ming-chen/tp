@@ -4,7 +4,7 @@ skinparam Sequence {
 }
 box "Logic" #LightBlue
 participant ":LogicManager" as LM
-participant ":ExpenditurePageParser" as EPP
+participant ":BudgetPageParser" as BPP
 participant ":EditExpenditureCommandParser" as EECP
 participant "c:EditExpenditureCommand" as EEC
 participant "result:CommandResult" as CR
@@ -20,15 +20,20 @@ end box
 
 [-> LM : excute("edit 1 n/Basketball p/50 t/Ball")
 activate LM
-LM -> EPP : parseCommand("edit 1 n/Basketball p/50 t/Ball")
-activate EPP
+create BPP
+LM -> BPP
+activate BPP
+LM <-- BPP
+deactivate BPP
+LM -> BPP : parseCommand("edit 1 n/Basketball p/50 t/Ball")
+activate BPP
 
 create EECP
-EPP -> EECP
+BPP -> EECP
 activate EECP
-EPP <-- EECP
+BPP <-- EECP
 deactivate EECP
-EPP -> EECP : parse("edit 1 n/Basketball p/50 t/Ball")
+BPP -> EECP : parse("1 n/Basketball p/50 t/Ball")
 activate EECP
 
 create EI
@@ -48,12 +53,13 @@ EECP -> EEC : createExpenditureCommand(i, e)
 activate EEC
 EECP <-- EEC : c
 deactivate EEC
-EPP <-- EECP : c
+BPP <-- EECP : c
 destroy EECP
 
 deactivate EECP
-LM <-- EPP : c
-deactivate EPP
+LM <-- BPP : c
+deactivate BPP
+destroy BPP
 
 LM -> EEC: excute(m)
 activate EEC
@@ -80,9 +86,9 @@ activate CR
 EEC <-- CR : result
 deactivate CR
 
-LM <-- EEC: result
+LM <-- EEC : result
 deactivate EEC
-[<-- LM
+[<-- LM : result
 deactivate LM
 
 @enduml
