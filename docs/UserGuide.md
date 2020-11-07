@@ -296,7 +296,7 @@ You can use this command to create a new budget with the given `NAME` and `THRES
 
 When you create a new budget, it will be displayed as a budget card in the list view.
 
-> 📕 You can create a budget with no threshold to simply track your total expenses
+> 📕 You can create a budget with no threshold to simply track your total expenses.
 
 ✏️ Example: `create n/Temasek Hall Student Council p/1200`
 
