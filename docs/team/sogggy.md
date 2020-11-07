@@ -1,4 +1,7 @@
-# Chew Song Yu's Project Portfolio Page
+---
+layout: page
+title: Chew Song Yu's Project Portfolio Page
+---
 
 ## Project: NUSave
 

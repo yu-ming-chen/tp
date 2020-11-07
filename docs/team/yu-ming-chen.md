@@ -1,5 +1,7 @@
-# Chen Yu Ming's Project Portfolio Page
-
+---
+layout: page
+title: Chen YuMing's Project Portfolio Page
+---
 ## Project: NUSave
 
 NUSave is a desktop budgeting application used to manage an individual's budgets and expenses. NUSave can hold multiple
@@ -77,6 +79,7 @@ Given below are my contributions to the project:
 
 - **Tools**:
   * Created UI mock up for our application using Figma [#21](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/21)
+
 -------
 - **Contributions to Developer Guide (Extracts)**:
 #### 3.2.2. Logic Component
