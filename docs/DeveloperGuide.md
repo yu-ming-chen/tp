@@ -1160,19 +1160,23 @@ System: NUSave
     
 
 #### Use Case: UC04 - Deleting a budget
+(Contributed by David)
 
-MSS (Contributed by David)
-
-1. User request to delete a budget in the main page view.
-2. NUSave deletes the budget.
+System: NUSave
+<br/>Use Case: UC12 - Deleting a budget
+<br/>Actor: User
+<br/>Preconditions: User is on the Main page, there must be an existing budget
+<br/>MSS:
+1. User enters the command to delete a budget.
+2. NUSave deletes the budget and displays the updated list to the user.
 <br/> Use case ends.
 
 **Extensions**
-
-- 1a. User provides invalid command format to delete a budget.
+- 1a. NUSave detects an error in the entered command.
     - 1a1. NUSave shows an error message.
-- 1b. The given index does not exist.
-    - 1b1. NUSave shows an index out of range message.
+    - 1a2. User enters new command.
+    <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 2.
 
 #### Use Case: UC05 - Opening a budget
 
@@ -1239,8 +1243,7 @@ System: NUSave
 #### Use Case: UC09 - Listing budgets
 
 #### Use Case: UC10 - Adding an expenditure
-
-MSS (Contributed by Song Yu)
+(Contributed by Song Yu)
 
 System: NUSave
 <br/>Use Case: UC10 - Adding an expenditure
@@ -1259,40 +1262,46 @@ System: NUSave
     <br/> Use case resumes at step 2.
 
 #### Use Case: UC11 - Editing an expenditure
+(Contributed by David)
 
-MSS (Contributed by David)
-
-1. User requests to open a budget (UC05) to view the list of expenditures in the budget page view.
-2. NUSave opens the budget.
-3. User requests to edit an existing expenditure within the budget.
-4. NUSave edits the expenditure.
+System: NUSave
+<br/>Use Case: UC11 - Editing an expenditure
+<br/>Actor: User
+<br/>Preconditions: User is on the Budget page, there must be an existing expenditure
+<br/>MSS:
+1. User requests to <ins>open a budget (UC05)</ins> to view the list of expenditures in the budget page view.
+2. NUSave opens the budget and displays the list of expenditures belonging to that budget.
+3. User enters the command to edit an expenditure within the budget.
+4. NUSave edits the expenditure and displays the updated list to the user.
 <br/> Use case ends.
 
 **Extensions**
-
-- 3a. User provides invalid expenditure details (for example, an invalid price).
+- 3a. NUSave detects an error in the entered command.
     - 3a1. NUSave shows an error message.
-- 3b. The given budget does not exist.
-    - 3b1. NUSave shows an error message.
-    <br/> Use case resumes at step 3.
+    - 3a2. User enters new command.
+    <br/> Steps 3a1-3a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 4.
 
 #### Use Case: UC12 - Deleting an expenditure
+(Contributed by David)
 
-MSS (Contributed by David)
-
-1. User requests to open a budget (UC05) to view the list of expenditures in the budget page view.
-2. NUSave opens the budget.
-3. User request to delete an expenditure within the budget.
-4. NUSave deletes the expenditure.
+System: NUSave
+<br/>Use Case: UC12 - Deleting an expenditure
+<br/>Actor: User
+<br/>Preconditions: User is on the Budget page, there must be an existing expenditure
+<br/>MSS:
+1. User requests to <ins>open a budget (UC05)</ins> to view the list of expenditures in the budget page view.
+2. NUSave opens the budget and displays the list of expenditures belonging to that budget.
+3. User enters the command to delete an expenditure within the budget.
+4. NUSave deletes the expenditure and displays the updated list to the user.
 <br/> Use case ends.
 
 **Extensions**
-
-- 3a. User provides invalid command format to delete an expenditure.
-    - 1a1. NUSave shows an error message.
-- 3b. The given index does not exist.
-    - 1b1. NUSave shows an error message.
-    <br/> Use case resumes at step 3.
+- 3a. NUSave detects an error in the entered command.
+    - 3a1. NUSave shows an error message.
+    - 3a2. User enters new command.
+    <br/> Steps 3a1-3a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 4.
 
 #### Use Case: UC15 - Sorting expenditures
 (Contributed by Yu Ming)
