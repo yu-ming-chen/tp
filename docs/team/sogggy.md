@@ -5,21 +5,42 @@ title: Chew Song Yu's Project Portfolio Page
 
 ## Project: NUSave
 
-NUSave is a desktop budgeting application used to manage an individual's budgets and expenses. NUSave can hold multiple budgets, of which each budget holds multiple expenditures. The user interacts with it using a command line interface (CLI), and it has a GUI created with JavaFX. It is written in Java, and has about 10,000 LoC.
+NUSave is a desktop budgeting application used to manage an individual's budgets and expenses. NUSave can hold multiple
+budgets, of which each budget holds multiple expenditures. The user interacts with it using a command line interface (CLI),
+and it has a GUI created with JavaFX. It is written in Java, and has about 10,000 LoC.
 
 Given below are my contributions to the project:
--  **Feature**: Added a new high-level component (aside of those already available from AB3), **State**, which manages the state of NUSave. It represents what page the application is currently on (Main Page/Budget Page) and stores stateful information based on the current page it is on. 
-	- Justification: This feature allows data concerning stateful information to be separated from the rest of the other components, so that the other components can easily access these information as needed. 
-	- Highlights: Handling many of the commands in NUSave, especially commands related to expenditures in NUSave (i.e. adding/editing/deleting expenditures) all involve this component, since the GUI of NUSave updates to display the total expenditure of a budget to the user.
--  **Feature**: Setting up of JavaFx components to dynamically update the information displayed to the user. These information includes the threshold of the budget, and the current total expenditure of that budget.
-	- Justification: This improves the user experience greatly, as the user can see in real time the new total expenditure of that budget, as he/she adds/deletes/edits the cost of each expenditure.
-- **Feature**: Added the ability to open and close pages in NUSave.
-	- What it does : It allows the users to be able to open a specific budget using the command line. By doing so, it leads to various components on the Graphical User Interface (GUI) to update with new and stateful information.
-	- Justification: This feature improves the application significantly, as the command was implemented in a way such that information that previously existed on one page would be replaced by information pertaining to the new page, allowing the user to view a clean interface that is not overloaded with unnecessary information.
-- **Feature**: Added ability to find and list budgets in NUSave.
-	- What it does: `find` allows the users to be able to filter specific budgets in NUSave which matches the input search term. `list` allows the users to list all available budgets that are stored in NUSave.
-	- Justification: This feature allows the user to be able to quickly filter to only view relevant budgets that he/she is interested in, without having to scroll through their many budgets that they have stored in NUSave.
-- **Feature** : Added ability to add expenditures in NUSave.
+-  **Feature**: Added a new high-level component (aside of those already available from AB3), **State**: 
+PR [#43](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/43)
+
+    - **What it is**: `State` manages the state of NUSave. It represents what page the application is currently on 
+    (Main Page/Budget Page) and stores stateful information based on the current page it is on.  
+	- Justification: This feature allows data concerning stateful information to be separated from the rest of the other
+	components, so that the other components can easily access these information as needed. 
+	- Highlights: Handling many of the commands in NUSave, especially commands related to expenditures in NUSave (i.e. 
+	adding/editing/deleting expenditures) all involve this component, since the GUI of NUSave updates to display the total
+	expenditure of a budget to the user.
+
+-  **Feature**: Setting up of JavaFx components to dynamically update the information displayed to the user. These information
+includes the threshold of the budget, and the current total expenditure of that budget: PRs [#78](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/78), 
+[#199](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/199)
+	- Justification: This improves the user experience greatly, as the user can see in real time the new total expenditure of
+	that budget, as he/she adds/deletes/edits the cost of each expenditure.
+
+- **Feature**: Added the ability to open and close pages in NUSave: PR [#43](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/43)
+	- What it does : It allows the users to be able to open a specific budget using the command line. By doing so, it leads to
+	various components on the Graphical User Interface (GUI) to update with new and stateful information.
+	- Justification: This feature improves the application significantly, as the command was implemented in a way such that
+	information that previously existed on one page would be replaced by information pertaining to the new page, allowing the
+	user to view a clean interface that is not overloaded with unnecessary information.
+
+- **Feature**: Added ability to find and list budgets in NUSave: PR [#132](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/132)
+	- What it does: `find` allows the users to be able to filter specific budgets in NUSave which matches the input search term.
+	`list` allows the users to list all available budgets that are stored in NUSave.
+	- Justification: This feature allows the user to be able to quickly filter to only view relevant budgets that he/she is
+	interested in, without having to scroll through their many budgets that they have stored in NUSave.
+
+- **Feature** : Added ability to add expenditures in NUSave: PR [#49](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/49)
 	- What it does: `add` allows the users to be able to add expenditures, with its tagged name and price into NUSave.
 	- Justification: This features allows users to be able to store expenditures in the application, an essential component of NUSave. 
 
@@ -30,20 +51,22 @@ Given below are my contributions to the project:
 	- [PRs reviewed by me](https://github.com/AY2021S1-CS2103T-T11-4/tp/pulls?q=is%3Apr+reviewed-by%3Asogggy)
 
 - **Enhancements to Existing Features**:
-	- Updated the GUI's CSS and created JavaFx components: PRs [#49](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/49),[#69](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/69), [#91](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/91)
+	- Updated the GUI's CSS and created JavaFx components: PRs [#49](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/49),
+	[#69](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/69), [#91](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/91)
 
 - **Contributions to Documentation**
 	- User Guide:
 		- Added documentation for the commands `open`, `add`, `close`
 		- Added documentation for Glossary
 	- Developer Guide:
-		- Added preface for section 3, Design.
 		- Added description for architectural component, `Ui` and `State`.
 		- Added implementation details for `State` component.
 		- Added implementation details for Dynamic Updating of GUI of NUSave. 
 
 - **Community**:
-	- Reported bugs and suggestions for other teams in the class (examples [1](https://github.com/AY2021S1-CS2103T-T12-3/tp/issues/215), [2](https://github.com/AY2021S1-CS2103T-T12-3/tp/issues/219), [3](https://github.com/AY2021S1-CS2103T-T12-3/tp/issues/215), [4](https://github.com/AY2021S1-CS2103T-T12-3/tp/issues/217))
+	- Reported bugs and suggestions for other teams in the class (examples [1](https://github.com/AY2021S1-CS2103T-T12-3/tp/issues/215),
+	[2](https://github.com/AY2021S1-CS2103T-T12-3/tp/issues/219), [3](https://github.com/AY2021S1-CS2103T-T12-3/tp/issues/215),
+	[4](https://github.com/AY2021S1-CS2103T-T12-3/tp/issues/217))
 
 **Contributions to Developer Guide (Extracts)**:
 
@@ -86,7 +109,8 @@ the budget, while the `InfoBox` component reflects the total expenditure and thr
  The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`,
  `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
  
- The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the `MainWindow` is specified in `MainWindow.fxml`.
+ The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are 
+ in the `src/main/resources/view` folder. For example, the layout of the `MainWindow` is specified in `MainWindow.fxml`.
  
  In order to dynamically render data to be displayed to the user, when `setUpGuiComponents()` in `MainWindow` is called, 
  the method `setStateBinders()` sets Observer objects to observe changes in `State`. For a complete explanation,
