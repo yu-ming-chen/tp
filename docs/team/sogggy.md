@@ -143,3 +143,4 @@ Figure 5.3.1.1. below:
 ![Example of add expenditure command](../images/CommandScreenShots/5_3_1_1_addExpenditure.png)
 
 Figure 5.3.1.1. Example of using the add expenditure command.
+~~~~~~~~~~~~
