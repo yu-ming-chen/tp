@@ -1172,10 +1172,6 @@ MSS (Contributed by Song Yu)
 | Mainstream OS               | Stands for 'Mainstream Operating Systems', such as Windows, MacOS, Linux, Unix, OS-X.
 | MSS                         | Stands for 'Main Success Scenario', which describes the interaction for a given use case, assuming nothing goes wrong.
 
-
-* **API**: Application Programming Interface
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-
 ### Instructions for Manual Testing
 
 (Contributed by Chin Hui)
