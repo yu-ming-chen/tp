@@ -4,7 +4,7 @@ start
 :Logic executes delete command;
 
 if () then ([is the main page])
-    :MainPageParser parses the command;
+    :MainPageParser is created\nand parses the command;
 
     if () then ([delete syntax is valid])
     :parses the delete command : delete 1;
@@ -14,7 +14,7 @@ if () then ([is the main page])
     endif
 
 else ([is a budget page])
-    :BudgetPageParser parses the command;
+    :BudgetPageParser is created\nand parses the command;
 
     if () then ([delete syntax is valid])
     :parses the delete command : delete 1;
