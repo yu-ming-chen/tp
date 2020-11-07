@@ -1071,10 +1071,66 @@ Priorities:
 ### Use Cases
 
 #### Use Case: UC01 - Viewing the help menu
+(Contributed by Yu Ming)
+
+System: NUSave
+<br/>Use Case: UC01 - Viewing the help menu
+<br/>Actor: User
+<br/>MSS:
+1. User choose show help command in NUSave by entering the command.
+2. NUSave displays the help commands to user.
+<br/> Use case ends.
+
+**Extensions**
+- 1a. NUSave detects an error in the entered command.
+    - 1a1. NUSave shows an error message.
+    - 1a2. User enters new command.
+    <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 2.
 
 #### Use Case: UC02 - Creating a budget
+(Contributed by Yu Ming)
+
+System: NUSave
+<br/>Use Case: UC02 - Creating a budget
+<br/>Actor: User
+<br/>Preconditions: User is on the Main page
+<br/>MSS:
+1. User choose to add a new budget in NUSave by entering the command.
+2. NUSave adds the new budget and display to user.
+<br/> Use case ends.
+
+**Extensions**
+- 1a. NUSave detects an error in the entered command (for example, an invalid threshold).
+    - 1a1. NUSave shows an error message.
+    - 1a2. User enters new command.
+    <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 2.
 
 #### Use Case: UC03 - Editing a budget
+(Contributed by Yu Ming)
+
+System: NUSave
+<br/>Use Case: UC03 - Editing a budget
+<br/>Actor: User
+<br/>Preconditions: User is on the Main page
+<br/>MSS:
+1. User choose to edit a budget in NUSave by entering the command.
+2. NUSave replace the old budget with the newly edited budget and display to user.
+<br/> Use case ends.
+
+**Extensions**
+- 1a. NUSave detects an error in the entered command.
+    - 1a1. NUSave shows an error message.
+    - 1a2. User enters new command.
+    <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 2.
+- 1b. NUSave detects that the given budget does not exist in NUSave.
+    - 1b1. NUSave shows an error message.
+    - 1b2. User enters new command.
+    <br/> Steps 1b1-1b2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 2.
+    
 
 #### Use Case: UC04 - Deleting a budget
 
@@ -1121,6 +1177,28 @@ MSS (Contributed by Song Yu)
     - 1a1. NUSave shows an error message.
 
 #### Use Case: UC07 - Sorting budgets
+(Contributed by Yu Ming)
+
+System: NUSave
+<br/>Use Case: UC07 - Sorting budgets
+<br/>Actor: User
+<br/>Preconditions: User is on the Main page
+<br/>MSS:
+1. User choose to sort budgets in NUSave by entering the command.
+2. NUSave sorted all budgets and display to user.
+<br/> Use case ends.
+
+**Extensions**
+- 1a. NUSave detects an error in the entered command.
+    - 1a1. NUSave shows an error message.
+    - 1a2. User enters new command.
+    <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 2.
+- 1b. NUSave detects that there are no budgets in NUSave.
+    - 1b1. User <ins>create budgets (UC02)</ins> before sorting.
+    <br/> Steps 1b1 is repeated until 2 or more budgets are available in NUSave for sorting.
+    <br/> Use case resumes at step 2.
+
 
 #### Use Case: UC08 - Finding budgets
 
@@ -1179,6 +1257,30 @@ MSS (Contributed by David)
     <br/> Use case resumes at step 3.
 
 #### Use Case: UC15 - Sorting expenditures
+(Contributed by Yu Ming)
+
+System: NUSave
+<br/>Use Case: UC15 - Sorting expenditures
+<br/>Actor: User
+<br/>Preconditions: User is on the Budget page
+<br/>MSS:
+1. User requests to <ins>open a budget (UC05)</ins> to view the list of expenditures in the budget page view.
+2. NUSave opens the budget.
+3. User choose to sort expenditures in NUSave by entering the command.
+4. NUSave sorted all expenditures and display to user.
+<br/> Use case ends.
+
+**Extensions**
+- 3a. NUSave detects an error in the entered command.
+    - 3a1. NUSave shows an error message.
+    - 3a2. User enters new command.
+    <br/> Steps 3a1-3a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 4.
+- 3b. NUSave detects that there are no expenditures in given budget.
+    - 3b1. User <ins>add expenditures (UC10)</ins> before sorting.
+    <br/> Steps 3b1 is repeated until 2 or more expenditure are available in budget for sorting.
+    <br/> Use case resumes at step 4.
+
 
 #### Use Case: UC16 - Finding expenditures
 
