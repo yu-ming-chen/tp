@@ -124,38 +124,3 @@ Figure 3.1.3: Sequence Diagram of component interactions for `delete 1` command 
 
 The ***Sequence Diagram*** given above shows how the components interact with each other for the scenario where the user
 issues the command `delete 1`.
-
-#### 3.2.3. Model Component
-(Contributed by Chin Hui)
-![Structure of the Model Component](../images/ModelClassDiagram.png)
-Figure 3.4.1: Structure of the model component.
-
-**API** : `Model.java`
-
-The `Model`:
-
-* Stores a `UserPref` object that represents the user’s preferences.
-* Stores a `Nusave` object that encapsulates `Budget` and `Expenditure` data.
-* Exposes an unmodifiable `FilteredList<Renderable>` 
-that can be 'observed' e.g. the UI can be bound to this list so
-that the UI automatically updates when the data in the list change.
-* Does not depend on any of the other three components.
-* `FilteredList` was used in favor of `ObservableList` to facilitate the find command implementation.
-Now the list can be filtered based on a `Predicate`, allowing for more flexibility for other 
-filtering extensions i.e. filter by number of expenditures.
-
-The `Nusave`:
-
-* Implements methods that interface with the `Budget` and `Expenditure` 
-data following the "Tell, Don't Ask" Principle.
-* Stores an `ObservableList<Renderable>` that is passed up to populate the `FilteredList<Renderable>`.
-* Stores a `BudgetList` (wrapper class for a `List<Budget>`) as well to access `Expenditures` within a `Budget` since
-`Expenditures` cannot be accessed through `ObservableList<Renderable>`.
-
-The `Budget`:
-* Implements the Renderable interface and can thus be stored in the FilteredList.
-* Contains a `Name`, `Date`, `Optional<Threshold>` and a `List<Expenditure>`.
-
-The `Expenditure`:
-* Implements the Renderable interface and can thus be stored in the FilteredList.
-* Contains a `Name`, `Date`, `Price` and `Set<Tag>`.
