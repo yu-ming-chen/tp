@@ -112,7 +112,7 @@ budgets that are currently stored in NUSave.
 
 Here is how the main page should look like:
 
-![Example of main page view](images/GuiLayoutScreenShots/3_1_1_mainPage.png)
+![Example of main page view](../images/GuiLayoutScreenShots/3_1_1_mainPage.png)
 
 Figure 3.1.1. Example of the main page view.
 
@@ -129,7 +129,7 @@ List View      | A **scrollable** panel that can hold multiple budget cards.
 
 Here is the breakdown of an individual budget card:
 
-![Example of budget card](images/GuiLayoutScreenShots/3_1_2_budgetCard.png)
+![Example of budget card](../images/GuiLayoutScreenShots/3_1_2_budgetCard.png)
 
 Figure 3.1.2. Example of a budget card.
 
@@ -149,7 +149,7 @@ On this page, you can see the list of expenditures that are currently stored in 
 
 Here is how a budget page should look like:
 
-![Example of budget page view](images/GuiLayoutScreenShots/3_2_1_budgetPage.png)
+![Example of budget page view](../images/GuiLayoutScreenShots/3_2_1_budgetPage.png)
 
 Figure 3.2.1. Example of a budget page view.
 
@@ -166,7 +166,7 @@ List View | A **scrollable** panel that can hold multiple expenditure cards.
 
 Here is the breakdown of an individual expenditure card:
 
-![Example of expenditure card](images/GuiLayoutScreenShots/3_2_2_expenditureCard.png)
+![Example of expenditure card](../images/GuiLayoutScreenShots/3_2_2_expenditureCard.png)
 
 Figure 3.2.2. Example of an expenditure card.
 
