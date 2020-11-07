@@ -1071,16 +1071,29 @@ Priorities:
 * Medium (nice to have) - `* *`
 * Low (unlikely to have) - `*`
 
-| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see a list of available commands | refer to instructions when I forget how to use the application       |
-| `* * *`  | user                                       | create a budget                | add a new budget that I need                                           |
-| `* * *`  | user                                       | delete a budget                | remove a budget that I no longer need                                  |
-| `* * *`  | user                                       | open a budget                  | view the expenditures of a budget                                      |
-| `* * *`  | user                                       | close a budget                 | return to the main window                                              |
-| `* * *`  | user                                       | add an expenditure             | add a new expenditure to a budget                                      |
-| `* * *`  | user                                       | delete an expenditure          | remove an expenditure that I no longer need                            |
-| `* *`    | user                                       | find an expenditure by name    | locate an expenditure easily                                           |
+| Priority | As a …​                                 | I want to …​                           | So that I can…​                                                     |
+| -------- | ------------------------------------------ | ----------------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see a list of available commands          | refer to instructions when I forget how to use the application         |
+| `* * *`  | new user                                   | view sample data                          | have a better understanding of how the application works               |
+| `* * *`  | new user                                   | clear my existing data                    | remove all the sample data from my application                         |
+| `* * *`  | user                                       | create a budget                           | add a new budget that I need                                           |
+| `* * *`  | user                                       | delete a budget                           | remove a budget that I no longer need                                  |
+| `* * *`  | user                                       | edit a budget                             | edit the name or the threshold that needs to be changed                |
+| `* *`    | user                                       | sort my budgets                           | view my budgets based on name or date                                  |
+| `* *`    | user                                       | find a budget by search term              | locate a budget easily                                                 |
+| `* *`    | user                                       | list out my budgets                       | view by budgets in the default manner after finding or sorting         |
+| `* * *`  | user                                       | open a budget                             | view the expenditures of a budget                                      |
+| `* * *`  | user                                       | close a budget                            | return to the main window                                              |
+| `* *`    | user                                       | see how many expenditures I have in a budget | have a better understanding of the particular budget                |
+| `* * *`  | user                                       | add an expenditure                        | add a new expenditure to a budget                                      |
+| `* * *`  | user                                       | delete an expenditure                     | remove an expenditure that I no longer need                            |
+| `* * *`  | user                                       | edit an expenditure                       | edit the name, price and tag that needs to be changed                  |
+| `* *`    | user                                       | sort my expenditures                      | view my expenditures based on name or date                             |
+| `* *`    | user                                       | find an expenditure by search term        | locate an expenditure easily                                           |
+| `* *`    | user                                       | list out my expenditures                  | view by expenditures in the default manner after finding or sorting    |
+| `* *`    | user                                       | see if I have passed my threshold         | manage my expenses better                                              |
+| `* *`    | user                                       | add tags to my expenditure                | categorise my expenditures                                             |
+| `* *`    | user                                       | exit NUSave                               | stop using the application                                             |
 
 ### Use Cases
 
@@ -1316,8 +1329,13 @@ System: NUSave
 (Contributed by Chin Hui)
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 budgets and expenditures without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 budgets and expenditures (for each budget) without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks at a fast speed.
+4.  Application should work with or without internet connection.
+5.  Application should be for an individual user.
+6.  Should be able to save data locally.
+7.  Data should be easily transferable between different machines.
+8.  Should not require installation.
 
 ### Glossary
 
