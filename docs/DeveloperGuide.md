@@ -1163,7 +1163,7 @@ System: NUSave
 (Contributed by David)
 
 System: NUSave
-<br/>Use Case: UC12 - Deleting a budget
+<br/>Use Case: UC04 - Deleting a budget
 <br/>Actor: User
 <br/>Preconditions: User is on the Main page, there must be an existing budget
 <br/>MSS:
