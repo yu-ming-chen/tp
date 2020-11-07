@@ -1207,13 +1207,13 @@ MSS (Contributed by David)
 | Main Page                   | Refers to the page that displays the list of budgets that is stored in NUSave.                                                                                                 
 | Budget Page                 | Refers to the page that displays the list of expenditures belonging in a specific budget that is stored in NUSave.                                                             
 | Threshold                   | Refers to the target limit that can be spent in that budget.
-| NUS                         | Abbreviation for National University of Singapore.
+| PlantUML                    | A software tool used by NUSave's team to render UML diagrams in this developer guide. 
+| NUS                         | Stands for National University of Singapore.
 | API                         | Stands for 'Application Programming Interface', which abstracts away underlying implementation and only exposes objects or methods a developer needs.
 | JSON                        | Stands for 'Javascript Standard Object Notation', which is a form of syntax used for storing data. 
-| CLI                         | Short for **Command Line Interface**. CLI-based Applications (i.e. NUSave) focuses on processing commands in the form of text entered from the keyboard.                       
-| GUI                         | Short for **Graphical User Interface**. GUIs work as the communication channel between the program and the user. Users interact with NUSave through the GUI, on their devices. 
+| CLI                         | Stands for **Command Line Interface**. CLI-based Applications (i.e. NUSave) focuses on processing commands in the form of text entered from the keyboard.                       
+| GUI                         | Stands for **Graphical User Interface**. GUIs work as the communication channel between the program and the user. Users interact with NUSave through the GUI, on their devices. 
 | UML                         | Stands for 'Unified Modeling Diagram'. A general-purpose, standardized modeling language used in the field of software engineering.
-| PlantUML                    | A software tool used by NUSave's team to render UML diagrams in this developer guide. 
 | NFR                         | Stands for 'Non-functional Requirement', which are the requirements an application has to fulfill unrelated to the features it offers.
 | Mainstream OS               | Stands for 'Mainstream Operating Systems', such as Windows, MacOS, Linux, Unix, OS-X.
 | MSS                         | Stands for 'Main Success Scenario', which describes the interaction for a given use case, assuming nothing goes wrong.
