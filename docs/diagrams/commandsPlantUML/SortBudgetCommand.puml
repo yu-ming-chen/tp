@@ -2,6 +2,7 @@
 skinparam Sequence {
     MessageAlign center
 }
+hide footbox
 box "Logic" #LightBlue
 participant ":LogicManager" as LM
 participant ":MainPageParser" as MPP
@@ -17,6 +18,11 @@ end box
 
 [-> LM : excute("sort name")
 activate LM
+create MPP
+LM -> MPP
+activate MPP
+LM <-- MPP
+deactivate MPP
 LM -> MPP : parseCommand("sort name")
 activate MPP
 
@@ -25,7 +31,7 @@ MPP -> SBCP
 activate SBCP
 MPP <-- SBCP
 deactivate SBCP
-MPP -> SBCP : parse("sort name")
+MPP -> SBCP : parse("name")
 activate SBCP
 
 create SBC
@@ -34,11 +40,15 @@ activate SBC
 SBCP <-- SBC : c
 deactivate SBC
 MPP <-- SBCP : c
+deactivate SBCP
+MPP <-[hidden]- SBCP
 destroy SBCP
 
 deactivate SBCP
 LM <-- MPP : c
 deactivate MPP
+LM <-[hidden]- MPP
+destroy MPP
 
 
 LM -> SBC: excute(m)
@@ -56,7 +66,7 @@ deactivate CR
 
 LM <-- SBC: result
 deactivate SBC
-[<-- LM
+[<-- LM: result
 deactivate LM
 
 @enduml

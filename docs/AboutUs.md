@@ -15,14 +15,14 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
-* Responsibilities: Database
+* Responsibilities: Database + UI
 
 ### Yu Ming
 
 <img src="images/yu-ming-chen.png" width="200px">
 
 [[github](http://github.com/yu-ming-chen)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/yu-ming-chen.md)]
 
 * Role: Developer
 * Responsibilities: Code Quality + Integration
@@ -52,7 +52,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/davidliew9.png" width="200px">
 
 [[github](https://github.com/davidliew9)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/davidliew9.md)]
 
 * Role: Developer
 * Responsibilities: Documentation

@@ -15,7 +15,7 @@ Class BudgetIndex
 Class BooleanProperty
 Class StringProperty
 
-StateManager .left.|> State
+StateManager .up.|> State
 StateManager -right-> BudgetIndex
 StateManager --> BooleanProperty
 StateManager --> StringProperty

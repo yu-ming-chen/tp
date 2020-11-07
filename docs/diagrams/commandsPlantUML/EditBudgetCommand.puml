@@ -2,6 +2,7 @@
 skinparam Sequence {
     MessageAlign center
 }
+hide footbox
 box "Logic" #LightBlue
 participant ":LogicManager" as LM
 participant ":MainPageParser" as MPP
@@ -20,6 +21,11 @@ end box
 
 [-> LM : excute("edit 1 n/Temasek Hall Basketball p/1000")
 activate LM
+create MPP
+LM -> MPP
+activate MPP
+LM <-- MPP
+deactivate MPP
 LM -> MPP : parseCommand("edit 1 n/Temasek Hall Basketball p/1000")
 activate MPP
 
@@ -28,7 +34,7 @@ MPP -> EBCP
 activate EBCP
 MPP <-- EBCP
 deactivate EBCP
-MPP -> EBCP : parse("edit 1 n/Temasek Hall Basketball p/1000")
+MPP -> EBCP : parse("n/Temasek Hall Basketball p/1000")
 activate EBCP
 
 create BI
@@ -49,12 +55,15 @@ activate EBC
 EBCP <-- EBC : c
 deactivate EBC
 MPP <-- EBCP : c
-
+deactivate EBCP
+MPP <-[hidden]- EBCP
 destroy EBCP
 
 deactivate EBCP
 LM <-- MPP : c
 deactivate MPP
+LM <-[hidden]- MPP
+destroy MPP
 
 LM -> EBC: excute(m)
 
@@ -84,7 +93,7 @@ deactivate CR
 
 LM <-- EBC: result
 deactivate EBC
-[<-- LM
+[<-- LM: result
 deactivate LM
 
 @enduml

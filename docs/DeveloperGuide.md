@@ -14,8 +14,7 @@ title: Developer Guide
         * [3.2.3 Model Component](#323-model-component)
         * [3.2.4 State Component](#324-state-component)
         * [3.2.5 Storage Component](#325-storage-component)
-    * [3.3. Interaction Between Components](#33-interaction-between-components)
-    * [3.4. Commons Classes](#34-commons-classes)
+    * [3.3. Commons Classes](#33-commons-classes)
 - [4. Implementation](#4-implementation)
     * [4.1. State](#41-state)
     * [4.2. Parsers](#42-parsers)
@@ -35,8 +34,8 @@ title: Developer Guide
         * [4.3.4. Sort Commands](#434-sort-commands)
         * [4.3.5. Find & List Commands](#435-find--list-commands)
         * [4.3.6. Undo & Redo Commands](#436-undo--redo-commands)
-        * [4.3.6. Universal Commands](#436-universal-commands)
-        * [4.3.6.1 Help](#4361-help)
+        * [4.3.7. Universal Commands](#437-universal-commands)
+            * [4.3.7.1 Help](#4371-help)
     * [4.4. UI](#44-ui)
         * [4.4.1. List View Rendering](#441-list-view-rendering)
         * [4.4.2. Dynamic Updating](#442-dynamic-updating)
@@ -48,15 +47,14 @@ title: Developer Guide
         * [5.3. Logging](#53-logging)
         * [5.4. Configuration](#54-configuration)
         * [5.5. DevOps](#55-devops)
-    * [6. Appendix](#6-appendix)
-        * [6.1. Requirements](#61-requirements)
-            * [6.1.1. Product Scope](#611-product-scope)
-            * [6.1.2. User Stories](#612-user-stories)
-            * [6.1.3. Use Cases](#613-use-cases)
-            * [6.1.4. Non-Functional Requirements](#614-non-functional-requirements)
-        * [6.2. Glossary](#62-glossary)
-        * [6.3. Instructions for Manual Testing](#63-instructions-for-manual-testing)
-        * [6.4. Effort](#64-effort)
+    * [Appendix](#appendix)
+        * [Product Scope](#product-scope)
+        * [User Stories](#user-stories)
+        * [Use Cases](#use-cases)
+        * [Non-Functional Requirements](#non-functional-requirements)
+        * [Glossary](#glossary)
+        * [Instructions for Manual Testing](#instructions-for-manual-testing)
+        * [Effort](#effort)
 
 ## 1. Introduction
 
@@ -84,6 +82,7 @@ of NUSave.
 
 ## 2. Setting Up
 (Contributed by Yu Ming)
+
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## 3. Design
@@ -110,11 +109,11 @@ It has two primary responsibilities:
 
 The rest of the application consists of five components:
 
-1. [**`UI`**](#ui-component): Handles the UI of the application.
-1. [**`Logic`**](#logic-component): Executes the commands.
-1. [**`Model`**](#model-component): Holds the data of the application in memory.
-1. [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-1. [**`State`**](#state-componenet): Remembers the current state of the application.
+1. [**`UI`**](#321-ui-component): Handles the UI of the application.
+1. [**`Logic`**](#322-logic-component): Executes the commands.
+1. [**`Model`**](#323-model-component): Holds the data of the application in memory.
+1. [**`Storage`**](#324-storage-component): Reads data from, and writes data to, the hard disk.
+1. [**`State`**](#325-state-componenet): Remembers the current state of the application.
 
 For each of the five components:
 
@@ -137,6 +136,8 @@ issues the command `delete 1`.
 The sections below give more details of each component:
 
 ### 3.2. Components
+
+This section elaborates on the different high-level components in NUSave.
 
 #### 3.2.1. UI Component
 
@@ -233,16 +234,17 @@ The `Expenditure`:
   ![Structure of the storage component](images/StateClassDiagram.png)
   
   Figure 3.5.1: Structure of the state component.
- 
+  
  The `State` component:
- * Stores data depending on the current state of NUSave. This refers to data such as the current page NUSave is currently on,
+ * Represents the current page view NUSave is currently on. Specifically, it represents whether the user is looking at 
+ the main page view or budget page view. The current view is represented by an attribute in `StateManager`, `currentPage`.
+ * Stores data related to the current state of NUSave. This refers to data such as the current page NUSave is currently on,
  or the current budget that it is accessing.
  
- `State` is used by NUSave to track the current state of NUSave. It lives inside `Model`, where `Model` will use `State`
- to store stateful data, where these data will be used to update information displayed on the GUI, such as the current
- expenditure of the accessed budget, or list of expenditures belonging to the accessed budget.
+ `State`  lives inside `Model`, where `Model` will use `State` to store stateful data, where these data will be used to 
+ update information displayed on the GUI, such as the current expenditure of the accessed budget, or list of expenditures 
+ belonging to the accessed budget.
  
-
 #### 3.2.5. Storage Component
 (Contributed by Wen Hao)
 
@@ -252,7 +254,7 @@ The `Storage` component:
 * Can save `UserPref` objects in JSON format and read it back.
 * Can save all NUSave data in JSON format and read it back.
 
-![Structure of the storage component](images/StorageClassDiagram.png)
+![Structure of the storage component](diagrams/StorageClassDiagram.png)
 
 Figure 3.6.1: Structure of the storage component.
 
@@ -262,7 +264,7 @@ data into `NUSave`. As seen in Figure 3.6.1, `JsonUserPrefsStorage` is responsib
 `UserPref` objects and contains the file path of its JSON file while `JsonNusaveStorage` is responsible for the
 reading and writing of all NUSave data and contains the file path of its JSON file.
 
-![Structure of the data stored by NUSave](images/PojoClassDiagram.png)
+![Structure of the data stored by NUSave](diagrams/PojoClassDiagram.png)
 
 Figure 3.6.2: Structure of the data stored by NUSave.
 
@@ -270,17 +272,21 @@ In order for them to be recognised by the Jackson API, NUSave data objects (such
 converted into POJOs. Figure 3.6.2 depicts how the respective POJO classes for each of the data objects interact with
 one another.
 
-### 3.3. Interaction Between Components
-
-### 3.4. Commons Classes
+### 3.3. Commons Classes
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 ## 4. Implementation
 
-### 4.1. State
-This section describes on the concept of `State` in NUSave. 
+(to be added)
 
-Commands are parsed by different types of parsers based on the current state of NUSave.
+### 4.1. State
+
+(Contributed by Song Yu)
+
+This section provides context on how `State` affects how commands are parsed by parsers in NUSave.
+
+The `Logic` component in NUSave relies on data stored in `State` to decide which parser in NUSave will take
+control of the execution of commands.
 
 ![Delete Command Activity Diagram](images/DeleteCommandActivityDiagram.png)
 Figure 4.1.1. Figure of Delete Command Activity Diagram
@@ -288,8 +294,9 @@ Figure 4.1.1. Figure of Delete Command Activity Diagram
 To elaborate further, using Figure 4.1.1. as a reference, when the user executes a delete command, `delete 1`,
 while on the main page:
 
-1. `Logic` executes the command, checking whether the current page is a budget page or main page.
-2. `MainPageParser` takes control of the execution, parsing the command input by the user.
+1. `Logic` executes the command, checking whether the current page is a budget page or main page, depending on the 
+current page (represented by `currentPage` attribute in `StateManager`) of NUSave.
+2. Since NUSave's is current on `Page.MAIN`, `MainPageParser` takes control of the execution, parsing the command input by the user.
 3. If the command syntax is valid, the delete command is parsed.
 
     3a. If the syntax is invalid, a `ParseException` is thrown.
@@ -364,6 +371,8 @@ The interaction between the parsers is illustrated by the example usage seen in 
 Figure 4.2.3.1. Sequence diagram of a user input being parsed.
 
 ### 4.3. Commands
+
+(to be added)
 
 #### 4.3.1. Add Commands
 
@@ -731,7 +740,6 @@ depicting a scenario where the user would like to find budgets by a search term/
 
 ![FindBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/FindBudgetCommand.png)
 
-
 Figure 4.3.4.1: Sequence diagram for find budget command in main page view.
 
 1. The `LogicManager` uses the `MainPageParser` to parse the give user input.
@@ -777,7 +785,6 @@ The following sequence diagram shows the interactions between the `Logic` and `M
 depicting a scenario where the user would like to find expenditures in a budget by a search term/phrase.
 
 ![FindBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/FindExpenditureCommand.png)
-
 
 Figure 4.3.4.1: Sequence diagram for find expenditure command in budget page view.
 
@@ -838,17 +845,17 @@ The following sequence diagram shows how the undo command is executed:
 
 ![Undo redo sequence diagram](diagrams/UndoSequenceDiagram.png)
 
-#### 4.3.6. Universal Commands
-#### 4.3.6.1 Help
+#### 4.3.7. Universal Commands
+#### 4.3.7.1 Help
 (Contributed by Yu Ming)
 
 This section explains the `Help Command`.
 
 The following activity diagram to shows the events that occur when the user executes the Help Command.
 
-![HelpCommand Activity Diagram](diagrams/commandsPlantUML/HelpCommandActivity.png) 
+![HelpCommand Activity Diagram](diagrams/commandsPlantUML/diagram/HelpCommandActivity.png) 
 
-Figure 4.3.6.1.1: Activity diagram for help command.
+Figure 4.3.7.1.1: Activity diagram for help command.
 
 The following command can occur either in the `Main Page` or `Budget Page` of NUSave, and the help notes will be
 displayed in the result box of the UI Component.
@@ -858,7 +865,7 @@ depicting a scenario where the user would like to ask for help to be displayed.
 
 ![HelpCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/HelpCommand.png)
 
-Figure 4.3.6.1.2: Sequence diagram for help command in main page view.
+Figure 4.3.7.1.2: Sequence diagram for help command in main page view.
 >Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
 the lifeline reaches the end of diagram.
 
@@ -878,16 +885,18 @@ Note that the `help` command can be executed on `Budget Page` view as well, but 
 message that is unique to the `Budget Page` view with commands that can be executed on the view.
 ### 4.4. UI
 
+This section elaborates on the implementations of various `Ui` features.
+
 #### 4.4.1. List View Rendering
 (Contributed by Wen Hao)
 
 This section talks about how budget and expenditure cards are rendered within the List View UI component on the GUI of NUSave.
 
 As there is a need to constantly re-render the contents within the List View to reflect user changes, we have adopted the **Observer Pattern**
-so that data can be sent from the `Logic` component to the `UI` component efficiently. Using the JavaFX API, the List View is binded to an `ObservableList`
+so that data can be sent from the `Model` component to the `UI` component efficiently. Using the JavaFX API, the List View is binded to an `ObservableList`
 such that any changes to the `ObservableList` will trigger an update within the List View accordingly.
 
-![Class Diagram between `Logic` and `UI`](images/List_View_Class_Diagram.png)
+![Class Diagram between `Model` and `UI`](diagrams/ListViewClassDiagram.png)
 
 Figure 4.4.1.1. Class diagram to illustrate the observer pattern
 
@@ -988,11 +997,9 @@ the budget, while the `InfoBox` component reflects the total expenditure and thr
 ### 5.5. DevOps
 * [Dev Ops guide](DevOps.md)
 
-## 6. Appendix
+## Appendix
 
-### 6.1. Requirements
-
-#### 6.1.1. Product Scope
+### Product Scope
 
 **Target User Profile:**
 
@@ -1008,7 +1015,7 @@ the budget, while the `InfoBox` component reflects the total expenditure and thr
 * allows users to keep track of their budgets on a centralised platform
 
 
-#### 6.1.2. User Stories
+### User Stories
 Priorities: 
 * High (must have) - `* * *` 
 * Medium (nice to have) - `* *`
@@ -1025,9 +1032,83 @@ Priorities:
 | `* * *`  | user                                       | delete an expenditure          | remove an expenditure that I no longer need                            |
 | `* *`    | user                                       | find an expenditure by name    | locate an expenditure easily                                           |
 
-#### 6.1.3. Use Cases
+### Use Cases
 
-#### 6.1.4. Non-Functional Requirements
+#### Use Case: UC01 - Viewing the help menu
+
+#### Use Case: UC02 - Creating a budget
+
+#### Use Case: UC03 - Editing a budget
+
+#### Use Case: UC04 - Deleting a budget
+
+#### Use Case: UC05 - Opening a budget
+
+MSS (Contributed by Song Yu)
+
+1. User requests to open a budget to view the list of expenditures in the budget page view.
+2. NUSave opens the budget.
+<br/> Use case ends.
+
+**Extensions**
+
+- 1a. User provides invalid command format to open a budget.
+    - 1a1. NUSave shows an error message.
+- 1b. The given budget does not exist.
+    - 1b1. NUSave shows an error message.
+        <br/> Use case resumes at step 2.
+
+#### Use Case: UC06 - Closing a budget
+
+MSS (Contributed by Song Yu)
+
+1. User requests to close a budget to view the list of budgets in the main page view.
+2. NUSave closes the budget.
+<br/> User case ends.
+
+**Extensions**
+
+- 1a. User provides invalid command format to close a budget.
+    - 1a1. NUSave shows an error message.
+
+#### Use Case: UC07 - Sorting budgets
+
+#### Use Case: UC08 - Finding budgets
+
+#### Use Case: UC09 - Listing budgets
+
+#### Use Case: UC10 - Adding an expenditure
+
+MSS (Contributed by Song Yu)
+
+1. User requests to open a budget (UC05) to view the list of expenditures in the budget page view.
+2. NUSave opens the budget.
+3. User requests to add a new expenditure to the budget
+4. NUSave adds the new expenditure.
+<br/> Use case ends.
+
+**Extensions**
+- 3a. User provides invalid expenditure details (for example, an invalid price).
+    - 3a1. NUSave shows an error message.
+    <br/> Use case resumes at step 3.
+
+
+#### Use Case: UC11 - Editing an expenditure
+
+#### Use Case: UC12 - Deleting an expenditure
+
+#### Use Case: UC15 - Sorting expenditures
+
+#### Use Case: UC16 - Finding expenditures
+
+#### Use Case: UC17 - Listing expenditures
+
+#### Use Case: UC18 - Undoing an action
+
+#### Use Case: UC19 - Redoing an action
+
+### Non-Functional Requirements
+
 (Contributed by Chin Hui)
 
 1. NUSave should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -1044,7 +1125,7 @@ message is displayed to the user.
 10. NUSave should have an intuitive User Interface such that a novice user should be able to understand
 what the elements of the application represents.
 
-### 6.2. Glossary
+### Glossary
 * **API**: Application Programming Interface
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 
@@ -1307,4 +1388,4 @@ command will be reflected in the GUI list.
 Expected: The `create` command will be undone. The budget that was created will be removed from the GUI list as if the
 `create` command was not called.
 
-### 6.4. Effort
+### Effort

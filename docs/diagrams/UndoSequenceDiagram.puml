@@ -1,18 +1,26 @@
 @startuml
-!include style.puml
-
-box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":MainPageParser" as MainPageParser LOGIC_COLOR
-participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
+skinparam Sequence {
+    MessageAlign center
+}
+box Logic #LightBlue
+participant ":LogicManager" as LogicManager
+participant ":MainPageParser" as MainPageParser
+participant "u:UndoCommand" as UndoCommand
 end box
 
-box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
-participant ":HistoryManager<VersionedNusave>" as HistoryManager MODEL_COLOR
+box Model #LightYellow
+participant ":Model" as Model
+participant ":HistoryManager<VersionedNusave>" as HistoryManager
 end box
 [-> LogicManager : execute(undo)
 activate LogicManager
+
+create MainPageParser
+LogicManager -> MainPageParser
+activate MainPageParser
+deactivate MainPageParser
+MainPageParser --> LogicManager
+deactivate MainPageParser
 
 LogicManager -> MainPageParser : parseCommand(undo)
 activate MainPageParser
@@ -55,6 +63,8 @@ deactivate UndoCommand
 UndoCommand -[hidden]-> LogicManager : result
 destroy UndoCommand
 
-[<--LogicManager
+[<--LogicManager : result
 deactivate LogicManager
+
+hide footbox
 @enduml
