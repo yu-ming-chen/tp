@@ -12,7 +12,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/wenhaogoh.png" width="200px">
 
 [[github](https://github.com/wenhaogoh)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/wenhaogoh.md)]
 
 * Role: Team Lead
 * Responsibilities: Database + UI
@@ -42,7 +42,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/sogggy.png" width="200px">
 
 [[github](http://github.com/sogggy)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/sogggy.md)]
 
 * Role: Developer
 * Responsibilities: Testing

@@ -21,17 +21,14 @@ Given below are my contributions to the project:
 - **Feature** : Added ability to view help in NUSave.
 	- What it does: `help` allows the users to view the help commands in NUSave.
 	- Justification: This features allows users to view all command help instructions in NUSave. 
-	- Highlight: This feature displays a different set of help instructions depending on which page the user is on.
-	For example, if user is on MAIN page, it will display unique command to the MAIN page such as `open` budget and
-	`create` budget command. 
 - **Feature** : Added ability to sort budgets in NUSave.
 	- What it does: `sort` allows the users to be able to sort budgets in NUSave.
 	- Justification: This features allows users to be able to sort all budgets in NUSave either by their name in 
 	alphabetical order, or their created date with the latest on top.
 	- Highlight: Budgets are sorted by created time upon launching of NUSave as well. This ensures NUSave
 	is always sorted by created date upon launch independent of commands user used to reorder the budgets during the
-	previous usage. The implementation is challenge is the need to find the most suitable place to execute the sort 
-	command upon launch, ensuring maximum efficiency while abiding by the principle of Object Oriented Programming.
+	previous usage. The challenge is the need to find the most suitable place to execute the sort 
+	command upon launch, ensuring maximum efficiency while abiding by OOP.
 - **Feature** : Added ability to sort expenditures in NUSave.
 	- What it does: `sort` allows the users to be able to sort expenditures in NUSave.
 	- Justification: This features allows users to be able to sort all expenditures in a budget either by their name in 
@@ -40,10 +37,9 @@ Given below are my contributions to the project:
 	- What it does: Dynamically updating the date and time in the MAIN page view UI component of NUSave.
 	- Justification: This features allows users to be able to track the current date and time while managing their
 	budget. 
-	- Highlight: This enhancement affects UI component of NUSave by rendering current date and time. It required an
-	in-depth analysis of the UI component in NUSave. It also generates unique greeting message to the user depending on
-	the time of the day the user is using NUSave. The implementation too was challenging as it required the
-	understanding and using of the java Thread class. 
+	- Highlight: This enhancement affects UI component of NUSave by rendering current date and time. It also generates 
+	unique greeting message depending on the time of the day. The implementation too was challenging as it required the
+	understanding of the java Thread class. 
 - **Code Contributed**: [RepoSense Link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=yu-ming-chen&tabRepo=AY2021S1-CS2103T-T11-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 - **Project Management**:
 	- Created Issues in milestones v1.2, v1.3
@@ -54,21 +50,18 @@ Given below are my contributions to the project:
     	- Justification: This features allows users to be able to replace and change tags on specific expenditure in the
     	 application, an essential component of NUSave. 
     - Added NUSave icon to application UI interface: PR [#267](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/267)
-        - What it does: Allow NUSave icon to be displayed in the application interface.
-        - Justification: Improve visual effect for product differentiation. 
 - **Contributions to Documentation**
 	- User Guide:
 		- Added documentation for `Symbols`, `Syntax format` and `Command summary` section.
 		- Added documentation for the features `help`, `create` budget, `edit` budget, `sort` budget and `sort`
 		expenditures.
-		- Did cosmetic tweaks to existing documentation by including emoji for annotation.
-		- Created and annotated all NUSave screenshots.
+		- Created and annotated all NUSave screenshots. PR [#212](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/212)
 	- Developer Guide:
 		- Added documentation for `Setting up` and `Logic component` in Design Architecture
 		- Added implementation details for `Create Budget`, `Edit Budget`, `Sort` and `Help` command with their
 		respective sequence daigram and activity diagram.
 - **Community**:
-	- Reported bugs and suggestions for other team (T) in the class during PE dry run (examples [T09-2 issues 116-141](https://github.com/yu-ming-chen/ped/issues)
+	- Reported bugs and suggestions for other team (T09-2) in the class during PE dry run (examples [T09-2 issues 116-141](https://github.com/yu-ming-chen/ped/issues)
 - **Tools**:
   * Created UI mock up for our application using Figma [#21](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/21)
   
@@ -85,18 +78,6 @@ Given below are my contributions to the project:
 (e.g. adding an expenditure). The result of the command execution is encapsulated as a `CommandResult` object
 which is passed back to the `Ui`. In addition, the `CommandResult` object can also instruct the `Ui` to perform
 certain actions, such as displaying help to the user.
-
-`MainPageParser`:
-- Parse all the commands that is inputted by the user when the state of the NUSave is on `MAIN`.
-- This includes commands such as `CreateBudgetCommand` and `OpenBudgetCommand` that are unique to execute at the MainPage.
-
-`BudgetPageParser`:
-- Parse all the commands that is inputted by the user when the state of the NUSave is on `BUDGET`.
-- This includes commands such as `AddExpendtureCommand` and `CloseBudgetCommand` that are unique to execute at the BudgetPage.
-
-`Commands`:
--  The `Logic` component includes all commands that is executable on both Main Page and Budget Page. For a complete
-elaboration on what each command does, refer to [4.3. Commands](#43-commands).
 
 ##### 4.3.1.1. Create Budget
 (Contributed by Yu Ming)
