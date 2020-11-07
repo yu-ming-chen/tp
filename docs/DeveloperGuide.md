@@ -14,8 +14,7 @@ title: Developer Guide
         * [3.2.3 Model Component](#323-model-component)
         * [3.2.4 State Component](#324-state-component)
         * [3.2.5 Storage Component](#325-storage-component)
-    * [3.3. Interaction Between Components](#33-interaction-between-components)
-    * [3.4. Commons Classes](#34-commons-classes)
+    * [3.3. Commons Classes](#33-commons-classes)
 - [4. Implementation](#4-implementation)
     * [4.1. State](#41-state)
     * [4.2. Parsers](#42-parsers)
@@ -134,6 +133,8 @@ The sections below give more details of each component:
 
 ### 3.2. Components
 
+This section elaborates on the different high-level components in NUSave.
+
 #### 3.2.1. UI Component
 
 (Contributed by Song Yu)
@@ -229,16 +230,17 @@ The `Expenditure`:
   ![Structure of the storage component](images/StateClassDiagram.png)
   
   Figure 3.5.1: Structure of the state component.
- 
+  
  The `State` component:
- * Stores data depending on the current state of NUSave. This refers to data such as the current page NUSave is currently on,
+ * Represents the current page view NUSave is currently on. Specifically, it represents whether the user is looking at 
+ the main page view or budget page view. The current view is represented by an attribute in `StateManager`, `currentPage`.
+ * Stores data related to the current state of NUSave. This refers to data such as the current page NUSave is currently on,
  or the current budget that it is accessing.
  
- `State` is used by NUSave to track the current state of NUSave. It lives inside `Model`, where `Model` will use `State`
- to store stateful data, where these data will be used to update information displayed on the GUI, such as the current
- expenditure of the accessed budget, or list of expenditures belonging to the accessed budget.
+ `State`  lives inside `Model`, where `Model` will use `State` to store stateful data, where these data will be used to 
+ update information displayed on the GUI, such as the current expenditure of the accessed budget, or list of expenditures 
+ belonging to the accessed budget.
  
-
 #### 3.2.5. Storage Component
 (Contributed by Wen Hao)
 
@@ -266,17 +268,21 @@ In order for them to be recognised by the Jackson API, NUSave data objects (such
 converted into POJOs. Figure 3.6.2 depicts how the respective POJO classes for each of the data objects interact with
 one another.
 
-### 3.3. Interaction Between Components
-
-### 3.4. Commons Classes
+### 3.3. Commons Classes
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 ## 4. Implementation
 
-### 4.1. State
-This section describes on the concept of `State` in NUSave. 
+(to be added)
 
-Commands are parsed by different types of parsers based on the current state of NUSave.
+### 4.1. State
+
+(Contributed by Song Yu)
+
+This section provides context on how `State` affects how commands are parsed by parsers in NUSave.
+
+The `Logic` component in NUSave relies on data stored in `State` to decide which parser in NUSave will take
+control of the execution of commands.
 
 ![Delete Command Activity Diagram](images/DeleteCommandActivityDiagram.png)
 Figure 4.1.1. Figure of Delete Command Activity Diagram
@@ -284,8 +290,9 @@ Figure 4.1.1. Figure of Delete Command Activity Diagram
 To elaborate further, using Figure 4.1.1. as a reference, when the user executes a delete command, `delete 1`,
 while on the main page:
 
-1. `Logic` executes the command, checking whether the current page is a budget page or main page.
-2. `MainPageParser` takes control of the execution, parsing the command input by the user.
+1. `Logic` executes the command, checking whether the current page is a budget page or main page, depending on the 
+current page (represented by `currentPage` attribute in `StateManager`) of NUSave.
+2. Since NUSave's is current on `Page.MAIN`, `MainPageParser` takes control of the execution, parsing the command input by the user.
 3. If the command syntax is valid, the delete command is parsed.
 
     3a. If the syntax is invalid, a `ParseException` is thrown.
@@ -360,6 +367,8 @@ The interaction between the parsers is illustrated by the example usage seen in 
 Figure 4.2.3.1. Sequence diagram of a user input being parsed.
 
 ### 4.3. Commands
+
+(to be added)
 
 #### 4.3.1. Add Commands
 
@@ -727,7 +736,6 @@ depicting a scenario where the user would like to find budgets by a search term/
 
 ![FindBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/FindBudgetCommand.png)
 
-
 Figure 4.3.4.1: Sequence diagram for find budget command in main page view.
 
 1. The `LogicManager` uses the `MainPageParser` to parse the give user input.
@@ -773,7 +781,6 @@ The following sequence diagram shows the interactions between the `Logic` and `M
 depicting a scenario where the user would like to find expenditures in a budget by a search term/phrase.
 
 ![FindBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/FindExpenditureCommand.png)
-
 
 Figure 4.3.4.1: Sequence diagram for find expenditure command in budget page view.
 
@@ -873,6 +880,8 @@ on the user interface.
 Note that the `help` command can be executed on `Budget Page` view as well, but it will display a different set of help
 message that is unique to the `Budget Page` view with commands that can be executed on the view.
 ### 4.4. UI
+
+This section elaborates on the implementations of various `Ui` features.
 
 #### 4.4.1. List View Rendering
 (Contributed by Wen Hao)

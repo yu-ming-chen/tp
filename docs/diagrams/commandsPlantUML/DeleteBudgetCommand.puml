@@ -2,6 +2,7 @@
 skinparam Sequence {
     MessageAlign center
 }
+
 box "Logic" #LightBlue
 participant ":LogicManager" as LM
 participant ":MainPageParser" as MPP
