@@ -1386,3 +1386,33 @@ Given below are instructions to test the application manually:
       Expected: Similar to previous.
 
 ### Effort
+
+(Contributed by all <3)
+
+Throughout the development, our team shared the common goal of making NUSave an application that is intuitive, object-oriented 
+and presentable. After devoting countless late nights both as a team and individually, we managed to pull through and create
+a product that we are proud of. Amassing over 10,000 lines of code combined, we had to adhere to strict deadlines, cultivate 
+a culture of open communication and proactively support one another. Aside from the weekly official meetings, we frequently 
+met up to conduct code reviews and pair programming to ensure that everyone was on the same page. 
+
+To enable navigation between pages, we had to restructure a large portion of AB3 so that NUSave incorporates the concept of
+having states. As such, we implemented a new architectural `State` component to keep track of what page the user is on and reflect the respective page view.
+
+To fulfil the functional requirements of NUSave, an additional layer of data was integrated. On top of the one to many relationship between `Nusave`
+and `Budget`, `Budget` also has a one to many relationship with `Expenditure`.
+
+To implement the undo and redo commands, we had to come up with our own version of a doubly-linked list, `Node<T>`, as well as
+its own iterator, `HistoryManager<T>`. Furthermore, not only the data had to be cached, but also the state of NUSave in `VersionedNusave`.
+
+Coding aside, we placed an equal emphasise on UI/UX.
+
+Firstly, we revamped the GUI entirely. Taking into consideration colour consistency, design trends and ease of navigation,
+we used Figma to generate a mock-up for our reference throughout the development. Despite the limitations of JavaFX and our knowledge in CSS, we were successful
+in replicating our ideal design.
+
+To make our application more dynamic, we researched on numerous APIs and narrowed down to using JavaFX's `Property` and `Bindings` interfaces.
+Through countless trial and errors, we managed to render NUSave's UI components dynamically while adhering to OO principles.
+
+Finally, much effort was put into ensuring that our documentation was organised and pleasant to read.
+We had meetings to standardise every section in terms of language, structure and diagrams. After multiple iterations,
+consistency was achieved in both our user and developer guides.
