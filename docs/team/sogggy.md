@@ -31,11 +31,11 @@ Given below are my contributions to the project:
 
 - **Contributions to Documentation**
 	- User Guide:
-		- Added documentation for the commands `open`, `add`, `close`
-		- Added documentation for Glossary
+		- Added documentation for `open`, `add` and `close` commands.
+		- Added documentation for Glossary section.
 	- Developer Guide:
 		- Added preface for section 3, Design.
-		- Added description for architectural component, `Ui` and `State`.
+		- Added description for `Ui` and `State` architectural components.
 		- Added implementation details for `State` component.
 		- Added implementation details for Dynamic Updating of GUI of NUSave. 
 
