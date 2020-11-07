@@ -13,7 +13,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.PageParser;
 import seedu.address.logic.parser.budgetpageparser.BudgetPageParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.mainpageparser.MainPageParser;
@@ -33,8 +32,6 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final PageParser mainPageParser;
-    private final PageParser budgetPageParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -42,8 +39,6 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        this.mainPageParser = new MainPageParser();
-        this.budgetPageParser = new BudgetPageParser();
     }
 
     @Override
@@ -56,11 +51,11 @@ public class LogicManager implements Logic {
         Page currentPage = this.model.getPage();
         switch (currentPage) {
         case MAIN:
-            command = mainPageParser.parseCommand(commandText);
+            command = new MainPageParser().parseCommand(commandText);
             commandResult = command.execute(model);
             break;
         case BUDGET:
-            command = budgetPageParser.parseCommand(commandText);
+            command = new BudgetPageParser().parseCommand(commandText);
             commandResult = command.execute(model);
             break;
         default:
