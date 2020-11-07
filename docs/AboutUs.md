@@ -51,7 +51,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/davidliew9.png" width="200px">
 
 [[github](https://github.com/davidliew9)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/davidliew9.md)]
 
 * Role: Developer
 * Responsibilities: Documentation
