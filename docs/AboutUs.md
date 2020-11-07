@@ -32,6 +32,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/ekchinhui.png" width="200px">
 
 [[github](http://github.com/EkChinHui)]
+[[portfolio](team/ekchinhui.md)]
 
 * Role: Developer
 * Responsibilities: Database
