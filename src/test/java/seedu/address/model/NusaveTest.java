@@ -2,15 +2,20 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalBudgets.BUDGET_LIST;
 import static seedu.address.testutil.TypicalBudgets.getTypicalNusave;
 import static seedu.address.testutil.TypicalExpenditures.getTypicalExpenditures;
+import static seedu.address.testutil.TypicalState.TYPICAL_MAIN_PAGE_STATE;
 
 import java.util.Collections;
 import java.util.Optional;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.expenditure.ExpenditureList;
+import seedu.address.state.State;
 import seedu.address.state.budgetindex.BudgetIndexManager;
 
 class NusaveTest {
@@ -64,9 +69,15 @@ class NusaveTest {
     }
 
 
-    @Test
-    void repopulateObservableList() {
-    }
+//    @Test
+//    void repopulateObservableList_isMainPage_validInput() {
+//        nusave.resetData(getTypicalNusave());
+//        State state = TYPICAL_MAIN_PAGE_STATE;
+//        nusave.repopulateObservableList(state);
+//        ObservableList<Renderable> internalList = FXCollections.unmodifiableObservableList(
+//                FXCollections.observableArrayList(BUDGET_LIST.getBudgets()));
+//        assertEquals(nusave.getInternalList(),internalList);
+//    }
 
     @Test
     void getBudgetList() {
