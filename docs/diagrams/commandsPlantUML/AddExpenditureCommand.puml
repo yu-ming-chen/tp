@@ -17,6 +17,12 @@ end box
 
 [-> LM : excute("add n/Basketball p/20 t/Ball")
 activate LM
+create BPP
+LM -> BPP
+activate BPP
+LM <-- BPP
+
+deactivate BPP
 LM -> BPP : parseCommand("add n/Basketball p/20 t/Ball")
 activate BPP
 
@@ -25,7 +31,7 @@ BPP -> AECP
 activate AECP
 BPP <-- AECP
 deactivate AECP
-BPP -> AECP : parse("add n/Basketball p/20 t/Ball")
+BPP -> AECP : parse("n/Basketball p/20 t/Ball")
 activate AECP
 
 create Expenditure
@@ -46,6 +52,7 @@ destroy AECP
 deactivate AECP
 LM <-- BPP : a
 deactivate BPP
+destroy BPP
 
 LM -> AEC: excute(m)
 
@@ -58,12 +65,12 @@ deactivate M
 create CR
 AEC -> CR
 activate CR
-AEC <-- CR :result
+AEC <-- CR : result
 deactivate CR
 
 LM <-- AEC: result
 deactivate AEC
-[<-- LM
+[<-- LM : result
 deactivate LM
 
 @enduml
