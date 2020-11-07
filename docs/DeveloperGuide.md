@@ -93,9 +93,15 @@ This section elaborates on the higher-level components that work together within
 
 ### 3.1. Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+(Contributed by Chin Hui)
 
-The ***Architecture Diagram*** given above explains the high-level design of the application.
+This section explains the high-level design of the application.
+
+![Architecture Diagram](images/ArchitectureDiagram.png)
+
+Figure 3.1.1. Figure of Architecture Diagram
+
+Figure 3.1.1. shows the how each high-level component in NUSave is related to each other.
 
 Given below is a quick overview of each component:
 
@@ -122,14 +128,12 @@ For each of the five components:
     - For example, the `Logic` component defines its API in the `Logic.java` interface and exposes its functionality
     using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png)
 
-The ***Class Diagram*** given above shows how the five components interact with each other.
+Figure 3.1.2. Figure of Architecture Sequence Diagram
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
-
-The ***Sequence Diagram*** given above shows how the components interact with each other for the scenario where the user
-issues the command `delete 1`.
+Figure 3.1.2. shows how the components interact with each other for the scenario where the user
+issues the command `delete 1` in a budget page.
 
 The sections below give more details of each component:
 
@@ -1006,6 +1010,16 @@ and `Title` to update.
 With the above sequence, a budget will successfully be opened, and the `Title` component reflects the name of 
 the budget, while the `InfoBox` component reflects the total expenditure and threshold of the budget.
 
+**Design Considerations**
+
+* Option A: Use Model-View Controller (MVC) Pattern to update GUI
+   * Pros: Good separation of concern, with controller being in charge of updating both the model and Ui.
+   * Cons: Hard to implement as controllers will have to be set up from scratch.
+
+* **Option B (Chosen):** Use Observer Pattern to update GUI
+   * Pros: Able to use proprietary JavaFx library to implement, enforce loose coupling with Observer interface.
+   * Cons: External code can easily invoke observer as `bind()` method is public. 
+
 ## 5. Guides
 
 ### 5.1. Documentation
@@ -1057,16 +1071,29 @@ Priorities:
 * Medium (nice to have) - `* *`
 * Low (unlikely to have) - `*`
 
-| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see a list of available commands | refer to instructions when I forget how to use the application       |
-| `* * *`  | user                                       | create a budget                | add a new budget that I need                                           |
-| `* * *`  | user                                       | delete a budget                | remove a budget that I no longer need                                  |
-| `* * *`  | user                                       | open a budget                  | view the expenditures of a budget                                      |
-| `* * *`  | user                                       | close a budget                 | return to the main window                                              |
-| `* * *`  | user                                       | add an expenditure             | add a new expenditure to a budget                                      |
-| `* * *`  | user                                       | delete an expenditure          | remove an expenditure that I no longer need                            |
-| `* *`    | user                                       | find an expenditure by name    | locate an expenditure easily                                           |
+| Priority | As a …​                                 | I want to …​                           | So that I can…​                                                     |
+| -------- | ------------------------------------------ | ----------------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see a list of available commands          | refer to instructions when I forget how to use the application         |
+| `* * *`  | new user                                   | view sample data                          | have a better understanding of how the application works               |
+| `* * *`  | new user                                   | clear my existing data                    | remove all the sample data from my application                         |
+| `* * *`  | user                                       | create a budget                           | add a new budget that I need                                           |
+| `* * *`  | user                                       | delete a budget                           | remove a budget that I no longer need                                  |
+| `* * *`  | user                                       | edit a budget                             | edit the name or the threshold that needs to be changed                |
+| `* *`    | user                                       | sort my budgets                           | view my budgets based on name or date                                  |
+| `* *`    | user                                       | find a budget by search term              | locate a budget easily                                                 |
+| `* *`    | user                                       | list out my budgets                       | view by budgets in the default manner after finding or sorting         |
+| `* * *`  | user                                       | open a budget                             | view the expenditures of a budget                                      |
+| `* * *`  | user                                       | close a budget                            | return to the main window                                              |
+| `* *`    | user                                       | see how many expenditures I have in a budget | have a better understanding of the particular budget                |
+| `* * *`  | user                                       | add an expenditure                        | add a new expenditure to a budget                                      |
+| `* * *`  | user                                       | delete an expenditure                     | remove an expenditure that I no longer need                            |
+| `* * *`  | user                                       | edit an expenditure                       | edit the name, price and tag that needs to be changed                  |
+| `* *`    | user                                       | sort my expenditures                      | view my expenditures based on name or date                             |
+| `* *`    | user                                       | find an expenditure by search term        | locate an expenditure easily                                           |
+| `* *`    | user                                       | list out my expenditures                  | view by expenditures in the default manner after finding or sorting    |
+| `* *`    | user                                       | see if I have passed my threshold         | manage my expenses better                                              |
+| `* *`    | user                                       | add tags to my expenditure                | categorise my expenditures                                             |
+| `* *`    | user                                       | exit NUSave                               | stop using the application                                             |
 
 ### Use Cases
 
@@ -1077,8 +1104,8 @@ System: NUSave
 <br/>Use Case: UC01 - Viewing the help menu
 <br/>Actor: User
 <br/>MSS:
-1. User choose show help command in NUSave by entering the command.
-2. NUSave displays the help commands to user.
+1. User enters the command to show the help menu in NUSave.
+2. NUSave displays the help menu to the user.
 <br/> Use case ends.
 
 **Extensions**
@@ -1094,16 +1121,16 @@ System: NUSave
 System: NUSave
 <br/>Use Case: UC02 - Creating a budget
 <br/>Actor: User
-<br/>Preconditions: User is on the Main page
+<br/>Preconditions: User is on the main page
 <br/>MSS:
-1. User choose to add a new budget in NUSave by entering the command.
-2. NUSave adds the new budget and display to user.
+1. User enters the command to add a new budget in NUSave.
+2. NUSave adds the new budget and displays the updated list of budgets to the user.
 <br/> Use case ends.
 
 **Extensions**
 - 1a. NUSave detects an error in the entered command (for example, an invalid threshold).
     - 1a1. NUSave shows an error message.
-    - 1a2. User enters new command.
+    - 1a2. User enters a new command.
     <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
     <br/> Use case resumes at step 2.
 
@@ -1113,10 +1140,10 @@ System: NUSave
 System: NUSave
 <br/>Use Case: UC03 - Editing a budget
 <br/>Actor: User
-<br/>Preconditions: User is on the Main page
+<br/>Preconditions: User is on the main page
 <br/>MSS:
-1. User choose to edit a budget in NUSave by entering the command.
-2. NUSave replace the old budget with the newly edited budget and display to user.
+1. User enters the command to edit a budget in NUSave.
+2. NUSave replaces the old budget with the newly edited budget and displays the updated list of budgets to the user.
 <br/> Use case ends.
 
 **Extensions**
@@ -1133,59 +1160,15 @@ System: NUSave
     
 
 #### Use Case: UC04 - Deleting a budget
-
-MSS (Contributed by David)
-
-1. User request to delete a budget in the main page view.
-2. NUSave deletes the budget.
-<br/> Use case ends.
-
-**Extensions**
-
-- 1a. User provides invalid command format to delete a budget.
-    - 1a1. NUSave shows an error message.
-- 1b. The given index does not exist.
-    - 1b1. NUSave shows an index out of range message.
-
-#### Use Case: UC05 - Opening a budget
-
-MSS (Contributed by Song Yu)
-
-1. User requests to open a budget to view the list of expenditures in the budget page view.
-2. NUSave opens the budget.
-<br/> Use case ends.
-
-**Extensions**
-
-- 1a. User provides invalid command format to open a budget.
-    - 1a1. NUSave shows an error message.
-- 1b. The given budget does not exist.
-    - 1b1. NUSave shows an error message.
-        <br/> Use case resumes at step 2.
-
-#### Use Case: UC06 - Closing a budget
-
-MSS (Contributed by Song Yu)
-
-1. User requests to close a budget to view the list of budgets in the main page view.
-2. NUSave closes the budget.
-<br/> User case ends.
-
-**Extensions**
-
-- 1a. User provides invalid command format to close a budget.
-    - 1a1. NUSave shows an error message.
-
-#### Use Case: UC07 - Sorting budgets
-(Contributed by Yu Ming)
+(Contributed by David)
 
 System: NUSave
-<br/>Use Case: UC07 - Sorting budgets
+<br/>Use Case: UC12 - Deleting a budget
 <br/>Actor: User
-<br/>Preconditions: User is on the Main page
+<br/>Preconditions: User is on the Main page, there must be an existing budget
 <br/>MSS:
-1. User choose to sort budgets in NUSave by entering the command.
-2. NUSave sorted all budgets and display to user.
+1. User enters the command to delete a budget.
+2. NUSave deletes the budget and displays the updated list to the user.
 <br/> Use case ends.
 
 **Extensions**
@@ -1194,9 +1177,64 @@ System: NUSave
     - 1a2. User enters new command.
     <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
     <br/> Use case resumes at step 2.
-- 1b. NUSave detects that there are no budgets in NUSave.
-    - 1b1. User <ins>create budgets (UC02)</ins> before sorting.
-    <br/> Steps 1b1 is repeated until 2 or more budgets are available in NUSave for sorting.
+
+#### Use Case: UC05 - Opening a budget
+
+MSS (Contributed by Song Yu)
+
+System: NUSave
+<br/>Use Case: UC05 - Opening a budget
+<br/>Actor: User
+<br/>Preconditions: User is on the main page
+<br/>MSS:
+1. User enters the command to open a budget in NUSave.
+2. NUSave opens the budget displays the list of expenditures belonging to that budget to the user.
+<br/> Use case ends.
+
+**Extensions**
+- 1a. NUSave detects an error in the entered command.
+    - 1a1. NUSave shows an error message.
+    - 1a2. User enters new command.
+    <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 2.
+
+#### Use Case: UC06 - Closing a budget
+
+MSS (Contributed by Song Yu)
+
+System: NUSave
+<br/>Use Case: UC06 - Closing a budget
+<br/>Actor: User
+<br/>Preconditions: User is on the budget page
+<br/>MSS:
+1. User enters the command to close a budget in NUSave.
+2. NUSave closes the budget and displays the list of budgets in NUSave.
+<br/> Use case ends.
+
+**Extensions**
+- 1a. NUSave detects an error in the entered command.
+    - 1a1. NUSave shows an error message.
+    - 1a2. User enters new command.
+    <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 2.
+
+#### Use Case: UC07 - Sorting budgets
+(Contributed by Yu Ming)
+
+System: NUSave
+<br/>Use Case: UC07 - Sorting budgets
+<br/>Actor: User
+<br/>Preconditions: User is on the main page, NUSave contains at least 2 or more budgets
+<br/>MSS:
+1. User enters the command to sort budgets in NUSave.
+2. NUSave sorts all budgets and displays the updated list of budgets to user.
+<br/> Use case ends.
+
+**Extensions**
+- 1a. NUSave detects an error in the entered command.
+    - 1a1. NUSave shows an error message.
+    - 1a2. User enters new command.
+    <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
     <br/> Use case resumes at step 2.
 
 
@@ -1217,69 +1255,36 @@ System: NUSave
 <br/> Use case ends.
 
 #### Use Case: UC11 - Adding an expenditure
-
-MSS (Contributed by Song Yu)
-
-1. User requests to open a budget (UC05) to view the list of expenditures in the budget page view.
-2. NUSave opens the budget.
-3. User requests to add a new expenditure to the budget
-4. NUSave adds the new expenditure.
-<br/> Use case ends.
-
-**Extensions**
-- 3a. User provides invalid expenditure details (for example, an invalid price).
-    - 3a1. NUSave shows an error message.
-    <br/> Use case resumes at step 3.
-
-
-#### Use Case: UC12 - Editing an expenditure
-
-MSS (Contributed by David)
-
-1. User requests to open a budget (UC05) to view the list of expenditures in the budget page view.
-2. NUSave opens the budget.
-3. User requests to edit an existing expenditure within the budget.
-4. NUSave edits the expenditure.
-<br/> Use case ends.
-
-**Extensions**
-
-- 3a. User provides invalid expenditure details (for example, an invalid price).
-    - 3a1. NUSave shows an error message.
-- 3b. The given budget does not exist.
-    - 3b1. NUSave shows an error message.
-    <br/> Use case resumes at step 3.
-
-#### Use Case: UC13 - Deleting an expenditure
-
-MSS (Contributed by David)
-
-1. User requests to open a budget (UC05) to view the list of expenditures in the budget page view.
-2. NUSave opens the budget.
-3. User request to delete an expenditure within the budget.
-4. NUSave deletes the expenditure.
-<br/> Use case ends.
-
-**Extensions**
-
-- 3a. User provides invalid command format to delete an expenditure.
-    - 1a1. NUSave shows an error message.
-- 3b. The given index does not exist.
-    - 1b1. NUSave shows an error message.
-    <br/> Use case resumes at step 3.
-
-#### Use Case: UC14 - Sorting expenditures
-(Contributed by Yu Ming)
+(Contributed by Song Yu)
 
 System: NUSave
-<br/>Use Case: UC15 - Sorting expenditures
+<br/>Use Case: UC11 - Adding an expenditure
 <br/>Actor: User
-<br/>Preconditions: User is on the Budget page
+<br/>Preconditions: User is on the budget page
+<br/>MSS:
+1. User enters the command to add a new expenditure in NUSave.
+2. NUSave adds the new expenditure and displays the updated list of expenditures to the user.
+<br/> Use case ends.
+
+**Extensions**
+- 1a. NUSave detects an error in the entered command (for example, an invalid price).
+    - 1a1. NUSave shows an error message.
+    - 1a2. User enters new command.
+    <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 2.
+
+#### Use Case: UC12 - Editing an expenditure
+(Contributed by David)
+
+System: NUSave
+<br/>Use Case: UC12 - Editing an expenditure
+<br/>Actor: User
+<br/>Preconditions: User is on the Budget page, there must be an existing expenditure
 <br/>MSS:
 1. User requests to <ins>open a budget (UC05)</ins> to view the list of expenditures in the budget page view.
-2. NUSave opens the budget.
-3. User choose to sort expenditures in NUSave by entering the command.
-4. NUSave sorted all expenditures and display to user.
+2. NUSave opens the budget and displays the list of expenditures belonging to that budget.
+3. User enters the command to edit an expenditure within the budget.
+4. NUSave edits the expenditure and displays the updated list to the user.
 <br/> Use case ends.
 
 **Extensions**
@@ -1288,9 +1293,47 @@ System: NUSave
     - 3a2. User enters new command.
     <br/> Steps 3a1-3a2 are repeated until the command entered is correct.
     <br/> Use case resumes at step 4.
-- 3b. NUSave detects that there are no expenditures in given budget.
-    - 3b1. User <ins>add expenditures (UC10)</ins> before sorting.
-    <br/> Steps 3b1 is repeated until 2 or more expenditure are available in budget for sorting.
+
+#### Use Case: UC13 - Deleting an expenditure
+(Contributed by David)
+
+System: NUSave
+<br/>Use Case: UC13 - Deleting an expenditure
+<br/>Actor: User
+<br/>Preconditions: User is on the Budget page, there must be an existing expenditure
+<br/>MSS:
+1. User requests to <ins>open a budget (UC05)</ins> to view the list of expenditures in the budget page view.
+2. NUSave opens the budget and displays the list of expenditures belonging to that budget.
+3. User enters the command to delete an expenditure within the budget.
+4. NUSave deletes the expenditure and displays the updated list to the user.
+<br/> Use case ends.
+
+**Extensions**
+- 3a. NUSave detects an error in the entered command.
+    - 3a1. NUSave shows an error message.
+    - 3a2. User enters new command.
+    <br/> Steps 3a1-3a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 4.
+
+#### Use Case: UC14 - Sorting expenditures
+(Contributed by Yu Ming)
+
+System: NUSave
+<br/>Use Case: UC14 - Sorting expenditures
+<br/>Actor: User
+<br/>Preconditions: User is on the budget page, the given budget contains at least 2 or more expenditures
+<br/>MSS:
+1. User requests to <ins>open a budget (UC05)</ins> to view the list of expenditures in the budget page view.
+2. NUSave opens the budget and displays the list of expenditures belonging to that budget.
+3. User enters the command to sort expenditures in NUSave.
+4. NUSave sorts the expenditures and displays the updated list to the user.
+<br/> Use case ends.
+
+**Extensions**
+- 3a. NUSave detects an error in the entered command.
+    - 3a1. NUSave shows an error message.
+    - 3a2. User enters new command.
+    <br/> Steps 3a1-3a2 are repeated until the command entered is correct.
     <br/> Use case resumes at step 4.
 
 
@@ -1342,8 +1385,13 @@ System: NUSave
 (Contributed by Chin Hui)
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 budgets and expenditures without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 budgets and expenditures (for each budget) without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks at a fast speed.
+4.  Application should work with or without internet connection.
+5.  Application should be for an individual user.
+6.  Should be able to save data locally.
+7.  Data should be easily transferable between different machines.
+8.  Should not require installation.
 
 ### Glossary
 
