@@ -1091,8 +1091,8 @@ System: NUSave
 <br/>Use Case: UC01 - Viewing the help menu
 <br/>Actor: User
 <br/>MSS:
-1. User choose show help command in NUSave by entering the command.
-2. NUSave displays the help commands to user.
+1. User enters the command to show the help menu in NUSave.
+2. NUSave displays the help menu to the user.
 <br/> Use case ends.
 
 **Extensions**
@@ -1108,16 +1108,16 @@ System: NUSave
 System: NUSave
 <br/>Use Case: UC02 - Creating a budget
 <br/>Actor: User
-<br/>Preconditions: User is on the Main page
+<br/>Preconditions: User is on the main page
 <br/>MSS:
-1. User choose to add a new budget in NUSave by entering the command.
-2. NUSave adds the new budget and display to user.
+1. User enters the command to add a new budget in NUSave.
+2. NUSave adds the new budget and displays the updated list of budgets to the user.
 <br/> Use case ends.
 
 **Extensions**
 - 1a. NUSave detects an error in the entered command (for example, an invalid threshold).
     - 1a1. NUSave shows an error message.
-    - 1a2. User enters new command.
+    - 1a2. User enters a new command.
     <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
     <br/> Use case resumes at step 2.
 
@@ -1127,10 +1127,10 @@ System: NUSave
 System: NUSave
 <br/>Use Case: UC03 - Editing a budget
 <br/>Actor: User
-<br/>Preconditions: User is on the Main page
+<br/>Preconditions: User is on the main page
 <br/>MSS:
-1. User choose to edit a budget in NUSave by entering the command.
-2. NUSave replace the old budget with the newly edited budget and display to user.
+1. User enters the command to edit a budget in NUSave.
+2. NUSave replaces the old budget with the newly edited budget and displays the updated list of budgets to the user.
 <br/> Use case ends.
 
 **Extensions**
@@ -1165,30 +1165,41 @@ MSS (Contributed by David)
 
 MSS (Contributed by Song Yu)
 
-1. User requests to open a budget to view the list of expenditures in the budget page view.
-2. NUSave opens the budget.
+System: NUSave
+<br/>Use Case: UC05 - Opening a budget
+<br/>Actor: User
+<br/>Preconditions: User is on the main page
+<br/>MSS:
+1. User enters the command to open a budget in NUSave.
+2. NUSave opens the budget displays the list of expenditures belonging to that budget to the user.
 <br/> Use case ends.
 
 **Extensions**
-
-- 1a. User provides invalid command format to open a budget.
+- 1a. NUSave detects an error in the entered command.
     - 1a1. NUSave shows an error message.
-- 1b. The given budget does not exist.
-    - 1b1. NUSave shows an error message.
-        <br/> Use case resumes at step 2.
+    - 1a2. User enters new command.
+    <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 2.
 
 #### Use Case: UC06 - Closing a budget
 
 MSS (Contributed by Song Yu)
 
-1. User requests to close a budget to view the list of budgets in the main page view.
-2. NUSave closes the budget.
-<br/> User case ends.
+System: NUSave
+<br/>Use Case: UC06 - Closing a budget
+<br/>Actor: User
+<br/>Preconditions: User is on the budget page
+<br/>MSS:
+1. User enters the command to close a budget in NUSave.
+2. NUSave closes the budget and displays the list of budgets in NUSave.
+<br/> Use case ends.
 
 **Extensions**
-
-- 1a. User provides invalid command format to close a budget.
+- 1a. NUSave detects an error in the entered command.
     - 1a1. NUSave shows an error message.
+    - 1a2. User enters new command.
+    <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 2.
 
 #### Use Case: UC07 - Sorting budgets
 (Contributed by Yu Ming)
@@ -1196,10 +1207,10 @@ MSS (Contributed by Song Yu)
 System: NUSave
 <br/>Use Case: UC07 - Sorting budgets
 <br/>Actor: User
-<br/>Preconditions: User is on the Main page
+<br/>Preconditions: User is on the main page
 <br/>MSS:
-1. User choose to sort budgets in NUSave by entering the command.
-2. NUSave sorted all budgets and display to user.
+1. User enters the command to sort budgets in NUSave.
+2. NUSave sorts all budgets and displays the updated list of budgets to user.
 <br/> Use case ends.
 
 **Extensions**
@@ -1222,17 +1233,21 @@ System: NUSave
 
 MSS (Contributed by Song Yu)
 
-1. User requests to open a budget (UC05) to view the list of expenditures in the budget page view.
-2. NUSave opens the budget.
-3. User requests to add a new expenditure to the budget
-4. NUSave adds the new expenditure.
+System: NUSave
+<br/>Use Case: UC10 - Adding an expenditure
+<br/>Actor: User
+<br/>Preconditions: User is on the budget page
+<br/>MSS:
+1. User enters the command to add a new expenditure in NUSave.
+2. NUSave adds the new expenditure and displays the updated list of expenditures to the user.
 <br/> Use case ends.
 
 **Extensions**
-- 3a. User provides invalid expenditure details (for example, an invalid price).
-    - 3a1. NUSave shows an error message.
-    <br/> Use case resumes at step 3.
-
+- 1a. NUSave detects an error in the entered command (for example, an invalid price).
+    - 1a1. NUSave shows an error message.
+    - 1a2. User enters new command.
+    <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 2.
 
 #### Use Case: UC11 - Editing an expenditure
 
@@ -1276,12 +1291,12 @@ MSS (Contributed by David)
 System: NUSave
 <br/>Use Case: UC15 - Sorting expenditures
 <br/>Actor: User
-<br/>Preconditions: User is on the Budget page
+<br/>Preconditions: User is on the budget page
 <br/>MSS:
 1. User requests to <ins>open a budget (UC05)</ins> to view the list of expenditures in the budget page view.
-2. NUSave opens the budget.
-3. User choose to sort expenditures in NUSave by entering the command.
-4. NUSave sorted all expenditures and display to user.
+2. NUSave opens the budget and displays the list of expenditures belonging to that budget.
+3. User enters the command to sort expenditures in NUSave.
+4. NUSave sorts the expenditures and displays the updated list to the user.
 <br/> Use case ends.
 
 **Extensions**
