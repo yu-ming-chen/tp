@@ -248,7 +248,7 @@ The `Storage` component:
 * Can save `UserPref` objects in JSON format and read it back.
 * Can save all NUSave data in JSON format and read it back.
 
-![Structure of the storage component](images/StorageClassDiagram.png)
+![Structure of the storage component](diagrams/StorageClassDiagram.png)
 
 Figure 3.6.1: Structure of the storage component.
 
@@ -258,7 +258,7 @@ data into `NUSave`. As seen in Figure 3.6.1, `JsonUserPrefsStorage` is responsib
 `UserPref` objects and contains the file path of its JSON file while `JsonNusaveStorage` is responsible for the
 reading and writing of all NUSave data and contains the file path of its JSON file.
 
-![Structure of the data stored by NUSave](images/PojoClassDiagram.png)
+![Structure of the data stored by NUSave](diagrams/PojoClassDiagram.png)
 
 Figure 3.6.2: Structure of the data stored by NUSave.
 

@@ -1,10 +1,11 @@
 @startuml
-!include style.puml
-
-box Logic LOGIC_COLOR_T1
-participant ":MainPageParser" as MainPageParser LOGIC_COLOR
-participant ":DeleteBudgetCommandParser" as DeleteBudgetCommandParser LOGIC_COLOR
-participant "d:DeleteBudgetCommand" as DeleteBudgetCommand LOGIC_COLOR
+skinparam Sequence {
+    MessageAlign center
+}
+box Logic #LightBlue
+participant ":MainPageParser" as MainPageParser
+participant ":DeleteBudgetCommandParser" as DeleteBudgetCommandParser
+participant "d:DeleteBudgetCommand" as DeleteBudgetCommand
 end box
 
 [-> MainPageParser : parseCommand("delete 1")
