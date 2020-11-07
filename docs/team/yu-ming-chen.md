@@ -1,3 +1,7 @@
+---
+layout: page
+title: Chen YuMing's Project Portfolio Page
+---
 ## Project: NUSave
 
 NUSave is a desktop budgeting application used to manage an individual's budgets and expenses. NUSave can hold multiple
