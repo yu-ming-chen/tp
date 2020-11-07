@@ -1214,7 +1214,7 @@ MSS (Contributed by David)
 | CLI                         | Stands for **Command Line Interface**. CLI-based Applications (i.e. NUSave) focuses on processing commands in the form of text entered from the keyboard.                       
 | GUI                         | Stands for **Graphical User Interface**. GUIs work as the communication channel between the program and the user. Users interact with NUSave through the GUI, on their devices. 
 | UML                         | Stands for 'Unified Modeling Diagram'. A general-purpose, standardized modeling language used in the field of software engineering.
-| NFR                         | Stands for 'Non-functional Requirement', which are the requirements an application has to fulfill unrelated to the features it offers.
+| NFR                         | Stands for 'Non-functional Requirements', which specifies the constraints under which the system is developed and operated.
 | Mainstream OS               | Stands for 'Mainstream Operating Systems', such as Windows, MacOS, Linux, Unix, OS-X.
 | MSS                         | Stands for 'Main Success Scenario', which describes the interaction for a given use case, assuming nothing goes wrong.
 
