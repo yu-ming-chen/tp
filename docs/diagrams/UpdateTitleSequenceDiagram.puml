@@ -1,24 +1,29 @@
 @startuml
-!include style.puml
 
-box Ui UI_COLOR_T1
-participant ":MainWindow" as MainWindow UI_COLOR
+skinparam Sequence {
+    MessageAlign center
+}
+
+hide footbox
+
+box Ui #LightGreen
+participant ":MainWindow" as MainWindow #LightGreen
 end box
 
-box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":MainPageParser" as MainPageParser LOGIC_COLOR
-participant ":OpenBudgetCommandParser" as OpenBudgetCommandParser LOGIC_COLOR
-participant ":OpenBudgetCommand" as OpenBudgetCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+box Logic #LightBlue
+participant ":LogicManager" as LogicManager #LightBlue
+participant ":MainPageParser" as MainPageParser #LightBlue
+participant ":OpenBudgetCommandParser" as OpenBudgetCommandParser #LightBlue
+participant ":OpenBudgetCommand" as OpenBudgetCommand #LightBlue
+participant ":CommandResult" as CommandResult #LightBlue
 end box
 
-box Model MODEL_COLOR_T1
-participant ":ModelManager" as ModelManager MODEL_COLOR
+box Model #LightYellow
+participant ":ModelManager" as ModelManager
 end box
 
-box State STATE_COLOR_T1
-participant ":StateManager" as StateManager STATE_COLOR
+box State #Orange
+participant ":StateManager" as StateManager #Orange
 end box
 
 [-> MainWindow : "open 1"
@@ -27,33 +32,41 @@ activate MainWindow
 MainWindow -> LogicManager : execute("open 1")
 activate LogicManager
 
+create MainPageParser
+LogicManager -> MainPageParser : new MainPageParser()
+activate MainPageParser
+MainPageParser --> LogicManager
+deactivate MainPageParser
+
 LogicManager -> MainPageParser : parseCommand("open 1")
 activate MainPageParser
 
 create OpenBudgetCommandParser
-MainPageParser -> OpenBudgetCommandParser
+MainPageParser -> OpenBudgetCommandParser : new OpenBudgetCommandParser()
 activate OpenBudgetCommandParser
 
 OpenBudgetCommandParser --> MainPageParser
 deactivate OpenBudgetCommandParser
 
-MainPageParser -> OpenBudgetCommandParser : parse(arguments)
+MainPageParser -> OpenBudgetCommandParser : parse("1")
 activate OpenBudgetCommandParser
 
 create OpenBudgetCommand
-OpenBudgetCommandParser -> OpenBudgetCommand
+OpenBudgetCommandParser -> OpenBudgetCommand : new OpenBudgetCommand(1)
 activate OpenBudgetCommand
 
-OpenBudgetCommand --> OpenBudgetCommandParser
+OpenBudgetCommand --> OpenBudgetCommandParser : command
 deactivate OpenBudgetCommand
 
-OpenBudgetCommandParser --> MainPageParser
+OpenBudgetCommandParser --> MainPageParser : command
 deactivate OpenBudgetCommandParser
 OpenBudgetCommandParser -[hidden]-> MainPageParser
 destroy OpenBudgetCommandParser
 
-MainPageParser --> LogicManager
+MainPageParser --> LogicManager : command
 deactivate MainPageParser
+MainPageParser -[hidden]-> LogicManager
+destroy MainPageParser
 
 LogicManager -> OpenBudgetCommand : execute(model)
 activate OpenBudgetCommand
@@ -62,21 +75,24 @@ OpenBudgetCommand -> ModelManager : openBudget(budgetIndex)
 activate ModelManager
 
 ModelManager -> ModelManager : setOpenCommandState(budgetIndex)
+activate ModelManager
+ModelManager --> ModelManager
+deactivate ModelManager
 
 ModelManager -> StateManager : setOpenCommandState(pageName, expenditureValue, threshold)
 activate StateManager
 
-StateManager -> ModelManager
+StateManager --> ModelManager
 deactivate StateManager
 
 ModelManager --> OpenBudgetCommand
 deactivate ModelManager
 
 create CommandResult
-OpenBudgetCommand -> CommandResult
+OpenBudgetCommand -> CommandResult : new CommandResult(MESSAGE_SUCCESS)
 activate CommandResult
 
-CommandResult --> OpenBudgetCommand
+CommandResult --> OpenBudgetCommand : commandResult
 deactivate CommandResult
 
 OpenBudgetCommand --> LogicManager : commandResult

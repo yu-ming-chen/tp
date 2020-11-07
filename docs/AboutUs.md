@@ -15,7 +15,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
-* Responsibilities: Database
+* Responsibilities: Database + UI
 
 ### Yu Ming
 
