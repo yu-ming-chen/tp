@@ -1,5 +1,5 @@
 @startuml
-@startuml
+hide footbox
 skinparam Sequence {
     MessageAlign center
 }
@@ -17,8 +17,14 @@ end box
 
 [-> LM : execute("find shirt")
 activate LM
+
 create BPP
-LM -> BPP : execute("find shirt")
+LM -> BPP
+activate BPP
+LM <-- BPP
+deactivate BPP
+
+LM -> BPP : parseCommand("find shirt")
 activate BPP
 
 create FECP
@@ -38,10 +44,14 @@ deactivate FEC
 
 BPP <-- FECP : command
 deactivate FECP
-destroy BPP
+BPP <-[hidden]- FECP
+destroy FECP
+
 
 LM <-- BPP : command
 deactivate BPP
+LM <-[hidden]- BPP
+destroy BPP
 
 LM -> FEC : execute(m)
 activate FEC

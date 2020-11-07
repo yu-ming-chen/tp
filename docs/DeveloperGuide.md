@@ -129,7 +129,7 @@ Figure 3.1.2: Class Diagram of Logic Component.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
-Figure 3.1.3: Sequence Diagram of component interactions for `delete 1` command.
+Figure 3.1.3: Sequence Diagram of component interactions for `delete 1` command used to delete a budget.
 
 The ***Sequence Diagram*** given above shows how the components interact with each other for the scenario where the user
 issues the command `delete 1`.
@@ -1029,6 +1029,7 @@ Priorities:
 
 #### 6.1.4. Non-Functional Requirements
 (Contributed by Chin Hui)
+
 1. NUSave should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. NUSave should be able to hold up to 1000 budgets and expenditures without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
@@ -1048,6 +1049,8 @@ what the elements of the application represents.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 ### 6.3. Instructions for Manual Testing
+(Contributed by Chin Hui)
+
 Given below are instructions to test the application manually. These instructions should be complemented
 with the user guide for comprehensive testing. The state of the application is assumed to contain some data
 either sample data from when the application is first launched or a customised data set.
@@ -1088,7 +1091,7 @@ either sample data from when the application is first launched or a customised d
        
     5. Test case: `create n/`<br>
        Expected: No budget will be created. You will get an error message stating that the name should only contain
-       alphanumeric characters and spaces and it should not be blank.
+       alphanumeric characters and spaces, it should not be blank.
    
 2. Adding an expenditure
 
@@ -1289,13 +1292,19 @@ from 0-100.
 
 1. Prerequisite: User is in the budget page with multiple expenditures in the list.
 
-2. Test case: `close`
+2. Test case: `close`<br>
 Expected: Closes the current budget and return back to the main page.
 
 #### Redo Command
 
-
+1. Test case: `redo` (assuming that the `undo` command was used previously to undo a `create` command)<br>
+Expected: The `create` command that was undone will be called again. The budget that was created using the `create`
+command will be reflected in the GUI list.
 
 #### Undo Command
+
+1. Test case: `undo` (assuming that `create` command was the most recently called command)<br>
+Expected: The `create` command will be undone. The budget that was created will be removed from the GUI list as if the
+`create` command was not called.
 
 ### 6.4. Effort

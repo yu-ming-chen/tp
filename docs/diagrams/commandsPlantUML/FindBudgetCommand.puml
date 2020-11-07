@@ -1,4 +1,5 @@
 @startuml
+hide footbox
 skinparam Sequence {
     MessageAlign center
 }
@@ -17,6 +18,11 @@ end box
 [-> LM : execute("find NUS")
 activate LM
 create MPP
+LM -> MPP
+activate MPP
+LM <-- MPP
+deactivate MPP
+
 LM -> MPP : execute("find NUS")
 activate MPP
 
@@ -26,7 +32,7 @@ activate FBCP
 MPP <-- FBCP
 deactivate FBCP
 
-MPP -> FBCP : parse("NUS")
+MPP -> FBCP : parseCommand("find NUS")
 activate FBCP
 
 create FBC
@@ -36,9 +42,14 @@ FBCP <-- FBC : command
 deactivate FBC
 MPP <-- FBCP : command
 deactivate FBCP
+FBCP -[hidden]-> MPP
+destroy FBCP
+
 LM <-- MPP : command
 deactivate MPP
+LM <-[hidden]- MPP
 destroy MPP
+
 LM -> FBC : execute(m)
 activate FBC
 
