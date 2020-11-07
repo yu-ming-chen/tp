@@ -77,14 +77,14 @@ When you find budgets, the list view will filter to only display budgets whose n
 
 This will find all budgets with the keyword 'Temasek Hall' in the name of the budget as seen in Figure 5.2.4.1 below:
 
-![Example of find budgets command](images/CommandScreenShots/5_2_4_1_findBudgets.png)
+![Example of find budgets command](../images/CommandScreenShots/5_2_4_1_findBudgets.png)
 
 Figure 5.2.4.1. Example of using the find budgets command.
 
 **Contributions to Developer Guide (Extracts)**:
 
 ### 3.1. Architecture
-<img src="images/ArchitectureDiagram.png" width="450" />
+<img src="../images/ArchitectureDiagram.png" width="450" />
 
 Figure 3.1.1: Architecture Diagram of NUSave components.
 
@@ -115,10 +115,10 @@ For each of the five components:
     - For example, the `Logic` component (see the class diagram below) defines its API in the `Logic.java` interface and exposes its functionality
     using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+![Class Diagram of the Logic Component](../images/LogicClassDiagram.png)
 Figure 3.1.2: Class Diagram of Logic Component.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="../images/ArchitectureSequenceDiagram.png" width="574" />
 
 Figure 3.1.3: Sequence Diagram of component interactions for `delete 1` command used to delete a budget.
 
@@ -127,7 +127,7 @@ issues the command `delete 1`.
 
 #### 3.2.3. Model Component
 (Contributed by Chin Hui)
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](../images/ModelClassDiagram.png)
 Figure 3.4.1: Structure of the model component.
 
 **API** : `Model.java`
