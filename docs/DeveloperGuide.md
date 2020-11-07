@@ -83,6 +83,7 @@ of NUSave.
 
 ## 2. Setting Up
 (Contributed by Yu Ming)
+
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## 3. Design
@@ -740,7 +741,7 @@ This section explains the `Help Command`.
 
 The following activity diagram to shows the events that occur when the user executes the Help Command.
 
-![HelpCommand Activity Diagram](diagrams/commandsPlantUML/HelpCommandActivity.png) 
+![HelpCommand Activity Diagram](diagrams/commandsPlantUML/diagram/HelpCommandActivity.png) 
 
 Figure 4.3.6.1.1: Activity diagram for help command.
 

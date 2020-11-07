@@ -17,6 +17,11 @@ end box
 
 [-> LM : excute("create n/Temasek Hall Basketball p/100")
 activate LM
+create MPP
+LM -> MPP
+activate MPP
+LM <-- MPP
+deactivate MPP
 LM -> MPP : parseCommand("create n/Temasek Hall Basketball p/100")
 activate MPP
 
@@ -25,7 +30,7 @@ MPP -> CBCP
 activate CBCP
 MPP <-- CBCP
 deactivate CBCP
-MPP -> CBCP : parse("create n/Temasek Hall Basketball p/100")
+MPP -> CBCP : parse("n/Temasek Hall Basketball p/100")
 activate CBCP
 
 create Budget
@@ -46,6 +51,7 @@ destroy CBCP
 deactivate CBCP
 LM <-- MPP : c
 deactivate MPP
+destroy MPP
 
 LM -> CBC: excute(m)
 
@@ -63,7 +69,7 @@ deactivate CR
 
 LM <-- CBC: result
 deactivate CBC
-[<-- LM
+[<-- LM: result
 deactivate LM
 
 @enduml

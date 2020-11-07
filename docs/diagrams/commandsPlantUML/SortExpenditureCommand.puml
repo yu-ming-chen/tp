@@ -17,6 +17,11 @@ end box
 
 [-> LM : excute("sort time")
 activate LM
+create BPP
+LM -> BPP
+activate BPP
+LM <-- BPP
+deactivate BPP
 LM -> BPP : parseCommand("sort time")
 activate BPP
 
@@ -25,7 +30,7 @@ BPP -> SECP
 activate SECP
 BPP <-- SECP
 deactivate SECP
-BPP -> SECP : parse("sort time")
+BPP -> SECP : parse("time")
 activate SECP
 
 create SEC
@@ -39,6 +44,7 @@ destroy SECP
 deactivate SECP
 LM <-- BPP : c
 deactivate BPP
+destroy BPP
 
 
 LM -> SEC: excute(m)
@@ -56,7 +62,7 @@ deactivate CR
 
 LM <-- SEC: result
 deactivate SEC
-[<-- LM
+[<-- LM: result
 deactivate LM
 
 @enduml

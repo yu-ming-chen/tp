@@ -17,6 +17,11 @@ end box
 
 [-> LM : excute("sort name")
 activate LM
+create MPP
+LM -> MPP
+activate MPP
+LM <-- MPP
+deactivate MPP
 LM -> MPP : parseCommand("sort name")
 activate MPP
 
@@ -25,7 +30,7 @@ MPP -> SBCP
 activate SBCP
 MPP <-- SBCP
 deactivate SBCP
-MPP -> SBCP : parse("sort name")
+MPP -> SBCP : parse("name")
 activate SBCP
 
 create SBC
@@ -39,6 +44,7 @@ destroy SBCP
 deactivate SBCP
 LM <-- MPP : c
 deactivate MPP
+destroy MPP
 
 
 LM -> SBC: excute(m)
@@ -56,7 +62,7 @@ deactivate CR
 
 LM <-- SBC: result
 deactivate SBC
-[<-- LM
+[<-- LM: result
 deactivate LM
 
 @enduml
