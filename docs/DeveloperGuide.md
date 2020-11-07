@@ -93,9 +93,15 @@ This section elaborates on the higher-level components that work together within
 
 ### 3.1. Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+(Contributed by Chin Hui)
 
-The ***Architecture Diagram*** given above explains the high-level design of the application.
+This section explains the high-level design of the application.
+
+![Architecture Diagram](images/ArchitectureDiagram.png)
+
+Figure 3.1.1. Figure of Architecture Diagram
+
+Figure 3.1.1. shows the how each high-level component in NUSave is related to each other.
 
 Given below is a quick overview of each component:
 
@@ -122,14 +128,12 @@ For each of the five components:
     - For example, the `Logic` component defines its API in the `Logic.java` interface and exposes its functionality
     using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png)
 
-The ***Class Diagram*** given above shows how the five components interact with each other.
+Figure 3.1.2. Figure of Architecture Sequence Diagram
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
-
-The ***Sequence Diagram*** given above shows how the components interact with each other for the scenario where the user
-issues the command `delete 1`.
+Figure 3.1.2. shows how the components interact with each other for the scenario where the user
+issues the command `delete 1` in a budget page.
 
 The sections below give more details of each component:
 
@@ -1005,6 +1009,16 @@ and `Title` to update.
 
 With the above sequence, a budget will successfully be opened, and the `Title` component reflects the name of 
 the budget, while the `InfoBox` component reflects the total expenditure and threshold of the budget.
+
+**Design Considerations**
+
+* Option A: Use Model-View Controller (MVC) Pattern to update GUI
+   * Pros: Good separation of concern, with controller being in charge of updating both the model and Ui.
+   * Cons: Hard to implement as controllers will have to be set up from scratch.
+
+* **Option B (Chosen):** Use Observer Pattern to update GUI
+   * Pros: Able to use proprietary JavaFx library to implement, enforce loose coupling with Observer interface.
+   * Cons: External code can easily invoke observer as `bind()` method is public. 
 
 ## 5. Guides
 
