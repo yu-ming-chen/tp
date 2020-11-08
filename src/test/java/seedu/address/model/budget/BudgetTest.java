@@ -4,14 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.expenditure.Expenditure;
 import seedu.address.model.expenditure.ExpenditureList;
-import seedu.address.testutil.*;
+import seedu.address.testutil.BudgetBuilder;
+import seedu.address.testutil.TypicalBudget;
+import seedu.address.testutil.TypicalExpenditure;
+import seedu.address.testutil.TypicalExpenditures;
 
 class BudgetTest {
 
@@ -54,6 +53,16 @@ class BudgetTest {
     }
 
     @Test
+    void constructorTest() {
+        Budget mcDonalds = new Budget(new Name("McDonalds"), new Date("2020-10-10"),
+                TypicalExpenditures.getMcDonaldsExpenditures());
+
+        Budget expectedBudget = new BudgetBuilder(mcDonalds).build();
+
+        assertEquals(mcDonalds, expectedBudget);
+    }
+
+    @Test
     void getName() {
         Budget mcDonalds = TypicalBudget.getMcDonaldsBudget();
         assertEquals(new Name("McDonalds"), mcDonalds.getName());
@@ -87,7 +96,8 @@ class BudgetTest {
     @Test
     void getTotalExpenditure() {
         Budget mcDonalds = TypicalBudget.getMcDonaldsBudget();
-        assertEquals(TypicalExpenditures.getMcDonaldsExpenditures().getTotalExpenditure(), mcDonalds.getTotalExpenditure());
+        assertEquals(TypicalExpenditures.getMcDonaldsExpenditures().getTotalExpenditure(),
+                mcDonalds.getTotalExpenditure());
     }
 
     @Test

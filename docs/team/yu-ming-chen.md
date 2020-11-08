@@ -21,7 +21,7 @@ Given below are my contributions to the project:
 - **Feature** : Added ability to view help in NUSave.
 	- What it does: `help` allows the users to view the help commands in NUSave.
 	- Justification: This features allows users to view all command help instructions in NUSave. 
-	Highlight: This feature displays a different set of help instructions depending on which page the user is on.
+	- Highlight: This feature displays a different set of help instructions depending on which page the user is on.
 	For example, if user is on main page, it will display unique command to the main page such as open budget and create budget command.
 - **Feature** : Added ability to sort budgets in NUSave.
 	- What it does: `sort` allows the users to be able to sort budgets in NUSave.
