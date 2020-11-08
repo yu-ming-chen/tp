@@ -297,6 +297,10 @@ You can use this command to create a new budget with the given `NAME` and `THRES
 When you create a new budget, it will be displayed as a budget card in the list view.
 
 > 📕 You can create a budget with no threshold to simply track your total expenses.
+ > ⚠️ The `NAME` is limited to a maximum of 50 characters.
+ > ⚠️ The `THRESHOLD` must be a positive value lesser than $1,000,000.
+ > ⚠️ There can only be a maximum of 100 budgets.
+
 
 ✏️ Example: `create n/Temasek Hall Student Council p/1200`
 
@@ -321,6 +325,7 @@ You can use this command to delete the budget at the given `INDEX`.
 When you delete a budget, its budget card will be removed from the list view.
  
  > ⚠️ Exercise caution when using the delete command as it is irreversible!
+ > ⚠️ The `INDEX` must be between 1-100 since there can only be a maximum of 100 budgets.
 
 ✏️ Example: `delete 1`
 
@@ -346,6 +351,9 @@ You can use this command to edit the budget at the given `INDEX`.
 When you edit a budget, the information on its budget card will be updated immediately.
 
  > ⚠️ Although both `NAME` and `THRESHOLD` fields are optional, the command must include at least one of these prefixes.
+ > ⚠️ The `INDEX` must be between 1-100 since there can only be a maximum of 100 budgets.
+ > ⚠️ The `NAME` is limited to a maximum of 50 characters.
+ > ⚠️ The `THRESHOLD` must be a positive value lesser than $1,000,000.
 
 ✏️ Example: `edit 2 n/NUS Computing Club`
 
@@ -462,6 +470,8 @@ Format: `open INDEX`
 
 You can use this command to open the budget at the given `INDEX`.
 
+ > ⚠️ The `INDEX` must be between 1-100 since there can only be a maximum of 100 budgets.
+
 When you open a budget, you will be directed to its budget page.
 
 ✏️ Example: `open 1`
@@ -490,6 +500,11 @@ Prefix | Parameters | Requirement | Comments
 
 You can use this command to add a new expenditure with the given `PRICE` and optional `TAG` within a budget.
 
+ > ⚠️ The `INDEX` must be between 1-100 since there can only be a maximum of 100 expenditures.
+ > ⚠️ The `NAME` is limited to a maximum of 50 characters.
+ > ⚠️ The `PRICE` must be a positive value that is at most $10,000.
+ > ⚠️ The `TAG` is limited to a maximum of 15 characters and a total of 3 tags.
+
 When you add a new expenditure, it will be displayed as an expenditure card in the list view.
  
 ✏️ Example: `add n/Graphic Calculator p/199.90 t/Math`
@@ -515,6 +530,7 @@ You can use this command to delete the expenditure at the given `INDEX`.
 When you delete an expenditure, its expenditure card will be removed from the list view.
 
  > ⚠️ Exercise caution when using the delete command as it is irreversible!
+ > ⚠️ The `INDEX` must be between 1-100 since there can only be a maximum of 100 expenditures.
 
 ✏️ Example: `delete 2`
 
@@ -534,12 +550,17 @@ Prefix | Parameters | Requirement | Comments
 \-     | `INDEX`    | Required    | Index of the expenditure displayed on NUSave
  n/    | `NAME`     | Optional    | Name of the expenditure to be edited to
  p/    | `PRICE`    | Optional    | Price of the expenditure to be edited to
+ t/    | `TAG`      | Optional    | Tags of the expenditure to be edited to
 
 You can use this command to edit the expenditure at the given `INDEX`.
 
 When you edit a expenditure, the information on its expenditure card will be updated immediately.
 
  > ⚠️ Although both `NAME` and `PRICE` fields are optional, the command must include at least one of these prefixes.
+ > ⚠️ The `INDEX` must be between 1-100 since there can only be a maximum of 100 expenditures.
+ > ⚠️ The `NAME` is limited to a maximum of 50 characters.
+ > ⚠️ The `PRICE` must be a positive value that is at most $10,000.
+ > ⚠️ The `TAG` is limited to a maximum of 15 characters and a total of 3 tags.
 
 ✏️ Example: `edit 1 n/Long Sleeve Shirt p/20`
 
