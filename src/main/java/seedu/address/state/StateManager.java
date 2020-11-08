@@ -165,9 +165,4 @@ public class StateManager implements State {
                 && currentPage == that.currentPage
                 && Objects.equals(pageTitle, that.pageTitle);
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(budgetIndex, currentPage, pageTitle);
-    }
 }

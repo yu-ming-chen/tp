@@ -37,9 +37,4 @@ public class BudgetIndexManager implements BudgetIndex {
         BudgetIndexManager that = (BudgetIndexManager) o;
         return budgetIndex == that.budgetIndex;
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(budgetIndex);
-    }
 }

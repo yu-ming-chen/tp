@@ -61,28 +61,4 @@ public class TypicalState {
         return new StateBuilder().withBudgetIndex(new BudgetIndexManager(2))
                 .withCurrentPage(Page.BUDGET).withPageTitle("Subway").build();
     }
-
-    public static BudgetIndex getMainPageBudgetIndex() {
-        return new EmptyBudgetIndex();
-    }
-
-    public static BudgetIndex getMcdonaldsBudgetIndex() {
-        return new BudgetIndexManager(0);
-    }
-
-    public static BudgetIndex getKfcBudgetIndex() {
-        return new BudgetIndexManager(1);
-    }
-
-    public static BudgetIndex getSubwayBudgetIndex() {
-        return new BudgetIndexManager(2);
-    }
-
-    public static Threshold getMcdonaldsThresholdValue() {
-        return new Threshold("150");
-    }
-
-    public static Threshold getMainThresholdValue() {
-        return new Threshold(NO_THRESHOLD_MESSAGE);
-    }
 }
