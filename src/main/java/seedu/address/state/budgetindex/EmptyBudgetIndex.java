@@ -12,4 +12,9 @@ public class EmptyBudgetIndex implements BudgetIndex {
     public Optional<Integer> getBudgetIndex() {
         return Optional.empty();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof EmptyBudgetIndex;
+    }
 }
