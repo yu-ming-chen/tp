@@ -4,9 +4,24 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalBudget.*;
+import static seedu.address.testutil.TypicalBudget.KFC;
+import static seedu.address.testutil.TypicalBudget.KFC_THRESHOLD;
+import static seedu.address.testutil.TypicalBudget.MC_DONALDS;
+import static seedu.address.testutil.TypicalBudget.SUBWAY;
+import static seedu.address.testutil.TypicalBudget.SUBWAY_NAME;
+import static seedu.address.testutil.TypicalBudget.getMcDonaldsBudget;
+import static seedu.address.testutil.TypicalBudget.getSubwayBudget;
 import static seedu.address.testutil.TypicalBudgets.getTypicalNusave;
-import static seedu.address.testutil.TypicalExpenditure.*;
+import static seedu.address.testutil.TypicalExpenditure.KFC_TOTAL_PRICE;
+import static seedu.address.testutil.TypicalExpenditure.KFC_ZINGER;
+import static seedu.address.testutil.TypicalExpenditure.MC_MUFFIN;
+import static seedu.address.testutil.TypicalExpenditure.SUBWAY_COLD_CUT_TRIO;
+import static seedu.address.testutil.TypicalExpenditure.SUBWAY_COOKIE;
+import static seedu.address.testutil.TypicalExpenditure.SUBWAY_SOUP;
+import static seedu.address.testutil.TypicalExpenditure.SUBWAY_TOTAL_PRICE;
+import static seedu.address.testutil.TypicalExpenditure.getKfcZingerExpenditure;
+import static seedu.address.testutil.TypicalExpenditure.getMcMuffinExpenditure;
+import static seedu.address.testutil.TypicalExpenditure.getSubwayCookieExpenditure;
 import static seedu.address.testutil.TypicalState.ENUM_PAGE_MAIN;
 import static seedu.address.testutil.TypicalState.SUBWAY_PAGE_TITLE;
 
@@ -14,13 +29,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
 
-import javafx.beans.property.SimpleBooleanProperty;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.budget.Threshold;
-import seedu.address.model.expenditure.Expenditure;
 import seedu.address.state.Page;
 import seedu.address.state.budgetindex.BudgetIndex;
 import seedu.address.state.budgetindex.BudgetIndexManager;
@@ -34,7 +47,7 @@ public class ModelManagerTest {
         ModelManager modelManager = new ModelManager();
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        //assertEquals(new Nusave(), new Nusave(modelManager.getNusave()));
+        assertEquals(new Nusave(), new Nusave(modelManager.getNusave()));
     }
 
     @Test
