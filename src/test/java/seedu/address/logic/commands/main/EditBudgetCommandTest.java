@@ -54,7 +54,7 @@ class EditBudgetCommandTest {
         assertEquals(String.format(EditBudgetCommand.MESSAGE_SUCCESS),
                 commandResult.getFeedbackToUser());
         BudgetList expectedList = new BudgetList(Arrays.asList(editedBudget, TypicalBudget.getKfcBudget(),
-                TypicalBudget.getSubwayExpenditure()));
+                TypicalBudget.getSubwayBudget()));
         assertEquals(expectedList, modelStub.budgetList);
     }
 
@@ -354,7 +354,7 @@ class EditBudgetCommandTest {
         private BudgetList budgetList = new BudgetList();
 
         ModelStubAcceptingBudgetEdited() {
-            budgetList.addToFront(TypicalBudget.getSubwayExpenditure());
+            budgetList.addToFront(TypicalBudget.getSubwayBudget());
             budgetList.addToFront(TypicalBudget.getKfcBudget());
             budgetList.addToFront(TypicalBudget.getMcDonaldsBudget());
         }
