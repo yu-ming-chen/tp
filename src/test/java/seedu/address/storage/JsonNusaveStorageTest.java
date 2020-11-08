@@ -45,7 +45,7 @@ class JsonNusaveStorageTest {
     }
 
     @Test
-    public void read_notJsonFormat_exceptionThrown() {
+    public void read_notJsonFormat_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readNusave("notJsonFormatNusave.json"));
     }
 
