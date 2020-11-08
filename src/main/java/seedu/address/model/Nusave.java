@@ -212,4 +212,18 @@ public class Nusave implements ReadOnlyNusave {
         budgetList.getExpenditures(index).sortExpendituresByCreateDate();
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Nusave)) {
+            return false;
+        }
+
+        Nusave otherNusave = (Nusave) other;
+        return budgetList.equals(otherNusave.getBudgetList());
+    }
+
 }

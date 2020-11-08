@@ -14,6 +14,7 @@ public class ExpenditureList {
     public ExpenditureList() {
         this.expenditures = new ArrayList<>();
     }
+
     public ExpenditureList(List<Expenditure> expenditures) {
         this.expenditures = expenditures;
     }
@@ -92,5 +93,20 @@ public class ExpenditureList {
      */
     public void sortExpendituresByCreateDate() {
         this.expenditures.sort(new SortExpendituresByCreateDate());
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof ExpenditureList)) {
+            return false;
+        }
+
+        ExpenditureList otherExpenditure = (ExpenditureList) other;
+        return this.expenditures.containsAll(otherExpenditure.getExpenditures())
+                && otherExpenditure.getExpenditures().containsAll(this.expenditures);
     }
 }

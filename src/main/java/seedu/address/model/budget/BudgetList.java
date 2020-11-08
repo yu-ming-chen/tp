@@ -184,7 +184,8 @@ public class BudgetList implements Iterable<Budget> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof BudgetList // instanceof handles nulls
-                && budgets.equals(((BudgetList) other).budgets));
+                && (budgets.containsAll(((BudgetList) other).budgets))
+                && ((BudgetList) other).getBudgets().containsAll(budgets));
     }
 
     @Override
