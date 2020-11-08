@@ -1,12 +1,8 @@
 package seedu.address.logic.parser.mainpageparser;
 
-import java.util.stream.Stream;
-
 import seedu.address.logic.commands.main.OpenBudgetCommand;
-import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.state.budgetindex.BudgetIndex;
 
@@ -20,14 +16,6 @@ public class OpenBudgetCommandParser implements Parser<OpenBudgetCommand> {
     public OpenBudgetCommand parse(String args) throws ParseException {
         BudgetIndex budgetIndex = ParserUtil.parseBudgetIndex(args);
         return new OpenBudgetCommand(budgetIndex);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }
