@@ -1,4 +1,5 @@
 @startuml
+hide footbox
 skinparam Sequence {
     MessageAlign center
 }
@@ -15,7 +16,14 @@ end box
 
 [-> LM : execute("list")
 activate LM
-LM -> BPP : execute("list")
+
+create BPP
+LM -> BPP
+activate BPP
+LM <-- BPP
+deactivate BPP
+
+LM -> BPP : parseCommand("list")
 activate BPP
 
 create LEC
@@ -26,6 +34,8 @@ deactivate LEC
 
 LM <-- BPP : command
 deactivate BPP
+LM <-[hidden]- BPP
+destroy BPP
 LM -> LEC : execute(m)
 activate LEC
 

@@ -1,12 +1,11 @@
 @startuml
 !include style.puml
 skinparam arrowThickness 1.1
-skinparam arrowColor UI_COLOR
 skinparam classBackgroundColor UI_COLOR
 
 Package State {
-Interface State <<Interface>>
-Class StateManager {
+Interface State <<Interface>> #Orange
+Class StateManager #Orange {
     - isBudgetPageProp : BooleanProperty
     - infoBoxSecondRowProp: StringProperty
     - thresholdStringProp: StringProperty
@@ -14,13 +13,13 @@ Class StateManager {
 }
 
 Package Model {
-Interface Model <<Interface>>
-Class ModelManager
+Interface Model <<Interface>> #Red
+Class ModelManager #Red
 }
 
 Package Logic {
-Interface Logic <<Interface>>
-Class LogicManager
+Interface Logic <<Interface>> #Blue
+Class LogicManager #Blue
 }
 
 Package Ui {
@@ -39,17 +38,17 @@ Package Ui {
     }
 }
 
-InfoBoxStateBinder ..|> StateBinder
-TitleStateBinder ..|> StateBinder
-StateBinderList -up-> "*" StateBinder
-MainWindow -right-> StateBinderList
+InfoBoxStateBinder .[#Green].|> StateBinder
+TitleStateBinder .[#Green].|> StateBinder
+StateBinderList -up[#Green]-> "*" StateBinder
+MainWindow -right[#Green]-> StateBinderList
 
-StateBinder -left-> Logic
-LogicManager .up.|> Logic
+StateBinder -left[#Green]-> Logic
+LogicManager .up[#Blue].|> Logic
 
-LogicManager -down-> Model
-ModelManager .up.|> Model
+LogicManager -down[#Blue]-> Model
+ModelManager .up[#Red].|> Model
 
-ModelManager -right-> State
-StateManager .left.|> State
+ModelManager -right[#Red]-> State
+StateManager .left[#Orange].|> State
 @enduml

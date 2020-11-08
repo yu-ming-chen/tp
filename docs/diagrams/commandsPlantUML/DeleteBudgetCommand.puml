@@ -18,6 +18,11 @@ end box
 
 [-> LM : execute("delete 1")
 activate LM
+create MPP
+LM -> MPP
+activate MPP
+LM <-- MPP
+deactivate MPP
 LM -> MPP : parseCommand("delete 1")
 activate MPP
 
@@ -45,8 +50,9 @@ deactivate DBCP
 destroy DBCP
 LM <-- MPP : c
 deactivate MPP
+destroy MPP
 
-LM -> DBC: excute(m)
+LM -> DBC : excute(m)
 activate DBC
 DBC -> M : deleteBudget(i)
 activate M
@@ -59,9 +65,9 @@ activate CR
 DBC <-- CR
 deactivate CR
 
-LM <-- DBC: result
+LM <-- DBC : result
 deactivate DBC
-[<-- LM
+[<-- LM : result
 deactivate LM
 
 @enduml

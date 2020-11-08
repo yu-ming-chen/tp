@@ -14,8 +14,7 @@ title: Developer Guide
         * [3.2.3 Model Component](#323-model-component)
         * [3.2.4 State Component](#324-state-component)
         * [3.2.5 Storage Component](#325-storage-component)
-    * [3.3. Interaction Between Components](#33-interaction-between-components)
-    * [3.4. Commons Classes](#34-commons-classes)
+    * [3.3. Commons Classes](#33-commons-classes)
 - [4. Implementation](#4-implementation)
     * [4.1. State](#41-state)
     * [4.2. Parsers](#42-parsers)
@@ -35,8 +34,8 @@ title: Developer Guide
         * [4.3.4. Sort Commands](#434-sort-commands)
         * [4.3.5. Find & List Commands](#435-find--list-commands)
         * [4.3.6. Undo & Redo Commands](#436-undo--redo-commands)
-        * [4.3.6. Universal Commands](#436-universal-commands)
-        * [4.3.6.1 Help](#4361-help)
+        * [4.3.7. Universal Commands](#437-universal-commands)
+            * [4.3.7.1 Help](#4371-help)
     * [4.4. UI](#44-ui)
         * [4.4.1. List View Rendering](#441-list-view-rendering)
         * [4.4.2. Dynamic Updating](#442-dynamic-updating)
@@ -48,15 +47,14 @@ title: Developer Guide
         * [5.3. Logging](#53-logging)
         * [5.4. Configuration](#54-configuration)
         * [5.5. DevOps](#55-devops)
-    * [6. Appendix](#6-appendix)
-        * [6.1. Requirements](#61-requirements)
-            * [6.1.1. Product Scope](#611-product-scope)
-            * [6.1.2. User Stories](#612-user-stories)
-            * [6.1.3. Use Cases](#613-use-cases)
-            * [6.1.4. Non-Functional Requirements](#614-non-functional-requirements)
-        * [6.2. Glossary](#62-glossary)
-        * [6.3. Instructions for Manual Testing](#63-instructions-for-manual-testing)
-        * [6.4. Effort](#64-effort)
+    * [Appendix](#appendix)
+        * [Product Scope](#product-scope)
+        * [User Stories](#user-stories)
+        * [Use Cases](#use-cases)
+        * [Non-Functional Requirements](#non-functional-requirements)
+        * [Glossary](#glossary)
+        * [Instructions for Manual Testing](#instructions-for-manual-testing)
+        * [Effort](#effort)
 
 ## 1. Introduction
 
@@ -84,6 +82,7 @@ of NUSave.
 
 ## 2. Setting Up
 (Contributed by Yu Ming)
+
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## 3. Design
@@ -93,9 +92,16 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 This section elaborates on the higher-level components that work together within NUSave. 
 
 ### 3.1. Architecture
-<img src="images/ArchitectureDiagram.png" width="450" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the application.
+(Contributed by Chin Hui)
+
+This section explains the high-level design of the application.
+
+![Architecture Diagram](images/ArchitectureDiagram.png)
+
+Figure 3.1.1. Figure of Architecture Diagram
+
+Figure 3.1.1. shows how each high-level component in NUSave is related to each other.
 
 Given below is a quick overview of each component:
 
@@ -108,32 +114,32 @@ It has two primary responsibilities:
 
 The rest of the application consists of five components:
 
-1. [**`UI`**](#ui-component): Handles the UI of the application.
-1. [**`Logic`**](#logic-component): Executes the commands.
-1. [**`Model`**](#model-component): Holds the data of the application in memory.
-1. [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-1. [**`State`**](#state-componenet): Remembers the current state of the application.
+1. [**`UI`**](#321-ui-component): Handles the UI of the application.
+1. [**`Logic`**](#322-logic-component): Executes the commands.
+1. [**`Model`**](#323-model-component): Holds the data of the application in memory.
+1. [**`Storage`**](#324-storage-component): Reads data from, and writes data to, the hard disk.
+1. [**`State`**](#325-state-componenet): Remembers the current state of the application.
 
 For each of the five components:
 
 * Its API is defined in an `interface` with the same name as the Component.
 * Its functionality is exposed using a concrete `{Component Name} Manager` class which implements the corresponding API
 `interface` mentioned in the previous point.
-    - For example, the `Logic` component defines its API in the `Logic.java` interface and exposes its functionality
+    - For example, the `Logic` component (see the class diagram below) defines its API in the `Logic.java` interface and exposes its functionality
     using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png)
 
-The ***Class Diagram*** given above shows how the five components interact with each other.
+Figure 3.1.2. Figure of Architecture Sequence Diagram
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
-
-The ***Sequence Diagram*** given above shows how the components interact with each other for the scenario where the user
-issues the command `delete 1`.
+Figure 3.1.2. shows how the components interact with each other for the scenario where the user
+issues the command `delete 1` in a budget page.
 
 The sections below give more details of each component:
 
 ### 3.2. Components
+
+This section elaborates on the different high-level components in NUSave.
 
 #### 3.2.1. UI Component
 
@@ -181,10 +187,11 @@ certain actions, such as displaying help to the user.
 -  The `Logic` component includes all commands that is executable on both Main Page and Budget Page. For a complete
 elaboration on what each command does, refer to [4.3. Commands](#43-commands).
 
-
 ![Interactions Inside the Logic Component for the `delete 1` Command](diagrams/commandsPlantUML/diagram/DeleteBudgetCommand.png)
 
-The ***Sequence Diagram*** given above represents the interactions within the `Logic` component for the
+Figure 3.2.2.1. Figure of Sequence Diagram for `delete 1`
+
+Figure 3.2.2.1. above represents the interactions within the `Logic` component for the
 `execute("delete 1")` API call to remove a budget in NUSave.
 
 #### 3.2.3. Model Component
@@ -225,21 +232,22 @@ The `Expenditure`:
 #### 3.2.4. State Component
  (Contributed by Song Yu)
  
- ***API***: `State.java`
+ **API**: `State.java`
  
   ![Structure of the storage component](images/StateClassDiagram.png)
   
   Figure 3.5.1: Structure of the state component.
- 
+  
  The `State` component:
- * Stores data depending on the current state of NUSave. This refers to data such as the current page NUSave is currently on,
+ * Represents the current page view NUSave is currently on. Specifically, it represents whether the user is looking at 
+ the main page view or budget page view. The current view is represented by an attribute in `StateManager`, `currentPage`.
+ * Stores data related to the current state of NUSave. This refers to data such as the current page NUSave is currently on,
  or the current budget that it is accessing.
  
- `State` is used by NUSave to track the current state of NUSave. It lives inside `Model`, where `Model` will use `State`
- to store stateful data, where these data will be used to update information displayed on the GUI, such as the current
- expenditure of the accessed budget, or list of expenditures belonging to the accessed budget.
+ `State`  lives inside `Model`, where `Model` will use `State` to store stateful data, where these data will be used to 
+ update information displayed on the GUI, such as the current expenditure of the accessed budget, or list of expenditures 
+ belonging to the accessed budget.
  
-
 #### 3.2.5. Storage Component
 (Contributed by Wen Hao)
 
@@ -249,7 +257,7 @@ The `Storage` component:
 * Can save `UserPref` objects in JSON format and read it back.
 * Can save all NUSave data in JSON format and read it back.
 
-![Structure of the storage component](images/StorageClassDiagram.png)
+![Structure of the storage component](diagrams/StorageClassDiagram.png)
 
 Figure 3.6.1: Structure of the storage component.
 
@@ -259,7 +267,7 @@ data into `NUSave`. As seen in Figure 3.6.1, `JsonUserPrefsStorage` is responsib
 `UserPref` objects and contains the file path of its JSON file while `JsonNusaveStorage` is responsible for the
 reading and writing of all NUSave data and contains the file path of its JSON file.
 
-![Structure of the data stored by NUSave](images/PojoClassDiagram.png)
+![Structure of the data stored by NUSave](diagrams/PojoClassDiagram.png)
 
 Figure 3.6.2: Structure of the data stored by NUSave.
 
@@ -267,17 +275,27 @@ In order for them to be recognised by the Jackson API, NUSave data objects (such
 converted into POJOs. Figure 3.6.2 depicts how the respective POJO classes for each of the data objects interact with
 one another.
 
-### 3.3. Interaction Between Components
+### 3.3. Commons Classes
 
-### 3.4. Commons Classes
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+(Contributed by Chin Hui)
+
+Classes used by multiple components are in the `seedu.addressbook.commons` package, these include exceptions
+, error messages as well as classes with static methods that can be used by all components without instantiation.
 
 ## 4. Implementation
 
-### 4.1. State
-This section describes on the concept of `State` in NUSave. 
+(Contributed by Song Yu)
 
-Commands are parsed by different types of parsers based on the current state of NUSave.
+This section elaborates on the implementations of various commands and components in NUSave.
+
+### 4.1. State
+
+(Contributed by Song Yu)
+
+This section provides context on how `State` affects how commands are parsed by parsers in NUSave.
+
+The `Logic` component in NUSave relies on data stored in `State` to decide which parser in NUSave will take
+control of the execution of commands.
 
 ![Delete Command Activity Diagram](images/DeleteCommandActivityDiagram.png)
 Figure 4.1.1. Figure of Delete Command Activity Diagram
@@ -285,8 +303,9 @@ Figure 4.1.1. Figure of Delete Command Activity Diagram
 To elaborate further, using Figure 4.1.1. as a reference, when the user executes a delete command, `delete 1`,
 while on the main page:
 
-1. `Logic` executes the command, checking whether the current page is a budget page or main page.
-2. `MainPageParser` takes control of the execution, parsing the command input by the user.
+1. `Logic` executes the command, checking whether the current page is a budget page or main page, depending on the 
+current page (represented by `currentPage` attribute in `StateManager`) of NUSave.
+2. Since NUSave's is current on `Page.MAIN`, `MainPageParser` takes control of the execution, parsing the command input by the user.
 3. If the command syntax is valid, the delete command is parsed.
 
     3a. If the syntax is invalid, a `ParseException` is thrown.
@@ -294,6 +313,7 @@ while on the main page:
 4. NUSave deletes the budget based on the index specified by the user, i.e. the 1st budget displayed.
 
 ### 4.2. Parsers
+
 (Contributed by Wen Hao)
 
 This section describes the details surrounding the parsers which are responsible for converting user inputs into `Command` objects.
@@ -319,6 +339,7 @@ Figure 4.2.1. Class diagram of parsers
    * Cons: More code to write
 
 #### 4.2.1. Page Parsers
+
 (Contributed by Wen Hao)
 
 Page parsers are responsible for determining the type of `Command` object that will be generated from a user input.
@@ -341,6 +362,7 @@ User inputs are parsed by the `BudgetPageParser` if they are entered while NUSav
 More information regarding what page the user is on can be found [here](#41-state).
 
 #### 4.2.2. Command Parsers
+
 (Contributed by Wen Hao)
 
 Command parsers are responsible for generating the different types of `Command` object.
@@ -354,6 +376,8 @@ A `ParseException` is thrown if the necessary arguments to generate the respecti
 
 #### 4.2.3. Interaction Between Parsers
 
+(Contributed by Wen Hao)
+
 The interaction between the parsers is illustrated by the example usage seen in Figure 4.2.3.1 below:
 
 ![Parser Sequence Diagram](diagrams/ParserSequenceDiagram.png) 
@@ -362,6 +386,10 @@ Figure 4.2.3.1. Sequence diagram of a user input being parsed.
 
 ### 4.3. Commands
 
+(Contributed by Song Yu)
+
+This section elaborates on the implementations of the commands available in NUSave.
+
 #### 4.3.1. Add Commands
 
 This section describes the details surrounding events at which users would wish to add information into NUSave. 
@@ -369,6 +397,7 @@ Specifically, when a user wishes to create a new budget to the Main Page, or whe
 to a budget.
 
 ##### 4.3.1.1. Create Budget
+
 (Contributed by Yu Ming)
 
 This section explains the `Create Budget Command`.
@@ -409,6 +438,7 @@ With the above sequence, a budget will be successfully created by the user in hi
 reflected on the user interface.
 
 ##### 4.3.1.2. Add Expenditure
+
 (Contributed by David)
 
 This section explains the `Add Expenditure Command`.
@@ -446,12 +476,15 @@ With the above sequence, an expenditure will be successfully created by the user
 the specific budget, and will be immediately reflected on the user interface.
 
 #### 4.3.2. Delete Commands
+
 (Contributed by David)
+
 This section describes the details surrounding events at which users would wish to delete information from NUSave. 
 Specifically, deletion can happen in two areas; when a user wishes to delete a budget from the Main Page, or when a 
 user wishes to delete an expenditure from a budget.
 
 ##### 4.3.2.1. Delete Budget
+
 (Contributed by David)
 
 This section explains the `Delete Budget Command`.
@@ -494,6 +527,7 @@ With the above sequence, a budget will be successfully deleted by the user in hi
 reflected on the user interface through the successful `CommandResult` and updated budget list.
 
 ##### 4.3.2.2. Delete Expenditure
+
 (Contributed by David)
 
 This section explains the `Delete Expenditure Command`.
@@ -539,6 +573,7 @@ With the above sequence, a budget will be successfully deleted by the user in hi
 reflected on the user interface through the successful `CommandResult` and updated budget list.
 
 #### 4.3.3. Edit Commands
+
 (Contributed by David)
 
 This section describes the details surrounding events at which users would wish to edit information from NUSave. 
@@ -546,6 +581,7 @@ Specifically, editing can happen in two areas; when a user wishes to edit a budg
 user wishes to edit an expenditure from a budget within the `Budget Page`.
 
 ##### 4.3.3.1. Edit Budget
+
 (Contributed by Yu Ming)
 
 This section explains the `Edit Budget Command`.
@@ -595,6 +631,7 @@ With the above sequence, a budget will be successfully edited by the user in his
 be reflected on the user interface through the successful `CommandResult` and updated budget list.
 
 ##### 4.3.3.2. Edit Expenditure
+
 (Contributed by David)
 
 This section explains the `Edit Expenditure Command`.
@@ -642,6 +679,7 @@ With the above sequence, an expenditure will be successfully edited by the user 
 be reflected on the user interface through the successful `CommandResult` and updated budget list.
 
 #### 4.3.4. Sort Commands
+
 (Contributed by Yu Ming)
 
 This section explains the `Sort Command`.
@@ -701,14 +739,15 @@ The details of the flow of `SortExpenditureCommand` will not be elaborate in det
 
 #### 4.3.5. Find & List Commands
 
-##### 4.3.4.1 List Budget
+##### 4.3.5.1 List Budget
+
 (Contributed by Chin Hui)
 The following sequence diagram shows the interactions between the `Logic` and `Model` components of NUSave,
 depicting a scenario where the user would like to list all budgets.
 
 ![ListBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/ListBudgetCommand.png)
 
-Figure 4.3.4.1: Sequence diagram for list budget command in main page view.
+Figure 4.3.5.1.1: Sequence diagram for list budget command in main page view.
 
 1. The `LogicManager` uses the `MainPageParser` to parse the give user input.
 2. The `MainPageParser` will identify the command given by the user and create a `ListBudgetCommand`.
@@ -721,15 +760,14 @@ list all existing budgets within NUSave.
 With the above sequence, all budgets will be listed by the user in his NUSave application, and it will be reflected
 on the user interface.
 
-##### 4.3.4.2 Find Budget
+##### 4.3.5.2 Find Budget
 (Contributed by Chin Hui)
 The following sequence diagram shows the interactions between the `Logic` and `Model` components of NUSave,
 depicting a scenario where the user would like to find budgets by a search term/phrase.
 
 ![FindBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/FindBudgetCommand.png)
 
-
-Figure 4.3.4.1: Sequence diagram for find budget command in main page view.
+Figure 4.3.5.2.1: Sequence diagram for find budget command in main page view.
 
 1. The `LogicManager` uses the `MainPageParser` to parse the give user input.
 2. The `MainPageParser` will identify the command given by the user and pass the user input down to the 
@@ -745,7 +783,7 @@ has been displayed.
 With the above sequence, all budgets containing the search term entered will be filtered 
 and displayed on the user interface.
 
-##### 4.3.4.3 List Expenditure
+##### 4.3.5.3 List Expenditure
 (Contributed by Chin Hui)
 
 The following sequence diagram shows the interactions between the `Logic` and `Model` components of NUSave,
@@ -754,7 +792,7 @@ depicting a scenario where the user would like to list all expenditure within th
 ![ListBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/ListExpenditureCommand.png)
 
 
-Figure 4.3.4.1: Sequence diagram for list expenditure command in budget page view.
+Figure 4.3.5.3.1.: Sequence diagram for list expenditure command in budget page view.
 
 1. The `LogicManager` uses the `BudgetPageParser` to parse the give user input.
 2. The `BudgetPageParser` will identify the command given by the user and create a `ListExpenditureCommand`.
@@ -767,7 +805,7 @@ list all existing expenditures within the current budget.
 With the above sequence, all expenditures will be listed by the user in his NUSave application, and it will be reflected
 on the user interface.
 
-##### 4.3.4.4 Find Expenditure
+##### 4.3.5.4 Find Expenditure
 (Contributed by Chin Hui)
 
 The following sequence diagram shows the interactions between the `Logic` and `Model` components of NUSave,
@@ -775,8 +813,7 @@ depicting a scenario where the user would like to find expenditures in a budget 
 
 ![FindBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/FindExpenditureCommand.png)
 
-
-Figure 4.3.4.1: Sequence diagram for find expenditure command in budget page view.
+Figure 4.3.5.4.1.: Sequence diagram for find expenditure command in budget page view.
 
 1. The `LogicManager` uses the `BudgetPageParser` to parse the give user input.
 2. The `BudgetPageParser` will identify the command given by the user and pass the user input down to the 
@@ -835,17 +872,19 @@ The following sequence diagram shows how the undo command is executed:
 
 ![Undo redo sequence diagram](diagrams/UndoSequenceDiagram.png)
 
-#### 4.3.6. Universal Commands
-#### 4.3.6.1 Help
+#### 4.3.7. Universal Commands
+
+#### 4.3.7.1 Help
+
 (Contributed by Yu Ming)
 
 This section explains the `Help Command`.
 
 The following activity diagram to shows the events that occur when the user executes the Help Command.
 
-![HelpCommand Activity Diagram](diagrams/commandsPlantUML/HelpCommandActivity.png) 
+![HelpCommand Activity Diagram](diagrams/commandsPlantUML/diagram/HelpCommandActivity.png) 
 
-Figure 4.3.6.1.1: Activity diagram for help command.
+Figure 4.3.7.1.1: Activity diagram for help command.
 
 The following command can occur either in the `Main Page` or `Budget Page` of NUSave, and the help notes will be
 displayed in the result box of the UI Component.
@@ -855,7 +894,7 @@ depicting a scenario where the user would like to ask for help to be displayed.
 
 ![HelpCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/HelpCommand.png)
 
-Figure 4.3.6.1.2: Sequence diagram for help command in main page view.
+Figure 4.3.7.1.2: Sequence diagram for help command in main page view.
 >Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
 the lifeline reaches the end of diagram.
 
@@ -873,18 +912,22 @@ on the user interface.
 
 Note that the `help` command can be executed on `Budget Page` view as well, but it will display a different set of help
 message that is unique to the `Budget Page` view with commands that can be executed on the view.
+
 ### 4.4. UI
 
+This section elaborates on the implementations of various `Ui` features.
+
 #### 4.4.1. List View Rendering
+
 (Contributed by Wen Hao)
 
 This section talks about how budget and expenditure cards are rendered within the List View UI component on the GUI of NUSave.
 
 As there is a need to constantly re-render the contents within the List View to reflect user changes, we have adopted the **Observer Pattern**
-so that data can be sent from the `Logic` component to the `UI` component efficiently. Using the JavaFX API, the List View is binded to an `ObservableList`
+so that data can be sent from the `Model` component to the `UI` component efficiently. Using the JavaFX API, the List View is binded to an `ObservableList`
 such that any changes to the `ObservableList` will trigger an update within the List View accordingly.
 
-![Class Diagram between `Logic` and `UI`](images/List_View_Class_Diagram.png)
+![Class Diagram between `Model` and `UI`](diagrams/ListViewClassDiagram.png)
 
 Figure 4.4.1.1. Class diagram to illustrate the observer pattern
 
@@ -907,6 +950,7 @@ supplied to the filtered list depending on user needs.
    * Cons: More prone to the error where both `BudgetCard` and `ExpenditureCard` are displayed simultaneously
 
 #### 4.4.2. Dynamic Updating
+
 (Contributed by Song Yu)
 
 This section talks about how data is dynamically updated on the GUI of NUSave.  
@@ -916,7 +960,7 @@ using a `StateBinder` interface, where `bind()` is called to bind all `StateBind
 
 ![Class Diagram between StateBinders and State](images/StateBinders_State_Class_Diagram.png)
 
-Figure 4.4.2.1. Observer Pattern Illustration
+Figure 4.4.2.1. Observer Pattern Illustration.
 
 1. On initialisation of NUSave, `MainWindow` calls `this.setStateBinders()`, which calls `StateBinderList.bindAll()`.
 2. `StateBinderList` calls `bind()` on every `StateBinder`. 
@@ -929,11 +973,13 @@ and [**N-tier Architectural Style**](https://nus-cs2103-ay2021s1.github.io/websi
 to link `StateBinder` and `StateManager` together.
 
 ##### 4.4.2.1. Description
+
 When a page switches from the main page to a budget page, information in the `InfoBox` and `Title` UI classes are updated.
 When the `StringProperty` and `BooleanProperty` attributes are updated in `State`, the observers in `InfoBox` and `Title`
 are notified, which updates the data displayed.  
 
 ###### 4.4.2.2. Implementation
+
 The change in information displayed occurs when the user inputs one of the following commands:
 1. Opening a budget: `open`
 2. Closing a budget: `close`
@@ -968,28 +1014,43 @@ and `Title` to update.
 With the above sequence, a budget will successfully be opened, and the `Title` component reflects the name of 
 the budget, while the `InfoBox` component reflects the total expenditure and threshold of the budget.
 
+**Design Considerations**
+
+* Option A: Use Model-View Controller (MVC) Pattern to update GUI
+   * Pros: Good separation of concern, with controller being in charge of updating both the model and Ui.
+   * Cons: Hard to implement as controllers will have to be set up from scratch.
+
+* **Option B (Chosen):** Use Observer Pattern to update GUI
+   * Pros: Able to use proprietary JavaFx library to implement, enforce loose coupling with Observer interface.
+   * Cons: External code can easily invoke observer as `bind()` method is public. 
+
 ## 5. Guides
 
 ### 5.1. Documentation
+
 * [Documentation guide](Documentation.md)
 
 ### 5.2. Testing
+
 * [Testing guide](Testing.md)
 
 ### 5.3. Logging
+
 * [Logging guide](Logging.md)
 
 ### 5.4. Configuration
+
 * [Configuration guide](Configuration.md)
 
 ### 5.5. DevOps
+
 * [Dev Ops guide](DevOps.md)
 
-## 6. Appendix
+## Appendix
 
-### 6.1. Requirements
+### Product Scope
 
-#### 6.1.1. Product Scope
+(Contributed by Wen Hao)
 
 **Target User Profile:**
 
@@ -1005,65 +1066,717 @@ the budget, while the `InfoBox` component reflects the total expenditure and thr
 * allows users to keep track of their budgets on a centralised platform
 
 
-#### 6.1.2. User Stories
+### User Stories
+
+(Contributed by Yu Ming and David)
+
 Priorities: 
 * High (must have) - `* * *` 
 * Medium (nice to have) - `* *`
 * Low (unlikely to have) - `*`
 
-| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see a list of available commands | refer to instructions when I forget how to use the application       |
-| `* * *`  | user                                       | create a budget                | add a new budget that I need                                           |
-| `* * *`  | user                                       | delete a budget                | remove a budget that I no longer need                                  |
-| `* * *`  | user                                       | open a budget                  | view the expenditures of a budget                                      |
-| `* * *`  | user                                       | close a budget                 | return to the main window                                              |
-| `* * *`  | user                                       | add an expenditure             | add a new expenditure to a budget                                      |
-| `* * *`  | user                                       | delete an expenditure          | remove an expenditure that I no longer need                            |
-| `* *`    | user                                       | find an expenditure by name    | locate an expenditure easily                                           |
+| Priority | As a …​                                 | I want to …​                           | So that I can…​                                                     |
+| -------- | ------------------------------------------ | ----------------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see a list of available commands          | refer to instructions when I forget how to use the application         |
+| `* * *`  | new user                                   | view sample data                          | have a better understanding of how the application works               |
+| `* * *`  | new user                                   | clear my existing data                    | remove all the sample data from my application                         |
+| `* * *`  | user                                       | create a budget                           | add a new budget that I need                                           |
+| `* * *`  | user                                       | delete a budget                           | remove a budget that I no longer need                                  |
+| `* * *`  | user                                       | edit a budget                             | edit the name or the threshold that needs to be changed                |
+| `* *`    | user                                       | sort my budgets                           | view my budgets based on name or date                                  |
+| `* *`    | user                                       | find a budget by search term              | locate a budget easily                                                 |
+| `* *`    | user                                       | list out my budgets                       | view by budgets in the default manner after finding or sorting         |
+| `* * *`  | user                                       | open a budget                             | view the expenditures of a budget                                      |
+| `* * *`  | user                                       | close a budget                            | return to the main window                                              |
+| `* *`    | user                                       | see how many expenditures I have in a budget | have a better understanding of the particular budget                |
+| `* * *`  | user                                       | add an expenditure                        | add a new expenditure to a budget                                      |
+| `* * *`  | user                                       | delete an expenditure                     | remove an expenditure that I no longer need                            |
+| `* * *`  | user                                       | edit an expenditure                       | edit the name, price and tag that needs to be changed                  |
+| `* *`    | user                                       | sort my expenditures                      | view my expenditures based on name or date                             |
+| `* *`    | user                                       | find an expenditure by search term        | locate an expenditure easily                                           |
+| `* *`    | user                                       | list out my expenditures                  | view by expenditures in the default manner after finding or sorting    |
+| `* *`    | user                                       | see if I have passed my threshold         | manage my expenses better                                              |
+| `* *`    | user                                       | add tags to my expenditure                | categorise my expenditures                                             |
+| `* *`    | user                                       | exit NUSave                               | stop using the application                                             |
 
-#### 6.1.3. Use Cases
+### Use Cases
 
-#### 6.1.4. Non-Functional Requirements
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 budgets and expenditures without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks at a fast speed.
+#### Use Case: UC01 - Viewing the help menu
+(Contributed by Yu Ming)
 
-### 6.2. Glossary
-* **API**: Application Programming Interface
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+System: NUSave
+<br/>Use Case: UC01 - Viewing the help menu
+<br/>Actor: User
+<br/>MSS:
+1. User enters the command to show the help menu in NUSave.
+2. NUSave displays the help menu to the user.
+<br/> Use case ends.
+
+**Extensions**
+- 1a. NUSave detects an error in the entered command.
+    - 1a1. NUSave shows an error message.
+    - 1a2. User enters new command.
+    <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 2.
+
+#### Use Case: UC02 - Creating a budget
+(Contributed by Yu Ming)
+
+System: NUSave
+<br/>Use Case: UC02 - Creating a budget
+<br/>Actor: User
+<br/>Preconditions: User is on the main page
+<br/>MSS:
+1. User enters the command to add a new budget in NUSave.
+2. NUSave adds the new budget and displays the updated list of budgets to the user.
+<br/> Use case ends.
+
+**Extensions**
+- 1a. NUSave detects an error in the entered command (for example, an invalid threshold).
+    - 1a1. NUSave shows an error message.
+    - 1a2. User enters a new command.
+    <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 2.
+
+#### Use Case: UC03 - Editing a budget
+(Contributed by Yu Ming)
+
+System: NUSave
+<br/>Use Case: UC03 - Editing a budget
+<br/>Actor: User
+<br/>Preconditions: User is on the main page
+<br/>MSS:
+1. User enters the command to edit a budget in NUSave.
+2. NUSave replaces the old budget with the newly edited budget and displays the updated list of budgets to the user.
+<br/> Use case ends.
+
+**Extensions**
+- 1a. NUSave detects an error in the entered command.
+    - 1a1. NUSave shows an error message.
+    - 1a2. User enters new command.
+    <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 2.
+- 1b. NUSave detects that the given budget does not exist in NUSave.
+    - 1b1. NUSave shows an error message.
+    - 1b2. User enters new command.
+    <br/> Steps 1b1-1b2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 2.
+    
+
+#### Use Case: UC04 - Deleting a budget
+(Contributed by David)
+
+System: NUSave
+<br/>Use Case: UC04 - Deleting a budget
+<br/>Actor: User
+<br/>Preconditions: User is on the Main page, there must be an existing budget
+<br/>MSS:
+1. User enters the command to delete a budget.
+2. NUSave deletes the budget and displays the updated list to the user.
+<br/> Use case ends.
+
+**Extensions**
+- 1a. NUSave detects an error in the entered command.
+    - 1a1. NUSave shows an error message.
+    - 1a2. User enters new command.
+    <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 2.
+
+#### Use Case: UC05 - Opening a budget
+
+MSS (Contributed by Song Yu)
+
+System: NUSave
+<br/>Use Case: UC05 - Opening a budget
+<br/>Actor: User
+<br/>Preconditions: User is on the main page
+<br/>MSS:
+1. User enters the command to open a budget in NUSave.
+2. NUSave opens the budget displays the list of expenditures belonging to that budget to the user.
+<br/> Use case ends.
+
+**Extensions**
+- 1a. NUSave detects an error in the entered command.
+    - 1a1. NUSave shows an error message.
+    - 1a2. User enters new command.
+    <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 2.
+
+#### Use Case: UC06 - Closing a budget
+
+MSS (Contributed by Song Yu)
+
+System: NUSave
+<br/>Use Case: UC06 - Closing a budget
+<br/>Actor: User
+<br/>Preconditions: User is on the budget page
+<br/>MSS:
+1. User enters the command to close a budget in NUSave.
+2. NUSave closes the budget and displays the list of budgets in NUSave.
+<br/> Use case ends.
+
+**Extensions**
+- 1a. NUSave detects an error in the entered command.
+    - 1a1. NUSave shows an error message.
+    - 1a2. User enters new command.
+    <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 2.
+
+#### Use Case: UC07 - Sorting budgets
+(Contributed by Yu Ming)
+
+System: NUSave
+<br/>Use Case: UC07 - Sorting budgets
+<br/>Actor: User
+<br/>Preconditions: User is on the main page, NUSave contains at least 2 or more budgets
+<br/>MSS:
+1. User enters the command to sort budgets in NUSave.
+2. NUSave sorts all budgets and displays the updated list of budgets to user.
+<br/> Use case ends.
+
+**Extensions**
+- 1a. NUSave detects an error in the entered command.
+    - 1a1. NUSave shows an error message.
+    - 1a2. User enters new command.
+    <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 2.
+
+
+#### Use Case: UC08 - Finding budgets
+
+(Contributed by Chin Hui)
+
+System: NUSave
+<br>Use Case: UC08 - Finding budgets
+<br>Actor: User
+<br>Preconditions: User is on the main page.
+<br>MSS:
+1. User enters the command to find budgets in NUSave.
+2. NUSave finds all budgets matching the user input and displays the updated list of budgets to user.
+<br>Use case ends.
+
+**Extensions**
+- 1a. NUSave detects an error in the entered command.
+    - 1a1. NUSave shows an error message.
+    - 1a2. User enters new command.
+    <br> Steps 1a1-1a2 are repeated until the command entered is correct.
+    <br> Use case resumes at step 2.
+- 2a. NUSave detects that no budgets were found.
+    - 2a1. NUS displays an empty list view with a message noting that no budgets matched the user input.
+
+#### Use Case: UC09 - Listing budgets
+
+(Contributed by Chin Hui)
+
+System: NUSave
+<br/>Use Case: UC10 - Listing budgets
+<br/>Actor: User
+<br/>Preconditions: User is on the main page.
+<br/>MSS:
+1. User enters the command to list all budgets in NUSave.
+2. NUSave lists all existing budgets in memory, displaying them in the list view and shows the success message.
+<br>Use case ends.
+
+#### Use Case: UC10 - Clearing budgets
+(Contributed by Wen Hao)
+
+System: NUSave
+<br/>Use Case: UC10 - Clearing budgets
+<br/>Actor: User
+<br/>Preconditions: User is on the main page.
+<br/>MSS:
+1. User enters the command to clear all budgets in NUSave.
+2. NUSave deletes all existing budgets, displays an empty list view and shows the success message.
+<br/> Use case ends.
+
+#### Use Case: UC11 - Adding an expenditure
+(Contributed by Song Yu)
+
+System: NUSave
+<br/>Use Case: UC11 - Adding an expenditure
+<br/>Actor: User
+<br/>Preconditions: User is on the budget page
+<br/>MSS:
+1. User enters the command to add a new expenditure in NUSave.
+2. NUSave adds the new expenditure and displays the updated list of expenditures to the user.
+<br/> Use case ends.
+
+**Extensions**
+- 1a. NUSave detects an error in the entered command (for example, an invalid price).
+    - 1a1. NUSave shows an error message.
+    - 1a2. User enters new command.
+    <br/> Steps 1a1-1a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 2.
+
+#### Use Case: UC12 - Editing an expenditure
+(Contributed by David)
+
+System: NUSave
+<br/>Use Case: UC12 - Editing an expenditure
+<br/>Actor: User
+<br/>Preconditions: User is on the Budget page, there must be an existing expenditure
+<br/>MSS:
+1. User requests to <ins>open a budget (UC05)</ins> to view the list of expenditures in the budget page view.
+2. NUSave opens the budget and displays the list of expenditures belonging to that budget.
+3. User enters the command to edit an expenditure within the budget.
+4. NUSave edits the expenditure and displays the updated list to the user.
+<br/> Use case ends.
+
+**Extensions**
+- 3a. NUSave detects an error in the entered command.
+    - 3a1. NUSave shows an error message.
+    - 3a2. User enters new command.
+    <br/> Steps 3a1-3a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 4.
+
+#### Use Case: UC13 - Deleting an expenditure
+(Contributed by David)
+
+System: NUSave
+<br/>Use Case: UC13 - Deleting an expenditure
+<br/>Actor: User
+<br/>Preconditions: User is on the Budget page, there must be an existing expenditure
+<br/>MSS:
+1. User requests to <ins>open a budget (UC05)</ins> to view the list of expenditures in the budget page view.
+2. NUSave opens the budget and displays the list of expenditures belonging to that budget.
+3. User enters the command to delete an expenditure within the budget.
+4. NUSave deletes the expenditure and displays the updated list to the user.
+<br/> Use case ends.
+
+**Extensions**
+- 3a. NUSave detects an error in the entered command.
+    - 3a1. NUSave shows an error message.
+    - 3a2. User enters new command.
+    <br/> Steps 3a1-3a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 4.
+
+#### Use Case: UC14 - Sorting expenditures
+(Contributed by Yu Ming)
+
+System: NUSave
+<br/>Use Case: UC14 - Sorting expenditures
+<br/>Actor: User
+<br/>Preconditions: User is on the budget page, the given budget contains at least 2 or more expenditures
+<br/>MSS:
+1. User requests to <ins>open a budget (UC05)</ins> to view the list of expenditures in the budget page view.
+2. NUSave opens the budget and displays the list of expenditures belonging to that budget.
+3. User enters the command to sort expenditures in NUSave.
+4. NUSave sorts the expenditures and displays the updated list to the user.
+<br/> Use case ends.
+
+**Extensions**
+- 3a. NUSave detects an error in the entered command.
+    - 3a1. NUSave shows an error message.
+    - 3a2. User enters new command.
+    <br/> Steps 3a1-3a2 are repeated until the command entered is correct.
+    <br/> Use case resumes at step 4.
+
+
+#### Use Case: UC15 - Finding expenditures
+
+(Contributed by Chin Hui)
+
+System: NUSave
+<br>Use Case: UC08 - Finding expenditures
+<br>Actor: User
+<br>Preconditions: User is on the budget page.
+<br>MSS:
+1. User enters the command to find expenditures in NUSave.
+2. NUSave finds all expenditures matching the user input and displays the updated list of expenditures to user.
+<br>Use case ends.
+
+**Extensions**
+- 1a. NUSave detects an error in the entered command.
+    - 1a1. NUSave shows an error message.
+    - 1a2. User enters new command.
+    <br> Steps 1a1-1a2 are repeated until the command entered is correct.
+    <br> Use case resumes at step 2.
+- 2a. NUSave detects that no expenditures were found.
+    - 2a1. NUS displays an empty list view with a message noting that no expenditures matched the user input.
+    
+#### Use Case: UC16 - Listing expenditures
+
+(Contributed by Chin Hui)
+
+System: NUSave
+<br/>Use Case: UC10 - Listing expenditures
+<br/>Actor: User
+<br/>Preconditions: User is on the budget page.
+<br/>MSS:
+1. User enters the command to list all expenditures in NUSave.
+2. NUSave lists all existing expenditures in the current budget in memory, displaying them in the list view and 
+shows the success message.
+<br>Use case ends.
+
+#### Use Case: UC17 - Undoing an action
+
+(Contributed by Wen Hao)
+
+System: NUSave
+<br/>Use Case: UC17 - Undoing an action
+<br/>Actor: User
+<br/>Preconditions: User has just launched NUSave that contains a budget named "demo".
+<br/>MSS:
+1. User <ins>deletes the "demo" budget (UC04)</ins>.
+2. NUSave deletes the "demo" budget and removes it from the list view.
+3. User enters the undo command.
+4. NUSave loads the state before the previous command and adds the "demo" budget into the list view.
+<br/> Use case ends.
+
+**Extensions**
+- 1a. User enters the undo command without deleting the "demo" budget.
+    - 1a1. NUSave shows "no action to undo" error message.
+    - 1a2. Use case resumes at step 1.
+
+#### Use Case: UC18 - Redoing an action
+
+(Contributed by Wen Hao)
+
+System: NUSave
+<br/>Use Case: UC18 - Redoing an action
+<br/>Actor: User
+<br/>Preconditions: User has just launched NUSave that contains a budget named "demo".
+<br/>MSS:
+1. User <ins>undoes the deletion of the "demo" budget (UC17)</ins>.
+2. NUSave loads the state before using the delete command and removes the "demo" budget from the list view.
+<br/> Use case ends.
+3. User enters the redo command.
+4. NUSave loads the state before using the undo command and adds the "demo" budget into the list view.
+<br/> Use case ends.
+
+**Extensions**
+- 1a. User enters the redo command without undoing any actions.
+    - 1a1. NUSave shows "no action to redo" error message.
+    - 1a2. Use case resumes at step 1.
+
+### Non-Functional Requirements
+
+(Contributed by Chin Hui)
+
+1. NUSave should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. NUSave should be able to hold up to 1000 budgets and expenditures without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
+should be able to accomplish most of the tasks at a faster speed compared to clicking with the mouse.
+4. NUSave should serve only a single user at a time on a single client.
+5. NUSave should not require an internet connection to run.
+6. NUSave should have sufficient help messages such that a novice is able to learn to use the commands quickly.
+7. NUSave should save its data locally.
+8. NUSave should have proper error handling such that the application does not crash and the corresponding error
+message is displayed to the user.
+9. Features should be implemented such that they can undergo automated testing.
+10. NUSave should have an intuitive User Interface such that a novice user should be able to understand
+what the elements of the application represents.
+
+### Glossary
+
+(Contributed by Song Yu)
+
+| Term | Explanation |
+| ---- | ----------- |
+| Expenditure                 | Refers to a single item to be recorded in NUSave.                                                                                                                              
+| Budget                      | Refers to how NUSave stores related expenditures under one group. A budget can also hold additional information about this list of expenditures, such as the target limit of what is to be spent (i.e. threshold). 
+| Main Page                   | Refers to the page that displays the list of budgets that is stored in NUSave.                                                                                                 
+| Budget Page                 | Refers to the page that displays the list of expenditures belonging in a specific budget that is stored in NUSave.                                                             
+| Threshold                   | Refers to the target limit that can be spent in that budget.
+| PlantUML                    | A software tool used by NUSave's team to render UML diagrams in this developer guide. 
+| NUS                         | Stands for National University of Singapore.
+| API                         | Stands for 'Application Programming Interface', which abstracts away underlying implementation and only exposes objects or methods a developer needs.
+| JSON                        | Stands for 'Javascript Standard Object Notation', which is a form of syntax used for storing data. 
+| CLI                         | Stands for **Command Line Interface**. CLI-based Applications (i.e. NUSave) focuses on processing commands in the form of text entered from the keyboard.                       
+| GUI                         | Stands for **Graphical User Interface**. GUIs work as the communication channel between the program and the user. Users interact with NUSave through the GUI, on their devices. 
+| UML                         | Stands for 'Unified Modeling Diagram'. A general-purpose, standardized modeling language used in the field of software engineering.
+| NFR                         | Stands for 'Non-functional Requirements', which specifies the constraints under which the system is developed and operated.
+| Mainstream OS               | Stands for 'Mainstream Operating Systems', such as Windows, MacOS, Linux, Unix, OS-X.
+| MSS                         | Stands for 'Main Success Scenario', which describes the interaction for a given use case, assuming nothing goes wrong.
 
 ### 6.3. Instructions for Manual Testing
-Given below are instructions to test the application manually:
+
+(Contributed by Chin Hui)
+
+Given below are instructions to test the application manually. These instructions should be complemented
+with the user guide for comprehensive testing. The state of the application is assumed to contain some data
+either sample data from when the application is first launched or a customised data set.
 
 #### Launch and Shutdown
 1. Launching the application
 
    1. Download the jar file and copy into an empty folder.
 
-   1. Double-click the jar file.<br>
+   2. Double-click the jar file.<br>
    Expected: Shows the GUI with a set of sample budgets. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the application by double-clicking the jar file.<br>
+   2. Re-launch the application by double-clicking the jar file.<br>
    Expected: The most recent window size and location is retained.
 
-#### Deletion
+#### Add commands
+1. Adding a budget
+
+    1. Prerequisites: User is in the main page with multiple budgets in the list.
+    
+    2. Test case: `create n/Temasek Hall Basketball`<br>
+       Expected: A budget by the name of Temasek Hall Basketball is created with its budget threshold set to $0.
+       Details of the added budget is shown in the status message. The newly added budget is displayed as the first
+       item in the GUI list.
+       
+    3. Test case: `create n/Temasek Hall Basketball p/1000`<br>
+       Expected: A budget by the name of Temasek Hall Basketball is created with its budget threshold set to $1000.
+       Details of the added budget is shown in the status message. The newly added budget is displayed as the first
+       item in the GUI list.
+    
+    4. Test case: `create`<br>
+       Expected: No budget will be created. You will get an error message stating that the command format is invalid,
+       with details of the proper format accompanied by examples.
+       
+    5. Test case: `create n/`<br>
+       Expected: No budget will be created. You will get an error message stating that the name should only contain
+       alphanumeric characters and spaces, it should not be blank.
+   
+2. Adding an expenditure
+
+    1. Prerequisites: User is in the budget page with multiple expenditures in the list.
+    
+    2. Test case: `add n/shirt p/15 t/clothing`<br>
+       Expected: An expenditure with the name shirt, price of $15 and tag of clothing will be added into the current budget.
+       Details of the added expenditure is shown in the status message. The newly added expenditure is displayed as the first
+       item in the GUI list.
+       
+    3. Test case: `add n/shirt t/clothing`<br>
+        Expected: No expenditure will be created. You will get an error message stating that the command format is invalid,
+        with details of the proper format accompanied by examples.
+        
+    4. Test case: `add n/shirt p/15 t/some of my favourite shirts`<br>
+        Expected: No expenditure will be created. You will get an error message stating that each tag is limited to 15
+        characters long.
+        
+    5. Test cae: `add n/blue shirt p/15 t/clothing t/tops t/shopping t/blue`<br>
+        Expected: No expenditure will be created. You will get an error message stating that each
+        expenditure can only have a maximum of 3 tags.
+        
+
+#### Delete Commands
 1. Deleting a budget
 
-   1. Prerequisites: User is in the main page. Multiple budgets are in the list.
+    1. Prerequisites: User is in the main page with multiple budgets in the list.
 
-   1. Test case: `delete 1`<br>
+    2. Test case: `delete 1`<br>
       Expected: First budget is deleted from the list. Details of the deleted budget is shown in the status message.
-      Timestamp in the status bar is updated.
+    
+    3. Test case: `delete 0`<br>
+      Expected: No budget is deleted. You will get an error message stating that the index is out of range and the valid 
+      range is from 1-100.
+    
+    4. Test case: `delete`<br>
+      Expected: No budget is deleted. You will get an error message stating that the index should be an integer.
+      
+    5. Test case: `delete x`<br>
+      Expected: No budget is deleted. You will get an error message stating that the index should be an integer.
+      
+2. Deleting an expenditure
 
-   1. Test case: `delete 0`<br>
-      Expected: No budget is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Prerequisites: User is in the budget page with multiple expenditures in the list.
+    
+    2. Test case: `delete 1`<br>
+    Expected: First expenditure is deleted from the list. Details of the deleted expenditure is shown 
+    in the status message.
+    
+    3. Test case: `delete 0`<br>
+    Expected: No budget is deleted. You will get an error message stating that the index is out of range and the valid 
+          range is from 1-100.
+    
+    4. Test case: `delete`<br>
+    Expected: No budget is deleted. You will get an error message stating that the index should be an integer.
+          
+    5. Test case: `delete x`<br>
+    Expected: No budget is deleted. You will get an error message stating that the index should be an integer.
+      
+#### Edit Commands
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+1. Editing a budget
+    1. Prerequisites: User is in the main page with multiple budgets in the list.
+    
+    2. Test case: `edit 1 n/Daily Expenses p/500`<br>
+    Expected: The first budget in the list will be edited to have the name 'Daily Expenses' and a budget threshold
+    of $500. This is assuming the first budget in the list had a different name with a different budget threshold.
+    
+    3. Test case: `edit 1 n/Daily Expenses`<br>
+    Expected: The first budget in the list will be edited to have the name 'Daily Expenses'
+     while its budget threshold will remain the same. This is assuming the first budget in the list had a different name.
+     
+    4. Test case: `edit 1 p/500`<br>
+    Expected: The first budget in the list will be edited to have a budget threshold of $500. This is assuming the
+    first budget in the list had a different budget threshold.
+    
+    5. Test case: `edit 0 p/300`<br>
+    Expected: No budget will be edited. You will get an error message stating that the index is out of range and the valid
+    range is from 1-100.
+    
+    6. Test case: `edit 1 p/-10`<br>
+    Expected: No budget will be edited. You will get an error message stating that thresholds cannot be $0 or less. The valid
+    range of thresholds which is between $0.01 and $1,000,000 will be stated.
+    
+2. Editing an expenditure
+    1. Prerequisites: User is in the budget page with multiple expenditures in the list.
+    
+    2. Test case: `edit 1 n/blue shirt p/15 t/clothing`<br>
+    Expected: The first expenditure in the current budget will be edited to have the name 'blue shirt', a price of $15
+    and a clothing tag. This is assuming that the first expenditure in the current budget had a different name, price 
+    and the tags clothing, shirt and shopping (`tags` will be overwritten).
+    
+    3. Test case: `edit 1 n/blue shirt`<br>
+    Expected: The first expenditure in the current budget will be edited to have the name `blue shirt`.
+    This is assuming that the first expenditure in the current budget had a different name.
+    
+    4. Test case: `edit 1 p/15`<br>
+    Expected: The first expenditure in the current budget will be edited to have the price of $15.
+    This is assuming that the first expenditure in the current budget had a different price.
+    
+    5. Test case: `edit 0 n/blue shirt`<br>
+    Expected: No expenditure will be edited. You will get an error message stating that the index is out of range and the valid
+    range is from 1-100.
+    
+    6. Test case: `edit 1 p/-10`<br>
+    Expected: No expenditure will be edited. You will get an error message stating that prices cannot be $0 or less. The valid
+    range of prices which is between $0.01 and $10,000 will be stated.
+    
+#### Sort Commands
 
-### 6.4. Effort
+1. Sorting budgets
+
+    1. Prerequisite: User is in the main page with multiple budgets in the list.
+    
+    2. Test case: `sort name`<br>
+    Expected: Current budgets in the GUI list will be sorted by name in alphabetical order.
+    
+    3. Test case: `sort time`<br>
+    Expected: Current budgets in the GUI list will be sorted by creation date, with the most recently created at the top.
+    If two budgets are created on the same day they will be further sorted by name in alphabetical order.
+    
+    4. Test case: `sort test`<br>
+    Expected: Current budgets will not be sorted. You will get an error message stating that the sort type is not supported.
+   
+2. Sorting expenditures
+    
+    1. Prerequisite: User is in the budget page with multiple expenditures in the list.
+    
+    2. Test case: `sort name`<br>
+    Expected: Current expenditures in the GUI list will be sorted by name in alphabetical order.
+    
+    3. Test case: `sort time`<br>
+    Expected: Current expenditures in the GUI list will be sorted by creation date, with the most recently created at the top.
+    If two expenditures are created on the same day they will be further sorted by name in alphabetical order.
+    
+    4. Test case: `sort test`<br>
+    Expected: Current expenditures will not be sorted. You will get an error message stating that the sort type is not supported.
+
+#### Find Commands
+1. Finding Budgets
+
+    1. Prerequisite: User is in the main page with multiple budgets in the list.
+    
+    2. Test case: `find NUS`<br>
+    Expected: Budgets with names that contain the search term 'NUS' will be displayed in the GUI list.
+    
+    3. Test case: `find`<br>
+    Expected: You will get an error message stating that the search term should not be blank.
+
+2. Finding Expenditures
+
+    1. Prerequisite: User is in the budget page with multiple expenditures in the list.
+
+    2. Test case: `find shirt`<br>
+    Expected: Expenditures in the current budget with names that contain the search term 'shirt' will be displayed in the GUI list.
+    
+    3. Test case: `find`<br>
+    Expected: You will get an error message stating that the search term should not be blank.
+
+#### List Commands
+
+1. Listing Budgets
+
+    1. Prerequisite: User is in the main page with multiple budgets in the list. The `find` command was successfully used,
+    the GUI list currently only displays budgets containing 'NUS'.
+    
+    2. Test case: `list`<br>
+    Expected: All budgets are now displayed in the GUI list.
+    
+2. Listing Expenditures
+
+    1. Prerequisite: User is in the budget page with multiple expenditures in the list. The `find` command was successfully used,
+    the GUI list currently only displays expenditures containing `shirt`.
+    
+    2. Test caes: `list`<br>
+    Expected: All expenditures are now displayed in the GUI list.
+
+#### Universal Commands
+
+1. Help Command
+
+    1. Test case: `help`<br>
+    Expected: Description, format and examples of all commands are displayed in the result box.
+    
+#### Opening a budget
+
+1. Prerequisite: User is in the main page with multiple budgets in the list.
+
+2. Test case: `open 1`<br>
+Expected: Opens the first budget in the current GUI list of budgets. The GUI list now displays the expenditures within
+the first budget.
+
+3. Test case: `open -1`<br>
+Expected: You will get an error message stating that the current index is out of bounds and the correct range which is
+from 0-100.
+
+#### Closing a budget
+
+1. Prerequisite: User is in the budget page with multiple expenditures in the list.
+
+2. Test case: `close`<br>
+Expected: Closes the current budget and return back to the main page.
+
+#### Redo Command
+
+1. Test case: `redo` (assuming that the `undo` command was used previously to undo a `create` command)<br>
+Expected: The `create` command that was undone will be called again. The budget that was created using the `create`
+command will be reflected in the GUI list.
+
+#### Undo Command
+
+1. Test case: `undo` (assuming that `create` command was the most recently called command)<br>
+Expected: The `create` command will be undone. The budget that was created will be removed from the GUI list as if the
+`create` command was not called.
+
+### Effort
+
+(Contributed by all <3)
+
+Throughout the development, our team shared the common goal of making NUSave an application that is intuitive, object-oriented 
+and presentable. After devoting countless late nights both as a team and individually, we managed to pull through and create
+a product that we are proud of. Amassing over 10,000 lines of code combined, we had to adhere to strict deadlines, cultivate 
+a culture of open communication and proactively support one another. Aside from the weekly official meetings, we frequently 
+met up to conduct code reviews and pair programming to ensure that everyone was on the same page. 
+
+To enable navigation between pages, we had to restructure a large portion of AB3 so that NUSave incorporates the concept of
+having states. As such, we implemented a new architectural `State` component to keep track of what page the user is on and reflect the respective page view.
+
+To fulfil the functional requirements of NUSave, an additional layer of data was integrated. On top of the one to many relationship between `Nusave`
+and `Budget`, `Budget` also has a one to many relationship with `Expenditure`.
+
+To implement the undo and redo commands, we had to come up with our own version of a doubly-linked list, `Node<T>`, as well as
+its own iterator, `HistoryManager<T>`. Furthermore, not only the data had to be cached, but also the state of NUSave in `VersionedNusave`.
+
+Coding aside, we placed an equal emphasise on UI/UX.
+
+Firstly, we revamped the GUI entirely. Taking into consideration colour consistency, design trends and ease of navigation,
+we used Figma to generate a mock-up for our reference throughout the development. Despite the limitations of JavaFX and our knowledge in CSS, we were successful
+in replicating our ideal design.
+
+To make our application more dynamic, we researched on numerous APIs and narrowed down to using JavaFX's `Property` and `Bindings` interfaces.
+Through countless trial and errors, we managed to render NUSave's UI components dynamically while adhering to OO principles.
+
+Finally, much effort was put into ensuring that our documentation was organised and pleasant to read.
+We had meetings to standardise every section in terms of language, structure and diagrams. After multiple iterations,
+consistency was achieved in both our user and developer guides.
