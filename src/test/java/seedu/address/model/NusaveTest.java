@@ -10,11 +10,10 @@ import static seedu.address.testutil.TypicalState.TYPICAL_MAIN_PAGE_STATE;
 import java.util.Collections;
 import java.util.Optional;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.budget.Budget;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.budget.BudgetList;
 import seedu.address.model.expenditure.ExpenditureList;
 import seedu.address.state.State;
@@ -78,7 +77,7 @@ class NusaveTest {
         nusave.repopulateObservableList(state);
         ObservableList<Renderable> internalList = FXCollections.unmodifiableObservableList(
                 FXCollections.observableArrayList(BUDGET_LIST.getBudgets()));
-        assertEquals(nusave.getInternalList(),internalList);
+        assertEquals(nusave.getInternalList(), internalList);
     }
 
     @Test

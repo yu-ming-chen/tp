@@ -3,28 +3,26 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalBudgets.*;
-import static seedu.address.testutil.TypicalExpenditures.MC_MUFFIN;
+import static seedu.address.testutil.TypicalBudgets.KFC;
+import static seedu.address.testutil.TypicalBudgets.MC_DONALDS;
+import static seedu.address.testutil.TypicalBudgets.SUBWAY;
+import static seedu.address.testutil.TypicalBudgets.getTypicalNusave;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Optional;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.budget.Budget;
-import seedu.address.model.expenditure.Expenditure;
 import seedu.address.state.Page;
 import seedu.address.state.budgetindex.BudgetIndex;
 import seedu.address.state.budgetindex.BudgetIndexManager;
-import seedu.address.state.expenditureindex.ExpenditureIndex;
-import seedu.address.state.expenditureindex.ExpenditureIndexManager;
 import seedu.address.testutil.BudgetBuilder;
-import seedu.address.testutil.TypicalBudgets;
 import seedu.address.testutil.TypicalExpenditures;
 
 public class ModelManagerTest {
@@ -127,17 +125,17 @@ public class ModelManagerTest {
         assertEquals(size, 2);
     }
 
-//        @Test
-//        void editBudget_validBudget_deletesBudget() {
-//            modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
-//            Budget oldBudget = new BudgetBuilder().withName("McDonalds").withCreatedOn("2020-10-10")
-//                    .withExpenditures(TypicalExpenditures.EXPENDITURE_LIST_MCDONALDS).build();
-//            Budget newBudget = new BudgetBuilder().withName("KFC").withCreatedOn("2020-10-10")
-//                    .withExpenditures(TypicalExpenditures.EXPENDITURE_LIST_KFC).build();
-//            modelManager.editBudget(oldBudget, newBudget);
-//            System.out.println(modelManager.getNusave().getBudgetListAsObservableList());
-//            assertEquals(modelManager.getNusave().getBudgetListAsObservableList().get(0), newBudget);
-//        }
+    //@Test
+    //void editBudget_validBudget_deletesBudget() {
+    //    modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+    //    Budget oldBudget = new BudgetBuilder().withName("McDonalds").withCreatedOn("2020-10-10")
+    //            .withExpenditures(TypicalExpenditures.EXPENDITURE_LIST_MCDONALDS).build();
+    //    Budget newBudget = new BudgetBuilder().withName("KFC").withCreatedOn("2020-10-10")
+    //            .withExpenditures(TypicalExpenditures.EXPENDITURE_LIST_KFC).build();
+    //    modelManager.editBudget(oldBudget, newBudget);
+    //    System.out.println(modelManager.getNusave().getBudgetListAsObservableList());
+    //    assertEquals(modelManager.getNusave().getBudgetListAsObservableList().get(0), newBudget);
+    //}
 
     @Test
     void deleteAllBudgets() {
