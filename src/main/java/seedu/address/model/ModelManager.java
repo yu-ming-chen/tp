@@ -16,7 +16,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.budget.FindExpenditureCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.main.FindBudgetCommand;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.budget.BudgetList;
 import seedu.address.model.budget.Threshold;
@@ -232,7 +234,7 @@ public class ModelManager implements Model {
         Predicate<Renderable> predicate = renderable -> renderable.contains(searchTerm);
         updateFilteredRenderableList(predicate);
         if (filteredRenderables.size() == 0) {
-            throw new CommandException(String.format("No budgets matching '%s' were found.", searchTerm));
+            throw new CommandException(String.format(FindBudgetCommand.MESSAGE_NO_BUDGETS_FOUND, searchTerm));
         }
     }
 
@@ -331,7 +333,7 @@ public class ModelManager implements Model {
         Predicate<Renderable> predicate = renderable -> renderable.contains(searchTerm);
         updateFilteredRenderableList(predicate);
         if (filteredRenderables.size() == 0) {
-            throw new CommandException(String.format("No expenditures matching '%s' were found.", searchTerm));
+            throw new CommandException(String.format(FindExpenditureCommand.MESSAGE_NO_EXPENDITURES_FOUND, searchTerm));
         }
     }
 
