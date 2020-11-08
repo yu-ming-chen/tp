@@ -25,4 +25,9 @@ public class ListExpenditureCommand extends Command {
         model.listExpenditures();
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof ListExpenditureCommand;
+    }
 }

@@ -52,4 +52,11 @@ public class SortExpenditureCommand extends BudgetPageCommand {
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortExpenditureCommand // instanceof handles nulls
+                && sortType.equals(((SortExpenditureCommand) other).sortType));
+    }
 }
