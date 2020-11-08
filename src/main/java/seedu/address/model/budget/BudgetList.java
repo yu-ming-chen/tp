@@ -33,6 +33,10 @@ public class BudgetList implements Iterable<Budget> {
         this.budgets = new ArrayList<>();
     }
 
+    public BudgetList(List<Budget> budgets) {
+        this.budgets = budgets;
+    }
+
     /**
      * Creates a deep copy of the given {@code BudgetList}.
      * @param toClone the {@code BudgetList} to be copied.
@@ -167,7 +171,7 @@ public class BudgetList implements Iterable<Budget> {
         budgets.sort(new SortBudgetsByName());
     }
 
-    public void sortBudgetsListByCreateDate() {
+    public void sortBudgetListByCreatedDate() {
         this.budgets.sort(new SortBudgetsByCreateDate());
     }
 

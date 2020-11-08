@@ -1,7 +1,6 @@
 @startuml
 skinparam Sequence {
     MessageAlign center
-
 }
 hide footbox
 box "Logic" #LightBlue
@@ -54,7 +53,6 @@ destroy CBCP
 deactivate CBCP
 LM <-- MPP : c
 deactivate MPP
-destroy MPP
 
 LM <-[hidden]- MPP
 destroy MPP
