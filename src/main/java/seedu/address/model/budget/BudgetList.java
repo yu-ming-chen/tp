@@ -187,9 +187,4 @@ public class BudgetList implements Iterable<Budget> {
                 && (budgets.containsAll(((BudgetList) other).budgets))
                 && ((BudgetList) other).getBudgets().containsAll(budgets));
     }
-
-    @Override
-    public int hashCode() {
-        return budgets.hashCode();
-    }
 }

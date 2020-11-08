@@ -21,18 +21,18 @@ Given below are my contributions to the project:
 - **Feature** : Added ability to view help in NUSave.
 	- What it does: `help` allows the users to view the help commands in NUSave.
 	- Justification: This features allows users to view all command help instructions in NUSave. 
+	- Highlight: This feature displays a different set of help instructions depending on which page the user is on.
+	For example, if user is on main page, it will display unique command to the main page such as open budget and create budget command.
 - **Feature** : Added ability to sort budgets in NUSave.
 	- What it does: `sort` allows the users to be able to sort budgets in NUSave.
 	- Justification: This features allows users to be able to sort all budgets in NUSave either by their name in 
 	alphabetical order, or their created date with the latest on top.
-	- Highlight: Budgets are sorted by created time upon launching of NUSave as well. This ensures NUSave
-	is always sorted by created date upon launch independent of commands user used to reorder the budgets during the
-	previous usage. The challenge is the need to find the most suitable place to execute the sort 
-	command upon launch, ensuring maximum efficiency while abiding by OOP.
 - **Feature** : Added ability to sort expenditures in NUSave.
 	- What it does: `sort` allows the users to be able to sort expenditures in NUSave.
 	- Justification: This features allows users to be able to sort all expenditures in a budget either by their name in 
 	alphabetical order, or their created date with the latest on top.
+	- Highlight: The implementation can be challenging as I need to implement different Comparator for the sort command,
+	while abiding by the OO principle.
 - **Feature** : Added ability dynamically view the current date and time in NUSave.
 	- What it does: Dynamically updating the date and time in the MAIN page view UI component of NUSave.
 	- Justification: This features allows users to be able to track the current date and time while managing their
@@ -55,6 +55,7 @@ Given below are my contributions to the project:
 		- Added documentation for `Symbols`, `Syntax format` and `Command summary` section.
 		- Added documentation for the features `help`, `create` budget, `edit` budget, `sort` budget and `sort`
 		expenditures.
+		- Did cosmetic tweaks to existing documentation by including emoji for annotation.
 		- Created and annotated all NUSave screenshots. PR [#212](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/212)
 	- Developer Guide:
 		- Added documentation for `Setting up` and `Logic component` in Design Architecture
