@@ -171,7 +171,7 @@ public class BudgetList implements Iterable<Budget> {
         budgets.sort(new SortBudgetsByName());
     }
 
-    public void sortBudgetsListByCreateDate() {
+    public void sortBudgetListByCreatedDate() {
         this.budgets.sort(new SortBudgetsByCreateDate());
     }
 
