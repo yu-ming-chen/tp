@@ -18,31 +18,31 @@ public class TypicalBudget {
 
     public static final Budget MC_DONALDS = new BudgetBuilder().withName(MC_DONALDS_NAME)
             .withThreshold(MC_DONALDS_THRESHOLD).withCreatedOn(MC_DONALDS_CREATED_ON)
-            .withExpenditures(TypicalExpenditures.MC_DONALDS_EXPENDITURES).build();
+            .withExpenditures(TypicalExpenditures.getMcDonaldsExpenditures()).build();
 
     public static final Budget KFC = new BudgetBuilder().withName(KFC_NAME)
             .withThreshold(KFC_THRESHOLD).withCreatedOn(KFC_CREATED_ON)
-            .withExpenditures(TypicalExpenditures.KFC_EXPENDITURES).build();
+            .withExpenditures(TypicalExpenditures.getKfcExpenditures()).build();
 
     public static final Budget SUBWAY = new BudgetBuilder().withName(SUBWAY_NAME)
             .withThreshold(SUBWAY_THRESHOLD).withCreatedOn(SUBWAY_CREATED_ON)
-            .withExpenditures(TypicalExpenditures.SUBWAY_EXPENDITURES).build();
+            .withExpenditures(TypicalExpenditures.getSubwayExpenditures()).build();
 
     public static Budget getMcDonaldsBudget() {
         return new BudgetBuilder().withName(MC_DONALDS_NAME)
                 .withThreshold(MC_DONALDS_THRESHOLD).withCreatedOn(MC_DONALDS_CREATED_ON)
-                .withExpenditures(TypicalExpenditures.MC_DONALDS_EXPENDITURES).build();
+                .withExpenditures(TypicalExpenditures.getMcDonaldsExpenditures()).build();
     }
 
     public static Budget getKfcBudget() {
         return new BudgetBuilder().withName(KFC_NAME)
                 .withThreshold(KFC_THRESHOLD).withCreatedOn(KFC_CREATED_ON)
-                .withExpenditures(TypicalExpenditures.KFC_EXPENDITURES).build();
+                .withExpenditures(TypicalExpenditures.getKfcExpenditures()).build();
     }
 
     public static Budget getSubwayExpenditure() {
         return new BudgetBuilder().withName(SUBWAY_NAME)
                 .withThreshold(SUBWAY_THRESHOLD).withCreatedOn(SUBWAY_CREATED_ON)
-                .withExpenditures(TypicalExpenditures.SUBWAY_EXPENDITURES).build();
+                .withExpenditures(TypicalExpenditures.getSubwayExpenditures()).build();
     }
 }

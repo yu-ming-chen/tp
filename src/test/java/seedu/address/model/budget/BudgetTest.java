@@ -1,154 +1,118 @@
-//package seedu.address.model.budget;
-//
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static org.junit.jupiter.api.Assertions.assertFalse;
-//import static org.junit.jupiter.api.Assertions.assertTrue;
-//
-//import java.util.ArrayList;
-//import java.util.Arrays;
-//
-//import org.junit.jupiter.api.Test;
-//
-//import seedu.address.model.expenditure.Expenditure;
-//import seedu.address.model.expenditure.ExpenditureList;
-//import seedu.address.testutil.BudgetBuilder;
-//import seedu.address.testutil.ExpenditureBuilder;
-//import seedu.address.testutil.TypicalExpenditures;
-//
-//class BudgetTest {
-//
-//    private Expenditure mcMuffin = new ExpenditureBuilder().withName("McMuffin").withPrice("4.50")
-//            .withCreatedOn("2020-10-10").build();
-//    private Expenditure mcSpicy = new ExpenditureBuilder().withName("McSpicy").withPrice("7.00")
-//            .withCreatedOn("2020-10-11").build();
-//    private Expenditure mcNuggets = new ExpenditureBuilder().withName("McNuggets").withPrice("4.00")
-//            .withCreatedOn("2020-10-12").build();
-//
-//    private ExpenditureList expenditureList =
-//            new ExpenditureList(new ArrayList<>(Arrays.asList(mcMuffin, mcNuggets, mcSpicy)));
-//
-//    private Budget mcDonalds = new BudgetBuilder().withName("McDonalds").withCreatedOn("2020-10-11")
-//            .withThreshold("1200").withExpenditures(expenditureList).build();
-//
-//    @Test
-//    public void isSameBudget() {
-//        // same object -> returns true
-//        assertTrue(mcDonalds.isSameBudget(mcDonalds));
-//
-//        // null -> returns false
-//        assertFalse(mcDonalds.isSameBudget(null));
-//
-//        // different createdOn -> returns false
-//        Budget editedMcdonalds = new BudgetBuilder(mcDonalds)
-//                .withCreatedOn(BudgetBuilder.DEFAULT_CREATED_ON)
-//                .build();
-//        assertFalse(mcDonalds.isSameBudget(editedMcdonalds));
-//
-//        // different name -> returns false
-//        editedMcdonalds = new BudgetBuilder(mcDonalds).withName(BudgetBuilder.DEFAULT_NAME).build();
-//        assertFalse(mcDonalds.isSameBudget(editedMcdonalds));
-//
-//        // same name, same createdOn, different threshold -> returns true
-//        editedMcdonalds = new BudgetBuilder(mcDonalds).withThreshold(BudgetBuilder.DEFAULT_THRESHOLD).build();
-//        assertTrue(editedMcdonalds.isSameBudget(editedMcdonalds));
-//
-//        // same name, same createdOn, different expenditures -> returns true
-//        editedMcdonalds = new BudgetBuilder(mcDonalds).withExpenditures(BudgetBuilder.DEFAULT_EXPENDITURES).build();
-//        assertTrue(editedMcdonalds.isSameBudget(editedMcdonalds));
-//
-//        // same name, same createdOn, different attributes -> returns true
-//        editedMcdonalds = new BudgetBuilder(mcDonalds).withThreshold(BudgetBuilder.DEFAULT_THRESHOLD)
-//                .withExpenditures(BudgetBuilder.DEFAULT_EXPENDITURES).build();
-//        assertTrue(editedMcdonalds.isSameBudget(editedMcdonalds));
-//    }
-//
-//    @Test
-//    public void equals() {
-//        // same values -> returns true
-//        Budget mcdonaldsCopy = new BudgetBuilder(mcDonalds).build();
-//        assertTrue(mcDonalds.equals(mcdonaldsCopy));
-//
-//        // same object -> returns true
-//        assertTrue(mcDonalds.equals(mcDonalds));
-//
-//        // null -> returns false
-//        assertFalse(mcDonalds.equals(null));
-//
-//        // different type -> returns false
-//        assertFalse(mcDonalds.equals(5));
-//
-//        // different budget -> returns false
-//        assertFalse(mcDonalds.equals(new BudgetBuilder().build()));
-//
-//        // different name -> returns false
-//        Budget editedMcdonalds = new BudgetBuilder(mcDonalds).withName(BudgetBuilder.DEFAULT_NAME).build();
-//        assertFalse(mcDonalds.equals(editedMcdonalds));
-//
-//        // different createdOn -> returns false
-//        editedMcdonalds = new BudgetBuilder(mcDonalds).withCreatedOn(BudgetBuilder.DEFAULT_CREATED_ON).build();
-//        assertFalse(mcDonalds.equals(editedMcdonalds));
-//
-//        // different threshold -> returns false
-//        editedMcdonalds = new BudgetBuilder(mcDonalds).withThreshold(BudgetBuilder.DEFAULT_THRESHOLD).build();
-//        assertFalse(mcDonalds.equals(editedMcdonalds));
-//
-//        // different expenditures -> returns false
-//        editedMcdonalds = new BudgetBuilder(mcDonalds).withExpenditures(BudgetBuilder.DEFAULT_EXPENDITURES).build();
-//        assertFalse(mcDonalds.equals(editedMcdonalds));
-//    }
-//
-//    @Test
-//    void getName() {
-//        Budget expectedBudget = mcDonalds;
-//        assertEquals(new Name("McDonalds"), expectedBudget.getName());
-//    }
-//
-//    @Test
-//    void getCreatedOn() {
-//        Budget expectedBudget = mcDonalds;
-//        assertEquals(new Date("2020-10-11"), expectedBudget.getCreatedOn());
-//    }
-//
-//    @Test
-//    void getThreshold() {
-//        Budget expectedBudget = mcDonalds;
-//        assertEquals(new Date("2020-10-11"), expectedBudget.getCreatedOn());
-//    }
-//
-//    @Test
-//    void getExpenditures() {
-//        Budget expectedBudget = mcDonalds;
-//        assertEquals(expenditureList, expectedBudget.getExpenditures());
-//    }
-//
-//    @Test
-//    void getExpenditureSize() {
-//        Budget expectedBudget = mcDonalds;
-//        assertEquals(3, expectedBudget.getExpenditureSize());
-//    }
-//
-//    @Test
-//    void getTotalExpenditure() {
-//        Budget expectedBudget = mcDonalds;
-//        assertEquals("15.50", expectedBudget.getTotalExpenditure());
-//    }
-//
-//    @Test
-//    void addExpenditure() {
-//        Budget expectedBudget = mcDonalds;
-//        expectedBudget.addExpenditure(TypicalExpenditures.MC_MUFFIN);
-//        assertEquals(4, expectedBudget.getExpenditureSize());
-//    }
-//
-//    @Test
-//    void testToString() {
-//        Budget expectedBudget = mcDonalds;
-//        assertEquals("McDonalds", expectedBudget.toString());
-//    }
-//
-//    @Test
-//    void contains() {
-//        Budget expectedBudget = mcDonalds;
-//        assertTrue(expectedBudget.contains("MC"));
-//    }
-//}
+package seedu.address.model.budget;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.expenditure.ExpenditureList;
+import seedu.address.testutil.BudgetBuilder;
+import seedu.address.testutil.TypicalBudget;
+import seedu.address.testutil.TypicalExpenditure;
+import seedu.address.testutil.TypicalExpenditures;
+
+class BudgetTest {
+
+    private Budget mcDonalds;
+
+    @BeforeEach
+    public void setUp() {
+        mcDonalds = TypicalBudget.getMcDonaldsBudget();
+    }
+    @Test
+    public void equalsTest() {
+        // same object -> returns true
+        assertTrue(mcDonalds.equals(mcDonalds));
+
+        // different type -> returns false
+        assertFalse(mcDonalds.equals(5));
+
+        // null -> returns false
+        assertFalse(mcDonalds.equals(null));
+
+        // different budget -> returns false
+        assertFalse(mcDonalds.equals(new BudgetBuilder(TypicalBudget.getKfcBudget()).build()));
+
+        // different createdOn -> returns false
+        Budget editedMcdonalds = new BudgetBuilder(mcDonalds)
+                .withCreatedOn("2020-08-08")
+                .build();
+        assertFalse(mcDonalds.equals(editedMcdonalds));
+
+        // different name -> returns false
+        editedMcdonalds = new BudgetBuilder(mcDonalds).withName("Pizza Hut").build();
+        assertFalse(mcDonalds.equals(editedMcdonalds));
+
+        // different threshold -> returns false
+        editedMcdonalds = new BudgetBuilder(mcDonalds).withThreshold("10").build();
+        assertFalse(mcDonalds.equals(editedMcdonalds));
+
+        // different expenditures -> returns false
+        editedMcdonalds = new BudgetBuilder(mcDonalds).withExpenditures(TypicalExpenditures.KFC_EXPENDITURES).build();
+        assertFalse(mcDonalds.equals(editedMcdonalds));
+
+        // same values -> returns true
+        editedMcdonalds = new BudgetBuilder(mcDonalds).build();
+        assertTrue(editedMcdonalds.equals(editedMcdonalds));
+    }
+
+    @Test
+    void constructorTest() {
+        Budget mcDonalds = new Budget(new Name("McDonalds"), new Date("2020-10-10"),
+                TypicalExpenditures.getMcDonaldsExpenditures());
+
+        Budget expectedBudget = new BudgetBuilder(mcDonalds).build();
+
+        assertEquals(mcDonalds, expectedBudget);
+    }
+
+    @Test
+    void getName() {
+        assertEquals(new Name("McDonalds"), mcDonalds.getName());
+    }
+
+    @Test
+    void getCreatedOn() {
+        assertEquals(new Date("2020-10-10"), mcDonalds.getCreatedOn());
+    }
+
+    @Test
+    void getThreshold() {
+        assertEquals(new Threshold("100"), mcDonalds.getThreshold().get());
+    }
+
+    @Test
+    void getExpenditures() {
+        ExpenditureList expectedExpenditureList = TypicalExpenditures.getMcDonaldsExpenditures();
+        assertEquals(expectedExpenditureList, mcDonalds.getExpenditures());
+    }
+
+    @Test
+    void getExpenditureSize() {
+        assertEquals(3, mcDonalds.getExpenditureSize());
+    }
+
+    @Test
+    void getTotalExpenditure() {
+        assertEquals(TypicalExpenditures.getMcDonaldsExpenditures().getTotalExpenditure(),
+                mcDonalds.getTotalExpenditure());
+    }
+
+    @Test
+    void addExpenditure() {
+        mcDonalds.addExpenditure(TypicalExpenditure.getMcMuffinExpenditure());
+        assertEquals(4, mcDonalds.getExpenditureSize());
+    }
+
+    @Test
+    void testToString() {
+        assertEquals(TypicalBudget.getMcDonaldsBudget().toString(), mcDonalds.toString());
+    }
+
+    @Test
+    void contains() {
+        assertTrue(mcDonalds.contains("MC"));
+    }
+}

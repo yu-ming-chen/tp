@@ -82,21 +82,6 @@ public class Expenditure implements Renderable {
                 && otherExpenditure.getTags().equals(getTags());
     }
 
-    /**
-     * Returns true if both expenditure of the same name have at the created on field that is the same.
-     * This defines a weaker notion of equality between two expenditures.
-     */
-    public boolean isSameExpenditure(Expenditure otherExpenditure) {
-        if (otherExpenditure == this) {
-            return true;
-        }
-
-        return otherExpenditure != null
-                && otherExpenditure.getName().equals(getName())
-                && otherExpenditure.getPrice().equals(getPrice())
-                && otherExpenditure.getCreatedOn().equals(getCreatedOn());
-    }
-
     @Override
     public String toString() {
         return name.toString();
