@@ -1,6 +1,8 @@
 package seedu.address.logic.commands.main;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
@@ -24,6 +26,31 @@ class FindBudgetCommandTest {
     void setUp() {
         model = new ModelManager(TypicalBudgets.getTypicalNusave(), new UserPrefs());
         expectedModel = new ModelManager(model.getNusave(), new UserPrefs());
+    }
+
+    @Test
+    void equals() {
+
+        Name firstPredicate = new Name("first");
+        Name secondPredicate = new Name("second");
+        FindBudgetCommand findFirstCommand = new FindBudgetCommand(firstPredicate);
+        FindBudgetCommand findSecondCommand = new FindBudgetCommand(secondPredicate);
+
+        // same object -> returns true
+        assertTrue(findFirstCommand.equals(findFirstCommand));
+
+        // same values -> returns true
+        FindBudgetCommand findFirstCommandCopy = new FindBudgetCommand(firstPredicate);
+        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(findFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(findFirstCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
