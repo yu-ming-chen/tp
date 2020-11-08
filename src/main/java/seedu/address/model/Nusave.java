@@ -189,7 +189,7 @@ public class Nusave implements ReadOnlyNusave {
     }
 
     public void sortBudgetListByCreatedDate() {
-        this.budgetList.sortBudgetsListByCreateDate();
+        this.budgetList.sortBudgetListByCreatedDate();
     }
 
     /**
