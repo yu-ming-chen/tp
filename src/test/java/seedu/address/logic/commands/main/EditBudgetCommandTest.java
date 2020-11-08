@@ -1,6 +1,5 @@
 package seedu.address.logic.commands.main;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -23,31 +22,54 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Renderable;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.budget.BudgetList;
+import seedu.address.model.budget.Date;
+import seedu.address.model.budget.Name;
 import seedu.address.model.budget.Threshold;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.state.Page;
 import seedu.address.state.budgetindex.BudgetIndex;
+import seedu.address.state.budgetindex.BudgetIndexManager;
 import seedu.address.state.expenditureindex.ExpenditureIndex;
+import seedu.address.testutil.BudgetBuilder;
 import seedu.address.testutil.TypicalBudget;
+import seedu.address.testutil.TypicalExpenditures;
 
-class CreateBudgetCommandTest {
 
-    @Test
-    public void constructor_nullBudget_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new CreateBudgetCommand(null));
-    }
+
+class EditBudgetCommandTest {
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingBudgetCreated modelStub = new ModelStubAcceptingBudgetCreated();
-        Budget validBudget = TypicalBudget.getMcDonaldsBudget();
+    public void execute_editAllField_success() throws CommandException {
+        EditBudgetCommand.EditBudgetDescriptor descriptor = new EditBudgetCommand.EditBudgetDescriptor();
+        descriptor.setName(new Name("KFC"));
+        descriptor.setCreatedOn(new Date("2020-10-09"));
+        descriptor.setThreshold(new Threshold("80").toOptional());
+        Budget editedBudget = new BudgetBuilder().withName("KFC")
+                .withThreshold("80").withCreatedOn("2020-10-09")
+                .withExpenditures(TypicalExpenditures.MC_DONALDS_EXPENDITURES).build();
 
-        CommandResult commandResult = new CreateBudgetCommand(validBudget).execute(modelStub);
+        ModelStubAcceptingBudgetEdited modelStub = new ModelStubAcceptingBudgetEdited();
+        CommandResult commandResult = new EditBudgetCommand(new BudgetIndexManager(0), descriptor).execute(modelStub);
 
-        assertEquals(String.format(CreateBudgetCommand.MESSAGE_SUCCESS, validBudget),
+        assertEquals(String.format(EditBudgetCommand.MESSAGE_SUCCESS),
                 commandResult.getFeedbackToUser());
-        assertEquals(new BudgetList(Arrays.asList(validBudget)), modelStub.budgetCreated);
+        BudgetList expectedList = new BudgetList(Arrays.asList(editedBudget, TypicalBudget.getKfcBudget(),
+                TypicalBudget.getSubwayExpenditure()));
+        assertEquals(expectedList, modelStub.budgetList);
     }
+
+    @Test
+    public void wrte_editOutOfBound_commandExceptionThrown() throws CommandException {
+        EditBudgetCommand.EditBudgetDescriptor descriptor = new EditBudgetCommand.EditBudgetDescriptor();
+        descriptor.setName(new Name("KFC"));
+        descriptor.setCreatedOn(new Date("2020-10-09"));
+        descriptor.setThreshold(new Threshold("80").toOptional());
+        ModelStubAcceptingBudgetEdited modelStub = new ModelStubAcceptingBudgetEdited();
+        EditBudgetCommand command = new EditBudgetCommand(new BudgetIndexManager(6), descriptor);
+        assertThrows(CommandException.class, ()-> command.execute(modelStub));
+    }
+
+
 
     /**
      * A default model stub that have all of the methods failing.
@@ -328,18 +350,34 @@ class CreateBudgetCommandTest {
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingBudgetCreated extends ModelStub {
-        final BudgetList budgetCreated = new BudgetList();
+    private class ModelStubAcceptingBudgetEdited extends ModelStub {
+        private BudgetList budgetList = new BudgetList();
+
+        ModelStubAcceptingBudgetEdited() {
+            budgetList.addToFront(TypicalBudget.getSubwayExpenditure());
+            budgetList.addToFront(TypicalBudget.getKfcBudget());
+            budgetList.addToFront(TypicalBudget.getMcDonaldsBudget());
+        }
 
         @Override
-        public void addBudget(Budget budget) {
-            requireNonNull(budget);
-            budgetCreated.add(budget);
+        public void editBudget(Budget oldBudget, Budget editedBudget) {
+            budgetList.editBudget(oldBudget, editedBudget);
+        }
+
+        @Override
+        public boolean isIndexOutOfBound(BudgetIndex budgetIndex) {
+            return budgetIndex.getBudgetIndex().get() >= budgetList.getSize();
+        }
+
+        @Override
+        public Budget getBudgetAtIndex(BudgetIndex budgetIndex) {
+            return budgetList.getBudgets().get(budgetIndex.getBudgetIndex().get());
         }
 
         @Override
         public void saveToHistory() {
         }
+
     }
 
 }

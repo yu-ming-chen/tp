@@ -109,9 +109,4 @@ public class Node<T> {
                 && Objects.equals(next, node.next)
                 && Objects.equals(previous, node.previous);
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(value, next, previous);
-    }
 }
