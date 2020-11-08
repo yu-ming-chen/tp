@@ -36,7 +36,6 @@ public class StateManager implements State {
         requireAllNonNull(budgetIndex, currentPage, pageTitle);
         this.budgetIndex = budgetIndex;
         this.currentPage = currentPage;
-        infoBoxSecondRowProp.setValue(defaultValueTotalExpenditure());
         this.pageTitle = pageTitle;
     }
 

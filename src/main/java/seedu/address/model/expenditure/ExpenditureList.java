@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import seedu.address.model.sort.SortExpendituresByCreateDate;
 import seedu.address.model.sort.SortExpendituresByName;
@@ -92,5 +93,22 @@ public class ExpenditureList {
      */
     public void sortExpendituresByCreateDate() {
         this.expenditures.sort(new SortExpendituresByCreateDate());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ExpenditureList that = (ExpenditureList) o;
+        return Objects.equals(expenditures, that.expenditures);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(expenditures);
     }
 }

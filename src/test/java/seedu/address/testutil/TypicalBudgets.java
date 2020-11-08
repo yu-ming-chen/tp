@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import seedu.address.model.Nusave;
@@ -7,11 +8,11 @@ import seedu.address.model.budget.BudgetList;
 
 public class TypicalBudgets {
     public static final BudgetList FAST_FOOD_BUDGETS = new BudgetList(
-            Arrays.asList(
+            new ArrayList<>(Arrays.asList(
                     TypicalBudget.MC_DONALDS,
                     TypicalBudget.KFC,
                     TypicalBudget.SUBWAY
-            ));
+            )));
 
     private TypicalBudgets() {} // prevents instantiation
 
