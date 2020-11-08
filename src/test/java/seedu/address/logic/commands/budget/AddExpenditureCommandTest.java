@@ -2,6 +2,7 @@ package seedu.address.logic.commands.budget;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.nio.file.Path;
@@ -32,6 +33,27 @@ import seedu.address.state.expenditureindex.ExpenditureIndex;
 import seedu.address.testutil.TypicalExpenditure;
 
 class AddExpenditureCommandTest {
+
+    @Test
+    public void equalTest() {
+        AddExpenditureCommand command = new AddExpenditureCommand(TypicalExpenditure.getKfcBanditoExpenditure());
+        // same object -> return true
+        assertTrue(command.equals(command));
+
+        // different type -> return false
+        assertFalse(command.equals(5));
+
+        // null -> return false
+        assertFalse(command.equals(null));
+
+        AddExpenditureCommand differentExpenditureCommand =
+                new AddExpenditureCommand(TypicalExpenditure.getKfcBanditoExpenditure());
+        // different obj same expenditure to add -> true
+        assertTrue(command.equals(differentExpenditureCommand));
+    }
+
+    private void assertTrue(boolean equals) {
+    }
 
     @Test
     public void constructor_nullExpenditure_throwsNullPointerException() {
