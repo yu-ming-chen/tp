@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.budget.Budget;
 import seedu.address.testutil.TypicalBudget;
 
@@ -44,7 +45,7 @@ class HistoryManagerTest {
         HistoryManager<Budget> historyManager = new HistoryManager<>();
         assertThrows(NullPointerException.class, () -> historyManager.saveToFuture(null));
     }
-    
+
     @Test
     void equals_sameHistoryManager_returnsTrue() {
         HistoryManager<Budget> historyManager = new HistoryManager<>();
@@ -52,7 +53,7 @@ class HistoryManagerTest {
     }
 
     @Test
-    void equals_ValidHistoryManager_returnsTrue() {
+    void equals_validHistoryManager_returnsTrue() {
         HistoryManager<Budget> historyManager = new HistoryManager<>();
         historyManager.saveToHistory(TypicalBudget.getKfcBudget());
         HistoryManager<Budget> historyManagerToCompare = new HistoryManager<>();
