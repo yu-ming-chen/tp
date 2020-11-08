@@ -326,7 +326,7 @@ class CreateBudgetCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept a Budget being created.
      */
     private class ModelStubAcceptingBudgetCreated extends ModelStub {
         final BudgetList budgetCreated = new BudgetList();

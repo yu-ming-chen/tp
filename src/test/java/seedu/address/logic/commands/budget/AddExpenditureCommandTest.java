@@ -1,9 +1,13 @@
-package seedu.address.logic.commands.main;
+package seedu.address.logic.commands.budget;
 
+import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -21,55 +25,50 @@ import seedu.address.model.ReadOnlyNusave;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Renderable;
 import seedu.address.model.budget.Budget;
-import seedu.address.model.budget.BudgetList;
-import seedu.address.model.budget.Date;
-import seedu.address.model.budget.Name;
 import seedu.address.model.budget.Threshold;
 import seedu.address.model.expenditure.Expenditure;
+import seedu.address.model.expenditure.ExpenditureList;
 import seedu.address.state.Page;
 import seedu.address.state.budgetindex.BudgetIndex;
-import seedu.address.state.budgetindex.BudgetIndexManager;
 import seedu.address.state.expenditureindex.ExpenditureIndex;
-import seedu.address.testutil.BudgetBuilder;
-import seedu.address.testutil.TypicalBudget;
-import seedu.address.testutil.TypicalExpenditures;
+import seedu.address.testutil.TypicalExpenditure;
 
-
-
-class EditBudgetCommandTest {
+class AddExpenditureCommandTest {
 
     @Test
-    public void execute_editAllField_success() throws CommandException {
-        EditBudgetCommand.EditBudgetDescriptor descriptor = new EditBudgetCommand.EditBudgetDescriptor();
-        descriptor.setName(new Name("KFC"));
-        descriptor.setCreatedOn(new Date("2020-10-09"));
-        descriptor.setThreshold(new Threshold("80").toOptional());
-        Budget editedBudget = new BudgetBuilder().withName("KFC")
-                .withThreshold("80").withCreatedOn("2020-10-09")
-                .withExpenditures(TypicalExpenditures.getMcDonaldsExpenditures()).build();
+    public void equalTest() {
+        AddExpenditureCommand command = new AddExpenditureCommand(TypicalExpenditure.getKfcBanditoExpenditure());
+        // same object -> return true
+        assertTrue(command.equals(command));
 
-        ModelStubAcceptingBudgetEdited modelStub = new ModelStubAcceptingBudgetEdited();
-        CommandResult commandResult = new EditBudgetCommand(new BudgetIndexManager(0), descriptor).execute(modelStub);
+        // different type -> return false
+        assertFalse(command.equals(5));
 
-        assertEquals(String.format(EditBudgetCommand.MESSAGE_SUCCESS),
+        // null -> return false
+        assertFalse(command.equals(null));
+
+        AddExpenditureCommand differentExpenditureCommand =
+                new AddExpenditureCommand(TypicalExpenditure.getKfcBanditoExpenditure());
+        // different obj same expenditure to add -> true
+        assertTrue(command.equals(differentExpenditureCommand));
+    }
+
+    @Test
+    public void constructor_nullExpenditure_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddExpenditureCommand(null));
+    }
+
+    @Test
+    public void execute_budgetCreatedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingExpenditureAdd modelStub = new ModelStubAcceptingExpenditureAdd();
+        Expenditure validExpenditure = TypicalExpenditure.getKfcZingerExpenditure();
+
+        CommandResult commandResult = new AddExpenditureCommand(validExpenditure).execute(modelStub);
+
+        assertEquals(String.format(AddExpenditureCommand.MESSAGE_SUCCESS, validExpenditure),
                 commandResult.getFeedbackToUser());
-        BudgetList expectedList = new BudgetList(Arrays.asList(editedBudget, TypicalBudget.getKfcBudget(),
-                TypicalBudget.getSubwayExpenditure()));
-        assertEquals(expectedList, modelStub.budgetList);
+        assertEquals(new ExpenditureList(new ArrayList<>(Arrays.asList(validExpenditure))), modelStub.expenditureAdd);
     }
-
-    @Test
-    public void write_editOutOfBound_commandExceptionThrown() throws CommandException {
-        EditBudgetCommand.EditBudgetDescriptor descriptor = new EditBudgetCommand.EditBudgetDescriptor();
-        descriptor.setName(new Name("KFC"));
-        descriptor.setCreatedOn(new Date("2020-10-09"));
-        descriptor.setThreshold(new Threshold("80").toOptional());
-        ModelStubAcceptingBudgetEdited modelStub = new ModelStubAcceptingBudgetEdited();
-        EditBudgetCommand command = new EditBudgetCommand(new BudgetIndexManager(6), descriptor);
-        assertThrows(CommandException.class, ()-> command.execute(modelStub));
-    }
-
-
 
     /**
      * A default model stub that have all of the methods failing.
@@ -348,36 +347,19 @@ class EditBudgetCommandTest {
     }
 
     /**
-     * A Model stub that always accept the budget being edited.
+     * A Model stub that always accept the expenditure being added.
      */
-    private class ModelStubAcceptingBudgetEdited extends ModelStub {
-        private BudgetList budgetList = new BudgetList();
-
-        ModelStubAcceptingBudgetEdited() {
-            budgetList.addToFront(TypicalBudget.getSubwayExpenditure());
-            budgetList.addToFront(TypicalBudget.getKfcBudget());
-            budgetList.addToFront(TypicalBudget.getMcDonaldsBudget());
-        }
+    private class ModelStubAcceptingExpenditureAdd extends ModelStub {
+        final ExpenditureList expenditureAdd = new ExpenditureList();
 
         @Override
-        public void editBudget(Budget oldBudget, Budget editedBudget) {
-            budgetList.editBudget(oldBudget, editedBudget);
-        }
-
-        @Override
-        public boolean isIndexOutOfBound(BudgetIndex budgetIndex) {
-            return budgetIndex.getBudgetIndex().get() >= budgetList.getSize();
-        }
-
-        @Override
-        public Budget getBudgetAtIndex(BudgetIndex budgetIndex) {
-            return budgetList.getBudgets().get(budgetIndex.getBudgetIndex().get());
+        public void addExpenditure(Expenditure expenditure) {
+            requireNonNull(expenditure);
+            expenditureAdd.add(expenditure);
         }
 
         @Override
         public void saveToHistory() {
         }
-
     }
-
 }
