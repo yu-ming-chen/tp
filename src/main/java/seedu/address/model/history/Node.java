@@ -105,7 +105,6 @@ public class Node<T> {
             return false;
         }
         Node<?> node = (Node<?>) o;
-      
         return Objects.equals(value, node.value);
     }
 }
