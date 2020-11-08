@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.budgetpageparser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_MORE_THAN_THREE_TAGS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -49,7 +50,7 @@ public class AddExpenditureCommandParser implements Parser<AddExpenditureCommand
         Expenditure expenditure = new Expenditure(name, price, date, tags);
 
         if (tags.size() > 3) {
-            throw new ParseException("Each expenditure can only have a maximum of 3 tags.");
+            throw new ParseException(MESSAGE_MORE_THAN_THREE_TAGS);
         }
 
         return new AddExpenditureCommand(expenditure);
