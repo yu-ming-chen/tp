@@ -1,15 +1,14 @@
 package seedu.address.logic.parser.mainpageparser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.main.FindBudgetCommand;
+
 import seedu.address.logic.commands.main.OpenBudgetCommand;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.state.budgetindex.BudgetIndex;
 import seedu.address.state.budgetindex.BudgetIndexManager;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class OpenBudgetCommandParserTest {
     public static final BudgetIndex INVALID_BUDGET_INDEX = new BudgetIndexManager(0);
