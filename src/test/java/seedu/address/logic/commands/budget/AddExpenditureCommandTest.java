@@ -1,10 +1,13 @@
-package seedu.address.logic.commands.main;
+package seedu.address.logic.commands.budget;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -22,31 +25,49 @@ import seedu.address.model.ReadOnlyNusave;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Renderable;
 import seedu.address.model.budget.Budget;
-import seedu.address.model.budget.BudgetList;
 import seedu.address.model.budget.Threshold;
 import seedu.address.model.expenditure.Expenditure;
+import seedu.address.model.expenditure.ExpenditureList;
 import seedu.address.state.Page;
 import seedu.address.state.budgetindex.BudgetIndex;
 import seedu.address.state.expenditureindex.ExpenditureIndex;
-import seedu.address.testutil.TypicalBudget;
+import seedu.address.testutil.TypicalExpenditure;
 
-class CreateBudgetCommandTest {
+class AddExpenditureCommandTest {
 
     @Test
-    public void constructor_nullBudget_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new CreateBudgetCommand(null));
+    public void equalTest() {
+        AddExpenditureCommand command = new AddExpenditureCommand(TypicalExpenditure.getKfcBanditoExpenditure());
+        // same object -> return true
+        assertTrue(command.equals(command));
+
+        // different type -> return false
+        assertFalse(command.equals(5));
+
+        // null -> return false
+        assertFalse(command.equals(null));
+
+        AddExpenditureCommand differentExpenditureCommand =
+                new AddExpenditureCommand(TypicalExpenditure.getKfcBanditoExpenditure());
+        // different obj same expenditure to add -> true
+        assertTrue(command.equals(differentExpenditureCommand));
     }
 
     @Test
-    public void execute_budgetCreatedByModel_createSuccessful() throws Exception {
-        ModelStubAcceptingBudgetCreated modelStub = new ModelStubAcceptingBudgetCreated();
-        Budget validBudget = TypicalBudget.getMcDonaldsBudget();
+    public void constructor_nullExpenditure_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddExpenditureCommand(null));
+    }
 
-        CommandResult commandResult = new CreateBudgetCommand(validBudget).execute(modelStub);
+    @Test
+    public void execute_budgetCreatedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingExpenditureAdd modelStub = new ModelStubAcceptingExpenditureAdd();
+        Expenditure validExpenditure = TypicalExpenditure.getKfcZingerExpenditure();
 
-        assertEquals(String.format(CreateBudgetCommand.MESSAGE_SUCCESS, validBudget),
+        CommandResult commandResult = new AddExpenditureCommand(validExpenditure).execute(modelStub);
+
+        assertEquals(String.format(AddExpenditureCommand.MESSAGE_SUCCESS, validExpenditure),
                 commandResult.getFeedbackToUser());
-        assertEquals(new BudgetList(Arrays.asList(validBudget)), modelStub.budgetCreated);
+        assertEquals(new ExpenditureList(new ArrayList<>(Arrays.asList(validExpenditure))), modelStub.expenditureAdd);
     }
 
     /**
@@ -120,17 +141,7 @@ class CreateBudgetCommandTest {
         }
 
         @Override
-        public Expenditure getExpenditureAtIndex(ExpenditureIndex expenditureIndex) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public boolean isIndexOutOfBound(BudgetIndex budgetIndex) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean isIndexOutOfBound(ExpenditureIndex expenditureIndex) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -336,20 +347,19 @@ class CreateBudgetCommandTest {
     }
 
     /**
-     * A Model stub that always accept a Budget being created.
+     * A Model stub that always accept the expenditure being added.
      */
-    private class ModelStubAcceptingBudgetCreated extends ModelStub {
-        final BudgetList budgetCreated = new BudgetList();
+    private class ModelStubAcceptingExpenditureAdd extends ModelStub {
+        final ExpenditureList expenditureAdd = new ExpenditureList();
 
         @Override
-        public void addBudget(Budget budget) {
-            requireNonNull(budget);
-            budgetCreated.add(budget);
+        public void addExpenditure(Expenditure expenditure) {
+            requireNonNull(expenditure);
+            expenditureAdd.add(expenditure);
         }
 
         @Override
         public void saveToHistory() {
         }
     }
-
 }

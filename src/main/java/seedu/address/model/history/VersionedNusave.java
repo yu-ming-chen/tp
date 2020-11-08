@@ -1,5 +1,7 @@
 package seedu.address.model.history;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Objects;
 import java.util.Optional;
 
@@ -17,6 +19,7 @@ public class VersionedNusave {
      * @param nusave the NUSave model to be versioned
      */
     public VersionedNusave(State state, Nusave nusave) {
+        requireAllNonNull(state, nusave);
         this.budgetIndex = state.getBudgetIndex();
         this.budgetList = BudgetList.clone(nusave.getBudgetList());
     };
@@ -40,10 +43,5 @@ public class VersionedNusave {
         VersionedNusave that = (VersionedNusave) o;
         return Objects.equals(budgetIndex, that.budgetIndex)
                 && Objects.equals(budgetList, that.budgetList);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(budgetIndex, budgetList);
     }
 }
