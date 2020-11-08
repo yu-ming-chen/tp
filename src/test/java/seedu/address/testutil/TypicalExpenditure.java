@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import java.time.LocalDate;
+
 import seedu.address.model.expenditure.Expenditure;
 
 public class TypicalExpenditure {
@@ -69,6 +71,17 @@ public class TypicalExpenditure {
     public static Expenditure getMcMuffinExpenditure() {
         return new ExpenditureBuilder().withName(MC_MUFFIN_NAME)
                 .withPrice(MC_MUFFIN_PRICE).withCreatedOn(MC_MUFFIN_CREATED_ON).build();
+    }
+
+    public static Expenditure getMcMuffinExpenditureWithTags() {
+        return new ExpenditureBuilder().withName(MC_MUFFIN_NAME)
+                .withPrice(MC_MUFFIN_PRICE).withCreatedOn(LocalDate.now().toString())
+                .withTags("breakfast", "delicious").build();
+    }
+
+    public static Expenditure getMcMuffinExpenditureWithCurrentCreatedOn() {
+        return new ExpenditureBuilder().withName(MC_MUFFIN_NAME)
+                .withPrice(MC_MUFFIN_PRICE).withCreatedOn(LocalDate.now().toString()).build();
     }
 
     public static Expenditure getMcChickenExpenditure() {
