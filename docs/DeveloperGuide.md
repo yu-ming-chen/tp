@@ -58,25 +58,22 @@ title: Developer Guide
 
 ## 1. Introduction
 
-### Overview
-NUSave is a budgeting tool made for **university students staying on campus** who want to be able to track and manage 
-their own expenditures with ease. As students, it is common for them to have limited income during their academic years.
-Therefore, it is especially necessary for those living independently to plan their finances prudently to ensure that
-they do not overspend their tight budget.
+NUSave is a desktop application built for **university students who stay on campus** to help them organise, track and
+manage their budgets.
 
-A typical student staying on campus has to keep track of: 
-* daily expenses
-* club finances
-* project budgets
-* administrative fees
+It aims to alleviate the hassle that comes along with managing multiple budgets on different documents by providing a
+one-stop solution. With NUSave, you can create, edit and delete budgets or expenditures,
+as well as generate statistics based on your entries to gain useful insights regarding your spending
+habits.
 
-Rather than having multiple documents and spreadsheets to keep track of their budgets, NUSave allows students to
-conveniently manage all their expenditures under one centralised platform.
-
-NUSave implements both **Command Line Interface (CLI)** and **Graphical User Interface (GUI)**.
-In other words, users interact with the application through the command line and the GUI will reflect their actions.
+What's more, NUSave has:
+- a Command Line Interface (CLI) catered to those who can type fast and prefer to use a keyboard. In other words, you
+navigate the application and execute instructions by keying in text-based commands into the command box provided.
+- a Graphical User Interface (GUI) to provide you with a visually appealing and aesthetic user experience. Essentially,
+the current status of the application is reflected live on-screen so what you see is what you get!
 
 ### Purpose
+
 This document describes both the design and architecture of NUSave. It aims to serve as a guide for developers,
 testers, and designers who are interested in working on NUSave.
 
