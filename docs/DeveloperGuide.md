@@ -191,7 +191,7 @@ elaboration on what each command does, refer to [4.3. Commands](#43-commands).
 Figure 3.2.2.1. Figure of Sequence Diagram for `delete 1`
 
 Figure 3.2.2.1. above represents the interactions within the `Logic` component for the
-`execute("delete 1")` API call to remove a budget in NUSave.
+`execute("delete 1")` call to remove a budget in NUSave.
 
 #### 3.2.3. Model Component
 (Contributed by Chin Hui)
@@ -293,18 +293,22 @@ This section elaborates on the implementations of various commands and component
 
 This section provides context on how `State` affects how commands are parsed by parsers in NUSave.
 
-The `Logic` component in NUSave relies on data stored in `State` to decide which parser in NUSave will take
+`State` stores what page NUSave is currently on. If NUSave is on the main page view, `State` stores an attribute of
+`Page.MAIN`, and stores an attribute of `Page.BUDGET` if NUSave is on a budget page view.
+
+The `Logic` component in NUSave relies on this data stored in `State` to decide which parser in NUSave will take
 control of the execution of commands.
 
 ![Delete Command Activity Diagram](images/DeleteCommandActivityDiagram.png)
-Figure 4.1.1. Figure of Delete Command Activity Diagram
+
+Figure 4.1.1. Delete Command Activity Diagram
 
 To elaborate further, using Figure 4.1.1. as a reference, when the user executes a delete command, `delete 1`,
 while on the main page:
 
 1. `Logic` executes the command, checking whether the current page is a budget page or main page, depending on the 
 current page (represented by `currentPage` attribute in `StateManager`) of NUSave.
-2. Since NUSave's is current on `Page.MAIN`, `MainPageParser` takes control of the execution, parsing the command input by the user.
+2. Since NUSave is currently on `Page.MAIN`, `MainPageParser` takes control of the execution, parsing the command input by the user.
 3. If the command syntax is valid, the delete command is parsed.
 
     3a. If the syntax is invalid, a `ParseException` is thrown.
@@ -795,6 +799,7 @@ With the above sequence, all budgets containing the search term entered will be 
 and displayed on the user interface.
 
 ##### 4.3.5.3 List Expenditure
+
 (Contributed by Chin Hui)
 
 The following sequence diagram shows the interactions between the `Logic` and `Model` components of NUSave,
@@ -818,6 +823,7 @@ With the above sequence, all expenditures will be listed by the user in his NUSa
 on the user interface.
 
 ##### 4.3.5.4 Find Expenditure
+
 (Contributed by Chin Hui)
 
 The following sequence diagram shows the interactions between the `Logic` and `Model` components of NUSave,
