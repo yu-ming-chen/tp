@@ -14,17 +14,25 @@ public class TypicalState {
     public static final BudgetIndex KFC_BUDGET_INDEX = new BudgetIndexManager(1);
     public static final BudgetIndex SUBWAY_BUDGET_INDEX = new BudgetIndexManager(2);
 
-    public static final State MCDONALDS_BUDGET_PAGE_STATE = new StateBuilder().withBudgetIndex(MCDONALDS_BUDGET_INDEX)
-            .withCurrentPage(Page.BUDGET).withPageTitle("McDonalds").build();
+    public static final Page ENUM_PAGE_MAIN = Page.MAIN;
+    public static final Page ENUM_PAGE_BUDGET = Page.BUDGET;
 
-    public static final State KFC_BUDGET_PAGE_STATE = new StateBuilder().withBudgetIndex(KFC_BUDGET_INDEX)
-            .withCurrentPage(Page.BUDGET).withPageTitle("KFC").build();
-
-    public static final State SUBWAY_BUDGET_PAGE_STATE = new StateBuilder().withBudgetIndex(SUBWAY_BUDGET_INDEX)
-            .withCurrentPage(Page.BUDGET).withPageTitle("Subway").build();
+    public static final String MAIN_PAGE_TITLE = "NUSave";
+    public static final String MCDONALDS_PAGE_TITLE = "McDonalds";
+    public static final String KFC_PAGE_TITLE = "KFC";
+    public static final String SUBWAY_PAGE_TITLE = "Subway";
 
     public static final State TYPICAL_MAIN_PAGE_STATE = new StateBuilder().withBudgetIndex(MAIN_PAGE_BUDGET_INDEX)
-            .withCurrentPage(Page.MAIN).withPageTitle("NUSave").build();
+            .withCurrentPage(ENUM_PAGE_MAIN).withPageTitle(MAIN_PAGE_TITLE).build();
+
+    public static final State MCDONALDS_BUDGET_PAGE_STATE = new StateBuilder().withBudgetIndex(MCDONALDS_BUDGET_INDEX)
+            .withCurrentPage(ENUM_PAGE_BUDGET).withPageTitle(MCDONALDS_PAGE_TITLE).build();
+
+    public static final State KFC_BUDGET_PAGE_STATE = new StateBuilder().withBudgetIndex(KFC_BUDGET_INDEX)
+            .withCurrentPage(ENUM_PAGE_BUDGET).withPageTitle(KFC_PAGE_TITLE).build();
+
+    public static final State SUBWAY_BUDGET_PAGE_STATE = new StateBuilder().withBudgetIndex(SUBWAY_BUDGET_INDEX)
+            .withCurrentPage(ENUM_PAGE_BUDGET).withPageTitle(SUBWAY_PAGE_TITLE).build();
 
     private TypicalState() {} // prevents instantiation
 
