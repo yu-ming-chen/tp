@@ -1,6 +1,7 @@
 package seedu.address.model.budget;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -19,6 +20,7 @@ import seedu.address.state.budgetindex.BudgetIndexManager;
 import seedu.address.testutil.TypicalBudget;
 import seedu.address.testutil.TypicalBudgets;
 import seedu.address.testutil.TypicalExpenditure;
+
 
 class BudgetListTest {
 
@@ -132,6 +134,11 @@ class BudgetListTest {
     }
 
     @Test
+    void getBudgetName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> budgetList.getBudgetName(null));
+    }
+
+    @Test
     void getBudgetThreshold() {
         Optional<Threshold> threshold = budgetList.getBudgetThreshold(0);
         assertEquals(threshold.get().value, TypicalBudget.SUBWAY_THRESHOLD);
@@ -200,7 +207,12 @@ class BudgetListTest {
     @Test
     void equals() {
         assertTrue(budgetList.equals(budgetList));
+        assertFalse(budgetList.equals(5));
+        assertFalse(budgetList.equals(null));
+        BudgetList newList = TypicalBudgets.getFastFoodBudgets();
+        assertTrue(budgetList.equals(newList));
     }
+
 
     @Test
     void sortBudgetListByCreatedDate() {
@@ -208,4 +220,5 @@ class BudgetListTest {
         budgetList.sortBudgetListByCreatedDate();
         assertEquals(budgetList.getBudgets().get(0).getName().value, name);
     }
+
 }

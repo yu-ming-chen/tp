@@ -348,7 +348,7 @@ class EditBudgetCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the budget being edited.
      */
     private class ModelStubAcceptingBudgetEdited extends ModelStub {
         private BudgetList budgetList = new BudgetList();

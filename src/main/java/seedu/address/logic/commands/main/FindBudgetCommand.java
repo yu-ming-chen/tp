@@ -20,6 +20,7 @@ public class FindBudgetCommand extends Command {
 
     public static final String MESSAGE_SUCCESS =
             "Updated list of budgets to show entries that contain \'%1$s\'.";
+    public static final String MESSAGE_NO_BUDGETS_FOUND = "No budgets matching \'%s\' were found.";
 
     private final Name name;
 

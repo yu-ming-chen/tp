@@ -92,9 +92,4 @@ public class HistoryManager<T> implements History<T> {
         HistoryManager<?> that = (HistoryManager<?>) o;
         return Objects.equals(history, that.history);
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(history);
-    }
 }

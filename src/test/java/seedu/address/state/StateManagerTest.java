@@ -45,7 +45,6 @@ public class StateManagerTest {
                 null, VALID_PAGE, VALID_PAGE_TITLE));
         assertThrows(NullPointerException.class, () -> new StateManager(
                 VALID_BUDGET_INDEX, null, VALID_PAGE_TITLE));
-
         assertThrows(NullPointerException.class, () -> new StateManager(
                 VALID_BUDGET_INDEX, VALID_PAGE, null));
     }
