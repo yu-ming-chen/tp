@@ -1,12 +1,13 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.testutil.TypicalBudgets;
-
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 class RedoCommandTest {
     private final Model model = new ModelManager(TypicalBudgets.getTypicalNusave(), new UserPrefs());
