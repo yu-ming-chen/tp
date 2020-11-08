@@ -132,7 +132,7 @@ public class ModelManager implements Model {
     public void openBudget(BudgetIndex budgetIndex) {
         requireNonNull(budgetIndex);
         setOpenCommandState(budgetIndex);
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        displayAllRenderables();
         repopulateObservableList();
     }
 
@@ -151,7 +151,7 @@ public class ModelManager implements Model {
             return;
         }
         setCloseCommandState();
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        displayAllRenderables();
         repopulateObservableList();
     }
 
@@ -176,7 +176,8 @@ public class ModelManager implements Model {
     @Override
     public void addBudget(Budget budget) {
         requireNonNull(budget);
-        nusave.addBudget(budget);
+        nusave.addBudgetToFront(budget);
+        displayAllRenderables();
     }
 
     /**
@@ -191,7 +192,7 @@ public class ModelManager implements Model {
         assert index < filteredRenderables.size();
         Budget budget = (Budget) filteredRenderables.get(index);
         nusave.deleteBudget(budget);
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        displayAllRenderables();
     }
 
     /**
@@ -203,7 +204,17 @@ public class ModelManager implements Model {
     public void editBudget(Budget oldBudget, Budget editedBudget) {
         requireAllNonNull(oldBudget, editedBudget);
         nusave.editBudget(oldBudget, editedBudget);
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        displayAllRenderables();
+    }
+
+    @Override
+    public Budget getBudgetAtIndex(BudgetIndex budgetIndex) {
+        return (Budget) filteredRenderables.get(budgetIndex.getBudgetIndex().get());
+    }
+
+    @Override
+    public boolean isIndexOutOfBound(BudgetIndex budgetIndex) {
+        return budgetIndex.getBudgetIndex().get() >= filteredRenderables.size();
     }
 
     @Override
@@ -229,7 +240,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void listBudgets() throws CommandException {
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        displayAllRenderables();
         if (filteredRenderables.size() == 0) {
             throw new CommandException("You have no budgets recorded, try creating one with the create command!");
         }
@@ -269,7 +280,7 @@ public class ModelManager implements Model {
         Optional<Integer> budgetIndex = state.getBudgetIndex();
         nusave.deleteExpenditure(expenditure, budgetIndex);
         setTotalExpenditure(nusave.getTotalExpenditureValue(budgetIndex));
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        displayAllRenderables();
     }
 
     /**
@@ -282,7 +293,7 @@ public class ModelManager implements Model {
         Optional<Integer> budgetIndex = this.state.getBudgetIndex();
         nusave.addExpenditure(expenditure, this.state.getBudgetIndex());
         setTotalExpenditure(nusave.getTotalExpenditureValue(budgetIndex));
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        displayAllRenderables();
     }
 
     /**
@@ -296,7 +307,7 @@ public class ModelManager implements Model {
         Optional<Integer> budgetIndex = this.state.getBudgetIndex();
         nusave.editExpenditure(oldExpenditure, editedExpenditure, budgetIndex);
         setTotalExpenditure(nusave.getTotalExpenditureValue(budgetIndex));
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        displayAllRenderables();
     }
 
     /**
@@ -304,7 +315,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void listExpenditures() throws CommandException {
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        displayAllRenderables();
         if (filteredRenderables.size() == 0) {
             throw new CommandException("You have no expenditures recorded, try creating one with the add command!");
         }
@@ -467,6 +478,10 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Renderable> getFilteredRenderableList() {
         return filteredRenderables;
+    }
+
+    private void displayAllRenderables() {
+        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
     @Override

@@ -66,9 +66,13 @@ public interface Model {
 
     void addBudget(Budget budget);
 
-    void editBudget(Budget oldBudget, Budget editedBudget);
+    void editBudget(Budget toEdit, Budget editedBudget);
 
-    void deleteBudget(BudgetIndex budget) throws CommandException;
+    Budget getBudgetAtIndex(BudgetIndex budgetIndex);
+
+    boolean isIndexOutOfBound(BudgetIndex budgetIndex);
+
+    void deleteBudget(BudgetIndex budgetIndex) throws CommandException;
 
     void deleteAllBudgets();
 
