@@ -441,6 +441,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setBudgetIndex(BudgetIndex budgetIndex) {
+        assert budgetIndex != null;
         this.state.setBudgetIndex(budgetIndex);
     }
 
@@ -450,6 +451,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setPage(Page page) {
+        assert page != null;
         this.state.setPage(page);
     }
 

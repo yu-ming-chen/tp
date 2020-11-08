@@ -1,19 +1,26 @@
 package seedu.address.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalBudget.*;
 import static seedu.address.testutil.TypicalBudgets.getTypicalNusave;
 import static seedu.address.testutil.TypicalExpenditure.*;
+import static seedu.address.testutil.TypicalState.ENUM_PAGE_MAIN;
+import static seedu.address.testutil.TypicalState.SUBWAY_PAGE_TITLE;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.budget.Budget;
+import seedu.address.model.budget.Threshold;
+import seedu.address.model.expenditure.Expenditure;
 import seedu.address.state.Page;
 import seedu.address.state.budgetindex.BudgetIndex;
 import seedu.address.state.budgetindex.BudgetIndexManager;
@@ -77,7 +84,7 @@ public class ModelManagerTest {
         ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
         ReadOnlyNusave nusaveToCheck = getTypicalNusave();
         ReadOnlyNusave nusave = modelManager.getNusave();
-        assertEquals(nusave, nusaveToCheck);
+        assertEquals(nusaveToCheck, nusave);
     }
 
     @Test
@@ -116,7 +123,7 @@ public class ModelManagerTest {
     void addBudget_validBudget_addsBudget() {
         ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
         int size = modelManager.getNusave().getBudgetListAsObservableList().size();
-        assertEquals(size, 3);
+        assertEquals(3, size);
     }
 
     @Test
@@ -130,26 +137,24 @@ public class ModelManagerTest {
         ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
         modelManager.deleteBudget(new BudgetIndexManager(0));
         int size = modelManager.getNusave().getBudgetListAsObservableList().size();
-        assertEquals(size, 2);
+        assertEquals(2, size);
     }
 
-    //@Test
-    //void editBudget_validBudget_deletesBudget() {
-    //    modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
-    //    Budget oldBudget = new BudgetBuilder().withName("McDonalds").withCreatedOn("2020-10-10")
-    //            .withExpenditures(TypicalExpenditures.EXPENDITURE_LIST_MCDONALDS).build();
-    //    Budget newBudget = new BudgetBuilder().withName("KFC").withCreatedOn("2020-10-10")
-    //            .withExpenditures(TypicalExpenditures.EXPENDITURE_LIST_KFC).build();
-    //    modelManager.editBudget(oldBudget, newBudget);
-    //    System.out.println(modelManager.getNusave().getBudgetListAsObservableList());
-    //    assertEquals(modelManager.getNusave().getBudgetListAsObservableList().get(0), newBudget);
-    //}
+    @Test
+    void editBudget_validBudget_deletesBudget() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        BudgetIndex indexToEdit = new BudgetIndexManager(0);
+        Budget oldBudget = modelManager.getBudgetAtIndex(indexToEdit);
+        Budget newBudget = SUBWAY;
+        modelManager.editBudget(oldBudget, newBudget);
+        assertEquals(newBudget, modelManager.getBudgetAtIndex(indexToEdit));
+    }
 
     @Test
     void deleteAllBudgets() {
         ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
         modelManager.deleteAllBudgets();
-        assertEquals(modelManager.getNusave().getBudgetListAsObservableList().size(), 0);
+        assertEquals(0, modelManager.getNusave().getBudgetListAsObservableList().size());
     }
 
     @Test
@@ -160,11 +165,11 @@ public class ModelManagerTest {
         modelManager.addBudget(getMcDonaldsBudget());
         modelManager.sortBudgetsByName();
 
-        assertEquals(modelManager.getNusave().getBudgetListAsObservableList().get(0), KFC);
-        assertEquals(modelManager.getNusave().getBudgetListAsObservableList().get(1), MC_DONALDS);
-        assertEquals(modelManager.getNusave().getBudgetListAsObservableList().get(2), MC_DONALDS);
-        assertEquals(modelManager.getNusave().getBudgetListAsObservableList().get(3), SUBWAY);
-        assertEquals(modelManager.getNusave().getBudgetListAsObservableList().get(4), SUBWAY);
+        assertEquals(KFC, modelManager.getNusave().getBudgetListAsObservableList().get(0));
+        assertEquals(MC_DONALDS, modelManager.getNusave().getBudgetListAsObservableList().get(1));
+        assertEquals(MC_DONALDS, modelManager.getNusave().getBudgetListAsObservableList().get(2));
+        assertEquals(SUBWAY, modelManager.getNusave().getBudgetListAsObservableList().get(3));
+        assertEquals(SUBWAY, modelManager.getNusave().getBudgetListAsObservableList().get(4));
     }
 
     @Test
@@ -174,10 +179,10 @@ public class ModelManagerTest {
         modelManager.addBudget(getMcDonaldsBudget());
         modelManager.sortBudgetsByCreatedDate();
 
-        assertEquals(modelManager.getNusave().getBudgetListAsObservableList().get(0), MC_DONALDS);
-        assertEquals(modelManager.getNusave().getBudgetListAsObservableList().get(1), MC_DONALDS);
-        assertEquals(modelManager.getNusave().getBudgetListAsObservableList().get(2), KFC);
-        assertEquals(modelManager.getNusave().getBudgetListAsObservableList().get(3), SUBWAY);
+        assertEquals(MC_DONALDS, modelManager.getNusave().getBudgetListAsObservableList().get(0));
+        assertEquals(MC_DONALDS, modelManager.getNusave().getBudgetListAsObservableList().get(1));
+        assertEquals(KFC, modelManager.getNusave().getBudgetListAsObservableList().get(2));
+        assertEquals(SUBWAY, modelManager.getNusave().getBudgetListAsObservableList().get(3));
     }
 
     @Test
@@ -192,30 +197,55 @@ public class ModelManagerTest {
 
     @Test
     void addExpenditure() {
-//        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
-//        modelManager.openBudget(new BudgetIndexManager(0));
-//        modelManager.addExpenditure(MC_MUFFIN);
-//        assertEquals(4, modelManager.getFilteredRenderableList().size());
-//        assertEquals(MC_MUFFIN, modelManager.getFilteredRenderableList().get(0));
-//        assertEquals(SUBWAY_COLD_CUT_TRIO, modelManager.getFilteredRenderableList().get(1));
-//        assertEquals(SUBWAY_COOKIE, modelManager.getFilteredRenderableList().get(2));
-//        assertEquals(SUBWAY_SOUP, modelManager.getFilteredRenderableList().get(3));
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        modelManager.openBudget(new BudgetIndexManager(0));
+        modelManager.addExpenditure(getMcMuffinExpenditure());
+        assertEquals(4, modelManager.getFilteredRenderableList().size());
+        assertEquals(MC_MUFFIN, modelManager.getFilteredRenderableList().get(0));
+        assertEquals(SUBWAY_SOUP, modelManager.getFilteredRenderableList().get(1));
+        assertEquals(SUBWAY_COOKIE, modelManager.getFilteredRenderableList().get(2));
+        assertEquals(SUBWAY_COLD_CUT_TRIO, modelManager.getFilteredRenderableList().get(3));
     }
 
     @Test
     void editExpenditure() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        modelManager.openBudget(new BudgetIndexManager(0));
+        modelManager.editExpenditure(getSubwayCookieExpenditure(), getKfcZingerExpenditure());
+        assertEquals(3, modelManager.getFilteredRenderableList().size());
+        assertEquals(SUBWAY_SOUP, modelManager.getFilteredRenderableList().get(0));
+        assertEquals(KFC_ZINGER, modelManager.getFilteredRenderableList().get(1));
+        assertEquals(SUBWAY_COLD_CUT_TRIO, modelManager.getFilteredRenderableList().get(2));
     }
 
     @Test
     void sortExpendituresByName() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        modelManager.openBudget(new BudgetIndexManager(0));
+        modelManager.sortExpendituresByName();
+        assertEquals(SUBWAY_SOUP, modelManager.getFilteredRenderableList().get(0));
+        assertEquals(SUBWAY_COLD_CUT_TRIO, modelManager.getFilteredRenderableList().get(1));
+        assertEquals(SUBWAY_COOKIE, modelManager.getFilteredRenderableList().get(2));
+
     }
 
     @Test
     void sortExpenditureByCreatedDate() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        modelManager.openBudget(new BudgetIndexManager(0));
+        modelManager.sortExpenditureByCreatedDate();
+        assertEquals(SUBWAY_COLD_CUT_TRIO, modelManager.getFilteredRenderableList().get(0));
+        assertEquals(SUBWAY_COOKIE, modelManager.getFilteredRenderableList().get(1));
+        assertEquals(SUBWAY_SOUP, modelManager.getFilteredRenderableList().get(2));
     }
 
     @Test
     void calculateExpenditureValue() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        modelManager.openBudget(new BudgetIndexManager(0));
+        String expenditureValue =
+                modelManager.calculateExpenditureValue(new BudgetIndexManager(modelManager.getBudgetIndex().get()));
+        assertEquals(SUBWAY_TOTAL_PRICE, expenditureValue);
     }
 
     @Test
@@ -235,21 +265,21 @@ public class ModelManagerTest {
     }
 
     @Test
-    void isWithinRange_validBudgetIndex_True() {
+    void isWithinRange_validBudgetIndex_true() {
         ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
         BudgetIndex validBudgetIndex = new BudgetIndexManager(2);
         assertEquals(true, modelManager.isWithinRange(validBudgetIndex));
     }
 
     @Test
-    void isWithinRange_budgetIndexIsMoreThanListSize_False() {
+    void isWithinRange_budgetIndexIsMoreThanListSize_false() {
         ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
         BudgetIndex invalidBudgetIndex = new BudgetIndexManager(3);
         assertEquals(false, modelManager.isWithinRange(invalidBudgetIndex));
     }
 
     @Test
-    void isWithinRange_validExpenditureIndex_True() {
+    void isWithinRange_validExpenditureIndex_true() {
         ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
         modelManager.openBudget(new BudgetIndexManager(0));
         ExpenditureIndex expenditureIndex = new ExpenditureIndexManager(1);
@@ -257,7 +287,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    void isWithinRange_expenditureIndexIsMoreThanListSize_False() {
+    void isWithinRange_expenditureIndexIsMoreThanListSize_false() {
         ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
         modelManager.openBudget(new BudgetIndexManager(0));
         ExpenditureIndex expenditureIndex = new ExpenditureIndexManager(5);
@@ -266,54 +296,77 @@ public class ModelManagerTest {
 
     @Test
     void getPage() {
-    }
-
-    @Test
-    void getBudgetPageProp() {
-    }
-
-    @Test
-    void getTotalExpenditureStringProp() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        assertEquals(ENUM_PAGE_MAIN, modelManager.getPage());
     }
 
     @Test
     void getPageName() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        assertEquals(SUBWAY_NAME, modelManager.getPageName(new BudgetIndexManager(0)));
     }
 
     @Test
     void getPageTitle() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        assertEquals(SUBWAY_PAGE_TITLE, modelManager.getPageName(new BudgetIndexManager(0)));
     }
 
     @Test
     void getTotalExpenditureValue() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        modelManager.openBudget(new BudgetIndexManager(1));
+        assertEquals(KFC_TOTAL_PRICE, modelManager.getTotalExpenditureValue());
     }
 
     @Test
     void getThreshold() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        modelManager.openBudget(new BudgetIndexManager(1));
+        assertEquals(new Threshold(KFC_THRESHOLD), modelManager.getThreshold().get());
     }
 
     @Test
-    void isBudgetPage() {
+    void isBudgetPageTest_isMainPage_false() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        assertFalse(modelManager.isBudgetPage());
+    }
+
+    @Test
+    void isBudgetPageTest_isBudgetPage_true() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        modelManager.openBudget(new BudgetIndexManager(2));
+        assertTrue(modelManager.isBudgetPage());
     }
 
     @Test
     void setBudgetIndex() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        modelManager.setBudgetIndex(new BudgetIndexManager(1));
+        assertEquals(1, modelManager.getBudgetIndex().get());
     }
 
     @Test
     void setPage() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        modelManager.setPage(Page.MAIN);
+        assertEquals(ENUM_PAGE_MAIN, modelManager.getPage());
     }
 
     @Test
     void setTotalExpenditure() {
-    }
-
-    @Test
-    void setPageName() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        modelManager.openBudget(new BudgetIndexManager(0));
+        modelManager.deleteExpenditure(new ExpenditureIndexManager(0));
+        assertEquals("9.00", modelManager.getTotalExpenditureValue());
     }
 
     @Test
     void getFilteredRenderableList() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        assertEquals(SUBWAY, modelManager.getFilteredRenderableList().get(0));
+        assertEquals(KFC, modelManager.getFilteredRenderableList().get(1));
+        assertEquals(MC_DONALDS, modelManager.getFilteredRenderableList().get(2));
     }
 
     @Test
