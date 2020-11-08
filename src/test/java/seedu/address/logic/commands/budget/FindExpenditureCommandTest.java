@@ -29,7 +29,7 @@ class FindExpenditureCommandTest {
 
     @Test
     void execute_matchingKeyword_oneBudgetFound() {
-        String keyword = TypicalExpenditure.MC_SPICY_NAME;
+        String keyword = TypicalExpenditure.SUBWAY_SOUP_NAME;
         model.openBudget(new BudgetIndexManager(0));
         model.setPage(Page.BUDGET);
         expectedModel.openBudget(new BudgetIndexManager(0));
