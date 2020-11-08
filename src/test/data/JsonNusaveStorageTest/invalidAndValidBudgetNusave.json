@@ -17,8 +17,8 @@
   },
     {
       "name": "Temasek Hall Basketball Budget",
-      "createdOn": "2020-10-18",
-      "threshold": "100000000",
+      "createdOn": "10-10-2020",
+      "threshold": "1000",
       "expenditures": [
         {
           "name": "Shirt",
@@ -39,5 +39,6 @@
           ]
         }
       ]
-    }]
+    }
+  ]
 }
