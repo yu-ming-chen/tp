@@ -105,13 +105,6 @@ public class Node<T> {
             return false;
         }
         Node<?> node = (Node<?>) o;
-        return Objects.equals(value, node.value)
-                && Objects.equals(next, node.next)
-                && Objects.equals(previous, node.previous);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(value, next, previous);
+        return Objects.equals(value, node.value);
     }
 }
