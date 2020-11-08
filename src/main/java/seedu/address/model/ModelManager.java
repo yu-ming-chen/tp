@@ -540,8 +540,7 @@ public class ModelManager implements Model {
         return Objects.equals(nusave, that.nusave)
                 && Objects.equals(userPrefs, that.userPrefs)
                 && Objects.equals(filteredRenderables, that.filteredRenderables)
-                && Objects.equals(state, that.state)
-                && Objects.equals(history, that.history);
+                && Objects.equals(state, that.state);
     }
 
     @Override

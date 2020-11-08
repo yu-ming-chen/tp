@@ -6,7 +6,7 @@ skinparam Sequence {
 box "Logic" #LightBlue
 participant ":LogicManager" as LM
 participant ":BudgetPageParser" as BPP
-participant "command:ListExpenditureCommand" as LEC
+participant "c:ListExpenditureCommand" as LEC
 participant "result:CommandResult" as CR
 end box
 
@@ -29,10 +29,10 @@ activate BPP
 create LEC
 BPP -> LEC
 activate LEC
-BPP <-- LEC : command
+BPP <-- LEC : c
 deactivate LEC
 
-LM <-- BPP : command
+LM <-- BPP : c
 deactivate BPP
 LM <-[hidden]- BPP
 destroy BPP
