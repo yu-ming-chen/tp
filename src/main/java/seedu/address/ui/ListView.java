@@ -19,7 +19,7 @@ public class ListView extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(ListView.class);
 
     @FXML
-    private javafx.scene.control.ListView renderableListView;
+    private javafx.scene.control.ListView<Renderable> renderableListView;
 
     /**
      * Creates a {@code RenderableListPanel} with the given {@code ObservableList}.
