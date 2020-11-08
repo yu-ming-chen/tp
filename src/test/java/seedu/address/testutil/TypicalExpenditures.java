@@ -1,5 +1,16 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalExpenditure.KFC_BANDITO;
+import static seedu.address.testutil.TypicalExpenditure.KFC_CHEESE_FRIES;
+import static seedu.address.testutil.TypicalExpenditure.KFC_ZINGER;
+import static seedu.address.testutil.TypicalExpenditure.MC_CHICKEN;
+import static seedu.address.testutil.TypicalExpenditure.MC_MUFFIN;
+import static seedu.address.testutil.TypicalExpenditure.MC_SPICY;
+import static seedu.address.testutil.TypicalExpenditure.SUBWAY_COLD_CUT_TRIO;
+import static seedu.address.testutil.TypicalExpenditure.SUBWAY_COOKIE;
+import static seedu.address.testutil.TypicalExpenditure.SUBWAY_SOUP;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import seedu.address.model.expenditure.ExpenditureList;
@@ -7,25 +18,25 @@ import seedu.address.model.expenditure.ExpenditureList;
 public class TypicalExpenditures {
 
     public static final ExpenditureList MC_DONALDS_EXPENDITURES = new ExpenditureList(
-            Arrays.asList(
-                    TypicalExpenditure.MC_MUFFIN,
-                    TypicalExpenditure.MC_CHICKEN,
-                    TypicalExpenditure.MC_SPICY
-            ));
+            new ArrayList<>(Arrays.asList(
+                    MC_MUFFIN,
+                    MC_CHICKEN,
+                    MC_SPICY
+            )));
 
     public static final ExpenditureList KFC_EXPENDITURES = new ExpenditureList(
-            Arrays.asList(
-                    TypicalExpenditure.KFC_ZINGER,
-                    TypicalExpenditure.KFC_CHEESE_FRIES,
-                    TypicalExpenditure.KFC_BANDITO
-            ));
+            new ArrayList<>(Arrays.asList(
+                    KFC_ZINGER,
+                    KFC_CHEESE_FRIES,
+                    KFC_BANDITO
+            )));
 
     public static final ExpenditureList SUBWAY_EXPENDITURES = new ExpenditureList(
-            Arrays.asList(
-                    TypicalExpenditure.SUBWAY_COLD_CUT_TRIO,
-                    TypicalExpenditure.SUBWAY_COOKIE,
-                    TypicalExpenditure.SUBWAY_SOUP
-            ));
+            new ArrayList<>(Arrays.asList(
+                    SUBWAY_COLD_CUT_TRIO,
+                    SUBWAY_COOKIE,
+                    SUBWAY_SOUP
+            )));
 
     private TypicalExpenditures() {} // prevents instantiation
 

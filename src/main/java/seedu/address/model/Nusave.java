@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import javafx.collections.FXCollections;
@@ -60,9 +61,18 @@ public class Nusave implements ReadOnlyNusave {
     /**
      * Adds a budget to the NUSave.
      */
-    public void addBudget(Budget budget) {
+    public void addBudgetToFront(Budget budget) {
         this.budgetList.addToFront(budget);
         this.internalList.add(0, budget);
+    }
+
+    /**
+     * Adds a budget to the NUSave.
+     * @param budget the budget to be added.
+     */
+    public void addBudget(Budget budget) {
+        this.budgetList.add(budget);
+        this.internalList.add(budget);
     }
 
     /**
@@ -213,17 +223,22 @@ public class Nusave implements ReadOnlyNusave {
     }
 
     @Override
-    public boolean equals(Object other) {
-        if (other == this) {
+    public boolean equals(Object o) {
+        if (this == o) {
             return true;
         }
-
-        if (!(other instanceof Nusave)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
+        Nusave nusave = (Nusave) o;
+        return Objects.equals(budgetList, nusave.budgetList)
+                && Objects.equals(internalList, nusave.internalList)
+                && Objects.equals(internalUnmodifiableList, nusave.internalUnmodifiableList);
+    }
 
-        Nusave otherNusave = (Nusave) other;
-        return budgetList.equals(otherNusave.getBudgetList());
+    @Override
+    public int hashCode() {
+        return Objects.hash(budgetList, internalList, internalUnmodifiableList);
     }
 
 }

@@ -75,7 +75,7 @@ public class BudgetList implements Iterable<Budget> {
      */
     public void addExpenditure(Expenditure toAdd, int index) {
         Budget budget = budgets.get(index);
-        budget.addExpenditure(toAdd);
+        budget.addExpenditureToFront(toAdd);
     }
 
     /**

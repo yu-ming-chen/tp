@@ -28,10 +28,9 @@ class JsonAdaptedBudgetTest {
 
     @Test
     public void toModelType_validBudgetDetails_returnsBudget() throws IllegalValueException {
-        JsonAdaptedBudget budget = new JsonAdaptedBudget(MC_DONALDS);
-        Budget the = budget.toModelType();
-        Budget test = TypicalBudget.MC_DONALDS;
-        assertEquals(TypicalBudget.getMcDonaldsBudget(), budget.toModelType());
+        Budget budget = TypicalBudget.getMcDonaldsBudget();
+        JsonAdaptedBudget jsonAdaptedBudget = new JsonAdaptedBudget(budget);
+        assertEquals(TypicalBudget.getMcDonaldsBudget(), jsonAdaptedBudget.toModelType());
     }
 
     @Test

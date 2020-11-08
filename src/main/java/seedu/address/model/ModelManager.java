@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.budget.Threshold.NO_THRESHOLD_MESSAGE;
 
 import java.nio.file.Path;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -147,6 +148,9 @@ public class ModelManager implements Model {
 
     @Override
     public void closeBudget() {
+        if (state.getPage() == Page.MAIN) {
+            return;
+        }
         setCloseCommandState();
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
         repopulateObservableList();
@@ -173,7 +177,7 @@ public class ModelManager implements Model {
     @Override
     public void addBudget(Budget budget) {
         requireNonNull(budget);
-        nusave.addBudget(budget);
+        nusave.addBudgetToFront(budget);
     }
 
     /**
@@ -526,4 +530,25 @@ public class ModelManager implements Model {
             openBudget(index);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ModelManager that = (ModelManager) o;
+        return Objects.equals(nusave, that.nusave)
+                && Objects.equals(userPrefs, that.userPrefs)
+                && Objects.equals(filteredRenderables, that.filteredRenderables)
+                && Objects.equals(state, that.state);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nusave, userPrefs, filteredRenderables, state, history);
+    }
+
 }

@@ -2,6 +2,8 @@ package seedu.address.model.history;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Objects;
+
 /**
  * Represents a node in a doubly- inked list.
  * @param <T> the type of the doubly-linked list.
@@ -92,5 +94,17 @@ public class Node<T> {
             next = null;
             temp.disconnectPrevious();
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Node<?> node = (Node<?>) o;
+        return Objects.equals(value, node.value);
     }
 }
