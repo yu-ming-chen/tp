@@ -38,7 +38,7 @@ class CreateBudgetCommandTest {
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_budgetCreatedByModel_createSuccessful() throws Exception {
         ModelStubAcceptingBudgetCreated modelStub = new ModelStubAcceptingBudgetCreated();
         Budget validBudget = TypicalBudget.getMcDonaldsBudget();
 

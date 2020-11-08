@@ -59,7 +59,7 @@ class EditBudgetCommandTest {
     }
 
     @Test
-    public void wrte_editOutOfBound_commandExceptionThrown() throws CommandException {
+    public void write_editOutOfBound_commandExceptionThrown() throws CommandException {
         EditBudgetCommand.EditBudgetDescriptor descriptor = new EditBudgetCommand.EditBudgetDescriptor();
         descriptor.setName(new Name("KFC"));
         descriptor.setCreatedOn(new Date("2020-10-09"));
