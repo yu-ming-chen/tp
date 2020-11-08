@@ -1,9 +1,7 @@
 package seedu.address.logic.commands.budget;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -50,9 +48,6 @@ class AddExpenditureCommandTest {
                 new AddExpenditureCommand(TypicalExpenditure.getKfcBanditoExpenditure());
         // different obj same expenditure to add -> true
         assertTrue(command.equals(differentExpenditureCommand));
-    }
-
-    private void assertTrue(boolean equals) {
     }
 
     @Test
