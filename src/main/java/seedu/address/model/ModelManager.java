@@ -59,7 +59,6 @@ public class ModelManager implements Model {
         this.filteredRenderables = new FilteredList<>(this.nusave.getInternalList());
         this.state = new StateManager(new EmptyBudgetIndex(), Page.MAIN, PageTitle.MAIN_PAGE_TITLE);
         this.history = new HistoryManager<>();
-        sortBudgetsByCreatedDate();
     }
     /**
      * Initializes a new ModelManager.
@@ -453,6 +452,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setBudgetIndex(BudgetIndex budgetIndex) {
+        assert budgetIndex != null;
         this.state.setBudgetIndex(budgetIndex);
     }
 
@@ -462,6 +462,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setPage(Page page) {
+        assert page != null;
         this.state.setPage(page);
     }
 
@@ -473,9 +474,11 @@ public class ModelManager implements Model {
     @Override
     public void setThreshold(Optional<Threshold> threshold) {
         if (threshold.isPresent()) {
+            assert getPage() == Page.BUDGET;
             String thresholdStr = threshold.get().toString();
             this.state.setThresholdStringProp(thresholdStr);
         } else {
+            assert getPage() == Page.MAIN;
             this.state.setThresholdStringProp(NO_THRESHOLD_MESSAGE);
         }
     }
@@ -571,10 +574,4 @@ public class ModelManager implements Model {
                 && Objects.equals(filteredRenderables, that.filteredRenderables)
                 && Objects.equals(state, that.state);
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(nusave, userPrefs, filteredRenderables, state, history);
-    }
-
 }

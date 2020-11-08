@@ -15,6 +15,8 @@ public class TypicalExpenditure {
     public static final String MC_SPICY_PRICE = "7.00";
     public static final String MC_SPICY_CREATED_ON = "2020-10-08";
 
+    public static final String MCDONALDS_TOTAL_PRICE = "13.50";
+
     public static final String KFC_ZINGER_NAME = "Zinger";
     public static final String KFC_ZINGER_PRICE = "8.00";
     public static final String KFC_ZINGER_CREATED_ON = "2020-10-07";
@@ -27,6 +29,8 @@ public class TypicalExpenditure {
     public static final String KFC_BANDITO_PRICE = "6.50";
     public static final String KFC_BANDITO_CREATED_ON = "2020-10-05";
 
+    public static final String KFC_TOTAL_PRICE = "18.50";
+
     public static final String SUBWAY_COLD_CUT_TRIO_NAME = "Cold Cut Trio";
     public static final String SUBWAY_COLD_CUT_TRIO_PRICE = "7.50";
     public static final String SUBWAY_COLD_CUT_TRIO_CREATED_ON = "2020-10-04";
@@ -38,6 +42,8 @@ public class TypicalExpenditure {
     public static final String SUBWAY_SOUP_NAME = "Clam Chowder";
     public static final String SUBWAY_SOUP_PRICE = "3.00";
     public static final String SUBWAY_SOUP_CREATED_ON = "2020-10-02";
+
+    public static final String SUBWAY_TOTAL_PRICE = "12.00";
 
     public static final Expenditure MC_MUFFIN = new ExpenditureBuilder().withName(MC_MUFFIN_NAME)
             .withPrice(MC_MUFFIN_PRICE).withCreatedOn(MC_MUFFIN_CREATED_ON).build();

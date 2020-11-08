@@ -36,6 +36,18 @@ public class ExpenditureIndexManagerTest {
         assertEquals(expected.getExpenditureIndex(), Optional.of(0));
     }
 
+    @Test
+    void equals_sameObject_true() {
+        ExpenditureIndex expenditureIndex = new ExpenditureIndexStub().getTypicalExpenditureIndex();
+        assertEquals(true, expenditureIndex.equals(expenditureIndex));
+    }
+
+    @Test
+    void equals_null_false() {
+        ExpenditureIndex expenditureIndex = new ExpenditureIndexStub().getTypicalExpenditureIndex();
+        assertEquals(false, expenditureIndex.equals(null));
+    }
+
     class ExpenditureIndexStub {
         public final ExpenditureIndex getTypicalExpenditureIndex() {
             return new ExpenditureIndexManager(VALID_EXPENDITURE_INDEX);

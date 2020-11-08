@@ -24,7 +24,7 @@ public class TypicalBudgets {
         BudgetList budgetList = new BudgetList();
         budgetList.addToFront(TypicalBudget.getMcDonaldsBudget());
         budgetList.addToFront(TypicalBudget.getKfcBudget());
-        budgetList.addToFront(TypicalBudget.getSubwayExpenditure());
+        budgetList.addToFront(TypicalBudget.getSubwayBudget());
         return budgetList;
     }
 
