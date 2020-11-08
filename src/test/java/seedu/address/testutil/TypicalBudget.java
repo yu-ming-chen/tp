@@ -40,7 +40,7 @@ public class TypicalBudget {
                 .withExpenditures(TypicalExpenditures.KFC_EXPENDITURES).build();
     }
 
-    public static Budget getSubwayExpenditure() {
+    public static Budget getSubwayBudget() {
         return new BudgetBuilder().withName(SUBWAY_NAME)
                 .withThreshold(SUBWAY_THRESHOLD).withCreatedOn(SUBWAY_CREATED_ON)
                 .withExpenditures(TypicalExpenditures.SUBWAY_EXPENDITURES).build();
