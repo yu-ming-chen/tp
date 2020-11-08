@@ -186,8 +186,8 @@ public class ModelManagerTest {
         modelManager.openBudget(new BudgetIndexManager(0));
         modelManager.deleteExpenditure(new ExpenditureIndexManager(1));
         assertEquals(2, modelManager.getFilteredRenderableList().size());
-        assertEquals(SUBWAY_COLD_CUT_TRIO, modelManager.getFilteredRenderableList().get(0));
-        assertEquals(SUBWAY_SOUP, modelManager.getFilteredRenderableList().get(1));
+        assertEquals(SUBWAY_SOUP, modelManager.getFilteredRenderableList().get(0));
+        assertEquals(SUBWAY_COLD_CUT_TRIO, modelManager.getFilteredRenderableList().get(1));
     }
 
     @Test
