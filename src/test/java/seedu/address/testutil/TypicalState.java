@@ -1,6 +1,8 @@
 package seedu.address.testutil;
 
-import seedu.address.model.budget.Budget;
+import static seedu.address.model.budget.Threshold.NO_THRESHOLD_MESSAGE;
+
+import seedu.address.model.budget.Threshold;
 import seedu.address.state.Page;
 import seedu.address.state.State;
 import seedu.address.state.budgetindex.BudgetIndex;
@@ -21,6 +23,10 @@ public class TypicalState {
     public static final String MCDONALDS_PAGE_TITLE = "McDonalds";
     public static final String KFC_PAGE_TITLE = "KFC";
     public static final String SUBWAY_PAGE_TITLE = "Subway";
+
+    public static final Threshold MAIN_THRESHOLD_VALUE = new Threshold(NO_THRESHOLD_MESSAGE);
+    public static final Threshold MCDONALDS_THRESHOLD_VALUE = new Threshold("150");
+    public static final String MCDONALDS_EXPENDITURE_VALUE = "100";
 
     public static final State TYPICAL_MAIN_PAGE_STATE = new StateBuilder().withBudgetIndex(MAIN_PAGE_BUDGET_INDEX)
             .withCurrentPage(ENUM_PAGE_MAIN).withPageTitle(MAIN_PAGE_TITLE).build();
@@ -54,5 +60,29 @@ public class TypicalState {
     public static State getSubwayBudgetPageState() {
         return new StateBuilder().withBudgetIndex(new BudgetIndexManager(2))
                 .withCurrentPage(Page.BUDGET).withPageTitle("Subway").build();
+    }
+
+    public static BudgetIndex getMainPageBudgetIndex() {
+        return new EmptyBudgetIndex();
+    }
+
+    public static BudgetIndex getMcdonaldsBudgetIndex() {
+        return new BudgetIndexManager(0);
+    }
+
+    public static BudgetIndex getKfcBudgetIndex() {
+        return new BudgetIndexManager(1);
+    }
+
+    public static BudgetIndex getSubwayBudgetIndex() {
+        return new BudgetIndexManager(2);
+    }
+
+    public static Threshold getMcdonaldsThresholdValue() {
+        return new Threshold("150");
+    }
+
+    public static Threshold getMainThresholdValue() {
+        return new Threshold(NO_THRESHOLD_MESSAGE);
     }
 }

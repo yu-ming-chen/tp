@@ -6,6 +6,7 @@ import static seedu.address.model.budget.Threshold.NO_THRESHOLD_MESSAGE;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Objects;
 import java.util.Optional;
 
 import javafx.beans.property.BooleanProperty;
@@ -35,6 +36,7 @@ public class StateManager implements State {
         requireAllNonNull(budgetIndex, currentPage, pageTitle);
         this.budgetIndex = budgetIndex;
         this.currentPage = currentPage;
+        infoBoxSecondRowProp.setValue(defaultValueTotalExpenditure());
         this.pageTitle = pageTitle;
     }
 
@@ -131,6 +133,7 @@ public class StateManager implements State {
     @Override
     public void setOpenCommandState(String pageTitle,
                                          String newExpenditureValue, Optional<Threshold> newThreshold) {
+        assert currentPage == Page.MAIN;
         setPageTitle(pageTitle);
         setPage(Page.BUDGET);
         setTotalExpenditure(newExpenditureValue);
@@ -142,10 +145,30 @@ public class StateManager implements State {
 
     @Override
     public void setCloseCommandState() {
+        assert currentPage == Page.BUDGET;
         setBudgetIndex(new EmptyBudgetIndex());
         setPageTitle(PageTitle.MAIN_PAGE_TITLE);
         setPage(Page.MAIN);
         setTotalExpenditure(StateManager.defaultValueTotalExpenditure());
         setThresholdStringProp(NO_THRESHOLD_MESSAGE);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        StateManager that = (StateManager) o;
+        return Objects.equals(budgetIndex, that.budgetIndex)
+                && currentPage == that.currentPage
+                && Objects.equals(pageTitle, that.pageTitle);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(budgetIndex, currentPage, pageTitle);
     }
 }
