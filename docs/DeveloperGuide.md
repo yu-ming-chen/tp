@@ -195,6 +195,7 @@ Figure 3.2.2.1. above represents the interactions within the `Logic` component f
 
 #### 3.2.3. Model Component
 (Contributed by Chin Hui)
+
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 Figure 3.4.1: Structure of the model component.
 
@@ -749,6 +750,7 @@ The details of the flow of `SortExpenditureCommand` will not be elaborate in det
 ##### 4.3.5.1 List Budget
 
 (Contributed by Chin Hui)
+
 The following sequence diagram shows the interactions between the `Logic` and `Model` components of NUSave,
 depicting a scenario where the user would like to list all budgets.
 
@@ -771,6 +773,7 @@ on the user interface.
 
 ##### 4.3.5.2 Find Budget
 (Contributed by Chin Hui)
+
 The following sequence diagram shows the interactions between the `Logic` and `Model` components of NUSave,
 depicting a scenario where the user would like to find budgets by a search term/phrase.
 

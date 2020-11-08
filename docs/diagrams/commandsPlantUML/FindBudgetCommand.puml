@@ -7,7 +7,7 @@ box "Logic" #LightBlue
 participant ":LogicManager" as LM
 participant ":MainPageParser" as MPP
 participant ":FindBudgetCommandParser" as FBCP
-participant "command:FindBudgetCommand" as FBC
+participant "c:FindBudgetCommand" as FBC
 participant "result:CommandResult" as CR
 end box
 
@@ -38,14 +38,14 @@ activate FBCP
 create FBC
 FBCP -> FBC
 activate FBC
-FBCP <-- FBC : command
+FBCP <-- FBC : c
 deactivate FBC
-MPP <-- FBCP : command
+MPP <-- FBCP : c
 deactivate FBCP
 FBCP -[hidden]-> MPP
 destroy FBCP
 
-LM <-- MPP : command
+LM <-- MPP : c
 deactivate MPP
 LM <-[hidden]- MPP
 destroy MPP
