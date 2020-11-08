@@ -2,25 +2,21 @@ package seedu.address.storage;
 
 //import static org.junit.jupiter.api.Assertions.assertEquals;
 //import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalBudgets.MC_DONALDS;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 //import org.junit.jupiter.api.Test;
 
 //import seedu.address.commons.exceptions.IllegalValueException;
 
 class JsonAdaptedBudgetTest {
-    public static final String INVALID_NAME_BLANK = "";
-    public static final String INVALID_NAME_NON_ALPHANUMERIC = "@Household Expenses";
-    public static final String INVALID_THRESHOLD_MORE_THAN_TWO_DECIMAL_PLACES = "2.500";
-    public static final String INVALID_THRESHOLD_NON_NUMERIC = "abc";
-
-    public static final String VALID_NAME = MC_DONALDS.getName().toString();
-    public static final String VALID_THRESHOLD = MC_DONALDS.getThreshold().get().toString();
-    public static final List<JsonAdaptedExpenditure> VALID_EXPENDITURES = MC_DONALDS.getExpendituresList().stream()
-            .map(JsonAdaptedExpenditure::new).collect(Collectors.toList());
+//    public static final String INVALID_NAME_BLANK = "";
+//    public static final String INVALID_NAME_NON_ALPHANUMERIC = "@Household Expenses";
+//    public static final String INVALID_THRESHOLD_MORE_THAN_TWO_DECIMAL_PLACES = "2.500";
+//    public static final String INVALID_THRESHOLD_NON_NUMERIC = "abc";
+//
+//    public static final String VALID_NAME = MC_DONALDS.getName().toString();
+//    public static final String VALID_THRESHOLD = MC_DONALDS.getThreshold().get().toString();
+//    public static final List<JsonAdaptedExpenditure> VALID_EXPENDITURES = MC_DONALDS.getExpendituresList().stream()
+//            .map(JsonAdaptedExpenditure::new).collect(Collectors.toList());
 
     //    @Test
     //    public void toModelType_validBudgetDetails_returnsBudget() throws IllegalValueException {

@@ -1,10 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalExpenditures.MC_MUFFIN;
-import static seedu.address.testutil.TypicalExpenditures.MC_NUGGETS;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Optional;
 
 import seedu.address.model.budget.Budget;
@@ -14,11 +9,10 @@ import seedu.address.model.budget.Threshold;
 import seedu.address.model.expenditure.ExpenditureList;
 
 public class BudgetBuilder {
-    public static final String DEFAULT_NAME = "BREAKFAST";
+    public static final String DEFAULT_NAME = "McDonalds";
     public static final String DEFAULT_CREATED_ON = "2020-10-10";
-    public static final Optional<Threshold> DEFAULT_THRESHOLD = Optional.of(new Threshold("100"));
-    public static final ExpenditureList DEFAULT_EXPENDITURES =
-            new ExpenditureList(new ArrayList<>(Arrays.asList(MC_MUFFIN, MC_NUGGETS)));
+    public static final String DEFAULT_THRESHOLD = "100";
+    public static final ExpenditureList DEFAULT_EXPENDITURES = TypicalExpenditures.getMcDonaldsExpenditures();
 
     private Name name;
     private Date createdOn;
@@ -31,7 +25,7 @@ public class BudgetBuilder {
     public BudgetBuilder() {
         name = new Name(DEFAULT_NAME);
         createdOn = new Date(DEFAULT_CREATED_ON);
-        threshold = DEFAULT_THRESHOLD;
+        threshold = new Threshold(DEFAULT_THRESHOLD).toOptional();
         expenditures = DEFAULT_EXPENDITURES;
     }
 
@@ -43,13 +37,6 @@ public class BudgetBuilder {
         createdOn = budgetToCopy.getCreatedOn();
         threshold = budgetToCopy.getThreshold();
         expenditures = budgetToCopy.getExpenditures();
-    }
-
-    /**
-     * Creates a {@code BudgetBuilder} without a threshold using the default details.
-     */
-    public static BudgetBuilder withoutThreshold() {
-        return new BudgetBuilder().withThreshold(Optional.empty());
     }
 
     /**
@@ -71,8 +58,8 @@ public class BudgetBuilder {
     /**
      * Sets the {@code threshold} of the {@code Budget} that we are building.
      */
-    public BudgetBuilder withThreshold(Optional<Threshold> threshold) {
-        this.threshold = threshold;
+    public BudgetBuilder withThreshold(String threshold) {
+        this.threshold = new Threshold(threshold).toOptional();
         return this;
     }
 
