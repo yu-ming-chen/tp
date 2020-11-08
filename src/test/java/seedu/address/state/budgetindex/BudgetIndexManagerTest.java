@@ -1,11 +1,14 @@
 package seedu.address.state.budgetindex;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-class BudgetIndexManagerTest {
-    public static final int VALID_BUDGET_INDEX = 1;
+public class BudgetIndexManagerTest {
+    public static final int VALID_BUDGET_INDEX = 0;
     public static final int INVALID_BUDGET_INDEX = -1;
 
     @Test
@@ -14,8 +17,28 @@ class BudgetIndexManagerTest {
     }
 
     @Test
+    void setIndex_validInput() {
+        BudgetIndex actual = new BudgetIndexManager(1);
+        actual.setIndex(VALID_BUDGET_INDEX);
+        BudgetIndex expected = new BudgetIndexStub().getTypicalBudgetIndex();
+        assertEquals(expected, actual);
+    }
+
+    @Test
     void setIndex_invalidInput_throwsAssertionError() {
         assertThrows(AssertionError.class, () -> new BudgetIndexManager(VALID_BUDGET_INDEX)
                 .setIndex(INVALID_BUDGET_INDEX));
+    }
+
+    @Test
+    void getIndex() {
+        BudgetIndex expected = new BudgetIndexStub().getTypicalBudgetIndex();
+        assertEquals(expected.getBudgetIndex(), Optional.of(0));
+    }
+
+    class BudgetIndexStub {
+        public final BudgetIndex getTypicalBudgetIndex() {
+            return new BudgetIndexManager(VALID_BUDGET_INDEX);
+        }
     }
 }

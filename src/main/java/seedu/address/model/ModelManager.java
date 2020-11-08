@@ -148,6 +148,9 @@ public class ModelManager implements Model {
 
     @Override
     public void closeBudget() {
+        if (state.getPage() == Page.MAIN) {
+            return;
+        }
         setCloseCommandState();
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
         repopulateObservableList();
@@ -550,8 +553,7 @@ public class ModelManager implements Model {
         return Objects.equals(nusave, that.nusave)
                 && Objects.equals(userPrefs, that.userPrefs)
                 && Objects.equals(filteredRenderables, that.filteredRenderables)
-                && Objects.equals(state, that.state)
-                && Objects.equals(history, that.history);
+                && Objects.equals(state, that.state);
     }
 
     @Override

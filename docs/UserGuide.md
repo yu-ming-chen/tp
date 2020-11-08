@@ -681,7 +681,7 @@ Figure 5.3.7.1. Example of using the close budget command.
 | Create a budget   | `create n/NAME [p/THRESHOLD]`       | `create n/Daily Expenses`, <br>`create n/Project Work p/100`     
 | Delete a budget   | `delete INDEX`                      | `delete 1`                                                       
 | Edit a budget     | `edit INDEX [n/NAME] [p/THRESHOLD]` | `edit 1 n/Hall Council`, <br>`edit 2 n/NUS Computing Club p/1000`
-| Find budgets      | `find KEYWORD` | `find Temasek`     |                                                                  
+| Find budgets      | `find KEYWORD`                      | `find Temasek`                                        
 | List all budgets  | `list`                              | \-                                                               
 | Sort all budgets  | `sort TYPE`                         | `sort time`, <br>`sort name`                                     
 | Clear all budgets | `clear`                             | \-                                                               
@@ -718,6 +718,8 @@ You can find the meanings of some special keywords applicable to NUSave over her
 | Threshold                   | Refers to the target limit that can be spent in that budget.
 
 ## 8. FAQ
+(Contributed by Chin Hui)
+
 **Q**: How do I transfer my data to another computer?
 
 **A**: Install the application on another computer and overwrite the empty data file it creates with the .json file that contains the data of your previous NUSave folder.

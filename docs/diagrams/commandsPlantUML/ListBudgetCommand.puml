@@ -6,7 +6,7 @@ skinparam Sequence {
 box "Logic" #LightBlue
 participant ":LogicManager" as LM
 participant ":MainPageParser" as MPP
-participant "command:ListBudgetCommand" as LBC
+participant "c:ListBudgetCommand" as LBC
 participant "result:CommandResult" as CR
 end box
 
@@ -28,9 +28,9 @@ activate MPP
 create LBC
 MPP -> LBC
 activate LBC
-MPP <-- LBC : command
+MPP <-- LBC : c
 deactivate LBC
-LM <-- MPP : command
+LM <-- MPP : c
 
 deactivate MPP
 LM <-[hidden]- MPP
@@ -53,7 +53,7 @@ deactivate CR
 LM <-- LBC : result
 deactivate LBC
 
-[<-- LM
+[<-- LM : result
 deactivate LM
 
 @enduml
