@@ -15,6 +15,7 @@ public class ExpenditureList {
     public ExpenditureList() {
         this.expenditures = new ArrayList<>();
     }
+
     public ExpenditureList(List<Expenditure> expenditures) {
         this.expenditures = expenditures;
     }
@@ -111,4 +112,5 @@ public class ExpenditureList {
     public int hashCode() {
         return Objects.hash(expenditures);
     }
+
 }

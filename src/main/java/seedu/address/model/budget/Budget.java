@@ -86,8 +86,12 @@ public class Budget implements Renderable {
         return expenditures.getTotalExpenditure();
     }
 
-    public void addExpenditure(Expenditure expenditure) {
+    public void addExpenditureToFront(Expenditure expenditure) {
         expenditures.addToFront(expenditure);
+    }
+
+    public void addExpenditure(Expenditure expenditure) {
+        expenditures.add(expenditure);
     }
 
     /**

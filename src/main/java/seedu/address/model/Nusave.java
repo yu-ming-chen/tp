@@ -61,9 +61,18 @@ public class Nusave implements ReadOnlyNusave {
     /**
      * Adds a budget to the NUSave.
      */
-    public void addBudget(Budget budget) {
+    public void addBudgetToFront(Budget budget) {
         this.budgetList.addToFront(budget);
         this.internalList.add(0, budget);
+    }
+
+    /**
+     * Adds a budget to the NUSave.
+     * @param budget the budget to be added.
+     */
+    public void addBudget(Budget budget) {
+        this.budgetList.add(budget);
+        this.internalList.add(budget);
     }
 
     /**
@@ -231,4 +240,5 @@ public class Nusave implements ReadOnlyNusave {
     public int hashCode() {
         return Objects.hash(budgetList, internalList, internalUnmodifiableList);
     }
+
 }
