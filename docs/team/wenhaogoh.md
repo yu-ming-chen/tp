@@ -10,11 +10,11 @@ NUSave is a desktop budgeting application used to manage an individual's budgets
 Given below are my contributions to the project:
 -  **Feature**: Added the ability to undo/redo previous commands: PRs [#285](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/285), [#291](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/291)
     - What it does: allows the user to undo all previous commands that modifies NUSave data one at a time.
-	- Justification: This feature improves user experience significantly as it provides a convenient way for users to rectify their mistakes.
+	- Justification: This feature improves user experience significantly as it provides a convenient way for the user to rectify their mistakes.
 	- Highlights: The implementation was challenging as it required me to come up with my own implementation of a doubly linked list, `Node<T>`, and its iterator, `HistoryManager<T>`. As it was the last feature to be implemented, it required in-depth analysis of design alternatives to extent the application without modifying existing code. Furthermore, it was a challenge to remember the current page view in addition to the data using `VersionedNusave` so that it can be accurately replicated when undoing and redoing.
 - **Feature**: Added the ability to clear budgets in NUSave: PRs [#127](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/127)
-	- What it does : It allows the users to delete all existing budgets with a single budgets.
-	- Justification: This feature improves user experience significantly as it provides a convenient way for users to purge sample data without having to delete them one by one.
+	- What it does : It allows the user to delete all existing budgets with a single budgets.
+	- Justification: This feature improves user experience significantly as it provides a convenient way for the user to purge sample data without having to delete them one by one.
 -  **Backend**: Changed implementation of storage to store `Budget` and `Expenditure`: PRs [#44](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/44)
 	- Justification: This helped to path the way for the team to continue NUSave's development.
 - **Frontend**: Revamped the GUI according to Figma mock-up: PRs [#86](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/86), [#96](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/96), [#97](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/98), [#99](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/99), [#101](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/101), [#145](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/145)

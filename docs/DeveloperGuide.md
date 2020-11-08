@@ -77,8 +77,8 @@ NUSave implements both **Command Line Interface (CLI)** and **Graphical User Int
 In other words, users interact with the application through the command line and the GUI will reflect their actions.
 
 ### Purpose
-This document acts as a guide for developers, testers, and designers describing both the architecture and design 
-of NUSave.
+This document describes both the architecture and design of NUSave. It aims to serve as a guide for developers,
+testers, and designers who are interested in working on NUSave.
 
 ## 2. Setting Up
 (Contributed by Yu Ming)
