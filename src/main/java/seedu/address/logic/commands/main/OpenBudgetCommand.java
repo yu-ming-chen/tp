@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.main;
 
+import java.util.Objects;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.MainPageCommand;
@@ -46,5 +48,17 @@ public class OpenBudgetCommand extends MainPageCommand {
         }
         model.openBudget(toOpen);
         return new CommandResult(String.format(MESSAGE_SUCCESS));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        OpenBudgetCommand that = (OpenBudgetCommand) o;
+        return Objects.equals(toOpen, that.toOpen);
     }
 }
