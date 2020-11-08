@@ -1,7 +1,9 @@
 package seedu.address.logic.commands.main;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.util.Arrays;
@@ -34,9 +36,26 @@ import seedu.address.testutil.BudgetBuilder;
 import seedu.address.testutil.TypicalBudget;
 import seedu.address.testutil.TypicalExpenditures;
 
-
-
 class EditBudgetCommandTest {
+
+    @Test
+    public void equalTest() {
+        EditBudgetCommand command = new EditBudgetCommand(new BudgetIndexManager(0),
+                new EditBudgetCommand.EditBudgetDescriptor());
+        // same object -> return true
+        assertTrue(command.equals(command));
+
+        // different type -> return false
+        assertFalse(command.equals(5));
+
+        // null -> return false
+        assertFalse(command.equals(null));
+
+        EditBudgetCommand differentBudgetCommand =
+                new EditBudgetCommand(new BudgetIndexManager(0), new EditBudgetCommand.EditBudgetDescriptor());
+        // different obj same budget to add -> true
+        assertTrue(command.equals(differentBudgetCommand));
+    }
 
     @Test
     public void execute_editAllField_success() throws CommandException {

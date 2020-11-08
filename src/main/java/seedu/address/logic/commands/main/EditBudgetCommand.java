@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INDEX_OUT_OF_BOUNDS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import seedu.address.logic.commands.Command;
@@ -112,5 +113,29 @@ public class EditBudgetCommand extends Command {
         public Optional<Date> getCreatedOn() {
             return Optional.ofNullable(createdOn);
         }
+
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            EditBudgetDescriptor that = (EditBudgetDescriptor) o;
+            return Objects.equals(name, that.name)
+                    && Objects.equals(createdOn, that.createdOn)
+                    && Objects.equals(threshold, that.threshold)
+                    && Objects.equals(expenditures, that.expenditures);
+        }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EditBudgetCommand // instanceof handles nulls
+                && budgetIndex.equals(((EditBudgetCommand) other).budgetIndex)
+                && editBudgetDescriptor.equals(((EditBudgetCommand) other).editBudgetDescriptor));
     }
 }
