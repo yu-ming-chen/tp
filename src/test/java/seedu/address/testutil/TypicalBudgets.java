@@ -1,5 +1,9 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalBudget.KFC;
+import static seedu.address.testutil.TypicalBudget.MC_DONALDS;
+import static seedu.address.testutil.TypicalBudget.SUBWAY;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -9,9 +13,9 @@ import seedu.address.model.budget.BudgetList;
 public class TypicalBudgets {
     public static final BudgetList FAST_FOOD_BUDGETS = new BudgetList(
             new ArrayList<>(Arrays.asList(
-                    TypicalBudget.MC_DONALDS,
-                    TypicalBudget.KFC,
-                    TypicalBudget.SUBWAY
+                    MC_DONALDS,
+                    KFC,
+                    SUBWAY
             )));
 
     private TypicalBudgets() {} // prevents instantiation
