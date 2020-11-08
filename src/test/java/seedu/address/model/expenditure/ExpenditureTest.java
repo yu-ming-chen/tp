@@ -10,11 +10,7 @@ import java.util.HashSet;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.testutil.ExpenditureBuilder;
-import seedu.address.testutil.TypicalBudgets;
 import seedu.address.testutil.TypicalExpenditure;
 
 
