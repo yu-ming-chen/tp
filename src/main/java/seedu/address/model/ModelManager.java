@@ -215,8 +215,17 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Expenditure getExpenditureAtIndex(ExpenditureIndex expenditureIndex) {
+        return (Expenditure) filteredRenderables.get(expenditureIndex.getExpenditureIndex().get());
+    }
+
+    @Override
     public boolean isIndexOutOfBound(BudgetIndex budgetIndex) {
         return budgetIndex.getBudgetIndex().get() >= filteredRenderables.size();
+    }
+
+    public boolean isIndexOutOfBound(ExpenditureIndex expenditureIndex) {
+        return expenditureIndex.getExpenditureIndex().get() >= filteredRenderables.size();
     }
 
     @Override

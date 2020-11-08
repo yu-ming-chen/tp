@@ -120,7 +120,17 @@ class CreateBudgetCommandTest {
         }
 
         @Override
+        public Expenditure getExpenditureAtIndex(ExpenditureIndex expenditureIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean isIndexOutOfBound(BudgetIndex budgetIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isIndexOutOfBound(ExpenditureIndex expenditureIndex) {
             throw new AssertionError("This method should not be called.");
         }
 
