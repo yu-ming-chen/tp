@@ -30,10 +30,6 @@ import seedu.address.state.budgetindex.BudgetIndex;
 import seedu.address.state.expenditureindex.ExpenditureIndex;
 import seedu.address.testutil.TypicalBudget;
 
-
-
-
-
 class CreateBudgetCommandTest {
 
     @Test
