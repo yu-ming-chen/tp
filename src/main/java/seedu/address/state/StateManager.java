@@ -132,6 +132,7 @@ public class StateManager implements State {
     @Override
     public void setOpenCommandState(String pageTitle,
                                          String newExpenditureValue, Optional<Threshold> newThreshold) {
+        assert currentPage == Page.MAIN;
         setPageTitle(pageTitle);
         setPage(Page.BUDGET);
         setTotalExpenditure(newExpenditureValue);
@@ -143,6 +144,7 @@ public class StateManager implements State {
 
     @Override
     public void setCloseCommandState() {
+        assert currentPage == Page.BUDGET;
         setBudgetIndex(new EmptyBudgetIndex());
         setPageTitle(PageTitle.MAIN_PAGE_TITLE);
         setPage(Page.MAIN);
@@ -162,11 +164,5 @@ public class StateManager implements State {
         return Objects.equals(budgetIndex, that.budgetIndex)
                 && currentPage == that.currentPage
                 && Objects.equals(pageTitle, that.pageTitle);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(budgetIndex, currentPage, isBudgetPageProp,
-                infoBoxSecondRowProp, thresholdStringProp, pageTitle);
     }
 }

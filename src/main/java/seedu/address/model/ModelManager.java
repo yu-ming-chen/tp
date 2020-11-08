@@ -148,6 +148,9 @@ public class ModelManager implements Model {
 
     @Override
     public void closeBudget() {
+        if (state.getPage() == Page.MAIN) {
+            return;
+        }
         setCloseCommandState();
         updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
         repopulateObservableList();
