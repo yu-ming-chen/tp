@@ -11,13 +11,10 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import javafx.collections.ObservableList;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.Renderable;
 import seedu.address.model.expenditure.Date;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.model.expenditure.Name;

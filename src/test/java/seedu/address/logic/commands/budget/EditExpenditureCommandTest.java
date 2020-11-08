@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.testutil.TypicalBudgets.getTypicalNusave;
 
+import java.util.HashSet;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandResult;
@@ -19,8 +21,6 @@ import seedu.address.state.budgetindex.BudgetIndex;
 import seedu.address.state.budgetindex.BudgetIndexManager;
 import seedu.address.state.expenditureindex.ExpenditureIndex;
 import seedu.address.state.expenditureindex.ExpenditureIndexManager;
-
-import java.util.HashSet;
 
 
 public class EditExpenditureCommandTest {
