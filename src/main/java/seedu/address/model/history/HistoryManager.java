@@ -11,6 +11,10 @@ public class HistoryManager<T> implements History<T> {
         history = new Node<>();
     }
 
+    public void setHistory(Node<T> history) {
+        this.history = history;
+    }
+
     @Override
     public boolean hasHistory() {
         assert history != null;
