@@ -1,21 +1,24 @@
 package seedu.address.model.budget;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
-import seedu.address.model.expenditure.Expenditure;
-import seedu.address.state.budgetindex.BudgetIndex;
-import seedu.address.state.budgetindex.BudgetIndexManager;
-import seedu.address.testutil.TypicalBudget;
-import seedu.address.testutil.TypicalBudgets;
-import seedu.address.testutil.TypicalExpenditure;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.expenditure.Expenditure;
+import seedu.address.state.budgetindex.BudgetIndex;
+import seedu.address.state.budgetindex.BudgetIndexManager;
+import seedu.address.testutil.TypicalBudget;
+import seedu.address.testutil.TypicalBudgets;
+import seedu.address.testutil.TypicalExpenditure;
 
 class BudgetListTest {
 
@@ -53,7 +56,7 @@ class BudgetListTest {
     void add_budgetInList_success() {
         budgetList.add(TypicalBudget.getKfcBudget());
         BudgetIndex budgetIndex = new BudgetIndexManager(3);
-        assertEquals(budgetList.getBudgetName(budgetIndex),TypicalBudget.KFC_NAME);
+        assertEquals(budgetList.getBudgetName(budgetIndex), TypicalBudget.KFC_NAME);
     }
 
     @Test
@@ -70,9 +73,9 @@ class BudgetListTest {
     }
 
     @Test
-    void editExpenditure_null_IndexOutOFBoundsException() {
-        assertThrows(IndexOutOfBoundsException.class,
-                () -> budgetList.editExpenditure(null, null, 1));
+    void editExpenditure_null_indexOutOfBoundsException() {
+        assertThrows(IndexOutOfBoundsException.class, () ->
+                budgetList.editExpenditure(null, null, 1));
     }
 
     @Test
@@ -80,8 +83,8 @@ class BudgetListTest {
         Expenditure oldExpenditure = budgetList.getBudgets().get(0).getExpendituresList().get(0);
         Expenditure newExpenditure = TypicalExpenditure.getKfcBanditoExpenditure();
         budgetList.editExpenditure(oldExpenditure, newExpenditure, 0);
-        assertEquals(budgetList.getBudgets().get(0).
-                getExpendituresList().get(0).getName(), TypicalExpenditure.getKfcBanditoExpenditure().getName());
+        assertEquals(budgetList.getBudgets().get(0)
+                .getExpendituresList().get(0).getName(), TypicalExpenditure.getKfcBanditoExpenditure().getName());
     }
 
     @Test

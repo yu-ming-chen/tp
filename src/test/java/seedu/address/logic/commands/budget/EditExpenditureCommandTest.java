@@ -1,7 +1,11 @@
-package seedu.address.logic.commands.budget;
+/*package seedu.address.logic.commands.budget;
+
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalBudgets.getTypicalNusave;
+import static seedu.address.testutil.TypicalExpenditureIndexes.FIRST_EXPENDITURE;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.budget.EditExpenditureCommand;
+
 import seedu.address.logic.commands.budget.EditExpenditureCommand.EditExpenditureDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -12,17 +16,12 @@ import seedu.address.model.expenditure.Expenditure;
 import seedu.address.testutil.EditExpenditureDescriptorBuilder;
 import seedu.address.testutil.ExpenditureBuilder;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalExpenditureIndexes.FIRST_EXPENDITURE;
-
-import static seedu.address.testutil.TypicalBudgets.getTypicalNusave;
-
 public class EditExpenditureCommandTest {
 
     private Model model = new ModelManager(getTypicalNusave(), new UserPrefs());
 
     @Test
-    public void execute_edit_expenditure_success() throws CommandException {
+    public void execute_editExpenditure_success() throws CommandException {
         Expenditure expenditure = new ExpenditureBuilder().build();
         model.addExpenditure(expenditure);
         EditExpenditureDescriptor descriptor = new EditExpenditureDescriptorBuilder(expenditure).build();
@@ -36,5 +35,4 @@ public class EditExpenditureCommandTest {
         assertCommandSuccess(editExpenditureCommand, model, expectedMessage, expectedModel);
     }
 
-}
-
+}*/
