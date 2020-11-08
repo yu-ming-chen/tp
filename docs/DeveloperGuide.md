@@ -135,7 +135,6 @@ Figure 3.1.2. Figure of Architecture Sequence Diagram
 Figure 3.1.2. shows how the components interact with each other for the scenario where the user
 issues the command `delete 1` in a budget page.
 
-The sections below give more details of each component:
 
 ### 3.2. Components
 
@@ -152,7 +151,7 @@ This section elaborates on the different high-level components in NUSave.
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`,
 `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the `MainWindow` is specified in `MainWindow.fxml`.
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the `MainWindow` is specified in `MainWindow.fxml`.
 
 In order to dynamically render data to be displayed to the user, when `setUpGuiComponents()` in `MainWindow` is called, 
 the method `setStateBinders()` sets Observer objects to observe changes in `State`. For a complete explanation,
@@ -169,7 +168,7 @@ In summary, the `UI` component:
 
 **API**: `Logic.java`
 
-`Logic` uses the `MainPageParser` and `BudgetPageParser` class to parse the user command. This results in a
+`Logic` uses the `MainPageParser` and `BudgetPageParser` class to parse commands from the user. This results in a
 `Command` object which is executed by the `LogicManager`. The command execution can affect the `Model`
 (e.g. adding an expenditure). The result of the command execution is encapsulated as a `CommandResult` object
 which is passed back to the `Ui`. In addition, the `CommandResult` object can also instruct the `Ui` to perform
@@ -184,7 +183,7 @@ certain actions, such as displaying help to the user.
 - This includes commands such as `AddExpendtureCommand` and `CloseBudgetCommand` that are unique to execute at the BudgetPage.
 
 `Commands`:
--  The `Logic` component includes all commands that is executable on both Main Page and Budget Page. For a complete
+-  The `Logic` component includes all commands that is executable on both the Main Page and Budget Page. For a complete
 elaboration on what each command does, refer to [4.3. Commands](#43-commands).
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](diagrams/commandsPlantUML/diagram/DeleteBudgetCommand.png)
@@ -456,6 +455,8 @@ his budget by entering the command `add n/Basketball p/20 t/Ball`.
 ![AddExpenditureCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/AddExpenditureCommand.png) 
 
 Figure 4.3.1.2.2: Sequence diagram for add expenditure command in budget page view.
+>Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
+the lifeline reaches the end of diagram.
 
 1. Beginning with the `LogicManager`, the `LogicManager` hands the given user input to the `BudgetPageParser` 
 to be parsed.
@@ -508,6 +509,8 @@ depicting a scenario where the user would like to delete the first budget on his
 ![DeleteBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/DeleteBudgetCommand.png) 
 
 Figure 4.3.2.1.2: Sequence diagram  for delete budget command in main page view.
+>Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
+the lifeline reaches the end of diagram.
 
 1. The `LogicManager` uses the `MainPageParser` to parse the given user input.
 2. The `MainPageParser` will identify the command given by the user and pass the user input down to the
@@ -552,6 +555,8 @@ expenditure on his list.
 ![DeleteExpenditureCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/DeleteExpenditureCommand.png)
 
 Figure 4.3.2.2.2: Sequence diagram  for delete budget command in budget page view.
+>Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
+the lifeline reaches the end of diagram.
 
 1. The `LogicManager` uses the `BudgetPageParser` to parse the given user input.
 2. The `BudgetPageParser` will identify the command given by the user and create a `DeleteBudgetCommandParser`.
@@ -656,6 +661,8 @@ depicting a scenario where the user would like to edit the first expenditure on 
 ![EditExpenditureCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/EditExpenditureCommand.png)
 
 Figure 4.3.3.2.1: Sequence diagram  for delete edit command in budget page view.
+>Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
+the lifeline reaches the end of diagram.
 
 1. Beginning with the `LogicManager`, the `LogicManager` hands the given user input to the `BudgetPageParser` 
 to be parsed.
@@ -748,6 +755,8 @@ depicting a scenario where the user would like to list all budgets.
 ![ListBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/ListBudgetCommand.png)
 
 Figure 4.3.5.1.1: Sequence diagram for list budget command in main page view.
+>Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
+the lifeline reaches the end of diagram.
 
 1. The `LogicManager` uses the `MainPageParser` to parse the give user input.
 2. The `MainPageParser` will identify the command given by the user and create a `ListBudgetCommand`.
@@ -768,6 +777,8 @@ depicting a scenario where the user would like to find budgets by a search term/
 ![FindBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/FindBudgetCommand.png)
 
 Figure 4.3.5.2.1: Sequence diagram for find budget command in main page view.
+>Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
+the lifeline reaches the end of diagram.
 
 1. The `LogicManager` uses the `MainPageParser` to parse the give user input.
 2. The `MainPageParser` will identify the command given by the user and pass the user input down to the 
@@ -791,8 +802,9 @@ depicting a scenario where the user would like to list all expenditure within th
 
 ![ListBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/ListExpenditureCommand.png)
 
-
 Figure 4.3.5.3.1.: Sequence diagram for list expenditure command in budget page view.
+>Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
+the lifeline reaches the end of diagram.
 
 1. The `LogicManager` uses the `BudgetPageParser` to parse the give user input.
 2. The `BudgetPageParser` will identify the command given by the user and create a `ListExpenditureCommand`.
@@ -814,6 +826,8 @@ depicting a scenario where the user would like to find expenditures in a budget 
 ![FindBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/FindExpenditureCommand.png)
 
 Figure 4.3.5.4.1.: Sequence diagram for find expenditure command in budget page view.
+>Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
+the lifeline reaches the end of diagram.
 
 1. The `LogicManager` uses the `BudgetPageParser` to parse the give user input.
 2. The `BudgetPageParser` will identify the command given by the user and pass the user input down to the 

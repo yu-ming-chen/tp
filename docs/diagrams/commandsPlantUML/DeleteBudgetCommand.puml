@@ -2,6 +2,7 @@
 skinparam Sequence {
     MessageAlign center
 }
+hide footbox
 box "Logic" #LightBlue
 participant ":LogicManager" as LM
 participant ":MainPageParser" as MPP
@@ -47,9 +48,13 @@ DBCP <-- DBC : c
 deactivate DBC
 MPP <-- DBCP : c
 deactivate DBCP
+MPP <-[hidden]- DBCP
 destroy DBCP
+
+
 LM <-- MPP : c
 deactivate MPP
+LM <-[hidden]- MPP
 destroy MPP
 
 LM -> DBC : excute(m)
