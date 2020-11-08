@@ -1,6 +1,5 @@
 package seedu.address.state.budgetindex;
 
-import java.util.Objects;
 import java.util.Optional;
 
 public class BudgetIndexManager implements BudgetIndex {

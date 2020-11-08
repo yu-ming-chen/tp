@@ -6,7 +6,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.budget.Threshold.NO_THRESHOLD_MESSAGE;
 import static seedu.address.state.StateManager.defaultValueTotalExpenditure;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalState.*;
+import static seedu.address.testutil.TypicalState.ENUM_PAGE_BUDGET;
+import static seedu.address.testutil.TypicalState.ENUM_PAGE_MAIN;
+import static seedu.address.testutil.TypicalState.MAIN_PAGE_BUDGET_INDEX;
+import static seedu.address.testutil.TypicalState.MAIN_PAGE_TITLE;
+import static seedu.address.testutil.TypicalState.MAIN_THRESHOLD_VALUE;
+import static seedu.address.testutil.TypicalState.MCDONALDS_BUDGET_INDEX;
+import static seedu.address.testutil.TypicalState.MCDONALDS_BUDGET_PAGE_STATE;
+import static seedu.address.testutil.TypicalState.MCDONALDS_PAGE_TITLE;
+import static seedu.address.testutil.TypicalState.SUBWAY_BUDGET_INDEX;
+import static seedu.address.testutil.TypicalState.SUBWAY_PAGE_TITLE;
+import static seedu.address.testutil.TypicalState.TYPICAL_MAIN_PAGE_STATE;
+import static seedu.address.testutil.TypicalState.getKfcBudgetPageState;
+import static seedu.address.testutil.TypicalState.getMcdonaldsBudgetPageState;
+import static seedu.address.testutil.TypicalState.getSubwayBudgetPageState;
+import static seedu.address.testutil.TypicalState.getTypicalMainPageState;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -14,7 +28,6 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.budget.Threshold;
 import seedu.address.state.budgetindex.BudgetIndex;
 import seedu.address.state.budgetindex.BudgetIndexManager;
 
