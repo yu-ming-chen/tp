@@ -14,20 +14,30 @@
       "createdOn" : "2020-10-10",
       "tags" : [ "Apparel", "Black" ]
     } ]
-  }, {
-    "name" : "Temasek Hall Basketball Budget",
-    "createdOn" : "2020-10-18",
-    "threshold" : "100000000",
-    "expenditures" : [ {
-      "name" : "Shirt",
-      "price" : "85.50",
-      "createdOn" : "2020-10-10",
-      "tags" : [ "Apparel", "White" ]
-    }, {
-      "name" : "Pants",
-      "price" : "100.50",
-      "createdOn" : "2020-10-10",
-      "tags" : [ "Apparel", "Black" ]
-    } ]
-  ]
+  },
+    {
+      "name": "Temasek Hall Basketball Budget",
+      "createdOn": "2020-10-18",
+      "threshold": "100000000",
+      "expenditures": [
+        {
+          "name": "Shirt",
+          "price": "85.50",
+          "createdOn": "2020-10-10",
+          "tags": [
+            "Apparel",
+            "White"
+          ]
+        },
+        {
+          "name": "Pants",
+          "price": "100.50",
+          "createdOn": "2020-10-10",
+          "tags": [
+            "Apparel",
+            "Black"
+          ]
+        }
+      ]
+    }]
 }
