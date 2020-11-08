@@ -1,5 +1,5 @@
-package seedu.address.logic.commands;
-/*
+package seedu.address.logic.commands.budget;
+
 import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.budget.EditExpenditureCommand;
 import seedu.address.logic.commands.budget.EditExpenditureCommand.EditExpenditureDescriptor;
@@ -20,7 +20,7 @@ import static seedu.address.testutil.TypicalBudgets.getTypicalNusave;
 public class EditExpenditureCommandTest {
 
     private Model model = new ModelManager(getTypicalNusave(), new UserPrefs());
-/*
+
     @Test
     public void execute_edit_expenditure_success() throws CommandException {
         Expenditure expenditure = new ExpenditureBuilder().build();
@@ -37,4 +37,4 @@ public class EditExpenditureCommandTest {
     }
 
 }
-*/
+

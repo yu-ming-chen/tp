@@ -186,9 +186,4 @@ public class BudgetList implements Iterable<Budget> {
                 || (other instanceof BudgetList // instanceof handles nulls
                 && budgets.equals(((BudgetList) other).budgets));
     }
-
-    @Override
-    public int hashCode() {
-        return budgets.hashCode();
-    }
 }
