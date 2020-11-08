@@ -22,4 +22,9 @@ public class UndoCommand extends Command {
         model.undo();
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof UndoCommand;
+    }
 }

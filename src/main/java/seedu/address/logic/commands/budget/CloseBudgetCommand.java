@@ -30,4 +30,9 @@ public class CloseBudgetCommand extends BudgetPageCommand {
         model.closeBudget();
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof CloseBudgetCommand;
+    }
 }

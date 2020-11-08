@@ -51,4 +51,11 @@ public class DeleteExpenditureCommand extends Command {
         model.deleteExpenditure(toDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_EXPENDITURE_SUCCESS));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteExpenditureCommand // instanceof handles nulls
+                && toDelete.equals(((DeleteExpenditureCommand) other).toDelete));
+    }
 }
