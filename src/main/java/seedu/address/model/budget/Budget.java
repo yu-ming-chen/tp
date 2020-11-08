@@ -127,22 +127,6 @@ public class Budget implements Renderable {
     }
 
     /**
-     * Returns true if both budget have the same name and the same created on field.
-     * This defines a weaker notion of equality between two budget.
-     */
-    public boolean isSameBudget(Budget otherBudget) {
-        if (otherBudget == this) {
-            return true;
-        }
-
-        return otherBudget != null
-                && otherBudget.getName().equals(getName())
-                && otherBudget.getCreatedOn().equals(getCreatedOn())
-                && (otherBudget.getThreshold().equals(getThreshold())
-                || otherBudget.getExpenditures().equals(getExpenditures()));
-    }
-
-    /**
      * Returns true if {@code Name} contains the given {@code string}.
      */
     public boolean contains(String string) { //Todo: Change method name to be more descriptive.

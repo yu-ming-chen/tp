@@ -46,7 +46,7 @@ class EditBudgetCommandTest {
         descriptor.setThreshold(new Threshold("80").toOptional());
         Budget editedBudget = new BudgetBuilder().withName("KFC")
                 .withThreshold("80").withCreatedOn("2020-10-09")
-                .withExpenditures(TypicalExpenditures.MC_DONALDS_EXPENDITURES).build();
+                .withExpenditures(TypicalExpenditures.getMcDonaldsExpenditures()).build();
 
         ModelStubAcceptingBudgetEdited modelStub = new ModelStubAcceptingBudgetEdited();
         CommandResult commandResult = new EditBudgetCommand(new BudgetIndexManager(0), descriptor).execute(modelStub);
