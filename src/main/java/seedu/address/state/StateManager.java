@@ -152,16 +152,21 @@ public class StateManager implements State {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         StateManager that = (StateManager) o;
-        return Objects.equals(budgetIndex, that.budgetIndex) &&
-                currentPage == that.currentPage &&
-                Objects.equals(pageTitle, that.pageTitle);
+        return Objects.equals(budgetIndex, that.budgetIndex)
+                && currentPage == that.currentPage
+                && Objects.equals(pageTitle, that.pageTitle);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(budgetIndex, currentPage, isBudgetPageProp, infoBoxSecondRowProp, thresholdStringProp, pageTitle);
+        return Objects.hash(budgetIndex, currentPage, isBudgetPageProp,
+                infoBoxSecondRowProp, thresholdStringProp, pageTitle);
     }
 }

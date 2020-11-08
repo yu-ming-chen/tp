@@ -1,13 +1,26 @@
 package seedu.address.logic.commands.main;
 
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.function.Predicate;
+
+import org.junit.jupiter.api.Test;
+
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.*;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyNusave;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.Renderable;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.budget.BudgetList;
 import seedu.address.model.budget.Threshold;
@@ -17,13 +30,9 @@ import seedu.address.state.budgetindex.BudgetIndex;
 import seedu.address.state.expenditureindex.ExpenditureIndex;
 import seedu.address.testutil.TypicalBudget;
 
-import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.Optional;
-import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
+
+
 
 class CreateBudgetCommandTest {
 
@@ -39,7 +48,8 @@ class CreateBudgetCommandTest {
 
         CommandResult commandResult = new CreateBudgetCommand(validBudget).execute(modelStub);
 
-        assertEquals(String.format(CreateBudgetCommand.MESSAGE_SUCCESS, validBudget), commandResult.getFeedbackToUser());
+        assertEquals(String.format(CreateBudgetCommand.MESSAGE_SUCCESS, validBudget),
+                commandResult.getFeedbackToUser());
         assertEquals(new BudgetList(Arrays.asList(validBudget)), modelStub.budgetCreated);
     }
 

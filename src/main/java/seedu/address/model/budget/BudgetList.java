@@ -3,7 +3,10 @@ package seedu.address.model.budget;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -178,15 +181,14 @@ public class BudgetList implements Iterable<Budget> {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BudgetList budgets1 = (BudgetList) o;
-        return Objects.equals(budgets, budgets1.budgets);
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof BudgetList // instanceof handles nulls
+                && budgets.equals(((BudgetList) other).budgets));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(budgets);
+        return budgets.hashCode();
     }
 }

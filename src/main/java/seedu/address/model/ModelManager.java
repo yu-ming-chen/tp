@@ -530,14 +530,18 @@ public class ModelManager implements Model {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         ModelManager that = (ModelManager) o;
-        return Objects.equals(nusave, that.nusave) &&
-                Objects.equals(userPrefs, that.userPrefs)&&
-                Objects.equals(filteredRenderables, that.filteredRenderables) &&
-                Objects.equals(state, that.state) &&
-                Objects.equals(history, that.history);
+        return Objects.equals(nusave, that.nusave)
+                && Objects.equals(userPrefs, that.userPrefs)
+                && Objects.equals(filteredRenderables, that.filteredRenderables)
+                && Objects.equals(state, that.state)
+                && Objects.equals(history, that.history);
     }
 
     @Override

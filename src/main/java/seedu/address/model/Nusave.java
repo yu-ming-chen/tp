@@ -215,12 +215,16 @@ public class Nusave implements ReadOnlyNusave {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Nusave nusave = (Nusave) o;
-        return Objects.equals(budgetList, nusave.budgetList) &&
-                Objects.equals(internalList, nusave.internalList) &&
-                Objects.equals(internalUnmodifiableList, nusave.internalUnmodifiableList);
+        return Objects.equals(budgetList, nusave.budgetList)
+                && Objects.equals(internalList, nusave.internalList)
+                && Objects.equals(internalUnmodifiableList, nusave.internalUnmodifiableList);
     }
 
     @Override

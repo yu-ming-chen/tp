@@ -1,7 +1,8 @@
 package seedu.address.model.history;
-import java.util.Objects;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Objects;
 
 public class HistoryManager<T> implements History<T> {
     private Node<T> history;
@@ -82,8 +83,12 @@ public class HistoryManager<T> implements History<T> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         HistoryManager<?> that = (HistoryManager<?>) o;
         return Objects.equals(history, that.history);
     }

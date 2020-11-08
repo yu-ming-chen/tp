@@ -31,11 +31,15 @@ public class VersionedNusave {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         VersionedNusave that = (VersionedNusave) o;
-        return Objects.equals(budgetIndex, that.budgetIndex) &&
-                Objects.equals(budgetList, that.budgetList);
+        return Objects.equals(budgetIndex, that.budgetIndex)
+                && Objects.equals(budgetList, that.budgetList);
     }
 
     @Override

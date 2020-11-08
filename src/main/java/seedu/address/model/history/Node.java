@@ -1,8 +1,8 @@
 package seedu.address.model.history;
 
-import java.util.Objects;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Objects;
 
 /**
  * Represents a node in a doubly- inked list.
@@ -98,12 +98,16 @@ public class Node<T> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Node<?> node = (Node<?>) o;
-        return Objects.equals(value, node.value) &&
-                Objects.equals(next, node.next) &&
-                Objects.equals(previous, node.previous);
+        return Objects.equals(value, node.value)
+                && Objects.equals(next, node.next)
+                && Objects.equals(previous, node.previous);
     }
 
     @Override
