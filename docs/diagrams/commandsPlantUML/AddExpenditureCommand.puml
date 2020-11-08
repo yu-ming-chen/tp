@@ -2,6 +2,7 @@
 skinparam Sequence {
     MessageAlign center
 }
+hide footbox
 box "Logic" #LightBlue
 participant ":LogicManager" as LM
 participant ":BudgetPageParser" as BPP
@@ -46,12 +47,14 @@ activate AEC
 AECP <-- AEC : a
 deactivate AEC
 BPP <-- AECP : a
-
+deactivate AECP
+BPP <-[hidden]- AECP
 destroy AECP
 
 deactivate AECP
 LM <-- BPP : a
 deactivate BPP
+LM <-[hidden]- BPP
 destroy BPP
 
 LM -> AEC: excute(m)
