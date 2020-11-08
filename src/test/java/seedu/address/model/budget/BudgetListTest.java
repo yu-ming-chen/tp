@@ -145,7 +145,7 @@ class BudgetListTest {
 
     @Test
     void getTotalExpenditureValue() {
-        String totalValue = "11.00";
+        String totalValue = TypicalBudget.getSubwayExpenditure().getTotalExpenditure();
         assertEquals(budgetList.getTotalExpenditureValue(0), totalValue);
     }
 
