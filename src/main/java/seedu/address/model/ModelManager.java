@@ -208,6 +208,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Budget getBudgetAtIndex(BudgetIndex budgetIndex) {
+        return (Budget) filteredRenderables.get(budgetIndex.getBudgetIndex().get());
+    }
+
+    @Override
+    public boolean isIndexOutOfBound(BudgetIndex budgetIndex) {
+        return budgetIndex.getBudgetIndex().get() >= filteredRenderables.size();
+    }
+
+    @Override
     public void deleteAllBudgets() {
         nusave.deleteAllBudgets();
     }
