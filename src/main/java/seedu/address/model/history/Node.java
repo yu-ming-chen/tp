@@ -1,5 +1,7 @@
 package seedu.address.model.history;
 
+import java.util.Objects;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
@@ -92,5 +94,20 @@ public class Node<T> {
             next = null;
             temp.disconnectPrevious();
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Node<?> node = (Node<?>) o;
+        return Objects.equals(value, node.value) &&
+                Objects.equals(next, node.next) &&
+                Objects.equals(previous, node.previous);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value, next, previous);
     }
 }

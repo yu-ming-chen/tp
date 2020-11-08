@@ -1,4 +1,6 @@
 package seedu.address.model.history;
+import java.util.Objects;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class HistoryManager<T> implements History<T> {
@@ -76,5 +78,18 @@ public class HistoryManager<T> implements History<T> {
     private boolean isNull() {
         assert history != null;
         return history.isNull();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        HistoryManager<?> that = (HistoryManager<?>) o;
+        return Objects.equals(history, that.history);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(history);
     }
 }

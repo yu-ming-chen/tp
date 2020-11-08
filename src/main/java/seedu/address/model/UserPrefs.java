@@ -57,30 +57,24 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if (!(other instanceof UserPrefs)) { //this handles null as well.
-            return false;
-        }
-
-        UserPrefs o = (UserPrefs) other;
-
-        return guiSettings.equals(o.guiSettings)
-                && nusaveFilePath.equals(o.nusaveFilePath);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(guiSettings, nusaveFilePath);
-    }
-
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + nusaveFilePath);
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserPrefs userPrefs = (UserPrefs) o;
+        return Objects.equals(guiSettings, userPrefs.guiSettings) &&
+                Objects.equals(nusaveFilePath, userPrefs.nusaveFilePath);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(guiSettings, nusaveFilePath);
     }
 }

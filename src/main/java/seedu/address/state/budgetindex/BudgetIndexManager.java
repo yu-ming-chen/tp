@@ -1,5 +1,6 @@
 package seedu.address.state.budgetindex;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class BudgetIndexManager implements BudgetIndex {
@@ -23,5 +24,18 @@ public class BudgetIndexManager implements BudgetIndex {
     @Override
     public Optional<Integer> getBudgetIndex() {
         return Optional.of(this.budgetIndex);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BudgetIndexManager that = (BudgetIndexManager) o;
+        return budgetIndex == that.budgetIndex;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(budgetIndex);
     }
 }
