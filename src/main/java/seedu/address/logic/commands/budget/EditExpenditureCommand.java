@@ -63,13 +63,12 @@ public class EditExpenditureCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ObservableList<Renderable> currentList = model.getFilteredRenderableList();
 
-        if (expenditureIndex.getExpenditureIndex().get() >= currentList.size()) {
+        if (model.isIndexOutOfBound(expenditureIndex)) {
             throw new CommandException(MESSAGE_INDEX_OUT_OF_BOUNDS);
         }
 
-        Expenditure toEdit = (Expenditure) currentList.get(expenditureIndex.getExpenditureIndex().get());
+        Expenditure toEdit = model.getExpenditureAtIndex(expenditureIndex);
         Expenditure editedExpenditure = createEditedExpenditure(toEdit, editExpenditureDescriptor);
 
         model.saveToHistory();
@@ -104,10 +103,6 @@ public class EditExpenditureCommand extends Command {
             setPrice(toCopy.price);
             setDate(toCopy.date);
             setTags(toCopy.tags);
-        }
-
-        public Boolean isAnyFieldNull() {
-            return CollectionUtil.isAnyNonNull(name, price, date, tags);
         }
 
         public void setName(Name name) {

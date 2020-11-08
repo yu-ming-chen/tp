@@ -70,7 +70,11 @@ public interface Model {
 
     Budget getBudgetAtIndex(BudgetIndex budgetIndex);
 
+    Expenditure getExpenditureAtIndex(ExpenditureIndex expenditureIndex);
+
     boolean isIndexOutOfBound(BudgetIndex budgetIndex);
+
+    boolean isIndexOutOfBound(ExpenditureIndex expenditureIndex);
 
     void deleteBudget(BudgetIndex budgetIndex) throws CommandException;
 
