@@ -3,6 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.budget.Threshold.NO_THRESHOLD_MESSAGE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalBudget.KFC;
 import static seedu.address.testutil.TypicalBudget.KFC_THRESHOLD;
@@ -16,7 +17,9 @@ import static seedu.address.testutil.TypicalExpenditure.KFC_TOTAL_PRICE;
 import static seedu.address.testutil.TypicalExpenditure.KFC_ZINGER;
 import static seedu.address.testutil.TypicalExpenditure.MC_MUFFIN;
 import static seedu.address.testutil.TypicalExpenditure.SUBWAY_COLD_CUT_TRIO;
+import static seedu.address.testutil.TypicalExpenditure.SUBWAY_COLD_CUT_TRIO_NAME;
 import static seedu.address.testutil.TypicalExpenditure.SUBWAY_COOKIE;
+import static seedu.address.testutil.TypicalExpenditure.SUBWAY_COOKIE_NAME;
 import static seedu.address.testutil.TypicalExpenditure.SUBWAY_SOUP;
 import static seedu.address.testutil.TypicalExpenditure.SUBWAY_TOTAL_PRICE;
 import static seedu.address.testutil.TypicalExpenditure.getKfcZingerExpenditure;
@@ -32,6 +35,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.budget.Threshold;
 import seedu.address.state.Page;
@@ -56,6 +60,13 @@ public class ModelManagerTest {
         assertThrows(NullPointerException.class, () -> modelManager.setUserPrefs(null));
     }
 
+    @Test
+    void setGuiSettings() {
+        ModelManager modelManager = new ModelManager();
+        GuiSettings guiSettings = new GuiSettings();
+        modelManager.setGuiSettings(guiSettings);
+        assertEquals(guiSettings, modelManager.getGuiSettings());
+    }
 
     @Test
     void getNusaveFilePath_validPath_getsNusaveFilePath() {
@@ -84,13 +95,14 @@ public class ModelManagerTest {
         assertThrows(NullPointerException.class, () -> modelManager.setNusave(null));
     }
 
-    /*
+
     @Test
     void setNusave_validNusave_setsNusave() {
+        ModelManager modelManager = new ModelManager();
         ReadOnlyNusave nusave = new Nusave();
         modelManager.setNusave(nusave);
         assertEquals(nusave, modelManager.getNusave());
-    }*/
+    }
 
     @Test
     void getNusave() {
@@ -164,10 +176,52 @@ public class ModelManagerTest {
     }
 
     @Test
+    void isIndexOutOfBound_outOfBoundIndex_true() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        assertTrue(modelManager.isIndexOutOfBound(new BudgetIndexManager(3)));
+    }
+
+    @Test
+    void isIndexOutOfBound_withinBoundIndex_false() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        assertFalse(modelManager.isIndexOutOfBound(new BudgetIndexManager(0)));
+    }
+
+    @Test
     void deleteAllBudgets() {
         ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
         modelManager.deleteAllBudgets();
         assertEquals(0, modelManager.getNusave().getBudgetListAsObservableList().size());
+    }
+
+    @Test
+    void findBudget_validInput() throws CommandException {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        modelManager.findBudget(SUBWAY_NAME);
+        assertEquals(1, modelManager.getFilteredRenderableList().size());
+        assertEquals(SUBWAY, modelManager.getFilteredRenderableList().get(0));
+    }
+
+    @Test
+    void findBudget_searchTermNoMatch() throws CommandException {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        assertThrows(CommandException.class, () -> modelManager.findBudget(SUBWAY_COLD_CUT_TRIO_NAME));
+    }
+
+    @Test
+    void listBudget_validUse() throws CommandException {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        modelManager.findBudget(SUBWAY_NAME);
+        modelManager.listBudgets();
+        assertEquals(SUBWAY, modelManager.getFilteredRenderableList().get(0));
+        assertEquals(KFC, modelManager.getFilteredRenderableList().get(1));
+        assertEquals(MC_DONALDS, modelManager.getFilteredRenderableList().get(2));
+    }
+
+    @Test
+    void listBudget_noBudgets() throws CommandException {
+        ModelManager modelManager = new ModelManager();
+        assertThrows(CommandException.class, () -> modelManager.listBudgets());
     }
 
     @Test
@@ -229,6 +283,39 @@ public class ModelManagerTest {
         assertEquals(SUBWAY_SOUP, modelManager.getFilteredRenderableList().get(0));
         assertEquals(KFC_ZINGER, modelManager.getFilteredRenderableList().get(1));
         assertEquals(SUBWAY_COLD_CUT_TRIO, modelManager.getFilteredRenderableList().get(2));
+    }
+
+    @Test
+    void findExpenditure_validInput() throws CommandException {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        modelManager.openBudget(new BudgetIndexManager(0));
+        modelManager.findExpenditure(SUBWAY_COOKIE_NAME);
+        assertEquals(1, modelManager.getFilteredRenderableList().size());
+        assertEquals(SUBWAY_COOKIE, modelManager.getFilteredRenderableList().get(0));
+    }
+
+    @Test
+    void findExpenditure_searchTermNoMatch() throws CommandException {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        modelManager.openBudget(new BudgetIndexManager(0));
+        assertThrows(CommandException.class, () -> modelManager.findExpenditure(SUBWAY_NAME));
+    }
+
+    @Test
+    void listExpenditure_validUse() throws CommandException {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        modelManager.openBudget(new BudgetIndexManager(0));
+        modelManager.findExpenditure(SUBWAY_COOKIE_NAME);
+        modelManager.listExpenditures();
+        assertEquals(SUBWAY_SOUP, modelManager.getFilteredRenderableList().get(0));
+        assertEquals(SUBWAY_COOKIE, modelManager.getFilteredRenderableList().get(1));
+        assertEquals(SUBWAY_COLD_CUT_TRIO, modelManager.getFilteredRenderableList().get(2));
+    }
+
+    @Test
+    void listExpenditures_noExpenditures() throws CommandException {
+        ModelManager modelManager = new ModelManager();
+        assertThrows(CommandException.class, () -> modelManager.listExpenditures());
     }
 
     @Test
@@ -367,6 +454,41 @@ public class ModelManagerTest {
     }
 
     @Test
+    void setThreshold_mainPageValidInput_success() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        modelManager.setThreshold(Optional.empty());
+        assertEquals(NO_THRESHOLD_MESSAGE, modelManager.getThresholdStringProp().getValue());
+    }
+
+    @Test
+    void setThreshold_mainPageInvalidInput_throwsAssertionError() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        assertThrows(AssertionError.class, () -> modelManager.setThreshold(new Threshold("100").toOptional()));
+    }
+
+    @Test
+    void setThreshold_budgetPageValidInput_success() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        modelManager.openBudget(new BudgetIndexManager(0));
+        modelManager.setThreshold(new Threshold("100").toOptional());
+        assertEquals("100", modelManager.getThresholdStringProp().getValue());
+    }
+
+    @Test
+    void setThreshold_budgetPageInvalidInput_throwsAssertionError() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        modelManager.openBudget(new BudgetIndexManager(0));
+        assertThrows(AssertionError.class, () -> modelManager.setThreshold(Optional.empty()));
+    }
+
+    @Test
+    void setPageTitle() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        modelManager.setPageTitle(getSubwayBudget().getName().value);
+        assertEquals(SUBWAY_PAGE_TITLE, modelManager.getPageTitle());
+    }
+
+    @Test
     void setTotalExpenditure() {
         ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
         modelManager.openBudget(new BudgetIndexManager(0));
@@ -385,4 +507,17 @@ public class ModelManagerTest {
     @Test
     void updateFilteredRenderableList() {
     }
+
+    @Test
+    void equals_sameObject_true() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        assertEquals(true, modelManager.equals(modelManager));
+    }
+
+    @Test
+    void equals_null_false() {
+        ModelManager modelManager = new ModelManager(getTypicalNusave(), new UserPrefs());
+        assertEquals(false, modelManager.equals(null));
+    }
+
 }

@@ -463,9 +463,11 @@ public class ModelManager implements Model {
     @Override
     public void setThreshold(Optional<Threshold> threshold) {
         if (threshold.isPresent()) {
+            assert getPage() == Page.BUDGET;
             String thresholdStr = threshold.get().toString();
             this.state.setThresholdStringProp(thresholdStr);
         } else {
+            assert getPage() == Page.MAIN;
             this.state.setThresholdStringProp(NO_THRESHOLD_MESSAGE);
         }
     }
@@ -561,10 +563,4 @@ public class ModelManager implements Model {
                 && Objects.equals(filteredRenderables, that.filteredRenderables)
                 && Objects.equals(state, that.state);
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(nusave, userPrefs, filteredRenderables, state, history);
-    }
-
 }
