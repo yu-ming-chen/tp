@@ -1,6 +1,9 @@
 package seedu.address.testutil;
 
+import java.time.LocalDate;
+
 import seedu.address.model.budget.Budget;
+import seedu.address.model.expenditure.ExpenditureList;
 
 public class TypicalBudget {
 
@@ -45,4 +48,10 @@ public class TypicalBudget {
                 .withThreshold(SUBWAY_THRESHOLD).withCreatedOn(SUBWAY_CREATED_ON)
                 .withExpenditures(TypicalExpenditures.getSubwayExpenditures()).build();
     }
+    public static Budget getEmptyMcDonaldsBudget() {
+        return new BudgetBuilder().withName(MC_DONALDS_NAME)
+                .withThreshold("100.0").withCreatedOn(LocalDate.now().toString())
+                .withExpenditures(new ExpenditureList()).build();
+    }
+
 }

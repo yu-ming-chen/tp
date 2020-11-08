@@ -2,7 +2,9 @@ package seedu.address.logic.commands.main;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.util.Arrays;
@@ -31,6 +33,24 @@ import seedu.address.state.expenditureindex.ExpenditureIndex;
 import seedu.address.testutil.TypicalBudget;
 
 class CreateBudgetCommandTest {
+
+    @Test
+    public void equalTest() {
+        CreateBudgetCommand command = new CreateBudgetCommand(TypicalBudget.getMcDonaldsBudget());
+        // same object -> return true
+        assertTrue(command.equals(command));
+
+        // different type -> return false
+        assertFalse(command.equals(5));
+
+        // null -> return false
+        assertFalse(command.equals(null));
+
+        CreateBudgetCommand differentBudgetCommand =
+                new CreateBudgetCommand(TypicalBudget.getMcDonaldsBudget());
+        // different obj same budget to add -> true
+        assertTrue(command.equals(differentBudgetCommand));
+    }
 
     @Test
     public void constructor_nullBudget_throwsNullPointerException() {
