@@ -70,7 +70,7 @@ Given below are my contributions to the project:
 - **Contributions to Developer Guide (Extracts)**:
 #### 3.2.2. Logic component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+![Structure of the Logic Component](../images/LogicClassDiagram.png)
 
 Figure 3.2.2.1. Architecture diagram of the `Logic` component.
 
@@ -88,7 +88,7 @@ This section elaborates on the `CreateBudgetCommand`.
 
 The following activity diagram shows the events that occur when the user executes the `CreateBudgetCommand`.
 
-![CreateBudgetCommand Activity Diagram](diagrams/commandsPlantUML/diagram/CreateBudgetCommandActivity.png) 
+![CreateBudgetCommand Activity Diagram](../diagrams/commandsPlantUML/diagram/CreateBudgetCommandActivity.png) 
 
 Figure 4.3.1.1: Activity diagram of the `CreateBudgetCommand`.
 
@@ -99,7 +99,7 @@ The following sequence diagram shows the interaction between the `Logic` compone
 depicting a scenario when the user wants to create a budget for his Temasek Hall Basketball CCA by entering the command
 `create n/Temasek Hall Basketball p/100`.
 
-![CreateBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/CreateBudgetCommand.png) 
+![CreateBudgetCommand Sequence Diagram](../diagrams/commandsPlantUML/diagram/CreateBudgetCommand.png) 
 
 Figure 4.3.1.2: Sequence diagram of the `CreateBudgetCommand`.
 
@@ -148,4 +148,4 @@ When you create a new budget, it will be displayed as a budget card in the list 
 This will create a new budget called "Temasek Hall Student Council" with a threshold value of $1200
 as seen in Figure 5.2.1.1 below:
 
-![Example of create budget command](images/CommandScreenShots/5_2_1_1_createBudget.png)
+![Example of create budget command](../images/CommandScreenShots/5_2_1_1_createBudget.png)
