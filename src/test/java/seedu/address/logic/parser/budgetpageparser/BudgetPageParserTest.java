@@ -17,7 +17,6 @@ import seedu.address.logic.commands.budget.ListExpenditureCommand;
 import seedu.address.logic.commands.budget.SortExpenditureCommand;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.mainpageparser.MainPageParser;
 
 class BudgetPageParserTest {
 
