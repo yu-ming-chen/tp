@@ -143,3 +143,5 @@ This will create a new budget called "Temasek Hall Student Council" with a thres
 as seen in Figure 5.2.1.1 below:
 
 ![Example of create budget command](../images/CommandScreenShots/5_2_1_1_createBudget.png)
+
+Figure 5.2.1.1. Example of using the create budget command.
