@@ -42,6 +42,7 @@ Given below are my contributions to the project:
         - Added Implementation details for `Edit Expenditure`, `Add Expenditure`, `Delete Budget`, `Delete Expenditure`.  
 - **Community**:
     - Reported bugs and suggestions for other teams during PE dry run [PED link](https://github.com/davidliew9/ped/issues)
+    
 ------
 **Contributions to Developer Guide (Extracts)**:
 #### 4.3.3. Edit Commands
@@ -95,6 +96,7 @@ parameter.
 
 With the above sequence, an expenditure will be successfully edited by the user in his NUSave application, and it will 
 be reflected on the user interface through the successful `CommandResult` and updated budget list.
+
 -----
 **Contributions to User Guide (Extracts)**:
 #### 5.3.3. Editing an expenditure: `edit`
