@@ -82,6 +82,19 @@ public class Expenditure implements Renderable {
                 && otherExpenditure.getTags().equals(getTags());
     }
 
+
+    /**
+     * Checks if the contents within Expenditure is the same.
+     * @param other
+     * @return returns whether the contents are identical or not.
+     */
+    public boolean contentEquals(Object other) {
+        Expenditure otherExpenditure = (Expenditure) other;
+        return otherExpenditure.getName().equals(getName())
+                && otherExpenditure.getPrice().equals(getPrice())
+                && otherExpenditure.getTags().equals(getTags());
+    }
+
     @Override
     public String toString() {
         return name.toString();

@@ -66,4 +66,15 @@ public class AddExpenditureCommand extends Command {
                 || (other instanceof AddExpenditureCommand // instanceof handles nulls
                 && toAdd.equals(((AddExpenditureCommand) other).toAdd));
     }
+
+    /**
+     * Checks if the contents within expenditure is the same.
+     * @param other
+     * @return returns whether the contents are identical or not.
+     */
+    public boolean contentEquals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddExpenditureCommand // instanceof handles nulls
+                && toAdd.contentEquals(((AddExpenditureCommand) other).toAdd));
+    }
 }

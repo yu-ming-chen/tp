@@ -107,10 +107,4 @@ public class ExpenditureList {
         ExpenditureList that = (ExpenditureList) o;
         return Objects.equals(expenditures, that.expenditures);
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(expenditures);
-    }
-
 }
