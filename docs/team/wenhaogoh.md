@@ -53,7 +53,6 @@ Given below are my contributions to the project:
 <br/>
 <br/>
 <br/>
-<br/>
 
 ### Contributions to Developer Guide (Extracts)
 
@@ -103,6 +102,13 @@ Here is how the main page should look like:
 ![Example of main page view](../images/GuiLayoutScreenShots/3_1_1_mainPage.png)
 
 Figure 3.1.1. Example of the main page view.
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
 Below is a table containing all the components that can be found on the main page accompanied by their respective purposes:
 
