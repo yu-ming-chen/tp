@@ -10,6 +10,7 @@ budgets, of which each budget holds multiple expenditures. The user interacts wi
 and it has a GUI created with JavaFX. It is written in Java, and has about 10,000 LoC.
 
 Given below are my contributions to the project:
+
 -  **Feature**: Added a new high-level component (aside of those already available from AB3), **State**: 
 PR [#43](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/43)
 
