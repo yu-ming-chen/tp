@@ -10,7 +10,6 @@ public class ExpenditureIndexManager implements ExpenditureIndex {
      * @param expenditureIndex the index of the expenditure.
      */
     public ExpenditureIndexManager(int expenditureIndex) {
-        assert expenditureIndex >= 0;
         this.expenditureIndex = expenditureIndex;
     }
 
@@ -21,7 +20,6 @@ public class ExpenditureIndexManager implements ExpenditureIndex {
 
     @Override
     public void setIndex(int index) {
-        assert index >= 0;
         this.expenditureIndex = index;
     }
 
@@ -29,9 +27,6 @@ public class ExpenditureIndexManager implements ExpenditureIndex {
     public boolean equals(Object o) {
         if (this == o) {
             return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
         }
         ExpenditureIndexManager that = (ExpenditureIndexManager) o;
         return expenditureIndex == that.expenditureIndex;
