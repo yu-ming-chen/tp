@@ -7,13 +7,13 @@ box "Logic" #LightBlue
 participant ":LogicManager" as LM
 participant ":BudgetPageParser" as BPP
 participant ":DeleteExpenditureCommandParser" as DECP
-participant "d:DeleteExpenditureCommand" as DEC
-participant ":result:CommandResult" as CR
-participant "i: ExpenditureIndex" as EI
+participant "c:DeleteExpenditureCommand" as DEC
+participant "result:CommandResult" as CR
 end box
 
 box "Model" #LightYellow
-participant "m:Model" as M
+participant "i: ExpenditureIndexManager" as EI
+participant "m:ModelManager" as M
 end box
 
 [-> LM : execute("delete 1")
@@ -42,7 +42,7 @@ DECP <-- EI
 deactivate EI
 
 create DEC
-DECP -> DEC : deleteExpenditureCommand(i)
+DECP -> DEC : DeleteExpenditureCommand(i)
 activate DEC
 DECP <-- DEC : c
 deactivate DEC
@@ -57,7 +57,7 @@ deactivate BPP
 LM <-[hidden]- BPP
 destroy BPP
 
-LM -> DEC : excute(m)
+LM -> DEC : execute(m)
 activate DEC
 DEC -> M : deleteExpenditure(i)
 activate M

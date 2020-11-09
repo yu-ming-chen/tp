@@ -96,7 +96,7 @@ parameter.
 With the above sequence, an expenditure will be successfully edited by the user in his NUSave application, and it will 
 be reflected on the user interface through the successful `CommandResult` and updated budget list.
 -----
-**Contributions to Developer Guide (Extracts)**:
+**Contributions to User Guide (Extracts)**:
 #### 5.3.3. Editing an expenditure: `edit`
 
 Format: `edit INDEX [n/NAME] [p/PRICE]`

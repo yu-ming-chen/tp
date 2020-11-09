@@ -13,10 +13,10 @@ participant "result:CommandResult" as CR
 end box
 
 box "Model" #LightYellow
-participant "m:Model" as M
+participant "m:ModelManager" as M
 end box
 
-[-> LM : excute("sort time")
+[-> LM : execute("sort time")
 activate LM
 create BPP
 LM -> BPP
@@ -51,7 +51,7 @@ LM <-[hidden]- BPP
 destroy BPP
 
 
-LM -> SEC: excute(m)
+LM -> SEC: execute(m)
 activate SEC
 SEC -> M : sortExpenditureByCreatedDate()
 activate M

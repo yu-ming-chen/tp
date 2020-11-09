@@ -10,7 +10,7 @@ participant "c:HelpBudgetCommand" as HBC
 participant "result:CommandResult" as CR
 end box
 
-[-> LM : excute("help")
+[-> LM : execute("help")
 activate LM
 create MPP
 LM -> MPP
@@ -32,7 +32,7 @@ LM <-[hidden]- MPP
 destroy MPP
 
 
-LM -> HBC: excute(m)
+LM -> HBC: execute(m)
 activate HBC
 
 create CR

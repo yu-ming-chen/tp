@@ -7,16 +7,16 @@ box "Logic" #LightBlue
 participant ":LogicManager" as LM
 participant ":BudgetPageParser" as BPP
 participant ":AddExpenditureCommandParser" as AECP
-participant "a:AddExpenditureCommand" as AEC
+participant "c:AddExpenditureCommand" as AEC
 participant "result:CommandResult" as CR
 end box
 
 box "Model" #LightYellow
 participant "e:Expenditure" as Expenditure
-participant "m:Model" as M
+participant "m:ModelManager" as M
 end box
 
-[-> LM : excute("add n/Basketball p/20 t/Ball")
+[-> LM : execute("add n/Basketball p/20 t/Ball")
 activate LM
 create BPP
 LM -> BPP
@@ -42,22 +42,22 @@ AECP <-- Expenditure : e
 deactivate Expenditure
 
 create AEC
-AECP -> AEC : createBudgetCommand(e)
+AECP -> AEC : AddExpenditureCommand(e)
 activate AEC
-AECP <-- AEC : a
+AECP <-- AEC : c
 deactivate AEC
-BPP <-- AECP : a
+BPP <-- AECP : c
 deactivate AECP
 BPP <-[hidden]- AECP
 destroy AECP
 
 deactivate AECP
-LM <-- BPP : a
+LM <-- BPP : c
 deactivate BPP
 LM <-[hidden]- BPP
 destroy BPP
 
-LM -> AEC: excute(m)
+LM -> AEC: execute(m)
 
 activate AEC
 AEC -> M : addExpenditure(e)

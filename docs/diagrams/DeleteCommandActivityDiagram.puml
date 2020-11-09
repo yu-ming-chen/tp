@@ -1,27 +1,13 @@
 @startuml
 start
 :User executes delete command: delete 1;
-:Logic executes delete command;
+:Logic checks State of NUSave;
 
 if () then ([is the main page])
-    :MainPageParser is created\nand parses the command;
-
-    if () then ([delete syntax is valid])
-    :parses the delete command : delete 1;
-    :deletes budget based on index specified;
-    else ([syntax is invalid])
-    :throw a parser exception;
-    endif
+    :Execute command to delete budget;
 
 else ([is a budget page])
-    :BudgetPageParser is created\nand parses the command;
-
-    if () then ([delete syntax is valid])
-    :parses the delete command : delete 1;
-    :deletes expenditure based on index specified;
-    else ([syntax is invalid])
-    :throw a parser exception;
-    endif
+    :Execute command to delete expenditure;
 
 endif
 stop

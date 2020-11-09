@@ -7,14 +7,13 @@ box "Logic" #LightBlue
 participant ":LogicManager" as LM
 participant ":MainPageParser" as MPP
 participant ":DeleteBudgetCommandParser" as DBCP
-participant "d:DeleteBudgetCommand" as DBC
+participant "c:DeleteBudgetCommand" as DBC
 participant ":result:CommandResult" as CR
-participant "i: BudgetIndex" as BI
-
 end box
 
 box "Model" #LightYellow
-participant "m:Model" as M
+participant "i: BudgetIndexManager" as BI
+participant "m:ModelManager" as M
 end box
 
 [-> LM : execute("delete 1")
@@ -42,7 +41,7 @@ DBCP <-- BI
 deactivate BI
 
 create DBC
-DBCP -> DBC : deleteBudgetCommand(i)
+DBCP -> DBC : DeleteBudgetCommand(i)
 activate DBC
 DBCP <-- DBC : c
 deactivate DBC
@@ -57,7 +56,7 @@ deactivate MPP
 LM <-[hidden]- MPP
 destroy MPP
 
-LM -> DBC : excute(m)
+LM -> DBC : execute(m)
 activate DBC
 DBC -> M : deleteBudget(i)
 activate M

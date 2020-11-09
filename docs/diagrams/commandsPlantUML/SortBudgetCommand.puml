@@ -13,10 +13,10 @@ participant "result:CommandResult" as CR
 end box
 
 box "Model" #LightYellow
-participant "m:Model" as M
+participant "m:ModelManager" as M
 end box
 
-[-> LM : excute("sort name")
+[-> LM : execute("sort name")
 activate LM
 create MPP
 LM -> MPP
@@ -51,7 +51,7 @@ LM <-[hidden]- MPP
 destroy MPP
 
 
-LM -> SBC: excute(m)
+LM -> SBC: execute(m)
 activate SBC
 SBC -> M : sortBudgetsByName()
 activate M
