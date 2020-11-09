@@ -27,10 +27,10 @@ Given below are my contributions to the project:
     - Highlight: Users are able to choose multiple fields that they wish to edit at one go, the challenge was to be able
     to enable different combinations of field they wish to edit while still being able to detect when no fields have been
     added.
-- **Code Contributed**: [RepoSense Link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=zoom&zA=davidliew9&zR=AY2021S1-CS2103T-T11-4%2Ftp%5Bmaster%5D&zACS=261.9682120869456&zS=2020-08-14&zFS=&zU=2020-11-07&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
+- **Code Contributed**: [RepoSense Link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=davidliew9)
 - **Project Management**:
     - Identified and created Issues in milestones v1.2, v1.3
-    - [PRs reviewed by me](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=davidliew9)
+    - [PRs reviewed by me](https://github.com/AY2021S1-CS2103T-T11-4/tp/pulls?q=is%3Apr+reviewed-by%3Adavidliew9)
 
 - **Contributions to Documentation**:
     - User Guide:
