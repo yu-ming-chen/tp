@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -142,5 +143,26 @@ public class EditExpenditureCommand extends Command {
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            EditExpenditureDescriptor that = (EditExpenditureDescriptor) o;
+            return Objects.equals(name, that.name)
+                    && Objects.equals(price, that.price);
+        }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EditExpenditureCommand
+                && expenditureIndex.equals(((EditExpenditureCommand) other).expenditureIndex)
+                && editExpenditureDescriptor.equals(((EditExpenditureCommand) other).editExpenditureDescriptor));
     }
 }

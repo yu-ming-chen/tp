@@ -11,6 +11,8 @@ public class TitleStateBinder implements StateBinder {
         this.title = title;
     }
 
+    public TitleStateBinder() { }
+
     @Override
     public void bind(Logic logic) {
         title.getTitle().textProperty().bind(Bindings.createStringBinding(() -> {
