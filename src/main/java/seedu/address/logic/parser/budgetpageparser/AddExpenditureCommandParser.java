@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -45,7 +45,7 @@ public class AddExpenditureCommandParser implements Parser<AddExpenditureCommand
 
         Name name = ParserUtil.parseExpenditureName(argMultimap.getValue(PREFIX_NAME).get());
         Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
-        Date date = new Date(LocalDate.now().toString());
+        Date date = new Date(LocalDateTime.now().toString());
         Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Expenditure expenditure = new Expenditure(name, price, date, tags);
 

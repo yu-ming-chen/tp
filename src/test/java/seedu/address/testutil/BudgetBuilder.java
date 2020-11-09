@@ -10,7 +10,7 @@ import seedu.address.model.expenditure.ExpenditureList;
 
 public class BudgetBuilder {
     public static final String DEFAULT_NAME = "McDonalds";
-    public static final String DEFAULT_CREATED_ON = "2020-10-10";
+    public static final String DEFAULT_CREATED_ON = "2020-10-10T00:00:00.000000";
     public static final String DEFAULT_THRESHOLD = "100";
     public static final ExpenditureList DEFAULT_EXPENDITURES = TypicalExpenditures.getMcDonaldsExpenditures();
 

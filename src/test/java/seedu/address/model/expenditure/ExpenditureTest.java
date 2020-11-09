@@ -4,7 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -38,7 +39,8 @@ class ExpenditureTest {
         assertFalse(mcMuffin.equals(new ExpenditureBuilder(TypicalExpenditure.getKfcBanditoExpenditure()).build()));
 
         // different createdOn -> returns false
-        Expenditure editedMcmuffin = new ExpenditureBuilder(mcMuffin).withCreatedOn("2020-10-13").build();
+        Expenditure editedMcmuffin = new ExpenditureBuilder(mcMuffin).withCreatedOn("2020-10-13T00:00:00.000000")
+                .build();
         assertFalse(mcMuffin.equals(editedMcmuffin));
 
         // different name -> returns false
@@ -70,12 +72,12 @@ class ExpenditureTest {
 
     @Test
     void getCreatedOn() {
-        assertEquals(new Date("2020-10-10"), mcMuffin.getCreatedOn());
+        assertEquals(new Date("2020-10-02T00:00:00.000000"), mcMuffin.getCreatedOn());
     }
 
     @Test
     void getFormattedCreatedOn() {
-        assertEquals(java.sql.Date.valueOf(LocalDate.parse("2020-10-10")),
+        assertEquals(Timestamp.valueOf(LocalDateTime.parse("2020-10-02T00:00:00.000000")),
                 mcMuffin.getFormattedCreatedOn());
     }
 
