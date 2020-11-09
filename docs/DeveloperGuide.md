@@ -9,36 +9,36 @@ title: Developer Guide
 - [3. Design](#3-design)
     * [3.1. Architecture](#31-architecture)
     * [3.2. Components](#32-components)
-        * [3.2.1 UI Component](#321-ui-component)
-        * [3.2.2 Logic Component](#322-logic-component)
-        * [3.2.3 Model Component](#323-model-component)
-        * [3.2.4 State Component](#324-state-component)
-        * [3.2.5 Storage Component](#325-storage-component)
-    * [3.3. Commons Classes](#33-commons-classes)
+        * [3.2.1 UI component](#321-ui-component)
+        * [3.2.2 Logic component](#322-logic-component)
+        * [3.2.3 Model component](#323-model-component)
+        * [3.2.4 State component](#324-state-component)
+        * [3.2.5 Storage component](#325-storage-component)
+    * [3.3. Commons classes](#33-commons-classes)
 - [4. Implementation](#4-implementation)
     * [4.1. State](#41-state)
     * [4.2. Parsers](#42-parsers)
-        * [4.2.1. Page Parsers](#421-page-parsers)
-        * [4.2.2. Command Parsers](#422-command-parsers)
-        * [4.2.3. Interaction Between Parsers](#423-interaction-between-parsers)
+        * [4.2.1. Page parsers](#421-page-parsers)
+        * [4.2.2. Command parsers](#422-command-parsers)
+        * [4.2.3. Interaction between parsers](#423-interaction-between-parsers)
     * [4.3. Commands](#43-commands)
-        * [4.3.1. Add Commands](#431-add-commands)
-            * [4.3.1.1. Create Budget](#4311-create-budget)
-            * [4.3.1.2. Add Expenditure](#4312-add-expenditure)
-        * [4.3.2. Delete Commands](#432-delete-commands)
-            * [4.3.2.1. Delete Budget](#4321-delete-budget)
-            * [4.3.2.2. Delete Expenditure](#4322-delete-expenditure)
+        * [4.3.1. Add commands](#431-add-commands)
+            * [4.3.1.1. Create budget](#4311-create-budget)
+            * [4.3.1.2. Add expenditure](#4312-add-expenditure)
+        * [4.3.2. Delete commands](#432-delete-commands)
+            * [4.3.2.1. Delete budget](#4321-delete-budget)
+            * [4.3.2.2. Delete expenditure](#4322-delete-expenditure)
         * [4.3.3. Edit Commands](#433-edit-commands)
-            * [4.3.3.1. Edit Budget](#4331-edit-budget)
-            * [4.3.3.2. Edit Expenditure](#4332-edit-expenditure)
-        * [4.3.4. Sort Commands](#434-sort-commands)
-        * [4.3.5. Find & List Commands](#435-find--list-commands)
-        * [4.3.6. Undo & Redo Commands](#436-undo--redo-commands)
-        * [4.3.7. Universal Commands](#437-universal-commands)
+            * [4.3.3.1. Edit budget](#4331-edit-budget)
+            * [4.3.3.2. Edit expenditure](#4332-edit-expenditure)
+        * [4.3.4. Sort commands](#434-sort-commands)
+        * [4.3.5. Find & list commands](#435-find--list-commands)
+        * [4.3.6. Undo & redo commands](#436-undo--redo-commands)
+        * [4.3.7. Universal commands](#437-universal-commands)
             * [4.3.7.1 Help](#4371-help)
     * [4.4. UI](#44-ui)
-        * [4.4.1. List View Rendering](#441-list-view-rendering)
-        * [4.4.2. Dynamic Updating](#442-dynamic-updating)
+        * [4.4.1. List view rendering](#441-list-view-rendering)
+        * [4.4.2. Dynamic updating](#442-dynamic-updating)
             * [4.4.2.1. Description](#4421-description)
             * [4.4.2.2. Implementation](#4422-implementation)
     * [5. Guides](#5-guides)
@@ -48,12 +48,12 @@ title: Developer Guide
         * [5.4. Configuration](#54-configuration)
         * [5.5. DevOps](#55-devops)
     * [Appendix](#appendix)
-        * [Product Scope](#product-scope)
-        * [User Stories](#user-stories)
-        * [Use Cases](#use-cases)
-        * [Non-Functional Requirements](#non-functional-requirements)
+        * [Product scope](#product-scope)
+        * [User stories](#user-stories)
+        * [Use cases](#use-cases)
+        * [Non-functional requirements](#non-functional-requirements)
         * [Glossary](#glossary)
-        * [Instructions for Manual Testing](#instructions-for-manual-testing)
+        * [Instructions for manual testing](#instructions-for-manual-testing)
         * [Effort](#effort)
 
 ## 1. Introduction
@@ -69,8 +69,7 @@ habits.
 What's more, NUSave has:
 - a Command Line Interface (CLI) catered to those who can type fast and prefer to use a keyboard. In other words, you
 navigate the application and execute instructions by keying in text-based commands into the command box provided.
-- a Graphical User Interface (GUI) to provide you with a visually appealing and aesthetic user experience. Essentially,
-the current status of the application is reflected live on-screen so what you see is what you get!
+- a Graphical User Interface (GUI) to provide you with a visually appealing, aesthetic and intuitive user experience.
 
 ### Purpose
 
@@ -86,28 +85,28 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 (Contributed by Song Yu)
 
-This section elaborates on the higher-level components that work together within NUSave. 
+This section elaborates on the high-level design of NUSave.
 
 ### 3.1. Architecture
 
 (Contributed by Chin Hui)
 
-This section explains the high-level design of the application.
+This section elaborates on the high-level components of NUSave.
 
 ![Architecture Diagram](images/ArchitectureDiagram.png)
 
-Figure 3.1.1. Figure of Architecture Diagram
+Figure 3.1.1. Architecture diagram of NUSave.
 
-Figure 3.1.1. shows how each high-level component in NUSave is related to each other.
+Figure 3.1.1 shows the relationship between the high-level components in NUSave.
 
 Given below is a quick overview of each component:
 
-**`Main`** has two classes called [`Main`] and [`MainApp`].
+The `Main` component has two classes called `Main` and `MainApp`.
 It has two primary responsibilities:
-* At launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At launch: Initializes the components in the correct sequence and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+The [`Commons`](#common-classes) component represents a collection of classes used by other components.
 
 The rest of the application consists of five components:
 
@@ -1509,7 +1508,7 @@ what the elements of the application represents.
 | Mainstream OS               | Stands for 'Mainstream Operating Systems', such as Windows, MacOS, Linux, Unix, OS-X.
 | MSS                         | Stands for 'Main Success Scenario', which describes the interaction for a given use case, assuming nothing goes wrong.
 
-### 6.3. Instructions for Manual Testing
+### Instructions for Manual Testing
 
 (Contributed by Chin Hui)
 
@@ -1517,7 +1516,7 @@ Given below are instructions to test the application manually. These instruction
 with the user guide for comprehensive testing. The state of the application is assumed to contain some data
 either sample data from when the application is first launched or a customised data set.
 
-#### Launch and Shutdown
+#### Launch and shutdown
 1. Launching the application
 
    1. Download the jar file and copy into an empty folder.
