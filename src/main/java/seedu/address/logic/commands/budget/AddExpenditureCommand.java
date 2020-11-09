@@ -66,4 +66,10 @@ public class AddExpenditureCommand extends Command {
                 || (other instanceof AddExpenditureCommand // instanceof handles nulls
                 && toAdd.equals(((AddExpenditureCommand) other).toAdd));
     }
+
+    public boolean contentEquals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddExpenditureCommand // instanceof handles nulls
+                && toAdd.contentEquals(((AddExpenditureCommand) other).toAdd));
+    }
 }

@@ -82,6 +82,21 @@ public class Expenditure implements Renderable {
                 && otherExpenditure.getTags().equals(getTags());
     }
 
+    public boolean contentEquals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Expenditure)) {
+            return false;
+        }
+
+        Expenditure otherExpenditure = (Expenditure) other;
+        return otherExpenditure.getName().equals(getName())
+                && otherExpenditure.getPrice().equals(getPrice())
+                && otherExpenditure.getTags().equals(getTags());
+    }
+
     @Override
     public String toString() {
         return name.toString();
