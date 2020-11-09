@@ -27,7 +27,7 @@ class DeleteExpenditureCommandParserTest {
      * Asserts that the parsing of {@code userInput} by {@code parser} is successful and the command created
      * equals to {@code expectedCommand}.
      */
-    void assertBudgetParseSuccess(Parser parser, String userInput, Command expectedCommand) {
+    void assertExpenditureParseSuccess(Parser parser, String userInput, Command expectedCommand) {
         try {
             Command command = parser.parse(userInput);
             assertTrue(((DeleteExpenditureCommand) command).equals(expectedCommand));
@@ -39,7 +39,7 @@ class DeleteExpenditureCommandParserTest {
     @Test
     public void parse_indexPresent_success() {
         ExpenditureIndex expenditureIndex = new ExpenditureIndexManager(0);
-        assertBudgetParseSuccess(parser, "1",
+        assertExpenditureParseSuccess(parser, "1",
                 new DeleteExpenditureCommand(expenditureIndex));
     }
 
@@ -47,7 +47,7 @@ class DeleteExpenditureCommandParserTest {
     public void parse_indexZero_failure() {
         ExpenditureIndex expenditureIndex = new ExpenditureIndexManager(0);
         assertThrows(IllegalArgumentException.class, () ->
-                assertBudgetParseSuccess(parser, "0", new DeleteExpenditureCommand(expenditureIndex)));
+                assertExpenditureParseSuccess(parser, "0", new DeleteExpenditureCommand(expenditureIndex)));
     }
 
     @Test
