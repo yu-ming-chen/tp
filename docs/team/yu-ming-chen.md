@@ -61,9 +61,9 @@ Given below are my contributions to the project:
 		- Added implementation details for `Create Budget`, `Edit Budget`, `Sort` and `Help` command with their
 		respective sequence diagram and activity diagram.
 - **Community**:
-	- Reported bugs and suggestions for another team (T09-2) in the class during PE dry run (examples [T09-2 issues 116-141](https://github.com/yu-ming-chen/ped/issues)
+	- Reported bugs and suggestions for another team (T09-2) in the class during PE dry run (examples [T09-2 issues 116-141](https://github.com/yu-ming-chen/ped/issues))
 - **Tools**:
-  * Created UI mockup for our application using [Figma.](https://www.figma.com/file/FGIhST9YHDx8vLumiLquHh/TP?node-id=0%3A1) 
+  * Created UI mockup for our application using [Figma](https://www.figma.com/file/FGIhST9YHDx8vLumiLquHh/TP?node-id=0%3A1).
   PR [#21](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/21)
   
 -------
