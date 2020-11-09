@@ -56,9 +56,6 @@ public class ParserUtil {
         if (!StringUtil.isNonOverFlow(trimmedIndex)) {
             throw new ParseException(MESSAGE_OVERFLOW);
         }
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
-        }
         return new ExpenditureIndexManager(Integer.parseInt(trimmedIndex) - 1);
     }
 
