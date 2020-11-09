@@ -16,8 +16,10 @@ title: User Guide
 4. [Quick Start](#4-quick-start)
 5. [Commands](#5-commands)
     - [5.1. Universal commands](#51-universal-commands)
-        * [5.1.1. View help: `help`](#511-view-help-help)   
-        * [5.1.2. Exit NUSave: `exit`](#512-exit-nusave-exit)
+        * [5.1.1. Viewing help: `help`](#511-viewing-help-help)
+        * [5.1.2. Undoing a command: `undo`](#512-undoing-a-command-undo)
+        * [5.1.3. Redoing a command: `redo`](#513-redoing-a-command-redo)
+        * [5.1.4. Exiting NUSave: `exit`](#514-exiting-nusave-exit)
     - [5.2. Main page commands](#52-main-page-commands)
         * [5.2.1. Creating a budget: `create`](#521-creating-a-budget-create)
         * [5.2.2. Deleting a budget: `delete`](#522-deleting-a-budget-delete)
@@ -251,7 +253,7 @@ In this section, you will learn about the commands that are available in NUSave 
 
 The following commands in this subsection are available on any pages.
 
-#### 5.1.1. View help: `help`
+#### 5.1.1. Viewing help: `help`
 (Contributed by Yu Ming)
 
 Format: `help`
@@ -267,7 +269,47 @@ as seen in Figure 5.1.1.1 below:
 
 Figure 5.1.1.1. Example of using the help command on the main page.
 
-#### 5.1.2. Exit NUSave: `exit`
+
+#### 5.1.2. Undoing a command: `undo`
+(Contributed by Wen Hao)
+
+Format: `undo`
+
+You can use this command to undo a previously executed command.
+
+> 📕 You can only undo the following commands:
+> * [`create` budget command](#521-creating-a-budget-create)
+> * [`delete` budget command](#522-deleting-a-budget-delete)
+> * [`edit` budget command](#523-editing-a-budget-edit)
+> * [`clear` budget command](#527-clearing-budgets-clear)
+> * [`add` expenditure command](#531-adding-an-expenditure-add)
+> * [`delete` expenditure command](#532-deleting-an-expenditure-delete)
+> * [`edit` expenditure command](#533-editing-an-expenditure-edit)
+
+✏️ Example: `undo`
+
+This will cause NUSave to revert to its state before the previous command was executed as seen in Figure 5.1.2.1 below:
+
+![Example of undo command](images/CommandScreenShots/5_1_2_1_undo.png)
+
+Figure 5.1.2.1. Example of using the undo command on the main page.
+
+#### 5.1.3. Redoing a command: `redo`
+(Contributed by Wen Hao)
+
+Format: `redo`
+
+You can use this command to redo a previously undone command.
+
+✏️ Example: `undo`
+
+This will cause NUSave to revert to its state after the executing the previously undone command as seen in Figure 5.1.3.1 below:
+
+![Example of undo command](images/CommandScreenShots/5_1_3_1_redo.png)
+
+Figure 5.1.3.1. Example of using the redo command on the main page.
+
+#### 5.1.4. Exiting NUSave: `exit`
 (Contributed by David)
 
 Format: `exit`
@@ -669,10 +711,12 @@ Figure 5.3.7.1. Example of using the close budget command.
 
 ### 6.1. Universal commands
 
-| **Action**  | **Format** | **Examples** 
-|------------ |------------|--------------
-| View Help   | `help`     | \-           
-| Exit NUSave | `exit`     | \-           
+| **Action**        | **Format** | **Examples** 
+|------------------ |------------|--------------
+| Viewing help      | `help`     | \-           
+| Undoing a command | `undo`     | \-         
+| Redoing a command | `redo`     | \-         
+| Exiting NUSave    | `exit`     | \-           
 
 ### 6.2. Main page commands
 
