@@ -8,7 +8,7 @@ title: Ek Chin Hui's Project Portfolio Page
 NUSave is a desktop budgeting application used to manage an individual's budgets and expenses. 
 NUSave can hold multiple budgets, of which each budget holds multiple expenditures. 
 The user interacts with it using a command line interface (CLI), and it has a GUI created with JavaFX. 
-It is written in Java, and has about 10,000 LoC.
+It is written in Java, and has about 20,000 LoC.
 
 Given below are my contributions to the project:
 - **Feature**: Added ability to render both budgets and expenditures in the GUI of NUSave.
