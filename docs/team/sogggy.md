@@ -140,8 +140,6 @@ current page (represented by `currentPage` attribute in `StateManager`) of NUSav
 
 <br/>
 <br/>
-<br/>
-<br/>
 
 **Contributions to User Guide (Extracts)**:
 
