@@ -41,7 +41,7 @@ includes the threshold of the budget, and the current total expenditure of that 
 	- Justification: This feature allows the user to be able to quickly filter to only view relevant budgets that he/she is
 	interested in, without having to scroll through their many budgets that they have stored in NUSave.
 
-- **Code Contributed**: [RepoSense Link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=sogggy&tabRepo=AY2021S1-CS2103T-T11-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
+- **Code Contributed**: [RepoSense Link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=sogggy)
 
 - **Project Management**:
 	- Created Issues in milestones v1.2, v1.3
