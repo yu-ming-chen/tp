@@ -4,7 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 public class Date implements Comparable<Date> {
@@ -38,7 +39,7 @@ public class Date implements Comparable<Date> {
      */
     public static boolean isValid(String test) {
         try {
-            LocalDate.parse(test);
+            LocalDateTime.parse(test);
         } catch (DateTimeParseException e) {
             return false;
         }
@@ -46,7 +47,7 @@ public class Date implements Comparable<Date> {
     }
 
     public java.util.Date getFormattedCreatedOn() {
-        return java.sql.Date.valueOf(LocalDate.parse(value));
+        return Timestamp.valueOf(LocalDateTime.parse(value));
     }
 
     @Override
@@ -68,6 +69,6 @@ public class Date implements Comparable<Date> {
 
     @Override
     public int compareTo(Date date) {
-        return LocalDate.parse(value).compareTo(LocalDate.parse(date.value));
+        return LocalDateTime.parse(value).compareTo(LocalDateTime.parse(date.value));
     }
 }

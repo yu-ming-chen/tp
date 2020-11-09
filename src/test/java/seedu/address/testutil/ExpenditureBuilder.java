@@ -16,7 +16,7 @@ import seedu.address.model.util.SampleDataUtil;
 public class ExpenditureBuilder {
     public static final String DEFAULT_NAME = "BREAKFAST";
     public static final String DEFAULT_PRICE = "12.50";
-    public static final String DEFAULT_CREATED_ON = "2020-10-13";
+    public static final String DEFAULT_CREATED_ON = "2020-10-02T00:00:00.000000";
 
     private Name name;
     private Price price;

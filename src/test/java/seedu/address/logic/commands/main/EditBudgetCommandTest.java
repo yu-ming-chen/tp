@@ -61,10 +61,10 @@ class EditBudgetCommandTest {
     public void execute_editAllField_success() throws CommandException {
         EditBudgetCommand.EditBudgetDescriptor descriptor = new EditBudgetCommand.EditBudgetDescriptor();
         descriptor.setName(new Name("KFC"));
-        descriptor.setCreatedOn(new Date("2020-10-09"));
+        descriptor.setCreatedOn(new Date("2020-10-09T00:00:00.000000"));
         descriptor.setThreshold(new Threshold("80").toOptional());
         Budget editedBudget = new BudgetBuilder().withName("KFC")
-                .withThreshold("80").withCreatedOn("2020-10-09")
+                .withThreshold("80").withCreatedOn("2020-10-09T00:00:00.000000")
                 .withExpenditures(TypicalExpenditures.getMcDonaldsExpenditures()).build();
 
         ModelStubAcceptingBudgetEdited modelStub = new ModelStubAcceptingBudgetEdited();
@@ -81,7 +81,7 @@ class EditBudgetCommandTest {
     public void write_editOutOfBound_commandExceptionThrown() throws CommandException {
         EditBudgetCommand.EditBudgetDescriptor descriptor = new EditBudgetCommand.EditBudgetDescriptor();
         descriptor.setName(new Name("KFC"));
-        descriptor.setCreatedOn(new Date("2020-10-09"));
+        descriptor.setCreatedOn(new Date("2020-10-09T00:00:00.000000"));
         descriptor.setThreshold(new Threshold("80").toOptional());
         ModelStubAcceptingBudgetEdited modelStub = new ModelStubAcceptingBudgetEdited();
         EditBudgetCommand command = new EditBudgetCommand(new BudgetIndexManager(6), descriptor);

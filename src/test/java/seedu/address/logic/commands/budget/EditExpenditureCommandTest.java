@@ -34,7 +34,7 @@ public class EditExpenditureCommandTest {
 
         EditExpenditureDescriptor descriptor = new EditExpenditureDescriptor();
         descriptor.setName(new Name("McMuffin"));
-        descriptor.setDate(new Date("2020-10-09"));
+        descriptor.setDate(new Date("2020-10-09T00:00:00.000000"));
         descriptor.setPrice(new Price("10"));
 
         ExpenditureIndex expenditureIndex = new ExpenditureIndexManager(0);
@@ -55,7 +55,7 @@ public class EditExpenditureCommandTest {
 
         EditExpenditureDescriptor descriptor = new EditExpenditureDescriptor();
         descriptor.setName(new Name("McMuffin"));
-        descriptor.setDate(new Date("2020-10-09"));
+        descriptor.setDate(new Date("2020-10-09T00:00:00.000000"));
         descriptor.setPrice(new Price("10"));
         descriptor.setTags(new HashSet<>());
 
