@@ -1,49 +1,49 @@
 package seedu.address.testutil;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import seedu.address.model.expenditure.Expenditure;
 
 public class TypicalExpenditure {
     public static final String MC_MUFFIN_NAME = "McMuffin";
     public static final String MC_MUFFIN_PRICE = "4.50";
-    public static final String MC_MUFFIN_CREATED_ON = "2020-10-10";
+    public static final String MC_MUFFIN_CREATED_ON = "2020-10-02T00:00:00.000000";
 
     public static final String MC_CHICKEN_NAME = "McChicken";
     public static final String MC_CHICKEN_PRICE = "2.00";
-    public static final String MC_CHICKEN_CREATED_ON = "2020-10-09";
+    public static final String MC_CHICKEN_CREATED_ON = "2020-10-09T00:00:00.000000";
 
     public static final String MC_SPICY_NAME = "McSpicy";
     public static final String MC_SPICY_PRICE = "7.00";
-    public static final String MC_SPICY_CREATED_ON = "2020-10-08";
+    public static final String MC_SPICY_CREATED_ON = "2020-10-08T00:00:00.000000";
 
     public static final String MCDONALDS_TOTAL_PRICE = "13.50";
 
     public static final String KFC_ZINGER_NAME = "Zinger";
     public static final String KFC_ZINGER_PRICE = "8.00";
-    public static final String KFC_ZINGER_CREATED_ON = "2020-10-07";
+    public static final String KFC_ZINGER_CREATED_ON = "2020-10-07T00:00:00.000000";
 
     public static final String KFC_CHEESE_FRIES_NAME = "Cheese Fries";
     public static final String KFC_CHEESE_FRIES_PRICE = "4.00";
-    public static final String KFC_CHEESE_FRIES_CREATED_ON = "2020-10-06";
+    public static final String KFC_CHEESE_FRIES_CREATED_ON = "2020-10-06T00:00:00.000000";
 
     public static final String KFC_BANDITO_NAME = "Bandito";
     public static final String KFC_BANDITO_PRICE = "6.50";
-    public static final String KFC_BANDITO_CREATED_ON = "2020-10-05";
+    public static final String KFC_BANDITO_CREATED_ON = "2020-10-05T00:00:00.000000";
 
     public static final String KFC_TOTAL_PRICE = "18.50";
 
     public static final String SUBWAY_COLD_CUT_TRIO_NAME = "Cold Cut Trio";
     public static final String SUBWAY_COLD_CUT_TRIO_PRICE = "7.50";
-    public static final String SUBWAY_COLD_CUT_TRIO_CREATED_ON = "2020-10-04";
+    public static final String SUBWAY_COLD_CUT_TRIO_CREATED_ON = "2020-10-04T00:00:00.000000";
 
     public static final String SUBWAY_COOKIE_NAME = "Cookie";
     public static final String SUBWAY_COOKIE_PRICE = "1.50";
-    public static final String SUBWAY_COOKIE_CREATED_ON = "2020-10-03";
+    public static final String SUBWAY_COOKIE_CREATED_ON = "2020-10-03T00:00:00.000000";
 
     public static final String SUBWAY_SOUP_NAME = "Clam Chowder";
     public static final String SUBWAY_SOUP_PRICE = "3.00";
-    public static final String SUBWAY_SOUP_CREATED_ON = "2020-10-02";
+    public static final String SUBWAY_SOUP_CREATED_ON = "2020-10-02T00:00:00.000000";
 
     public static final String SUBWAY_TOTAL_PRICE = "12.00";
 
@@ -75,13 +75,13 @@ public class TypicalExpenditure {
 
     public static Expenditure getMcMuffinExpenditureWithTags() {
         return new ExpenditureBuilder().withName(MC_MUFFIN_NAME)
-                .withPrice(MC_MUFFIN_PRICE).withCreatedOn(LocalDate.now().toString())
+                .withPrice(MC_MUFFIN_PRICE).withCreatedOn(LocalDateTime.now().toString())
                 .withTags("breakfast", "delicious").build();
     }
 
     public static Expenditure getMcMuffinExpenditureWithCurrentCreatedOn() {
         return new ExpenditureBuilder().withName(MC_MUFFIN_NAME)
-                .withPrice(MC_MUFFIN_PRICE).withCreatedOn(LocalDate.now().toString()).build();
+                .withPrice(MC_MUFFIN_PRICE).withCreatedOn(LocalDateTime.now().toString()).build();
     }
 
     public static Expenditure getMcChickenExpenditure() {

@@ -1,17 +1,17 @@
 {
   "budgets" : [ {
     "name" : "NUS Hackers Monthly Budget",
-    "createdOn" : "2020-10-18",
+    "createdOn" : "2020-10-18T00:00:00.000000",
     "threshold" : "1000",
     "expenditures" : [ {
       "name" : "Shirt",
       "price" : "85.50",
-      "createdOn" : "2020-10-10",
+      "createdOn" : "2020-10-10T00:00:00.000000",
       "tags" : [ "Apparel", "White" ]
     }, {
       "name" : "Pants",
       "price" : "100.50",
-      "createdOn" : "2020-10-10",
+      "createdOn" : "2020-10-10T00:00:00.000000",
       "tags" : [ "Apparel", "Black" ]
     } ]
   }

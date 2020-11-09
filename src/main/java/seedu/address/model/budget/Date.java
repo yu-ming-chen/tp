@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 
@@ -40,7 +40,7 @@ public class Date implements Comparable<Date> {
      */
     public static boolean isValid(String test) {
         try {
-            LocalDate.parse(test);
+            LocalDateTime.parse(test);
         } catch (DateTimeParseException e) {
             return false;
         }
@@ -66,6 +66,6 @@ public class Date implements Comparable<Date> {
 
     @Override
     public int compareTo(Date date) {
-        return LocalDate.parse(value).compareTo(LocalDate.parse(date.value));
+        return LocalDateTime.parse(value).compareTo(LocalDateTime.parse(date.value));
     }
 }

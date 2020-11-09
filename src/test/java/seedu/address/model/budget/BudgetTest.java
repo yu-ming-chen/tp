@@ -37,7 +37,7 @@ class BudgetTest {
 
         // different createdOn -> returns false
         Budget editedMcdonalds = new BudgetBuilder(mcDonalds)
-                .withCreatedOn("2020-08-08")
+                .withCreatedOn("2020-08-08T00:00:00.000000")
                 .build();
         assertFalse(mcDonalds.equals(editedMcdonalds));
 
@@ -60,7 +60,7 @@ class BudgetTest {
 
     @Test
     void constructorTest() {
-        Budget mcDonalds = new Budget(new Name("McDonalds"), new Date("2020-10-10"),
+        Budget mcDonalds = new Budget(new Name("McDonalds"), new Date("2020-10-10T00:00:00.000000"),
                 TypicalExpenditures.getMcDonaldsExpenditures());
 
         Budget expectedBudget = new BudgetBuilder(mcDonalds).build();
@@ -75,7 +75,7 @@ class BudgetTest {
 
     @Test
     void getCreatedOn() {
-        assertEquals(new Date("2020-10-10"), mcDonalds.getCreatedOn());
+        assertEquals(new Date("2020-10-10T00:00:00.000000"), mcDonalds.getCreatedOn());
     }
 
     @Test
