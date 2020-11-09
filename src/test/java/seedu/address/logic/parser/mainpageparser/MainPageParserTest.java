@@ -129,8 +129,14 @@ class MainPageParserTest {
     }
 
     @Test
-    void parseCommand_invalidCommandInput_throwsParseException() throws ParseException {
+    void parseCommand_invalidCommandInput_throwsParseException() {
         String input = "invalid command format";
+        assertThrows(ParseException.class, () -> new MainPageParser().parseCommand(input));
+    }
+
+    @Test
+    void parseCommand_nonMatchValidationRegex_throwsParseException() {
+        String input = "";
         assertThrows(ParseException.class, () -> new MainPageParser().parseCommand(input));
     }
 
