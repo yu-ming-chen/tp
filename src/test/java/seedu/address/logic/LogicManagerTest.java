@@ -13,14 +13,14 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.budget.ListExpenditureCommand;
@@ -59,7 +59,7 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_emptyModel_throwsNullPointerException() throws ParseException, CommandException{
+    public void execute_emptyModel_throwsNullPointerException() throws ParseException, CommandException {
         JsonNusaveStorage nusaveStorage =
                 new JsonNusaveStorage(temporaryFolder.resolve("nusave.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
@@ -139,7 +139,7 @@ public class LogicManagerTest {
 
     @Test
     void getNusaveFilePath() {
-        Path actual =  Paths.get("data", "nusave.json");
+        Path actual = Paths.get("data", "nusave.json");
         assertEquals(actual, logic.getNusaveFilePath());
     }
 
