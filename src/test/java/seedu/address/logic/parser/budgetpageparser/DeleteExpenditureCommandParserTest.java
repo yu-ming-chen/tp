@@ -30,7 +30,7 @@ class DeleteExpenditureCommandParserTest {
     void assertBudgetParseSuccess(Parser parser, String userInput, Command expectedCommand) {
         try {
             Command command = parser.parse(userInput);
-            assertTrue(((DeleteExpenditureCommand) command).contentEquals(expectedCommand));
+            assertTrue(((DeleteExpenditureCommand) command).equals(expectedCommand));
         } catch (ParseException pe) {
             throw new IllegalArgumentException("Invalid user Input,", pe);
         }
@@ -55,6 +55,6 @@ class DeleteExpenditureCommandParserTest {
         ExpenditureIndex expenditureIndex = new ExpenditureIndexManager(6);
         DeleteExpenditureCommand mismatch = new DeleteExpenditureCommand(expenditureIndex);
         Command command = parser.parse("1");
-        assertFalse(((DeleteExpenditureCommand) command).contentEquals(mismatch));
+        assertFalse(((DeleteExpenditureCommand) command).equals(mismatch));
     }
 }

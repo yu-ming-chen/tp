@@ -31,10 +31,4 @@ public class ExpenditureIndexManager implements ExpenditureIndex {
         ExpenditureIndexManager that = (ExpenditureIndexManager) o;
         return expenditureIndex == that.expenditureIndex;
     }
-
-    @Override
-    public boolean contentEquals(Object object) {
-        ExpenditureIndex otherExpenditureIndex = (ExpenditureIndexManager) object;
-        return otherExpenditureIndex.getExpenditureIndex().get().equals(expenditureIndex);
-    }
 }

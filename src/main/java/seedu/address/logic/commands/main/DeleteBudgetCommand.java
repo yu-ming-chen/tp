@@ -49,14 +49,11 @@ public class DeleteBudgetCommand extends Command {
         return new CommandResult(MESSAGE_DELETE_BUDGET_SUCCESS);
     }
 
-    /**
-     * Checks if the contents within expenditure is the same.
-     * @param other
-     * @return returns whether the contents are identical or not.
-     */
-    public boolean contentEquals(Object other) {
+    @Override
+    public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteBudgetCommand // instanceof handles nulls
-                && toDelete.contentEquals(((DeleteBudgetCommand) other).toDelete));
+                && toDelete.equals(((DeleteBudgetCommand) other).toDelete));
     }
+
 }

@@ -5,5 +5,4 @@ import java.util.Optional;
 public interface ExpenditureIndex {
     Optional<Integer> getExpenditureIndex();
     void setIndex(int index);
-    boolean contentEquals(Object object);
 }

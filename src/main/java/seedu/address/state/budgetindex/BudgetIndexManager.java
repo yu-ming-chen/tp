@@ -36,10 +36,4 @@ public class BudgetIndexManager implements BudgetIndex {
         BudgetIndexManager that = (BudgetIndexManager) o;
         return budgetIndex == that.budgetIndex;
     }
-
-    @Override
-    public boolean contentEquals(Object object) {
-        BudgetIndex otherBudgetIndex = (BudgetIndexManager) object;
-        return otherBudgetIndex.getBudgetIndex().get().equals(budgetIndex);
-    }
 }
