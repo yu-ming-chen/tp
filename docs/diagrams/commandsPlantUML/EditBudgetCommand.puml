@@ -10,16 +10,14 @@ participant ":EditBudgetCommandParser" as EBCP
 participant "c:EditBudgetCommand" as EBC
 participant "result:CommandResult" as CR
 participant "e:EditBudgetDescriptor" as EBD
-participant "i:BudgetIndex" as BI
 end box
 
 box "Model" #LightYellow
-participant "toEdit:Budget" as toEditBudget
-participant "edited:Budget" as editedBudget
-participant "m:Model" as M
+participant "i:BudgetIndexManager" as BI
+participant "m:ModelManager" as M
 end box
 
-[-> LM : excute("edit 1 n/Temasek Hall Basketball p/1000")
+[-> LM : execute("edit 1 n/Temasek Hall Basketball p/1000")
 activate LM
 create MPP
 LM -> MPP
@@ -50,7 +48,7 @@ EBCP <-- EBD : e
 deactivate EBD
 
 create EBC
-EBCP -> EBC : createBudgetCommand(i, e)
+EBCP -> EBC : EditBudgetCommand(i, e)
 activate EBC
 EBCP <-- EBC : c
 deactivate EBC
@@ -65,20 +63,19 @@ deactivate MPP
 LM <-[hidden]- MPP
 destroy MPP
 
-LM -> EBC: excute(m)
+LM -> EBC: execute(m)
 
 activate EBC
-create toEditBudget
-EBC -> toEditBudget
-activate toEditBudget
-EBC <-- toEditBudget : toEdit
-deactivate toEditBudget
+EBC -> M: getBudgetAtIndex(i)
+activate M
+EBC <-- M : toEdit
+deactivate M
 
-create editedBudget
-EBC -> editedBudget
-activate editedBudget
-EBC <-- editedBudget : edited
-deactivate editedBudget
+
+EBC -> EBC: createEditedBudget(toEdit, e)
+activate EBC
+EBC <-- EBC: edited
+deactivate EBC
 
 EBC -> M : editBudget(toEdit, edited)
 activate M
