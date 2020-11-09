@@ -39,7 +39,8 @@ Given below are my contributions to the project:
 	- Highlight: This enhancement affects the UI component of NUSave by rendering the current date and time.
 	It also generates a unique greeting message depending on the time of the day.
 	The implementation too was challenging as it required the understanding of the Java Thread class.
-- **Code Contributed**: [RepoSense Link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=yu-ming-chen)
+- **Code Contributed**: 
+[RepoSense Link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=yu-ming-chen)
 - **Project Management**:
 	- Created Issues in milestones v1.2, v1.3
 	- [PRs reviewed by me](https://github.com/AY2021S1-CS2103T-T11-4/tp/pulls?q=is%3Apr+reviewed-by%3Ayu-ming-chen)
