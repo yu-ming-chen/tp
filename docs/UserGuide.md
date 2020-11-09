@@ -305,7 +305,7 @@ You can use this command to redo a previously undone command.
 
 This will cause NUSave to revert to its state after the executing the previously undone command as seen in Figure 5.1.3.1 below:
 
-![Example of undo command](images/CommandScreenShots/5_1_3_1_redo.png)
+![Example of redo command](images/CommandScreenShots/5_1_3_1_redo.png)
 
 Figure 5.1.3.1. Example of using the redo command on the main page.
 
@@ -329,19 +329,17 @@ The following commands in this subsection are only available on the main page.
 
 Format: `create n/NAME [p/THRESHOLD]`
 
-Prefix | Parameters | Requirement | Comments
------- | ---------- | ----------- | --------
- n/    | `NAME`     | Required    | Name of the budget
- p/    | `THRESHOLD`| Optional    | Target threshold of the budget
+Prefix | Parameters | Requirement | Comments                        | Constraints                           |
+------ | ---------- | ----------- | ------------------------------- | ------------------------------------- |
+ n/    | `NAME`     | Required    | Name of the budget              | Limited to a maximum of 50 characters |
+ p/    | `THRESHOLD`| Optional    | Target threshold of the budget  | Must be a positive value less than $1,000,000 |
 
 You can use this command to create a new budget with the given `NAME` and `THRESHOLD`.
 
 When you create a new budget, it will be displayed as a budget card in the list view.
 
 > 📕 You can create a budget with no threshold to simply track your total expenses.
- > ⚠️ The `NAME` is limited to a maximum of 50 characters.
- > ⚠️ The `THRESHOLD` must be a positive value lesser than $1,000,000.
- > ⚠️ There can only be a maximum of 100 budgets.
+> ⚠️ You can only create a maximum of 100 budgets.
 
 
 ✏️ Example: `create n/Temasek Hall Student Council p/1200`
@@ -358,16 +356,15 @@ Figure 5.2.1.1. Example of using the create budget command.
 
 Format: `delete INDEX`
 
-Prefix | Parameters | Requirement | Comments
------- | ---------- | ----------- | ------
-\-     | `INDEX`    | Required    | Index of the budget to be deleted
+Prefix | Parameters | Requirement | Comments                          | Constraints |
+------ | ---------- | ----------- | --------------------------------- | ----------- |
+\-     | `INDEX`    | Required    | Index of the budget to be deleted | Must be between 1-100 since there can only be a maximum of 100 budgets |
 
 You can use this command to delete the budget at the given `INDEX`.
 
 When you delete a budget, its budget card will be removed from the list view.
  
  > ⚠️ Exercise caution when using the delete command as it is irreversible!
- > ⚠️ The `INDEX` must be between 1-100 since there can only be a maximum of 100 budgets.
 
 ✏️ Example: `delete 1`
 
@@ -382,20 +379,17 @@ Figure 5.2.2.1. Example of using the delete budget command.
 
 Format: `edit INDEX [n/NAME] [p/THRESHOLD]`
 
-Prefix | Parameters | Requirement | Comments
--------| ---------- | ----------- | ------
- \-    | `INDEX`    | Required    | Index of the budget to be edited
- n/    | `NAME`     | Optional    | Name of the budget to be edited to
- p/    | `THRESHOLD`| Optional    | Threshold of the budget to be edited to
+Prefix | Parameters | Requirement | Comments | Constraints |
+-------| ---------- | ----------- | -------- |             |
+ \-    | `INDEX`    | Required    | Index of the budget to be edited | Must be between 1-100 since there can only be a maximum of 100 budgets |
+ n/    | `NAME`     | Optional    | Name of the budget to be edited to | Limited to a maximum of 50 characters |
+ p/    | `THRESHOLD`| Optional    | Threshold of the budget to be edited to | Must be a positive value less than $1,000,000 |
 
 You can use this command to edit the budget at the given `INDEX`.
 
 When you edit a budget, the information on its budget card will be updated immediately.
 
  > ⚠️ Although both `NAME` and `THRESHOLD` fields are optional, the command must include at least one of these prefixes.
- > ⚠️ The `INDEX` must be between 1-100 since there can only be a maximum of 100 budgets.
- > ⚠️ The `NAME` is limited to a maximum of 50 characters.
- > ⚠️ The `THRESHOLD` must be a positive value lesser than $1,000,000.
 
 ✏️ Example: `edit 2 n/NUS Computing Club`
 
@@ -465,14 +459,10 @@ You can use this command to sort your budgets by the given `TYPE`.
 There are two ways you can sort your budgets:
 
 - By their creation date with the most recently created budget at the top.
-
-> 📕 Budgets that are created on the same date will be sorted in alphabetical order.
     
 - By their name in alphabetical order.
-> 📕 Newly created budgets will still be added to the top.
->
-> 📕 Budgets will be resorted by creation date upon reopening of NUSave.
->
+
+> 📕 Newly created budgets will still appear at the top of the [list view](#3-gui-layout).
 
 ✏️ Example: `sort name`
 
@@ -490,8 +480,6 @@ Format: `clear`
 You can use this command to delete all existing budgets.
 
 > 📕 This command is usually used to purge the sample data that is created when you launch the application for the first time.
->
-> ⚠️ Exercise caution when using the clear command as it is irreversible!
 
 ✏️ Example: `clear`
 
@@ -506,13 +494,11 @@ Figure 5.2.7.1. Example of using the clear budgets command.
 
 Format: `open INDEX`
 
- Prefix | Parameters | Requirement | Comments
- ------ | ---------- | ----------- | ------
- \-     | `INDEX`    | Required    | Index of the budget to be opened
+ Prefix | Parameters | Requirement | Comments | Constraints |
+ ------ | ---------- | ----------- | -------- | ----------- |
+ \-     | `INDEX`    | Required    | Index of the budget to be opened | Must be between 1-100 since there can only be a maximum of 100 budgets |
 
 You can use this command to open the budget at the given `INDEX`.
-
- > ⚠️ The `INDEX` must be between 1-100 since there can only be a maximum of 100 budgets.
 
 When you open a budget, you will be directed to its budget page.
 
@@ -534,18 +520,15 @@ The following commands in this subsection are only available on the budget page.
 
 Format: `add n/NAME p/PRICE [t/TAG]`
 
-Prefix | Parameters | Requirement | Comments
--------| -----------| ------------| ------
- n/    | NAME       | Required    | Name of the expenditure
- p/    | PRICE      | Required    | Price of the expenditure
- t/    | TAG        | Optional    | Additional information about the expenditure
+Prefix | Parameters | Requirement | Comments | Constraints |
+-------| -----------| ------------| -------- | ----------- |
+ n/    | NAME       | Required    | Name of the expenditure | Limited to a maximum of 50 characters |
+ p/    | PRICE      | Required    | Price of the expenditure | Must be a positive value that is less than $10,000 |
+ t/    | TAG        | Optional    | Additional information about the expenditure | Limited to a maximum of 15 characters and a total of 3 tags |
 
 You can use this command to add a new expenditure with the given `PRICE` and optional `TAG` within a budget.
 
- > ⚠️ The `INDEX` must be between 1-100 since there can only be a maximum of 100 expenditures.
- > ⚠️ The `NAME` is limited to a maximum of 50 characters.
- > ⚠️ The `PRICE` must be a positive value that is at most $10,000.
- > ⚠️ The `TAG` is limited to a maximum of 15 characters and a total of 3 tags.
+> ⚠️ You can add a maximum of 100 expenditures.
 
 When you add a new expenditure, it will be displayed as an expenditure card in the list view.
  
@@ -563,16 +546,13 @@ Figure 5.3.1.1. Example of using the add expenditure command.
 
 Format: `delete INDEX`
 
- Parameters | Requirement | Comments
- -----------| ------------| ------
-Index | Required | Index of the expenditure
+ Parameters | Requirement | Comments | Constraints |
+ -----------| ------------| -------- | ----------- |
+Index | Required | Index of the expenditure | Must be between 1-100 since there can only be a maximum of 100 expenditures |
 
 You can use this command to delete the expenditure at the given `INDEX`.
 
 When you delete an expenditure, its expenditure card will be removed from the list view.
-
- > ⚠️ Exercise caution when using the delete command as it is irreversible!
- > ⚠️ The `INDEX` must be between 1-100 since there can only be a maximum of 100 expenditures.
 
 ✏️ Example: `delete 2`
 
@@ -587,22 +567,18 @@ Figure 5.3.2.1. Example of delete expenditure command
 
 Format: `edit INDEX [n/NAME] [p/PRICE]`
 
-Prefix | Parameters | Requirement | Comments
--------| -----------| ------------| ------
-\-     | `INDEX`    | Required    | Index of the expenditure displayed on NUSave
- n/    | `NAME`     | Optional    | Name of the expenditure to be edited to
- p/    | `PRICE`    | Optional    | Price of the expenditure to be edited to
- t/    | `TAG`      | Optional    | Tags of the expenditure to be edited to
+Prefix | Parameters | Requirement | Comments | Constraints |
+-------| -----------| ------------| -------- | ----------- |
+\-     | `INDEX`    | Required    | Index of the expenditure displayed on NUSave | Must be between 1-100 since there can only be a maximum of 100 expenditures |
+ n/    | `NAME`     | Optional    | Name of the expenditure to be edited to | Limited to a maximum of 50 characters |
+ p/    | `PRICE`    | Optional    | Price of the expenditure to be edited to | Must be a positive value that is less than $10,000 |
+ t/    | `TAG`      | Optional    | Tags of the expenditure to be edited to | Limited to a maximum of 15 characters and a total of 3 tags |
 
 You can use this command to edit the expenditure at the given `INDEX`.
 
 When you edit a expenditure, the information on its expenditure card will be updated immediately.
 
  > ⚠️ Although both `NAME` and `PRICE` fields are optional, the command must include at least one of these prefixes.
- > ⚠️ The `INDEX` must be between 1-100 since there can only be a maximum of 100 expenditures.
- > ⚠️ The `NAME` is limited to a maximum of 50 characters.
- > ⚠️ The `PRICE` must be a positive value that is at most $10,000.
- > ⚠️ The `TAG` is limited to a maximum of 15 characters and a total of 3 tags.
 
 ✏️ Example: `edit 1 n/Long Sleeve Shirt p/20`
 
@@ -617,9 +593,9 @@ Figure 5.3.3.1. Example of edit expenditure command
 
 Format: `find KEYWORD`
 
-Prefix | Parameters | Requirement | Comments
--------| ---------- | ----------- | ------
-\-     | `KEYWORD`     | Required    | Keyword / Keyphrase to be searched
+Prefix | Parameters | Requirement | Comments | Constraints |
+-------| ---------- | ----------- | -------- | ----------- |
+\-     | `KEYWORD`     | Required    | Keyword / Keyphrase to be searched | \- |
 
 You can use this command to find expenditures in the current budget whose names contain the given `KEYWORD`. 
 
