@@ -10,16 +10,15 @@ participant ":EditExpenditureCommandParser" as EECP
 participant "c:EditExpenditureCommand" as EEC
 participant "result:CommandResult" as CR
 participant "e:EditExpenditureDescriptor" as EED
-participant "i:ExpenditureIndex" as EI
+
 end box
 
 box "Model" #LightYellow
-participant "toEdit:Expenditure" as toEditExpenditure
-participant "edited:Expenditure" as editedExpenditure
-participant "m:Model" as M
+participant "i:ExpenditureIndexManager" as EI
+participant "m:ModelManager" as M
 end box
 
-[-> LM : excute("edit 1 n/Basketball p/50 t/Ball")
+[-> LM : execute("edit 1 n/Basketball p/50 t/Ball")
 activate LM
 create BPP
 LM -> BPP
@@ -50,7 +49,7 @@ EECP <-- EED : e
 deactivate EED
 
 create EEC
-EECP -> EEC : createExpenditureCommand(i, e)
+EECP -> EEC : EditExpenditureCommand(i, e)
 activate EEC
 EECP <-- EEC : c
 deactivate EEC
@@ -65,19 +64,17 @@ deactivate BPP
 BPP <-[hidden]- LM
 destroy BPP
 
-LM -> EEC: excute(m)
+LM -> EEC: execute(m)
 activate EEC
-create toEditExpenditure
-EEC -> toEditExpenditure
-activate toEditExpenditure
-EEC <-- toEditExpenditure : toEdit
-deactivate toEditExpenditure
+EEC -> M: getExpenditureAtIndex(i)
+activate M
+EEC <-- M : toEdit
+deactivate M
 
-create editedExpenditure
-EEC -> editedExpenditure
-activate editedExpenditure
-EEC <-- editedExpenditure : edited
-deactivate editedExpenditure
+EEC -> EEC: createEditedExpenditure(toEdit, e)
+activate EEC
+EEC <-- EEC : edited
+deactivate EEC
 
 EEC -> M : editExpenditure(toEdit, edited)
 activate M

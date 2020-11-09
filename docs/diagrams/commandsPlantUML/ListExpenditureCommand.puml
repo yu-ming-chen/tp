@@ -11,7 +11,7 @@ participant "result:CommandResult" as CR
 end box
 
 box "Model" #LightYellow
-participant "m:Model" as M
+participant "m:ModelManager" as M
 end box
 
 [-> LM : execute("list")
