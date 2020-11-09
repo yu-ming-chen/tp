@@ -200,6 +200,8 @@ Figure 3.4.1: Architecture diagram of the `Model` component.
 
 **API** : `Model.java`
 
+<br/>
+
 The `Model`:
 
 * Stores a `UserPref` object that represents the user’s preferences.
