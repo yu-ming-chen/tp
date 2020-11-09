@@ -26,13 +26,8 @@ deactivate state
 model -[MODEL_COLOR]-> logic
 deactivate model
 
-logic -[LOGIC_COLOR]> storage : saveNUSave(NUSave)
+logic -[LOGIC_COLOR]> storage : saveNusave(nusave)
 activate storage STORAGE_COLOR
-
-storage -[STORAGE_COLOR]> storage : Save to file
-activate storage STORAGE_COLOR_T1
-storage --[STORAGE_COLOR]> storage
-deactivate storage
 
 storage --[STORAGE_COLOR]> logic
 deactivate storage
