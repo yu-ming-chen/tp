@@ -140,6 +140,7 @@ current page (represented by `currentPage` attribute in `StateManager`) of NUSav
 
 <br/>
 <br/>
+<br/>
 
 **Contributions to User Guide (Extracts)**:
 
@@ -165,5 +166,3 @@ This will add a new expenditure called "Graphic Calculator" with a price of $199
 Figure 5.3.1.1. below:
 
 ![Example of add expenditure command](../images/CommandScreenShots/5_3_1_1_addExpenditure.png)
-
-Figure 5.3.1.1. Example of using the add expenditure command.
