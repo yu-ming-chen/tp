@@ -9,31 +9,31 @@ budgets, of which each budget holds multiple expenditures. The user interacts wi
 (CLI), and it has a GUI created with JavaFX. It is written in Java, and has about 10,000 LoC.
 
 Given below are my contributions to the project:
-- **Feature** : Added ability to create a budget in NUSave.
+- **Feature** : Added ability to create a budget in NUSave. PR [#47](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/47)
 	- What it does: `create` allows the users to create budget with its name and threshold value into NUSave.
 	- Justification: This feature allows users to create and store budgets in the application,
 	an essential component of NUSave.
-- **Feature** : Added ability to edit budget in NUSave.
+- **Feature** : Added ability to edit budget in NUSave. PR [#151](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/151)
 	- What it does: `edit` allows the users to edit a budget’s name and threshold value in NUSave.
 	- Justification: This feature allows users to edit a specific budget’s name and threshold value in the application,
 	an essential component of NUSave.
-- **Feature** : Added ability to view help in NUSave.
+- **Feature** : Added ability to view help in NUSave. PR [#68](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/68)
 	- What it does: `help` allows the users to view the help commands in NUSave.
 	- Justification: This feature allows users to view all command help instructions in NUSave.
 	- Highlight: This feature displays a different set of help instructions depending on which page the user is on.
 	For example, if the user is on the main page, it will display unique command to the main page,
 	such as open a budget and create a budget command.
-- **Feature** : Added ability to sort budgets in NUSave.
+- **Feature** : Added ability to sort budgets in NUSave. PR [#139](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/139)
 	- What it does: `sort` allows the users to be able to sort budgets in NUSave.
 	- Justification: This feature allows users to sort all budgets in NUSave either by their name in alphabetical order,
 	or their created date with the latest on top.
-- **Feature** : Added ability to sort expenditures in NUSave.
+- **Feature** : Added ability to sort expenditures in NUSave. PR [#141](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/141)
 	- What it does: `sort` allows the users to be able to sort expenditures in NUSave.
 	- Justification: This feature allows users to sort all expenditures in a budget either by their name in alphabetical order,
 	or their created date with the latest on top.
 	- Highlight: The implementation can be challenging as I need to implement different Comparator for the sort command
 	while abiding by the OO principle.
-- **Feature** : Added ability dynamically to view the current date and time in NUSave.
+- **Feature** : Added ability dynamically to view the current date and time in NUSave. PR [#75](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/75)
 	- What it does: Dynamically updating the date and time in the main page view, info box UI component of NUSave.
 	- Justification: This feature allows users to track the current date and time while managing their budgets.
 	- Highlight: This enhancement affects the UI component of NUSave by rendering the current date and time.
