@@ -113,7 +113,6 @@ Figure 3.1.1. Example of the main page view.
 <br/>
 <br/>
 <br/>
-<br/>
 
 Below is a table containing all the components that can be found on the main page accompanied by their respective purposes:
 
