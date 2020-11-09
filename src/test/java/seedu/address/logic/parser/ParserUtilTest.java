@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -41,6 +42,89 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseExpenditureIndex_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseExpenditureIndex("10 a"));
+    }
+
+    @Test
+    public void parseExpenditureIndex_overflowInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseExpenditureIndex("999999999999"));
+    }
+
+    @Test
+    public void parseExpenditureName_tooLargeInput_throwsParseException() {
+        String largerThanThreshold = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+        assertThrows(ParseException.class, () -> ParserUtil.parseExpenditureName(largerThanThreshold));
+    }
+
+    @Test
+    public void parsePrice_invalidInput_throwsParseException() {
+        String input = "h";
+        assertThrows(ParseException.class, () -> ParserUtil.parsePrice(input));
+    }
+
+    @Test
+    public void parsePrice_lessThanZeroInput_throwsParseException() {
+        String input = "-1";
+        assertThrows(ParseException.class, () -> ParserUtil.parsePrice(input));
+    }
+
+    @Test
+    public void parsePrice_exceededValueInput_throwsParseException() {
+        String input = "999999999999";
+        assertThrows(ParseException.class, () -> ParserUtil.parsePrice(input));
+    }
+
+    @Test
+    public void parseBudgetName_tooLargeInput_throwsParseException() {
+        String largerThanThreshold = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+        assertThrows(ParseException.class, () -> ParserUtil.parseBudgetName(largerThanThreshold));
+    }
+
+
+    @Test
+    public void parseBudgetThreshold_noInput_throwsAssertionError() {
+        String input = " ";
+        assertThrows(AssertionError.class, () -> ParserUtil.parseBudgetThreshold(input));
+    }
+
+    @Test
+    public void parseBudgetThreshold_lessThanZeroInput_throwsParseException() {
+        String input = "-1";
+        assertThrows(ParseException.class, () -> ParserUtil.parseBudgetThreshold(input));
+    }
+
+    @Test
+    public void parseBudgetThreshold_tooLargeInput_throwsParseException() {
+        String largerThanThreshold = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+        assertThrows(ParseException.class, () -> ParserUtil.parseBudgetThreshold(largerThanThreshold));
+    }
+
+    @Test
+    public void isValidDouble_validDouble_success() {
+        String input = "99999";
+        assertTrue(ParserUtil.isValidDouble(input));
+    }
+
+    @Test
+    public void isValidDouble_invalidDouble_success() {
+        String input = "9a";
+        assertFalse(ParserUtil.isValidDouble(input));
+    }
+
+    @Test
+    public void isDouble_validDouble_success() {
+        String input = "99999";
+        assertTrue(ParserUtil.isDouble(input));
+    }
+
+    @Test
+    public void isDouble_invalidDouble_success() {
+        String input = "9a";
+        assertFalse(ParserUtil.isDouble(input));
     }
 
     @Test

@@ -37,4 +37,9 @@ public class HelpBudgetCommand extends Command {
     public CommandResult execute(Model model) {
         return new CommandResult(HELP_MESSAGE, false, false);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof HelpBudgetCommand;
+    }
 }

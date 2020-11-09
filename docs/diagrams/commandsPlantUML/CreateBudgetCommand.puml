@@ -13,10 +13,10 @@ end box
 
 box "Model" #LightYellow
 participant "b:Budget" as Budget
-participant "m:Model" as M
+participant "m:ModelManager" as M
 end box
 
-[-> LM : excute("create n/Temasek Hall Basketball p/100")
+[-> LM : execute("create n/Temasek Hall Basketball p/100")
 activate LM
 create MPP
 LM -> MPP
@@ -41,7 +41,7 @@ CBCP <-- Budget : b
 deactivate Budget
 
 create CBC
-CBCP -> CBC : createBudgetCommand(b)
+CBCP -> CBC : CreateBudgetCommand(b)
 activate CBC
 CBCP <-- CBC : c
 deactivate CBC
@@ -57,7 +57,7 @@ deactivate MPP
 LM <-[hidden]- MPP
 destroy MPP
 
-LM -> CBC: excute(m)
+LM -> CBC: execute(m)
 
 activate CBC
 CBC -> M : addBudget(b)
