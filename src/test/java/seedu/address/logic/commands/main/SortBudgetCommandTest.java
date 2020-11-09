@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.main;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +17,24 @@ import seedu.address.testutil.TypicalBudgets;
 class SortBudgetCommandTest {
     private Model model;
     private Model expectedModel;
+
+    @Test
+    public void equalTest() {
+        SortBudgetCommand command = new SortBudgetCommand(SortType.TIME);
+        // same object -> return true
+        assertTrue(command.equals(command));
+
+        // different type -> return false
+        assertFalse(command.equals(5));
+
+        // null -> return false
+        assertFalse(command.equals(null));
+
+        SortBudgetCommand differentCommand =
+                new SortBudgetCommand(SortType.TIME);
+        // different obj same sortType -> true
+        assertTrue(command.equals(differentCommand));
+    }
 
     @BeforeEach
     public void setUp() {

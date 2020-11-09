@@ -52,4 +52,17 @@ public class SortBudgetCommand extends MainPageCommand {
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SortBudgetCommand that = (SortBudgetCommand) o;
+        return sortType == that.sortType;
+    }
+
 }
