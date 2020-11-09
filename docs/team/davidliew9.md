@@ -6,7 +6,7 @@ title: David Liew's Project Portfolio Page
 ## Project: NUSave
 NUSave is a desktop budgeting application used to manage an individual's budgets and expenses. NUSave can hold multiple 
 budgets, of which each budget holds multiple expenditures. The user interacts with it using a command line interface 
-(CLI), and it has a GUI created with JavaFX. It is written in Java, and has about 10,000 LoC.
+(CLI), and it has a GUI created with JavaFX. It is written in Java, and has about 20,000 LoC.
 
 Given below are my contributions to the project:
 - **Feature**: Added ability to delete budgets.
@@ -31,6 +31,7 @@ Given below are my contributions to the project:
 - **Project Management**:
     - Identified and created Issues in milestones v1.2, v1.3
     - [PRs reviewed by me](https://github.com/AY2021S1-CS2103T-T11-4/tp/pulls?q=is%3Apr+reviewed-by%3Adavidliew9)
+
 - **Contributions to Documentation**:
     - User Guide:
         - Added documentation for the commands `delete budget`, `delete expenditure`, `edit expenditure`,`exit`.
