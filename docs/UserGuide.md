@@ -421,6 +421,8 @@ When you find budgets, the list view will filter to only display budgets whose n
  > 📕 If no budgets are displayed, it means that none of the budgets matches your search term. 
  > 
  > 📕 You can use the [list budgets command](#525-listing-budgets-list) to display all budgets again.
+  > 
+ > 📕 This command will only find entries that contain the entire `KEYWORD`. For example, `find NUS Budget` will only find the budget named "NUS Budget 2020" but not "NUS Fintech Society Budget".
 
 ✏️ Example: `find Temasek Hall`
 
@@ -614,6 +616,8 @@ When you find expenditures, the list view will filter to only display expenditur
  > 📕 If no expenditures are displayed, it means that none of the expenditures matches your search term. 
  >
  > 📕 You can use the [list expenditures command](#535-listing-expenditures-list) to display all expenditures again.
+ > 
+ > 📕 This command will only find entries that contain the entire `KEYWORD`. For example, `find Blue Shirt` will only find the expenditure named "Sky Blue Shirt" but not "Blue Floral Shirt".
 
 ✏️ Example: `find sock`
 
