@@ -18,6 +18,10 @@ public class StateBinderList {
         stateBinderList.addAll(Arrays.asList(stateBinders));
     }
 
+    public List<StateBinder> getStateBinderAsList() {
+        return this.stateBinderList;
+    }
+
     public void bindAll(Logic logic) {
         stateBinderList.stream().forEach(stateBinder -> stateBinder.bind(logic));
     }
