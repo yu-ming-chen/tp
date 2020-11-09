@@ -32,7 +32,7 @@ activate FBCP
 MPP <-- FBCP
 deactivate FBCP
 
-MPP -> FBCP : parseCommand("find NUS")
+MPP -> FBCP : parseCommand("NUS")
 activate FBCP
 
 create FBC

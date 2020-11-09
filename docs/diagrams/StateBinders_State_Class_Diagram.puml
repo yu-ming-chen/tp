@@ -6,9 +6,9 @@ skinparam classBackgroundColor UI_COLOR
 Package State {
 Interface State <<Interface>> #Orange
 Class StateManager #Orange {
-    - isBudgetPageProp : BooleanProperty
-    - infoBoxSecondRowProp: StringProperty
-    - thresholdStringProp: StringProperty
+    isBudgetPageProp : BooleanProperty
+    infoBoxSecondRowProp: StringProperty
+    thresholdStringProp: StringProperty
 }
 }
 
@@ -25,12 +25,12 @@ Class LogicManager #Blue
 Package Ui {
     Package StateBinder {
         Interface StateBinder <<Interface>> {
-            + bind()
+            bind()
         }
         Class InfoBoxStateBinder
         Class TitleStateBinder
         Class StateBinderList {
-            + bindAll()
+            bindAll()
         }
     }
     Class MainWindow {

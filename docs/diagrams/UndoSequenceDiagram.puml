@@ -5,14 +5,15 @@ skinparam Sequence {
 box Logic #LightBlue
 participant ":LogicManager" as LogicManager
 participant ":MainPageParser" as MainPageParser
-participant "u:UndoCommand" as UndoCommand
+participant "c:UndoCommand" as UndoCommand
+participant "result:CommandResult" as CommandResult
 end box
 
 box Model #LightYellow
-participant ":Model" as Model
+participant "m:ModelManager" as Model
 participant ":HistoryManager<VersionedNusave>" as HistoryManager
 end box
-[-> LogicManager : execute(undo)
+[-> LogicManager : execute("undo")
 activate LogicManager
 
 create MainPageParser
@@ -22,22 +23,22 @@ deactivate MainPageParser
 MainPageParser --> LogicManager
 deactivate MainPageParser
 
-LogicManager -> MainPageParser : parseCommand(undo)
+LogicManager -> MainPageParser : parseCommand("undo")
 activate MainPageParser
 
 create UndoCommand
 MainPageParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> MainPageParser : u
+UndoCommand --> MainPageParser : c
 deactivate UndoCommand
 
-MainPageParser --> LogicManager : u
+MainPageParser --> LogicManager : c
 deactivate MainPageParser
 MainPageParser -[hidden]-> LogicManager
 destroy MainPageParser
 
-LogicManager -> UndoCommand : execute()
+LogicManager -> UndoCommand : execute(m)
 activate UndoCommand
 
 UndoCommand -> Model : undo()
@@ -46,7 +47,7 @@ activate Model
 Model -> HistoryManager : getHistory()
 activate HistoryManager
 
-HistoryManager --> Model : h:VersionedNusave
+HistoryManager --> Model : h
 deactivate HistoryManager
 
 
@@ -58,10 +59,14 @@ deactivate Model
 Model --> UndoCommand
 deactivate Model
 
+create CommandResult
+UndoCommand -> CommandResult
+activate CommandResult
+CommandResult --> UndoCommand : result
+deactivate CommandResult
+
 UndoCommand --> LogicManager : result
 deactivate UndoCommand
-UndoCommand -[hidden]-> LogicManager : result
-destroy UndoCommand
 
 [<--LogicManager : result
 deactivate LogicManager
