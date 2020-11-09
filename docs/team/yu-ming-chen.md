@@ -6,7 +6,7 @@ title: Chen YuMing's Project Portfolio Page
 
 NUSave is a desktop budgeting application used to manage an individual's budgets and expenses. NUSave can hold multiple
 budgets, of which each budget holds multiple expenditures. The user interacts with it using a command line interface
-(CLI), and it has a GUI created with JavaFX. It is written in Java, and has about 10,000 LoC.
+(CLI), and it has a GUI created with JavaFX. It is written in Java, and has about 20,000 LoC.
 
 Given below are my contributions to the project:
 - **Feature** : Added ability to create a budget in NUSave. PR [#47](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/47)
@@ -68,40 +68,42 @@ Given below are my contributions to the project:
   
 -------
 - **Contributions to Developer Guide (Extracts)**:
-#### 3.2.2. Logic Component
-(Contributed by Yu Ming)
-![Structure of the Logic Component](../images/LogicClassDiagram.png)
+#### 3.2.2. Logic component
+
+![Structure of the Logic Component](images/LogicClassDiagram.png)
+
+Figure 3.2.2.1. Architecture diagram of the `Logic` component.
 
 **API**: `Logic.java`
 
-`Logic` uses the `MainPageParser` and `BudgetPageParser` class to parse the user command. This results in a
+`Logic` uses the `MainPageParser` and `BudgetPageParser` classes to parse user commands. This results in a
 `Command` object which is executed by the `LogicManager`. The command execution can affect the `Model`
 (e.g. adding an expenditure). The result of the command execution is encapsulated as a `CommandResult` object
 which is passed back to the `Ui`. In addition, the `CommandResult` object can also instruct the `Ui` to perform
 certain actions, such as displaying help to the user.
 
 ##### 4.3.1.1. Create Budget
-(Contributed by Yu Ming)
 
-This section explains the `Create Budget Command`.
+This section elaborates on the `CreateBudgetCommand`.
 
-The following activity diagram to shows the events that occur when the user executes the Create Budget Command.
+The following activity diagram shows the events that occur when the user executes the `CreateBudgetCommand`.
 
-![CreateBudgetCommand Activity Diagram](../diagrams/commandsPlantUML/diagram/CreateBudgetCommandActivity.png) 
+![CreateBudgetCommand Activity Diagram](diagrams/commandsPlantUML/diagram/CreateBudgetCommandActivity.png) 
 
-Figure 4.3.1.1: Activity diagram for create budget command.
+Figure 4.3.1.1: Activity diagram of the `CreateBudgetCommand`.
 
-The following command occurs in the `Main Page` of NUSave, and results in the specified budget being created in
+The command occurs in the `Main Page` of NUSave and results in the specified budget being created in
 NUSave. This command therefore requires a compulsory name to specify the name of the budget to be created.
 
-The following Sequence Diagram shows the interaction between the `Logic` component and `Model` component of NUSave 
-depicting a scenario when the user wants to create a budget for his Temasek Hall basketball CCA by entering the command
+The following sequence diagram shows the interaction between the `Logic` component and `Model` component of NUSave 
+depicting a scenario when the user wants to create a budget for his Temasek Hall Basketball CCA by entering the command
 `create n/Temasek Hall Basketball p/100`.
 
-![CreateBudgetCommand Sequence Diagram](../diagrams/commandsPlantUML/diagram/CreateBudgetCommand.png) 
+![CreateBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/CreateBudgetCommand.png) 
 
-Figure 4.3.1.2: Sequence diagram for create budget command in main page view.
->Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
+Figure 4.3.1.2: Sequence diagram of the `CreateBudgetCommand`.
+
+> Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
 the lifeline reaches the end of diagram.
 
 1. The `LogicManager` uses the `MainPageParser` to parse the given user input.
@@ -117,7 +119,7 @@ the input parameter.
 object created into NUSave.
 8. The `CreateBudgetCommand` then returns a `CommandResult` indicating the successful addition of the `Budget` object.
 
-With the above sequence, a budget will be successfully created by the user in his NUSave application, and it will be
+With the above sequence, a budget will be successfully created by the user in his NUSave application and will be
 reflected on the user interface.
 
 -------
@@ -127,22 +129,23 @@ reflected on the user interface.
 
 Format: `create n/NAME [p/THRESHOLD]`
 
-Prefix | Parameters | Requirement | Comments
------- | ---------- | ----------- | --------
- n/    | `NAME`     | Required    | Name of the budget
- p/    | `THRESHOLD`| Optional    | Target threshold of the budget
+Prefix | Parameters | Requirement | Comments                        | Constraints                           |
+------ | ---------- | ----------- | ------------------------------- | ------------------------------------- |
+ n/    | `NAME`     | Required    | Name of the budget              | Limited to a maximum of 50 alphanumeric characters |
+ p/    | `THRESHOLD`| Optional    | Target threshold of the budget  | Must be a positive value less than $1,000,000 |
 
 You can use this command to create a new budget with the given `NAME` and `THRESHOLD`.
 
 When you create a new budget, it will be displayed as a budget card in the list view.
+
+> 📕 You can create a budget with no threshold to simply track your total expenses.
+>
+> ⚠️ You can only create a maximum of 100 budgets.
+
 
 ✏️ Example: `create n/Temasek Hall Student Council p/1200`
 
 This will create a new budget called "Temasek Hall Student Council" with a threshold value of $1200
 as seen in Figure 5.2.1.1 below:
 
-![Example of create budget command](../images/CommandScreenShots/5_2_1_1_createBudget.png)
-
-Figure 5.2.1.1. Example of using the create budget command.
-
--------
+![Example of create budget command](images/CommandScreenShots/5_2_1_1_createBudget.png)
