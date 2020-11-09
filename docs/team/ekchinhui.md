@@ -1,4 +1,7 @@
-# Ek Chin Hui's Project Portfolio Page
+---
+layout: page
+title: Ek Chin Hui's Project Portfolio Page
+---
 
 ## Project: NUSave
 
