@@ -24,4 +24,10 @@ public class ClearBudgetsCommand extends Command {
         model.deleteAllBudgets();
         return new CommandResult(MESSAGE_DELETE_BUDGET_SUCCESS);
     }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof ClearBudgetsCommand;
+    }
 }

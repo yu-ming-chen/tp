@@ -7,6 +7,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.budget.Threshold;
 import seedu.address.state.budgetindex.BudgetIndex;
 
 public class DeleteBudgetCommand extends Command {
@@ -47,5 +48,12 @@ public class DeleteBudgetCommand extends Command {
         model.saveToHistory();
         model.deleteBudget(toDelete);
         return new CommandResult(MESSAGE_DELETE_BUDGET_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteBudgetCommand // instanceof handles nulls
+                && toDelete.equals(((DeleteBudgetCommand) other).toDelete)); // state check
     }
 }
