@@ -11,7 +11,6 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.commands.main.SortBudgetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.mainpageparser.SortBudgetCommandParser;
 import seedu.address.model.budget.Threshold;
@@ -57,9 +56,6 @@ public class ParserUtil {
         if (!StringUtil.isNonOverFlow(trimmedIndex)) {
             throw new ParseException(MESSAGE_OVERFLOW);
         }
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
-        }
         return new ExpenditureIndexManager(Integer.parseInt(trimmedIndex) - 1);
     }
 
@@ -79,8 +75,7 @@ public class ParserUtil {
             return SortType.TIME;
         }
         default: {
-            throw new ParseException(String.format(SortBudgetCommandParser.MESSAGE_INVALID_SORT_TYPE + "\n"
-                    + SortBudgetCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(SortBudgetCommandParser.MESSAGE_INVALID_SORT_TYPE));
         }
         }
     }

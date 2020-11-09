@@ -58,4 +58,5 @@ public class DeleteExpenditureCommand extends Command {
                 || (other instanceof DeleteExpenditureCommand // instanceof handles nulls
                 && toDelete.equals(((DeleteExpenditureCommand) other).toDelete));
     }
+
 }

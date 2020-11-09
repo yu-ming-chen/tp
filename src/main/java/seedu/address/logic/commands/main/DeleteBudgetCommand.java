@@ -48,4 +48,12 @@ public class DeleteBudgetCommand extends Command {
         model.deleteBudget(toDelete);
         return new CommandResult(MESSAGE_DELETE_BUDGET_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteBudgetCommand // instanceof handles nulls
+                && toDelete.equals(((DeleteBudgetCommand) other).toDelete));
+    }
+
 }

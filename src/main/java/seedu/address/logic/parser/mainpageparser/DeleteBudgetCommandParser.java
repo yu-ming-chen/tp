@@ -1,12 +1,8 @@
 package seedu.address.logic.parser.mainpageparser;
 
-import java.util.stream.Stream;
-
 import seedu.address.logic.commands.main.DeleteBudgetCommand;
-import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.state.budgetindex.BudgetIndex;
 
@@ -24,11 +20,4 @@ public class DeleteBudgetCommandParser implements Parser<DeleteBudgetCommand> {
         return new DeleteBudgetCommand(budgetIndex);
     }
 
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
 }
