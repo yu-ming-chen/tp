@@ -1,15 +1,12 @@
 package seedu.address.logic.parser.mainpageparser;
 
-import java.util.stream.Stream;
-
 import seedu.address.logic.commands.main.SortBudgetCommand;
-import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.sort.SortType;
 
-public class SortBudgetCommandParser {
+public class SortBudgetCommandParser implements Parser<SortBudgetCommand> {
 
     public static final String MESSAGE_INVALID_SORT_TYPE = "Sort type is not supported.";
 
@@ -24,13 +21,5 @@ public class SortBudgetCommandParser {
         }
         SortType sortType = ParserUtil.parseSortType(args);
         return new SortBudgetCommand(sortType);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
