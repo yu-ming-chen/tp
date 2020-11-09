@@ -17,6 +17,8 @@ public class InfoBoxStateBinder implements StateBinder {
         this.infoBox = infoBox;
     }
 
+    public InfoBoxStateBinder() { }
+
     @Override
     public void bind(Logic logic) {
         bindMainPageInfoBoxToPageState(logic);
@@ -57,7 +59,7 @@ public class InfoBoxStateBinder implements StateBinder {
         infoBox.getThresholdStringProp().bindBidirectional(logic.getThresholdStringProp());
     }
 
-    void bindThirdRowTextToPageState(Logic logic) {
+    private void bindThirdRowTextToPageState(Logic logic) {
         infoBox.getThirdRowText().textProperty().bind(Bindings.createStringBinding(() -> {
             if (logic.isBudgetPage()) {
                 return handleThirdRowTextIsBudgetPage(logic);
