@@ -1,6 +1,10 @@
 package seedu.address.logic.parser.mainpageparser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.RedoCommand;
@@ -16,9 +20,6 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.budget.Name;
 import seedu.address.model.sort.SortType;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MainPageParserTest {
 
@@ -43,7 +44,7 @@ class MainPageParserTest {
         assertEquals(new DeleteBudgetCommand(ParserUtil.parseBudgetIndex("1")), command);
     }
 
-/*    @Test
+    /*@Test
     void parseCommand_validCreateBudgetInput_returnsCorrectly() throws ParseException {
         String name = "Test";
         String input = "create n/" + name;
