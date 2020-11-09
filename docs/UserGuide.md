@@ -61,10 +61,10 @@ Look no further, NUSave is just the tool for you!
 
 Built by 5 university students staying on campus, we understand **the difficulties of having to manage multiple budgets**,
 be it for your daily expenses, school projects or club activities, amidst your busy schedule. NUSave aims to help alleviate
-the hassle that comes along with managing multiple budgets by providing a **one-stop solution** to all your problems.
+the hassle that comes along with managing multiple budgets by providing a one-stop solution to all your problems.
 
-With NUSave, you can **create, edit and delete [budgets](#7-glossary) and [expenditures](#7-glossary)**, as well as **generate statistics
-based on your entries** to gain useful insights regarding your spending habits.
+With NUSave, you can create, edit and delete [budgets](#7-glossary) and [expenditures](#7-glossary), as well as generate statistics
+based on your entries to gain useful insights regarding your spending habits.
 
 What's more, NUSave has:
 - a **[Command Line Interface (CLI)](#7-glossary)** catered to those who can type fast and prefer to use a keyboard. In other words, you
