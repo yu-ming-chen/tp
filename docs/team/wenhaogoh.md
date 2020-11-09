@@ -50,7 +50,7 @@ Given below are my contributions to the project:
 
 ### Contributions to Developer Guide (Extracts)
 
-Below is an extract of my contribution to the developer guide.
+Below is an extract of my contributions to the developer guide:
 
 #### 4.3.6. Undo & redo commands
 (Contributed by Wen Hao)
@@ -67,13 +67,13 @@ The undo and redo commands are implemented using the following classes:
 
 The following class diagram shows how the classes interact with each other:
 
-![Undo redo class diagram](diagrams/UndoRedoClassDiagram.png)
+![Undo redo class diagram](../diagrams/UndoRedoClassDiagram.png)
 
 Figure 4.3.6.1. Class diagram of the classes related to undo and redo command.
 
 ### Contributions to User Guide (Extracts)
 
-Below is an extract of my contribution to the user guide.
+Below is an extract of my contributions to the user guide:
 
 ## 3. GUI Layout
 (Contributed by Wen Hao)
