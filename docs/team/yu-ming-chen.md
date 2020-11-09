@@ -9,46 +9,45 @@ budgets, of which each budget holds multiple expenditures. The user interacts wi
 (CLI), and it has a GUI created with JavaFX. It is written in Java, and has about 10,000 LoC.
 
 Given below are my contributions to the project:
-- **Feature** : Added ability to create budget in NUSave.
-	- What it does: `create` allows the users to be able to create budgets, with its name and threshold value into
-	NUSave.
-	- Justification: This features allows users to be able to store budgets in the application, an essential component
-	of NUSave. 
+- **Feature** : Added ability to create a budget in NUSave.
+	- What it does: `create` allows the users to create budget with its name and threshold value into NUSave.
+	- Justification: This feature allows users to create and store budgets in the application,
+	an essential component of NUSave.
 - **Feature** : Added ability to edit budget in NUSave.
-	- What it does: `edit` allows the users to be able to edit a budget's name and threshold value in NUSave.
-	- Justification: This features allows users to be able to edit a specific budget's name and threshold value in the
-	application, an essential component of NUSave. 
+	- What it does: `edit` allows the users to edit a budget’s name and threshold value in NUSave.
+	- Justification: This feature allows users to edit a specific budget’s name and threshold value in the application,
+	an essential component of NUSave.
 - **Feature** : Added ability to view help in NUSave.
 	- What it does: `help` allows the users to view the help commands in NUSave.
-	- Justification: This features allows users to view all command help instructions in NUSave. 
+	- Justification: This feature allows users to view all command help instructions in NUSave.
 	- Highlight: This feature displays a different set of help instructions depending on which page the user is on.
-	For example, if user is on main page, it will display unique command to the main page such as open budget and create budget command.
+	For example, if the user is on the main page, it will display unique command to the main page,
+	such as open a budget and create a budget command.
 - **Feature** : Added ability to sort budgets in NUSave.
 	- What it does: `sort` allows the users to be able to sort budgets in NUSave.
-	- Justification: This features allows users to be able to sort all budgets in NUSave either by their name in 
-	alphabetical order, or their created date with the latest on top.
+	- Justification: This feature allows users to sort all budgets in NUSave either by their name in alphabetical order,
+	or their created date with the latest on top.
 - **Feature** : Added ability to sort expenditures in NUSave.
 	- What it does: `sort` allows the users to be able to sort expenditures in NUSave.
-	- Justification: This features allows users to be able to sort all expenditures in a budget either by their name in 
-	alphabetical order, or their created date with the latest on top.
-	- Highlight: The implementation can be challenging as I need to implement different Comparator for the sort command,
+	- Justification: This feature allows users to sort all expenditures in a budget either by their name in alphabetical order,
+	or their created date with the latest on top.
+	- Highlight: The implementation can be challenging as I need to implement different Comparator for the sort command
 	while abiding by the OO principle.
-- **Feature** : Added ability dynamically view the current date and time in NUSave.
-	- What it does: Dynamically updating the date and time in the MAIN page view UI component of NUSave.
-	- Justification: This features allows users to be able to track the current date and time while managing their
-	budget. 
-	- Highlight: This enhancement affects UI component of NUSave by rendering current date and time. It also generates 
-	unique greeting message depending on the time of the day. The implementation too was challenging as it required the
-	understanding of the java Thread class. 
+- **Feature** : Added ability dynamically to view the current date and time in NUSave.
+	- What it does: Dynamically updating the date and time in the main page view, info box UI component of NUSave.
+	- Justification: This feature allows users to track the current date and time while managing their budgets.
+	- Highlight: This enhancement affects the UI component of NUSave by rendering the current date and time.
+	It also generates a unique greeting message depending on the time of the day.
+	The implementation too was challenging as it required the understanding of the Java Thread class.
 - **Code Contributed**: [RepoSense Link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=yu-ming-chen&tabRepo=AY2021S1-CS2103T-T11-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 - **Project Management**:
 	- Created Issues in milestones v1.2, v1.3
 	- [PRs reviewed by me](https://github.com/AY2021S1-CS2103T-T11-4/tp/pulls?q=is%3Apr+reviewed-by%3Ayu-ming-chen)
 - **Enhancements to Existing Features**:
 	- Added the ability for `edit` expenditure to edit expenditure tags: PR [#272](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/272)
-	    - What it does: `edit` expenditure tags allows the users to be able to edit tags on expenditure in NUSave.
-    	- Justification: This features allows users to be able to replace and change tags on specific expenditure in the
-    	 application, an essential component of NUSave. 
+	    - What it does: `edit` expenditure tags allows the users to be able to edit tags on expenditure in NUSave. 
+    	- Justification: This feature allows users to replace and change tags on specific expenditures in a budget,
+    	an essential component of NUSave.
     - Added NUSave icon to application UI interface: PR [#267](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/267)
 - **Contributions to Documentation**
 	- User Guide:
@@ -60,11 +59,11 @@ Given below are my contributions to the project:
 	- Developer Guide:
 		- Added documentation for `Setting up` and `Logic component` in Design Architecture
 		- Added implementation details for `Create Budget`, `Edit Budget`, `Sort` and `Help` command with their
-		respective sequence daigram and activity diagram.
+		respective sequence diagram and activity diagram.
 - **Community**:
-	- Reported bugs and suggestions for other team (T09-2) in the class during PE dry run (examples [T09-2 issues 116-141](https://github.com/yu-ming-chen/ped/issues)
+	- Reported bugs and suggestions for another team (T09-2) in the class during PE dry run (examples [T09-2 issues 116-141](https://github.com/yu-ming-chen/ped/issues)
 - **Tools**:
-  * Created UI mock up for our application using Figma [#21](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/21)
+  * Created UI mockup for our application using Figma [#21](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/21)
   
 -------
 - **Contributions to Developer Guide (Extracts)**:

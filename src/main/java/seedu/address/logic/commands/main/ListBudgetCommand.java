@@ -23,4 +23,9 @@ public class ListBudgetCommand extends Command {
         model.listBudgets();
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof ListBudgetCommand;
+    }
 }

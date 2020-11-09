@@ -61,10 +61,10 @@ Look no further, NUSave is just the tool for you!
 
 Built by 5 university students staying on campus, we understand **the difficulties of having to manage multiple budgets**,
 be it for your daily expenses, school projects or club activities, amidst your busy schedule. NUSave aims to help alleviate
-the hassle that comes along with managing multiple budgets by providing a **one-stop solution** to all your problems.
+the hassle that comes along with managing multiple budgets by providing a one-stop solution to all your problems.
 
-With NUSave, you can **create, edit and delete [budgets](#7-glossary) and [expenditures](#7-glossary)**, as well as **generate statistics
-based on your entries** to gain useful insights regarding your spending habits.
+With NUSave, you can create, edit and delete [budgets](#7-glossary) and [expenditures](#7-glossary), as well as generate statistics
+based on your entries to gain useful insights regarding your spending habits.
 
 What's more, NUSave has:
 - a **[Command Line Interface (CLI)](#7-glossary)** catered to those who can type fast and prefer to use a keyboard. In other words, you
@@ -80,7 +80,7 @@ to provide a detailed reference for veteran users on how to use the different co
 
 ## 2. About the User Guide
 
-In this section, you will learn what the different symbols and notations (that can be found this in user guide) mean.
+In this section, you will learn what the different symbols and notations (that can be found in this user guide) mean.
 
 ### 2.1. Symbols
 (Contributed by Yu Ming)
@@ -101,9 +101,9 @@ The syntax of the commands in this user guide are to be interpreted in the follo
 
 Format         | Meaning                | Examples 
 -------------- | ---------------------- | ----
-`lower_case/`  | **Prefix**             | `n/`, `p/`, `t/`
-`UPPER_CASE`   | **Parameter**          | `NAME`, `THRESHOLD`, `PRICE`
-`[UPPER_CASE]` | **Optional parameter** | `[p/THRESHOLD]`
+`lower_case/`  | Prefix             | `n/`, `p/`, `t/`
+`UPPER_CASE`   | Parameter          | `NAME`, `THRESHOLD`, `PRICE`
+`[UPPER_CASE]` | Optional Parameter | `[p/THRESHOLD]`
 
 > ⚠️ There **cannot be any spaces** within a prefix. For example, `n /` is an invalid prefix.
 >
@@ -111,6 +111,9 @@ Format         | Meaning                | Examples
 > For example, `edit 1 n/NUS Computing Club p/1000` is a valid command but `edit n/NUS Computing Club p/1000 1` is an invalid command.
 >
 > ⚠️ If an invalid prefix is entered, it will be treated as content for the previous parameter.
+>
+> ⚠️ If the command does not support multiple inputs of the same prefix, the last occurence will be used.
+> For example, `create n/Basketball n/Football` will create a budget named "Fooball".
 >
 > 📕 Parameters with prefixes can be entered in **any order**.
 > For example, `create n/Temasek Hall Student Council p/1200` is equivalent to `create p/1200 n/Temasek Hall Student Council`.
@@ -141,12 +144,12 @@ Below is a table containing all the components that can be found on the main pag
 
 Component      | Purpose
 -------------- | -------
-Command Box    | A text field for you to enter your desired commands.
-Result Display | A **scrollable** panel that displays the response messages of a command after it has been executed.
+Command Box    | A text field for you to enter your commands.
+Result Display | A scrollable panel that displays the response messages of a command after it has been executed.
 Info Box       | A panel that displays the current date and time.
 Title          | A text field that displays the name of the application.
 Budget Card    | A card that represents a budget stored in NUSave. It contains the index and name of the budget as well as the total number of expenditures it contains.
-List View      | A **scrollable** panel that can hold multiple budget cards.
+List View      | A scrollable panel that can hold multiple budget cards.
 
 Here is the breakdown of an individual budget card:
 
@@ -179,11 +182,11 @@ Below is a table containing all the components that can be found on a budget pag
 Component | Purpose
 --------- | -------
 Command Box | A text field for you to enter your desired commands.
-Result Display | A **scrollable** panel that displays the response messages of a command after it has been executed.
+Result Display | A scrollable panel that displays the response messages of a command after it has been executed.
 Info Box | A panel that displays the total amount you have spent so far based on the expenditures added to the budget. It will also display the threshold of the budget if it has one.
 Title | A text field that displays the name of the budget that is currently open.
 Expenditure Card | A card that represents an expenditure stored in the budget that is currently open. It contains the index, name, tags and price of the expenditure.
-List View | A **scrollable** panel that can hold multiple expenditure cards.
+List View | A scrollable panel that can hold multiple expenditure cards.
 
 Here is the breakdown of an individual expenditure card:
 
@@ -213,7 +216,6 @@ If this is your first time using NUSave, follow these simple steps to jump strai
 3. Copy the file to the folder you want to use as the *home folder* for NUSave.
 
 4. Double-click the file to start the application. A GUI similar to [Figure 3.1.1](#31-main-page-view) should appear in a few seconds.
-
 > 📕 If the application does not start after double-clicking the file, you can troubleshoot by doing the following:
 >
 > <ins>For Windows <a href="#7-glossary">OS</a> users:</ins>
@@ -231,7 +233,6 @@ If this is your first time using NUSave, follow these simple steps to jump strai
 > ![Example of launching NUSave using terminal](images/QuickStartScreenShots/4_2_terminal.png)
 >
 > Figure 4.2. Example of launching NUSave using terminal.
-
 5. Congratulations, you have successfully launched NUSave!
 > 📕 If you are launching the application for the first time, a set of sample data will be created for you.
 > Use the [clear command](#527-clearing-budgets-clear) to purge any existing sample data.
@@ -251,7 +252,7 @@ In this section, you will learn about the commands that are available in NUSave 
 
 ### 5.1. Universal commands
 
-The following commands in this subsection are available on any pages.
+The following commands in this subsection are available on any page.
 
 #### 5.1.1. Viewing help: `help`
 (Contributed by Yu Ming)
@@ -277,6 +278,8 @@ Format: `undo`
 
 You can use this command to undo a previously executed command.
 
+When you successfully use the undo command, it will revert NUSave to its state before the previous command was executed.
+
 > 📕 You can only undo the following commands:
 > * [`create` budget command](#521-creating-a-budget-create)
 > * [`delete` budget command](#522-deleting-a-budget-delete)
@@ -288,7 +291,7 @@ You can use this command to undo a previously executed command.
 
 ✏️ Example: `undo`
 
-This will revert NUSave to its state before the previous command was executed as seen in Figure 5.1.2.1 below:
+This will undo the creation of the budget named "Temasek JCRC" as seen in Figure 5.1.2.1 below:
 
 ![Example of undo command](images/CommandScreenShots/5_1_2_1_undo.png)
 
@@ -301,9 +304,11 @@ Format: `redo`
 
 You can use this command to redo a previously undid command.
 
+When you successfully use the redo command, it will revert NUSave to its state before the previous undo command was executed.
+
 ✏️ Example: `redo`
 
-This will revert NUSave to its state before the previous undo command was executed as seen in Figure 5.1.3.1 below:
+This will redo the creation of the budget named "Temasek JCRC" as seen in Figure 5.1.3.1 below:
 
 ![Example of redo command](images/CommandScreenShots/5_1_3_1_redo.png)
 
@@ -314,7 +319,7 @@ Figure 5.1.3.1. Example of using the redo command on the main page.
 
 Format: `exit`
 
-You can use this command to exit from the application.
+You can use this command to exit the application.
 
 ✏️ Example: `exit`
 
@@ -331,7 +336,7 @@ Format: `create n/NAME [p/THRESHOLD]`
 
 Prefix | Parameters | Requirement | Comments                        | Constraints                           |
 ------ | ---------- | ----------- | ------------------------------- | ------------------------------------- |
- n/    | `NAME`     | Required    | Name of the budget              | Limited to a maximum of 50 characters |
+ n/    | `NAME`     | Required    | Name of the budget              | Limited to a maximum of 50 alphanumeric characters |
  p/    | `THRESHOLD`| Optional    | Target threshold of the budget  | Must be a positive value less than $1,000,000 |
 
 You can use this command to create a new budget with the given `NAME` and `THRESHOLD`.
@@ -359,7 +364,7 @@ Format: `delete INDEX`
 
 Prefix | Parameters | Requirement | Comments                          | Constraints |
 ------ | ---------- | ----------- | --------------------------------- | ----------- |
-\-     | `INDEX`    | Required    | Index of the budget to be deleted | Must be between 1-100 since there can only be a maximum of 100 budgets |
+\-     | `INDEX`    | Required    | Index of the budget to be deleted | Must be an integer between 1-100 |
 
 You can use this command to delete the budget at the given `INDEX`.
 
@@ -380,8 +385,8 @@ Format: `edit INDEX [n/NAME] [p/THRESHOLD]`
 
 Prefix | Parameters | Requirement | Comments | Constraints |
 -------| ---------- | ----------- | -------- | ----------- |
- \-    | `INDEX`    | Required    | Index of the budget to be edited | Must be between 1-100 since there can only be a maximum of 100 budgets |
- n/    | `NAME`     | Optional    | Name of the budget to be edited to | Limited to a maximum of 50 characters |
+ \-    | `INDEX`    | Required    | Index of the budget to be edited | Must be an integer between 1-100 |
+ n/    | `NAME`     | Optional    | Name of the budget to be edited to | Limited to a maximum of 50 alphanumeric characters |
  p/    | `THRESHOLD`| Optional    | Threshold of the budget to be edited to | Must be a positive value less than $1,000,000 |
 
 You can use this command to edit the budget at the given `INDEX`.
@@ -409,7 +414,7 @@ Format: `find KEYWORD`
 
 You can use this command to find budgets whose names contain the given `KEYWORD`.
 
-When you find budgets, the list view will filter to only display budgets whose names contains the given `KEYWORD`.
+When you find budgets, the list view will filter to only display budgets whose names contain the given `KEYWORD`.
 
  > 📕 The filter is case-insensitive.
  >
@@ -457,15 +462,17 @@ You can use this command to sort your budgets by the given `TYPE`.
 
 There are two ways you can sort your budgets:
 
-- By their creation date with the most recently created budget at the top.
+- By their creation dates with the most recently created budget at the top.
     
-- By their name in alphabetical order.
+- By their names in alphanumeric order
 
-> 📕 Newly created budgets will still appear at the top of the [list view](#3-gui-layout).
+> 📕 Newly created budgets will still appear at the top after sorting.
+>
+> 📕 `TYPE` is case-insensitive.
 
 ✏️ Example: `sort name`
 
-This will sort the budgets (that are currently displayed) by their name in alphabetical order as seen in Figure 5.2.6.1 below:
+This will sort the budgets (that are currently displayed) by their name in alphanumeric order as seen in Figure 5.2.6.1 below:
 
 ![Example of sort budgets command](images/CommandScreenShots/5_2_6_1_sortBudgets.png)
 
@@ -495,7 +502,7 @@ Format: `open INDEX`
 
  Prefix | Parameters | Requirement | Comments | Constraints |
  ------ | ---------- | ----------- | -------- | ----------- |
- \-     | `INDEX`    | Required    | Index of the budget to be opened | Must be between 1-100 since there can only be a maximum of 100 budgets |
+ \-     | `INDEX`    | Required    | Index of the budget to be opened | Must be an integer between 1-100 |
 
 You can use this command to open the budget at the given `INDEX`.
 
@@ -507,7 +514,7 @@ This will open the budget at index 1 as seen in Figure 5.2.8.1 below:
 
 ![Example of open budget command](images/CommandScreenShots/5_2_8_1_openBudget.png)
 
-Figure 5.2.8.1 Example of using the open budget command.
+Figure 5.2.8.1. Example of using the open budget command.
 
 ### 5.3. Budget page commands
 
@@ -521,20 +528,20 @@ Format: `add n/NAME p/PRICE [t/TAG]`
 
 Prefix | Parameters | Requirement | Comments | Constraints |
 -------| -----------| ------------| -------- | ----------- |
- n/    | NAME       | Required    | Name of the expenditure | Limited to a maximum of 50 characters |
+ n/    | NAME       | Required    | Name of the expenditure | Limited to a maximum of 50 alphanumeric characters |
  p/    | PRICE      | Required    | Price of the expenditure | Must be a positive value that is less than $10,000 |
- t/    | TAG        | Optional    | Additional information about the expenditure | Limited to a maximum of 15 characters and a total of 3 tags |
+ t/    | TAG        | Optional    | Additional information about the expenditure | Limited to a maximum of 15 alphanumeric characters and a total of 3 tags |
 
 You can use this command to add a new expenditure with the given `PRICE` and optional `TAG` within a budget.
 
-> ⚠️ You can add a maximum of 100 expenditures.
+> ⚠️ You can add a maximum of 100 expenditures per budget.
 
 When you add a new expenditure, it will be displayed as an expenditure card in the list view.
  
 ✏️ Example: `add n/Graphic Calculator p/199.90 t/Math`
 
 This will add a new expenditure called "Graphic Calculator" with a price of $199.90 and a "Math" tag as seen in 
-Figure 5.3.1.1. below:
+Figure 5.3.1.1 below:
 
 ![Example of add expenditure command](images/CommandScreenShots/5_3_1_1_addExpenditure.png)
 
@@ -547,7 +554,7 @@ Format: `delete INDEX`
 
  Parameters | Requirement | Comments | Constraints |
  -----------| ------------| -------- | ----------- |
-Index | Required | Index of the expenditure | Must be between 1-100 since there can only be a maximum of 100 expenditures |
+Index | Required | Index of the expenditure | Must be an integer between 1-100 |
 
 You can use this command to delete the expenditure at the given `INDEX`.
 
@@ -568,16 +575,18 @@ Format: `edit INDEX [n/NAME] [p/PRICE]`
 
 Prefix | Parameters | Requirement | Comments | Constraints |
 ------ | ---------- | ----------- | -------- | ----------- |
-\-     | `INDEX`    | Required    | Index of the expenditure displayed on NUSave | Must be between 1-100 since there can only be a maximum of 100 expenditures |
- n/    | `NAME`     | Optional    | Name of the expenditure to be edited to | Limited to a maximum of 50 characters |
+\-     | `INDEX`    | Required    | Index of the expenditure displayed on NUSave | Must be an integer between 1-100 |
+ n/    | `NAME`     | Optional    | Name of the expenditure to be edited to | Limited to a maximum of 50 alphanumeric characters |
  p/    | `PRICE`    | Optional    | Price of the expenditure to be edited to | Must be a positive value that is less than $10,000 |
- t/    | `TAG`      | Optional    | Tags of the expenditure to be edited to | Limited to a maximum of 15 characters and a total of 3 tags |
+ t/    | `TAG`      | Optional    | Tags of the expenditure to be edited to | Limited to a maximum of 15 alphanumeric characters and a total of 3 tags |
 
 You can use this command to edit the expenditure at the given `INDEX`.
 
-When you edit a expenditure, the information on its expenditure card will be updated immediately.
+When you edit an expenditure, the information on its expenditure card will be updated immediately.
 
- > ⚠️ Although both `NAME` and `PRICE` fields are optional, the command must include at least one of these prefixes.
+ > ⚠️ Although both `NAME`, `PRICE` and `TAG` fields are optional, the command must include at least one of these prefixes.
+ >
+ > ⚠️ If you include tags in the edit command, they will replace all existing tags of the expenditure.
 
 ✏️ Example: `edit 1 n/Long Sleeve Shirt p/20`
 
@@ -598,7 +607,7 @@ Prefix | Parameters | Requirement | Comments | Constraints |
 
 You can use this command to find expenditures in the current budget whose names contain the given `KEYWORD`. 
 
-When you find expenditures, the list view will filter to only display expenditures whose names contains the given `KEYWORD`.
+When you find expenditures, the list view will filter to only display expenditures whose names contain the given `KEYWORD`.
 
  > 📕 The filter is case-insensitive.
  >
@@ -608,7 +617,7 @@ When you find expenditures, the list view will filter to only display expenditur
 
 ✏️ Example: `find sock`
 
-This will find all expenditures with the keyword 'sock' in the name of the expenditure as seen in Figure 5.3.4.1 below:
+This will find all expenditures with the keyword "sock" in their names as seen in Figure 5.3.4.1 below:
 
 ![Example of find expenditures command](images/CommandScreenShots/5_3_4_1_findExpenditures.png)
 
@@ -648,13 +657,15 @@ There are two ways you can sort your expenditures:
 
 - By their creation date with the most recently created budget at the top.
     
-- By their name in alphabetical order.
+- By their name in alphanumeric order.
 
-> 📕 Newly created expenditures will still be added to the top.
+> 📕 Newly created expenditures will still appear at the top after sorting.
+>
+> 📕 `TYPE` is case-insensitive.
 
 ✏️ Example: `sort name`
 
-This will sort the expenditures (that are currently displayed) by their name in alphabetical order as seen in Figure 5.3.6.1 below:
+This will sort the expenditures (that are currently displayed) by their name in alphanumeric order as seen in Figure 5.3.6.1 below:
 
 ![Example of sort expenditures command](images/CommandScreenShots/5_3_6_1_sortExpenditures.png)
 
@@ -667,11 +678,11 @@ Format: `close`
 
 You can use this command to close a budget.
 
-By closing a budget, you will now be directed to the main page.
+By closing a budget, you will be directed to the main page.
 
 ✏️ Example: `close`
 
-This will close the current budget as seen in Figure 5.3.7.1 below:
+This will close the current budget named "NUS Hackers Monthly Budget" as seen in Figure 5.3.7.1 below:
 
 ![Example of close budget command](images/CommandScreenShots/5_3_7_1_closeBudget.png)
 
@@ -708,7 +719,7 @@ Figure 5.3.7.1. Example of using the close budget command.
 |-----------------------|---------------------------------|--------------------------------------------------------
 | Add an expenditure    | `add n/NAME p/PRICE [t/TAG]`    | `add n/TShirt p/20`, <br>`add n/Breakfast p/10 t/food` 
 | Delete an expenditure | `delete INDEX`                  | `delete 1`                                             
-| Edit an expenditure   | `edit INDEX [n/NAME] [p/PRICE]` | `edit 2 n/NikeShirt`, <br> `edit 2 p/28`               
+| Edit an expenditure   | `edit INDEX [n/NAME] [p/PRICE] [t/TAG]` | `edit 2 n/Nike Shirt t/Clothes`, <br> `edit 2 p/28`               
 | Find expenditures     | `find KEYWORD`                  | `find shirt`                                           
 | List all expenditures | `list`                          | \-                                                     
 | Sort all expenditures | `sort TYPE`                     | `sort time`, <br>`sort name`                           
@@ -721,9 +732,9 @@ You can find the meanings of some special keywords applicable to NUSave over her
 
 | Term                        | Explanation                                                                                                                                                                    
 |---------------------------- |-----------------------------------------------------------------------------------------------------------------------------------
-| CLI                         | Short for **Command Line Interface**. CLI-based Applications (i.e. NUSave) focuses on processing commands in the form of text entered from the keyboard.                       
-| GUI                         | Short for **Graphical User Interface**. GUIs work as the communication channel between the program and the user. Users interact with NUSave through the GUI, on their devices. 
-| OS                          | Short for **Operating Systems**. The underlying computer program that allows users to interact with a computer. It manages the hardware components and software resources of a computer for the user.           
+| CLI                         | Short for Command Line Interface. CLI-based Applications (i.e. NUSave) focuses on processing commands in the form of text entered from the keyboard.                       
+| GUI                         | Short for Graphical User Interface. GUIs work as the communication channel between the program and the user. Users interact with NUSave through the GUI, on their devices. 
+| OS                          | Short for Operating Systems. The underlying computer program that allows users to interact with a computer. It manages the hardware components and software resources of a computer for the user.           
 | Command Prompt (Windows OS) | A CLI application proprietary to Windows OS devices, where users can run commands on a Windows device by entering typed commands.                                              
 | Terminal (Mac OS)           | A CLI application proprietary to Mac OS devices, where users can run commands on a Mac device by entering typed commands.                                                      
 | Expenditure                 | Refers to a single item to be recorded in NUSave.                                                                                                                              

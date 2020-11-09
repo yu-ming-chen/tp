@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.budgetpageparser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -88,5 +89,17 @@ class BudgetPageParserTest {
         String input = "exit";
         Command command = new BudgetPageParser().parseCommand(input);
         assertEquals(new ExitCommand(), command);
+    }
+
+    @Test
+    void parseCommand_invalidCommandInput_throwsParseException() {
+        String input = "invalid command format";
+        assertThrows(ParseException.class, () -> new BudgetPageParser().parseCommand(input));
+    }
+
+    @Test
+    void parseCommand_nonMatchValidationRegex_throwsParseException() {
+        String input = "";
+        assertThrows(ParseException.class, () -> new BudgetPageParser().parseCommand(input));
     }
 }
