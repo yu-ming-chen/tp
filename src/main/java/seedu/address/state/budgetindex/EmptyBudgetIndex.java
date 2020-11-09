@@ -9,6 +9,11 @@ public class EmptyBudgetIndex implements BudgetIndex {
     }
 
     @Override
+    public boolean contentEquals(Object object) {
+        return false;
+    }
+
+    @Override
     public Optional<Integer> getBudgetIndex() {
         return Optional.empty();
     }

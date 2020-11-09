@@ -58,4 +58,15 @@ public class DeleteExpenditureCommand extends Command {
                 || (other instanceof DeleteExpenditureCommand // instanceof handles nulls
                 && toDelete.equals(((DeleteExpenditureCommand) other).toDelete));
     }
+
+    /**
+     * Checks if the contents within expenditure is the same.
+     * @param other
+     * @return returns whether the contents are identical or not.
+     */
+    public boolean contentEquals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteExpenditureCommand // instanceof handles nulls
+                && toDelete.contentEquals(((DeleteExpenditureCommand) other).toDelete));
+    }
 }

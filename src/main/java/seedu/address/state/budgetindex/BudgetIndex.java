@@ -5,5 +5,5 @@ import java.util.Optional;
 public interface BudgetIndex {
     Optional<Integer> getBudgetIndex();
     void setIndex(int index);
-
+    boolean contentEquals(Object object);
 }
