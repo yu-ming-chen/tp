@@ -106,15 +106,15 @@ It has two primary responsibilities:
 * At launch: Initializes the components in the correct sequence and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-The [`Commons`](#common-classes) component represents a collection of classes used by other components.
+The [`Commons`](#33-commons-classes) component represents a collection of classes used by other components.
 
 The rest of the application consists of five components:
 
 1. [**`UI`**](#321-ui-component): Handles the UI of the application.
 1. [**`Logic`**](#322-logic-component): Executes the commands.
 1. [**`Model`**](#323-model-component): Holds the data of the application in memory.
-1. [**`Storage`**](#324-storage-component): Reads data from, and writes data to, the hard disk.
-1. [**`State`**](#325-state-componenet): Remembers the current state of the application.
+1. [**`State`**](#324-state-componenet): Remembers the current state of the application.
+1. [**`Storage`**](#325-storage-component): Reads data from, and writes data to, the hard disk.
 
 For each of the five components:
 
@@ -126,74 +126,78 @@ For each of the five components:
 
 ![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png)
 
-Figure 3.1.2. Figure of Architecture Sequence Diagram
+Figure 3.1.2. Sequence diagram of the delete command.
 
-Figure 3.1.2. shows how the components interact with each other for the scenario where the user
-issues the command `delete 1` in a budget page.
+Figure 3.1.2 shows how the components interact with each other for the scenario where the user issues the command `delete 1` in a budget page.
 
 
 ### 3.2. Components
 
-This section elaborates on the different high-level components in NUSave.
+This section elaborates on the different high-level components of NUSave.
 
-#### 3.2.1. UI Component
+#### 3.2.1. UI component
 
 (Contributed by Song Yu)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
+Figure 3.2.1.1. Architecture diagram of the `UI` component.
+
 **API**: `Ui.java`
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`,
-`StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of various UI parts e.g.`CommandBox`, `ResultDisplay`,
+`StatusBarFooter` etc. All of these classes inherit from the abstract `UiPart` class.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the `MainWindow` is specified in `MainWindow.fxml`.
+The `UI` component uses the JavaFX UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the `MainWindow` is specified in `MainWindow.fxml`.
 
 In order to dynamically render data to be displayed to the user, when `setUpGuiComponents()` in `MainWindow` is called, 
-the method `setStateBinders()` sets Observer objects to observe changes in `State`. For a complete explanation,
+the method `setStateBinders()` sets observer objects to observe changes in `State`. For a complete explanation,
 refer to [4.4.2. Dynamic Updating](#442-dynamic-updating).
 
 In summary, the `UI` component:
 
 * Executes user commands using the `Logic` component.
-* Listens for changes to `Model` and `State` data so that the UI can be updated with the modified data.
+* Listens for changes to `Model` and `State` data.
 
-#### 3.2.2. Logic Component
+#### 3.2.2. Logic component
 (Contributed by Yu Ming)
+
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
+
+Figure 3.2.2.1. Architecture diagram of the `Logic` component.
 
 **API**: `Logic.java`
 
-`Logic` uses the `MainPageParser` and `BudgetPageParser` class to parse commands from the user. This results in a
+`Logic` uses the `MainPageParser` and `BudgetPageParser` classes to parse user commands. This results in a
 `Command` object which is executed by the `LogicManager`. The command execution can affect the `Model`
 (e.g. adding an expenditure). The result of the command execution is encapsulated as a `CommandResult` object
 which is passed back to the `Ui`. In addition, the `CommandResult` object can also instruct the `Ui` to perform
 certain actions, such as displaying help to the user.
 
 `MainPageParser`:
-- Parse all the commands that is inputted by the user when the state of the NUSave is on `MAIN`.
-- This includes commands such as `CreateBudgetCommand` and `OpenBudgetCommand` that are unique to execute at the MainPage.
+- Parses all the commands that is entered by the user when the state of the NUSave is on `MAIN`.
+- Includes commands such as `CreateBudgetCommand` and `OpenBudgetCommand` that are unique to the main page.
 
 `BudgetPageParser`:
-- Parse all the commands that is inputted by the user when the state of the NUSave is on `BUDGET`.
-- This includes commands such as `AddExpendtureCommand` and `CloseBudgetCommand` that are unique to execute at the BudgetPage.
+- Parses all the commands that is inputted by the user when the state of the NUSave is on `BUDGET`.
+- Includes commands such as `AddExpendtureCommand` and `CloseBudgetCommand` that are unique to the budget page.
 
 `Commands`:
--  The `Logic` component includes all commands that is executable on both the Main Page and Budget Page. For a complete
+-  The `Logic` component includes all commands that are executable on both the main and budget page. For a complete
 elaboration on what each command does, refer to [4.3. Commands](#43-commands).
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](diagrams/commandsPlantUML/diagram/DeleteBudgetCommand.png)
 
-Figure 3.2.2.1. Figure of Sequence Diagram for `delete 1`
+Figure 3.2.2.1. Sequence Diagram for the command: `delete 1`.
 
-Figure 3.2.2.1. above represents the interactions within the `Logic` component for the
-`execute("delete 1")` call to remove a budget in NUSave.
+Figure 3.2.2.1 above represents the interactions within the `Logic` component for the `delete 1` command to delete a budget in NUSave.
 
-#### 3.2.3. Model Component
+#### 3.2.3. Model component
 (Contributed by Chin Hui)
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
-Figure 3.4.1: Structure of the model component.
+
+Figure 3.4.1: Architecture diagram of the `Model` component.
 
 **API** : `Model.java`
 
@@ -201,61 +205,58 @@ The `Model`:
 
 * Stores a `UserPref` object that represents the user’s preferences.
 * Stores a `Nusave` object that encapsulates `Budget` and `Expenditure` data.
-* Exposes an unmodifiable `FilteredList<Renderable>` 
-that can be 'observed' e.g. the UI can be bound to this list so
-that the UI automatically updates when the data in the list change.
+* Exposes an unmodifiable `FilteredList<Renderable>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * Does not depend on any of the other three components.
 * `FilteredList` was used in favor of `ObservableList` to facilitate the find command implementation.
-Now the list can be filtered based on a `Predicate`, allowing for more flexibility for other 
+The list can be filtered based on a `Predicate`, allowing for more flexibility for other 
 filtering extensions i.e. filter by number of expenditures.
 
 The `Nusave`:
 
-* Implements methods that interface with the `Budget` and `Expenditure` 
-data following the "Tell, Don't Ask" Principle.
+* Implements methods that interact with `Budget` and `Expenditure`.
 * Stores an `ObservableList<Renderable>` that is passed up to populate the `FilteredList<Renderable>`.
-* Stores a `BudgetList` (wrapper class for a `List<Budget>`) as well to access `Expenditures` within a `Budget` since
-`Expenditures` cannot be accessed through `ObservableList<Renderable>`.
+* Stores a `BudgetList` (wrapper class for a `List<Budget>`) to access `Expenditure` within a `Budget` since
+`Expenditure` cannot be accessed through `ObservableList<Renderable>`.
 
 The `Budget`:
-* Implements the Renderable interface and can thus be stored in the FilteredList.
+* Implements the `Renderable` interface and can thus be stored in `FilteredList<Renderable>`.
 * Contains a `Name`, `Date`, `Optional<Threshold>` and a `List<Expenditure>`.
 
 The `Expenditure`:
-* Implements the Renderable interface and can thus be stored in the FilteredList.
+* Implements the `Renderable` interface and can thus be stored in the `FilteredList<Renderable>`.
 * Contains a `Name`, `Date`, `Price` and `Set<Tag>`.
 
-#### 3.2.4. State Component
+#### 3.2.4. State component
  (Contributed by Song Yu)
  
  **API**: `State.java`
  
   ![Structure of the storage component](images/StateClassDiagram.png)
   
-  Figure 3.5.1: Structure of the state component.
+  Figure 3.5.1. Architecture diagram of the `State` component.
   
  The `State` component:
- * Represents the current page view NUSave is currently on. Specifically, it represents whether the user is looking at 
- the main page view or budget page view. The current view is represented by an attribute in `StateManager`, `currentPage`.
- * Stores data related to the current state of NUSave. This refers to data such as the current page NUSave is currently on,
+ * Represents the page NUSave is currently on. Specifically, it represents whether the user is looking at 
+ the main page view or budget page view. The cuurent page is represented by an attribute in `StateManager`.
+ * Stores data related to the current state of NUSave. This refers to data such as the page NUSave is currently on
  or the current budget that it is accessing.
  
- `State`  lives inside `Model`, where `Model` will use `State` to store stateful data, where these data will be used to 
+ `State`  lives inside `Model`, where `Model` will use `State` to store stateful data. This data will be used to 
  update information displayed on the GUI, such as the current expenditure of the accessed budget, or list of expenditures 
  belonging to the accessed budget.
  
-#### 3.2.5. Storage Component
+#### 3.2.5. Storage component
 (Contributed by Wen Hao)
 
 **API** : `Storage.java`
 
 The `Storage` component:
-* Can save `UserPref` objects in JSON format and read it back.
-* Can save all NUSave data in JSON format and read it back.
+* Saves `UserPref` objects in JSON format and reads it back.
+* Saves all NUSave data in JSON format and reads it back.
 
 ![Structure of the storage component](diagrams/StorageClassDiagram.png)
 
-Figure 3.6.1: Structure of the storage component.
+Figure 3.6.1. Structure of the storage component.
 
 The `Storage` component uses the Jackson API to convert Plain Old Java Objects (POJOs) into JSON files which are then
 stored locally. It uses the same API to read existing JSON files during the launch of the application to load the stored
@@ -265,18 +266,17 @@ reading and writing of all NUSave data and contains the file path of its JSON fi
 
 ![Structure of the data stored by NUSave](diagrams/PojoClassDiagram.png)
 
-Figure 3.6.2: Structure of the data stored by NUSave.
+Figure 3.6.2. Structure of the data stored by NUSave.
 
 In order for them to be recognised by the Jackson API, NUSave data objects (such as `Budget` and `Expenditure`) must be
 converted into POJOs. Figure 3.6.2 depicts how the respective POJO classes for each of the data objects interact with
 one another.
 
-### 3.3. Commons Classes
+### 3.3. Commons classes
 
 (Contributed by Chin Hui)
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package, these include exceptions
-, error messages as well as classes with static methods that can be used by all components without instantiation.
+Classes used by multiple components are in the `seedu.addressbook.commons` package, these include exceptions, error messages and classes with static methods that can be used by all components without instantiation.
 
 ## 4. Implementation
 
@@ -288,17 +288,17 @@ This section elaborates on the implementations of various commands and component
 
 (Contributed by Song Yu)
 
-This section provides context on how `State` affects how commands are parsed by parsers in NUSave.
+This section elaborates on how `State` affects how commands are parsed by parsers in NUSave.
 
-`State` stores what page NUSave is currently on. If NUSave is on the main page view, `State` stores an attribute of
-`Page.MAIN`, and stores an attribute of `Page.BUDGET` if NUSave is on a budget page view.
+`State` stores what page NUSave is currently on. If NUSave is on the main page, `State` stores an attribute of
+`Page.MAIN`. If NUSave is on the budget page, `State` stores an attribute of `Page.BUDGET`.
 
 The `Logic` component in NUSave relies on this data stored in `State` to decide which parser in NUSave will take
 control of the execution of commands.
 
 ![Delete Command Activity Diagram](images/DeleteCommandActivityDiagram.png)
 
-Figure 4.1.1. Delete Command Activity Diagram
+Figure 4.1.1. Activity Diagram of the command: `delete 1`.
 
 To elaborate further, using Figure 4.1.1. as a reference, when the user executes a delete command, `delete 1`,
 while on the main page:
@@ -316,7 +316,7 @@ current page (represented by `currentPage` attribute in `StateManager`) of NUSav
 
 (Contributed by Wen Hao)
 
-This section describes the details surrounding the parsers which are responsible for converting user inputs into `Command` objects.
+This section elaborates on the details surrounding the parsers which are responsible for converting user inputs into `Command` objects.
 
 All user inputs are parsed by two types of parsers:
 1. Page Parsers
@@ -326,19 +326,19 @@ These parsers are part of the `Logic` component as seen from the class diagram i
 
 ![Parser Class Diagram](diagrams/ParserClassDiagram.png)
 
-Figure 4.2.1. Class diagram of parsers
+Figure 4.2.1. Class diagram of parsers.
 
 **Design Considerations**
 
 * Option A: Use a single parser to parse both main and budget page commands
-   * Pros: Less code to write
+   * Pros: Less code to write.
    * Cons: Parser class will messy as it needs to differentiate between main and budget page commands that use the same command word.
 
 * **Option B (Chosen):** Use page parsers to parse commands that are available on a page
-   * Pros: Code is more organised and readable
-   * Cons: More code to write
+   * Pros: Code is more organised and readable.
+   * Cons: More code to write.
 
-#### 4.2.1. Page Parsers
+#### 4.2.1. Page parsers
 
 (Contributed by Wen Hao)
 
@@ -361,7 +361,7 @@ User inputs are parsed by the `BudgetPageParser` if they are entered while NUSav
 
 More information regarding what page the user is on can be found [here](#41-state).
 
-#### 4.2.2. Command Parsers
+#### 4.2.2. Command parsers
 
 (Contributed by Wen Hao)
 
@@ -374,7 +374,7 @@ The type of `Command` object generated by a command parser follows the generic t
 For example, `AddExpenditureCommandParser` implements the `Parser<AddExpenditureCommand>` interface. Hence, it will only generate `AddExpenditureCommand` objects.
 A `ParseException` is thrown if the necessary arguments to generate the respective `Command` object are invalid or missing.
 
-#### 4.2.3. Interaction Between Parsers
+#### 4.2.3. Interaction between parsers
 
 (Contributed by Wen Hao)
 
@@ -382,7 +382,7 @@ The interaction between the parsers is illustrated by the example usage seen in 
 
 ![Parser Sequence Diagram](diagrams/ParserSequenceDiagram.png) 
 
-Figure 4.2.3.1. Sequence diagram of a user input being parsed.
+Figure 4.2.3.1. Sequence diagram of the command: `delete `.
 
 ### 4.3. Commands
 
@@ -390,35 +390,36 @@ Figure 4.2.3.1. Sequence diagram of a user input being parsed.
 
 This section elaborates on the implementations of the commands available in NUSave.
 
-#### 4.3.1. Add Commands
+#### 4.3.1. Add commands
 
 This section describes the details surrounding events at which users would wish to add information into NUSave. 
 Specifically, when a user wishes to create a new budget to the Main Page, or when a user wishes to add an expenditure
 to a budget.
 
-##### 4.3.1.1. Create Budget
+##### 4.3.1.1. Create budget
 
 (Contributed by Yu Ming)
 
-This section explains the `Create Budget Command`.
+This section elaborates on the `CreateBudgetCommand`.
 
-The following activity diagram to shows the events that occur when the user executes the Create Budget Command.
+The following activity diagram shows the events that occur when the user executes the `CreateBudgetCommand`.
 
 ![CreateBudgetCommand Activity Diagram](diagrams/commandsPlantUML/diagram/CreateBudgetCommandActivity.png) 
 
-Figure 4.3.1.1: Activity diagram for create budget command.
+Figure 4.3.1.1: Activity diagram of the `CreateBudgetCommand`.
 
-The following command occurs in the `Main Page` of NUSave, and results in the specified budget being created in
+The command occurs in the `Main Page` of NUSave and results in the specified budget being created in
 NUSave. This command therefore requires a compulsory name to specify the name of the budget to be created.
 
-The following Sequence Diagram shows the interaction between the `Logic` component and `Model` component of NUSave 
-depicting a scenario when the user wants to create a budget for his Temasek Hall basketball CCA by entering the command
+The following sequence diagram shows the interaction between the `Logic` component and `Model` component of NUSave 
+depicting a scenario when the user wants to create a budget for his Temasek Hall Basketball CCA by entering the command
 `create n/Temasek Hall Basketball p/100`.
 
 ![CreateBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/CreateBudgetCommand.png) 
 
-Figure 4.3.1.2: Sequence diagram for create budget command in main page view.
->Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
+Figure 4.3.1.2: Sequence diagram of the `CreateBudgetCommand`.
+
+> Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
 the lifeline reaches the end of diagram.
 
 1. The `LogicManager` uses the `MainPageParser` to parse the given user input.
@@ -434,34 +435,35 @@ the input parameter.
 object created into NUSave.
 8. The `CreateBudgetCommand` then returns a `CommandResult` indicating the successful addition of the `Budget` object.
 
-With the above sequence, a budget will be successfully created by the user in his NUSave application, and it will be
+With the above sequence, a budget will be successfully created by the user in his NUSave application and will be
 reflected on the user interface.
 
-##### 4.3.1.2. Add Expenditure
+##### 4.3.1.2. Add expenditure
 
 (Contributed by David)
 
-This section explains the `Add Expenditure Command`.
+This section elaborates on the `AddExpenditureCommand`.
 
-The following activity diagram to shows the events that occur when the user executes the `Add Expenditure Command`.
+The following activity diagram shows the events that occur when the user executes the `AddExpenditureCommand`.
 
 ![AddExpenditureCommand Activity Diagram](diagrams/commandsPlantUML/diagram/AddExpenditureActivityDiagram.png) 
 
-Figure 4.3.1.2.1: Activity Diagram for add expenditure command.
+Figure 4.3.1.2.1: Activity diagram of the `AddExpenditureCommand`.
 
-Similar to creating a Budget, the add expenditure Command also shows the interaction between the `Logic` component 
-and `Model` component of NUSave. The sequence diagram depicts a scenario when the user wants to add an expenditure for 
+Similar to creating a budget, the add expenditure command also shows the interaction between the `Logic`
+and `Model` components of NUSave. The sequence diagram depicts a scenario when the user wants to add an expenditure for 
 his budget by entering the command `add n/Basketball p/20 t/Ball`.
 
 ![AddExpenditureCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/AddExpenditureCommand.png) 
 
-Figure 4.3.1.2.2: Sequence diagram for add expenditure command in budget page view.
->Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
+Figure 4.3.1.2.2: Sequence diagram of the `AddExpenditureCommand`.
+
+> Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
 the lifeline reaches the end of diagram.
 
 1. Beginning with the `LogicManager`, the `LogicManager` hands the given user input to the `BudgetPageParser` 
 to be parsed.
-2. The `BudgetPageParser` will identify the command given by the user and pass the user input down to the
+2. The `BudgetPageParser` will identify the command given by the user and passes the user input down to the
 `AddExpenditureCommandParser` to be parsed.
 3. The `AddExpenditureCommandParser` will create an `Expenditure` with the given parameters **name**, **price** and
 optionally **tags** from the user input.
@@ -475,9 +477,9 @@ object as the input parameter.
 object.
 
 With the above sequence, an expenditure will be successfully created by the user in his NUSave application under 
-the specific budget, and will be immediately reflected on the user interface.
+the specific budget and it will be immediately reflected on the user interface.
 
-#### 4.3.2. Delete Commands
+#### 4.3.2. Delete commands
 
 (Contributed by David)
 
@@ -485,17 +487,17 @@ This section describes the details surrounding events at which users would wish 
 Specifically, deletion can happen in two areas; when a user wishes to delete a budget from the Main Page, or when a 
 user wishes to delete an expenditure from a budget.
 
-##### 4.3.2.1. Delete Budget
+##### 4.3.2.1. Delete budget
 
 (Contributed by David)
 
-This section explains the `Delete Budget Command`.
+This section elaborates on the `DeleteBudgetCommand`.
 
 The following activity diagram to shows the events that occur when the user executes the `Delete Budget Command`.
 
 ![AddExpenditureCommand Activity Diagram](diagrams/commandsPlantUML/diagram/DeleteBudgetActivityDiagram.png) 
 
-Figure 4.3.2.1.1: Activity Diagram for delete budget command.
+Figure 4.3.2.1.1: Activity diagram of the `DeleteBudgetCommand`.
 
 The following command occurs in the `Main Page` of NUSave, and results in the specified budget of the particular index 
 to be removed from NUSave. This command therefore requires a compulsory index to specify the particular budget to be 
@@ -509,8 +511,9 @@ depicting a scenario where the user would like to delete the first budget on his
 
 ![DeleteBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/DeleteBudgetCommand.png) 
 
-Figure 4.3.2.1.2: Sequence diagram  for delete budget command in main page view.
->Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
+Figure 4.3.2.1.2: Sequence diagram of the `DeleteBudgetCommand`.
+
+> Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
 the lifeline reaches the end of diagram.
 
 1. The `LogicManager` uses the `MainPageParser` to parse the given user input.
@@ -530,17 +533,17 @@ passed in and delete the `Budget` object within NUSave.
 With the above sequence, a budget will be successfully deleted by the user in his NUSave application, and it will be
 reflected on the user interface through the successful `CommandResult` and updated budget list.
 
-##### 4.3.2.2. Delete Expenditure
+##### 4.3.2.2. Delete expenditure
 
 (Contributed by David)
 
-This section explains the `Delete Expenditure Command`.
+This section elaborates on the `DeleteExpenditureCommand`.
 
 The following activity diagram to shows the events that occur when the user executes the `Delete Expenditure Command`.
 
 ![AddExpenditureCommand Activity Diagram](diagrams/commandsPlantUML/diagram/DeleteExpenditureActivityDiagram.png) 
 
-Figure 4.3.2.2.1: Activity Diagram for delete expenditure command.
+Figure 4.3.2.2.1: Activity diagram of the `DeleteExpenditureCommand`.
 
 The following command occurs in the `Budget Page` of NUSave, and results in the specified expenditure of the particular 
 index to be removed from NUSave. This command therefore requires a compulsory index to specify the particular 
@@ -549,14 +552,15 @@ expenditure to be removed.
 Only when the index given by the user is valid (within the range of existing budgets), does the command execute 
 successfully.
 
-The following sequence diagram is similar to `figure 4.3.2.1.1` which shows the interactions between the `Logic` and 
+The following sequence diagram is similar to Figure 4.3.2.1.1 which shows the interactions between the `Logic` and 
 `Model` components of NUSave, depicting a scenario where the user within a budget would like to delete the first 
 expenditure on his list.
 
 ![DeleteExpenditureCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/DeleteExpenditureCommand.png)
 
-Figure 4.3.2.2.2: Sequence diagram  for delete budget command in budget page view.
->Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
+Figure 4.3.2.2.2: Sequence diagram of the `DeleteExpenditureCommand`.
+
+> Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
 the lifeline reaches the end of diagram.
 
 1. The `LogicManager` uses the `BudgetPageParser` to parse the given user input.
@@ -582,21 +586,21 @@ reflected on the user interface through the successful `CommandResult` and updat
 
 (Contributed by David)
 
-This section describes the details surrounding events at which users would wish to edit information from NUSave. 
+This section elaborates on the details surrounding events at which users would wish to edit information from NUSave. 
 Specifically, editing can happen in two areas; when a user wishes to edit a budget from the `Main Page`, or when a 
 user wishes to edit an expenditure from a budget within the `Budget Page`.
 
-##### 4.3.3.1. Edit Budget
+##### 4.3.3.1. Edit budget
 
 (Contributed by Yu Ming)
 
-This section explains the `Edit Budget Command`.
+This section elaborates on the `EditBudgetCommand`.
 
 The following activity diagram to shows the events that occur when the user executes the Edit Budget Command.
 
 ![EditBudgetCommand Activity Diagram](diagrams/commandsPlantUML/diagram/EditBudgetCommandActivity.png) 
 
-Figure 4.3.3.1.1: Activity diagram for edit budget command.
+Figure 4.3.3.1.1: Activity diagram of the `EditBudgetCommand`.
 
 The following command occurs in the `Main Page` of NUSave, and  results in the specified budget of the particular index 
 to be edited within NUSave. As such, this command requires a compulsory index to specify the particular budget, 
@@ -611,8 +615,9 @@ depicting a scenario where the user would like to edit the first budget on his/h
 
 ![EditBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/EditBudgetCommand.png)
 
-Figure 4.3.3.1.2: Sequence diagram for edit budget command in main page view.
->Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
+Figure 4.3.3.1.2: Sequence diagram of the `EditBudgetCommand`.
+
+> Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
 the lifeline reaches the end of diagram.
 
 1. Beginning with the `LogicManager`, the `LogicManager` hands the given user input to the `MainPageParser` 
@@ -636,17 +641,17 @@ parameter.
 With the above sequence, a budget will be successfully edited by the user in his NUSave application, and it will 
 be reflected on the user interface through the successful `CommandResult` and updated budget list.
 
-##### 4.3.3.2. Edit Expenditure
+##### 4.3.3.2. Edit expenditure
 
 (Contributed by David)
 
-This section explains the `Edit Expenditure Command`.
+This section elaborates on the `EditExpenditureCommand`.
 
 The following activity diagram to shows the events that occur when the user executes the `Edit Expenditure Command`.
 
 ![AddExpenditureCommand Activity Diagram](diagrams/commandsPlantUML/diagram/EditExpenditureActivityDiagram.png) 
 
-Figure 4.3.2.2.1: Activity Diagram for edit expenditure command.
+Figure 4.3.2.2.1: Activity Diagram of the `EditExpenditureCommand`.
 
 The following command results in the specified expenditure of the particular index to be edited within the 
 `Budget Page`. As such, this command requires a compulsory index to specify the particular expenditure, along with a
@@ -661,8 +666,8 @@ depicting a scenario where the user would like to edit the first expenditure on 
 
 ![EditExpenditureCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/EditExpenditureCommand.png)
 
-Figure 4.3.3.2.1: Sequence diagram  for delete edit command in budget page view.
->Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
+Figure 4.3.3.2.1: Sequence diagram of the `EditExpenditureCommand`.
+> Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
 the lifeline reaches the end of diagram.
 
 1. Beginning with the `LogicManager`, the `LogicManager` hands the given user input to the `BudgetPageParser` 
@@ -686,17 +691,17 @@ parameter.
 With the above sequence, an expenditure will be successfully edited by the user in his NUSave application, and it will 
 be reflected on the user interface through the successful `CommandResult` and updated budget list.
 
-#### 4.3.4. Sort Commands
+#### 4.3.4. Sort commands
 
 (Contributed by Yu Ming)
 
-This section explains the `Sort Command`.
+This section elaborates on the events surrounding the sorting of budgets and expenditures.
 
-The following activity diagram to shows the events that occur when the user executes the Sort Budget Command.
+The following activity diagram to shows the events that occur when the user executes the `SortBudgetCommand`.
 
 ![SortBudgetCommand Activity Diagram](diagrams/commandsPlantUML/diagram/SortBudgetCommandActivity.png) 
 
-Figure 4.3.4.1: Activity diagram for sort budget command.
+Figure 4.3.4.1: Activity diagram of the `SortBudgetCommand`.
 
 The following command can occur either in the `Main Page` or `Budget Page` of NUSave, and results in either the budgets
 or the expenditures to be sorted by name or created date. As such, this command requires a compulsory `SortType` field
@@ -709,9 +714,9 @@ depicting a scenario where the user would like to sort the budgets by thier name
 
 ![SortBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/SortBudgetCommand.png)
 
-Figure 4.3.4.2: Sequence diagram for sort budget command in main page view.
+Figure 4.3.4.2: Sequence diagram of the `SortBudgetCommand`.
 
->Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
+> Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
 the lifeline reaches the end of diagram.
 
 1. Beginning with the `LogicManager`, the `LogicManager` hands the given user input to the `MainPageParser` 
@@ -738,16 +743,19 @@ expenditure at the top of list of expenditures.
 
 ![SortExpenditureCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/SortExpenditureCommand.png)
 
-Figure 4.3.4.3: Sequence diagram for sort expenditure command in main page view.
+Figure 4.3.4.3: Sequence diagram of the `SortExpenditureCommand`
+
 >Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
 the lifeline reaches the end of diagram.
 
 The details of the flow of `SortExpenditureCommand` will not be elaborate in details as it is similiar to
 `SortBudgetCommand`.
 
-#### 4.3.5. Find & List Commands
+#### 4.3.5. Find & list commands
 
-##### 4.3.5.1 List Budget
+This section elaborates on the events surrounding the find and list commands.
+
+##### 4.3.5.1 List budget
 
 (Contributed by Chin Hui)
 
@@ -756,7 +764,7 @@ depicting a scenario where the user would like to list all budgets.
 
 ![ListBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/ListBudgetCommand.png)
 
-Figure 4.3.5.1.1: Sequence diagram for list budget command in main page view.
+Figure 4.3.5.1.1: Sequence diagram of the `ListBudgetCommand`.
 >Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
 the lifeline reaches the end of diagram.
 
@@ -768,10 +776,10 @@ the lifeline reaches the end of diagram.
 list all existing budgets within NUSave.
 6. The `ListBudgetCommand` then returns a `CommandResult` indicating the successful listing of all budgets.
 
-With the above sequence, all budgets will be listed by the user in his NUSave application, and it will be reflected
+With the above sequence, all budgets will be listed by the user in his NUSave application and it will be reflected
 on the user interface.
 
-##### 4.3.5.2 Find Budget
+##### 4.3.5.2 Find budget
 (Contributed by Chin Hui)
 
 The following sequence diagram shows the interactions between the `Logic` and `Model` components of NUSave,
@@ -779,8 +787,9 @@ depicting a scenario where the user would like to find budgets by a search term/
 
 ![FindBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/FindBudgetCommand.png)
 
-Figure 4.3.5.2.1: Sequence diagram for find budget command in main page view.
->Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
+Figure 4.3.5.2.1: Sequence diagram of the `FindBudgetCommand`.
+
+> Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
 the lifeline reaches the end of diagram.
 
 1. The `LogicManager` uses the `MainPageParser` to parse the give user input.
@@ -797,7 +806,7 @@ has been displayed.
 With the above sequence, all budgets containing the search term entered will be filtered 
 and displayed on the user interface.
 
-##### 4.3.5.3 List Expenditure
+##### 4.3.5.3 List expenditure
 
 (Contributed by Chin Hui)
 
@@ -806,7 +815,8 @@ depicting a scenario where the user would like to list all expenditure within th
 
 ![ListBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/ListExpenditureCommand.png)
 
-Figure 4.3.5.3.1.: Sequence diagram for list expenditure command in budget page view.
+Figure 4.3.5.3.1.: Sequence diagram of the `ListExpenditureCommand`.
+
 >Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
 the lifeline reaches the end of diagram.
 
@@ -821,7 +831,7 @@ list all existing expenditures within the current budget.
 With the above sequence, all expenditures will be listed by the user in his NUSave application, and it will be reflected
 on the user interface.
 
-##### 4.3.5.4 Find Expenditure
+##### 4.3.5.4 Find expenditure
 
 (Contributed by Chin Hui)
 
@@ -830,7 +840,8 @@ depicting a scenario where the user would like to find expenditures in a budget 
 
 ![FindBudgetCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/FindExpenditureCommand.png)
 
-Figure 4.3.5.4.1.: Sequence diagram for find expenditure command in budget page view.
+Figure 4.3.5.4.1.: Sequence diagram of the `FindExpenditureCommand`.
+
 >Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
 the lifeline reaches the end of diagram.
 
@@ -848,8 +859,10 @@ apply a filter for expenditures displayed by NUSave.
 With the above sequence, all expenditures containing the search term entered will be filtered 
 and displayed on the user interface.
 
-#### 4.3.6. Undo & Redo Commands
+#### 4.3.6. Undo & redo commands
 (Contributed by Wen Hao)
+
+This section elaborates on the events of the undo and redo commands.
 
 The undo and redo commands are implemented using the following classes:
 
@@ -862,6 +875,8 @@ The undo and redo commands are implemented using the following classes:
 The following class diagram shows how the classes interact with each other:
 
 ![Undo redo class diagram](diagrams/UndoRedoClassDiagram.png)
+
+Figure 4.3.6.1. Class diagram of the classes related to undo and redo command.
 
 The pointer in `HistoryManager<VersionedNusave>` is always pointing to the latest `VersionedNusave` in a doubly linked list represented by `Node<T>`. If an undo command is executed, it will load the previous `VersionedNusave` and move the pointer backward. If a redo command is executed, it will load the next `VersionedNusave` and move the pointer forward. Whenever the user makes changes to NUSave data, a `VersionedNusave` is instantiated with a deep copy of the `BudgetList` from `Nusave` and the `BudgetIndex` from `State`. It replaces the next `Node<T>` (if any) of the `Node<T>` that `HistoryManager<VersionedNusave>` is currently pointing to before the pointer is moved forward.
 
@@ -891,9 +906,9 @@ The following sequence diagram shows how the undo command is executed:
 
 ![Undo redo sequence diagram](diagrams/UndoSequenceDiagram.png)
 
-#### 4.3.7. Universal Commands
+Figure 4.3.6.2. Sequence diagram of the `UndoCommand`.
 
-#### 4.3.7.1 Help
+#### 4.3.7 Help command
 
 (Contributed by Yu Ming)
 
@@ -903,7 +918,7 @@ The following activity diagram to shows the events that occur when the user exec
 
 ![HelpCommand Activity Diagram](diagrams/commandsPlantUML/diagram/HelpCommandActivity.png) 
 
-Figure 4.3.7.1.1: Activity diagram for help command.
+Figure 4.3.7.1: Activity diagram of the `HelpCommand`.
 
 The following command can occur either in the `Main Page` or `Budget Page` of NUSave, and the help notes will be
 displayed in the result box of the UI Component.
@@ -913,7 +928,8 @@ depicting a scenario where the user would like to ask for help to be displayed.
 
 ![HelpCommand Sequence Diagram](diagrams/commandsPlantUML/diagram/HelpCommand.png)
 
-Figure 4.3.7.1.2: Sequence diagram for help command in main page view.
+Figure 4.3.7.1.2: Sequence diagram of the `HelpCommand`.
+
 >Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to a limitation of PlantUML, 
 the lifeline reaches the end of diagram.
 
@@ -926,7 +942,7 @@ parameter.
 5. The `HelpBudgetCommand`'s `execute` method will return a `CommandResult` indicating the successful calling for the
 help command, and the help information will be displayed in the result box in NUSave. 
 
-With the above sequence, the help information will be successfully shown to the user in NUSave, and it will be reflected 
+With the above sequence, the help information will be successfully shown to the user in NUSave and it will be reflected 
 on the user interface.
 
 Note that the `help` command can be executed on `Budget Page` view as well, but it will display a different set of help
@@ -940,7 +956,7 @@ This section elaborates on the implementations of various `Ui` features.
 
 (Contributed by Wen Hao)
 
-This section talks about how budget and expenditure cards are rendered within the List View UI component on the GUI of NUSave.
+This section elaborates on how budget and expenditure cards are rendered within the List View UI component on the GUI of NUSave.
 
 As there is a need to constantly re-render the contents within the List View to reflect user changes, we have adopted the **Observer Pattern**
 so that data can be sent from the `Model` component to the `UI` component efficiently. Using the JavaFX API, the List View is binded to an `ObservableList`
@@ -979,7 +995,7 @@ using a `StateBinder` interface, where `bind()` is called to bind all `StateBind
 
 ![Class Diagram between StateBinders and State](images/StateBinders_State_Class_Diagram.png)
 
-Figure 4.4.2.1. Observer Pattern Illustration.
+Figure 4.4.2.1. Class diagram to illustrate the observer pattern.
 
 1. On initialisation of NUSave, `MainWindow` calls `this.setStateBinders()`, which calls `StateBinderList.bindAll()`.
 2. `StateBinderList` calls `bind()` on every `StateBinder`. 
@@ -1012,7 +1028,8 @@ The following sequence diagram shows the interactions between the `Ui`, `Logic`,
 depicting a scenario where the user opens a budget.
 
 ![Update Title Sequence Diagram](images/UpdateTitleSequenceDiagram.png)
-Figure 4.4.2.2.1.1. Sequence Diagram for Open Command
+
+Figure 4.4.2.2.1.1. Sequence diagram of the `OpenBudgetCommand`.
 
 1. `MainWindow` is called with the String `open 1`.
 2. `MainWindow` uses `LogicManager` to execute the given user input.
@@ -1068,26 +1085,21 @@ the budget, while the `InfoBox` component reflects the total expenditure and thr
 ## Appendix
 
 ### Product Scope
-
-(Contributed by Wen Hao)
+(Contributed by Yu Ming and David)
 
 **Target User Profile:**
 
-* students staying on campus
-* has a need to manage a significant number of budgets and expenditures
+* university students staying on campus
+* has a need to manage a multiple budgets and expenditures
 * prefers using desktop over other platforms
 * types fast and prefers typing to mouse interactions
-* is comfortable using CLI applications
 
 **Value Proposition:** 
 
 * manages expenditures faster than a typical mouse/GUI driven application
 * allows users to keep track of their budgets on a centralised platform
 
-
 ### User Stories
-
-(Contributed by Yu Ming and David)
 
 Priorities: 
 * High (must have) - `* * *` 
@@ -1468,7 +1480,7 @@ System: NUSave
     - 1a1. NUSave shows "no action to redo" error message.
     - 1a2. Use case resumes at step 1.
 
-### Non-Functional Requirements
+### Non-Functional requirements
 
 (Contributed by Chin Hui)
 
