@@ -48,6 +48,13 @@ Given below are my contributions to the project:
 - **Community**:
 	- Reported bugs and suggestions for other teams in the class: PRs [#1](https://github.com/wenhaogoh/ped/issues/1), [#2](https://github.com/wenhaogoh/ped/issues/2), [#3](https://github.com/wenhaogoh/ped/issues/3), [#4](https://github.com/wenhaogoh/ped/issues/4), [#5](https://github.com/wenhaogoh/ped/issues/5), [#6](https://github.com/wenhaogoh/ped/issues/6)
 
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
 ### Contributions to Developer Guide (Extracts)
 
 Below is an extract of my contributions to the developer guide:
