@@ -339,6 +339,7 @@ You can use this command to create a new budget with the given `NAME` and `THRES
 When you create a new budget, it will be displayed as a budget card in the list view.
 
 > 📕 You can create a budget with no threshold to simply track your total expenses.
+>
 > ⚠️ You can only create a maximum of 100 budgets.
 
 
@@ -363,8 +364,6 @@ Prefix | Parameters | Requirement | Comments                          | Constrai
 You can use this command to delete the budget at the given `INDEX`.
 
 When you delete a budget, its budget card will be removed from the list view.
- 
- > ⚠️ Exercise caution when using the delete command as it is irreversible!
 
 ✏️ Example: `delete 1`
 
@@ -380,7 +379,7 @@ Figure 5.2.2.1. Example of using the delete budget command.
 Format: `edit INDEX [n/NAME] [p/THRESHOLD]`
 
 Prefix | Parameters | Requirement | Comments | Constraints |
--------| ---------- | ----------- | -------- |             |
+-------| ---------- | ----------- | -------- | ----------- |
  \-    | `INDEX`    | Required    | Index of the budget to be edited | Must be between 1-100 since there can only be a maximum of 100 budgets |
  n/    | `NAME`     | Optional    | Name of the budget to be edited to | Limited to a maximum of 50 characters |
  p/    | `THRESHOLD`| Optional    | Threshold of the budget to be edited to | Must be a positive value less than $1,000,000 |
@@ -404,9 +403,9 @@ Figure 5.2.3.1. Example of using the edit budget command.
 
 Format: `find KEYWORD`
 
- Prefix | Parameters | Requirement | Comments
- ------ | ---------- | ----------- | --------
- \-     |  `KEYWORD` | Required    | Keyword to be used for searching
+ Prefix | Parameters | Requirement | Comments | Constraints |
+ ------ | ---------- | ----------- | -------- | ----------- |
+ \-     |  `KEYWORD` | Required    | Keyword to be used for searching | \- |
 
 You can use this command to find budgets whose names contain the given `KEYWORD`.
 
@@ -450,9 +449,9 @@ Figure 5.2.5.1. Example of using the list budgets command.
 
 Format: `sort TYPE`
 
- Prefix | Parameters | Requirement | Comments
- ------ |----------- | ----------- | ------
- \-     | `TYPE`     |   Required  | Can be either `time` or `name`
+ Prefix | Parameters | Requirement | Comments | Constraints |
+ ------ |----------- | ----------- | -------- | ----------- |
+ \-     | `TYPE`     |   Required  | Can be either `time` or `name` | \- |
 
 You can use this command to sort your budgets by the given `TYPE`.
 
@@ -568,7 +567,7 @@ Figure 5.3.2.1. Example of delete expenditure command
 Format: `edit INDEX [n/NAME] [p/PRICE]`
 
 Prefix | Parameters | Requirement | Comments | Constraints |
--------| -----------| ------------| -------- | ----------- |
+------ | ---------- | ----------- | -------- | ----------- |
 \-     | `INDEX`    | Required    | Index of the expenditure displayed on NUSave | Must be between 1-100 since there can only be a maximum of 100 expenditures |
  n/    | `NAME`     | Optional    | Name of the expenditure to be edited to | Limited to a maximum of 50 characters |
  p/    | `PRICE`    | Optional    | Price of the expenditure to be edited to | Must be a positive value that is less than $10,000 |
@@ -639,23 +638,19 @@ Figure 5.3.5.1. Example of using the list expenditures command.
 
 Format: `sort TYPE`
 
- Parameters | Requirement | Comments
- ---------- | ----------- | ------
- `TYPE`     | Required    | Types of sort: `time`, `name`
+ Parameters | Requirement | Comments | Constraints |
+ ---------- | ----------- | -------- | ----------- |
+ `TYPE`     | Required    | Types of sort: `time`, `name` | \- |
 
 You can use this command to sort your expenditures (within a budget) by the given `TYPE`.
 
 There are two ways you can sort your expenditures:
 
 - By their creation date with the most recently created budget at the top.
-
-> 📕 Budgets that are created on the same date will be sorted in alphabetical order.
     
 - By their name in alphabetical order.
+
 > 📕 Newly created expenditures will still be added to the top.
->
-> 📕 Expenditures will be resorted by creation date upon reopening of NUSave.
->
 
 ✏️ Example: `sort name`
 
@@ -689,10 +684,10 @@ Figure 5.3.7.1. Example of using the close budget command.
 
 | **Action**        | **Format** | **Examples** 
 |------------------ |------------|--------------
-| Viewing help      | `help`     | \-           
-| Undoing a command | `undo`     | \-         
-| Redoing a command | `redo`     | \-         
-| Exiting NUSave    | `exit`     | \-           
+| View help      | `help`     | \-           
+| Undo a command | `undo`     | \-         
+| Redo a command | `redo`     | \-         
+| Exit NUSave    | `exit`     | \-           
 
 ### 6.2. Main page commands
 
@@ -725,7 +720,7 @@ Figure 5.3.7.1. Example of using the close budget command.
 You can find the meanings of some special keywords applicable to NUSave over here.
 
 | Term                        | Explanation                                                                                                                                                                    
-|---------------------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|---------------------------- |-----------------------------------------------------------------------------------------------------------------------------------
 | CLI                         | Short for **Command Line Interface**. CLI-based Applications (i.e. NUSave) focuses on processing commands in the form of text entered from the keyboard.                       
 | GUI                         | Short for **Graphical User Interface**. GUIs work as the communication channel between the program and the user. Users interact with NUSave through the GUI, on their devices. 
 | OS                          | Short for **Operating Systems**. The underlying computer program that allows users to interact with a computer. It manages the hardware components and software resources of a computer for the user.           
