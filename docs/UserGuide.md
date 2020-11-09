@@ -288,7 +288,7 @@ You can use this command to undo a previously executed command.
 
 ✏️ Example: `undo`
 
-This will cause NUSave to revert to its state before the previous command was executed as seen in Figure 5.1.2.1 below:
+This will revert NUSave to its state before the previous command was executed as seen in Figure 5.1.2.1 below:
 
 ![Example of undo command](images/CommandScreenShots/5_1_2_1_undo.png)
 
@@ -299,11 +299,11 @@ Figure 5.1.2.1. Example of using the undo command on the main page.
 
 Format: `redo`
 
-You can use this command to redo a previously undone command.
+You can use this command to redo a previously undid command.
 
-✏️ Example: `undo`
+✏️ Example: `redo`
 
-This will cause NUSave to revert to its state after the executing the previously undone command as seen in Figure 5.1.3.1 below:
+This will revert NUSave to its state before the previous undo command was executed as seen in Figure 5.1.3.1 below:
 
 ![Example of redo command](images/CommandScreenShots/5_1_3_1_redo.png)
 
