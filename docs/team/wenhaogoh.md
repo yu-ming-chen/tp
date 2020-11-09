@@ -23,6 +23,7 @@ Given below are my contributions to the project:
 - **Code Contributed**: [RepoSense Link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=sogggy&tabRepo=AY2021S1-CS2103T-T11-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
 - **Project Management**:
+    - Responsible for overall project coordination and work delegation
     - Setup github organisation and repository
     - Setup continuous integration
     - Managed releases `v0.1, v1.3.trial, v1.3, v1.4`
@@ -36,21 +37,25 @@ Given below are my contributions to the project:
 
 - **Contributions to Documentation**
 	- User Guide:
-		- Added documentation for the `clear`, `undo` and `redo` commands.
-		- Added documentation for Overview, GUI Layout and Quick Start sections**.
+		- Added documentation for the `clear`, `undo` and `redo` commands
+		- Added documentation for Overview, GUI Layout and Quick Start sections**
 	- Developer Guide:
-		- Added description for `Storage` architectural component.
-		- Added implementation details for Parsers.
-		- Added implementation details for Undo & Redo Commands.
-		- Added implementation details for List View Rendering.
+		- Added description for `Storage` architectural component
+		- Added implementation details for Parsers
+		- Added implementation details for Undo & Redo Commands
+		- Added implementation details for List View Rendering
 
 - **Community**:
 	- Reported bugs and suggestions for other teams in the class: PRs [#1](https://github.com/wenhaogoh/ped/issues/1), [#2](https://github.com/wenhaogoh/ped/issues/2), [#3](https://github.com/wenhaogoh/ped/issues/3), [#4](https://github.com/wenhaogoh/ped/issues/4), [#5](https://github.com/wenhaogoh/ped/issues/5), [#6](https://github.com/wenhaogoh/ped/issues/6)
 
 ### Contributions to Developer Guide (Extracts)
 
-#### 4.3.6. Undo & Redo Commands
+Below is an extract of my contribution to the developer guide.
+
+#### 4.3.6. Undo & redo commands
 (Contributed by Wen Hao)
+
+This section elaborates on the events of the undo and redo commands.
 
 The undo and redo commands are implemented using the following classes:
 
@@ -62,37 +67,13 @@ The undo and redo commands are implemented using the following classes:
 
 The following class diagram shows how the classes interact with each other:
 
-![Undo redo class diagram](../diagrams/UndoRedoClassDiagram.png)
+![Undo redo class diagram](diagrams/UndoRedoClassDiagram.png)
 
-The pointer in `HistoryManager<VersionedNusave>` is always pointing to the latest `VersionedNusave` in a doubly linked list represented by `Node<T>`. If an undo command is executed, it will load the previous `VersionedNusave` and move the pointer backward. If a redo command is executed, it will load the next `VersionedNusave` and move the pointer forward. Whenever the user makes changes to NUSave data, a `VersionedNusave` is instantiated with a deep copy of the `BudgetList` from `Nusave` and the `BudgetIndex` from `State`. It replaces the next `Node<T>` (if any) of the `Node<T>` that `HistoryManager<VersionedNusave>` is currently pointing to before the pointer is moved forward.
-
-To better illustrate the process, an example usage shown below:
-
-Step 1: The user launches NUSave. `HistoryManager<VersionedNusave>` is instantiated with an empty doubly linked list.
-
-![Undo redo object diagram for step 1](../diagrams/UndoRedoState0.png)
-
-Step 2: The user makes changes to NUSave data by creating a `Budget` named "demo". Before the change is made, a `VersionedNusave` is instantiated in case the user wants to undo. `HistoryManager<VersionedNusave>` adds this `VersionedNusave` to the doubly linked list.
-
-![Undo redo object diagram for step 2](../diagrams/UndoRedoState1.png)
-
-Step 3: The user executes the undo command. Before reverting the changes, a `VersionedNusave` is instantiated in case the user wants to redo. `HistoryManager<VersionedNusave>` adds this `VersionedNusave` to the doubly linked list before moving its pointer backward to retrieve the previous `VersionedNusave`. The `BudgetList` from the previous `VersionedNusave` is loaded into `Nusave` while the `BudgetIndex` from the previous `VersionedNusave` is used to set `State`. Once this is done, the GUI should reflect that the "demo" budget is removed from NUSave.
-
-![Undo redo object diagram for step 3](../diagrams/UndoRedoState2.png)
-
-Step 4: The user executes the redo command. `HistoryManager<VersionedNusave>` retrieves the next `VersionedNusave` from the pointer and moves its pointer forward. The `BudgetList` from the next `VersionedNusave` is loaded into `Nusave` while the `BudgetIndex` from the next `VersionedNusave` is used to set `State`. Once this is done, the GUI should reflect that the "demo" budget is added back to NUSave.
-
-![Undo redo object diagram for step 4](../diagrams/UndoRedoState3.png)
-
-Step 5: The user makes changes to NUSave data by creating a `Budget` named "demo2". Before the change is made, a `VersionedNusave` is instantiated in case the user wants to undo. `HistoryManager<VersionedNusave>` adds this `VersionedNusave` to the doubly linked list before moving its pointer forward.
-
-![Undo redo object diagram for step 5](../diagrams/UndoRedoState4.png)
-
-The following sequence diagram shows how the undo command is executed:
-
-![Undo redo sequence diagram](../diagrams/UndoSequenceDiagram.png)
+Figure 4.3.6.1. Class diagram of the classes related to undo and redo command.
 
 ### Contributions to User Guide (Extracts)
+
+Below is an extract of my contribution to the user guide.
 
 ## 3. GUI Layout
 (Contributed by Wen Hao)
@@ -140,42 +121,3 @@ Component         | Purpose
 Index             | The index used to reference this budget.
 Name              | The name of this budget.
 Expenditures Count | The total number of expenditures stored in this budget.
-
-### 3.2. Budget Page View
-(Contributed by Wen Hao)
-
-You will be directed to a budget page when you use the [open budget command](#528-opening-a-budget-open).
-On this page, you can see the list of expenditures that are currently stored in the budget that you have opened.
-
-Here is how a budget page should look like:
-
-![Example of budget page view](../images/GuiLayoutScreenShots/3_2_1_budgetPage.png)
-
-Figure 3.2.1. Example of a budget page view.
-
-Below is a table containing all the components that can be found on a budget page accompanied by their respective purposes:
-
-Component | Purpose
---------- | -------
-Command Box | A text field for you to enter your desired commands.
-Result Display | A **scrollable** panel that displays the response messages of a command after it has been executed.
-Info Box | A panel that displays the total amount you have spent so far based on the expenditures added to the budget. It will also display the threshold of the budget if it has one.
-Title | A text field that displays the name of the budget that is currently open.
-Expenditure Card | A card that represents an expenditure stored in the budget that is currently open. It contains the index, name, tags and price of the expenditure.
-List View | A **scrollable** panel that can hold multiple expenditure cards.
-
-Here is the breakdown of an individual expenditure card:
-
-![Example of expenditure card](../images/GuiLayoutScreenShots/3_2_2_expenditureCard.png)
-
-Figure 3.2.2. Example of an expenditure card.
-
-Below is a table containing all the components that can be found in an expenditure card accompanied by their respective purposes:
-
-Component     | Purpose
-------------- | -------
-Index         | The index used to reference this expenditure.
-Name          | The name of this expenditure.
-Creation Date | The date at which this expenditure is added.
-Tags          | The tags that this expenditure has been assigned.
-Price         | The price of this expenditure.
