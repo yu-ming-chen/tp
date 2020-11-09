@@ -86,12 +86,6 @@ certain actions, such as displaying help to the user.
 
 This section elaborates on the `CreateBudgetCommand`.
 
-The following activity diagram shows the events that occur when the user executes the `CreateBudgetCommand`.
-
-![CreateBudgetCommand Activity Diagram](../diagrams/commandsPlantUML/diagram/CreateBudgetCommandActivity.png) 
-
-Figure 4.3.1.1: Activity diagram of the `CreateBudgetCommand`.
-
 The command occurs in the `Main Page` of NUSave and results in the specified budget being created in
 NUSave. This command therefore requires a compulsory name to specify the name of the budget to be created.
 
