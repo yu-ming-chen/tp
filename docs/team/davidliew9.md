@@ -31,6 +31,12 @@ Given below are my contributions to the project:
 - **Project Management**:
     - Identified and created Issues in milestones v1.2, v1.3
     - [PRs reviewed by me](https://github.com/AY2021S1-CS2103T-T11-4/tp/pulls?q=is%3Apr+reviewed-by%3Adavidliew9)
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 - **Contributions to Documentation**:
     - User Guide:
         - Added documentation for the commands `delete budget`, `delete expenditure`, `edit expenditure`,`exit`.
