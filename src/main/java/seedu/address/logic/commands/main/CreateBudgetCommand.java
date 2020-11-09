@@ -57,4 +57,14 @@ public class CreateBudgetCommand extends MainPageCommand {
     }
 
 
+    /**
+     * Checks if the contents within a budget is the same.
+     * @param other
+     * @return returns whether the contents are identical or not.
+     */
+    public boolean contentEquals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof CreateBudgetCommand // instanceof handles nulls
+                && toCreate.contentEquals(((CreateBudgetCommand) other).toCreate));
+    }
 }

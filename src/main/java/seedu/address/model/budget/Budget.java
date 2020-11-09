@@ -126,6 +126,20 @@ public class Budget implements Renderable {
                 && otherBudget.getExpenditures().equals(getExpenditures());
     }
 
+
+    /**
+     * Checks if the contents within Budget is the same.
+     * @param other
+     * @return returns whether the contents are identical or not.
+     */
+
+    public boolean contentEquals(Object other) {
+        Budget otherBudget = (Budget) other;
+        return otherBudget.getName().equals(getName())
+                && otherBudget.getThreshold().equals(getThreshold())
+                && otherBudget.getExpenditures().equals(getExpenditures());
+    }
+
     /**
      * Returns true if {@code Name} contains the given {@code string}.
      */

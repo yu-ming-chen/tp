@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_MORE_THAN_THREE_TAGS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,12 +12,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.budget.AddExpenditureCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.testutil.TypicalBudgets;
 import seedu.address.testutil.TypicalExpenditure;
-
-import java.time.LocalDateTime;
 
 public class AddExpenditureCommandParserTest {
     private AddExpenditureCommandParser parser;
@@ -27,11 +21,13 @@ public class AddExpenditureCommandParserTest {
     void setUp() {
         parser = new AddExpenditureCommandParser();
     }
+
     /**
      * Asserts that the parsing of {@code userInput} by {@code parser} is successful and the command created
      * equals to {@code expectedCommand}.
      */
-     void assertExpenditureParseSuccess(Parser parser, String userInput, Command expectedCommand) {
+
+    void assertExpenditureParseSuccess(Parser parser, String userInput, Command expectedCommand) {
         try {
             Command command = parser.parse(userInput);
             assertEquals(true, ((AddExpenditureCommand) command).contentEquals(expectedCommand));
@@ -54,16 +50,19 @@ public class AddExpenditureCommandParserTest {
 
     @Test
     public void parse_allFieldPresentDifferentCreatedOn_failure() throws ParseException {
-         Command expected = new AddExpenditureCommand(TypicalExpenditure.getMcMuffinExpenditureWithTags());
-        assertEquals(false, parser.parse(" n/McMuffin p/4.50 t/breakfast t/delicious").equals(expected));
+        Command expected = new AddExpenditureCommand(TypicalExpenditure.getMcMuffinExpenditureWithTags());
+        assertEquals(false, parser
+                 .parse(" n/McMuffin p/4.50 t/breakfast t/delicious").equals(expected));
     }
 
     @Test
-    public void parse_allFieldExceptTagsPresentDifferentCreatedOn_failure() throws ParseException {
+    public void parse_allFieldExceptTagsPresentDifferentCreatedOn_failure()
+            throws ParseException, InterruptedException {
         Command expected = new AddExpenditureCommand(TypicalExpenditure.getMcMuffinExpenditureWithTags());
+        //sleep to ensure createdOn is different
+        Thread.sleep(500);
         Command actual = parser.parse(" n/McMuffin p/4.50 t/breakfast t/delicious");
-        //assertEquals(LocalDateTime.parse());
-        //assertEquals(false, parser.parse(" n/McMuffin p/4.50 t/breakfast t/delicious").equals(expected));
+        assertEquals(false, parser.parse(" n/McMuffin p/4.50 t/breakfast t/delicious").equals(expected));
     }
 
     @Test
