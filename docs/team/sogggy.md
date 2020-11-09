@@ -40,10 +40,6 @@ includes the threshold of the budget, and the current total expenditure of that 
 	- Justification: This feature allows the user to be able to quickly filter to only view relevant budgets that he/she is
 	interested in, without having to scroll through their many budgets that they have stored in NUSave.
 
-- **Feature** : Added ability to add expenditures in NUSave: PR [#49](https://github.com/AY2021S1-CS2103T-T11-4/tp/pull/49)
-	- What it does: `add` allows the users to be able to add expenditures, with its tagged name and price into NUSave.
-	- Justification: This features allows users to be able to store expenditures in the application, an essential component of NUSave. 
-
 - **Code Contributed**: [RepoSense Link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=sogggy&tabRepo=AY2021S1-CS2103T-T11-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
 - **Project Management**:
