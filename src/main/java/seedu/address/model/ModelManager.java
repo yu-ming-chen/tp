@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.budget.Threshold.NO_THRESHOLD_MESSAGE;
 
 import java.nio.file.Path;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -15,7 +16,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.budget.FindExpenditureCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.main.FindBudgetCommand;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.budget.BudgetList;
 import seedu.address.model.budget.Threshold;
@@ -56,7 +59,6 @@ public class ModelManager implements Model {
         this.filteredRenderables = new FilteredList<>(this.nusave.getInternalList());
         this.state = new StateManager(new EmptyBudgetIndex(), Page.MAIN, PageTitle.MAIN_PAGE_TITLE);
         this.history = new HistoryManager<>();
-        sortBudgetsByCreatedDate();
     }
     /**
      * Initializes a new ModelManager.
@@ -132,7 +134,7 @@ public class ModelManager implements Model {
     public void openBudget(BudgetIndex budgetIndex) {
         requireNonNull(budgetIndex);
         setOpenCommandState(budgetIndex);
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        displayAllRenderables();
         repopulateObservableList();
     }
 
@@ -147,8 +149,11 @@ public class ModelManager implements Model {
 
     @Override
     public void closeBudget() {
+        if (state.getPage() == Page.MAIN) {
+            return;
+        }
         setCloseCommandState();
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        displayAllRenderables();
         repopulateObservableList();
     }
 
@@ -173,7 +178,8 @@ public class ModelManager implements Model {
     @Override
     public void addBudget(Budget budget) {
         requireNonNull(budget);
-        nusave.addBudget(budget);
+        nusave.addBudgetToFront(budget);
+        displayAllRenderables();
     }
 
     /**
@@ -188,7 +194,7 @@ public class ModelManager implements Model {
         assert index < filteredRenderables.size();
         Budget budget = (Budget) filteredRenderables.get(index);
         nusave.deleteBudget(budget);
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        displayAllRenderables();
     }
 
     /**
@@ -200,7 +206,26 @@ public class ModelManager implements Model {
     public void editBudget(Budget oldBudget, Budget editedBudget) {
         requireAllNonNull(oldBudget, editedBudget);
         nusave.editBudget(oldBudget, editedBudget);
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        displayAllRenderables();
+    }
+
+    @Override
+    public Budget getBudgetAtIndex(BudgetIndex budgetIndex) {
+        return (Budget) filteredRenderables.get(budgetIndex.getBudgetIndex().get());
+    }
+
+    @Override
+    public Expenditure getExpenditureAtIndex(ExpenditureIndex expenditureIndex) {
+        return (Expenditure) filteredRenderables.get(expenditureIndex.getExpenditureIndex().get());
+    }
+
+    @Override
+    public boolean isIndexOutOfBound(BudgetIndex budgetIndex) {
+        return budgetIndex.getBudgetIndex().get() >= filteredRenderables.size();
+    }
+
+    public boolean isIndexOutOfBound(ExpenditureIndex expenditureIndex) {
+        return expenditureIndex.getExpenditureIndex().get() >= filteredRenderables.size();
     }
 
     @Override
@@ -217,7 +242,7 @@ public class ModelManager implements Model {
         Predicate<Renderable> predicate = renderable -> renderable.contains(searchTerm);
         updateFilteredRenderableList(predicate);
         if (filteredRenderables.size() == 0) {
-            throw new CommandException(String.format("No budgets matching '%s' were found.", searchTerm));
+            throw new CommandException(String.format(FindBudgetCommand.MESSAGE_NO_BUDGETS_FOUND, searchTerm));
         }
     }
 
@@ -226,7 +251,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void listBudgets() throws CommandException {
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        displayAllRenderables();
         if (filteredRenderables.size() == 0) {
             throw new CommandException("You have no budgets recorded, try creating one with the create command!");
         }
@@ -266,7 +291,7 @@ public class ModelManager implements Model {
         Optional<Integer> budgetIndex = state.getBudgetIndex();
         nusave.deleteExpenditure(expenditure, budgetIndex);
         setTotalExpenditure(nusave.getTotalExpenditureValue(budgetIndex));
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        displayAllRenderables();
     }
 
     /**
@@ -279,7 +304,7 @@ public class ModelManager implements Model {
         Optional<Integer> budgetIndex = this.state.getBudgetIndex();
         nusave.addExpenditure(expenditure, this.state.getBudgetIndex());
         setTotalExpenditure(nusave.getTotalExpenditureValue(budgetIndex));
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        displayAllRenderables();
     }
 
     /**
@@ -293,7 +318,7 @@ public class ModelManager implements Model {
         Optional<Integer> budgetIndex = this.state.getBudgetIndex();
         nusave.editExpenditure(oldExpenditure, editedExpenditure, budgetIndex);
         setTotalExpenditure(nusave.getTotalExpenditureValue(budgetIndex));
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        displayAllRenderables();
     }
 
     /**
@@ -301,7 +326,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void listExpenditures() throws CommandException {
-        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
+        displayAllRenderables();
         if (filteredRenderables.size() == 0) {
             throw new CommandException("You have no expenditures recorded, try creating one with the add command!");
         }
@@ -316,7 +341,7 @@ public class ModelManager implements Model {
         Predicate<Renderable> predicate = renderable -> renderable.contains(searchTerm);
         updateFilteredRenderableList(predicate);
         if (filteredRenderables.size() == 0) {
-            throw new CommandException(String.format("No expenditures matching '%s' were found.", searchTerm));
+            throw new CommandException(String.format(FindExpenditureCommand.MESSAGE_NO_EXPENDITURES_FOUND, searchTerm));
         }
     }
 
@@ -427,6 +452,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setBudgetIndex(BudgetIndex budgetIndex) {
+        assert budgetIndex != null;
         this.state.setBudgetIndex(budgetIndex);
     }
 
@@ -436,6 +462,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setPage(Page page) {
+        assert page != null;
         this.state.setPage(page);
     }
 
@@ -447,9 +474,11 @@ public class ModelManager implements Model {
     @Override
     public void setThreshold(Optional<Threshold> threshold) {
         if (threshold.isPresent()) {
+            assert getPage() == Page.BUDGET;
             String thresholdStr = threshold.get().toString();
             this.state.setThresholdStringProp(thresholdStr);
         } else {
+            assert getPage() == Page.MAIN;
             this.state.setThresholdStringProp(NO_THRESHOLD_MESSAGE);
         }
     }
@@ -464,6 +493,10 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Renderable> getFilteredRenderableList() {
         return filteredRenderables;
+    }
+
+    private void displayAllRenderables() {
+        updateFilteredRenderableList(PREDICATE_SHOW_ALL_RENDERABLES);
     }
 
     @Override
@@ -525,5 +558,20 @@ public class ModelManager implements Model {
             Integer index = budgetIndex.get();
             openBudget(index);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ModelManager that = (ModelManager) o;
+        return Objects.equals(nusave, that.nusave)
+                && Objects.equals(userPrefs, that.userPrefs)
+                && Objects.equals(filteredRenderables, that.filteredRenderables)
+                && Objects.equals(state, that.state);
     }
 }

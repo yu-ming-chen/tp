@@ -1,5 +1,5 @@
 @startuml
-@startuml
+hide footbox
 skinparam Sequence {
     MessageAlign center
 }
@@ -7,7 +7,7 @@ box "Logic" #LightBlue
 participant ":LogicManager" as LM
 participant ":BudgetPageParser" as BPP
 participant ":FindExpenditureCommandParser" as FECP
-participant "command:FindExpenditureCommand" as FEC
+participant "c:FindExpenditureCommand" as FEC
 participant "result:CommandResult" as CR
 end box
 
@@ -17,7 +17,14 @@ end box
 
 [-> LM : execute("find shirt")
 activate LM
-LM -> BPP : execute("find shirt")
+
+create BPP
+LM -> BPP
+activate BPP
+LM <-- BPP
+deactivate BPP
+
+LM -> BPP : parseCommand("find shirt")
 activate BPP
 
 create FECP
@@ -32,14 +39,19 @@ activate FECP
 create FEC
 FECP -> FEC
 activate FEC
-FECP <-- FEC : command
+FECP <-- FEC : c
 deactivate FEC
 
-BPP <-- FECP : command
+BPP <-- FECP : c
 deactivate FECP
+BPP <-[hidden]- FECP
+destroy FECP
 
-LM <-- BPP : command
+
+LM <-- BPP : c
 deactivate BPP
+LM <-[hidden]- BPP
+destroy BPP
 
 LM -> FEC : execute(m)
 activate FEC

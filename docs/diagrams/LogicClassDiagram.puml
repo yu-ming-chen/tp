@@ -39,6 +39,10 @@ HiddenOutside ..> Logic
 LogicManager .up.|> Logic
 LogicManager ..>"1" PageParser
 
+Model .left. PageParser
+
+123PageParser .up.|> PageParser
+123PageParser .left.> XYZ123CommandParser: creates >
 XYZPageParser .up.|> PageParser
 XYZPageParser .left.> XYZCommandParser: creates >
 

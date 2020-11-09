@@ -59,10 +59,8 @@ includes the threshold of the budget, and the current total expenditure of that 
 		- Added documentation for `open`, `add` and `close` commands.
 		- Added documentation for Glossary section.
 	- Developer Guide:
-		- Added preface for section 3, Design.
 		- Added description for `Ui` and `State` architectural components.
-		- Added implementation details for `State` component.
-		- Added implementation details for Dynamic Updating of GUI of NUSave. 
+		- Added implementation details for `State` component, and Dynamic Updating of GUI of NUSave.
 
 - **Community**:
 	- Reported bugs and suggestions for other teams in the class (examples [1](https://github.com/AY2021S1-CS2103T-T12-3/tp/issues/215),
@@ -148,8 +146,6 @@ current page (represented by `currentPage` attribute in `StateManager`) of NUSav
 2.1. This section elaborates on how a user can use the add expenditure command in NUSave.
 
 #### 5.3.1. Adding an expenditure: `add`
-
-(Contributed by Song Yu)
 
 Format: `add n/NAME p/PRICE [t/TAG]`
 

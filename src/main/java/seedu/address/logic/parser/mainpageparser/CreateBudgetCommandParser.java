@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -38,7 +38,7 @@ public class CreateBudgetCommandParser implements Parser<CreateBudgetCommand> {
         }
 
         Name name = ParserUtil.parseBudgetName(argMultimap.getValue(PREFIX_NAME).get());
-        Date date = new Date(LocalDate.now().toString());
+        Date date = new Date(LocalDateTime.now().toString());
         Optional<Threshold> threshold = ParserUtil.parseBudgetThreshold(argMultimap.getValue(PREFIX_PRICE)
                 .orElse(""));
         Budget budget = new Budget(name, date, threshold, new ExpenditureList());

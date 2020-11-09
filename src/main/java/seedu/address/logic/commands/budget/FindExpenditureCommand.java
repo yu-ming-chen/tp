@@ -23,7 +23,7 @@ public class FindExpenditureCommand extends Command {
 
     public static final String MESSAGE_SUCCESS =
             "Updated list of expenditures to show entries that contain \'%1$s\'.";
-
+    public static final String MESSAGE_NO_EXPENDITURES_FOUND = "No expenditures matching \'%s\' were found.";
     private final Name name;
 
     /**

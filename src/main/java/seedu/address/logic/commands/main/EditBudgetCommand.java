@@ -5,15 +5,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_INDEX_OUT_OF_BOUNDS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 
+import java.util.Objects;
 import java.util.Optional;
 
-import javafx.collections.ObservableList;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.Renderable;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.budget.Date;
 import seedu.address.model.budget.Name;
@@ -57,13 +55,12 @@ public class EditBudgetCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ObservableList<Renderable> currentList = model.getFilteredRenderableList();
 
-        if (budgetIndex.getBudgetIndex().get() >= currentList.size()) {
+        if (model.isIndexOutOfBound(budgetIndex)) {
             throw new CommandException(MESSAGE_INDEX_OUT_OF_BOUNDS);
         }
 
-        Budget toEdit = (Budget) currentList.get(budgetIndex.getBudgetIndex().get());
+        Budget toEdit = model.getBudgetAtIndex(budgetIndex);
         Budget editedBudget = createEditedBudget(toEdit, editBudgetDescriptor);
 
         model.saveToHistory();
@@ -82,7 +79,6 @@ public class EditBudgetCommand extends Command {
         Date createdOn = editBudgetDescriptor.getCreatedOn().orElse(budgetToEdit.getCreatedOn());
         Optional<Threshold> threshold = editBudgetDescriptor.getThreshold().orElse(budgetToEdit.getThreshold());
         ExpenditureList expenditures = new ExpenditureList(budgetToEdit.getExpendituresList());
-
         return new Budget(name, createdOn, threshold, expenditures);
     }
 
@@ -118,8 +114,28 @@ public class EditBudgetCommand extends Command {
             return Optional.ofNullable(createdOn);
         }
 
-        public Boolean isAnyFieldNull() {
-            return CollectionUtil.isAnyNonNull(name, threshold, expenditures);
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            EditBudgetDescriptor that = (EditBudgetDescriptor) o;
+            return Objects.equals(name, that.name)
+                    && Objects.equals(createdOn, that.createdOn)
+                    && Objects.equals(threshold, that.threshold)
+                    && Objects.equals(expenditures, that.expenditures);
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EditBudgetCommand // instanceof handles nulls
+                && budgetIndex.equals(((EditBudgetCommand) other).budgetIndex)
+                && editBudgetDescriptor.equals(((EditBudgetCommand) other).editBudgetDescriptor));
     }
 }

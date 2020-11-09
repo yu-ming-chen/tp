@@ -2,7 +2,6 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.address.testutil.TypicalExpenditures.MC_MUFFIN;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +10,8 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.expenditure.Expenditure;
+import seedu.address.testutil.TypicalExpenditure;
 
 class JsonAdaptedExpenditureTest {
     public static final String INVALID_NAME_BLANK = "";
@@ -22,22 +23,17 @@ class JsonAdaptedExpenditureTest {
     public static final String INVALID_DATE_WRONG_FORMAT = "08-10-2020";
     public static final String INVALID_TAG = "#Snacks";
 
+    public static final Expenditure MC_MUFFIN = TypicalExpenditure.getMcMuffinExpenditure();
     public static final String VALID_NAME = MC_MUFFIN.getName().value;
     public static final String VALID_PRICE = MC_MUFFIN.getPrice().value;
     public static final String VALID_DATE = MC_MUFFIN.getCreatedOn().value;
     public static final List<JsonAdaptedTag> VALID_TAGS = MC_MUFFIN.getTags().stream().map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
-    /*
-    Todo:
-    - toModelType_validExpenditureDetails_returnsExpenditure()
-    - toModelType_invalidTags_throwsIllegalValueException()
-     */
-
     @Test
     void toModelType_validExpenditureDetails_returnsExpenditure() throws IllegalValueException {
-        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(MC_MUFFIN);
-        assertEquals(MC_MUFFIN, expenditure.toModelType());
+        JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(VALID_NAME, VALID_PRICE, VALID_DATE, null);
+        assertEquals(TypicalExpenditure.MC_MUFFIN, expenditure.toModelType());
     }
 
     @Test

@@ -79,7 +79,7 @@ public class SampleDataUtil {
     public static ReadOnlyNusave getSampleNusave() {
         Nusave sampleNusave = new Nusave();
         for (Budget budget : getSampleBudgets()) {
-            sampleNusave.addBudget(budget);
+            sampleNusave.addBudgetToFront(budget);
         }
         return sampleNusave;
     }

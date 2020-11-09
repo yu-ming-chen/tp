@@ -15,10 +15,15 @@ public class RedoCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (!model.canRedo()) {
-            throw new CommandException(MESSAGE_FAILURE);
+            return new CommandResult(MESSAGE_FAILURE);
         }
 
         model.redo();
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof RedoCommand;
     }
 }
