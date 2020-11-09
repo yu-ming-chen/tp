@@ -61,8 +61,7 @@ includes the threshold of the budget, and the current total expenditure of that 
 
 - **Community**:
 	- Reported bugs and suggestions for other teams in the class (examples [1](https://github.com/AY2021S1-CS2103T-T12-3/tp/issues/215),
-	[2](https://github.com/AY2021S1-CS2103T-T12-3/tp/issues/219), [3](https://github.com/AY2021S1-CS2103T-T12-3/tp/issues/215),
-	[4](https://github.com/AY2021S1-CS2103T-T12-3/tp/issues/217))
+	[2](https://github.com/AY2021S1-CS2103T-T12-3/tp/issues/219), [3](https://github.com/AY2021S1-CS2103T-T12-3/tp/issues/217))
 
 **Contributions to Developer Guide (Extracts)**:
 
